@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE project PUBLIC "-//ANT//DTD project//EN" "project.dtd" [
+        ]>
+
+<project name="buildExamples" default="build">
+
+    <property name="Name" value="ExampleModels"/>
+    <property name="name" value="example"/>
+    <property name="dir.includes"
+              value="org/ascape/examples/**"/>
+	
+	<import file="../../org.ascape.common/tools/antdirs.xml" />
+	<import file="../../org.ascape.common/tools/anttargets.xml" />
+    <property name="dir.classpath" value="${dir.ascape.classpath}"/>
+</project>

@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Examples Plug-in
+Bundle-SymbolicName: org.ascape.models.examples
+Bundle-Version: 1.0.0
+Require-Bundle: org.ascape.common
+Eclipse-LazyStart: true
