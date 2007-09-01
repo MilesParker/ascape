@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE project PUBLIC "-//ANT//DTD project//EN" "project.dtd" [
+        ]>
+
+<project name="eclipseUtils" default="removeDSStore">
+	<target name="removeDSStore" description="Removes all of those pesky ds store files from a project">
+		<delete failonerror="false">
+			<fileset dir="../../" defaultexcludes="no">
+				<include name="**/.DS_Store"/>
+			</fileset>
+		</delete>
+	</target>
+	<target name="removeSVN" description="Removes all of those pesky ds store files from a project">
+		<delete failonerror="false">
+			<fileset dir="../" defaultexcludes="no">
+				<include name="**/.svn"/>
+			</fileset>
+		</delete>
+	</target>
+</project>

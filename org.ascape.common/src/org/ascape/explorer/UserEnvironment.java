@@ -1,0 +1,1131 @@
+/*
+ * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors. 
+ * All rights reserved.
+ * This program and the accompanying materials are made available solely under of the BSD license "ascape-license.txt".
+ * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ */
+
+package org.ascape.explorer;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.GraphicsEnvironment;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Image;
+import java.awt.Insets;
+import java.awt.Label;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+import java.beans.PropertyVetoException;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+import java.util.TooManyListenersException;
+import java.util.Vector;
+import java.util.zip.GZIPOutputStream;
+
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.BorderFactory;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JEditorPane;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JToolBar;
+import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+import javax.swing.ToolTipManager;
+import javax.swing.UIManager;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.LineBorder;
+
+import org.ascape.model.ModelRoot;
+import org.ascape.model.Scape;
+import org.ascape.model.event.ScapeEvent;
+import org.ascape.model.event.ScapeListener;
+import org.ascape.util.Utility;
+import org.ascape.view.custom.AutoCustomizer;
+import org.ascape.view.custom.AutoCustomizerSwing;
+import org.ascape.view.vis.ComponentView;
+
+/**
+ * Suppots all user environment ascapet of a running ascape app in a vm,
+ * including user frame, etc.
+ * 
+ * @author Miles Parker
+ * @version 3.0
+ * @history first in 6/21/02
+ * @since 3.0
+ */
+public class UserEnvironment extends UIEnvironment {
+
+    /**
+     * Symbol indicating the manager is supporting an applet view.
+     */
+    public static final int APPLET_VIEW_MODE = -1;
+
+    /**
+     * Symbol indicating the manager is supporting a swing external frames view,
+     * using javax.swing.JFrame;
+     */
+    public static final int CLASSIC_VIEW_MODE = -2;
+
+    /**
+     * Symbol indicating the manager is supporting a non-swing external frames
+     * view, using java.awt.Frame;
+     */
+    public static final int NON_SWING_VIEW_MODE = -3;
+
+    /**
+     * Symbol indicating the manager is supporting a swing internal frames view,
+     * using javax.swing.JIntenralFrame; [Internal frames are not quite ready
+     * for prime time.]
+     */
+    public static final int MDI_VIEW_MODE = -4;
+
+    /**
+     * The mode the manager is currently supporting, standard by default.
+     */
+    private int viewMode = MDI_VIEW_MODE;
+
+    /**
+     * Symbol indicating that views added should be put into a tabbed layout.
+     */
+    public static final int TABBED_MULTIVIEW_MODE = -1;
+
+    /**
+     * Symbol indicating that views added should be put into a grid layout.
+     */
+    public static final int GRID_MULTIVIEW_MODE = 1;
+
+    /**
+     * Symbol indicating that views added should be put into a grid layout, with
+     * a name appearing above each panel..
+     */
+    public static final int GRID_MULTIVIEW_LABEL_MODE = 2;
+
+    /**
+     * Multiview mode. By default GRID_MULTIVIEW_MODE.
+     */
+    private int multiViewMode = GRID_MULTIVIEW_MODE;
+
+    /**
+     * Have appropriate copyright messages been shown on instantiaiting
+     * userEnvironment?.
+     */
+    static transient boolean copyrightNoticeShown = false;
+
+    /**
+     * The redirect console.
+     */
+    private static boolean redirectConsole = true;
+
+    /**
+     * The show navigator.
+     */
+    private static boolean showNavigator = true;
+
+    /**
+     * The applet the scape is running within, if any. Should be ok to have this
+     * static, since a vm should always either be running as an applet or an
+     * application.
+     */
+    private ModelApplet applet;
+
+    /**
+     * The applet panel this scape will be displayed within. See above.
+     */
+    private JPanel appletModelPanel;
+
+    /**
+     * The extra space used in the screen.
+     */
+//    Dimension screenBuffer = new Dimension(10, 60);
+    private Dimension screenBuffer = new Dimension(60, 60);
+
+    /**
+     * A sparse map for objects currently being edited by one or more editors.
+     */
+    private Map propertySupportForObject;
+
+    /**
+     * The selection manager.
+     */
+    AgentSelectionManager selectionManager;
+
+    //TODO..integrate multiwin w/ this schema?
+    /**
+     * Instantiates a new user environment.
+     */
+    public UserEnvironment() {
+        ToolTipManager.sharedInstance().setInitialDelay(300);
+
+        setDefaultEnvironment(this);
+        setControlBarView(new ControlBarView());
+        addView(getControlBarView(), false);
+        switch (viewMode) {
+            //Comment out for web
+            case MDI_VIEW_MODE:
+                setCustomizer(new AutoCustomizerSwing());
+                setFullScreen(false);
+                if (ModelRoot.isDisplayGraphics()) {
+                    showSplashScreenNotice();
+                } else {
+                    System.out.println("                 ***NOTICE***");
+                    System.out.println();
+                    System.out.println("Automatic splash screen display is disabled.");
+                    System.out.println("For copyright reasons, the splash screen MUST be");
+                    System.out.println("displayed whenever a graphical user interface is.");
+                    System.out.println("See ViewFrameBridge.showSplashScreenNotice() for details.");
+                    System.out.println();
+                    System.out.println();
+                }
+//getUserFrame().show();
+                getUserFrame().setTitle("Ascape");
+            case CLASSIC_VIEW_MODE:
+                if (ModelRoot.isDisplayGraphics()) {
+                    showSplashScreenNotice();
+                } else {
+                    System.out.println("                 ***NOTICE***");
+                    System.out.println();
+                    System.out.println("Automatic splash screen display is disabled.");
+                    System.out.println("For copyright reasons, the splash screen MUST be");
+                    System.out.println("displayed whenever a graphical user interface is.");
+                    System.out.println("See ViewFrameBridge.showSplashScreenNotice() for details.");
+                    System.out.println();
+                    System.out.println();
+                }
+                SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        setCustomizer(new AutoCustomizerSwing());
+                    }
+                });
+                break;
+                //End comment out for web
+            case NON_SWING_VIEW_MODE:
+                if (ModelRoot.isDisplayGraphics()) {
+                    showSplashScreenNotice();
+                } else {
+                    System.out.println("                 ***NOTICE***");
+                    System.out.println();
+                    System.out.println("Automatic splash screen display is disabled.");
+                    System.out.println("For copyright reasons, the splash screen MUST be");
+                    System.out.println("displayed whenever a graphical user interface is.");
+                    System.out.println("See ViewFrameBridge.showSplashScreenNotice() for details.");
+                    System.out.println();
+                    System.out.println();
+                }
+                setCustomizer(new AutoCustomizer());
+                addView(new SimpleControlView(true, true));
+                break;
+            case APPLET_VIEW_MODE:
+                setCustomizer(new AutoCustomizer());
+                appletModelPanel = new JPanel();
+                appletModelPanel.setBackground(Color.white);
+                applet.getPanel().setBackground(appletModelPanel.getBackground());
+                applet.getPanel().setLayout(new BorderLayout());
+                applet.getPanel().add("Center", appletModelPanel);
+                //Create a control button bar with no quit button and to display iterations
+                SimpleControlView controlBar = new SimpleControlView(false, true);
+                addView(controlBar);
+                JPanel controlArea = new JPanel();
+                controlArea.setLayout(new BorderLayout());
+                controlArea.add("Center", controlBar);
+                applet.getPanel().add("South", controlArea);
+            default:
+                throw new RuntimeException("Tried to setup a ViewFrameBridge with bad view mode specified:" + viewMode);
+        }
+
+        propertySupportForObject = new HashMap();
+    }
+
+    /**
+     * Setup up a basic interactive controlBar time userEnvironment for a model
+     * application.
+     * 
+     * @param scapeEvent
+     *            the scape event
+     */
+    public void environmentQuiting(ScapeEvent scapeEvent) {
+        super.environmentQuiting(scapeEvent);
+        getUserFrame().dispose();
+    }
+
+    /**
+     * When a scape is added add any persiten views to it and set frame title.
+     * 
+     * @param scapeEvent
+     *            the scape event
+     * @throws TooManyListenersException
+     *             the too many listeners exception
+     */
+    public void scapeAdded(ScapeEvent scapeEvent) throws TooManyListenersException {
+        super.scapeAdded(scapeEvent);
+        frames = new Vector();
+        getUserFrame().setTitle("Ascape - " + getScape().getName());
+    }
+
+    /**
+     * When a scape is removed reset frame title.
+     * 
+     * @param scapeEvent
+     *            the scape event
+     */
+    public void scapeRemoved(ScapeEvent scapeEvent) {
+        super.scapeRemoved(scapeEvent);
+        if (getUserFrame() != null) {
+            getUserFrame().setTitle("Ascape");
+        }
+    }
+
+    /**
+     * Register view frame.
+     * 
+     * @param v
+     *            the v
+     */
+    protected void registerViewFrame(ViewFrameBridge v) {
+        if (!(v.getViews()[0] instanceof ControlBarView)) {
+            frames.addElement(v);
+            //todo, this wasn't working well, so did a quick fix by just rebuilding frame list, prob. need a better long-term solution
+            controlBarView.buildFrameList();
+            //controlBarView.getFrameList().contentsChanged(new ListDataEvent(this, ListDataEvent.INTERVAL_ADDED, frames.size() - 1, frames.size()));
+        }
+        v.setVisible(true);
+    }
+
+    /* (non-Javadoc)
+     * @see org.ascape.explorer.UIEnvironment#createFrame(org.ascape.view.vis.ComponentView[])
+     */
+    public void createFrame(ComponentView[] views) {
+        final ViewFrameBridge frame;
+        if (views.length > 0) {
+            frame = new ViewFrameBridge(views);
+            if (frame.getFrameImp().getLocation().getX() + frame.getFrameImp().getLocation().getY() == 0) {
+                placeRandomLocation(frame.getFrameImp());
+            }
+            registerViewFrame(frame);
+        }
+        if ((getControlBarView() != null) && (getControlBarView().getViewFrame() != null)) {
+            getControlBarView().getViewFrame().toFront();
+        }
+    }
+
+    /**
+     * Places the window in a random location.
+     * 
+     * @param frameImp
+     *            the frame imp
+     */
+    public void placeRandomLocation(Container frameImp) {
+        if (frameImp != null) {
+            if (viewMode == CLASSIC_VIEW_MODE) {
+                frameImp.setLocation(Utility.randomInRange(new Random(), 0, Toolkit.getDefaultToolkit().getScreenSize().width - frameImp.getSize().width - screenBuffer.width),
+                    Utility.randomInRange(new Random(), 0, Toolkit.getDefaultToolkit().getScreenSize().height - frameImp.getSize().height - screenBuffer.height));
+            } else if (viewMode == MDI_VIEW_MODE) {
+                int maxX = Math.max((int) getUserFrame().getDeskScrollPane().getViewport().getSize().getWidth() - frameImp.getSize().width - screenBuffer.width, 1);
+                int maxY = Math.max((int) getUserFrame().getDeskScrollPane().getViewport().getSize().getHeight() - frameImp.getSize().height - screenBuffer.height, 1);
+                frameImp.setLocation(Utility.randomInRange(new Random(), 0, maxX), Utility.randomInRange(new Random(), 0, maxY));
+            }
+        }
+    }
+
+    /**
+     * If model is running in an applet vm context, returns the applet.
+     * 
+     * @return the applet
+     */
+    public ModelApplet getApplet() {
+        return applet;
+    }
+
+    /**
+     * Sets the applet scape views are to be displayed within, indicating that
+     * we are in an applet vm context.
+     * 
+     * @param _applet
+     *            the _applet
+     */
+    public void setApplet(ModelApplet _applet) {
+        applet = _applet;
+        if (_applet != null) {
+            viewMode = APPLET_VIEW_MODE;
+        }
+    }
+
+    /**
+     * If model is running in an applet vm context, returns the applet.
+     * 
+     * @return the applet model panel
+     */
+    public JPanel getAppletModelPanel() {
+        return appletModelPanel;
+    }
+
+    /**
+     * Checks if is redirect console.
+     * 
+     * @return true, if is redirect console
+     */
+    public static boolean isRedirectConsole() {
+        return redirectConsole;
+    }
+
+    /**
+     * Sets the redirect console.
+     * 
+     * @param redirectConsole
+     *            the new redirect console
+     */
+    public static void setRedirectConsole(boolean redirectConsole) {
+        UserEnvironment.redirectConsole = redirectConsole;
+    }
+
+    /**
+     * Checks if is show navigator.
+     * 
+     * @return true, if is show navigator
+     */
+    public static boolean isShowNavigator() {
+        return showNavigator;
+    }
+
+    /**
+     * Sets the show navigator.
+     * 
+     * @param showNavigator
+     *            the new show navigator
+     */
+    public static void setShowNavigator(boolean showNavigator) {
+        UserEnvironment.showNavigator = showNavigator;
+    }
+
+    /**
+     * The Class ModelPickAction.
+     */
+    static class ModelPickAction extends AbstractAction {
+
+        /**
+         * The model name.
+         */
+        String modelName;
+        
+        /**
+         * The model class name.
+         */
+        String modelClassName;
+
+        /**
+         * Instantiates a new model pick action.
+         * 
+         * @param modelName
+         *            the model name
+         * @param modelClassName
+         *            the model class name
+         */
+        public ModelPickAction(String modelName, String modelClassName) {
+            super(modelName, null);
+            this.modelName = modelName;
+            this.modelClassName = modelClassName;
+        }
+
+        /* (non-Javadoc)
+         * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+         */
+        public void actionPerformed(ActionEvent e) {
+            modelNameField.setText(modelClassName);
+        }
+    }
+
+    /**
+     * The Constant aboutIcon.
+     */
+    private final static Icon aboutIcon = new ImageIcon(getImage("AscapeLogo.gif"));
+
+    /**
+     * The about frame.
+     */
+    private static JInternalFrame aboutFrame = null;
+    
+    /**
+     * The Constant DEFAULT_BORDER.
+     */
+    private final static Border DEFAULT_BORDER = new EmptyBorder(4, 4, 3, 3);
+    
+    /**
+     * The Constant ROLLOVER_BORDER.
+     */
+    private final static Border ROLLOVER_BORDER = new CompoundBorder(new LineBorder(Color.darkGray), new EmptyBorder(3, 3, 2, 2));
+    
+    /**
+     * The Constant BUTTON_ROLLOVER_COLOR.
+     */
+    protected final static Color BUTTON_ROLLOVER_COLOR = new Color(180, 180, 200);
+    
+    /**
+     * The Constant ACCENT_COLOR.
+     */
+    protected final static Color ACCENT_COLOR = new Color(125, 100, 200);
+
+    /**
+     * Displays a standard about dialog.
+     * 
+     * @param scape
+     *            the scape
+     */
+    public static void displayAboutDialog(Scape scape) {
+        //Comment out for web
+        if ((aboutFrame == null) || (!aboutFrame.isVisible())) {
+            String title = "About " + scape.getRoot().getName();
+            String desc = "<html><head></head><title>" + title + "</title><body>";
+            desc += scape.getRoot().getHTMLDescription();
+            desc += "<BR><BR>";
+            desc += Scape.copyrightAndCredits;
+            desc += "\n</body>\n</html>";
+            JEditorPane msgArea = new JEditorPane("text/html", desc);
+            msgArea.setEditable(false);
+            aboutFrame = new JInternalFrame(title);
+            getDefaultEnvironment().getUserFrame().getDesk().add(aboutFrame, JLayeredPane.PALETTE_LAYER);
+            aboutFrame.setClosable(true);
+            aboutFrame.setIconifiable(true);
+            aboutFrame.setMaximizable(true);
+            aboutFrame.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
+            aboutFrame.setBackground(Color.white);
+            aboutFrame.setFrameIcon(UserEnvironment.getIcon("Inform"));
+            JPanel p = new JPanel();
+            GridBagLayout pgbl = new GridBagLayout();
+            p.setLayout(pgbl);
+            GridBagConstraints pgbc = pgbl.getConstraints(p);
+            pgbc.gridx = 0;
+            pgbc.gridy = 0;
+            pgbc.anchor = GridBagConstraints.WEST;
+            pgbc.gridwidth = 1;
+            pgbc.weightx = 0.0;
+            pgbc.weighty = 0.0;
+            pgbc.fill = GridBagConstraints.NONE;
+            p.setBackground(Color.white);
+            p.add(new JLabel(aboutIcon), pgbc);
+            pgbc.weightx = 1.0;
+            pgbc.weighty = 1.0;
+            pgbc.gridy++;
+            pgbc.fill = GridBagConstraints.BOTH;
+            JScrollPane sp = new JScrollPane(msgArea);
+            Border b = new EmptyBorder(4, 4, 4, 4);
+            sp.setBackground(Color.white);
+            sp.setBorder(b);
+            p.add(sp, pgbc);
+//todo; break out code to center into standard functionality
+            aboutFrame.getContentPane().add(p);
+            int aboutWidth = 600;
+            int aboutHeight = 400;
+            aboutFrame.setBounds((int) (getDefaultEnvironment().getUserFrame().getDesk().getSize().getWidth() - aboutWidth) / 2, (int) (getDefaultEnvironment().getUserFrame().getDesk().getSize().getHeight() - aboutHeight) / 2, aboutWidth, aboutHeight);
+            aboutFrame.show();
+//End comment out for web
+        } else {
+            try {
+                aboutFrame.setIcon(false);
+            } catch (PropertyVetoException e) {
+            }
+        }
+    }
+
+    /**
+     * Check for license agreement.
+     */
+    public static void checkForLicenseAgreement() {
+        File licenseFile = new File("licenseAgreement.lic");
+        if (licenseFile.exists()) {
+            return;
+        } else {
+            final JPanel licenseAgreementPanel = new JPanel() {
+                public Dimension getPreferredSize() {
+                    return new Dimension(700, 600);
+                }
+            };
+            licenseAgreementPanel.setLayout(new BorderLayout());
+
+            BufferedReader demoReader = new BufferedReader(new InputStreamReader(Scape.class.getResourceAsStream("LicenseAgreement.html")));
+            String readString = "";
+            try {
+                String nextString = demoReader.readLine();
+                while (nextString != null) {
+                    //Strip off spaces
+                    readString += nextString.trim() + "\n";
+                    nextString = demoReader.readLine();
+                }
+                demoReader.close();
+            } catch (IOException e) {
+                throw new RuntimeException("IO Exception: " + e);
+            }
+            JEditorPane agreementTextPane = new JEditorPane("text/html", readString);
+            agreementTextPane.setEditable(false);
+            JScrollPane scrollPane = new JScrollPane(agreementTextPane);
+            Border b = new EmptyBorder(4, 4, 4, 4);
+            scrollPane.setBackground(Color.white);
+            scrollPane.setBorder(b);
+            //todo; break out code to center into standard functionality
+            licenseAgreementPanel.add(scrollPane, BorderLayout.CENTER);
+
+            JPanel labelPanel = new JPanel(new BorderLayout());
+            labelPanel.add(new Label("Do you agree with the above license?"), BorderLayout.CENTER);
+            licenseAgreementPanel.add(labelPanel, BorderLayout.SOUTH);
+
+            String[] options = new String[2];
+            options[0] = "Do Not Agree";
+            options[1] = "Agree";
+            Container c = null;
+            if (getDefaultEnvironment() != null) {
+                c = getDefaultEnvironment().getUserFrame();
+            }
+            int opt = JOptionPane.showOptionDialog(c, licenseAgreementPanel, "License Agreement", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, "Open");
+            if (opt == 1) {
+                try {
+                    saveLicenseAgreementFile(licenseFile);
+                } catch (IOException e) {
+                    throw new RuntimeException(e.toString());
+                }
+            } else {
+                exit();
+            }
+        }
+    }
+
+    /**
+     * Save license agreement file.
+     * 
+     * @param file
+     *            the file
+     * @throws IOException
+     *             Signals that an I/O exception has occurred.
+     */
+    private static void saveLicenseAgreementFile(File file) throws IOException {
+        OutputStream os = new FileOutputStream(file);
+        GZIPOutputStream gzos = new GZIPOutputStream(os);
+        ObjectOutputStream oos = new ObjectOutputStream(gzos);
+        String string = "agreed";
+        oos.writeObject(string);
+        oos.close();
+    }
+
+    /**
+     * Are we in an applet vm context? returns true if this scape is viewed in
+     * an applet, false otherwise.
+     * 
+     * @return true, if is in applet
+     */
+    public boolean isInApplet() {
+        return (applet != null);
+    }
+
+    /**
+     * Returns the view viewMode being used.
+     * 
+     * @return true, if supports swing
+     */
+    public boolean supportsSwing() {
+        return (viewMode == CLASSIC_VIEW_MODE) || (viewMode == MDI_VIEW_MODE);
+    }
+
+    /**
+     * Returns the view viewMode being used.
+     * 
+     * @return the view mode
+     */
+    public int getViewMode() {
+        return viewMode;
+    }
+
+    /**
+     * Sets the viewMode to use.
+     * 
+     * @param _viewMode
+     *            the _view mode
+     */
+    public void setViewMode(int _viewMode) {
+        viewMode = _viewMode;
+    }
+
+    /**
+     * Returns the multi view mode that will be used when adding any new
+     * windows. If TABBED_MULTIVIEW_MODE, views that are added together will be
+     * placed in seperate tabbed panels (viewable individually, taking up much
+     * less space.) If GRID_MULTIVIEW_MODE, views that are added together will
+     * be placed in a girdlayout (viewable all at once, taking up much more
+     * space.) Default is grid view for compatibility, but this may be changed.
+     * It is better to set the mode when you add multiple views.
+     * 
+     * @return the multi view mode
+     */
+    public int getMultiViewMode() {
+        return multiViewMode;
+    }
+
+    /**
+     * Sets the multi view to use when adding a new window. If
+     * TABBED_MULTIVIEW_MODE, views that are added together will be placed in
+     * seperate tabbed panels (viewable individually, taking up much less
+     * space.) If GRID_MULTIVIEW_MODE, views that are added together will be
+     * placed in a girdlayout (viewable all at once, taking up much more space.)
+     * 
+     * @param _multiViewMode
+     *            the _multi view mode
+     */
+    public void setMultiViewMode(int _multiViewMode) {
+        multiViewMode = _multiViewMode;
+    }
+
+    /**
+     * Utility method to return an image resource as specified according to the
+     * rules of Class.getResource.
+     * 
+     * @param string
+     *            the resource reference of the image to load
+     * @return the image
+     */
+    public static Image getImage(final String string) {
+        URL url = UserEnvironment.class.getResource("images/" + string);
+        if (url != null) {
+            return Toolkit.getDefaultToolkit().getImage(url);
+        } else {
+            throw new RuntimeException("Image not found in  " + url + ": "+ string);
+        }
+    }
+
+    /**
+     * Utility method to return an image icon. The image icon must be in the
+     * [lib]/org.ascape/view/images directory, and it must be a gif, ending
+     * \".gif.\" Comment out for web.
+     * 
+     * @param imageName
+     *            the name (without extension) specifiying the image icon to
+     *            return
+     * @return the icon
+     */
+    public static ImageIcon getIcon(String imageName) {
+        return new ImageIcon(getImage(imageName + ".gif"));
+    }
+
+
+    /**
+     * Sets the full screen.
+     * 
+     * @param fullScreen
+     *            the new full screen
+     */
+    public void setFullScreen(boolean fullScreen) {
+        UserFrame oldFrame = null;
+        if (getUserFrame() == null) {
+            setUserFrame(new UserFrame("", this));
+        } else {
+            oldFrame = getUserFrame();
+            UserFrame newFrame = new UserFrame("", this, oldFrame);
+            setUserFrame(newFrame);
+        }
+        if (fullScreen && (!isFullScreen() || (!getUserFrame().isShowing()))) {
+            if (GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().isFullScreenSupported()) {
+                getUserFrame().setUndecorated(true);
+                GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().setFullScreenWindow(getUserFrame());
+            } else {
+                JOptionPane.showMessageDialog(getUserFrame(), "Your system does not support full screen windows.");
+            }
+        } else if (!fullScreen && (isFullScreen() || (!getUserFrame().isShowing()))) {
+            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+            getUserFrame().setLocation(0, 0);
+            getUserFrame().setSize(screenSize.width, screenSize.height - 20);
+            GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().setFullScreenWindow(null);
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    getUserFrame().setVisible(true);
+                }
+            });
+        }
+        for (int i = 0; i < environmentViews.size(); i++) {
+            ScapeListener scapeListener = (ScapeListener) environmentViews.get(i);
+            if (scapeListener instanceof ControlActionView) {
+                ((ControlActionView) scapeListener).changeInFullScreen();
+            }
+        }
+        if (getScape() != null) {
+            getUserFrame().setTitle("Ascape - " + getScape().getName());
+        } else {
+            getUserFrame().setTitle("Ascape");
+        }
+        if (oldFrame != null) {
+            oldFrame.setVisible(false);
+//            for (Iterator iterator = environmentViews.iterator(); iterator.hasNext();) {
+//                ComponentView componentView = (ComponentView) iterator.next();
+//                componentView.forceScapeNotify();
+//            }
+            //oldFrame.getgetUserFrame()l().getParent().removeAll();
+        }
+    }
+
+    /**
+     * Checks if is full screen.
+     * 
+     * @return true, if is full screen
+     */
+    public boolean isFullScreen() {
+        return GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getFullScreenWindow() == getUserFrame();
+    }
+
+    /**
+     * Creates the toolbar.
+     * 
+     * @return the j tool bar
+     */
+    protected static JToolBar createToolbar() {
+        JToolBar toolBar = new JToolBar() {
+            protected JButton createActionComponent(Action a) {
+                String text = (String) a.getValue(Action.NAME);
+                Icon icon = (Icon) a.getValue(Action.SMALL_ICON);
+
+                JButton b = new JButton(text, icon) {
+                    // I override JButton's createActionPropertyChangeListener
+                    // to avoid the creation of a AbstractButton$ButtonActionPropertyChangeListener,
+                    // which is not serializable!
+                    protected PropertyChangeListener createActionPropertyChangeListener(Action a) {
+                        return null;
+                    }
+                };
+                if (icon != null) {
+                    b.putClientProperty("hideActionText", Boolean.TRUE);
+                }
+                b.setHorizontalTextPosition(JButton.CENTER);
+                b.setVerticalTextPosition(JButton.BOTTOM);
+                b.setEnabled(a.isEnabled());
+                b.setToolTipText((String) a.getValue(Action.SHORT_DESCRIPTION));
+                return b;
+            }
+        };
+        toolBar.setMargin(new Insets(0, 0, 0, 0));
+        return toolBar;
+    }
+
+    /**
+     * A helper method to add a button to the provided toolbar for the specified
+     * action.
+     * 
+     * @param toolBar
+     *            the tool bar
+     * @param action
+     *            the action
+     * @return the j button
+     */
+    public static JButton addToolBarButton(final JToolBar toolBar, final Action action) {
+        final JButton actionButton = new JButton() {
+            public void setAction(Action action) {
+                //We don't want to have names on toolbar buttons
+                action.putValue(Action.NAME, "");
+                super.setAction(action);
+            }
+        };
+        actionButton.setBorder(DEFAULT_BORDER);
+        actionButton.setRolloverEnabled(true);
+        actionButton.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
+                actionButton.setBorder(ROLLOVER_BORDER);
+                //todo get the real highlight color from user settings
+                actionButton.setBackground(BUTTON_ROLLOVER_COLOR);
+                super.mouseEntered(e);
+            }
+            public void mouseExited(MouseEvent e) {
+                actionButton.setBorder(DEFAULT_BORDER);
+                actionButton.setBackground(toolBar.getBackground());
+                super.mouseExited(e);
+            }
+        });
+        //actionButton.setModel
+        if (action != null) {
+            actionButton.setAction(action);
+        }
+        toolBar.add(actionButton);
+        return actionButton;
+    }
+
+    /**
+     * A helper method to remove a button from the provided toolbar for the
+     * specified action. Keep in mind that there are a number of tool bars, so
+     * be sure to specify the correct one.
+     * 
+     * @param toolbar
+     *            the toolbar
+     * @param action
+     *            the action
+     */
+    public static void removeToolBarButton(final JToolBar toolbar, final Action action) {
+        JButton toRemove = null;
+        for (int i = 0; i < toolbar.getComponents().length; i++) {
+            Component component = toolbar.getComponents()[i];
+            if (component instanceof JButton) {
+                JButton button = (JButton) component;
+                if (button.getAction().equals(action)) {
+                    toRemove = button;
+                    break;
+                }
+            }
+        }
+        if (toRemove != null) {
+            toolbar.remove(toRemove);
+        }
+    }
+
+    /**
+     * A helper method to add a button to the provided toolbar for the specified
+     * action.
+     * 
+     * @param toolBar
+     *            the tool bar
+     * @return the j button
+     */
+
+    protected static JButton addToolBarButton(JToolBar toolBar) {
+        return addToolBarButton(toolBar, null);
+    }
+
+    /**
+     * Sets the up label.
+     * 
+     * @param label
+     *            the new up label
+     */
+    protected static void setupLabel(JLabel label) {
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        label.setOpaque(true);
+        label.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2), getInfoAreaBorder()));
+    }
+
+    /**
+     * Creates the label.
+     * 
+     * @return the j label
+     */
+    protected static JLabel createLabel() {
+        JLabel label = new JLabel();
+        setupLabel(label);
+        return label;
+    }
+
+    /**
+     * Creates the label.
+     * 
+     * @param width
+     *            the width
+     * @return the j label
+     */
+    protected static JLabel createLabel(final int width) {
+        JLabel label = new JLabel() {
+            public Dimension getPreferredSize() {
+                return new Dimension(width, super.getPreferredSize().height);
+            }
+        };
+        setupLabel(label);
+        return label;
+    }
+
+    /**
+     * Returns PropertyChangeSupport for the object provided. This property
+     * change support should then be used to manage all <i>UI edited</i>
+     * property changes. All customizers, inspectors and renderers should use
+     * this object to ensure that they are properly updated when a change to an
+     * object occurs and that they properly notify property change support when
+     * they cause a change to occur. Note that for efficiency reasons, computed
+     * (e.g. through a running model) changes are _not_ reported using this
+     * mechanism, and setters should <i>not</i> fire their own property change
+     * events. Renderers should instead register as ScapeListeners to ensure
+     * that they are properly notified of changes in model state. Thus, the
+     * supporting map is assumed to be relativly sparse, and should only contain
+     * those objects that have at one point been activly edited or rendered
+     * through an inspector, customizer or other UI tool.
+     * 
+     * @param object
+     *            an object of relevance to user
+     * @return a manger for proerty changes.
+     */
+    public PropertyChangeSupport getPropertySupportForObject(Object object) {
+        PropertyChangeSupport pcs = (PropertyChangeSupport) propertySupportForObject.get(object);
+        if (pcs == null) {
+            pcs = new PropertyChangeSupport(object);
+            propertySupportForObject.put(object, pcs);
+        }
+        return pcs;
+    }
+
+    /**
+     * Gets the info area border.
+     * 
+     * @return the info area border
+     */
+    public static Border getInfoAreaBorder() {
+        return BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1), BorderFactory.createLineBorder(Color.GRAY));
+    }
+
+    /**
+     * Gets the selection manager.
+     * 
+     * @return the selection manager
+     */
+    public AgentSelectionManager getSelectionManager() {
+        return selectionManager;
+    }
+
+    /**
+     * Gets the user frame.
+     * 
+     * @return the user frame
+     */
+    public UserFrame getUserFrame() {
+        return (UserFrame) getRootPane();
+    }
+
+    /**
+     * Sets the user frame.
+     * 
+     * @param userFrame
+     *            the new user frame
+     */
+    public void setUserFrame(UserFrame userFrame) {
+        setRootPane(userFrame);
+    }
+
+//
+//    public void setShowToolbar(boolean show) {
+//        if (show)
+//    }
+}
+
+/**
+ * Nobuo Tamemasa
+ * @version 1.0 05/10/99
+ */
+class ComboMenuBar extends JMenuBar {
+
+    private JMenu menu;
+    private Dimension preferredSize;
+
+    public ComboMenuBar(JMenu menu) {
+        this.menu = menu;
+
+        Color color = UIManager.getColor("Menu.selectionBackground");
+        UIManager.put("Menu.selectionBackground",
+            UIManager.getColor("Menu.background"));
+        menu.updateUI();
+        UIManager.put("Menu.selectionBackground", color);
+
+        MenuItemListener listener = new MenuItemListener();
+        setListener(menu, listener);
+
+        add(menu);
+    }
+
+    public static JMenu createMenu(String label) {
+        return new ComboMenu(label);
+    }
+
+    class MenuItemListener implements ActionListener {
+
+        public void actionPerformed(ActionEvent e) {
+            //JMenuItem item = (JMenuItem)e.getSource();
+            //menu.setText(item.getText());
+            menu.requestFocus();
+        }
+    }
+
+    private void setListener(JMenuItem item, ActionListener listener) {
+        if (item instanceof JMenu) {
+            JMenu menu = (JMenu) item;
+            int n = menu.getItemCount();
+            for (int i = 0; i < n; i++) {
+                setListener(menu.getItem(i), listener);
+            }
+        } else if (item != null) {                         // null means separator
+            item.addActionListener(listener);
+        }
+    }
+
+    public void setPreferredSize(Dimension size) {
+        preferredSize = size;
+    }
+
+    public Dimension getPreferredSize() {
+        if (preferredSize == null) {
+            Dimension menuD = getItemSize(menu);
+            Insets margin = menu.getMargin();
+            Dimension retD = new Dimension(menuD.width,
+                margin.top + margin.bottom + menuD.height);
+            menu.setPreferredSize(retD);
+            preferredSize = retD;
+        }
+        return preferredSize;
+    }
+
+    private Dimension getItemSize(JMenu menu) {
+        Dimension d = new Dimension(0, 0);
+        int n = menu.getItemCount();
+        for (int i = 0; i < n; i++) {
+            Dimension itemD;
+            JMenuItem item = menu.getItem(i);
+            if (item instanceof JMenu) {
+                itemD = getItemSize((JMenu) item);
+            } else if (item != null) {
+                itemD = item.getPreferredSize();
+            } else {
+                itemD = new Dimension(0, 0);                // separator
+            }
+            d.width = Math.max(d.width, itemD.width);
+            d.height = Math.max(d.height, itemD.height);
+        }
+        return d;
+    }
+}
+
+class ComboMenu extends JMenu {
+
+    //ArrowIcon iconRenderer;
+
+    public ComboMenu(String label) {
+        super(label);
+        //iconRenderer = new ArrowIcon(SwingConstants.SOUTH, true);
+        setBorder(new EtchedBorder());
+        //setIcon(new BlankIcon(null, 11));
+        setHorizontalTextPosition(JButton.LEFT);
+        setFocusPainted(true);
+    }
+
+    /*public void paintComponent(Graphics g) {
+    super.paintComponent(g);
+    Dimension d = this.getPreferredSize();
+    int x = Math.max(0, d.width - iconRenderer.getIconWidth() -3);
+    int y = Math.max(0, (d.height - iconRenderer.getIconHeight())/2 -2);
+    iconRenderer.paintIcon(this,g, x,y);
+    }*/
+}

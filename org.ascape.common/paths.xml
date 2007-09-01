@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Ascape Paths">
+
+	<property name="workspace.ascape" value="../../ascape-workspace" />
+
+	<path id="path.compile.ascape">
+		<pathelement path="${workspace.ascape}/org.ascape.common/bin"/>
+		<fileset dir="${workspace.ascape}/org.ascape.common/lib">
+			<include name="ant-contrib.jar" />
+			<include name="jsch-0.1.21.jar" />
+			<include name="jdom.jar" />
+			<include name="jcgrid.jar" />
+			<include name="commons-cli-1.0.jar" />
+			<include name="log4j.jar" />
+			<include name="junit.jar" />
+			<include name="jfreechart.jar" />
+			<include name="jcommon.jar" />
+			<include name="QTJava.zip" />
+			<include name="commons-lang-2.2.jar" />
+		</fileset>
+	</path>
+
+
+	<path id="path.run.ascape">
+		<path refid="path.compile.ascape" />
+		<pathelement path="${workspace.ascape}/org.metaabm.examples.ascape/bin" />
+	</path>
+</project>

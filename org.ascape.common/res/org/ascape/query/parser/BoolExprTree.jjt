@@ -1,0 +1,209 @@
+options {
+  MULTI=true;
+  STATIC=false;
+  IGNORE_CASE=true;
+  NODE_PREFIX="QT";
+}
+
+PARSER_BEGIN(BoolExprTree)
+
+package org.ascape.query.parser;
+
+import java.io.*;
+
+public class BoolExprTree {
+
+ public static String[] argtests = {
+                                    "(field=\"AND\" AND field2=value2 OR field3=val3)",
+                                    "((field=value) & (field2=value2 | field3=val3))",
+                                    "field=value AND field2=value2 OR field3=val3",
+                                    "(field=value AND field2=value2) OR field3=val3"};
+
+  public static void main(String args[]) throws ParseException {
+          System.out.println(args[0]);
+          QTInput in = parse(args[0]);
+          in.dump("");
+  }
+
+  public static QTInput parse(String exp) throws ParseException {
+          BoolExprTree parser = new BoolExprTree(new BufferedReader(new StringReader(exp)));
+          parser.Input();
+          return (QTInput) parser.jjtree.rootNode();
+  }
+
+}
+
+PARSER_END(BoolExprTree)
+
+SKIP :
+{
+  " "
+| "\t"
+| "\n"
+| "\r"
+}
+
+
+TOKEN :
+{
+  <QUOTED_STRING: "\"" (~["\""])+ "\"" >
+| <AND: "AND" | "&" >
+| <OR: "OR" | "|" >
+| <EQUAL: "equals" | "=" >
+| <NOT_EQUAL: "!=" >
+| <LESS_THAN: "<" >
+| <GREATER_THAN: ">">
+| <STARTS_WITH: "startsWith" | ".<" >
+| <CONTAINS: "contains" | "<.>" >
+| <WILDCARD: "*" >
+| <PERIOD: "." >
+| <NAME: ( ["a"-"z","A"-"Z","_","0"-"9"] )+ >
+| <NUMBER: ( [".","0"-"9"] )+ >
+}
+
+void Input() :
+{}
+{
+  ( LOOKAHEAD(2) BooleanPhrase() | BooleanOperand() ) <EOF>
+}
+
+void BooleanPhrase() :
+{}
+{
+    BooleanOperand() ( BooleanOperator() BooleanOperand() )*
+}
+
+void BooleanOperand() #void :
+{}
+{
+  Criteria() | SubExpression()
+}
+
+void BooleanOperator() #void :
+{}
+{
+  ( BooleanAnd() | BooleanOr() ) {
+}
+}
+
+void BooleanAnd() :
+{}
+{
+  <AND> {
+}
+}
+
+void BooleanOr() :
+{}
+{
+  <OR> {
+}
+}
+
+void SubExpression() #void :
+{}
+{
+  "(" BooleanPhrase() ")"
+}
+
+void Criteria() :
+{}
+{
+  Property() ComparisonOperator() ( NonQuotedString() | QuotedString() | NumberString() )
+}
+
+void Property() :
+{}
+{
+   ( LOOKAHEAD(2) Field() <PERIOD>  )* Field() 
+}
+
+void WildCard() :
+{}
+{
+<WILDCARD> {
+}
+}
+
+void Field() :
+{Token t;}
+{
+t = <NAME> {
+jjtThis.setName(t.image);
+}
+}
+
+void ComparisonOperator() #void :
+{Token t;}
+{
+Equal() | NotEqual() | LessThan() | GreaterThan() | StartsWith() | Contains() {
+}
+}
+
+void Equal() :
+{Token t;}
+{
+<EQUAL> {
+}
+}
+
+void NotEqual() :
+{Token t;}
+{
+<NOT_EQUAL> {
+}
+}
+
+void LessThan() :
+{Token t;}
+{
+<LESS_THAN> {
+}
+}
+
+void GreaterThan() :
+{Token t;}
+{
+<GREATER_THAN> {
+}
+}
+
+void StartsWith() :
+{Token t;}
+{
+<STARTS_WITH> {
+}
+}
+
+void Contains() :
+{Token t;}
+{
+<CONTAINS> {
+}
+}
+
+void NonQuotedString() :
+{Token t;}
+{
+t = <NAME> {
+jjtThis.setValue(t.image);
+}
+}
+
+void NumberString() :
+{Token t;}
+{
+t = <NUMBER> {
+jjtThis.setValue(t.image);
+}
+}
+
+void QuotedString() :
+{Token t;}
+{
+t = <QUOTED_STRING> {
+jjtThis.setValue(t.image.substring(1, t.image.length() - 1));
+}
+}
+
+

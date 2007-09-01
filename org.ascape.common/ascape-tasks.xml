@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<project name="AscapeTasks" default="run">
+
+	<import file="paths.xml"/>
+	
+    <taskdef name="ascape" classpathref="path.run.ascape" classname="org.ascape.ant.AscapeAntTask"/>
+
+    <target name="run">
+        <ascape>
+            <scape modelClass="${modelClass}">
+                <propertySet
+                    displayGraphics="true"
+                    multiWin="true"
+                    stopPeriod="100000"
+                    autoRestart="false"
+                    threadCount="1"/>
+                <extent x="400" y="400"/>
+            </scape>
+        </ascape>
+    </target>
+
+    <target name="runproject.dtd"
+        description="creates a dtd for ant run.xml files">
+        <antstructure output="runproject.dtd"/>
+    </target>
+</project>
