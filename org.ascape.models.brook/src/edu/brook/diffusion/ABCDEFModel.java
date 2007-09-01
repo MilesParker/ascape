@@ -1,0 +1,344 @@
+/*
+ * This software and documentation is subject to, and may be only used in accordance with, the terms and conditions of
+ * the license agreement described or set forth in the file titled License.txt.  This software and documentation
+ * contains information that is confidential and proprietary to NuTech Solutions, Inc.
+ *
+ *             Copyright (c) 2000-2004
+ *             NuTech Solutions, Inc.
+ *
+ * Portions of the software are licensed from The Brookings Institution
+ *             Copyright (c) 1998-2000
+ *            The Brookings Institution
+ *           All rights reserved worldwide.
+ *
+ *
+ * U.S. GOVERNMENT END USERS. The software is a "commercial item," as that term is defined in 48 C.F.R. 2.101,
+ * consisting of "commercial computer software" and "commercial computer software documentation," as such terms are
+ * used in 48 C.F.R. 12.212. Consistent with 48 C.F.R. 12.212 and 48 C.F.R. 227.7202-1 through 227.7202-4, and other
+ * relevant sections of the Code of Federal Regulations, as applicable all U.S. Government End Users acquire the
+ * software with only those rights set forth in the license agreement. This software includes trade secrets that
+ * are exempt from disclosure under the Freedom of Information Act.
+ *
+ *
+ * Diffusion of Behaviors in Social Networks
+ * See _Diffusion in Social Networks_
+ * Center on Social and Economic Dynamics Working Paper No. 2, May 1999
+ * H. Peyton Young
+ * pyoung@brook.edu
+ * The Brookings Institution
+ * The Johns Hopkins University
+ *
+ * Implementated by
+ * Miles Parker
+ * mparker@brook.edu
+ * The Brookings Institution
+ * Washington, D.C.
+ */
+
+package edu.brook.diffusion;
+
+import java.awt.Color;
+
+import org.ascape.model.Agent;
+import org.ascape.model.Scape;
+import org.ascape.model.rule.Rule;
+import org.ascape.model.space.Array2DMoore;
+import org.ascape.model.space.Coordinate2DDiscrete;
+import org.ascape.util.data.StatCollector;
+import org.ascape.util.data.StatCollectorCond;
+import org.ascape.view.vis.ChartView;
+import org.ascape.view.vis.Overhead2DView;
+
+
+public class ABCDEFModel extends Scape {
+
+    protected int span = 10;
+
+    public Scape cells;
+
+    public void createScape() {
+        super.createScape();
+        setName("ABCDEF Diffusion Model");
+        cells = new Scape(new Array2DMoore());
+        cells.setExtent(new Coordinate2DDiscrete(span, span));
+        cells.setPrototypeAgent(new ABCDEFCell());
+        cells.getRules().clear();
+        cells.addRule(new Rule("Decide action") {
+            public void execute(Agent a) {
+                ((ABCDEFCell) a).decideAction();
+            }
+        });
+        cells.setExecutionStyle(REPEATED_DRAW);
+        cells.setAgentsPerIteration(25);
+        add(cells);
+    }
+
+    Overhead2DView overheadView = new Overhead2DView();
+
+    public void createViews() {
+        super.createViews();
+        //cells.addDrawFeature(ABCDEFCell.DRAW_BandW_Feature);
+
+        overheadView = new Overhead2DView();
+        overheadView.setCellSize(19);
+        //Set the cell size to be 12
+        //overheadView.setDrawEveryNUpdates(100);
+        //cells.setCellsRequestUpdates(true);
+        cells.addView(overheadView);
+        //overheadView.getDrawSelection().clearSelection();
+        //overheadView.getDrawSelection().setSelected("Black & White", true);
+        final StatCollector[] stats = {
+            new StatCollectorCond(".4 Above") {
+                public boolean meetsCondition(Object object) {
+                    return ((((ABCDEFCell) object).action == ABCDEFCell.C) && (((ABCDEFCell) object).isAbove()));
+                }
+            },
+            new StatCollectorCond(".5 Above") {
+                public boolean meetsCondition(Object object) {
+                    return ((((ABCDEFCell) object).action == ABCDEFCell.B) && (((ABCDEFCell) object).isAbove()));
+                }
+            },
+            new StatCollectorCond(".6 Above") {
+                public boolean meetsCondition(Object object) {
+                    return ((((ABCDEFCell) object).action == ABCDEFCell.A) && (((ABCDEFCell) object).isAbove()));
+                }
+            },
+            new StatCollectorCond(".7 Above") {
+                public boolean meetsCondition(Object object) {
+                    return ((((ABCDEFCell) object).action == ABCDEFCell.F) && (((ABCDEFCell) object).isAbove()));
+                }
+            },
+            new StatCollectorCond(".8 Above") {
+                public boolean meetsCondition(Object object) {
+                    return ((((ABCDEFCell) object).action == ABCDEFCell.E) && (((ABCDEFCell) object).isAbove()));
+                }
+            },
+            new StatCollectorCond(".9 Above") {
+                public boolean meetsCondition(Object object) {
+                    return ((((ABCDEFCell) object).action == ABCDEFCell.D) && (((ABCDEFCell) object).isAbove()));
+                }
+            },
+            new StatCollectorCond(".4 Below") {
+                public boolean meetsCondition(Object object) {
+                    return ((((ABCDEFCell) object).action == ABCDEFCell.C) && !(((ABCDEFCell) object).isAbove()));
+                }
+            },
+            new StatCollectorCond(".5 Below") {
+                public boolean meetsCondition(Object object) {
+                    return ((((ABCDEFCell) object).action == ABCDEFCell.B) && !(((ABCDEFCell) object).isAbove()));
+                }
+            },
+            new StatCollectorCond(".6 Below") {
+                public boolean meetsCondition(Object object) {
+                    return ((((ABCDEFCell) object).action == ABCDEFCell.A) && !(((ABCDEFCell) object).isAbove()));
+                }
+            },
+            new StatCollectorCond(".7 Below") {
+                public boolean meetsCondition(Object object) {
+                    return ((((ABCDEFCell) object).action == ABCDEFCell.F) && !(((ABCDEFCell) object).isAbove()));
+                }
+            },
+            new StatCollectorCond(".8 Below") {
+                public boolean meetsCondition(Object object) {
+                    return ((((ABCDEFCell) object).action == ABCDEFCell.E) && !(((ABCDEFCell) object).isAbove()));
+                }
+            },
+            new StatCollectorCond(".9 Below") {
+                public boolean meetsCondition(Object object) {
+                    return ((((ABCDEFCell) object).action == ABCDEFCell.D) && !(((ABCDEFCell) object).isAbove()));
+                }
+            }
+        };
+        cells.addStatCollectors(stats);
+
+        if (!(getUserEnvironment().isInApplet())) {
+            ChartView aboveChart = new ChartView();
+            aboveChart.setName("Action Above");
+            cells.addView(aboveChart);
+            aboveChart.addSeries("Count .4 Above", Color.blue);
+            aboveChart.addSeries("Count .5 Above", Color.green);
+            aboveChart.addSeries("Count .6 Above", Color.red);
+            aboveChart.addSeries("Count .7 Above", Color.orange);
+            aboveChart.addSeries("Count .8 Above", Color.cyan);
+            aboveChart.addSeries("Count .9 Above", Color.magenta);
+            ChartView belowChart = new ChartView();
+            belowChart.setName("Action Below");
+            cells.addView(belowChart);
+            belowChart.addSeries("Count .4 Below", Color.blue);
+            belowChart.addSeries("Count .5 Below", Color.green);
+            belowChart.addSeries("Count .6 Below", Color.red);
+            belowChart.addSeries("Count .7 Below", Color.orange);
+            belowChart.addSeries("Count .8 Below", Color.cyan);
+            belowChart.addSeries("Count .9 Below", Color.magenta);
+        }
+    }
+
+    public float getBeta() {
+        return ABCDEFCell.beta;
+    }
+
+    public void setBeta(float beta) {
+        ABCDEFCell.beta = beta;
+    }
+
+    public float getGamma() {
+        return ABCDEFCell.gamma;
+    }
+
+    public void setGamma(float gamma) {
+        ABCDEFCell.gamma = gamma;
+    }
+
+    public float getMatrix_H_A() {
+        return ABCDEFCell.matrixHA;
+    }
+
+    public void setMatrix_H_A(float matrixHA) {
+        ABCDEFCell.matrixHA = matrixHA;
+    }
+
+    public float getMatrix_H_B() {
+        return ABCDEFCell.matrixHB;
+    }
+
+    public void setMatrix_H_B(float matrixHB) {
+        ABCDEFCell.matrixHB = matrixHB;
+    }
+
+    public float getMatrix_H_C() {
+        return ABCDEFCell.matrixHC;
+    }
+
+    public void setMatrix_H_C(float matrixHC) {
+        ABCDEFCell.matrixHC = matrixHC;
+    }
+
+    public float getMatrix_M_A() {
+        return ABCDEFCell.matrixMA;
+    }
+
+    public void setMatrix_M_A(float matrixMA) {
+        ABCDEFCell.matrixMA = matrixMA;
+    }
+
+    public float getMatrix_M_B() {
+        return ABCDEFCell.matrixMB;
+    }
+
+    public void setMatrix_M_B(float matrixMB) {
+        ABCDEFCell.matrixMB = matrixMB;
+    }
+
+    public float getMatrix_M_C() {
+        return ABCDEFCell.matrixMC;
+    }
+
+    public void setMatrix_M_C(float matrixMC) {
+        ABCDEFCell.matrixMC = matrixMC;
+    }
+
+    public float getMatrix_L_A() {
+        return ABCDEFCell.matrixLA;
+    }
+
+    public void setMatrix_L_A(float matrixLA) {
+        ABCDEFCell.matrixLA = matrixLA;
+    }
+
+    public float getMatrix_L_B() {
+        return ABCDEFCell.matrixLB;
+    }
+
+    public void setMatrix_L_B(float matrixLB) {
+        ABCDEFCell.matrixLB = matrixLB;
+    }
+
+    public float getMatrix_L_C() {
+        return ABCDEFCell.matrixLC;
+    }
+
+    public void setMatrix_L_C(float matrixLC) {
+        ABCDEFCell.matrixLC = matrixLC;
+    }
+
+
+    public float getMatrix_H_D() {
+        return ABCDEFCell.matrixHD;
+    }
+
+    public void setMatrix_H_D(float matrixHD) {
+        ABCDEFCell.matrixHD = matrixHD;
+    }
+
+    public float getMatrix_H_E() {
+        return ABCDEFCell.matrixHE;
+    }
+
+    public void setMatrix_H_E(float matrixHE) {
+        ABCDEFCell.matrixHE = matrixHE;
+    }
+
+    public float getMatrix_H_F() {
+        return ABCDEFCell.matrixHF;
+    }
+
+    public void setMatrix_H_F(float matrixHF) {
+        ABCDEFCell.matrixHF = matrixHF;
+    }
+
+    public float getMatrix_M_D() {
+        return ABCDEFCell.matrixMD;
+    }
+
+    public void setMatrix_M_D(float matrixMD) {
+        ABCDEFCell.matrixMD = matrixMD;
+    }
+
+    public float getMatrix_M_E() {
+        return ABCDEFCell.matrixME;
+    }
+
+    public void setMatrix_M_E(float matrixME) {
+        ABCDEFCell.matrixME = matrixME;
+    }
+
+    public float getMatrix_M_F() {
+        return ABCDEFCell.matrixMF;
+    }
+
+    public void setMatrix_M_F(float matrixMF) {
+        ABCDEFCell.matrixMF = matrixMF;
+    }
+
+    public float getMatrix_L_D() {
+        return ABCDEFCell.matrixLD;
+    }
+
+    public void setMatrix_L_D(float matrixLD) {
+        ABCDEFCell.matrixLD = matrixLD;
+    }
+
+    public float getMatrix_L_E() {
+        return ABCDEFCell.matrixLE;
+    }
+
+    public void setMatrix_L_E(float matrixLE) {
+        ABCDEFCell.matrixLE = matrixLE;
+    }
+
+    public float getMatrix_L_F() {
+        return ABCDEFCell.matrixLF;
+    }
+
+    public void setMatrix_L_F(float matrixLF) {
+        ABCDEFCell.matrixLF = matrixLF;
+    }
+
+    public int getSpan() {
+        return span;
+    }
+
+    public void setSpan(int span) {
+        this.span = span;
+    }
+}

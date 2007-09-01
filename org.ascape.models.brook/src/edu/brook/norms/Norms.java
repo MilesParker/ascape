@@ -1,0 +1,324 @@
+/*
+ * This software and documentation is subject to, and may be only used in accordance with, the terms and conditions of
+ * the license agreement described or set forth in the file titled License.txt.  This software and documentation
+ * contains information that is confidential and proprietary to NuTech Solutions, Inc.
+ *
+ *             Copyright (c) 2000-2004
+ *             NuTech Solutions, Inc.
+ *
+ * Portions of the software are licensed from The Brookings Institution
+ *             Copyright (c) 1998-2000
+ *            The Brookings Institution
+ *           All rights reserved worldwide.
+ *
+ *
+ * U.S. GOVERNMENT END USERS. The software is a "commercial item," as that term is defined in 48 C.F.R. 2.101,
+ * consisting of "commercial computer software" and "commercial computer software documentation," as such terms are
+ * used in 48 C.F.R. 12.212. Consistent with 48 C.F.R. 12.212 and 48 C.F.R. 227.7202-1 through 227.7202-4, and other
+ * relevant sections of the Code of Federal Regulations, as applicable all U.S. Government End Users acquire the
+ * software with only those rights set forth in the license agreement. This software includes trade secrets that
+ * are exempt from disclosure under the Freedom of Information Act.
+ *
+ *
+ * _Norms Model_
+ * Forthcoming
+ * Joshua Epstein
+ * jepstein@brook.edu
+ *
+ * Miles Parker
+ * mparker@brook.edu
+ * The Brookings Institution
+ * Washington, D.C.
+ */
+
+package edu.brook.norms;
+
+import java.awt.Color;
+import java.util.List;
+
+import org.ascape.model.Agent;
+import org.ascape.model.Cell;
+import org.ascape.model.Scape;
+import org.ascape.model.rule.CollectStats;
+import org.ascape.model.rule.Rule;
+import org.ascape.model.space.Coordinate1DDiscrete;
+import org.ascape.util.data.StatCollector;
+import org.ascape.util.data.StatCollectorCSAMM;
+import org.ascape.util.data.StatCollectorCond;
+import org.ascape.util.data.StatCollectorCondCSAMMVar;
+import org.ascape.util.data.UnitIntervalDataPoint;
+import org.ascape.util.vis.ColorFeatureGradiated;
+import org.ascape.view.vis.ChartView;
+import org.ascape.view.vis.ComponentView;
+import org.ascape.view.vis.Scrolling1DView;
+
+public class Norms extends Scape {
+
+    private double ambientNoise = .03;//set ambient=crisis in constant-noise cases.
+    private double tolerance = .05;
+    private int initMaxRadius = 10;//Default is 10
+    private int size = 191;
+    private int maxRadius = (size - 1) / 2;
+    boolean includeSelf = true;		//1 is default->Agent EXCLUDES himself with default tie-break of
+
+    private CollectStats valueCollector;
+    private StatCollector[] values;
+
+    public class NormCell extends Cell {
+
+        protected int strategy = 0;
+
+        protected int radius = 0;
+
+        public boolean strategyFixed;
+
+        public boolean radiusFixed;
+
+        public NormCell() {
+            super();
+        }
+
+        public void initialize() {
+            super.initialize();
+            //Normal case
+            setStrategy((getRandom().nextInt() > 0) ? 0 : 1);
+//Initial strategy "lock-in" case (Figure 1 in paper)
+//setStrategy(0);
+            setRadius((randomToLimit(initMaxRadius)));
+/*float randomDraw = getRandom().nextFloat();
+            if (randomDraw < .10) {
+                strategyFixed = true;
+                radiusFixed = false;
+            }
+            else if (randomDraw > 1.0 - .00) {
+                radiusFixed = true;
+                strategyFixed = false;
+                setRadius(20);
+            }
+            else {
+                strategyFixed = false;
+                radiusFixed = false;
+            }*/
+        }
+
+        public void scapeCreated() {
+            scape.addRule(new Rule("Update Radius & Strategy") {
+                public void execute(Agent agent) {
+                    ((NormCell) agent).updateRadius();
+                    ((NormCell) agent).updateStrategy();
+                }
+            });
+            scape.addRule(new Rule("Update Radius Only") {
+                public void execute(Agent agent) {
+                    ((NormCell) agent).updateRadius();
+                }
+            }, false);
+            scape.addRule(new Rule("Update Strategy Only") {
+                public void execute(Agent agent) {
+                    ((NormCell) agent).updateStrategy();
+                }
+            }, false);
+            if (valueCollector == null) {
+                valueCollector = new CollectStats();
+                values = new StatCollector[1];
+                values[0] = new StatCollectorCSAMM() {
+                    public double getValue(Object object) {
+                        return ((NormCell) object).getStrategy();
+                    }
+                };
+            }
+            valueCollector.addStatCollectors(values);
+        }
+
+        public Color getColor() {
+            //if (getAttributeValue("Radius") != CoordinateSeries2D.MAX_RANK - 1) {
+            /*if (strategyFixed) {
+                if (getStrategy() == 0) {
+                    return Color.blue.darker();
+                }
+                else {
+                    return Color.yellow.darker();
+                }
+            }
+            else if (radiusFixed) {*/
+            /*if (getStrategy() == 0) {
+                return Color.black;
+            }
+            else {
+                return Color.white;
+            }*/
+            /*}
+            else {*/
+            if (getStrategy() == 0) {
+                return Color.blue;
+            } else {
+                return Color.yellow;
+            }
+            //}
+        }
+
+        List nearAgents;
+        List nearMinusOneAgents;
+        List nearPlusOneAgents;
+
+        public void findNearCells() {
+            nearAgents = findWithin((double) getRadius(), true);
+            nearMinusOneAgents = findWithin(getRadius() - 1, true);
+            nearPlusOneAgents = findWithin(getRadius() + 1, true);
+        }
+
+        public void updateRadius() {
+            valueCollector.clear();
+            scape.execute(valueCollector, nearAgents);
+            double averageRadius = ((StatCollectorCSAMM) values[0]).getAvg();
+            valueCollector.clear();
+            scape.execute(valueCollector, nearMinusOneAgents);
+            double averageRadiusMinusOne = ((StatCollectorCSAMM) values[0]).getAvg();
+            valueCollector.clear();
+            scape.execute(valueCollector, nearPlusOneAgents);
+            double averageRadiusPlusOne = ((StatCollectorCSAMM) values[0]).getAvg();
+            valueCollector.clear();
+            if ((averageRadiusPlusOne <= (averageRadius - tolerance)) || (averageRadiusPlusOne >= averageRadius + tolerance)) {
+                setRadius(Math.min(getRadius() + 1, maxRadius));
+            } else if ((averageRadiusMinusOne >= averageRadius - tolerance) || (averageRadiusMinusOne <= averageRadius + tolerance)) {
+                setRadius(getRadius() - 1);
+            }
+        }
+
+        public void updateStrategy() {
+            //Normal Case
+            if (getRandom().nextDouble() > ambientNoise) {
+                //Noise shock case
+                //if (getIteration() < 145 || getIteration() >= 155) {
+                //Non-random case
+                scape.execute(valueCollector, nearAgents);
+                double newAverageRadius = ((StatCollectorCSAMM) values[0]).getAvg();
+                if (newAverageRadius < 0.5) {
+                    setStrategy(0);
+                } else {
+                    setStrategy(1);
+                }
+            } else {
+                //Random case
+                setStrategy(randomIs() ? 0 : 1);
+            }
+        }
+
+        public int getStrategy() {
+            return strategy;
+        }
+
+        public void setStrategy(int strategy) {
+            this.strategy = strategy;
+        }
+
+        public int getRadius() {
+            return radius;
+        }
+
+        public void setRadius(int radius) {
+            if (radius >= 1) {
+                this.radius = radius;
+            } else {
+                this.radius = 1;
+            }
+            findNearCells();
+        }
+    }
+
+    public void createScape() {
+        setName("Norm Model");
+        setPrototypeAgent(new NormCell());
+        setExtent(new Coordinate1DDiscrete(size));
+        setExecutionStyle(REPEATED_DRAW);
+        super.createScape();
+    }
+
+    public void createViews() {
+
+        //Collect the statistics to support views
+        StatCollector[] stats = new StatCollector[3];
+        stats[0] = new StatCollectorCondCSAMMVar("Radius") {
+            public boolean meetsCondition(Object object) {
+                return (!((NormCell) object).strategyFixed && !((NormCell) object).radiusFixed);
+            }
+
+            public double getValue(Object object) {
+                return (((NormCell) object).getRadius());
+            }
+        };
+        stats[1] = new StatCollectorCond("Yellow") {
+            public boolean meetsCondition(Object object) {
+                return (((NormCell) object).getStrategy() == 0);
+            }
+        };
+        stats[2] = new StatCollectorCond("Blue") {
+            public boolean meetsCondition(Object object) {
+                return (((NormCell) object).getStrategy() == 1);
+            }
+        };
+        addStatCollectors(stats);
+
+        super.createViews();
+    }
+
+    public void createGraphicViews() {
+        super.createGraphicViews();
+        //The radius value at and above which the cell is white
+        final double whiteRadius = 5.0;
+        final double whiteRadiusMinusOne = whiteRadius - 1.0;
+        Scrolling1DView strategyView = new Scrolling1DView();
+        strategyView.setName("Strategy");
+        Scrolling1DView radiusView = new Scrolling1DView();
+        radiusView.setName("Radius");
+        ColorFeatureGradiated cellColor =
+            new ColorFeatureGradiated("Radius", Color.white, Color.black, new UnitIntervalDataPoint() {
+                public double getValue(Object object) {
+                    return ((((NormCell) object).getRadius() - 1.0) / whiteRadiusMinusOne);//2.5
+                }
+            });
+        radiusView.setCellColorFeature(cellColor);
+        ComponentView[] views = new ComponentView[2];
+        views[0] = strategyView;
+        views[1] = radiusView;
+        strategyView.setCellSize(1);
+        radiusView.setCellSize(1);
+        addViews(views);
+
+        //And time series
+        if (!(getUserEnvironment().isInApplet())) {
+            ChartView ts = new ChartView();
+            addView(ts);
+            ts.addSeries("Variance Radius", Color.blue);
+            ts.addSeries("Standard Deviation Radius", Color.yellow);
+            ts.addSeries("Minimum Radius", Color.red);
+            ts.addSeries("Average Radius", Color.orange);
+            ts.addSeries("Maximum Radius", Color.red);
+            ts.setDisplayPoints(100);
+        }
+    }
+
+    public double getAmbientNoise() {
+        return ambientNoise;
+    }
+
+    public void setAmbientNoise(double ambientNoise) {
+        this.ambientNoise = ambientNoise;
+    }
+
+    public double getTolerance() {
+        return tolerance;
+    }
+
+    public void setTolerance(double tolerance) {
+        this.tolerance = tolerance;
+    }
+
+    public int getInitMaxRadius() {
+        return initMaxRadius;
+    }
+
+    public void setInitMaxRadius(int initMaxRadius) {
+        this.initMaxRadius = initMaxRadius;
+    }
+}

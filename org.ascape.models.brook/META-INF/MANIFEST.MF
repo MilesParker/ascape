@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Brookings Institution Ascape Models
+Bundle-SymbolicName: org.ascape.models.brook
+Bundle-Version: 5.00
+Require-Bundle: org.ascape.common
+Export-Package: edu.brook.Simple,
+ edu.brook.aa,
+ edu.brook.bb,
+ edu.brook.classes,
+ edu.brook.cv,
+ edu.brook.cv.paper,
+ edu.brook.diffusion,
+ edu.brook.firms,
+ edu.brook.life,
+ edu.brook.misc,
+ edu.brook.norms,
+ edu.brook.pd,
+ edu.brook.retirement,
+ edu.brook.sugarscape,
+ edu.brooksantafe.heatbugs,
+ name.milesparker.spatialipd
+Bundle-ClassPath: .
+Bundle-Vendor: org.ascape

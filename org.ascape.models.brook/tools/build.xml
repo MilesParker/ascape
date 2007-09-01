@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE project PUBLIC "-//ANT//DTD project//EN" "project.dtd" [
+        ]>
+
+<project name="buildBrook" default="build">
+
+    <property name="Name" value="BrookingsModels"/>
+    <property name="name" value="brook"/>
+    <property name="dir.includes"
+              value="edu/**,name/milesparker/**"/>
+
+	<import file="../../org.ascape.common/tools/antdirs.xml" />
+	<import file="../../org.ascape.common/tools/anttargets.xml" />
+</project>
