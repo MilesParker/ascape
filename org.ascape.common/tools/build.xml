@@ -61,7 +61,7 @@
 		<ant antfile="buildexamples.xml" inheritall="false"/>
 	</target>
 	
-	<target name="release-runtime" depends="" description="generates jar file">
+	<target name="release-runtime" depends="build" description="Build Ascape stand-alone jar and RunTime zip">
 		<tstamp />
 		<property name="rname" value="${Name}${DSTAMP}" />
 		<property name="rpath" value="${dir.release}/${rname}" />
@@ -110,7 +110,7 @@
 		<delete dir="${rtpath}"/>
 	</target>
 
-	<target name="release-sdk" depends="" description="generates jar file">
+	<target name="release-sdk" depends="" description="Builds Ascape SDK zip">
 		<tstamp />
 		<property name="rname" value="${Name}${DSTAMP}" />
 		<property name="rpath" value="${dir.release}/${rname}" />
@@ -119,5 +119,19 @@
 		<zip destfile="${rpath}/${Name}SDK${DSTAMP}.zip">
 			<zipfileset dir="../../" includes="org.ascape.common/**/*.*,org.ascape.models.examples/**/*.*,org.ascape.models.brook/**/*.*" excludes="**/releases/**,org.ascape.ide*"/>
 		</zip>
+	</target>
+
+	<target name="release-docs" depends="" description="Builds Ascape Doc zip">
+		<tstamp />
+		<property name="rname" value="${Name}${DSTAMP}" />
+		<property name="rpath" value="${dir.release}/${rname}" />
+		<mkdir dir="${rpath}/"/>
+		<delete file="${rpath}/${Name}Docs${DSTAMP}.zip"/>
+		<zip destfile="${rpath}/${Name}Docs${DSTAMP}.zip">
+			<zipfileset dir="../../" includes="org.ascape.doc/**/*.*"/>
+		</zip>
+	</target>
+
+	<target name="release-all" depends="release-runtime,release-sdk,release-docs" description="Builds all release artifacts for Ascape Sourceforge site.">
 	</target>
 </project>
