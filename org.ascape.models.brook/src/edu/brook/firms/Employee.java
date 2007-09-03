@@ -1,36 +1,8 @@
 /*
- * This software and documentation is subject to, and may be only used in accordance with, the terms and conditions of
- * the license agreement described or set forth in the file titled License.txt.  This software and documentation
- * contains information that is confidential and proprietary to NuTech Solutions, Inc.
- *
- *             Copyright (c) 2000-2004
- *             NuTech Solutions, Inc.
- *
- * Portions of the software are licensed from The Brookings Institution
- *             Copyright (c) 1998-2000
- *            The Brookings Institution
- *           All rights reserved worldwide.
- *
- *
- * U.S. GOVERNMENT END USERS. The software is a "commercial item," as that term is defined in 48 C.F.R. 2.101,
- * consisting of "commercial computer software" and "commercial computer software documentation," as such terms are
- * used in 48 C.F.R. 12.212. Consistent with 48 C.F.R. 12.212 and 48 C.F.R. 227.7202-1 through 227.7202-4, and other
- * relevant sections of the Code of Federal Regulations, as applicable all U.S. Government End Users acquire the
- * software with only those rights set forth in the license agreement. This software includes trade secrets that
- * are exempt from disclosure under the Freedom of Information Act.
- *
- *
- * Firms Model
- * Robert Axtell
- * The Brookings Institution
- * Washington, D.C.
- * raxtell@brook.edu
- *
- * Miles Parker
- * mparker@brook.edu
- * (202) 797-6136
- *
- * Please contact us for permission to use, copy, modify, or distribute this software.
+ * Copyright 1998-2007 The Brookings Institution, with revisions by Metascape LLC, and others. 
+ * All rights reserved.
+ * This program and the accompanying materials are made available solely under of the BSD license "brookings-models-license.txt".
+ * Any referenced or included libraries carry licenses of their respective copyright holders. 
  */
 
 package edu.brook.firms;
@@ -44,50 +16,77 @@ import org.ascape.model.Scape;
 
 /**
  * An employee as member of a firm. Part of firms model
- *
+ * 
  * @author Miles Parker
  * @version 1.0
  */
 public class Employee extends Cell {
 
+    /**
+     * The Constant CURRENT_FIRM_OPTION.
+     */
     protected final static int CURRENT_FIRM_OPTION = -2;
 
+    /**
+     * The Constant NEW_FIRM_OPTION.
+     */
     protected final static int NEW_FIRM_OPTION = -1;
 
+    /**
+     * The friends.
+     */
     private Employee[] friends;
 
+    /**
+     * The firm.
+     */
     protected Firm firm;
 
+    /**
+     * The firms.
+     */
     private static Scape firms;
 
     /**
      * Size of friend network.
-     **/
+     */
     private static final int nFriends = 2;
 
     /**
-     * Use friends or neighbors in comparison calculations
-     **/
+     * Use friends or neighbors in comparison calculations.
+     */
     protected static final boolean useFriends = false;
 
+    /**
+     * The utility.
+     */
     protected UtilityFunction utility;
 
     /**
-     * Effort level
-     **/
+     * Effort level.
+     */
     protected double cpEffort;
 
     /**
-     * Effort level for last period
-     **/
+     * Effort level for last period.
+     */
     private double lpEffort;
 
+    /**
+     * The proposed option.
+     */
     protected static int proposedOption;
 
+    /**
+     * Instantiates a new employee.
+     */
     public Employee() {
         super();
     }
 
+    /* (non-Javadoc)
+     * @see org.ascape.model.Cell#initialize()
+     */
     public void initialize() {
         if (useFriends) {
             findNewFriends();
@@ -100,14 +99,28 @@ public class Employee extends Cell {
         setName("Employee");
     }
 
+    /**
+     * Gets the firms.
+     * 
+     * @return the firms
+     */
     public Scape getFirms() {
         return firms;
     }
 
+    /**
+     * Sets the firms.
+     * 
+     * @param firms
+     *            the new firms
+     */
     public void setFirms(Scape firms) {
         this.firms = firms;
     }
 
+    /* (non-Javadoc)
+     * @see org.ascape.model.Agent#iterate()
+     */
     public void iterate() {
         maximizeUtilityForEffortAndOptions();
         if (proposedOption == CURRENT_FIRM_OPTION) {
@@ -120,14 +133,27 @@ public class Employee extends Cell {
         }
     }
 
+    /**
+     * Effort.
+     * 
+     * @return the double
+     */
     public double effort() {
         return cpEffort;
     }
 
+    /**
+     * Output.
+     * 
+     * @return the double
+     */
     public double output() {
         return cpEffort;
     }
 
+    /**
+     * Maximize utility for effort and options.
+     */
     private void maximizeUtilityForEffortAndOptions() {
         lpEffort = cpEffort;
         double bestUtility = 0;
@@ -168,13 +194,21 @@ public class Employee extends Cell {
         }
     }
 
+    /**
+     * Maximize utility for effort.
+     * 
+     * @return the double
+     */
     public double maximizeUtilityForEffort() {
         return utility.maximize();
     }
 
     /**
      * Employee joins the specified firm.
-     **/
+     * 
+     * @param firm
+     *            the firm
+     */
     public void join(Firm firm) {
         if (this.firm != null) {
             leave(this.firm);
@@ -185,7 +219,7 @@ public class Employee extends Cell {
 
     /**
      * Employee forms a new firm.
-     **/
+     */
     private void formFirm() {
         cpEffort = utility.theta;
         if (this.firm != null) {
@@ -194,23 +228,41 @@ public class Employee extends Cell {
         firm = Firm.form(firms, this);
     }
 
+    /**
+     * Leave.
+     * 
+     * @param firm
+     *            the firm
+     */
     private void leave(Firm firm) {
         this.firm = null;
         firm.terminate(this);
     }
 
+    /**
+     * Gets the firm.
+     * 
+     * @return the firm
+     */
     public Firm getFirm() {
         return firm;
     }
 
     /**
-     * Returns the firms output.
-     * In this implementation: the sum of all employee's outputs.
-     **/
+     * Returns the firms output. In this implementation: the sum of all
+     * employee's outputs.
+     * 
+     * @return the double
+     */
     public double lastPeriodEffort() {
         return lpEffort;
     }
 
+    /**
+     * Gets the comparison firms.
+     * 
+     * @return the comparison firms
+     */
     public Cell[] getComparisonFirms() {
         if (useFriends) {
             Firm[] comparisonFirms = new Firm[friends.length];
@@ -228,6 +280,9 @@ public class Employee extends Cell {
         }
     }
 
+    /**
+     * Find new friends.
+     */
     protected void findNewFriends() {
         friends = new Employee[nFriends];
         for (int i = 0; i < nFriends; i++) {
@@ -253,6 +308,9 @@ public class Employee extends Cell {
         }
     }
 
+    /* (non-Javadoc)
+     * @see org.ascape.model.Agent#getColor()
+     */
     public Color getColor() {
         //if (output() > firm.outputPerEmployee()) {
         //	return Color.green;

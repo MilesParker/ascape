@@ -1,22 +1,8 @@
 /*
- * (c) 1998-2000 The Brookings Institution, All Rights Reserved
- *
- * Permission to use this software and its documentation for non-commercial
- * purposes and without fee is hereby granted, provided this copyright statement
- * is included. Please contact us for permission for redistribution and other uses.
- *
- * BROOKINGS MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF
- * THE SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
- * TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
- * OR NON-INFRINGEMENT. BROOKINGS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
- * LICENSEE AS A RESULT OF USING THIS SOFTWARE OR ITS DERIVATIVES.
- *
- * Conway's Life
- *
- * Miles Parker
- * mparker@brook.edu
- * The Brookings Institution
- * Washington, D.C.
+ * Copyright 1998-2007 The Brookings Institution, with revisions by Metascape LLC, and others. 
+ * All rights reserved.
+ * This program and the accompanying materials are made available solely under of the BSD license "brookings-models-license.txt".
+ * Any referenced or included libraries carry licenses of their respective copyright holders. 
  */
 
 package edu.brook.life;

@@ -1,32 +1,8 @@
 /*
- * This software and documentation is subject to, and may be only used in accordance with, the terms and conditions of
- * the license agreement described or set forth in the file titled License.txt.  This software and documentation
- * contains information that is confidential and proprietary to NuTech Solutions, Inc.
- *
- *             Copyright (c) 2000-2004
- *             NuTech Solutions, Inc.
- * 
- * Portions of the software are licensed from The Brookings Institution
- *             Copyright (c) 1998-2000
- *            The Brookings Institution
- *           All rights reserved worldwide.
- *
- *
- * U.S. GOVERNMENT END USERS. The software is a "commercial item," as that term is defined in 48 C.F.R. 2.101,
- * consisting of "commercial computer software" and "commercial computer software documentation," as such terms are
- * used in 48 C.F.R. 12.212. Consistent with 48 C.F.R. 12.212 and 48 C.F.R. 227.7202-1 through 227.7202-4, and other
- * relevant sections of the Code of Federal Regulations, as applicable all U.S. Government End Users acquire the
- * software with only those rights set forth in the license agreement. This software includes trade secrets that
- * are exempt from disclosure under the Freedom of Information Act.  
- *
- *
- * Miles Parker
- * The Brookings Institution
- * Washington, D.C.
- * mparker@brook.edu
- * (202) 797-6136
- *
- * Please contact us for permission to use, copy, modify, or distribute this software.
+ * Copyright 1998-2007 The Brookings Institution, with revisions by Metascape LLC, and others. 
+ * All rights reserved.
+ * This program and the accompanying materials are made available solely under of the BSD license "brookings-models-license.txt".
+ * Any referenced or included libraries carry licenses of their respective copyright holders. 
  */
 
 package edu.brook.firms;
@@ -58,18 +34,33 @@ class MaximizeOptionsAndEffort extends Rule {
     }
 }
 
+/**
+ * The Class Worker.
+ */
 public class Worker extends Employee {
 
+    /**
+     * The Constant costOfMoving.
+     */
     private final static double costOfMoving = 0.0;
 
+    /**
+     * Instantiates a new worker.
+     */
     public Worker() {
         super();
     }
 
+    /* (non-Javadoc)
+     * @see org.ascape.model.Agent#scapeCreated()
+     */
     public void scapeCreated() {
         scape.addRule(new MaximizeOptionsAndEffort());
     }
 
+    /* (non-Javadoc)
+     * @see edu.brook.firms.Employee#initialize()
+     */
     public void initialize() {
         if (useFriends) {
             findNewFriends();
@@ -80,18 +71,30 @@ public class Worker extends Employee {
         //firm = ProfitFirm.formProfitFirm(((ScapeList) getHostScape()), this);
     }
 
+    /* (non-Javadoc)
+     * @see edu.brook.firms.Employee#getFirm()
+     */
     public Firm getFirm() {
         return firm;
     }
 
+    /* (non-Javadoc)
+     * @see edu.brook.firms.Employee#effort()
+     */
     public double effort() {
         return 1;
     }
 
+    /* (non-Javadoc)
+     * @see edu.brook.firms.Employee#output()
+     */
     public double output() {
         return 1;
     }
 
+    /**
+     * Maximize compensation.
+     */
     public void maximizeCompensation() {
         proposedOption = CURRENT_FIRM_OPTION;
         double proposedCompensation = ((ProfitFirm) firm).currentCompensation() * (1 + costOfMoving);

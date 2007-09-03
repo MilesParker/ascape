@@ -1,39 +1,8 @@
 /*
- * This software and documentation is subject to, and may be only used in accordance with, the terms and conditions of
- * the license agreement described or set forth in the file titled License.txt.  This software and documentation
- * contains information that is confidential and proprietary to NuTech Solutions, Inc.
- *
- *             Copyright (c) 2000-2004
- *             NuTech Solutions, Inc.
- *
- * Portions of the software are licensed from The Brookings Institution
- *             Copyright (c) 1998-2000
- *            The Brookings Institution
- *           All rights reserved worldwide.
- *
- *
- * U.S. GOVERNMENT END USERS. The software is a "commercial item," as that term is defined in 48 C.F.R. 2.101,
- * consisting of "commercial computer software" and "commercial computer software documentation," as such terms are
- * used in 48 C.F.R. 12.212. Consistent with 48 C.F.R. 12.212 and 48 C.F.R. 227.7202-1 through 227.7202-4, and other
- * relevant sections of the Code of Federal Regulations, as applicable all U.S. Government End Users acquire the
- * software with only those rights set forth in the license agreement. This software includes trade secrets that
- * are exempt from disclosure under the Freedom of Information Act.
- *
- * An incomplete implemention of Rob Axtell's firms model.
- *
- * Firms Model
- * Robert Axtell
- * The Brookings Institution
- * Washington, D.C.
- * raxtell@brook.edu
- *
- * Miles Parker
- * The Brookings Institution
- * Washington, D.C.
- * mparker@brook.edu
- * (202) 797-6136
- *
- * Please contact us for permission to use, copy, modify, or distribute this software.
+ * Copyright 1998-2007 The Brookings Institution, with revisions by Metascape LLC, and others. 
+ * All rights reserved.
+ * This program and the accompanying materials are made available solely under of the BSD license "brookings-models-license.txt".
+ * Any referenced or included libraries carry licenses of their respective copyright holders. 
  */
 
 package edu.brook.firms;
@@ -50,14 +19,29 @@ import org.ascape.util.vis.ColorFeatureGradiated;
 import org.ascape.view.vis.FixedStretchyView;
 import org.ascape.view.vis.StretchyView;
 
+/**
+ * The Class Model1.
+ */
 public class Model1 extends Scape {
 
+    /**
+     * The n agents.
+     */
     private static int nAgents = 500;
 
+    /**
+     * The firms.
+     */
     private Scape firms;
 
+    /**
+     * The employees.
+     */
     private Scape employees;
 
+    /* (non-Javadoc)
+     * @see org.ascape.model.Scape#createScape()
+     */
     public void createScape() {
         super.createScape();
         firms = new Scape();
@@ -77,10 +61,16 @@ public class Model1 extends Scape {
         employees.addRule(ITERATE_RULE);
     }
 
+    /* (non-Javadoc)
+     * @see org.ascape.model.Scape#scapeSetup(org.ascape.model.event.ScapeEvent)
+     */
     public void scapeSetup(ScapeEvent scapeEvent) {
         firms.setExtent(new Coordinate1DDiscrete(0));
     }
 
+    /* (non-Javadoc)
+     * @see org.ascape.model.Scape#createViews()
+     */
     public void createViews() {
         super.createViews();
         final StatCollectorCSAMM firmUnitOutput = new StatCollectorCSAMM("Firm Unit Output") {

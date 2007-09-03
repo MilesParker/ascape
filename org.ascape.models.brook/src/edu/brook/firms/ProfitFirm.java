@@ -1,32 +1,8 @@
 /*
- * This software and documentation is subject to, and may be only used in accordance with, the terms and conditions of
- * the license agreement described or set forth in the file titled License.txt.  This software and documentation
- * contains information that is confidential and proprietary to NuTech Solutions, Inc.
- *
- *             Copyright (c) 2000-2004
- *             NuTech Solutions, Inc.
- *
- * Portions of the software are licensed from The Brookings Institution
- *             Copyright (c) 1998-2000
- *            The Brookings Institution
- *           All rights reserved worldwide.
- *
- *
- * U.S. GOVERNMENT END USERS. The software is a "commercial item," as that term is defined in 48 C.F.R. 2.101,
- * consisting of "commercial computer software" and "commercial computer software documentation," as such terms are
- * used in 48 C.F.R. 12.212. Consistent with 48 C.F.R. 12.212 and 48 C.F.R. 227.7202-1 through 227.7202-4, and other
- * relevant sections of the Code of Federal Regulations, as applicable all U.S. Government End Users acquire the
- * software with only those rights set forth in the license agreement. This software includes trade secrets that
- * are exempt from disclosure under the Freedom of Information Act.
- *
- *
- * Miles Parker
- * The Brookings Institution
- * Washington, D.C.
- * mparker@brook.edu
- * (202) 797-6136
- *
- * Please contact us for permission to use, copy, modify, or distribute this software.
+ * Copyright 1998-2007 The Brookings Institution, with revisions by Metascape LLC, and others. 
+ * All rights reserved.
+ * This program and the accompanying materials are made available solely under of the BSD license "brookings-models-license.txt".
+ * Any referenced or included libraries carry licenses of their respective copyright holders. 
  */
 
 package edu.brook.firms;
@@ -38,22 +14,55 @@ import org.ascape.model.Scape;
 
 
 
+/**
+ * The Class ProfitFirm.
+ */
 public class ProfitFirm extends Firm {
 
+    /**
+     * The current compensation.
+     */
     private double currentCompensation = 1 + Math.random() * .2;
 
+    /**
+     * The current price.
+     */
     private double currentPrice = 1;
 
+    /**
+     * The cp profit.
+     */
     private double cpProfit = 0.0;
 
+    /**
+     * The lp profit.
+     */
     private double lpProfit = 0.0;
 
+    /**
+     * The switched last.
+     */
     protected boolean switchedLast = false;
 
+    /**
+     * The wealth.
+     */
     private double wealth = 100;
 
+    /**
+     * The compensation velocity.
+     */
     private double compensationVelocity = Math.random() * .04;
 
+    /**
+     * Form profit firm.
+     * 
+     * @param firms
+     *            the firms
+     * @param employee
+     *            the employee
+     * @return the profit firm
+     */
     public static ProfitFirm formProfitFirm(Scape firms, Employee employee) {
         ProfitFirm firm = new ProfitFirm();
         firm.hire(employee);
@@ -63,29 +72,47 @@ public class ProfitFirm extends Firm {
         return firm;
     }
 
+    /**
+     * Current price.
+     * 
+     * @return the double
+     */
     public double currentPrice() {
         return currentPrice;
     }
 
+    /**
+     * Current compensation.
+     * 
+     * @return the double
+     */
     public double currentCompensation() {
         return currentCompensation;
     }
 
     /**
      * Makes the supplied employee a member from this firm.
-     * @param employee the employee to hire
-     **/
+     * 
+     * @param employee
+     *            the employee to hire
+     */
     public void hire(Employee employee) {
         super.hire(employee);
         calculateCompensation();
     }
 
+    /* (non-Javadoc)
+     * @see edu.brook.firms.Firm#getColor()
+     */
     public Color getColor() {
         float green = Math.min(1, Math.max(0, (float) (cpProfit / 10)));
         float red = Math.min(1, Math.max(0, (float) (-cpProfit / 10)));
         return new Color(red, green, 0);
     }
 
+    /**
+     * Calculate compensation.
+     */
     private void calculateCompensation() {
         cpProfit = output() - (currentCompensation() * getSize());
         if (getSize() > 1) {
@@ -123,6 +150,9 @@ public class ProfitFirm extends Firm {
         //System.out.println("Firm: " + (cpProfit / getSize()));
     }
 
+    /* (non-Javadoc)
+     * @see edu.brook.firms.Firm#iterate()
+     */
     public void iterate() {
         calculateCompensation();
         wealth = wealth + cpProfit;

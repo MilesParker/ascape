@@ -1,38 +1,8 @@
 /*
- * This software and documentation is subject to, and may be only used in accordance with, the terms and conditions of
- * the license agreement described or set forth in the file titled License.txt.  This software and documentation
- * contains information that is confidential and proprietary to NuTech Solutions, Inc.
- *
- *             Copyright (c) 2000-2004
- *             NuTech Solutions, Inc.
- *
- * Portions of the software are licensed from The Brookings Institution
- *             Copyright (c) 1998-2000
- *            The Brookings Institution
- *           All rights reserved worldwide.
- *
- *
- * U.S. GOVERNMENT END USERS. The software is a "commercial item," as that term is defined in 48 C.F.R. 2.101,
- * consisting of "commercial computer software" and "commercial computer software documentation," as such terms are
- * used in 48 C.F.R. 12.212. Consistent with 48 C.F.R. 12.212 and 48 C.F.R. 227.7202-1 through 227.7202-4, and other
- * relevant sections of the Code of Federal Regulations, as applicable all U.S. Government End Users acquire the
- * software with only those rights set forth in the license agreement. This software includes trade secrets that
- * are exempt from disclosure under the Freedom of Information Act.
- *
- *
- * Firms Model
- * Robert Axtell
- * The Brookings Institution
- * Washington, D.C.
- * raxtell@brook.edu
- *
- * Miles Parker
- * The Brookings Institution
- * Washington, D.C.
- * mparker@brook.edu
- * (202) 797-6136
- *
- * Please contact us for permission to use, copy, modify, or distribute this software.
+ * Copyright 1998-2007 The Brookings Institution, with revisions by Metascape LLC, and others. 
+ * All rights reserved.
+ * This program and the accompanying materials are made available solely under of the BSD license "brookings-models-license.txt".
+ * Any referenced or included libraries carry licenses of their respective copyright holders. 
  */
 
 package edu.brook.firms;
@@ -45,24 +15,48 @@ import org.ascape.model.Scape;
 
 
 
+/**
+ * The Class Firm.
+ */
 public class Firm extends Scape {
 
+    /**
+     * The age.
+     */
     private int age = 0;
 
+    /**
+     * The lp effort.
+     */
     protected double lpEffort;
 
+    /**
+     * The lp output.
+     */
     @SuppressWarnings("unused")
     private double lpOutput;
 
+    /**
+     * The lp size.
+     */
     protected int lpSize;
 
+    /**
+     * The color.
+     */
     private Color color;
 
+    /**
+     * Instantiates a new firm.
+     */
     public Firm() {
         super();
         //We use Math.random() so as not to interfere w/ model random draws.
     }
 
+    /* (non-Javadoc)
+     * @see org.ascape.model.Scape#initialize()
+     */
     public void initialize() {
         color = new Color((float) Math.random(), (float) Math.random(), (float) Math.random());
         setAutoCreate(false);
@@ -70,6 +64,15 @@ public class Firm extends Scape {
         super.initialize();
     }
 
+    /**
+     * Form.
+     * 
+     * @param firms
+     *            the firms
+     * @param employee
+     *            the employee
+     * @return the firm
+     */
     public static Firm form(Scape firms, Employee employee) {
         Firm firm = (Firm) firms.newAgent();
         firm.hire(employee);
@@ -82,7 +85,7 @@ public class Firm extends Scape {
      * For scape iteration is passive (it does not, and should not, affect the
      * model as a whole. The firm ages itself, save data for previous years, and
      * saves data that viewers may be interested in as attributes.
-     **/
+     */
     public void iterate() {
         age++;
         lpEffort = effort();
@@ -92,25 +95,30 @@ public class Firm extends Scape {
 
     /**
      * Disband the firm, removing it from the scape of scape.
-     **/
+     */
     private void disolve() {
         scape.remove(this);
     }
 
     /**
-     * Makes the supplied employee a member of this firm.
-     * Does not make the employee's parent scape the firm.
-     * @param employee the employee to hire
-     **/
+     * Makes the supplied employee a member of this firm. Does not make the
+     * employee's parent scape the firm.
+     * 
+     * @param employee
+     *            the employee to hire
+     */
     public void hire(Employee employee) {
         add(employee, false);
     }
 
     /**
      * Terminates the supplied employee from this firm.
-     * @param employee the employee to terminate
-     * @exception RuntimeException if the employee is not a member of this firm
-     **/
+     * 
+     * @param employee
+     *            the employee to terminate
+     * @exception RuntimeException
+     *                if the employee is not a member of this firm
+     */
     public void terminate(Employee employee) {
         if (remove(employee)) {
             //Removed succesfully.
@@ -124,9 +132,11 @@ public class Firm extends Scape {
     }
 
     /**
-     * Returns the scape effort.
-     * In this implementation: the sum of all employee's outputs.
-     **/
+     * Returns the scape effort. In this implementation: the sum of all
+     * employee's outputs.
+     * 
+     * @return the double
+     */
     public double effort() {
         double result = 0;
         Iterator i = iterator();
@@ -138,47 +148,70 @@ public class Firm extends Scape {
 
     /**
      * Return the average per agent effort.
+     * 
+     * @return the avg effort
      */
     public double getAvgEffort() {
         return effort() / getSize();
     }
 
+    /**
+     * The rec output.
+     */
     public double recOutput;
+    
+    /**
+     * The rec size.
+     */
     public double recSize;
+    
+    /**
+     * The rec iter.
+     */
     public double recIter;
 
     /**
      * Return the average per agent effort.
+     * 
+     * @return the avg output
      */
     public double getAvgOutput() {
         return output() / getSize();
     }
 
     /**
-     * Returns the scape output
-     **/
+     * Returns the scape output.
+     * 
+     * @return the double
+     */
     protected double output() {
         return UtilityFunction.output(effort());
     }
 
     /**
-     * Returns the firm's effort in the last period.
-     * In this implementation: the sum of all employee's efforts.
-     **/
+     * Returns the firm's effort in the last period. In this implementation: the
+     * sum of all employee's efforts.
+     * 
+     * @return the double
+     */
     public double lastPeriodEffort() {
         return lpEffort;
     }
 
     /**
      * Returns the firm's size in the last period.
-     **/
+     * 
+     * @return the double
+     */
     public double lastPeriodSize() {
         return lpSize;
     }
 
     /**
      * In this implementation, color is assigned randomly for each employee.
-     **/
+     * 
+     * @return the color
+     */
     public Color getColor() {
         return color;
     }
