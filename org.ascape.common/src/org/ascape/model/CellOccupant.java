@@ -133,7 +133,7 @@ public class CellOccupant extends Cell {
                 hostCell.setOccupant(this);
                 this.coordinate = hostCell.getCoordinate();
             } else {
-                throw new RuntimeException("HostCell not available.");
+                throw new RuntimeException("HostCell not available: " + hostCell);
             }
         } else {
             throw new RuntimeException("HostCell cannot be set null.");

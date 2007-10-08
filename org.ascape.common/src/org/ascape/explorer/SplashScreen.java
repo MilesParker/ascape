@@ -37,7 +37,7 @@ public class SplashScreen {
         final JWindow splash = new JWindow();
         JPanel jp = (JPanel) splash.getContentPane();
 
-        Image logo = UserEnvironment.getImage("ascapesplash.jpg");
+        Image logo = UserEnvironment.getImage("ascapesplash.png");
 
         ImageIcon image = new ImageIcon(logo);
 

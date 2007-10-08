@@ -742,7 +742,6 @@ public class ModelRoot implements Serializable, Runnable {
                 // don't report any parameters not found
                 scape.assignParameters(args, false);
             }
-            //Warning, it is a violation of copyright to modify or circumvent this code..
             createEnvironment();
             scape.executeOnRoot(Scape.CREATE_RULE);
             if (args != null) {
@@ -753,7 +752,9 @@ public class ModelRoot implements Serializable, Runnable {
             if (scape.getRuntimeEnvironment() != null) {
                 scape.addView(scape.getRuntimeEnvironment());
             }
+            
             scape.executeOnRoot(Scape.CREATE_VIEW_RULE);
+            
             if (scape.getModel().isStartOnOpen()) {
                 if (!block) {
                     start();
@@ -1109,6 +1110,7 @@ public class ModelRoot implements Serializable, Runnable {
         if (environment == null) {
             //load any existing
             environment = UserEnvironment.getDefaultEnvironment();
+            
             if (isDisplayGraphics() ) {
                 if (!isMultiWinEnvironment()) {
                     if (!(environment instanceof UserEnvironment)) {

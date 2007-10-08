@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Model name="org.ascape.model.Scape" systemTime="1188402533554">
+<Model name="org.ascape.model.Scape" systemTime="1189436196526">
 	<modelParameters>
 		<parameter name="runCount" value="1" />
 		<parameter name="startPeriod" value="0" />
 		<parameter name="stopPeriod" value="1" />
-		<parameter name="randomSeed" value="1188402533544" />
+		<parameter name="randomSeed" value="1189436196516" />
 		<parameter name="agentSize" value="5.0000" />
 		<parameter name="agentsPerIteration" value="-1.0000" />
 		<parameter name="autoCreate" value="False" />
@@ -23,7 +23,7 @@
 		<parameter name="periodName" value="" />
 		<parameter name="periodic" value="True" />
 		<parameter name="populateOnCreate" value="True" />
-		<parameter name="RandomSeed" value="1.1884E12" />
+		<parameter name="RandomSeed" value="1.1894E12" />
 		<parameter name="running" value="False" />
 		<parameter name="serializable" value="True" />
 		<parameter name="size" value="9.0000" />
