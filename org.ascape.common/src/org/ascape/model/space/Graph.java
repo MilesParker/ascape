@@ -273,7 +273,9 @@ public class Graph extends Discrete {
      *            the agent of whose neighbors are being cleared
      */
     public void clearNeighbors(Node source) {
-        //source.getNeighbors().clear();
+        for (Object neighbor : getNeighborsFor(source)) {
+            removeNeighbor((Node) neighbor, source);
+        }
         getNeighborsFor(source).clear();
     }
 
