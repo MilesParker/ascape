@@ -1,0 +1,22 @@
+<antlib>
+    <!-- typedef the tasks that work for ant less than 1.6 -->
+    <taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+
+    <!-- condition typedefs - these do not work for ant less than 1.6 -->
+    <typedef
+        name="isgreaterthan"
+        classname="net.sf.antcontrib.logic.condition.IsGreaterThan"/>
+    <typedef
+        name="islessthan"
+        classname="net.sf.antcontrib.logic.condition.IsLessThan"/>
+    <typedef
+        name="ispropertyfalse"
+        classname="net.sf.antcontrib.logic.condition.IsPropertyFalse"/>
+    <typedef
+        name="ispropertytrue"
+        classname="net.sf.antcontrib.logic.condition.IsPropertyTrue"/>
+    <taskdef
+        name="for"
+        classname="net.sf.antcontrib.logic.For"
+        onerror="report"/>
+</antlib>
