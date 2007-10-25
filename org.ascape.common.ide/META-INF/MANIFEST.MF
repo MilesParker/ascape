@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Ascape support for Eclipse IDE features
+Bundle-SymbolicName: org.ascape.common.ide; singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: org.ascape.common.ide.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.jdt.ui,
+ org.eclipse.jdt.core,
+ org.eclipse.ui.views,
+ org.eclipse.debug.ui,
+ org.eclipse.ui.ide
+Eclipse-LazyStart: true
+Export-Package: org.ascape.common.ide
+Bundle-Vendor: org.ascape
+Bundle-ClassPath: .

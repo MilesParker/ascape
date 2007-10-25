@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+    <extension point="org.eclipse.ui.newWizards">
+    <category
+      id = "org.ascape.common.ide"
+      name="Ascape">
+    </category>
+    <wizard
+          category="org.ascape.common.ide"
+          class="org.ascape.common.ide.NewAscapeProjectWizard"
+          icon="icons/Ascape16.gif"
+          id="org.ascape.wizards.newProject"
+          name="Ascape Project"
+          project="true">
+      <description>Creates a new Ascape project.</description>
+    </wizard>
+    </extension>
+
+</plugin>
