@@ -100,8 +100,8 @@ public class Population extends Scape {
         super.scapeIterated(event);
     }
 
-    public void createViews() {
-        super.createViews();
+    public void createGraphicViews() {
+        super.createGraphicViews();
         view = new OverheadRelative2DView();
         view.setCellSize(4);
         view.setBorderSize(1);

@@ -124,16 +124,17 @@ public class Player extends CellOccupant {
             Player child = (Player) this.clone();
             getScape().add(child);
             child.moveTo(getHostCell().findRandomAvailableNeighbor());
-            child.wealth = ((PD2D) scape.getRoot()).getInheritedWealth();
+            child.wealth = ((PD2D) scape.getRoot()).getInheiritedWealth();
             child.age = 0;
-            child.age = randomInRange(0, ((PD2D) scape.getRoot()).getDeathAge());
-            wealth -= ((PD2D) scape.getRoot()).getInheritedWealth();
+            wealth -= ((PD2D) scape.getRoot()).getInheiritedWealth();
             if (getRandom().nextFloat() < ((PD2D) scape.getRoot()).getMutationRate()) {
                 if (randomIs()) {
                     child.strategy = PD2D.COOPERATE;
                 } else {
                     child.strategy = PD2D.DEFECT;
                 }
+            } else {
+                child.strategy = this.strategy;
             }
         }
     }

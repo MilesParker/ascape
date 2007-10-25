@@ -11,4 +11,6 @@
 
 	<import file="../../org.ascape.common/tools/antdirs.xml" />
 	<import file="../../org.ascape.common/tools/anttargets.xml" />
+
+	<property name="dir.classpath" value="${dir.ascape.classpath}"/>
 </project>

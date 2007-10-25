@@ -180,6 +180,29 @@ public class PD2D extends Scape {
                 public double getValue(Object object) {
                     return ((Player) object).getWealth();
                 }
+            },
+            new StatCollectorCondCSAMM("Cooperate Age") {
+                public boolean meetsCondition(Object object) {
+                    return (((Player) object).strategy == PD2D.COOPERATE);
+                }
+
+                public double getValue(Object object) {
+                    return ((Player) object).getAge();
+                }
+            },
+            new StatCollectorCondCSAMM("Defect Age") {
+                public boolean meetsCondition(Object object) {
+                    return (((Player) object).strategy == PD2D.DEFECT);
+                }
+
+                public double getValue(Object object) {
+                    return ((Player) object).getAge();
+                }
+            },
+            new StatCollectorCSAMM("Overall Age") {
+                public double getValue(Object object) {
+                    return ((Player) object).getAge();
+                }
             }
         };
 //Add the new values stats to agents
@@ -268,7 +291,7 @@ public class PD2D extends Scape {
         initialWealth = _initialWealth;
     }
 
-    public int getInheritedWealth() {
+    public int getInheiritedWealth() {
         return inheiritedWealth;
     }
 
