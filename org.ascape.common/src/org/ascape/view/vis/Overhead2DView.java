@@ -347,11 +347,9 @@ public class Overhead2DView extends HostedAgentView {
                         bufferedGraphics.setColor(Color.darkGray);
                         for (Iterator iterator = network.iterator(); iterator.hasNext();) {
                             Cell target = (Cell) iterator.next();
-                            if (target.getCoordinate() != null) {
-                                int x2 = ((Coordinate2DDiscrete) target.getCoordinate()).getXValue();
-                                int y2 = ((Coordinate2DDiscrete) target.getCoordinate()).getYValue();
-                                bufferedGraphics.drawLine(x * agentSize + agentSize / 2 - 1, y * agentSize + agentSize / 2 - 1, x2 * agentSize + agentSize / 2 - 1, y2 * agentSize + agentSize / 2 - 1);
-                            }
+                            int x2 = ((Coordinate2DDiscrete) target.getCoordinate()).getXValue();
+                            int y2 = ((Coordinate2DDiscrete) target.getCoordinate()).getYValue();
+                            bufferedGraphics.drawLine(x * agentSize + agentSize / 2 - 1, y * agentSize + agentSize / 2 - 1, x2 * agentSize + agentSize / 2 - 1, y2 * agentSize + agentSize / 2 - 1);
                         }
                     }
                 }

@@ -49,7 +49,7 @@ public abstract class UIEnvironment extends RuntimeEnvironment {
     /**
      * Runtime viewMode; one of debug or release.
      */
-    protected int runtimeMode = DEBUG_RUNTIME_MODE;
+    protected int runtimeMode = RELEASE_RUNTIME_MODE;
     
     /**
      * A customizer for the model.

@@ -6,20 +6,5 @@
 	<classpathentry exported="true" kind="lib" path="lib/QTJava.zip"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
-	<classpathentry exported="true" kind="lib" path="lib/ant.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/ant-apache-regexp.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/ant-contrib.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/ant-launcher.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/commons-lang-2.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/javacc.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/javassist.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jcommon.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jdom.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jfreechart.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jrefactory.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jsch-0.1.21.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/junit.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/log4j.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/openmap.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

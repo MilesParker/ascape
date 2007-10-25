@@ -220,7 +220,7 @@ public class QuickTimeRecorder extends MovieRecorder implements StdQTConstants, 
     public void start() {
         //No idea why subtracting the 1 from width seems to work, but it does!
         //Without it, the recording is completely garbled or blank, at least on views with equal hight and width. Weird.
-        //kWidth = viewFrame.getContentPane().getSize().width - 1;
+        //kWidth = target.getComponent().getSize().width - 1;
         kWidth = target.getComponent().getSize().width;
         kHeight = target.getComponent().getSize().height;
         canv = new QTCanvas(QTCanvas.kInitialSize, 0.5F, 0.5F);

@@ -50,7 +50,7 @@
     <property name="dir.ascape.res" value="${dir.ascape.common}/res"/>
     <property name="dir.ascape.jars"
               value="${dir.ascape.lib}/ascape-common.jar;${dir.ascape.lib}/ascape-models.jar;${dir.ascape.lib}/ant-contrib.jar;${dir.ascape.lib}/jsch-0.1.21.jar;${dir.ascape.lib}/jdom.jar;${dir.ascape.lib}/jcgrid.jar;${dir.ascape.lib}/commons-lang-2.2.jar;${dir.ascape.lib}/log4j.jar;${dir.ascape.lib}/junit.jar;${dir.ascape.lib}/jfreechart.jar;${dir.ascape.lib}/jcommon.jar;${dir.ascape.lib}/QTJava.zip;${dir.ascape.lib}/openmap.jar"/>
-	<property name="dir.ascape.jars.includes" value="ascape-common.jar ascape-models.jar ant.jar ant-apache-regexp.jar ant-contrib.jar ant-launcher.jar commons-lang-2.2.jar javacc.jar javassist.jar jcgrid.jar jcommon.jar jdom.jar jfreechart.jar jrefactory.jar jsch-0.1.21.jar junit.jar log4j.jar openmap.jar"/>
+	<property name="dir.ascape.jars.includes" value="ascape-common.jar ascape-models.jar ant.jar ant-apache-regexp.jar ant-contrib.jar ant-launcher.jar commons-lang-2.2.jar javacc.jar javassist.jar jcgrid.jar jcommon.jar jdom.jar jfreechart.jar jrefactory.jar jsch-0.1.21.jar junit.jar log4j.jar openmap.jar QTJava.zip"/>
 	<property name="dir.ascape.jars.dep" value="dep/ant.jar dep/ant-apache-regexp.jar dep/ant-contrib.jar dep/ant-launcher.jar dep/commons-lang-2.2.jar dep/javacc.jar dep/javassist.jar dep/jcgrid.jar dep/jcommon.jar dep/jdom.jar dep/jfreechart.jar dep/jrefactory.jar dep/jsch-0.1.21.jar dep/junit.jar dep/log4j.jar dep/openmap.jar"/>
     <property name="dir.ascape.classpath" value="${dir.ascape.bin};${dir.ascape.jars}"/>
     <property name="dir.ascape.all.classpath" value="${dir.ascape.classpath};${dir.ascape.models.brook}/bin;${dir.ascape.models.examples}/bin"/>
