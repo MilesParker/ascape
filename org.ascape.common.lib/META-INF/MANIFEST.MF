@@ -412,6 +412,6 @@ Export-Package: com.bbn.openmap;
    javax.swing.border,
    com.jrefinery.ui,
    javax.swing",
- org.apache.commons.lang,
+ org.apache.commons.lang;uses:="org.apache.commons.lang.exception",
  org.jdom,
- org.jdom.output
+ org.jdom.output;uses:="org.xml.sax,org.w3c.dom,org.jdom"
