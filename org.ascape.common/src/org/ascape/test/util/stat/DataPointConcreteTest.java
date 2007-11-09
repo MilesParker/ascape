@@ -7,9 +7,9 @@
 
 package org.ascape.test.util.stat;
 
-import org.ascape.util.data.DataPointConcrete;
-
 import junit.framework.TestCase;
+
+import org.ascape.util.data.DataPointConcrete;
 
 
 public class DataPointConcreteTest extends TestCase {

@@ -9,11 +9,11 @@ package org.ascape.test.model;
 
 import java.io.Serializable;
 
+import junit.framework.TestCase;
+
 import org.ascape.model.Cell;
 import org.ascape.model.Scape;
 import org.ascape.view.vis.Overhead2DView;
-
-import junit.framework.TestCase;
 
 
 /**

@@ -7,11 +7,11 @@
 
 package org.ascape.test.util.sweep;
 
+import junit.framework.TestCase;
+
 import org.ascape.util.sweep.SweepDimension;
 import org.ascape.util.sweep.SweepGroup;
 import org.ascape.util.sweep.SweepLink;
-
-import junit.framework.TestCase;
 
 
 public class SweepLinkTest extends TestCase {

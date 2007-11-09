@@ -7,9 +7,9 @@
 
 package org.ascape.test.util.sweep;
 
-import org.ascape.util.sweep.SweepDimension;
-
 import junit.framework.TestCase;
+
+import org.ascape.util.sweep.SweepDimension;
 
 
 public class SweepDimensionTest extends TestCase {

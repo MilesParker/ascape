@@ -6,10 +6,9 @@ Bundle-SymbolicName: org.ascape.common
 Bundle-Version: 5.0.0
 Bundle-Name: Ascape
 Bundle-Vendor: org.ascape
-Bundle-Activator: org.ascape.ide.AscapeCommonActivator
-Require-Bundle: org.eclipse.core.runtime,
+Require-Bundle: org.ascape.common.lib;reprovide=true,
  org.apache.ant,
- org.ascape.common.lib;reprovide=true
+ org.junit;reprovide=true
 Provide-Package: org.ascape.ant,
  org.ascape.explorer,
  org.ascape.explorer.images,
@@ -47,5 +46,5 @@ Provide-Package: org.ascape.ant,
  org.ascape.view.vis,
  org.ascape.view.vis.erv
 Bundle-ClassPath: .
-Eclipse-LazyStart: true
+Eclipse-LazyStart: false
 

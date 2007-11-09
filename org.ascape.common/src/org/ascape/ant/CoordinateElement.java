@@ -6,12 +6,12 @@
  */
 package org.ascape.ant;
 
+import java.io.Serializable;
+
 import org.apache.tools.ant.BuildException;
 import org.ascape.model.space.Coordinate;
 import org.ascape.model.space.Coordinate1DDiscrete;
 import org.ascape.model.space.Coordinate2DDiscrete;
-
-import java.io.Serializable;
 
 /*
  * User: Miles Parker

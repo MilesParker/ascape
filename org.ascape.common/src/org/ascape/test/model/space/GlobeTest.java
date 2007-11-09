@@ -9,12 +9,12 @@ package org.ascape.test.model.space;
 
 import java.util.List;
 
+import junit.framework.TestCase;
+
 import org.ascape.gis.model.Globe;
 import org.ascape.gis.model.MapAgent;
 import org.ascape.gis.model.MapCoordinate;
 import org.ascape.util.Conditional;
-
-import junit.framework.TestCase;
 
 
 public class GlobeTest extends TestCase {

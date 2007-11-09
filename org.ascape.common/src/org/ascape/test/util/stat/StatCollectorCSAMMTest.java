@@ -7,10 +7,10 @@
 
 package org.ascape.test.util.stat;
 
+import junit.framework.TestCase;
+
 import org.ascape.util.data.DataPointConcrete;
 import org.ascape.util.data.StatCollectorCSAMM;
-
-import junit.framework.TestCase;
 
 
 public class StatCollectorCSAMMTest extends TestCase {

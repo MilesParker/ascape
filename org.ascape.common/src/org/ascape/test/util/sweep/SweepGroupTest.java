@@ -7,10 +7,10 @@
 
 package org.ascape.test.util.sweep;
 
+import junit.framework.TestCase;
+
 import org.ascape.util.sweep.SweepDimension;
 import org.ascape.util.sweep.SweepGroup;
-
-import junit.framework.TestCase;
 
 
 public class SweepGroupTest extends TestCase {

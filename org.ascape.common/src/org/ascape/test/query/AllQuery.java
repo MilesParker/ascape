@@ -1,7 +1,7 @@
 package org.ascape.test.query;
 
-import junit.framework.TestSuite;
 import junit.framework.Test;
+import junit.framework.TestSuite;
 
 /**
 

@@ -6,8 +6,8 @@
  */
 package org.ascape.view.nonvis;
 
-import java.io.IOException;
 import java.io.DataOutputStream;
+import java.io.IOException;
 
 /**
  * The Interface DataScape.

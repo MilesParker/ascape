@@ -10,9 +10,9 @@ package org.ascape.test.model;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-import org.ascape.model.AscapeObject;
-
 import junit.framework.TestCase;
+
+import org.ascape.model.AscapeObject;
 
 
 

@@ -7,12 +7,12 @@
 
 package org.ascape.test.model.strategy;
 
+import junit.framework.TestCase;
+
 import org.ascape.model.engine.ChainedStrategy;
 import org.ascape.model.engine.ParallelExecutionStrategy;
 import org.ascape.model.engine.StrategyFactory;
 import org.ascape.model.rule.Rule;
-
-import junit.framework.TestCase;
 
 
 /*
