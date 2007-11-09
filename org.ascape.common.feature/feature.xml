@@ -17,6 +17,10 @@
       [Enter License Description here.]
    </license>
 
+   <url>
+      <update label="MetaABM Update Site" url="http://metascapeabm.com/update"/>
+   </url>
+
    <requires>
       <import plugin="org.eclipse.core.runtime"/>
    </requires>
