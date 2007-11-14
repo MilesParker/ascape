@@ -2,7 +2,7 @@
 <feature
       id="org.ascape.common.feature"
       label="Ascape Framework and Runtime"
-      version="5.0.0"
+      version="5.0.1"
       provider-name="org.ascape">
 
    <description url="http://ascape.sourceforge.net">
@@ -75,7 +75,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
          id="org.ascape.common"
          download-size="0"
          install-size="0"
-         version="5.0.0"
+         version="5.0.1"
          unpack="false"/>
 
    <plugin
