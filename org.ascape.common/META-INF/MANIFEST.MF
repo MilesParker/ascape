@@ -3,11 +3,11 @@ Manifest-Version: 1.0
             Main-Class: org.ascape.model.Scape
             Class-Path: 
 Bundle-SymbolicName: org.ascape.common
-Bundle-Version: 5.0.0
+Bundle-Version: 5.0.1
 Bundle-Name: Ascape
 Bundle-Vendor: org.ascape
 Require-Bundle: org.ascape.common.lib;reprovide=true,
- org.apache.ant,
+ org.apache.ant;reprovide=true,
  org.junit;reprovide=true
 Provide-Package: org.ascape.ant,
  org.ascape.explorer,

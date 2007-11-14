@@ -7,6 +7,8 @@
 
 package org.ascape.test.model;
 
+import org.ascape.test.model.strategy.AllStrategy;
+
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
@@ -48,7 +50,7 @@ public class AllModel extends TestSuite {
 //Temporary removal of serialization test to see if it fixes CMA problem...s
         //suite.addTest(new TestSuite(org.ascape.test.model.SerializationTest.class));
 
-        suite.addTest(org.ascape.test.model.strategy.AllStrategy.suite());
+        suite.addTest(AllStrategy.suite());
 
         return suite;
     }

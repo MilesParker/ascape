@@ -386,13 +386,6 @@ public class CellOccupant extends Cell {
             }
         }
     }
-    
-    /**
-     * Gets a coordinate the location of this cell within the relevant <i>Host Scape</i>.
-     */
-    public Coordinate getCoordinate() {
-        return coordinate;
-    }
 
     /**
      * Clone this occupant, making host cell and coordinate null,
