@@ -3,7 +3,7 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ManifestVersion: 2
 Bundle-Name: Ascape support for Eclipse IDE features
 Bundle-SymbolicName: org.ascape.common.ide; singleton:=true
-Bundle-Version: 1.0.0
+Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.ascape.common.ide.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
