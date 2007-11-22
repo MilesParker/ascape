@@ -1,6 +1,6 @@
 [BSD License]
 
-Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors.
+Copyright 1998-2007 The Brookings Institution, Miles T. Parker
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
