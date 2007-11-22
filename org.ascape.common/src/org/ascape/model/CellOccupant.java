@@ -11,7 +11,9 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.ascape.model.rule.Rule;
+import org.ascape.model.space.Array2D;
 import org.ascape.model.space.Coordinate;
+import org.ascape.model.space.CoordinateMutable;
 import org.ascape.model.space.Discrete;
 import org.ascape.util.Conditional;
 
@@ -164,6 +166,16 @@ public class CellOccupant extends Cell {
         if (dCell.isAvailable()) {
             moveTo(dCell);
         }
+    }
+    
+    /**
+     * Gets a coordinate the location of this cell within the relevant <i>Host Scape</i>.
+     */
+    public Coordinate getCoordinate() {
+        if (hostCell != null) {
+            return hostCell.getCoordinate();
+        }
+        return super.getCoordinate();
     }
 
     /**

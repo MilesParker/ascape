@@ -54,8 +54,6 @@ import org.ascape.util.ResetableIterator;
 import org.ascape.view.vis.ComponentViewDelegate;
 import org.ascape.view.vis.PanelView;
 
-import com.sun.java.swing.plaf.windows.WindowsTreeUI;
-
 
 /**
  * The Class Navigator.
@@ -82,8 +80,6 @@ public class Navigator extends PanelView {
      */
     public Navigator() {
         super("Scape Navigator");
-        UIManager.put("Tree.expandedIcon", new WindowsTreeUI.ExpandedIcon());
-        UIManager.put("Tree.collapsedIcon", new WindowsTreeUI.CollapsedIcon());
         delegate = new ComponentViewDelegate(this) {
             public void scapeAdded(ScapeEvent scapeEvent) throws TooManyListenersException {
                 scape = (Scape) scapeEvent.getSource();
