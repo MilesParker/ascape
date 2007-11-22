@@ -5,6 +5,7 @@
 <project name="buildAscape" default="build">
 
     <property name="dir.ascape.common" value="../"/>
+	
 	<import file="antascape.xml" />
 	<import file="anttargets.xml" />
 	

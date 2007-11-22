@@ -4,6 +4,8 @@
 
 <project name="commonDirs" default="">
 
+	<property name="workspace.ascape" value="../.."/>
+
     <!--Quick and dirty build, e.g. don't clean and don't test-->
     <!--    <property name="build.clean" value="true"/>-->
     <property name="build.local" value="true"/>
@@ -32,9 +34,9 @@
     <property name="dir.scripts" value="../cma"/>
     <property name="dir.javadoc.src" value="../src"/>
 
-    <property name="dir.ascape.common" value="../../org.ascape.common"/>
-    <property name="dir.ascape.models.brook" value="../../org.ascape.models.brook"/>
-    <property name="dir.ascape.models.examples" value="../../org.ascape.models.examples"/>
+    <property name="dir.ascape.common" value="${workspace.ascape}/org.ascape.common"/>
+    <property name="dir.ascape.models.brook" value="${workspace.ascape}/org.ascape.models.brook"/>
+    <property name="dir.ascape.models.examples" value="${workspace.ascape}/org.ascape.models.examples"/>
     <property name="dir.ascape"
               value="org/ascape/model/**,org/ascape/explorer/**,org/ascape/util/**,org/ascape/query/**,org/ascape/ant/**,org/ascape/view/**,org/ascape/gis/**,org/ascape/movie/**"/>
     <property name="dir.ascape.test" value="org/ascape/test/**"/>
