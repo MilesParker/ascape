@@ -1,7 +1,8 @@
 Manifest-Version: 1.0
-            Created-By: NuTech Solutions (http://www.nutechsolutions.com), Inc. on August 23 2007 at 2122
+            Created-By: ascape.org
             Main-Class: org.ascape.model.Scape
             Class-Path: 
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-SymbolicName: org.ascape.common
 Bundle-Version: 5.0.1
 Bundle-Name: Ascape
