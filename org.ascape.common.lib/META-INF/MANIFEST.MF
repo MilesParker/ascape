@@ -520,3 +520,4 @@ Export-Package: com.bbn.openmap;
    quicktime.std.qtcomponents,
    quicktime.std.image,
    quicktime.std.movies.media"
+Bundle-Vendor: Ascape.org

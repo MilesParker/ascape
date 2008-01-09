@@ -3,7 +3,7 @@
       id="org.ascape.common.feature"
       label="Ascape Framework and Runtime"
       version="5.0.1.qualifier"
-      provider-name="org.ascape">
+      provider-name="Ascape.org">
 
    <description url="http://ascape.sourceforge.net">
       Ascape is an innovative tool for developing and exploring general-purpose

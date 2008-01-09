@@ -6,7 +6,7 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-SymbolicName: org.ascape.common
 Bundle-Version: 5.0.1
 Bundle-Name: Ascape
-Bundle-Vendor: org.ascape
+Bundle-Vendor: Ascape.org
 Require-Bundle: org.ascape.common.lib;reprovide=true,
  org.apache.ant;reprovide=true,
  org.junit;reprovide=true

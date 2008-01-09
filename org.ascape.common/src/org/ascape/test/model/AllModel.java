@@ -7,10 +7,10 @@
 
 package org.ascape.test.model;
 
-import org.ascape.test.model.strategy.AllStrategy;
-
 import junit.framework.Test;
 import junit.framework.TestSuite;
+
+import org.ascape.test.model.strategy.AllStrategy;
 
 
 /**

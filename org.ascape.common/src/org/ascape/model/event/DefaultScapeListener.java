@@ -221,7 +221,9 @@ public abstract class DefaultScapeListener implements ScapeListener, Serializabl
      * scapeNotification event or the model will stall.
      */
     public void notifyScapeUpdated() {
-        scape.respondControl(new ControlEvent(this, ControlEvent.REPORT_LISTENER_UPDATED));
+    	if (scape != null) {
+	        scape.respondControl(new ControlEvent(this, ControlEvent.REPORT_LISTENER_UPDATED));
+    	}
     }
 
     /**

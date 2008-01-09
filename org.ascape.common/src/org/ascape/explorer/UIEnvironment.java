@@ -304,7 +304,7 @@ public abstract class UIEnvironment extends RuntimeEnvironment {
                     return true;
                 } else {
                     String msg = "The class \"" + modelName + "\" is not a model; it does not ";
-                    msg += "subclass org.ascape.Scape.";
+                    msg += "subclass org.ascape.model.Scape.";
                     JOptionPane.showMessageDialog(null, msg, "Error: Not Model", JOptionPane.ERROR_MESSAGE);
                 }
             }

@@ -11,9 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.ascape.model.rule.Rule;
-import org.ascape.model.space.Array2D;
 import org.ascape.model.space.Coordinate;
-import org.ascape.model.space.CoordinateMutable;
 import org.ascape.model.space.Discrete;
 import org.ascape.util.Conditional;
 
