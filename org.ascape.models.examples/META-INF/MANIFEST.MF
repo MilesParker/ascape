@@ -5,4 +5,5 @@ Bundle-Name: Examples Plug-in
 Bundle-SymbolicName: org.ascape.models.examples
 Bundle-Version: 5.0.0
 Require-Bundle: org.ascape.common
+Bundle-Vendor: Ascape.org
 

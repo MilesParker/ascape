@@ -21,4 +21,4 @@ Export-Package: edu.brook.Simple,
  edu.brooksantafe.heatbugs,
  name.milesparker.spatialipd
 Bundle-ClassPath: .
-Bundle-Vendor: org.ascape
+Bundle-Vendor: Ascape.org

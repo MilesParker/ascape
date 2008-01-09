@@ -3,3 +3,4 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Doc Plug-in
 Bundle-SymbolicName: org.ascape.doc;singleton:=true
 Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Ascape.org
