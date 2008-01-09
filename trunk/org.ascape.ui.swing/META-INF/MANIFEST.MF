@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Ascape Swing Support
+Bundle-SymbolicName: org.ascape.ui.swing
+Bundle-Version: 5.1.0
+Bundle-Vendor: Ascape.org
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: org.ascape.core;bundle-version="1.0.0",
+ org.apache.ant;bundle-version="1.7.0",
+ org.junit;bundle-version="3.8.2"
+Export-Package: org.ascape.ant,
+ org.ascape.ant.test,
+ org.ascape.gis.view,
+ org.ascape.movie,
+ org.ascape.movie.qt,
+ org.ascape.runtime.swing,
+ org.ascape.util.swing,
+ org.ascape.view.custom,
+ org.ascape.view.vis,
+ org.ascape.view.vis.control,
+ org.ascape.view.vis.erv
+Bundle-ClassPath: .
