@@ -1,0 +1,17 @@
+void Expression() :
+{}
+{
+  MatchedParens() | InnerExpression()
+}
+
+void MatchedParens() :
+{}
+{
+  "(" [ Expression() ] ")"
+}
+
+void InnerExpression() :
+{}
+{
+  [ BooleanPhrase() | Criteria() ]
+}

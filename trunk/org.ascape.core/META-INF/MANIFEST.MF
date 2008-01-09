@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Ascape Core Functionality
+Bundle-SymbolicName: org.ascape.core
+Bundle-Version: 5.1
+Bundle-Vendor: Ascape.org
+Require-Bundle: org.ascape.common.lib;visibility:=reexport,
+ org.junit
+Export-Package: org.ascape.gis.model,
+ org.ascape.model,
+ org.ascape.model.engine,
+ org.ascape.model.event,
+ org.ascape.model.rule,
+ org.ascape.model.space,
+ org.ascape.query,
+ org.ascape.query.parser,
+ org.ascape.runtime,
+ org.ascape.util,
+ org.ascape.util.data,
+ org.ascape.util.sweep,
+ org.ascape.util.vis,
+ org.ascape.view.nonvis
+Bundle-ClassPath: .
+Eclipse-LazyStart: false
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
