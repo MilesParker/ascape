@@ -1,0 +1,20 @@
+/*
+ * Copyright 1998-2007 The Brookings Institution, with revisions by Metascape LLC, and others. 
+ * All rights reserved.
+ * This program and the accompanying materials are made available solely under of the BSD license "brookings-models-license.txt".
+ * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ */
+
+package edu.brook.cv;
+
+
+public class CVModelInterGroupRetr extends CVModelInterGroup {
+
+    public void createScape() {
+        super.createScape();
+        people.getRules().setSelected(Citizen.DECIDE_STATE, false);
+        people.getRules().setSelected(CitizenBlueGreen.DECIDE_STATE_RETRIBUTION, true);
+        people.getRules().setSelected(CitizenBlueGreen.DECIDE_STATE_RETRIBUTION_2, false);
+        people.getRules().setSelected(CitizenBlueGreen.DECIDE_STATE_RETRIBUTION_3, false);
+    }
+}
