@@ -16,7 +16,7 @@
 </listAttribute>
 <booleanAttribute key="org.eclipse.jdt.launching.DEFAULT_CLASSPATH" value="false"/>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.ascape.model.Scape"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="edu.brook.pd.PD2D"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="edu.brook.pd.PD2D randomSeed=1223 stopPeriod=20"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="org.ascape.models.brook"/>
 <stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="${workspace_loc:org.ascape.models.brook}"/>
 </launchConfiguration>
