@@ -22,6 +22,11 @@ import java.util.Iterator;
 public class SubContinuous2D extends SubContinuous {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Constructs a sub-continuous space.
      */
     public SubContinuous2D() {

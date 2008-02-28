@@ -24,6 +24,10 @@ import java.util.Iterator;
 public abstract class DataPointConcrete implements DataPoint, Serializable {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    /**
      * The name of the data point.
      */
     private String name;

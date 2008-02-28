@@ -16,6 +16,11 @@ import org.ascape.model.space.Mutable;
 public class AgentOrderMutableStrategy extends AgentOrderStrategy {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Instantiates a new agent order mutable strategy.
      * 
      * @param factory

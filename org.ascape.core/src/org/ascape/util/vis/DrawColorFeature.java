@@ -21,6 +21,10 @@ import java.awt.Graphics;
 public class DrawColorFeature extends DrawFeature implements ColorFeature {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    /**
      * The color feature to use for drawing this feature.
      * By default, black.
      */

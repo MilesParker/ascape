@@ -25,6 +25,10 @@ import org.ascape.util.data.DataSelection;
 public class DataViewSelection extends DataSelection {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    /**
      * An array mirroring selection that tracks selected seriesView
      */
     private SeriesRepresentation[] seriesViews = new SeriesRepresentation[0];

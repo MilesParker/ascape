@@ -22,6 +22,11 @@ import org.ascape.util.data.StatCollector;
 public class CollectStats extends Rule {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * The stats to be collected.
      */
     private StatCollector[] stats = new StatCollector[0];

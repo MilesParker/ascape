@@ -17,6 +17,11 @@ package org.ascape.util.data;
  */
 public class ValueNotInRangeException extends Exception {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     public ValueNotInRangeException() {
         super();
     }

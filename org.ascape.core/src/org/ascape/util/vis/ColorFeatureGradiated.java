@@ -26,6 +26,11 @@ import org.ascape.util.data.UnitIntervalDataPoint;
 public class ColorFeatureGradiated extends ColorFeatureConcrete {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * The minimum value of the red component of this color.
      */
     protected float redMinimum;

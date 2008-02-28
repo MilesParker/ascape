@@ -24,6 +24,11 @@ import org.ascape.util.Conditional;
 public abstract class StatCollectorCondCSA extends StatCollectorCSA implements Conditional {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Constructs a new StatCollectorCondCSA.
      */
     public StatCollectorCondCSA() {

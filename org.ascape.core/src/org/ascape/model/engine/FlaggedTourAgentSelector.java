@@ -15,6 +15,11 @@ package org.ascape.model.engine;
 public class FlaggedTourAgentSelector extends PartialTourAgentSelector {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * The iteration count.
      */
     private int iterationCount;

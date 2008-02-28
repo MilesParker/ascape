@@ -25,6 +25,10 @@ import org.ascape.util.ValueSetter;
 public class SetValues extends Rule {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    /**
      * The setters for setting data points.
      */
     private ValueSetter[] setters;

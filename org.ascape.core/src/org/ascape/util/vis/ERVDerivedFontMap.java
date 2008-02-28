@@ -35,6 +35,10 @@ import java.util.Map;
  */
 public class ERVDerivedFontMap implements java.io.Serializable {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
     private HashMap fontMap = new HashMap();
     private Font baseFont;
 

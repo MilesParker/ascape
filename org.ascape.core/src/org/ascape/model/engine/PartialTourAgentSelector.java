@@ -16,6 +16,11 @@ import org.ascape.model.Agent;
 public class PartialTourAgentSelector extends TourAgentSelector {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * The iteration count.
      */
     private int iterationCount;

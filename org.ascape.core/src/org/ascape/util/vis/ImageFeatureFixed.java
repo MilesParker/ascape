@@ -21,6 +21,11 @@ import java.awt.Image;
 public class ImageFeatureFixed extends ImageFeatureConcrete {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * A image of a gray ball.
      */
     public final static Image grayBall = createImage("bullets_balls_gray_mid.gif");

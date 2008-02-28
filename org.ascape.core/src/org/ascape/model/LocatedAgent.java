@@ -29,10 +29,20 @@ import org.ascape.util.data.DataPoint;
 public class LocatedAgent extends Agent implements Location {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * A rule causing the taget agent to move to a random location.
      * Move random location rules can only be applied to agents in continuous space or to cell occupants.
      */
     public static final Rule MOVE_RANDOM_LOCATION_RULE = new Rule("Move To Random Location") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
         /**
          * Move to a random location in the lattice.
          * @param agent the playing agent
@@ -57,6 +67,11 @@ public class LocatedAgent extends Agent implements Location {
      * Random walk rules can only be applied to agents in continuous space or to cell occupants.
      */
     public static final Rule RANDOM_WALK_RULE = new Rule("Random Walk") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
         /**
          * Attempt to move one step in a random direction.
          * @param agent the playing agent

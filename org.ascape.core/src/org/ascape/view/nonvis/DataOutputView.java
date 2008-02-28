@@ -46,6 +46,11 @@ import org.ascape.util.Utility;
 public class DataOutputView extends DataView {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * The number of characters to use for a file name. File names are the
      * sequential number, left padded with '0' to this size. Default is 4. For
      * example, 35 would appear as '0035'. Obviously, a given size allows

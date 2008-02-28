@@ -2,13 +2,17 @@ package org.ascape.runtime;
 
 import java.io.IOException;
 
-import javax.swing.JOptionPane;
-
 import org.ascape.model.Scape;
 
 public class NonGraphicRunner extends Runner {
 
-	@Override
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+
+    @Override
 	public void closeAndOpenSavedFinally(Scape oldScape) {
 		throw new InternalError("Unexpected call to close and open for headless runtime.");
 	}

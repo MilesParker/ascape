@@ -36,6 +36,11 @@ import org.ascape.util.Conditional;
 public abstract class Array2D extends Array2DBase {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Constructs a 2-dimensional array space of provided extent.
      */
     public Array2D() {

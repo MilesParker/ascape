@@ -136,4 +136,6 @@ public abstract class AbstractUIEnvironment extends RuntimeEnvironment {
 	public abstract void showErrorDialog(Scape scape, RuntimeException e);
 
 	public abstract void setApplet(Object applet, Scape parent);
+	
+	public abstract boolean isInApplet();
 }

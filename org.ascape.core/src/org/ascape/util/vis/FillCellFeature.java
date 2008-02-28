@@ -18,6 +18,11 @@ import java.awt.Graphics;
 public class FillCellFeature extends DrawColorFeature {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Constructs the feature with the supplied name.
      * @param name the name of this draw feature
      */

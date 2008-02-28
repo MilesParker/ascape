@@ -19,6 +19,11 @@ package org.ascape.model.rule;
 public class PropogateScapeOnly extends Propogate {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Constructs a Propogate rule.
      */
     public PropogateScapeOnly() {

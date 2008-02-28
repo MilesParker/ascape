@@ -34,6 +34,11 @@ import java.util.List;
 public class Array2DMoore extends Array2D {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Constructs a two-dimensional moore-neighborhood array of provided
      * geometry and extent, populated with clones of provided agent.
      */

@@ -31,6 +31,11 @@ import org.ascape.model.Scape;
 public abstract class DefaultScapeListener implements ScapeListener, Serializable {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * The scape being listened to.
      */
     public Scape scape;

@@ -49,9 +49,19 @@ import org.ascape.model.space.Mutable;
 public class Agent extends AscapeObject implements Cloneable {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * A rule causing the target and all its children scapes to be initialized.
      */
     public static final Rule INITIALIZE_RULE = new Propogate("Initialize") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
         /**
          * Initialize the scape or agent and all its children.
          * @param agent the playing agent
@@ -77,6 +87,11 @@ public class Agent extends AscapeObject implements Cloneable {
      * of other agents or the lattice.
      */
     public static final Rule UPDATE_RULE = new Rule("Update") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
         /**
          * Call update on each agent.
          * @param agent the playing agent
@@ -111,6 +126,11 @@ public class Agent extends AscapeObject implements Cloneable {
      */
     public static final Rule ITERATE_AND_UPDATE_RULE = new ExecuteThenUpdate("Iterate and Update") {
         /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
+        /**
          * Call iterate on each agent.
          * @param agent the playing agent
          * @see Agent#update()
@@ -133,6 +153,11 @@ public class Agent extends AscapeObject implements Cloneable {
      * A rule calling the death method of the target agent.
      */
     public static final Rule DEATH_RULE = new Rule("Death") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
         /**
          * Call the death method for each agent in the scape.
          * @param agent the playing agent
@@ -162,6 +187,11 @@ public class Agent extends AscapeObject implements Cloneable {
      * Kills the agent regardless of deathCondition.
      */
     public static final Rule FORCE_DIE_RULE = new Rule("Force Death") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
         /**
          * Call the death method for each agent in the scape.
          * @param agent the playing agent
@@ -193,6 +223,11 @@ public class Agent extends AscapeObject implements Cloneable {
      */
     public static final Rule FISSIONING_RULE = new Rule("Fissioning") {
         /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
+        /**
          * Execute fission rule for all agents in scape.
          */
         public void execute(Agent agent) {
@@ -221,6 +256,11 @@ public class Agent extends AscapeObject implements Cloneable {
      */
     public static final Rule FORCE_FISSION_RULE = new Rule("Force Fission") {
         /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
+        /**
          * Execute fission rule for all agents in scape.
          */
         public void execute(Agent agent) {
@@ -247,6 +287,11 @@ public class Agent extends AscapeObject implements Cloneable {
      * An rule calling the metabolism method of the target agent.
      */
     public static final Rule METABOLISM_RULE = new Rule("Metabolism") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
         /**
          * Execute metabolism rule for all agents in scape.
          */
@@ -275,6 +320,11 @@ public class Agent extends AscapeObject implements Cloneable {
      * movementCondition method returns true.
      */
     public static final Rule MOVEMENT_RULE = new Rule("Movement") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
         /**
          * Call move for each agent in the scape.
          * @param agent the moving agent
@@ -305,6 +355,11 @@ public class Agent extends AscapeObject implements Cloneable {
      */
     public static final Rule FORCE_MOVE_RULE = new Rule("Force Move") {
         /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
+        /**
          * Call move for each agent in the scape.
          * @param agent the moving agent
          */
@@ -333,6 +388,11 @@ public class Agent extends AscapeObject implements Cloneable {
      * the Agent.play() method.
      */
     public static final Rule PLAY_OTHER = new Rule("Play Other") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
         /**
          * Play each neighbor within one unit of the agent.
          * @param agent the playing agent
@@ -375,6 +435,11 @@ public class Agent extends AscapeObject implements Cloneable {
      * to add specialized rules to an existing scape.
      */
     public static final Rule ITERATE_RULE = new Rule("Iterate") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
         /**
          * Call iterate on each agent.
          * @param agent the playing agent

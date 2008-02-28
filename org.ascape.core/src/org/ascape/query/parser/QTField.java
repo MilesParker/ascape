@@ -70,7 +70,7 @@ public class QTField extends SimpleNode {
     public Object getValue(Object object) throws ParseException {
         Object o = null;
         try {
-            o = descriptor.getReadMethod().invoke(object, null);
+            o = descriptor.getReadMethod().invoke(object, (Object[]) null);
         } catch (IllegalAccessException e) {
             throw new ParseException("Couldn't access field: " + getName() + " for class: " + object.getClass());  //To change body of catch statement use Options | File Templates.
         } catch (IllegalArgumentException e) {

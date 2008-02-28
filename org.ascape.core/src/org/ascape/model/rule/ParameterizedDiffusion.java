@@ -25,6 +25,11 @@ import org.ascape.model.Cell;
 public abstract class ParameterizedDiffusion extends Diffusion {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * The evaporation rate.
      */
     private double evaporationRate = 0.0;

@@ -22,6 +22,10 @@ import org.ascape.model.Scape;
 public class NotifyViews extends PropogateScapeOnly {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    /**
      * The id.
      */
     private int id;

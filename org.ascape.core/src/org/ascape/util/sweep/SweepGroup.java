@@ -24,6 +24,11 @@ import java.util.Vector;
  */
 public class SweepGroup implements Sweepable, Serializable {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     private Vector sweeps = new Vector();
 
     private int depth;

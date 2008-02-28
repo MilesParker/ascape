@@ -23,6 +23,10 @@ import java.util.Arrays;
 public abstract class CoordinateDiscrete extends Coordinate implements Cloneable, Serializable {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    /**
      * Each element of this array represents the position of this coordinate
      * within a dimension, the index of the element.
      */

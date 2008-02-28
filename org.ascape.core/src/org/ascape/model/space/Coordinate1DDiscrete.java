@@ -20,6 +20,11 @@ package org.ascape.model.space;
 public class Coordinate1DDiscrete extends CoordinateDiscrete {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Creates a 1-dimensional coordinate.
      */
     public Coordinate1DDiscrete() {

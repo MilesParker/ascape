@@ -23,6 +23,11 @@ import java.awt.Color;
 public class ColorFeatureFixed extends ColorFeatureConcrete {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * A color feature that always returns black.
      */
     public final static ColorFeatureFixed black = new ColorFeatureFixed("Black", Color.black);

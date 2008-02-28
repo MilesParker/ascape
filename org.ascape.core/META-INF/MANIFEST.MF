@@ -6,7 +6,11 @@ Bundle-Version: 5.1
 Bundle-Vendor: Ascape.org
 Require-Bundle: org.ascape.common.lib;visibility:=reexport,
  org.junit
-Export-Package: org.ascape.gis.model,
+Bundle-ClassPath: .
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.ascape.ant,
+ org.ascape.ant.test,
+ org.ascape.gis.model,
  org.ascape.model,
  org.ascape.model.engine,
  org.ascape.model.event,
@@ -20,6 +24,3 @@ Export-Package: org.ascape.gis.model,
  org.ascape.util.sweep,
  org.ascape.util.vis,
  org.ascape.view.nonvis
-Bundle-ClassPath: .
-Eclipse-LazyStart: false
-Bundle-RequiredExecutionEnvironment: J2SE-1.5

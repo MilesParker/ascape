@@ -23,6 +23,11 @@ import org.ascape.util.PropertyAccessor;
  */
 public class SweepDimension extends PropertyAccessor implements Sweepable {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     abstract class TypedSweepDimension implements Sweepable {
 
         public abstract String getMinAsText();

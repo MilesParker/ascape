@@ -23,6 +23,11 @@ import org.ascape.model.event.DefaultScapeListener;
 public class NonGraphicView extends DefaultScapeListener {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Constructs a non-graphic view.
      */
     public NonGraphicView() {

@@ -18,6 +18,12 @@ package org.ascape.gis.model;
 public class MapCoordinate extends org.ascape.model.space.Coordinate2DContinuous {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+
+    /**
      * Constructs an instance of MapCoordinate.
      */
     public MapCoordinate() {

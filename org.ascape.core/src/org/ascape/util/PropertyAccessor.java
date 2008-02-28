@@ -28,6 +28,11 @@ import java.util.List;
  */
 public class PropertyAccessor implements Comparable, Serializable {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     protected Object object;
 
     protected PropertyDescriptor descriptor;
@@ -182,7 +187,7 @@ public class PropertyAccessor implements Comparable, Serializable {
 
     public static Object getValue(Object object, PropertyDescriptor descriptor) {
         try {
-            return descriptor.getReadMethod().invoke(object, null);
+            return descriptor.getReadMethod().invoke(object, (Object[]) null);
         } catch (IllegalAccessException e) {
             System.out.println("Error in dynamic method read: " + e);
         } catch (IllegalArgumentException e) {

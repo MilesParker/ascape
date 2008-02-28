@@ -32,6 +32,11 @@ import com.bbn.openmap.proj.ProjMath;
 public class Globe extends Continuous2D {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * The average radius of the earth
      */
     public final static double AVERAGE_EARTH_RADIUS = 3440.8f;

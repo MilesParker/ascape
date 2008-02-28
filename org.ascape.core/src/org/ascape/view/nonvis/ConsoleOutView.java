@@ -7,10 +7,6 @@
 
 package org.ascape.view.nonvis;
 
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintStream;
 import java.util.Iterator;
 import java.util.List;
 
@@ -28,6 +24,11 @@ import org.ascape.util.Utility;
 public class ConsoleOutView extends DataView {
 
 	/**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
 	 * Display results for every iteration?.
 	 */
 	private boolean printResultsEachPeriod;

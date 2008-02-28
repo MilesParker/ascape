@@ -22,6 +22,11 @@ import org.ascape.model.Agent;
 public class SearchRule extends Rule {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Constructs a search rule with the providied name. It is strongly
      * encouraged to provide a name for all rules. This name will be used for
      * run time rule selection and provides important information fopr analyzing

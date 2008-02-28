@@ -9,7 +9,6 @@ package org.ascape.view.nonvis;
 
 import java.util.TooManyListenersException;
 
-import org.ascape.model.Scape;
 import org.ascape.model.event.ScapeEvent;
 
 /**
@@ -28,6 +27,11 @@ import org.ascape.model.event.ScapeEvent;
  * @since 3.0
  */
 public class ScapeStateView extends NonGraphicView {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
 
     /**
      * The last update in millis.

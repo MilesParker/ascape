@@ -25,6 +25,11 @@ import java.io.Serializable;
 public class Geometry extends Object implements Cloneable, Serializable {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * If appropriate. If the geometry is periodic, the edges of the space are
      * connected; for example, a 1D periodic lattice is a ring, and a periodic
      * 2D lattice is a torus, wheras a 1D aperiodic lattice is a line segment,

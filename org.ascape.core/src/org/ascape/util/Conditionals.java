@@ -25,6 +25,11 @@ public class Conditionals {
     public final static Conditional and(final Conditional op1, final Conditional op2) {
         if ((op1 != null) && (op2 != null)) {
             return new Conditional() {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 1L;
+
                 public boolean meetsCondition(Object object) {
                     return op1.meetsCondition(object) && op2.meetsCondition(object);
                 }
@@ -50,6 +55,11 @@ public class Conditionals {
      */
     public final static Conditional or(final Conditional op1, final Conditional op2) {
         return new Conditional() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 1L;
+
             public boolean meetsCondition(Object object) {
                 return op1.meetsCondition(object) || op2.meetsCondition(object);
             }
@@ -65,6 +75,11 @@ public class Conditionals {
      */
     public static final Conditional notEqual(final Object compare1) {
         return new Conditional() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 1L;
+
             public boolean meetsCondition(Object compare2) {
                 return !compare1.equals(compare2);
             }
@@ -80,6 +95,11 @@ public class Conditionals {
      */
     public static final Conditional equal(final Object compare1) {
         return new Conditional() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 1L;
+
             public boolean meetsCondition(Object compare2) {
                 return compare1.equals(compare2);
             }

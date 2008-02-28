@@ -23,6 +23,11 @@ package org.ascape.util.data;
 public class StatCollectorCalculated extends StatCollectorCSA {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Constructs a new StatCollectorCSA.
      */
     public StatCollectorCalculated() {

@@ -19,6 +19,11 @@ import org.ascape.model.rule.Rule;
 public class DefaultRuleSelector implements RuleSelector, Serializable {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * The rules.
      */
     Object[] rules;

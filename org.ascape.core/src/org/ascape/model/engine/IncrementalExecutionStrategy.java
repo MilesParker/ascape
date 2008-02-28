@@ -25,6 +25,11 @@ import org.ascape.util.ResetableIterator;
 public abstract class IncrementalExecutionStrategy extends ExecutionStrategy {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * The factory.
      */
     StrategyFactory factory;

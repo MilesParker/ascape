@@ -15,6 +15,11 @@ package org.ascape.query;
  */
 public class ParserFailureException extends RuntimeException {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     public ParserFailureException() {
         super();
     }

@@ -38,6 +38,11 @@ public class Propogate extends Rule {
     }*/
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Constructs a propogate rule with the provided name.
      * It is strongly encouraged to provide a name for all rules.
      * @param name the name of this object

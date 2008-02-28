@@ -24,6 +24,10 @@ import java.util.Collection;
 public class SubListSpace extends ListSpace implements SubSpace {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    /**
      * The backing collection.
      */
     private Space superSpace;

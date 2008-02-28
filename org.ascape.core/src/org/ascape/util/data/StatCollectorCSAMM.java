@@ -25,6 +25,11 @@ package org.ascape.util.data;
 public class StatCollectorCSAMM extends StatCollectorCSA {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * The current minimum for the stat.
      */
     private double min;

@@ -32,6 +32,10 @@ import org.ascape.util.Conditional;
 public abstract class ListBase extends Array implements List {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    /**
      * Have there been operations on the list that require a coordinate setting
      * operations?.
      */

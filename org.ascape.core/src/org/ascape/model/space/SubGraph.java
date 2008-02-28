@@ -21,6 +21,10 @@ import org.ascape.gis.model.SubGraphAgent;
 public class SubGraph extends Graph implements SubSpace {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    /**
      * The super space.
      */
     private Space superSpace;

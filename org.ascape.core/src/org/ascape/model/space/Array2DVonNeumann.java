@@ -34,6 +34,11 @@ import java.util.List;
 public class Array2DVonNeumann extends Array2D {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Constructs a two-dimensional von Neumann array.
      */
     public Array2DVonNeumann() {

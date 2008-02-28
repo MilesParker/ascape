@@ -71,6 +71,11 @@ public class BFSWithinIterator2DSmallWorld extends BFSWithinIterator {
      * The contains SW.
      */
     Conditional containsSW = new Conditional() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
         public boolean meetsCondition(Object object) {
             return ((Array2DSmallWorld) getSpace()).getSmallWorldCells().contains(object);  //To change body of implemented methods use File | Settings | File Templates.
         }
@@ -81,6 +86,10 @@ public class BFSWithinIterator2DSmallWorld extends BFSWithinIterator {
      */
     class InList implements Conditional {
         
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
         /**
          * The list.
          */

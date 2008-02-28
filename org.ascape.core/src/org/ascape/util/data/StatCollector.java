@@ -99,6 +99,11 @@ import java.util.Vector;
 public class StatCollector implements Comparable, DataPoint, Serializable {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * The number of values collected.
      */
     protected int count;
@@ -351,6 +356,11 @@ public class StatCollector implements Comparable, DataPoint, Serializable {
             DataSeries countSeries;
             if (collectingLongitudinalData) {
                 countSeries = new DataSeriesStore() {
+                    /**
+                     * 
+                     */
+                    private static final long serialVersionUID = 1L;
+
                     public double getValue() {
                         return ((StatCollector) point).getCount();
                     }
@@ -361,6 +371,11 @@ public class StatCollector implements Comparable, DataPoint, Serializable {
                 };
             } else {
                 countSeries = new DataSeries() {
+                    /**
+                     * 
+                     */
+                    private static final long serialVersionUID = 1L;
+
                     public double getValue() {
                         return ((StatCollector) point).getCount();
                     }
@@ -381,6 +396,11 @@ public class StatCollector implements Comparable, DataPoint, Serializable {
             DataSeries minSeries;
             if (collectingLongitudinalData) {
                 minSeries = new DataSeriesStore() {
+                    /**
+                     * 
+                     */
+                    private static final long serialVersionUID = 1L;
+
                     public double getValue() {
                         return ((StatCollectorCSAMM) point).getMin();
                     }
@@ -391,6 +411,11 @@ public class StatCollector implements Comparable, DataPoint, Serializable {
                 };
             } else {
                 minSeries = new DataSeries() {
+                    /**
+                     * 
+                     */
+                    private static final long serialVersionUID = 1L;
+
                     public double getValue() {
                         return ((StatCollectorCSAMM) point).getMin();
                     }
@@ -411,6 +436,11 @@ public class StatCollector implements Comparable, DataPoint, Serializable {
             DataSeries maxSeries;
             if (collectingLongitudinalData) {
                 maxSeries = new DataSeriesStore() {
+                    /**
+                     * 
+                     */
+                    private static final long serialVersionUID = 1L;
+
                     public double getValue() {
                         return ((StatCollectorCSAMM) point).getMax();
                     }
@@ -421,6 +451,11 @@ public class StatCollector implements Comparable, DataPoint, Serializable {
                 };
             } else {
                 maxSeries = new DataSeries() {
+                    /**
+                     * 
+                     */
+                    private static final long serialVersionUID = 1L;
+
                     public double getValue() {
                         return ((StatCollectorCSAMM) point).getMax();
                     }
@@ -441,6 +476,11 @@ public class StatCollector implements Comparable, DataPoint, Serializable {
             DataSeries varianceSeries;
             if (collectingLongitudinalData) {
                 varianceSeries = new DataSeriesStore() {
+                    /**
+                     * 
+                     */
+                    private static final long serialVersionUID = 1L;
+
                     public double getValue() {
                         return ((StatCollectorCSAMMVar) point).getVar();
                     }
@@ -451,6 +491,11 @@ public class StatCollector implements Comparable, DataPoint, Serializable {
                 };
             } else {
                 varianceSeries = new DataSeries() {
+                    /**
+                     * 
+                     */
+                    private static final long serialVersionUID = 1L;
+
                     public double getValue() {
                         return ((StatCollectorCSAMMVar) point).getVar();
                     }
@@ -471,6 +516,11 @@ public class StatCollector implements Comparable, DataPoint, Serializable {
             DataSeries stdevSeries;
             if (collectingLongitudinalData) {
                 stdevSeries = new DataSeriesStore() {
+                    /**
+                     * 
+                     */
+                    private static final long serialVersionUID = 1L;
+
                     public double getValue() {
                         return ((StatCollectorCSAMMVar) point).getStDev();
                     }
@@ -481,6 +531,11 @@ public class StatCollector implements Comparable, DataPoint, Serializable {
                 };
             } else {
                 stdevSeries = new DataSeries() {
+                    /**
+                     * 
+                     */
+                    private static final long serialVersionUID = 1L;
+
                     public double getValue() {
                         return ((StatCollectorCSAMMVar) point).getStDev();
                     }
@@ -502,6 +557,11 @@ public class StatCollector implements Comparable, DataPoint, Serializable {
             DataSeries sumSeries;
             if (collectingLongitudinalData) {
                 sumSeries = new DataSeriesStore() {
+                    /**
+                     * 
+                     */
+                    private static final long serialVersionUID = 1L;
+
                     public double getValue() {
                         return ((StatCollectorCSA) point).getSum();
                     }
@@ -512,6 +572,11 @@ public class StatCollector implements Comparable, DataPoint, Serializable {
                 };
             } else {
                 sumSeries = new DataSeries() {
+                    /**
+                     * 
+                     */
+                    private static final long serialVersionUID = 1L;
+
                     public double getValue() {
                         return ((StatCollectorCSA) point).getSum();
                     }
@@ -532,6 +597,11 @@ public class StatCollector implements Comparable, DataPoint, Serializable {
             DataSeries avgSeries;
             if (collectingLongitudinalData) {
                 avgSeries = new DataSeriesStore() {
+                    /**
+                     * 
+                     */
+                    private static final long serialVersionUID = 1L;
+
                     public double getValue() {
                         return ((StatCollectorCSA) point).getAvg();
                     }
@@ -542,6 +612,11 @@ public class StatCollector implements Comparable, DataPoint, Serializable {
                 };
             } else {
                 avgSeries = new DataSeries() {
+                    /**
+                     * 
+                     */
+                    private static final long serialVersionUID = 1L;
+
                     public double getValue() {
                         return ((StatCollectorCSA) point).getAvg();
                     }

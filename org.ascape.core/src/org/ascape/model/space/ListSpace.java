@@ -24,6 +24,11 @@ package org.ascape.model.space;
 public class ListSpace extends ListBase implements Mutable, CoordinateMutable {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Constructs a (one-dimensional) mutable list.
      */
     public ListSpace() {

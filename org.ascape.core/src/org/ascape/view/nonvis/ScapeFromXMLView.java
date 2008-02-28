@@ -67,6 +67,11 @@ import org.xml.sax.SAXException;
 public class ScapeFromXMLView extends NonGraphicView {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * The root element.
      */
     private Element rootElement;
@@ -256,7 +261,7 @@ public class ScapeFromXMLView extends NonGraphicView {
         } else { // size by file
             for (Iterator elementIt = elementList.iterator(); elementIt.hasNext();) {
                 Element agentElement = (Element) elementIt.next();
-                VectorSelection initRules = getScape().getInitialRules();
+//                VectorSelection initRules = getScape().getInitialRules();
                 // scape.newAgent executes initial rules. Some models may depend on a specific timing of rule executing,
                 // so this temporarily clears the scapes' initial rules, so none are fired, until the proper time.
                 if (assignmentOrder == RANDOM_ORDER) {

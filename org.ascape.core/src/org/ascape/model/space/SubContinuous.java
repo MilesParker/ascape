@@ -21,6 +21,10 @@ package org.ascape.model.space;
 public abstract class SubContinuous extends SubCollection implements SubSpace, Continuous {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    /**
      * The size.
      */
     private int size;

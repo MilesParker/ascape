@@ -32,6 +32,11 @@ public abstract class Coordinate implements Cloneable, Serializable {
     //protected Geometry geometry;
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Returns the distance between this coordinate and the supplied coordinate.
      * @param coordinate the coordiante to measure distance to
      */

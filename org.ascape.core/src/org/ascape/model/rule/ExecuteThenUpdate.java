@@ -23,6 +23,11 @@ import org.ascape.model.Agent;
 public abstract class ExecuteThenUpdate extends Rule {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Constructs an execute and update rule.
      */
     public ExecuteThenUpdate() {

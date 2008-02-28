@@ -15,6 +15,11 @@ package org.ascape.model.engine;
 public class AgentOrderStrategy extends ParallelExecutionStrategy {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Instantiates a new agent order strategy.
      * 
      * @param factory

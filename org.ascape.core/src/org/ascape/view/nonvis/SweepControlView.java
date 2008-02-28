@@ -31,6 +31,10 @@ import org.ascape.util.sweep.SweepGroup;
 public class SweepControlView extends NonGraphicView {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    /**
      * The sweep.
      */
     private SweepGroup sweep;

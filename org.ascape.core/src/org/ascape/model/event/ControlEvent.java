@@ -21,6 +21,11 @@ import java.util.EventObject;
 public class ControlEvent extends EventObject {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * A listener of the target has been updated.
      */
     public final static int REPORT_LISTENER_UPDATED = 1;

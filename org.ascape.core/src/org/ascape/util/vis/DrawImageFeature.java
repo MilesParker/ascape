@@ -23,6 +23,11 @@ import java.awt.Image;
 public class DrawImageFeature extends DrawFeature implements ImageFeature {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * The image feature to use for drawing this feature.
      * By default, black.
      */

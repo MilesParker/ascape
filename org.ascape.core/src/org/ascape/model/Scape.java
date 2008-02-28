@@ -69,6 +69,7 @@ import org.ascape.util.RandomIterator;
 import org.ascape.util.ResetableIterator;
 import org.ascape.util.Utility;
 import org.ascape.util.VectorSelection;
+import org.ascape.util.data.DataGroup;
 import org.ascape.util.data.DataPoint;
 import org.ascape.util.data.DataPointConcrete;
 import org.ascape.util.data.StatCollector;
@@ -287,6 +288,11 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      */
     public static final Rule CREATE_RULE = new PropogateScapeOnly("Create Scape") {
         /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
+        /**
          * populates the scape and all its children.
          * @param agent the playing agent
          */
@@ -311,6 +317,11 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      */
     public static final Rule CREATE_VIEW_RULE = new PropogateScapeOnly("Create Views") {
         /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
+        /**
          * Creates views for all of the scapes.
          * @param agent the playing agent
          */
@@ -328,6 +339,11 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * A rule causing graphic views to be created for scape and all subscapes.
      */
     public static final Rule CREATE_GRAPHIC_VIEW_RULE = new PropogateScapeOnly("Create Graphic Views") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
         /**
          * Creates views for all of the scapes.
          * @param agent the playing agent
@@ -347,6 +363,11 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      */
     public static final Rule CREATE_SCAPE_RULE = new Rule("Create Scape") {
         /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
+        /**
          * populates the scape and all its children.
          * @param agent the playing agent
          */
@@ -363,6 +384,11 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * A rule causing the targets initial rules to be executed on its members.
      */
     public static final Rule INITIAL_RULES_RULE = new PropogateScapeOnly("Initial Rules") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
         /**
          * Initializes the scape and all its children.
          * @param agent the playing agent
@@ -398,6 +424,11 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      */
     public final static Rule EXECUTE_RULES_RULE = new PropogateScapeOnly("Iterate Scape") {
         /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
+        /**
          * Iterate over every member and child.
          * @param agent the target agent
          */
@@ -414,6 +445,11 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * for any scapes with a statistics collection rule.
      */
     public final static Rule CLEAR_STATS_RULE = new PropogateScapeOnly("Iterate Scape") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
         /**
          * Iterate over every member and child.
          * @param agent the target agent
@@ -434,6 +470,11 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * for any scapes with a statistics collection rule.
      */
     public final static Rule COLLECT_STATS_RULE = new PropogateScapeOnly("Iterate Scape") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
         /**
          * Iterate over every member and child.
          * @param agent the target agent
@@ -712,6 +753,11 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
         this.iterationsPerRedraw = iterationsPerRedraw;
         if (propagate) {
             executeOnRoot(new NotifyViews(ScapeEvent.REQUEST_CHANGE_ITERATIONS_PER_REDRAW) {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 1L;
+
                 public void execute(Agent agent) {
                     ((Scape) agent).setIterationsPerRedraw(
                         ((agent).getRoot().getIterationsPerRedraw()), false);
@@ -1175,7 +1221,7 @@ getEnvironment().getConsole().println("Non-critical exception: couldn't read \"A
                 throw new RuntimeException("Tried to add a view to more than one scape:\n" + e);
             }
             if ((createFrame) && (view.isGraphic())) {
-                if (!runner.isServeGraphics()) {
+                if (!Runner.isServeGraphics()) {
                     getEnvironment().addView(view);
                 }
                 //topdo remove view dependency
@@ -1591,7 +1637,7 @@ getEnvironment().getConsole().println("Non-critical exception: couldn't read \"A
      * True by default.
      */
     public boolean isStartOnOpen() {
-        return getRunner().isStartOnOpen();
+        return Runner.isStartOnOpen();
     }
 
     /**
@@ -1600,7 +1646,7 @@ getEnvironment().getConsole().println("Non-critical exception: couldn't read \"A
      * @param startOnOpen true to start the scape upon opening a model
      */
     public void setStartOnOpen(boolean startOnOpen) {
-        getRunner().setStartOnOpen(startOnOpen);
+        Runner.setStartOnOpen(startOnOpen);
     }
 
     /**
@@ -2018,6 +2064,11 @@ getEnvironment().getConsole().println("Non-critical exception: couldn't read \"A
     public class DrawFeatureObservable extends Observable implements Serializable {
 
         /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
+        /**
          * Have to provide this silly method because set changed is protected for some reason.
          */
         public void setChanged() {
@@ -2115,6 +2166,10 @@ getEnvironment().getConsole().println("Non-critical exception: couldn't read \"A
      */
     class RetrieveAccessorsRule extends Rule {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
         List accessors;
 
         public RetrieveAccessorsRule() {
@@ -2139,6 +2194,10 @@ getEnvironment().getConsole().println("Non-critical exception: couldn't read \"A
 //    class RetrieveAllAccessorsRule extends PropogateScapeOnly {
     class RetrieveAllAccessorsRule extends Rule {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
         List accessors;
 
         public RetrieveAllAccessorsRule() {
@@ -2166,6 +2225,10 @@ getEnvironment().getConsole().println("Non-critical exception: couldn't read \"A
      */
     class RetrieveAllScapesRule extends PropogateScapeOnly {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
         Vector scapes;
 
         public RetrieveAllScapesRule() {
@@ -2272,6 +2335,11 @@ getEnvironment().getConsole().println("Non-critical exception: couldn't read \"A
      */
     public void createSelfView() {
         selfView = new ScapeListenerDelegate(this) {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 1L;
+
             public String getName() {
                 return this + " Self-View";
             }
@@ -2293,7 +2361,7 @@ getEnvironment().getConsole().println("Non-critical exception: couldn't read \"A
             addView(getRunner().getEnvironment());
         }
         createNonGraphicViews();
-        if (Runner.isDisplayGraphics() || getRunner().isServeGraphics()) {
+        if (Runner.isDisplayGraphics() || Runner.isServeGraphics()) {
 //            SwingUtilities.invokeLater(new Runnable() {
 //                public void run() {
                     createGraphicViews();
@@ -3335,5 +3403,22 @@ getEnvironment().getConsole().println("Non-critical exception: couldn't read \"A
 
     public boolean isHome(Location a) {
         return (((Agent) a).getScape() == this);
+    }
+    
+    /**
+     * Convenience method for obtaining sata for current run.
+     * @return the Runner's Data Group.
+     */
+    public DataGroup getData() {
+        return getRunner().getData();
+    }
+    
+    /**
+     * Returns the UI Environment.
+     * @return a UI environment appropriate for given UI.
+     * @deprecated retained for backward compatability, please use #getUIEnvironment instead.
+     */
+    public AbstractUIEnvironment getUserEnvironment() {
+        return getUIEnvironment();
     }
 }

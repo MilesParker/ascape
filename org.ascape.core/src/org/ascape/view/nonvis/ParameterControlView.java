@@ -32,6 +32,11 @@ import org.ascape.util.PropertyAccessor;
 public class ParameterControlView extends NonGraphicView {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * The input.
      */
     private FileReader input;

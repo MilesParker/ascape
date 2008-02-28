@@ -49,6 +49,11 @@ import org.ascape.util.Conditional;
 public abstract class Discrete extends CollectionSpace {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Constructs a discrete space.
      */
     public Discrete() {
@@ -373,6 +378,10 @@ public abstract class Discrete extends CollectionSpace {
     class InList implements Conditional {
         
         /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+        /**
          * The list.
          */
         List list;
@@ -421,6 +430,10 @@ public abstract class Discrete extends CollectionSpace {
     class FindCoordinateCondition implements Conditional {
 
         /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+        /**
          * The agent.
          */
         Coordinate agent;
@@ -460,6 +473,10 @@ public abstract class Discrete extends CollectionSpace {
      */
     class InCollectionConditional implements Conditional {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
         /**
          * The collection.
          */

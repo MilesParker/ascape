@@ -14,6 +14,10 @@ package org.ascape.model.space;
 public class CoordinateGraph extends Coordinate {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    /**
      * The location.
      */
     private Location location;

@@ -21,6 +21,11 @@ package org.ascape.model.engine;
 public class ChainedStrategy extends ExecutionStrategy {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * The strategy1.
      */
     private ExecutionStrategy strategy1;

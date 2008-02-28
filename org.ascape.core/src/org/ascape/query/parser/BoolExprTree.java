@@ -296,7 +296,8 @@ jjtn000.setName(t.image);
   }
 
   final public void ComparisonOperator() throws ParseException {
- Token t;
+ @SuppressWarnings("unused")
+Token t;
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case EQUAL:
       Equal();
@@ -328,7 +329,8 @@ jjtn000.setName(t.image);
  /*@bgen(jjtree) Equal */
  QTEqual jjtn000 = new QTEqual(this, JJTEQUAL);
  boolean jjtc000 = true;
- jjtree.openNodeScope(jjtn000);Token t;
+ jjtree.openNodeScope(jjtn000);@SuppressWarnings("unused")
+Token t;
     try {
       jj_consume_token(EQUAL);
           jjtree.closeNodeScope(jjtn000, true);
@@ -345,7 +347,8 @@ jjtn000.setName(t.image);
  /*@bgen(jjtree) NotEqual */
  QTNotEqual jjtn000 = new QTNotEqual(this, JJTNOTEQUAL);
  boolean jjtc000 = true;
- jjtree.openNodeScope(jjtn000);Token t;
+ jjtree.openNodeScope(jjtn000);@SuppressWarnings("unused")
+Token t;
     try {
       jj_consume_token(NOT_EQUAL);
               jjtree.closeNodeScope(jjtn000, true);
@@ -362,7 +365,8 @@ jjtn000.setName(t.image);
  /*@bgen(jjtree) LessThan */
  QTLessThan jjtn000 = new QTLessThan(this, JJTLESSTHAN);
  boolean jjtc000 = true;
- jjtree.openNodeScope(jjtn000);Token t;
+ jjtree.openNodeScope(jjtn000);@SuppressWarnings("unused")
+Token t;
     try {
       jj_consume_token(LESS_THAN);
               jjtree.closeNodeScope(jjtn000, true);
@@ -379,7 +383,8 @@ jjtn000.setName(t.image);
  /*@bgen(jjtree) GreaterThan */
  QTGreaterThan jjtn000 = new QTGreaterThan(this, JJTGREATERTHAN);
  boolean jjtc000 = true;
- jjtree.openNodeScope(jjtn000);Token t;
+ jjtree.openNodeScope(jjtn000);@SuppressWarnings("unused")
+Token t;
     try {
       jj_consume_token(GREATER_THAN);
                  jjtree.closeNodeScope(jjtn000, true);
@@ -396,7 +401,8 @@ jjtn000.setName(t.image);
  /*@bgen(jjtree) StartsWith */
  QTStartsWith jjtn000 = new QTStartsWith(this, JJTSTARTSWITH);
  boolean jjtc000 = true;
- jjtree.openNodeScope(jjtn000);Token t;
+ jjtree.openNodeScope(jjtn000);@SuppressWarnings("unused")
+Token t;
     try {
       jj_consume_token(STARTS_WITH);
                 jjtree.closeNodeScope(jjtn000, true);
@@ -413,7 +419,8 @@ jjtn000.setName(t.image);
  /*@bgen(jjtree) Contains */
  QTContains jjtn000 = new QTContains(this, JJTCONTAINS);
  boolean jjtc000 = true;
- jjtree.openNodeScope(jjtn000);Token t;
+ jjtree.openNodeScope(jjtn000);@SuppressWarnings("unused")
+Token t;
     try {
       jj_consume_token(CONTAINS);
              jjtree.closeNodeScope(jjtn000, true);
@@ -741,7 +748,12 @@ jjtn000.setValue(t.image.substring(1, t.image.length() - 1));
     throw generateParseException();
   }
 
-  static private final class LookaheadSuccess extends java.lang.Error { }
+  static private final class LookaheadSuccess extends java.lang.Error {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L; }
   final private LookaheadSuccess jj_ls = new LookaheadSuccess();
   final private boolean jj_scan_token(int kind) {
     if (jj_scanpos == jj_lastpos) {

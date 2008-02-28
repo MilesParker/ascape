@@ -31,6 +31,10 @@ import org.ascape.util.data.DataSelection;
 public class DataView extends NonGraphicView {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    /**
      * The selection of data that is be written.
      */
     protected DataSelection dataSelection;

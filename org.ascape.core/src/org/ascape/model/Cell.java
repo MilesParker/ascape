@@ -37,10 +37,20 @@ import org.ascape.util.Conditional;
 public class Cell extends LocatedAgent implements Node {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * A rule causing the target agent to interact with each of its neighbors as
      * specified by the Agent.play() method.
      */
     public static final Rule PLAY_NEIGHBORS_RULE = new Rule("Play Neighbors") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
         /**
          * Play each neighbor within one unit of the agent.
          * Assumes that ordering doesn't matter.
@@ -73,6 +83,11 @@ public class Cell extends LocatedAgent implements Node {
      */
     public static final Rule PLAY_RANDOM_NEIGHBOR_RULE = new Rule("Play Random Neighbor") {
         /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
+        /**
          * Play each neighbor within one unit of the agent.
          * Assumes that ordering doesn't matter.
          * @param agent the playing agent
@@ -102,6 +117,11 @@ public class Cell extends LocatedAgent implements Node {
      * A rule causing the taget agent to move to a random location.
      */
     public static final Rule CALCULATE_NEIGHBORS_RULE = new Rule("Calculate Neighbors") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
         /**
          * Discover the neighbors for this cell in the primary scape.
          * @param agent the playing agent
@@ -361,6 +381,11 @@ public class Cell extends LocatedAgent implements Node {
     protected static Conditional hostedCondition(final Conditional condition) {
         if (condition != null) {
             Conditional hostedCondition = new Conditional() {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 1L;
+
                 public boolean meetsCondition(Object object) {
                     final CellOccupant occupant = (CellOccupant) ((HostCell) object).getOccupant();
                     return (occupant != null) && (condition.meetsCondition(occupant));

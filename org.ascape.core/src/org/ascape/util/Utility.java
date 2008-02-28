@@ -24,6 +24,10 @@ import java.util.Random;
 public class Utility implements Serializable {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    /**
      * A quick set of unique series up to 4 nodes.
      * Used to randomly traverse a list using a non-repeating path.
      */

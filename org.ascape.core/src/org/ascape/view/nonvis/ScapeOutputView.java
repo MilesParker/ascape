@@ -23,6 +23,11 @@ import org.ascape.model.event.ScapeEvent;
  */
 public class ScapeOutputView extends DataOutputView {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     /* (non-Javadoc)
      * @see org.ascape.view.nonvis.DataOutputView#writePeriodData()
      */

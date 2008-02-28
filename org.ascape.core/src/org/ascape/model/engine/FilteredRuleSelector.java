@@ -16,6 +16,11 @@ import org.ascape.model.rule.Rule;
 public abstract class FilteredRuleSelector extends DefaultRuleSelector {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Instantiates a new filtered rule selector.
      */
     public FilteredRuleSelector() {

@@ -16,6 +16,11 @@ import org.ascape.model.rule.Rule;
 public class IterateAllRuleSelector extends FilteredRuleSelector {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Instantiates a new iterate all rule selector.
      * 
      * @param rules

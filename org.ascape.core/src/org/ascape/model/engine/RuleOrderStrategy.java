@@ -15,6 +15,11 @@ package org.ascape.model.engine;
 public class RuleOrderStrategy extends ParallelExecutionStrategy {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Instantiates a new rule order strategy.
      * 
      * @param factory

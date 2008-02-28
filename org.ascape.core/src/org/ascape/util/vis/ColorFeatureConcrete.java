@@ -23,6 +23,10 @@ import java.io.Serializable;
 public abstract class ColorFeatureConcrete implements Cloneable, Serializable, ColorFeature {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    /**
      * The name of the feature.
      */
     protected String name;

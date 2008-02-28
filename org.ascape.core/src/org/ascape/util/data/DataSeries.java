@@ -32,6 +32,10 @@ import java.util.Vector;
 public abstract class DataSeries extends StatCollectorCSAMM {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    /**
      * The value point this series is tracking.
      */
     protected DataPoint point;

@@ -18,6 +18,10 @@ import org.ascape.model.Agent;
 public class TourAgentSelector implements AgentSelector, Serializable {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    /**
      * The strategy.
      */
     IncrementalExecutionStrategy strategy;

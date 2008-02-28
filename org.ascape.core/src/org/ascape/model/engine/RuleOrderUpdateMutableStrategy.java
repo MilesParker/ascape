@@ -16,6 +16,11 @@ import org.ascape.model.rule.ExecuteThenUpdate;
 public class RuleOrderUpdateMutableStrategy extends RuleOrderMutableStrategy {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Instantiates a new rule order update mutable strategy.
      * 
      * @param factory

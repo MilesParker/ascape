@@ -16,6 +16,11 @@ import org.ascape.model.rule.ExecuteThenUpdate;
 public class UpdateRuleSelector extends FilteredRuleSelector {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Instantiates a new update rule selector.
      * 
      * @param rules

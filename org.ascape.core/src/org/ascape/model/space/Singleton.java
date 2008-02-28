@@ -30,6 +30,11 @@ import org.ascape.util.ResetableIterator;
 public class Singleton extends CollectionSpace {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Construct a new Singleton.
      */
     public Singleton() {
@@ -69,6 +74,10 @@ public class Singleton extends CollectionSpace {
      */
     private class LocationRandomIterator implements RandomIterator, Serializable {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
         /**
          * The i.
          */

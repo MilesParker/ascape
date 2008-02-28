@@ -22,6 +22,11 @@ import java.io.Serializable;
 public abstract class ExecutionStrategy implements Cloneable, Serializable {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Instantiates a new execution strategy.
      */
     public ExecutionStrategy() {

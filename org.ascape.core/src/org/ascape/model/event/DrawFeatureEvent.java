@@ -26,6 +26,12 @@ public class DrawFeatureEvent extends EventObject {
 //    ArrayList selectedDrawFeaturesByName;
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+
+    /**
  * The df name selection.
  */
 VectorSelection dfNameSelection;

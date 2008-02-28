@@ -26,6 +26,10 @@ import java.util.Vector;
 public abstract class DataSeriesStore extends DataSeries {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    /**
      * A series of double values.
      */
     private Vector series;

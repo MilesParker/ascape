@@ -21,7 +21,11 @@ import com.bbn.openmap.omGraphics.OMRaster;
  */
 public class SubGraphAgent extends MapAgent {
 
-//    org.ascapex.gis.model
+/**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    //    org.ascapex.gis.model
     CoordinateGraph coordinateGraph;
 
     public void setCoordinate(Coordinate coordinate) {
@@ -34,6 +38,11 @@ public class SubGraphAgent extends MapAgent {
             location = new MapLocation((float) newX, (float) newY, "", graphic);
             this.coordinate =
                 new MapCoordinate() {
+                    /**
+                     * 
+                     */
+                    private static final long serialVersionUID = 1L;
+
                     public void setXValue(double x) {
                         super.setXValue(x);
                         location.setLocation((float) getYValue(), (float) getXValue());

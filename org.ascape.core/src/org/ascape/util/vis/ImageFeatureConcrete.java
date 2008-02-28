@@ -24,6 +24,10 @@ import java.io.Serializable;
 public abstract class ImageFeatureConcrete implements Cloneable, Serializable, ImageFeature {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    /**
      * The name of the feature.
      */
     private String name;

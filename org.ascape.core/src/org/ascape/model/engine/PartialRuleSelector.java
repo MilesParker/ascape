@@ -16,6 +16,10 @@ import org.ascape.model.rule.Rule;
 public class PartialRuleSelector extends FilteredRuleSelector {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    /**
      * The agent selector.
      */
     private FlaggedTourAgentSelector agentSelector;

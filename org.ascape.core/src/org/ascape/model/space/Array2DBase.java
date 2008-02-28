@@ -26,9 +26,19 @@ import org.ascape.util.ResetableIterator;
 public abstract class Array2DBase extends Array implements Relative {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * The Class Array2DIterator.
      */
     private class Array2DIterator implements ResetableIterator, Serializable {
+
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
 
         /**
          * The x.
@@ -78,6 +88,11 @@ public abstract class Array2DBase extends Array implements Relative {
      * The Class Array2DSubIterator.
      */
     private class Array2DSubIterator extends Array2DIterator {
+
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
 
         /**
          * The start.

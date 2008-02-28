@@ -32,6 +32,11 @@ import org.ascape.util.HasName;
 public abstract class DrawFeature implements HasName, Serializable {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * A nested feature.
      */
     protected DrawFeature nestedFeature;

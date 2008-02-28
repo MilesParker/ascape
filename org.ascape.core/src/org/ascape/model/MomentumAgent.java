@@ -25,6 +25,11 @@ import org.ascape.model.space.Coordinate2DContinuous;
 public class MomentumAgent extends LocatedAgent {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Default agent size. For now, agent image will simply by a circle, with radius of nominalAgentSize.
      */
     private int agentSize = 5;

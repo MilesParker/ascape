@@ -17,6 +17,11 @@ package org.ascape.model.space;
 public class SpatialTemporalException extends Exception {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Instantiates a new spatial temporal exception.
      */
     public SpatialTemporalException() {

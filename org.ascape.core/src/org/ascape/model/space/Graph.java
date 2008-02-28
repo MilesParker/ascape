@@ -23,6 +23,10 @@ import org.ascape.util.Conditional;
 public class Graph extends Discrete {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    /**
      * The adjacency map.
      */
     private HashMap adjacencyMap = new HashMap();

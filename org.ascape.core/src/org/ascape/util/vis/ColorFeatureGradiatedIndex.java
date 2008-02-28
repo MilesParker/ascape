@@ -31,6 +31,10 @@ import org.ascape.util.data.UnitIntervalDataPoint;
  */
 public class ColorFeatureGradiatedIndex extends ColorFeatureGradiated {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
     private Color[] indexedColors = new Color[1001];
 
     public ColorFeatureGradiatedIndex(String name) {

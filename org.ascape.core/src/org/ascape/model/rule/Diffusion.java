@@ -23,6 +23,11 @@ import org.ascape.model.Cell;
 public abstract class Diffusion extends ExecuteThenUpdate {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Constructs a diffusion rule with the provided name.
      * 
      * @param name

@@ -28,6 +28,11 @@ import org.ascape.util.VectorSelection;
 public class SelectionGroup implements Observer, java.io.Serializable {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Describe variable <code>v</code> here.
      */
     private VectorSelection v;

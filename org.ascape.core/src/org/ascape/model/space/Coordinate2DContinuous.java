@@ -18,6 +18,11 @@ package org.ascape.model.space;
 public class Coordinate2DContinuous extends Coordinate1DContinuous {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Creates a 2-dimensional coordinate with the specified position values.
      * 
      * @param values

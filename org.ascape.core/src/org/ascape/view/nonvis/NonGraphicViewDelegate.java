@@ -30,6 +30,11 @@ import org.ascape.model.event.ScapeListenerDelegate;
 public class NonGraphicViewDelegate extends ScapeListenerDelegate {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Constructs the NonGraphicViewDelegate.
      */
     public NonGraphicViewDelegate() {

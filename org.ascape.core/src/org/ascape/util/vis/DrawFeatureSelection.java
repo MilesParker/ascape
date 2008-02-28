@@ -21,6 +21,10 @@ import org.ascape.util.VectorSelection;
  */
 public class DrawFeatureSelection extends VectorSelection {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
     private Scape scape;
 
     /**

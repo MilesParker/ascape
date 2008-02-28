@@ -16,6 +16,11 @@ import org.ascape.model.space.Mutable;
 public class RuleOrderMutableStrategy extends RuleOrderStrategy {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Instantiates a new rule order mutable strategy.
      * 
      * @param factory

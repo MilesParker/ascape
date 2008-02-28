@@ -53,6 +53,11 @@ import org.ascape.util.PropertyAccessor;
 public class ScapeFromFileView extends NonGraphicView {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * The Constant UNDEFINED_MODE.
      */
     public final static int UNDEFINED_MODE = 0;

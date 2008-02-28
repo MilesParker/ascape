@@ -42,7 +42,12 @@ import org.ascape.util.data.DataGroup;
  */
 public abstract class Runner implements Serializable, Runnable {
 
-	private Scape scape;
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 6924379091134591724L;
+
+    private Scape scape;
 
 	/**
 	 * Data group for all scapes. At some point this may be made non-static.
@@ -440,7 +445,12 @@ public abstract class Runner implements Serializable, Runnable {
 		if (modelName != null) {
 			// We want the old scape ot close first..
 			oldScape.addView(new DefaultScapeListener() {
-				public void scapeClosing(ScapeEvent scapeEvent) {
+				/**
+                 * 
+                 */
+                private static final long serialVersionUID = 1L;
+
+                public void scapeClosing(ScapeEvent scapeEvent) {
 					open(modelName);
 				}
 			});
@@ -528,7 +538,7 @@ public abstract class Runner implements Serializable, Runnable {
 			}
 			// mtp 12/7/2000
 			scape.executeOnRoot(Scape.CREATE_VIEW_RULE);
-			if (scape.getRunner().isStartOnOpen()) {
+			if (Runner.isStartOnOpen()) {
 				start();
 			}
 		} catch (RuntimeException e) {
@@ -724,8 +734,6 @@ public abstract class Runner implements Serializable, Runnable {
 		listener.scapeNotification(event);
 	}
 
-	private IOException defaultWriteException;
-
 	public void write(final java.io.ObjectOutputStream out) throws IOException {
 		out.defaultWriteObject();
 	}
@@ -805,7 +813,7 @@ public abstract class Runner implements Serializable, Runnable {
 
 			scape.executeOnRoot(Scape.CREATE_VIEW_RULE);
 
-			if (scape.getRunner().isStartOnOpen()) {
+			if (Runner.isStartOnOpen()) {
 				if (!block) {
 					start();
 				} else {
@@ -990,7 +998,7 @@ public abstract class Runner implements Serializable, Runnable {
 	 *            root scape
 	 */
 	public Scape open(String modelName) {
-		return open(modelName, null, null, false);
+		return open(modelName, null, new String[0], false);
 	}
 
 	/**
@@ -1572,4 +1580,8 @@ public abstract class Runner implements Serializable, Runnable {
 	public Scape getRootScape() {
 		return scape;
 	}
+
+    public void setEnvironment(RuntimeEnvironment environment) {
+        this.environment = environment;
+    }
 }

@@ -19,6 +19,11 @@ import java.io.Serializable;
 public abstract class Function implements Serializable, Cloneable {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Tau "magic" number. ~1.61803
      */
     public static final double tau = (1 + Math.sqrt(5)) / 2;

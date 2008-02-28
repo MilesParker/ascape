@@ -93,6 +93,11 @@ public abstract class Rule extends AscapeObject {
     }*/
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Constructs a rule with the providied name.
      * It is strongly encouraged to provide a name for all rules.
      * This name will be used for run time rule selection and provides important information

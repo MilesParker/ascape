@@ -40,6 +40,11 @@ import java.util.Vector;
 public class VectorSelection extends Observable implements Observer, Cloneable, Serializable {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * The underlying vector that we are imposing a seleciton upon.
      */
     protected Vector vector;

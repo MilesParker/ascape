@@ -29,6 +29,10 @@ import java.util.TooManyListenersException;
 public class ScapeListenerDelegate extends DefaultScapeListener {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    /**
      * The scape listener using this delegate.
      */
     private ScapeListener scapeListener;

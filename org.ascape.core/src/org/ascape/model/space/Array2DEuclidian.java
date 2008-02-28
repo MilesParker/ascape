@@ -33,6 +33,11 @@ import java.util.List;
 public class Array2DEuclidian extends Array2D {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Constructs a two-dimensional Euclidian array.
      */
     public Array2DEuclidian() {

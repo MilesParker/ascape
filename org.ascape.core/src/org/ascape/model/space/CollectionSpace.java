@@ -33,6 +33,11 @@ import org.ascape.util.data.DataPointConcrete;
 public class CollectionSpace implements Space, Cloneable, Serializable {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * The estimated maximum size a typical collection will be.
      */
     public static int ESTIMATED_MAXIMUM_SIZE = 100;
@@ -76,6 +81,10 @@ public class CollectionSpace implements Space, Cloneable, Serializable {
  */
 protected class CSMutableIterator extends CSIterator {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
         /**
          * The i.
          */
@@ -123,6 +132,11 @@ protected class CSMutableIterator extends CSIterator {
      * The Class CSIterator.
      */
     protected class CSIterator implements ResetableIterator, Serializable {
+
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
 
         /**
          * The copy.
@@ -178,6 +192,11 @@ protected class CSMutableIterator extends CSIterator {
     protected class SubIterator extends CSIterator {
 
         /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
+        /**
          * Instantiates a new sub iterator.
          * 
          * @param start
@@ -195,6 +214,11 @@ protected class CSMutableIterator extends CSIterator {
      * The Class MutableSubIterator.
      */
     protected class MutableSubIterator extends CSMutableIterator {
+
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
 
         /**
          * Instantiates a new mutable sub iterator.
@@ -217,6 +241,11 @@ protected class CSMutableIterator extends CSIterator {
     protected class ListMutableRandomIterator extends CSMutableIterator implements RandomIterator {
 
         /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
+        /**
          * Instantiates a new list mutable random iterator.
          */
         public ListMutableRandomIterator() {
@@ -237,6 +266,11 @@ protected class CSMutableIterator extends CSIterator {
      * The Class ListRandomIterator.
      */
     protected class ListRandomIterator extends CSIterator implements RandomIterator {
+
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
 
         /**
          * Instantiates a new list random iterator.
@@ -797,6 +831,10 @@ protected class CSMutableIterator extends CSIterator {
     public class ClosestDataPoint extends DataPointConcrete {
 
         /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+        /**
          * The origin.
          */
         Coordinate origin;
@@ -1121,6 +1159,11 @@ protected class CSMutableIterator extends CSIterator {
         Conditional allConditions = null;
         if (distance < Double.MAX_VALUE) {
             allConditions = new Conditional() {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 1L;
+
                 public boolean meetsCondition(Object o) {
                     return calculateDistance(origin, ((Location) o).getCoordinate()) <= distance;
                 }
@@ -1131,6 +1174,11 @@ protected class CSMutableIterator extends CSIterator {
         //Least common case
         if (!includeSelf) {
             allConditions = Conditionals.and(allConditions, new Conditional() {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 1L;
+
                 public boolean meetsCondition(Object object) {
                     return !((Location) object).getCoordinate().equals(origin);
                 }

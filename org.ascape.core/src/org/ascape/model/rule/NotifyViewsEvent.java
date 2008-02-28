@@ -22,6 +22,10 @@ import org.ascape.model.event.ScapeEvent;
 public class NotifyViewsEvent extends PropogateScapeOnly {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    /**
      * The event.
      */
     private ScapeEvent event;

@@ -19,6 +19,10 @@ public abstract class Array extends Discrete {
 
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    /**
      * The Constant CACHE_RESULTS.
      */
     public static final boolean CACHE_RESULTS = false;

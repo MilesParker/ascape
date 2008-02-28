@@ -497,8 +497,8 @@ int jjmatchedKind;
 
 public Token getNextToken()
 {
-  int kind;
-  Token specialToken = null;
+//  int kind;
+//Token specialToken = null;
   Token matchedToken;
   int curPos = 0;
 

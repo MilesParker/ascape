@@ -39,6 +39,11 @@ import org.ascape.util.Conditional;
 public abstract class StatCollectorCond extends StatCollector implements Conditional {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Constructs a new StatCollectorCond.
      */
     public StatCollectorCond() {

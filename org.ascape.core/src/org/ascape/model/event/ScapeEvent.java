@@ -22,6 +22,11 @@ import java.util.EventObject;
 public class ScapeEvent extends EventObject {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * The scape is in a pre-initialization state, and can be modified freely.
      * Warning; the internal state of the scape is not consistent at this point;
      * this event should only be used by objects which set scape state, not by

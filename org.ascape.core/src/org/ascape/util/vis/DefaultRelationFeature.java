@@ -19,6 +19,10 @@ import java.awt.Color;
  */
 public class DefaultRelationFeature implements RelationFeature, java.io.Serializable {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
     private String name;
 
     /**

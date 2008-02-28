@@ -23,6 +23,11 @@ import org.ascape.model.space.Array2D;
 public class MoveRandomWithin extends Rule {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * The x.
      */
     private int x;

@@ -26,6 +26,11 @@ import org.ascape.model.Scape;
 public class DataGroup extends Observable implements Serializable {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * The scape that this data group belongs to. May be null; only used to
      * track collection periods, so this class can be used outside of ascape engine.
      */

@@ -23,9 +23,19 @@ import java.awt.Graphics;
 public abstract class DrawSymbol extends DrawFeature implements Drawable {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * A symbol that calls fillRect.
      */
     public final static DrawSymbol FILL_RECT = new DrawSymbol() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
         public void draw(Graphics g, int width, int height) {
             g.fillRect(0, 0, width - 1, height - 1);
         }
@@ -35,6 +45,11 @@ public abstract class DrawSymbol extends DrawFeature implements Drawable {
      * A symbol that calls drawRect.
      */
     public final static DrawSymbol DRAW_RECT = new DrawSymbol() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
         public void draw(Graphics g, int width, int height) {
             g.drawRect(0, 0, width - 1, height - 1);
         }
@@ -44,6 +59,11 @@ public abstract class DrawSymbol extends DrawFeature implements Drawable {
      * A symbol that calls drawRect.
      */
     public final static DrawSymbol DRAW_RECT_2 = new DrawSymbol() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
         public void draw(Graphics g, int width, int height) {
             g.drawRect(0, 0, width - 1, height - 1);
             g.drawRect(1, 1, width - 3, height - 3);
@@ -54,6 +74,11 @@ public abstract class DrawSymbol extends DrawFeature implements Drawable {
      * A symbol that calls fillOval.
      */
     public final static DrawSymbol FILL_OVAL = new DrawSymbol() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
         public void draw(Graphics g, int width, int height) {
             g.fillOval(0, 0, width - 1, height - 1);
         }
@@ -63,6 +88,11 @@ public abstract class DrawSymbol extends DrawFeature implements Drawable {
      * A symbol that calls drawOval.
      */
     public final static DrawSymbol DRAW_OVAL_2 = new DrawSymbol() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
         public void draw(Graphics g, int width, int height) {
             g.drawOval(0, 0, width - 1, height - 1);
             g.drawOval(1, 1, width - 3, height - 3);
@@ -73,6 +103,11 @@ public abstract class DrawSymbol extends DrawFeature implements Drawable {
      * A symbol that calls drawOval.
      */
     public final static DrawSymbol DRAW_OVAL = new DrawSymbol() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
         public void draw(Graphics g, int width, int height) {
             g.drawOval(0, 0, width - 1, height - 1);
         }
@@ -83,6 +118,11 @@ public abstract class DrawSymbol extends DrawFeature implements Drawable {
      * (Just a rect with the end points missing.)
      */
     public final static DrawSymbol DRAW_OVOID = new DrawSymbol() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
         public void draw(Graphics g, int width, int height) {
             g.drawLine(0, 1, 0, height - 2);
             g.drawLine(1, 0, width - 2, 0);
@@ -95,6 +135,11 @@ public abstract class DrawSymbol extends DrawFeature implements Drawable {
      * Fills in the space inside a DRAW_OVOID.
      */
     public final static DrawSymbol FILL_OVOID = new DrawSymbol() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
         public void draw(Graphics g, int width, int height) {
             g.fillRect(1, 1, width - 2, height - 2);
         }
@@ -104,6 +149,11 @@ public abstract class DrawSymbol extends DrawFeature implements Drawable {
      * Draws a diagonal cross.
      */
     public final static DrawSymbol DRAW_X = new DrawSymbol() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
         public void draw(Graphics g, int width, int height) {
             g.drawLine(0, 0, width - 1, height - 1);
             g.drawLine(width - 1, 0, 0, height - 1);
@@ -114,6 +164,11 @@ public abstract class DrawSymbol extends DrawFeature implements Drawable {
      * Draws a hash mark.
      */
     public final static DrawSymbol DRAW_HATCH = new DrawSymbol() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
         public void draw(Graphics g, int width, int height) {
             for (int x = 0; x < width; x += 2) {
                 g.drawLine(x, 0, x, height);
@@ -128,6 +183,11 @@ public abstract class DrawSymbol extends DrawFeature implements Drawable {
      * Draws a hash mark with a gap of 2 spaces and width 1.
      */
     public final static DrawSymbol DRAW_HATCH_G1_W2 = new DrawSymbol() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
         public void draw(Graphics g, int width, int height) {
             for (int x = 0; x - 1 < width; x += 3) {
                 g.drawLine(x, 0, x, height);
@@ -144,6 +204,11 @@ public abstract class DrawSymbol extends DrawFeature implements Drawable {
      * Draws a hash mark with a gap of 2 spaces and width 1.
      */
     public final static DrawSymbol DRAW_HATCH_G2_W1 = new DrawSymbol() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
         public void draw(Graphics g, int width, int height) {
             for (int x = 0; x < width; x += 3) {
                 g.drawLine(x, 0, x, height);
@@ -158,6 +223,11 @@ public abstract class DrawSymbol extends DrawFeature implements Drawable {
      * Draws a hash mark with a gap of 2 spaces and width 1.
      */
     public final static DrawSymbol DRAW_HATCH_G2_W2 = new DrawSymbol() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
         public void draw(Graphics g, int width, int height) {
             for (int x = 0; x < width - 1; x += 4) {
                 g.drawLine(x, 0, x, height);
@@ -174,6 +244,11 @@ public abstract class DrawSymbol extends DrawFeature implements Drawable {
      * Draws a hash mark.
      */
     public final static DrawSymbol DRAW_HATCH_G3_W1 = new DrawSymbol() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
         public void draw(Graphics g, int width, int height) {
             for (int x = 0; x < width; x += 4) {
                 g.drawLine(x, 0, x, height);
@@ -188,6 +263,11 @@ public abstract class DrawSymbol extends DrawFeature implements Drawable {
      * Draws a hash mark.
      */
     public final static DrawSymbol DRAW_HATCH_G3_W2 = new DrawSymbol() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
         public void draw(Graphics g, int width, int height) {
             for (int x = 0; x < width; x += 5) {
                 g.drawLine(x, 0, x, height);

@@ -25,6 +25,10 @@ import java.util.Iterator;
 public class Continuous1D extends CollectionSpace implements Continuous {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    /**
      * The size.
      */
     private int size;

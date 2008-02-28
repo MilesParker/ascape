@@ -25,6 +25,10 @@ import java.util.Vector;
 public class StatCollectorCSAMMVar extends StatCollectorCSAMM {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    /**
      * Vector storing all values so variance can be calculated.
      */
     private Vector data = new Vector();

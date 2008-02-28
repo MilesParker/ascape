@@ -21,6 +21,10 @@ package org.ascape.model.engine;
 public abstract class ParallelExecutionStrategy extends IncrementalExecutionStrategy {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    /**
      * The parallel manager.
      */
     private ParallelManager parallelManager;

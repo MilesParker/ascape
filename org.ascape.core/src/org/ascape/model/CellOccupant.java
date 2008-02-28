@@ -29,10 +29,20 @@ import org.ascape.util.Conditional;
 public class CellOccupant extends Cell {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * An rule causing the target agent to interact with each of its neighbors as
      * specified by the Agent.play() method.
      */
     public static final Rule PLAY_HOST_RULE = new Rule("Play Host") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
         /**
          * Play each neighbor within one unit of the agent.
          * @param agent the playing agent
@@ -65,6 +75,11 @@ public class CellOccupant extends Cell {
      * cells are unoccupied, nothing happens. Note the difference between this rule and RANDOM_WALK_RULE.
      */
     public static final Rule RANDOM_WALK_AVAILABLE_RULE = new Rule("Random Walk Available") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
         /**
          * Attempt to move one step in a random direction.
          * @param agent the playing agent

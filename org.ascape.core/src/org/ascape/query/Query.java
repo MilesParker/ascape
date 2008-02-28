@@ -33,6 +33,11 @@ import org.ascape.util.Conditional;
 
 public class Query extends DefaultScapeListener {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     // Can search on only 1 collection per query
     private Scape collection;
 
@@ -51,6 +56,11 @@ public class Query extends DefaultScapeListener {
     private boolean evaluating;
 
     Conditional condition = new Conditional() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
         public boolean meetsCondition(Object object) {
             searchPosition++;
             Agent agent = (Agent) object;

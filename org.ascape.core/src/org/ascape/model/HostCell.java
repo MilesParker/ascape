@@ -27,13 +27,28 @@ import org.ascape.util.Conditional;
  */
 public class HostCell extends Cell {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     public final static Conditional IS_AVAILABLE = new Conditional() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
         public final boolean meetsCondition(Object o) {
             return ((HostCell) o).isAvailable();
         }
     };
 
     public final static Conditional IS_OCCUPIED = new Conditional() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
         public final boolean meetsCondition(Object o) {
             return !((HostCell) o).isAvailable();
         }

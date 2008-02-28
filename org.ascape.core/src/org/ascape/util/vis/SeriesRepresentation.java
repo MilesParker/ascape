@@ -21,6 +21,11 @@ import java.io.Serializable;
 public class SeriesRepresentation implements Serializable {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * The color for the series.
      */
     private Color color;

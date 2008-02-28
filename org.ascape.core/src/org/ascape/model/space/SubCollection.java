@@ -25,6 +25,10 @@ import java.util.Collection;
 public abstract class SubCollection extends CollectionSpace implements SubSpace {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    /**
      * The backing collection.
      */
     private Space superSpace;

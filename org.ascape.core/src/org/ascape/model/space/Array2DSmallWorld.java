@@ -34,6 +34,11 @@ import org.ascape.util.Conditional;
 public class Array2DSmallWorld extends Array2D {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * The radius.
      */
     protected int radius = 1;

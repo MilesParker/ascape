@@ -39,6 +39,11 @@ import org.ascape.util.ResetableIterator;
 public class Array1D extends ListBase {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * The cells.
      */
     private Node[] cells = new Node[10];

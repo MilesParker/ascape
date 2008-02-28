@@ -14,7 +14,6 @@ import org.ascape.model.Scape;
 import org.ascape.model.event.DefaultScapeListener;
 import org.ascape.model.event.ScapeEvent;
 import org.ascape.model.event.ScapeListener;
-import org.ascape.util.PropertyAccessor;
 import org.ascape.view.nonvis.ConsoleOutView;
 
 /**

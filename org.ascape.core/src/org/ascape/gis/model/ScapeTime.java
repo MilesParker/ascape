@@ -21,6 +21,11 @@ import org.ascape.model.event.ScapeEvent;
 public class ScapeTime extends Scape {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Number of seconds per timestep
      */
     private int secondsPerIteration = 60;

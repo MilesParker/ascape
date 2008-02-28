@@ -20,6 +20,10 @@ import java.io.Serializable;
 public abstract class UnitIntervalDataPoint implements DataPoint, Serializable {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    /**
      * The name of the stat.
      */
     private String name = "Unnamed";

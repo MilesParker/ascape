@@ -22,6 +22,10 @@ import java.util.Comparator;
  */
 public class DataPointComparator implements Comparator, DataPoint, Serializable {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
     private DataPoint dataPoint;
 
     /**

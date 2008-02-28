@@ -29,6 +29,11 @@ import java.util.Vector;
 public class DataSelection extends Observable implements Observer, Cloneable, Serializable {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * The backing data group for this selection.
      */
     protected DataGroup dataGroup;

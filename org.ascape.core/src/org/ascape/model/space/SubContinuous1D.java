@@ -15,6 +15,11 @@ import java.util.Iterator;
 public class SubContinuous1D extends SubContinuous {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Constructs a sub-continuous space.
      */
     public SubContinuous1D() {

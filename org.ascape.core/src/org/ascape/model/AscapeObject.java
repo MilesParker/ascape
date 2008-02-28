@@ -38,6 +38,11 @@ import org.ascape.util.RandomFunctions;
 public class AscapeObject extends Object implements RandomFunctions, HasName, Cloneable, Serializable {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Symbol for random seed to be arbitrary (current time in milliseconds.)
      */
     public final static int ARBITRARY_SEED = -1;
@@ -63,6 +68,7 @@ public class AscapeObject extends Object implements RandomFunctions, HasName, Cl
     /**
      * The seed that will be used to initialize the random stream.
      * If arbitrary seed, current time in milliseconds will be used.
+     * todo this needs to be changed to non-static implementation for repeatability in multi-model / vm usage
      */
     private static long randomSeed = ARBITRARY_SEED;
 
@@ -157,7 +163,7 @@ public class AscapeObject extends Object implements RandomFunctions, HasName, Cl
      * @param seed the random number seed to use
      */
     public void setRandomSeed(long seed) {
-        this.randomSeed = seed;
+        randomSeed = seed;
         reseed();
     }
 

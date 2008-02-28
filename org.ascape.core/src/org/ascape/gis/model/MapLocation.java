@@ -19,6 +19,12 @@ import com.bbn.openmap.omGraphics.OMGraphic;
 public class MapLocation extends Location {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+
+    /**
      * Constructs an instance of MapLocation.
      *
      * @param lat             the new MapLocation's latitude

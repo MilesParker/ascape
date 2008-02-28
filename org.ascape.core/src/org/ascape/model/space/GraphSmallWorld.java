@@ -16,6 +16,11 @@ import java.util.List;
 public class GraphSmallWorld extends Graph {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * Constructs a one-dimensional small-world graph.
      */
     public GraphSmallWorld() {

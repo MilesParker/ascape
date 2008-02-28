@@ -27,6 +27,11 @@ import org.ascape.util.ResetableIterator;
 public class StrategyFactory implements Serializable {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * The any random.
      */
     private boolean anyRandom;
