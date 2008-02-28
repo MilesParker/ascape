@@ -414,6 +414,7 @@ Export-Package: com.bbn.openmap;
    com.jrefinery.ui,
    javax.swing",
  org.apache.commons.lang;uses:="org.apache.commons.lang.exception",
+ org.apache.tools.ant,
  org.jdom,
  org.jdom.output;uses:="org.xml.sax,org.w3c.dom,org.jdom",
  quicktime;uses:="com.apple.mrj,quicktime.jdirect",
