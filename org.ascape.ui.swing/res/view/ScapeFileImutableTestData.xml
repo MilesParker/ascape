@@ -1,0 +1,47 @@
+<agents sizeMode="size by scape" readOrder="random order" assignmentOrder="sequential order">
+    <agent x="2" y="2">
+        <parameter name="IntAttr" value="10" />
+        <parameter name="StringAttr" value="Ten" />
+        <parameter name="DoubleAttr" value="10.1" />
+    </agent>
+    <agent x="3" y="3">
+        <parameter name="IntAttr" value="20" />
+        <parameter name="StringAttr" value="Twenty" />
+        <parameter name="DoubleAttr" value="20.2" />
+    </agent>
+    <agent x="4" y="4">
+        <parameter name="IntAttr" value="30" />
+        <parameter name="StringAttr" value="Thirty" />
+        <parameter name="DoubleAttr" value="30.3" />
+    </agent>
+    <agent x="5" y="5">
+        <parameter name="IntAttr" value="40" />
+        <parameter name="StringAttr" value="Forty" />
+        <parameter name="DoubleAttr" value="40.4" />
+    </agent>
+    <agent x="5" y="4">
+        <parameter name="IntAttr" value="50" />
+        <parameter name="StringAttr" value="Fifty" />
+        <parameter name="DoubleAttr" value="50.5" />
+    </agent>
+    <agent x="5" y="3">
+        <parameter name="IntAttr" value="60" />
+        <parameter name="StringAttr" value="Sixty" />
+        <parameter name="DoubleAttr" value="60.6" />
+    </agent>
+    <agent x="5" y="2">
+        <parameter name="IntAttr" value="70" />
+        <parameter name="StringAttr" value="Seventy" />
+        <parameter name="DoubleAttr" value="70.7" />
+    </agent>
+    <agent x="5" y="1">
+        <parameter name="IntAttr" value="80" />
+        <parameter name="StringAttr" value="Eighty" />
+        <parameter name="DoubleAttr" value="80.8" />
+    </agent>
+    <agent x="5" y="0">
+        <parameter name="IntAttr" value="90" />
+        <parameter name="StringAttr" value="Ninety" />
+        <parameter name="DoubleAttr" value="90.9" />
+    </agent>
+</agents>

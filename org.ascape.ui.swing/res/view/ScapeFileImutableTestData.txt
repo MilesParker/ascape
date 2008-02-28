@@ -1,0 +1,10 @@
+IntAttr	StringAttr	DoubleAttr
+10	Ten	10.1
+20	Twenty	20.2
+30	Thirty	30.3
+40	Fourty	40.4
+50	Fifty	50.5
+60	Sixty	60.6
+70	Seventy	70.7
+80	Eighty	80.8
+90	Ninety	90.9

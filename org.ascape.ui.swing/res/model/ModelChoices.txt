@@ -1,0 +1,87 @@
+Models
+{Examples
+    Traffic|org.ascape.examples.traffic.TrafficModel
+    {Bionland
+        Model A|org.ascape.examples.bionland.Model_A
+        Model B|org.ascape.examples.bionland.Model_B
+        Model C|org.ascape.examples.bionland.Model_C
+        Model D|org.ascape.examples.bionland.Model_D
+        Model E|org.ascape.examples.bionland.Model_E
+        Model F|org.ascape.examples.bionland.Model_F
+        Model G|org.ascape.examples.bionland.Model_G
+        Model H|org.ascape.examples.bionland.Model_H
+        Model I|org.ascape.examples.bionland.Model_I
+        Model J|org.ascape.examples.bionland.Model_J
+        Model K|org.ascape.examples.bionland.Model_K
+        Model L|org.ascape.examples.bionland.Model_L
+        Model M|org.ascape.examples.bionland.Model_M
+        Model P|org.ascape.examples.bionland.Model_P
+        Model Q|org.ascape.examples.bionland.Model_Q
+    }
+}
+{Brookings
+    {Growing Artificial Societies (Sugarscape)
+        {Chapter 2
+            Figure 1|edu.brook.sugarscape.GAS_II_1
+            Figure 2|edu.brook.sugarscape.GAS_II_2
+            Figure 3|edu.brook.sugarscape.GAS_II_3
+            Figure 4|edu.brook.sugarscape.GAS_II_4
+            Figure 5|edu.brook.sugarscape.GAS_II_5
+            Figure 6|edu.brook.sugarscape.GAS_II_6
+            Figure 7|edu.brook.sugarscape.GAS_II_7
+            Figure 8|edu.brook.sugarscape.GAS_II_8
+        }
+        {Chapter 3
+            Figure 2|edu.brook.sugarscape.GAS_III_2
+            Figure 3|edu.brook.sugarscape.GAS_III_3
+            Figure 6|edu.brook.sugarscape.GAS_III_6
+        }
+        {Chapter 4
+            Figure 1|edu.brook.sugarscape.GAS_IV_1
+            Figure 1 a|edu.brook.sugarscape.GAS_IV_a
+            Figure 1 b|edu.brook.sugarscape.GAS_IV_b
+            Figure 1 c|edu.brook.sugarscape.GAS_IV_c
+            Figure 1 d|edu.brook.sugarscape.GAS_IV_d
+            Figure 1 e|edu.brook.sugarscape.GAS_IV_e
+            Figure 1 f|edu.brook.sugarscape.GAS_IV_f
+            Figure 1 g|edu.brook.sugarscape.GAS_IV_g
+            Figure 1 h|edu.brook.sugarscape.GAS_IV_h
+            Figure 1 i|edu.brook.sugarscape.GAS_IV_i
+        }
+    }
+    {Civil Violence
+        Single Group|edu.brook.cv.CVModel
+        Inter Group|edu.brook.cv.CVModelInterGroup
+        {Paper Model I
+            Base Model|edu.brook.cv.paper.CVModelI
+            Run 1|edu.brook.cv.paper.CVModelIRun1
+            Run 2|edu.brook.cv.paper.CVModelIRun2
+            Run 3|edu.brook.cv.paper.CVModelIRun3
+            Run 4|edu.brook.cv.paper.CVModelIRun4
+            Run 5|edu.brook.cv.paper.CVModelIRun5
+        }
+        {Paper Model II
+            Base Model|edu.brook.cv.paper.CVModelII
+            Run 1|edu.brook.cv.paper.CVModelIIRun1
+            Runs 2 and 3|edu.brook.cv.paper.CVModelIIRun2and3
+            Runs 4a and 4b|edu.brook.cv.paper.CVModelIIRun4aandb
+        }
+    }
+    Artificial Anasazi|edu.brook.aa.LHV
+    Prisoner's Dilemma|edu.brook.pd.PD2D
+    {Retirement
+        Base Model|edu.brook.retirement.Population
+        SmallWorld|edu.brook.retirement.PopulationSmallWorld
+    }
+    Norms|edu.brook.norms.Norms
+    Firms|edu.brook.firms.Model1
+    {Class Emergence
+        Base Model|edu.brook.classes.BargainingModelOne
+        Tagged|edu.brook.classes.BargainingModelTwo
+    }
+}
+{Other
+    Conway's Life|edu.brook.life.ConwayLife
+    Heatbugs|edu.brooksantafe.heatbugs.HeatbugModel
+    Boids|org.ascape.examples.boids.BaseModel
+}
