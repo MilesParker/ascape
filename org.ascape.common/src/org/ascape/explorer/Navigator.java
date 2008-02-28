@@ -139,7 +139,7 @@ public class Navigator extends PanelView {
                 Object[] agents = new Object[Math.min(scape.getSize(), 4)];
                 //To prevent comodification errors..
                 for (int i = 0; i < agents.length; i++) {
-                    agents[i] = scape.findRandom();
+                    agents[i] = scape.get((int) (Math.random() * scape.getSize()));
                 }
             }
         }

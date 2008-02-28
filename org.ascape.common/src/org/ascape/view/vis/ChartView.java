@@ -911,7 +911,7 @@ private JFreeChart chart;
         super.scapeAdded(scapeEvent);
         dataSelection = new DataViewSelection();
         dataSelection.addObserver(this);
-        dataSelection.setData(getScape().getData());
+        dataSelection.setData(getScape().getModel().getData());
         onScapeAndChartTypeSet();
     }
 

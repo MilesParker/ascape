@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Model name="org.ascape.model.Scape" systemTime="1203017226776">
+	<modelParameters>
+		<parameter name="runCount" value="1" />
+		<parameter name="startPeriod" value="0" />
+		<parameter name="stopPeriod" value="1" />
+		<parameter name="randomSeed" value="1203017226318" />
+		<parameter name="agentSize" value="5.0000" />
+		<parameter name="agentsPerIteration" value="-1.0000" />
+		<parameter name="autoCreate" value="False" />
+		<parameter name="cellsRequestUpdates" value="False" />
+		<parameter name="description" value="" />
+		<parameter name="executionOrder" value="-2.0000" />
+		<parameter name="executionStyle" value="1.0000" />
+		<parameter name="HTMLDescription" value="" />
+		<parameter name="home" value="" />
+		<parameter name="iterationsPerRedraw" value="1.0000" />
+		<parameter name="membersActive" value="True" />
+		<parameter name="name" value="" />
+		<parameter name="pausePeriod" value="2.1475E9" />
+		<parameter name="PausePeriod" value="2.1475E9" />
+		<parameter name="paused" value="False" />
+		<parameter name="periodName" value="" />
+		<parameter name="periodic" value="True" />
+		<parameter name="populateOnCreate" value="True" />
+		<parameter name="RandomSeed" value="1.2030E12" />
+		<parameter name="running" value="False" />
+		<parameter name="serializable" value="True" />
+		<parameter name="size" value="9.0000" />
+		<parameter name="startOnOpen" value="True" />
+		<parameter name="startPeriod" value="0.0000" />
+		<parameter name="StartPeriod" value="0.0000" />
+		<parameter name="stopPeriod" value="0.0000" />
+		<parameter name="StopPeriod" value="0.0000" />
+		<parameter name="threadCount" value="1.0000" />
+		<parameter name="ThreadCount" value="1.0000" />
+		<parameter name="viewSelf" value="False" />
+	</modelParameters>
+	<agentData>
+		<members name="org.ascape.model.Scape">
+			<member name="coordinate" value="[0, 0]">
+				<parameter name="agentSize" value="5.0000" />
+				<parameter name="available" value="False" />
+				<parameter name="doubleAttr" value="0.0000" />
+				<parameter name="intAttr" value="0.0000" />
+				<parameter name="stringAttr" value="" />
+			</member>
+		</members>
+		<members name="org.ascape.model.Scape">
+			<member name="coordinate" value="[0, 1]">
+				<parameter name="agentSize" value="5.0000" />
+				<parameter name="available" value="False" />
+				<parameter name="doubleAttr" value="0.0000" />
+				<parameter name="intAttr" value="0.0000" />
+				<parameter name="stringAttr" value="" />
+			</member>
+		</members>
+		<members name="org.ascape.model.Scape">
+			<member name="coordinate" value="[0, 2]">
+				<parameter name="agentSize" value="5.0000" />
+				<parameter name="available" value="False" />
+				<parameter name="doubleAttr" value="0.0000" />
+				<parameter name="intAttr" value="0.0000" />
+				<parameter name="stringAttr" value="" />
+			</member>
+		</members>
+		<members name="org.ascape.model.Scape">
+			<member name="coordinate" value="[1, 0]">
+				<parameter name="agentSize" value="5.0000" />
+				<parameter name="available" value="False" />
+				<parameter name="doubleAttr" value="0.0000" />
+				<parameter name="intAttr" value="0.0000" />
+				<parameter name="stringAttr" value="" />
+			</member>
+		</members>
+		<members name="org.ascape.model.Scape">
+			<member name="coordinate" value="[1, 1]">
+				<parameter name="agentSize" value="5.0000" />
+				<parameter name="available" value="False" />
+				<parameter name="doubleAttr" value="0.0000" />
+				<parameter name="intAttr" value="0.0000" />
+				<parameter name="stringAttr" value="" />
+			</member>
+		</members>
+		<members name="org.ascape.model.Scape">
+			<member name="coordinate" value="[1, 2]">
+				<parameter name="agentSize" value="5.0000" />
+				<parameter name="available" value="False" />
+				<parameter name="doubleAttr" value="0.0000" />
+				<parameter name="intAttr" value="0.0000" />
+				<parameter name="stringAttr" value="" />
+			</member>
+		</members>
+		<members name="org.ascape.model.Scape">
+			<member name="coordinate" value="[2, 0]">
+				<parameter name="agentSize" value="5.0000" />
+				<parameter name="available" value="False" />
+				<parameter name="doubleAttr" value="0.0000" />
+				<parameter name="intAttr" value="0.0000" />
+				<parameter name="stringAttr" value="" />
+			</member>
+		</members>
+		<members name="org.ascape.model.Scape">
+			<member name="coordinate" value="[2, 1]">
+				<parameter name="agentSize" value="5.0000" />
+				<parameter name="available" value="False" />
+				<parameter name="doubleAttr" value="0.0000" />
+				<parameter name="intAttr" value="0.0000" />
+				<parameter name="stringAttr" value="" />
+			</member>
+		</members>
+		<members name="org.ascape.model.Scape">
+			<member name="coordinate" value="[2, 2]">
+				<parameter name="agentSize" value="5.0000" />
+				<parameter name="available" value="False" />
+				<parameter name="doubleAttr" value="0.0000" />
+				<parameter name="intAttr" value="0.0000" />
+				<parameter name="stringAttr" value="" />
+			</member>
+		</members>
+	</agentData>
+</Model>

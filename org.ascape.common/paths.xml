@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="Ascape Paths">
 
-	<property name="workspace.ascape" value="../../ascape-workspace" />
+	<property name="workspace.ascape" value="../../ascape" />
 
 	<path id="path.compile.ascape">
 		<pathelement path="${workspace.ascape}/org.ascape.common/bin"/>

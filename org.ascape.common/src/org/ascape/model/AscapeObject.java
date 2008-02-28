@@ -60,6 +60,17 @@ public class AscapeObject extends Object implements RandomFunctions, HasName, Cl
      */
     private static Random random = new Random(System.currentTimeMillis());
 
+//Uncomment below to test random calls    
+//    public static boolean prevent = false;
+//    private static Random random = new Random(System.currentTimeMillis()) {
+//		public int nextInt(int n) {
+//			if (prevent) {
+//				throw new RuntimeException("Tried to use random during view update!");
+//			}
+//			return super.nextInt(n);
+//		}
+//    };
+
     /**
      * The seed that will be used to initialize the random stream.
      * If arbitrary seed, current time in milliseconds will be used.

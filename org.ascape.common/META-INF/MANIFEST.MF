@@ -47,5 +47,4 @@ Provide-Package: org.ascape.ant,
  org.ascape.view.vis,
  org.ascape.view.vis.erv
 Bundle-ClassPath: .
-Eclipse-LazyStart: false
 

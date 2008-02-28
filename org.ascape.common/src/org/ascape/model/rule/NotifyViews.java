@@ -51,6 +51,11 @@ public class NotifyViews extends PropogateScapeOnly {
         //}
     }
 
+	@Override
+	public boolean isCauseRemoval() {
+		return false;
+	}
+	
     /**
      * Only scapes can have views.
      */
