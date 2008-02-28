@@ -13,6 +13,11 @@ import org.ascape.view.vis.SimplexView;
 
 public class BargainingModelTwo extends BargainingModelBase {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -4439696528099816913L;
+
     public void createScape() {
         super.createScape();
         agents.setPrototypeAgent(new BargainerTagged());

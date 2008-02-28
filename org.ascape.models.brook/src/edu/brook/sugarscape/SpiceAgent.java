@@ -30,7 +30,17 @@ import org.ascape.util.data.StatCollectorCSAMMVar;
  */
 public class SpiceAgent extends SugarAgent {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -3547597461497394296L;
+
     public final static Rule DEATH_STARVATION_SPICE_RULE = new Rule("Death From Starvation") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 5946321502720910867L;
+
         public void execute(Agent agent) {
             //System.out.println("sugar = " + ((SpiceAgent) agent).getSugar().getStock() + " spice = " + ((SpiceAgent) agent).getSpice().getStock());
             if ((((SpiceAgent) agent).getSugar().getStock() <= 0)
@@ -41,6 +51,11 @@ public class SpiceAgent extends SugarAgent {
     };
 
     public final static Rule DEATH_STARVATION_OLD_AGE_SPICE_RULE = new Rule("Death From Starvation and/or Old Age") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 5212614029869784940L;
+
         public void execute(Agent agent) {
             //if (((SpiceAgent) agent).getSugar().getStock() <= 0) System.out.println ("Died for Lack of SUGAR");
             //if (((SpiceAgent) agent).getSpice().getStock() <= 0) System.out.println ("Died for Lack of Spice");
@@ -77,6 +92,11 @@ public class SpiceAgent extends SugarAgent {
     public void scapeCreated() {
         //scape.addRule(new DefaultUpdate());
         StatCollector[] stats = {new StatCollectorCSAMMVar() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 5508178474880538451L;
+
             public double getValue(Object object) {
                 return ((SpiceAgent) object).getSugar().getStock();
             }
@@ -86,7 +106,12 @@ public class SpiceAgent extends SugarAgent {
             }
         },
                                  new StatCollectorCSAMMVar() {
-                                     public double getValue(Object object) {
+                                     /**
+                                     * 
+                                     */
+                                    private static final long serialVersionUID = -9013191235719926425L;
+
+                                    public double getValue(Object object) {
                                          return ((SpiceAgent) object).getSpice().getStock();
                                      }
 
@@ -95,7 +120,12 @@ public class SpiceAgent extends SugarAgent {
                                      }
                                  },
                                  new StatCollectorCSAMMVar() {
-                                     public double getValue(Object object) {
+                                     /**
+                                     * 
+                                     */
+                                    private static final long serialVersionUID = 6503639767992244491L;
+
+                                    public double getValue(Object object) {
                                          return ((SpiceAgent) object).calculateMRS();
                                      }
 
@@ -123,7 +153,12 @@ public class SpiceAgent extends SugarAgent {
         },
 */
                                  new StatCollectorCSAMMVar() {
-                                     public double getValue(Object object) {
+                                     /**
+                                     * 
+                                     */
+                                    private static final long serialVersionUID = -5996122912404354652L;
+
+                                    public double getValue(Object object) {
                                          return ((SpiceAgent) object).getSugarMetabolism();
                                      }
 
@@ -132,7 +167,12 @@ public class SpiceAgent extends SugarAgent {
                                      }
                                  },
                                  new StatCollectorCSAMMVar() {
-                                     public double getValue(Object object) {
+                                     /**
+                                     * 
+                                     */
+                                    private static final long serialVersionUID = 2927789983195469842L;
+
+                                    public double getValue(Object object) {
                                          return ((SpiceAgent) object).getSpiceMetabolism();
                                      }
 
@@ -142,7 +182,12 @@ public class SpiceAgent extends SugarAgent {
                                  },
 
                                  new StatCollectorCSAMMVar() {
-                                     // returning double here no longer required in most recent code
+                                     /**
+                                     * 
+                                     */
+                                    private static final long serialVersionUID = 3151035238739702246L;
+
+                                    // returning double here no longer required in most recent code
                                      // Because isAutoCollect() returns false, this value of 0.0
                                      // is never actually collected
                                      public double getValue(Object object) {
@@ -158,7 +203,12 @@ public class SpiceAgent extends SugarAgent {
                                      }
                                  },
                                  new StatCollectorCSAMMVar() {
-                                     // returning double here no longer required in most recent code
+                                     /**
+                                     * 
+                                     */
+                                    private static final long serialVersionUID = 2399755976323230608L;
+
+                                    // returning double here no longer required in most recent code
                                      // Because isAutoCollect() returns false, this value of 0.0
                                      // is never actually collected
                                      public double getValue(Object object) {
@@ -174,7 +224,12 @@ public class SpiceAgent extends SugarAgent {
                                      }
                                  },
                                  new StatCollectorCSAMMVar() {
-                                     // returning double here no longer required in most recent code
+                                     /**
+                                     * 
+                                     */
+                                    private static final long serialVersionUID = -8971684188270855031L;
+
+                                    // returning double here no longer required in most recent code
                                      // Because isAutoCollect() returns false, this value of 0.0
                                      // is never actually collected
                                      public double getValue(Object object) {
@@ -190,7 +245,12 @@ public class SpiceAgent extends SugarAgent {
                                      }
                                  },
                                  new StatCollectorCSAMMVar() {
-                                     // returning double here no longer required in most recent code
+                                     /**
+                                     * 
+                                     */
+                                    private static final long serialVersionUID = -5287570512729696231L;
+
+                                    // returning double here no longer required in most recent code
                                      // Because isAutoCollect() returns false, this value of 0.0
                                      // is never actually collected
                                      public double getValue(Object object) {
@@ -206,7 +266,12 @@ public class SpiceAgent extends SugarAgent {
                                      }
                                  },
                                  new StatCollectorCSAMMVar() {
-                                     // returning double here no longer required in most recent code
+                                     /**
+                                     * 
+                                     */
+                                    private static final long serialVersionUID = -4562137762033496503L;
+
+                                    // returning double here no longer required in most recent code
                                      // Because isAutoCollect() returns false, this value of 0.0
                                      // is never actually collected
                                      public double getValue(Object object) {

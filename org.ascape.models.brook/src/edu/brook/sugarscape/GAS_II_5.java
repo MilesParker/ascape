@@ -11,6 +11,11 @@ import org.ascape.model.Scape;
 
 public class GAS_II_5 extends GAS_II_2 {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 6725072047329036756L;
+
     public void createScape() {
         super.createScape();
         agents.addRule(new TrackSocialNetwork());

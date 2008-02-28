@@ -15,6 +15,11 @@ import org.ascape.util.Function;
 public class UtilityFunction extends Function {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = -6110885231623948819L;
+
+    /**
      * Preference for income (inversely, for leisure).
      */
     protected double theta;

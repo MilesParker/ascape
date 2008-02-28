@@ -11,6 +11,11 @@ import org.ascape.model.Agent;
 
 public class CulturalSexualAgent extends SexualAgent {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 6104734513674513341L;
+
     private static int tagLength;
 
     private boolean[] tag;

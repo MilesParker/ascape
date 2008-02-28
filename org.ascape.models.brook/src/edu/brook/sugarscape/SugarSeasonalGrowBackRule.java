@@ -14,6 +14,11 @@ import org.ascape.model.space.Coordinate2DDiscrete;
 
 public class SugarSeasonalGrowBackRule extends Rule {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 3368077103086496613L;
+
     private float epsilon = 0.125f;
 
     private int seasonLength = 50;

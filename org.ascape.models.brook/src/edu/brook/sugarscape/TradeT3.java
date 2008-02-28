@@ -24,6 +24,10 @@ import org.ascape.model.CellOccupant;
  */
 public class TradeT3 extends TradeT2 {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1130443555316578860L;
     private Exchange2[] exchanges = new Exchange2[4]; // max number Von Neuman neighbors
     private Exchange2 exchange;
 

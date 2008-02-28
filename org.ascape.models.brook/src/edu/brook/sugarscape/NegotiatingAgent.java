@@ -23,6 +23,10 @@ package edu.brook.sugarscape;
 public class NegotiatingAgent extends SpiceAgent {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 8866499397576236724L;
+    /**
      * Factor by which one would like to inflate (deflate) price
      * when buying spice (sugar)
      */

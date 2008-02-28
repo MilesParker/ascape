@@ -21,10 +21,18 @@ import org.ascape.view.vis.Overhead2DView;
  */
 public class SmallConwayLife extends Scape {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 4450153420664386009L;
     private float initialAliveDensity = 0.1f;
 
     class LifeCell extends Cell {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 2923116958642120145L;
         public boolean alive;
         boolean nextAlive;
 
@@ -35,6 +43,11 @@ public class SmallConwayLife extends Scape {
 
         public void iterate() {
             int neighborsAlive = countNeighbors(new Conditional() {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 7923827910139566568L;
+
                 public boolean meetsCondition(Object object) {
                     return ((LifeCell) object).alive;
                 }

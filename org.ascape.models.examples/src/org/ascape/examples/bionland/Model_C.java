@@ -21,6 +21,11 @@ import org.ascape.view.vis.Overhead2DView;
 
 public class Model_C extends Scape {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 6693075711032433071L;
+
     private Scape territory;
 
     private Scape redBions;
@@ -33,6 +38,11 @@ public class Model_C extends Scape {
 
     private class BionTile extends HostCell {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 7226538144767880661L;
+
         public Color getColor() {
             return Color.black;
         }
@@ -40,9 +50,19 @@ public class Model_C extends Scape {
 
     private class Bion extends CellOccupant {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 7734950764710735084L;
+
     }
 
     class RedBion extends Bion {
+
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 4139478235755451956L;
 
         public Color getColor() {
             return Color.red;
@@ -51,12 +71,22 @@ public class Model_C extends Scape {
 
     class OrangeBion extends Bion {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 3359811262263342000L;
+
         public Color getColor() {
             return Color.orange;
         }
     }
 
     class BlueBion extends Bion {
+
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 3008190589816546252L;
 
         public Color getColor() {
             return Color.blue;

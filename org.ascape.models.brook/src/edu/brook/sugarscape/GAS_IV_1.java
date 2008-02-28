@@ -10,6 +10,11 @@ package edu.brook.sugarscape;
 
 public class GAS_IV_1 extends GAS_SpiceBase {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 8665556682631210554L;
+
     public void createScape() {
         super.createScape();
         sugarscape.addRule(SpiceCell.SUGAR_SPICE_GROW_BACK_1_RULE);

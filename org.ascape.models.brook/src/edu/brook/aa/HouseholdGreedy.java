@@ -11,6 +11,10 @@ package edu.brook.aa;
 
 public class HouseholdGreedy extends HouseholdAggregate {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 8865761711867701509L;
     public Farm[] bufferFarms = new Farm[0];
 
     public void fission() {

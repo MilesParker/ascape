@@ -10,6 +10,11 @@ package edu.brook.classes;
 
 public class BargainingModelPeyton extends BargainingModelTwo {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -5838881897720774326L;
+
     public void createScape() {
         super.createScape();
         agents.setPrototypeAgent(new PeytonBargainer());

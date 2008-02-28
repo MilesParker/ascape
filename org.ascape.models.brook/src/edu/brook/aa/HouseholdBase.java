@@ -19,7 +19,17 @@ import org.ascape.util.data.StatCollectorCond;
 
 public abstract class HouseholdBase extends Scape {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 4016766647753095651L;
+
     public Conditional find_settlement_rule = new Conditional() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -1952585657699460589L;
+
         public boolean meetsCondition(Object o) {
             return ((((Location) o).isOnMap()) && (((Location) o).getFarm() == null) && ((((Location) o).getClan() == null) || (((Location) o).getClan() == clan)) && (((Location) o).hasWithin(Location.LOW_EROSION, true, 1.0)));
         }
@@ -319,6 +329,10 @@ public abstract class HouseholdBase extends Scape {
 
     class SettlementZoneStatCollector extends StatCollectorCond {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 5283713940057557749L;
         EnvironmentZone zone;
 
         public boolean meetsCondition(Object o) {
@@ -337,6 +351,10 @@ public abstract class HouseholdBase extends Scape {
 
     class FarmZoneStatCollector extends StatCollectorCond {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 6863625481169667385L;
         EnvironmentZone zone;
 
         public boolean meetsCondition(Object o) {
@@ -364,6 +382,11 @@ public abstract class HouseholdBase extends Scape {
         stats[2] = new StatCollector("Fissions", false);
         stats[3] = new StatCollector("Departures", false);
         stats[4] = new StatCollectorCSAMM("Farms Per Household") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -3060585396202230071L;
+
             public double getValue(Object o) {
                 return ((HouseholdBase) o).farms.size();
             }

@@ -21,6 +21,11 @@ import org.ascape.view.vis.Overhead2DView;
 
 public class TrafficModel extends Scape {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -2074626017813799729L;
+
     private Scape highway;
 
     private Scape cars;
@@ -61,6 +66,11 @@ public class TrafficModel extends Scape {
         cars.addInitialRule(MOVE_RANDOM_LOCATION_RULE);
         cars.addRule(MOVEMENT_RULE);
         cars.addRule(new Rule("Lane Changing") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 1L;
+
             public void execute(Agent a) {
                 ((Car) a).changeLanes();
             }
@@ -68,6 +78,11 @@ public class TrafficModel extends Scape {
         cars.setName("Cars");
         add(cars);
         cars.addStatCollector(new StatCollectorCSAMM("Speed") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 1L;
+
             public double getValue(Object a) {
                 return ((Car) a).getActualSpeed();
             }
@@ -100,6 +115,11 @@ public class TrafficModel extends Scape {
 //            }
 //        });
         cars.addStatCollector(new StatCollectorCSAMM("Frustration") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 1L;
+
             public double getValue(Object a) {
                 return ((Car) a).getDesiredSpeed() - ((Car) a).getActualSpeed();
             }

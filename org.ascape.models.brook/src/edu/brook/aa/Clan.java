@@ -14,6 +14,11 @@ import org.ascape.model.AscapeObject;
 
 public class Clan extends AscapeObject {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 2760292253117658739L;
+
     public final static Clan ORANGE_CLAN = new Clan("Orange Clan", Color.orange);
 
     public final static Clan RED_CLAN = new Clan("Red Clan", Color.red);

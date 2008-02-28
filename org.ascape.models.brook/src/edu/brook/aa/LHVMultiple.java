@@ -11,6 +11,11 @@ import org.ascape.view.nonvis.DataOutputView;
 
 public class LHVMultiple extends LHV {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -8087699266408541306L;
+
     public void createViews() {
         super.createViews();
         DataOutputView dataView = new DataOutputView();

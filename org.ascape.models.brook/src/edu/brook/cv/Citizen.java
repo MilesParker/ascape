@@ -22,9 +22,19 @@ import org.ascape.util.vis.ImageFeatureFixed;
 public class Citizen extends CellOccupant {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1005756258495729541L;
+
+    /**
      * A rule causing agents to check its jail term, releasing itself if the term is finished.
      */
     public static final Rule CHECK_JAIL = new Rule("Check Jail") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 3805429567996671817L;
+
         public void execute(Agent agent) {
             ((Citizen) agent).checkJail();
         }
@@ -34,6 +44,11 @@ public class Citizen extends CellOccupant {
      * A rule causing the agent to decide wether it is active or not.
      */
     public static final Rule DECIDE_STATE = new Rule("Decide State") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -3405117291232340595L;
+
         public void execute(Agent agent) {
             ((Citizen) agent).decideState();
         }
@@ -68,6 +83,11 @@ public class Citizen extends CellOccupant {
     protected static double k = -Math.log(.1);
 
     public static Conditional CONTAINS_ACTIVE = new Conditional() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 6393228897208214027L;
+
         public boolean meetsCondition(Object o) {
             CellOccupant a = (CellOccupant) ((HostCell) o).getOccupant();
             if ((a instanceof Citizen) && (((Citizen) a).getState() == Citizen.ACTIVE)) {
@@ -151,6 +171,11 @@ public class Citizen extends CellOccupant {
     }
 
     private static Rule NEIGHBOR_CAPTURED = new Rule("Neighbor Captured") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -8153902830113212976L;
+
         public void execute(Agent agent) {
             ((Citizen) agent).setHardship(((Citizen) agent).getHardship() + neighborCaptureHardshipChange);
         }

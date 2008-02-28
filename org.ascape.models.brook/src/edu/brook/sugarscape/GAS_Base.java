@@ -21,6 +21,10 @@ import org.ascape.view.vis.Overhead2DView;
 
 public class GAS_Base extends Scape {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 5765121711598985032L;
     //Parameters
     private int minVision = 1;
     private int maxVision = 6;
@@ -207,6 +211,11 @@ public class GAS_Base extends Scape {
         sugarView = new Overhead2DView();
         final ColorFeatureGradiated colorCellForSugar = new ColorFeatureGradiated("Sugar");
         colorCellForSugar.setDataPoint(new UnitIntervalDataPoint() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 60938578951681284L;
+
             public double getValue(Object object) {
                 return ((double) ((SugarCell) object).getSugar().getQuantity() / (double) SugarCell.MAX_SUGAR);
             }
@@ -216,8 +225,5 @@ public class GAS_Base extends Scape {
         sugarView.setHostedAgentColorFeature(ColorFeatureFixed.red);
         sugarView.setCellSize(8);
         sugarscape.addView(sugarView);
-        if (getUserEnvironment().isInApplet()) {
-            getUserEnvironment().getAppletModelPanel().add("Center", sugarView);
-        }
     }
 }

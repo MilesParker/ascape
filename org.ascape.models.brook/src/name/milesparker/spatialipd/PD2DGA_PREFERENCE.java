@@ -14,6 +14,11 @@ import org.ascape.view.vis.ChartView;
 
 public class PD2DGA_PREFERENCE extends PD2DGA {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -6127637096300287201L;
+
     public void createScape() {
         super.createScape();
         getAgents().getRules().setSelected(PLAY_RANDOM_NEIGHBOR_RULE, false);

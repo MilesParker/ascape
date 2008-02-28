@@ -23,6 +23,10 @@ import org.ascape.view.vis.Overhead2DView;
 
 public class Bb extends Scape {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -8582291081028346390L;
     public int nAgents = 16;
     private int latticeWidth = 30;
     private int latticeHeight = 30;
@@ -59,6 +63,11 @@ public class Bb extends Scape {
         final StatCollector[] stats =
             {
                 new StatCollectorCondCSAMM("RAOnes") {
+                    /**
+                     * 
+                     */
+                    private static final long serialVersionUID = 2370540143893336314L;
+
                     public boolean meetsCondition(Object object) {
                         return (((Beaver) object).type == 'r');
                     }
@@ -69,6 +78,11 @@ public class Bb extends Scape {
                 },
 
                 new StatCollectorCondCSAMM("GAOnes") {
+                    /**
+                     * 
+                     */
+                    private static final long serialVersionUID = -1927524352420113407L;
+
                     public boolean meetsCondition(Object object) {
                         return (((Beaver) object).type == 'g');
                     }
@@ -79,6 +93,11 @@ public class Bb extends Scape {
                 },
 
                 new StatCollectorCondCSAMM("MAOnes") {
+                    /**
+                     * 
+                     */
+                    private static final long serialVersionUID = 8471511633523923118L;
+
                     public boolean meetsCondition(Object object) {
                         return (((Beaver) object).type == 'm');
                     }
@@ -88,6 +107,11 @@ public class Bb extends Scape {
                     }
                 },
                 new StatCollectorCondCSAMM("SMOnes") {
+                    /**
+                     * 
+                     */
+                    private static final long serialVersionUID = -4568612482588841368L;
+
                     public boolean meetsCondition(Object object) {
                         return (((Beaver) object).type == 's');
                     }
@@ -98,6 +122,11 @@ public class Bb extends Scape {
                 },
 
                 new StatCollectorCondCSAMM("RMOnes") {
+                    /**
+                     * 
+                     */
+                    private static final long serialVersionUID = 2173715284919243224L;
+
                     public boolean meetsCondition(Object object) {
                         return (((Beaver) object).type == 'r');
                     }
@@ -108,6 +137,11 @@ public class Bb extends Scape {
                 },
 
                 new StatCollectorCondCSAMM("GMOnes") {
+                    /**
+                     * 
+                     */
+                    private static final long serialVersionUID = 971721732849969268L;
+
                     public boolean meetsCondition(Object object) {
                         return (((Beaver) object).type == 'g');
                     }
@@ -118,6 +152,11 @@ public class Bb extends Scape {
                 },
 
                 new StatCollectorCondCSAMM("MMOnes") {
+                    /**
+                     * 
+                     */
+                    private static final long serialVersionUID = -254230837428062800L;
+
                     public boolean meetsCondition(Object object) {
                         return (((Beaver) object).type == 'm');
                     }

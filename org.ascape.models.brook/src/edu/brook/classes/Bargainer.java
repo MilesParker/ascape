@@ -13,6 +13,11 @@ import org.ascape.util.Utility;
 
 public class Bargainer extends CellOccupant {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 2002542863366259012L;
+
     protected Strategy[] strategyMemory;
 
     protected int oldestMemory;
@@ -101,7 +106,6 @@ public class Bargainer extends CellOccupant {
     }
 
     public Strategy calculateNextStrategy(Bargainer agent) {
-        Strategy nextStrategy;
         intraLowPlayers = 0;
         intraMediumPlayers = 0;
         intraHighPlayers = 0;

@@ -10,6 +10,11 @@ package edu.brook.sugarscape;
 
 public class SexualAgent extends SugarAgent {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 6828857877206650643L;
+
     private static int minReproductionBeginsAge = 12;
 
     private static int maxReproductionBeginsAge = 15;

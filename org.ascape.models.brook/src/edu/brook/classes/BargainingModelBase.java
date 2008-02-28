@@ -17,6 +17,11 @@ import org.ascape.view.vis.SimplexView;
 
 public class BargainingModelBase extends Scape {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 603123771815863548L;
+
     private int population = 100;
 
     protected int minMemorySize = 20;
@@ -42,6 +47,10 @@ public class BargainingModelBase extends Scape {
     private boolean allMedium;
 
     Rule checkAllMedium = new Rule("Check All Medium") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 7273741592235908013L;
         public void execute(Agent a) {
             if (((Bargainer) a).lastStrategy != Strategy.MEDIUM_STRATEGY) {
                 allMedium = false;
@@ -63,7 +72,7 @@ public class BargainingModelBase extends Scape {
 
     public void createViews() {
 /*
- * agents.addView(new StandardOutView() { public void updateScapeGraphics() {
+ * agents.addView(new ConsoleOutView() { public void updateScapeGraphics() {
  * int iter = scape.getIteration(); if (((float) ( iter) / 1000) == (iter /
  * 1000)) { System.out.println(iter); } allMedium = true;
  * agents.executeOnMembers(checkAllMedium); if (allMedium) {
@@ -159,7 +168,7 @@ return (((Bargainer) object).getLastStrategy() == Strategy.HIGH_STRATEGY);
     }
 
     public void setLowPayoff(float lowPayoff) {
-        this.lowPayoff = lowPayoff;
+        BargainingModelBase.lowPayoff = lowPayoff;
     }
 
     public static float getMediumPayoffStatic() {
@@ -171,7 +180,7 @@ return (((Bargainer) object).getLastStrategy() == Strategy.HIGH_STRATEGY);
     }
 
     public void setMediumPayoff(float mediumPayoff) {
-        this.mediumPayoff = mediumPayoff;
+        BargainingModelBase.mediumPayoff = mediumPayoff;
     }
 
     public static float getHighPayoffStatic() {
@@ -183,6 +192,6 @@ return (((Bargainer) object).getLastStrategy() == Strategy.HIGH_STRATEGY);
     }
 
     public void setHighPayoff(float highPayoff) {
-        this.highPayoff = highPayoff;
+        BargainingModelBase.highPayoff = highPayoff;
     }
 }

@@ -9,6 +9,11 @@ package edu.brook.classes;
 
 public class BargainingModelOne extends BargainingModelBase {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 9127780822989999589L;
+
     public void createViews() {
         super.createViews();
         agents.addView(intraMemoryView);

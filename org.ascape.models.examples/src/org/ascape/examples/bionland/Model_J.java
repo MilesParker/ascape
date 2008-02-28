@@ -32,6 +32,11 @@ import org.ascape.view.vis.Overhead2DView;
 
 public class Model_J extends Scape {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 2691012578787778472L;
+
     private Scape territory;
 
     private Scape redBions;
@@ -56,6 +61,10 @@ public class Model_J extends Scape {
 
     private class BionTile extends HostCell implements Diffusable {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -4163571922371288338L;
         public double redEnergy;
         public double orangeEnergy;
         public double blueEnergy;
@@ -100,24 +109,44 @@ public class Model_J extends Scape {
     }
 
     public static DataPointConcrete REDNESS = new DataPointConcrete() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -6548912296255651919L;
+
         public double getValue(Object o) {
             return ((BionTile) o).getRedEnergy();
         }
     };
 
     public static DataPointConcrete ORANGENESS = new DataPointConcrete() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 5851981999800017782L;
+
         public double getValue(Object o) {
             return ((BionTile) o).getOrangeEnergy();
         }
     };
 
     public static DataPointConcrete BLUENESS = new DataPointConcrete() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 4665664537916960652L;
+
         public double getValue(Object o) {
             return ((BionTile) o).getBlueEnergy();
         }
     };
 
     private final Diffusion diffuse_red_energy = new Diffusion("Diffuse Red Energy") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -8977949662913892576L;
+
         public double getDiffusionValue(Agent agent) {
             return ((BionTile) agent).getRedEnergy();
         }
@@ -128,6 +157,11 @@ public class Model_J extends Scape {
     };
 
     private final Diffusion diffuse_orange_energy = new Diffusion("Diffuse Orange Energy") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 9136669847898834020L;
+
         public double getDiffusionValue(Agent agent) {
             return ((BionTile) agent).getOrangeEnergy();
         }
@@ -138,6 +172,11 @@ public class Model_J extends Scape {
     };
 
     private final Diffusion diffuse_blue_energy = new Diffusion("Diffuse Blue Energy") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 4460860682308069593L;
+
         public double getDiffusionValue(Agent agent) {
             return ((BionTile) agent).getBlueEnergy();
         }
@@ -149,6 +188,10 @@ public class Model_J extends Scape {
 
     private class Bion extends CellOccupant {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 7895509349339838388L;
         protected int vision;
         protected double storedEnergy;
 
@@ -217,6 +260,11 @@ public class Model_J extends Scape {
 
     class RedBion extends Bion {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 6965358797710595963L;
+
         public Color getColor() {
             return Color.red;
         }
@@ -232,6 +280,11 @@ public class Model_J extends Scape {
     }
 
     class OrangeBion extends Bion {
+
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 6107677438721448183L;
 
         public Color getColor() {
             return Color.orange;
@@ -249,6 +302,11 @@ public class Model_J extends Scape {
 
     class BlueBion extends Bion {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -5826448433388490154L;
+
         public Color getColor() {
             return Color.blue;
         }
@@ -264,18 +322,33 @@ public class Model_J extends Scape {
     }
 
     public static Conditional CONTAINS_RED = new Conditional() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -839353417155211171L;
+
         public boolean meetsCondition(Object o) {
             return (((HostCell) o).getOccupant() instanceof RedBion);
         }
     };
 
     public static Conditional CONTAINS_ORANGE = new Conditional() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 6871051476603012119L;
+
         public boolean meetsCondition(Object o) {
             return (((HostCell) o).getOccupant() instanceof OrangeBion);
         }
     };
 
     public static Conditional CONTAINS_BLUE = new Conditional() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 3618342577714693382L;
+
         public boolean meetsCondition(Object o) {
             return (((HostCell) o).getOccupant() instanceof BlueBion);
         }
@@ -283,6 +356,10 @@ public class Model_J extends Scape {
 
     class MoveTowardConditionRule extends Rule {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 2515585693828514588L;
         String name;
         Conditional condition;
 
@@ -301,6 +378,11 @@ public class Model_J extends Scape {
     };
 
     class MoveAwayConditionRule extends MoveTowardConditionRule {
+
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -3460510864872301561L;
 
         public MoveAwayConditionRule(String name, Conditional condition) {
             super(name, condition);
@@ -328,6 +410,10 @@ public class Model_J extends Scape {
 
     class MoveTowardMaximumRule extends Rule {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 2093041848930733937L;
         String name;
         DataPoint point;
 
@@ -346,6 +432,11 @@ public class Model_J extends Scape {
     }
 
     class MoveAwayMaximumRule extends MoveTowardMaximumRule {
+
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -2376099790523694356L;
 
         public MoveAwayMaximumRule(String name, DataPoint point) {
             super(name, point);
@@ -372,24 +463,44 @@ public class Model_J extends Scape {
     public final Rule MOVE_AWAY_BLUE_ENERGY_RULE = new MoveAwayMaximumRule("Move Away Blue Energy", BLUENESS);
 
     public final static Rule LEAVE_ENERGY_RULE = new Rule("Leave Energy") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1179044726619023714L;
+
         public void execute(Agent a) {
             ((Bion) a).leaveEnergy();
         }
     };
 
     public final static Rule CONSUME_RED_ENERGY_RULE = new Rule("Consume Red Energy") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -4457164137542946400L;
+
         public void execute(Agent a) {
             ((Bion) a).consumeRedEnergy();
         }
     };
 
     public final static Rule CONSUME_ORANGE_ENERGY_RULE = new Rule("Consume Orange Energy") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -4306841074908403474L;
+
         public void execute(Agent a) {
             ((Bion) a).consumeOrangeEnergy();
         }
     };
 
     public final static Rule CONSUME_BLUE_ENERGY_RULE = new Rule("Consume Blue Energy") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -6484848846027588479L;
+
         public void execute(Agent a) {
             ((Bion) a).consumeBlueEnergy();
         }
@@ -459,6 +570,11 @@ public class Model_J extends Scape {
         bions.addRule(DEATH_RULE);
         add(bions);
         bions.addStatCollector(new StatCollectorCSAMM(name + " Stored Energy") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -3074448562757396914L;
+
             public double getValue(Object o) {
                 return ((Bion) o).getStoredEnergy();
             }

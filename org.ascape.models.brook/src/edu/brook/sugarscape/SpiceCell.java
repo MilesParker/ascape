@@ -19,7 +19,17 @@ import org.ascape.util.data.StatCollectorCSAMMVar;
 
 public class SpiceCell extends SugarCell {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 7223621178832422771L;
+
     public final static Rule SUGAR_SPICE_GROW_BACK_1_RULE = new Rule("Spice Grow Back 1") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -4775209587056933328L;
+
         public void execute(Agent agent) {
             ((SugarCell) agent).sugarGrowBack1();
             ((SpiceCell) agent).spiceGrowBack1();
@@ -27,6 +37,11 @@ public class SpiceCell extends SugarCell {
     };
 
     public final static Rule SUGAR_SPICE_GROW_BACK_INF_RULE = new Rule("Spice Grow Back Infinte") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -2258096138873875633L;
+
         public void execute(Agent agent) {
             ((SugarCell) agent).sugarGrowBackInf();
             ((SpiceCell) agent).spiceGrowBackInf();
@@ -118,6 +133,11 @@ public class SpiceCell extends SugarCell {
     public void scapeCreated() {
         StatCollector[] stats = {
             new StatCollectorCSAMMVar() {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 8078025333157961684L;
+
                 public double getValue(Object object) {
                     return ((SpiceCell) object).getSugarQuantity();
                 }
@@ -127,6 +147,11 @@ public class SpiceCell extends SugarCell {
                 }
             },
             new StatCollectorCSAMMVar() {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = -3051490002423025967L;
+
                 public double getValue(Object object) {
                     return ((SpiceCell) object).getSpiceQuantity();
                 }

@@ -10,6 +10,11 @@ package edu.brook.classes;
 
 public class PeytonBargainer extends BargainerTagged {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -6613748910643126385L;
+
     public Strategy calculateNextStrategy(Bargainer agent) {
         calculateMemoryCounts();
         if (((BargainerTagged) agent).tag == this.tag) {

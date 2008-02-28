@@ -26,6 +26,11 @@ import org.ascape.util.Utility;
  */
 public class TradeT extends Rule {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -2269346057039381061L;
+
     public TradeT() {
         super("Trade");
     }

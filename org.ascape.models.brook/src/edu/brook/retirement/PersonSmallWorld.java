@@ -23,6 +23,11 @@ import org.ascape.model.space.Coordinate2DDiscrete;
  **/
 public class PersonSmallWorld extends Cell {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 307316300087264178L;
+
     public final static int RATIONAL = 1;
 
     public final static int IMITATOR = 2;

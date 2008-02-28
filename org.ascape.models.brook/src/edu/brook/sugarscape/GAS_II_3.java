@@ -16,6 +16,11 @@ import org.ascape.view.vis.ChartView;
 
 public class GAS_II_3 extends GAS_II_2 {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1854992312550139759L;
+
     public void createViews() {
         super.createViews();
         agents.addStatCollector(new StatCollector("All"));

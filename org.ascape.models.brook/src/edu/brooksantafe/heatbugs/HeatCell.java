@@ -18,9 +18,19 @@ import org.ascape.util.data.DataPointConcrete;
 public class HeatCell extends HostCell implements Diffusable {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = -3256626039608216834L;
+
+    /**
      * A data point used within a maximizing search to find the cell with the highest heat point.
      */
     public final static DataPoint MAXIMUM_HEAT_POINT = new DataPointConcrete("Maximum Heat") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 3755810443335739012L;
+
         public double getValue(Object o) {
             return ((HeatCell) o).getHeat();
         }
@@ -30,6 +40,11 @@ public class HeatCell extends HostCell implements Diffusable {
      * A data point used within a maximizing search to find the cell with the lowest heat point.
      */
     public final static DataPoint MINIMUM_HEAT_POINT = new DataPointConcrete("Minimum Heat") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 6976409253482738480L;
+
         public double getValue(Object o) {
             return -((HeatCell) o).getHeat();
         }

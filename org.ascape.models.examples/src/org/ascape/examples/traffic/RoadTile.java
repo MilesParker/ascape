@@ -20,7 +20,17 @@ import org.ascape.util.vis.DrawFeature;
 
 public class RoadTile extends HostCell {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 2547119597302364712L;
+
     public final static DrawFeature DRAW_LANE_MARKINGS = new DrawFeature("Draw Lane Markings") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -425768204643441623L;
+
         public final void draw(Graphics g, Object object, int width, int height) {
             if (((Coordinate2DDiscrete) ((RoadTile) object).getCoordinate()).getYValue() != 0) {
                 g.setColor(Color.white);

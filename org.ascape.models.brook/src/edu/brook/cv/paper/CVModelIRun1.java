@@ -11,6 +11,11 @@ import edu.brook.cv.Citizen;
 
 public class CVModelIRun1 extends CVModelI {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -7577047616416112439L;
+
     public void createScape() {
         super.createScape();
         copVision = 1.7;

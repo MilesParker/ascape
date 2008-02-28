@@ -20,6 +20,11 @@ import org.ascape.model.Scape;
 public class ProfitFirm extends Firm {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 8732514745576095705L;
+
+    /**
      * The current compensation.
      */
     private double currentCompensation = 1 + Math.random() * .2;

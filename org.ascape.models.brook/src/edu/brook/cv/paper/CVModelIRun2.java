@@ -10,6 +10,11 @@ package edu.brook.cv.paper;
 
 public class CVModelIRun2 extends CVModelI {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -429945992065495397L;
+
     public void createScape() {
         super.createScape();
         //Rnadom seed used for working paper...

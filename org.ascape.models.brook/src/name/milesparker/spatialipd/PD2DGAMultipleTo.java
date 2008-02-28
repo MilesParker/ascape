@@ -13,16 +13,26 @@ import java.io.IOException;
 import org.ascape.model.event.ScapeEvent;
 import org.ascape.util.sweep.SweepDimension;
 import org.ascape.util.sweep.SweepLink;
+import org.ascape.view.nonvis.ConsoleOutView;
 import org.ascape.view.nonvis.DataOutputView;
-import org.ascape.view.nonvis.StandardOutView;
 import org.ascape.view.nonvis.SweepControlView;
 
 
 public class PD2DGAMultipleTo extends PD2DGA {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 5819146031963269842L;
+
     public void createViews() {
         //super.createViews();
         DataOutputView dataView = new DataOutputView() {
+
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 1052809134828172805L;
             /*public void writeRunHeader() throws IOException {
                 super.writeRunHeader();
                 runDataStream.writeBytes("\t");
@@ -41,7 +51,7 @@ public class PD2DGAMultipleTo extends PD2DGA {
         } catch (IOException e) {
             throw new RuntimeException(e.toString());
         }
-        addView(new StandardOutView());
+        addView(new ConsoleOutView());
         SweepControlView sweep = new SweepControlView();
         SweepLink doNothing = new SweepLink();
         doNothing.addMember(new SweepDimension(this, "MemorySize", 1, 1));
@@ -62,7 +72,7 @@ public class PD2DGAMultipleTo extends PD2DGA {
         super.scapeIterated(event);
         System.out.println(getPeriod() + "   " + getAgents().getSize());
         if ((getAgents().getSize() == 0) && (getPeriod() != 0)) {
-            getModel().stop();
+            getRunner().stop();
         }
     }
 }

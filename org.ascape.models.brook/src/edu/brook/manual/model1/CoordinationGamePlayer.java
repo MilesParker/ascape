@@ -14,7 +14,12 @@ import org.ascape.model.CellOccupant;
 
 public class CoordinationGamePlayer extends CellOccupant {
 
-// cgplayer variables
+/**
+     * 
+     */
+    private static final long serialVersionUID = 2019376126545647516L;
+
+    // cgplayer variables
     protected Color myColor;
 
     protected int totalScore;

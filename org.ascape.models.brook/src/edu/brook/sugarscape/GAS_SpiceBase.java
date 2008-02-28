@@ -23,6 +23,10 @@ import org.ascape.util.vis.ColorFeatureGradiated;
  */
 public class GAS_SpiceBase extends GAS_Base {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 5886348096049907358L;
     private float spiceMoundness = .008f; // was .004
     private int minSpiceMetabolism = 1;  // was 1
     private int maxSpiceMetabolism = 3; // was 4
@@ -137,6 +141,11 @@ public class GAS_SpiceBase extends GAS_Base {
         super.createViews();
         final ColorFeatureGradiated colorCellForSugar = new ColorFeatureGradiated("Sugar");
         colorCellForSugar.setDataPoint(new UnitIntervalDataPoint() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 934997267282438193L;
+
             public double getValue(Object object) {
                 return ((double) ((SpiceCell) object).getSugar().getQuantity() / (double) SpiceCell.MAX_SUGAR);
             }
@@ -145,12 +154,22 @@ public class GAS_SpiceBase extends GAS_Base {
 
         final ColorFeatureGradiated colorCellForSpice = new ColorFeatureGradiated("Spice");
         colorCellForSpice.setDataPoint(new UnitIntervalDataPoint() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -7722867828090284365L;
+
             public double getValue(Object object) {
                 return ((double) ((SpiceCell) object).getSpice().getQuantity() / (double) SpiceCell.MAX_SPICE);
             }
         });
         colorCellForSpice.setMaximumColor(Color.pink);
         ColorFeature colorSugarOrSpice = new ColorFeatureConcrete("colorSugarOrSpice") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 6668081586209688060L;
+
             public Color getColor(Object object) {
                 if (((SpiceCell) object).getSpice().getQuantity() > ((SpiceCell) object).getSugar().getQuantity()) {
                     return colorCellForSpice.getColor(object);

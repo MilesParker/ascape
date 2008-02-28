@@ -16,7 +16,12 @@ import org.ascape.model.rule.Rule;
 
 public class CoordinationGamePlayer extends CellOccupant {
 
-// cgplayer variables
+/**
+     * 
+     */
+    private static final long serialVersionUID = 6815417614812196706L;
+
+    // cgplayer variables
     protected Color myColor;
 
     protected int totalScore;
@@ -43,6 +48,11 @@ public class CoordinationGamePlayer extends CellOccupant {
     public void scapeCreated() {
         getScape().addInitialRule(MOVE_RANDOM_LOCATION_RULE);
         getScape().addInitialRule(new Rule("SetNewNetwork") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -1127496411806208606L;
+
             public void execute(Agent agent) {
                 ((CoordinationGamePlayer) agent).setNewNetwork();
             }

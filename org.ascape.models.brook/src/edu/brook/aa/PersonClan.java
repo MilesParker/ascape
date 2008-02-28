@@ -10,6 +10,10 @@ package edu.brook.aa;
 
 public class PersonClan extends Person {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -2839096845066088358L;
     public ClanFindMateRule findMate = new ClanFindMateRule(this);
 
     public void formHousehold() {

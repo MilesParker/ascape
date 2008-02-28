@@ -10,7 +10,7 @@ package edu.brook.aa;
 import java.io.File;
 import java.io.IOException;
 
-import org.ascape.model.ModelRoot;
+import org.ascape.runtime.Runner;
 import org.ascape.util.data.StatCollector;
 import org.ascape.util.data.StatCollectorCalculated;
 import org.ascape.util.sweep.SweepDimension;
@@ -21,8 +21,13 @@ import org.ascape.view.nonvis.SweepControlView;
 
 public class LHVTest extends LHV {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 8839050509811991896L;
+
     public void createScape() {
-        ModelRoot.setDisplayGraphics(false);
+        Runner.setDisplayGraphics(false);
         super.createScape();
     }
 
@@ -53,6 +58,11 @@ public class LHVTest extends LHV {
 
         final StatCollector householdCount = getData().getStatCollector("Historic Households");
         addStatCollector(new StatCollectorCalculated("Difference Squared") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -7962434131328292911L;
+
             public double calculateValue() {
                 return (householdCount.getCount());
             }

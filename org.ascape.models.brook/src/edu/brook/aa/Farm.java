@@ -11,6 +11,11 @@ import org.ascape.model.Cell;
 
 public class Farm extends Cell {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 7663675971484207117L;
+
     public HouseholdBase household;
 
     public Location location;

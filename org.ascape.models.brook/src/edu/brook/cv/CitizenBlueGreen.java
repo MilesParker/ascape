@@ -19,6 +19,11 @@ import org.ascape.util.vis.ImageFeatureFixed;
 
 public class CitizenBlueGreen extends Citizen {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -7603826765719581905L;
+
     public final static int GREEN = 1;
 
     public final static int BLUE = 2;
@@ -30,6 +35,11 @@ public class CitizenBlueGreen extends Citizen {
      * If active, not in jail, and blue, attacks a random green agent (if any) within vision.
      */
     public static final Rule ATTACK_BLUE_ON_GREEN_RULE = new Rule("Attack Blue on Green") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 8635609358165079856L;
+
         public void execute(Agent agent) {
             ((CitizenBlueGreen) agent).attackBlueOnGreen();
         }
@@ -40,6 +50,11 @@ public class CitizenBlueGreen extends Citizen {
      * If active, and not in jail, attacks a random agent in other group (if any) within vision.
      */
     public static final Rule ATTACK_RETRIBUTION_RULE = new Rule("Attack Other Retribution") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -674067405365556196L;
+
         public void execute(Agent agent) {
             ((CitizenBlueGreen) agent).attackOther();
         }
@@ -50,6 +65,11 @@ public class CitizenBlueGreen extends Citizen {
      * If active, and not in jail, attacks a random agent in other group (if any) within vision.
      */
     public static final Rule ATTACK_RETALIATION_RULE = new Rule("Attack Other Retaliation") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -4122674017903866183L;
+
         public void execute(Agent agent) {
             ((CitizenBlueGreen) agent).attackRetaliation();
         }
@@ -60,6 +80,11 @@ public class CitizenBlueGreen extends Citizen {
      * If active, and not in jail, attacks a random active agent in other group (if any) within vision.
      */
     public static final Rule ATTACK_OTHER_ACTIVE_RULE = new Rule("Attack Other Active Group") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 4750515708495944888L;
+
         public void execute(Agent agent) {
             ((CitizenBlueGreen) agent).attackOtherActive();
         }
@@ -69,6 +94,11 @@ public class CitizenBlueGreen extends Citizen {
      * A rule causing the agent to decide wether it is active or not.
      */
     public static final Rule DECIDE_STATE_RETRIBUTION = new Rule("Decide State with Retaliation") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 2281425065668639776L;
+
         public void execute(Agent agent) {
             ((CitizenBlueGreen) agent).decideStateWithRetaliation();
         }
@@ -78,6 +108,11 @@ public class CitizenBlueGreen extends Citizen {
      * A rule causing the agent to decide wether it is active or not.
      */
     public static final Rule DECIDE_STATE_RETRIBUTION_2 = new Rule("Decide State with Retaliation") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -6002749279860654647L;
+
         public void execute(Agent agent) {
             ((CitizenBlueGreen) agent).decideStateWithRetaliation2();
         }
@@ -87,12 +122,22 @@ public class CitizenBlueGreen extends Citizen {
      * A rule causing the agent to decide wether it is active or not.
      */
     public static final Rule DECIDE_STATE_RETRIBUTION_3 = new Rule("Decide State with Retaliation") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 2382516617115195285L;
+
         public void execute(Agent agent) {
             ((CitizenBlueGreen) agent).decideStateWithRetaliation3();
         }
     };
 
     public static Conditional CONTAINS_GREEN = new Conditional() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 6151991725773643281L;
+
         public boolean meetsCondition(Object o) {
             CellOccupant a = (CellOccupant) ((HostCell) o).getOccupant();
             if ((a instanceof Citizen) && (((CitizenBlueGreen) a).group == GREEN)) {
@@ -103,6 +148,11 @@ public class CitizenBlueGreen extends Citizen {
     };
 
     public static Conditional CONTAINS_BLUE = new Conditional() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -1343216810218216829L;
+
         public boolean meetsCondition(Object o) {
             CellOccupant a = (CellOccupant) ((HostCell) o).getOccupant();
             if ((a instanceof Citizen) && (((CitizenBlueGreen) a).group == BLUE)) {
@@ -113,6 +163,11 @@ public class CitizenBlueGreen extends Citizen {
     };
 
     public static Conditional CONTAINS_GREEN_ACTIVE = new Conditional() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 3878875677058467617L;
+
         public boolean meetsCondition(Object o) {
             if (CONTAINS_ACTIVE.meetsCondition(o)) {
                 CellOccupant a = (CellOccupant) ((HostCell) o).getOccupant();
@@ -125,6 +180,11 @@ public class CitizenBlueGreen extends Citizen {
     };
 
     public static Conditional CONTAINS_BLUE_ACTIVE = new Conditional() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 7405300019073445321L;
+
         public boolean meetsCondition(Object o) {
             if (CONTAINS_ACTIVE.meetsCondition(o)) {
                 CellOccupant a = (CellOccupant) ((HostCell) o).getOccupant();
@@ -316,9 +376,9 @@ requestUpdate();
 
     public final void kill(Citizen victim) {
         if (group == BLUE) {
-            getScape().getData().getStatCollector("Greens Killed By Blue").addValue(0.0);
+            getScape().getRunner().getData().getStatCollector("Greens Killed By Blue").addValue(0.0);
         } else {
-            getScape().getData().getStatCollector("Blues Killed By Green").addValue(0.0);
+            getScape().getRunner().getData().getStatCollector("Blues Killed By Green").addValue(0.0);
         }
         victim.die();
     }

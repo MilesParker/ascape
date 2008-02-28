@@ -11,6 +11,11 @@ import org.ascape.model.AscapeObject;
 
 public class CVModelIIRun4aandb extends CVModelIIRun2and3 {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 6305846432005601083L;
+
     public void createScape() {
         super.createScape();
         initialCopDensity = .04;

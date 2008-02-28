@@ -25,6 +25,11 @@ import org.ascape.view.vis.Overhead2DContinuousView;
 
 public class Model_Q extends Scape {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 6908142220214361373L;
+
     private Scape territory;
 
     private Scape redBions;
@@ -45,6 +50,10 @@ public class Model_Q extends Scape {
 
     private class Bion extends LocatedAgent {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1465257738623963424L;
         protected double vision;
         protected double velocity;
 
@@ -74,6 +83,11 @@ public class Model_Q extends Scape {
 
     class RedBion extends Bion {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -8087225336656891911L;
+
         public Color getColor() {
             return Color.red;
         }
@@ -88,6 +102,11 @@ public class Model_Q extends Scape {
     }
 
     class OrangeBion extends Bion {
+
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -6419258005253043572L;
 
         public Color getColor() {
             return Color.orange;
@@ -104,6 +123,11 @@ public class Model_Q extends Scape {
 
     class BlueBion extends Bion {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 7255175846367767254L;
+
         public Color getColor() {
             return Color.blue;
         }
@@ -119,6 +143,10 @@ public class Model_Q extends Scape {
 
     class MoveTowardConditionRule extends Rule {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 7232297596488751244L;
         String name;
         Conditional condition;
 
@@ -138,6 +166,11 @@ public class Model_Q extends Scape {
 
     class MoveAwayConditionRule extends MoveTowardConditionRule {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -9171389514833109396L;
+
         public MoveAwayConditionRule(String name, Conditional condition) {
             super(name, condition);
         }
@@ -151,18 +184,33 @@ public class Model_Q extends Scape {
     };
 
     public static Conditional CONTAINS_RED = new Conditional() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -3845517710729322797L;
+
         public boolean meetsCondition(Object o) {
             return (o instanceof RedBion);
         }
     };
 
     public static Conditional CONTAINS_ORANGE = new Conditional() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 8377185056087828144L;
+
         public boolean meetsCondition(Object o) {
             return (o instanceof OrangeBion);
         }
     };
 
     public static Conditional CONTAINS_BLUE = new Conditional() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1513704421006648535L;
+
         public boolean meetsCondition(Object o) {
             return (o instanceof BlueBion);
         }

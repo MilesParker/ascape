@@ -16,11 +16,20 @@ import org.ascape.util.Conditional;
 
 public class Obstacle extends MomentumAgent {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 4682987456440494084L;
     private Conditional boid;
 
     public void initialize() {
         super.initialize();
         boid = new Conditional() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -3339428292053346642L;
+
             public boolean meetsCondition(Object o) {
                 return o instanceof Boid;
             }

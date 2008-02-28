@@ -10,6 +10,11 @@ package edu.brook.sugarscape;
 
 public class GAS_IV_c extends GAS_IV_1 {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -8855423718427062635L;
+
     public void createScape() {
         super.createScape();
         agents.addRule(new TradeT3());

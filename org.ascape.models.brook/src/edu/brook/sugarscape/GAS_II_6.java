@@ -11,6 +11,11 @@ import org.ascape.model.rule.MoveRandomWithin;
 
 public class GAS_II_6 extends GAS_II_2 {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -6891001884991349614L;
+
     public void createScape() {
         super.createScape();
         setSugarMoundness(.0037f);

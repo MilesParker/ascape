@@ -10,6 +10,11 @@ package edu.brook.classes;
 
 public class Figure7 extends Figure6 {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1208719571557483439L;
+
     public void createScape() {
         super.createScape();
         agents.getInitialRules().select("Intra High/Low");

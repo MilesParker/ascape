@@ -14,6 +14,7 @@ import org.ascape.model.Scape;
 import org.ascape.model.rule.Rule;
 import org.ascape.model.space.Array2DMoore;
 import org.ascape.model.space.Coordinate2DDiscrete;
+import org.ascape.runtime.swing.DesktopEnvironment;
 import org.ascape.util.data.StatCollector;
 import org.ascape.util.data.StatCollectorCond;
 import org.ascape.view.vis.ChartView;
@@ -21,6 +22,11 @@ import org.ascape.view.vis.Overhead2DView;
 
 
 public class ABCDEFModel extends Scape {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -4539607186730331772L;
 
     protected int span = 10;
 
@@ -34,6 +40,11 @@ public class ABCDEFModel extends Scape {
         cells.setPrototypeAgent(new ABCDEFCell());
         cells.getRules().clear();
         cells.addRule(new Rule("Decide action") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 1613828427092776595L;
+
             public void execute(Agent a) {
                 ((ABCDEFCell) a).decideAction();
             }
@@ -59,61 +70,121 @@ public class ABCDEFModel extends Scape {
         //overheadView.getDrawSelection().setSelected("Black & White", true);
         final StatCollector[] stats = {
             new StatCollectorCond(".4 Above") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = -2517957250177288267L;
+
                 public boolean meetsCondition(Object object) {
                     return ((((ABCDEFCell) object).action == ABCDEFCell.C) && (((ABCDEFCell) object).isAbove()));
                 }
             },
             new StatCollectorCond(".5 Above") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = -92935995073631806L;
+
                 public boolean meetsCondition(Object object) {
                     return ((((ABCDEFCell) object).action == ABCDEFCell.B) && (((ABCDEFCell) object).isAbove()));
                 }
             },
             new StatCollectorCond(".6 Above") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = -7533252159672439017L;
+
                 public boolean meetsCondition(Object object) {
                     return ((((ABCDEFCell) object).action == ABCDEFCell.A) && (((ABCDEFCell) object).isAbove()));
                 }
             },
             new StatCollectorCond(".7 Above") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 1391130853409262577L;
+
                 public boolean meetsCondition(Object object) {
                     return ((((ABCDEFCell) object).action == ABCDEFCell.F) && (((ABCDEFCell) object).isAbove()));
                 }
             },
             new StatCollectorCond(".8 Above") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = -872369415223672318L;
+
                 public boolean meetsCondition(Object object) {
                     return ((((ABCDEFCell) object).action == ABCDEFCell.E) && (((ABCDEFCell) object).isAbove()));
                 }
             },
             new StatCollectorCond(".9 Above") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 8092322670885996141L;
+
                 public boolean meetsCondition(Object object) {
                     return ((((ABCDEFCell) object).action == ABCDEFCell.D) && (((ABCDEFCell) object).isAbove()));
                 }
             },
             new StatCollectorCond(".4 Below") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = -2741618534906475573L;
+
                 public boolean meetsCondition(Object object) {
                     return ((((ABCDEFCell) object).action == ABCDEFCell.C) && !(((ABCDEFCell) object).isAbove()));
                 }
             },
             new StatCollectorCond(".5 Below") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 1302265613146811245L;
+
                 public boolean meetsCondition(Object object) {
                     return ((((ABCDEFCell) object).action == ABCDEFCell.B) && !(((ABCDEFCell) object).isAbove()));
                 }
             },
             new StatCollectorCond(".6 Below") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = -5926153306106169760L;
+
                 public boolean meetsCondition(Object object) {
                     return ((((ABCDEFCell) object).action == ABCDEFCell.A) && !(((ABCDEFCell) object).isAbove()));
                 }
             },
             new StatCollectorCond(".7 Below") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = -7931591189206725628L;
+
                 public boolean meetsCondition(Object object) {
                     return ((((ABCDEFCell) object).action == ABCDEFCell.F) && !(((ABCDEFCell) object).isAbove()));
                 }
             },
             new StatCollectorCond(".8 Below") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = -568015063352681396L;
+
                 public boolean meetsCondition(Object object) {
                     return ((((ABCDEFCell) object).action == ABCDEFCell.E) && !(((ABCDEFCell) object).isAbove()));
                 }
             },
             new StatCollectorCond(".9 Below") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 4196661452132806270L;
+
                 public boolean meetsCondition(Object object) {
                     return ((((ABCDEFCell) object).action == ABCDEFCell.D) && !(((ABCDEFCell) object).isAbove()));
                 }
@@ -121,7 +192,7 @@ public class ABCDEFModel extends Scape {
         };
         cells.addStatCollectors(stats);
 
-        if (!(getUserEnvironment().isInApplet())) {
+        if (!(((DesktopEnvironment) getUIEnvironment()).isInApplet())) {
             ChartView aboveChart = new ChartView();
             aboveChart.setName("Action Above");
             cells.addView(aboveChart);

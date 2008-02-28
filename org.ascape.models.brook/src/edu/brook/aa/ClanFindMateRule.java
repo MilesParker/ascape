@@ -11,6 +11,11 @@ import org.ascape.model.Agent;
 
 public class ClanFindMateRule extends FindMateRule {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 938548733973182435L;
+
     public ClanFindMateRule(Person candidate) {
         super(candidate);
     }

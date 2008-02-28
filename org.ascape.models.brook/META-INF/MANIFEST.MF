@@ -4,7 +4,8 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Brookings Institution Ascape Models
 Bundle-SymbolicName: org.ascape.models.brook
 Bundle-Version: 5.0.0
-Require-Bundle: org.ascape.common
+Require-Bundle: org.ascape.core;bundle-version="5.1.0",
+ org.ascape.ui.swing;bundle-version="5.1.0"
 Export-Package: edu.brook.Simple,
  edu.brook.aa,
  edu.brook.bb,

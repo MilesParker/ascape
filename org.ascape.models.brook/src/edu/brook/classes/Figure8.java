@@ -10,6 +10,11 @@ package edu.brook.classes;
 
 public class Figure8 extends Figure6 {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -217307046772672615L;
+
     public void createScape() {
         super.createScape();
         setRandomStrategyProbability(0.20f);

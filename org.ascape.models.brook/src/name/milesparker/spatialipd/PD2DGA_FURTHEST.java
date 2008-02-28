@@ -10,6 +10,11 @@ package name.milesparker.spatialipd;
 
 public class PD2DGA_FURTHEST extends PD2DGA {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -1027159318750853313L;
+
     public void createScape() {
         super.createScape();
         getAgents().getRules().setSelected(PLAY_RANDOM_NEIGHBOR_RULE, false);

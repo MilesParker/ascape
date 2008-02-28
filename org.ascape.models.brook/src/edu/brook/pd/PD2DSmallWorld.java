@@ -15,6 +15,11 @@ import org.ascape.model.space.Coordinate2DDiscrete;
 public class PD2DSmallWorld extends PD2D {
 
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 5158669672840347959L;
+
     public void createScape() {
         super.createScape();
         remove(lattice);

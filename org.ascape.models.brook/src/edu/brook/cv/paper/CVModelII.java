@@ -11,6 +11,11 @@ import edu.brook.cv.CVModelInterGroup;
 
 public class CVModelII extends CVModelInterGroup {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 8870616353267658192L;
+
     public void createScape() {
         super.createScape();
         //setRandomSeed(941562289135L);

@@ -15,6 +15,11 @@ import org.ascape.model.Agent;
 
 public class BargainerTagged extends Bargainer {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 6934825613101465571L;
+
     public static final int LIGHT_TAG = -1;
 
     public static final int DARK_TAG = 1;

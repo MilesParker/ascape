@@ -22,13 +22,28 @@ import org.ascape.model.space.Coordinate2DDiscrete;
  */
 public class SugarCell extends HostCell {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 4734924131622807190L;
+
     public final static Rule SUGAR_GROW_BACK_1_RULE = new Rule("Sugar-Grow Back 1") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -8547038931024510748L;
+
         public void execute(Agent agent) {
             ((SugarCell) agent).sugarGrowBack1();
         }
     };
 
     public final static Rule SUGAR_GROW_BACK_INF_RULE = new Rule("Sugar-Grow Back Infinite") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -6094304727680075963L;
+
         public void execute(Agent agent) {
             ((SugarCell) agent).sugarGrowBackInf();
         }

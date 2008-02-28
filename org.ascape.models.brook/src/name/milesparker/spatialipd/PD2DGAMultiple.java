@@ -12,16 +12,26 @@ import java.io.IOException;
 
 import org.ascape.util.sweep.SweepDimension;
 import org.ascape.util.sweep.SweepLink;
+import org.ascape.view.nonvis.ConsoleOutView;
 import org.ascape.view.nonvis.DataOutputView;
-import org.ascape.view.nonvis.StandardOutView;
 import org.ascape.view.nonvis.SweepControlView;
 
 
 public class PD2DGAMultiple extends PD2DGA {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -6376060604942893005L;
+
     public void createViews() {
         //super.createViews();
         DataOutputView dataView = new DataOutputView() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -8079291156256729800L;
+
             public void writeRunHeader() throws IOException {
                 super.writeRunHeader();
                 runDataStream.writeBytes("\t");
@@ -61,7 +71,7 @@ public class PD2DGAMultiple extends PD2DGA {
         } catch (IOException e) {
             throw new RuntimeException(e.toString());
         }
-        addView(new StandardOutView());
+        addView(new ConsoleOutView());
         SweepControlView sweep = new SweepControlView();
         SweepLink doNothing = new SweepLink();
         doNothing.addMember(new SweepDimension(this, "MemorySize", 1, 1));

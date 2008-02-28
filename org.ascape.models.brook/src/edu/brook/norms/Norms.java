@@ -28,6 +28,10 @@ import org.ascape.view.vis.Scrolling1DView;
 
 public class Norms extends Scape {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -8346760837643636831L;
     private double ambientNoise = .03;//set ambient=crisis in constant-noise cases.
     private double tolerance = .05;
     private int initMaxRadius = 10;//Default is 10
@@ -39,6 +43,11 @@ public class Norms extends Scape {
     private StatCollector[] values;
 
     public class NormCell extends Cell {
+
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -4201627518794467460L;
 
         protected int strategy = 0;
 
@@ -77,17 +86,32 @@ public class Norms extends Scape {
 
         public void scapeCreated() {
             scape.addRule(new Rule("Update Radius & Strategy") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = -7630790252873313917L;
+
                 public void execute(Agent agent) {
                     ((NormCell) agent).updateRadius();
                     ((NormCell) agent).updateStrategy();
                 }
             });
             scape.addRule(new Rule("Update Radius Only") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 782487720819697595L;
+
                 public void execute(Agent agent) {
                     ((NormCell) agent).updateRadius();
                 }
             }, false);
             scape.addRule(new Rule("Update Strategy Only") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 6448955998139337111L;
+
                 public void execute(Agent agent) {
                     ((NormCell) agent).updateStrategy();
                 }
@@ -96,6 +120,11 @@ public class Norms extends Scape {
                 valueCollector = new CollectStats();
                 values = new StatCollector[1];
                 values[0] = new StatCollectorCSAMM() {
+                    /**
+                     * 
+                     */
+                    private static final long serialVersionUID = 981681713575230657L;
+
                     public double getValue(Object object) {
                         return ((NormCell) object).getStrategy();
                     }
@@ -213,6 +242,11 @@ public class Norms extends Scape {
         //Collect the statistics to support views
         StatCollector[] stats = new StatCollector[3];
         stats[0] = new StatCollectorCondCSAMMVar("Radius") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -4942178570771647277L;
+
             public boolean meetsCondition(Object object) {
                 return (!((NormCell) object).strategyFixed && !((NormCell) object).radiusFixed);
             }
@@ -222,11 +256,21 @@ public class Norms extends Scape {
             }
         };
         stats[1] = new StatCollectorCond("Yellow") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 2321787007979922009L;
+
             public boolean meetsCondition(Object object) {
                 return (((NormCell) object).getStrategy() == 0);
             }
         };
         stats[2] = new StatCollectorCond("Blue") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -227900715357870804L;
+
             public boolean meetsCondition(Object object) {
                 return (((NormCell) object).getStrategy() == 1);
             }
@@ -247,6 +291,11 @@ public class Norms extends Scape {
         radiusView.setName("Radius");
         ColorFeatureGradiated cellColor =
             new ColorFeatureGradiated("Radius", Color.white, Color.black, new UnitIntervalDataPoint() {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = -9060315707944996127L;
+
                 public double getValue(Object object) {
                     return ((((NormCell) object).getRadius() - 1.0) / whiteRadiusMinusOne);//2.5
                 }
@@ -260,7 +309,7 @@ public class Norms extends Scape {
         addViews(views);
 
         //And time series
-        if (!(getUserEnvironment().isInApplet())) {
+        if (!(getUIEnvironment().isInApplet())) {
             ChartView ts = new ChartView();
             addView(ts);
             ts.addSeries("Variance Radius", Color.blue);

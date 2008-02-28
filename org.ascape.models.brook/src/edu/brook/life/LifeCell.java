@@ -40,6 +40,11 @@ import org.ascape.util.Conditional;
 public class LifeCell extends Cell {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = -5249250491439819467L;
+
+    /**
      * A conditional is a class that is used to determine whether some object passed
      * to it meets a set condition. In this case, it simply determines wheteher a life
      * cell is alive or not. In Java, classes like this serve a similar role as function
@@ -47,6 +52,11 @@ public class LifeCell extends Cell {
      * on any kind of object.
      */
     public final static Conditional IS_ALIVE = new Conditional() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 522038176098992877L;
+
         public boolean meetsCondition(Object object) {
             return ((LifeCell) object).alive;
         }

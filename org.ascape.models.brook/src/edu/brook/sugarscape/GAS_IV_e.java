@@ -16,6 +16,11 @@ import org.ascape.model.space.Coordinate2DDiscrete;
 
 public class GAS_IV_e extends GAS_SpiceBase {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -1957911852008665808L;
+
     public void createScape() {
         setPrototypeAgent(new Scape());
         sugarscape = new Scape(new Array2DVonNeumann());

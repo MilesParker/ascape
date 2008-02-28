@@ -23,6 +23,11 @@ import org.ascape.model.Scape;
 public class Employee extends Cell {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 5544200456273860689L;
+
+    /**
      * The Constant CURRENT_FIRM_OPTION.
      */
     protected final static int CURRENT_FIRM_OPTION = -2;
@@ -115,7 +120,7 @@ public class Employee extends Cell {
      *            the new firms
      */
     public void setFirms(Scape firms) {
-        this.firms = firms;
+        Employee.firms = firms;
     }
 
     /* (non-Javadoc)

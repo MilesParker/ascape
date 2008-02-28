@@ -24,6 +24,11 @@ import org.ascape.util.vis.Drawable;
 
 public class HistoricSettlement extends Cell implements Drawable {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -6290387961249914907L;
+
     private int SARGnumber;
 
     private int metersNorth;
@@ -133,6 +138,11 @@ public class HistoricSettlement extends Cell implements Drawable {
 
     final ColorFeatureGradiated settlementColorFeature =
         new ColorFeatureGradiated("Settlement Size", Color.black, (new UnitIntervalDataPoint() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 1992474238329035019L;
+
             public double getValue(Object object) {
                 return ((double) (((HistoricSettlement) object).getHouseholdCount()) / 10.0);
             }
@@ -141,6 +151,11 @@ public class HistoricSettlement extends Cell implements Drawable {
     public void scapeCreated() {
         StatCollector[] stats = new StatCollector[2];
         stats[0] = new StatCollectorCondCSA("Historic Households") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -890759850053222387L;
+
             public boolean meetsCondition(Object object) {
                 return ((HistoricSettlement) object).isExtant();
             }
@@ -150,6 +165,11 @@ public class HistoricSettlement extends Cell implements Drawable {
             }
         };
         stats[1] = new StatCollectorCondCSAMM("Historic Household Size") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 1466828234754387324L;
+
             public boolean meetsCondition(Object object) {
                 return ((HistoricSettlement) object).isExtant();
             }

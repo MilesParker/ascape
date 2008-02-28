@@ -15,6 +15,11 @@ import org.ascape.model.space.Coordinate2DDiscrete;
 public class PD2DCellular extends PD2D {
 
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 808705740532822589L;
+
     public void createScape() {
         super.createScape();
         //Create a 2D lattice (we'll be using von Neumann Geometry.)

@@ -16,6 +16,10 @@ import org.ascape.model.Scape;
 
 public class SimpleAgent extends CellOccupant {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -4066901383850640902L;
     static int counter;
     static SimpleAgent theAgent;
 

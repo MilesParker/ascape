@@ -24,6 +24,11 @@ import org.ascape.view.vis.Overhead2DView;
 
 public class Model_D extends Scape {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -7937011137848939907L;
+
     private Scape territory;
 
     private Scape redBions;
@@ -40,6 +45,11 @@ public class Model_D extends Scape {
 
     private class BionTile extends HostCell {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -1197497701413117063L;
+
         public Color getColor() {
             return Color.black;
         }
@@ -47,6 +57,10 @@ public class Model_D extends Scape {
 
     private class Bion extends CellOccupant {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -5233614345769882393L;
         protected int vision;
 
         public void initialize() {
@@ -65,12 +79,22 @@ public class Model_D extends Scape {
 
     class RedBion extends Bion {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 8229884402538058471L;
+
         public Color getColor() {
             return Color.red;
         }
     }
 
     class OrangeBion extends Bion {
+
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -6047010079707482465L;
 
         public Color getColor() {
             return Color.orange;
@@ -79,24 +103,44 @@ public class Model_D extends Scape {
 
     class BlueBion extends Bion {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -1359443173099728200L;
+
         public Color getColor() {
             return Color.blue;
         }
     }
 
     public static Conditional CONTAINS_RED = new Conditional() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1231177062826636071L;
+
         public boolean meetsCondition(Object o) {
             return (((HostCell) o).getOccupant() instanceof RedBion);
         }
     };
 
     public static Conditional CONTAINS_ORANGE = new Conditional() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1275829519834407109L;
+
         public boolean meetsCondition(Object o) {
             return (((HostCell) o).getOccupant() instanceof OrangeBion);
         }
     };
 
     public static Conditional CONTAINS_BLUE = new Conditional() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1748007176532356078L;
+
         public boolean meetsCondition(Object o) {
             return (((HostCell) o).getOccupant() instanceof BlueBion);
         }
@@ -104,6 +148,10 @@ public class Model_D extends Scape {
 
     class MoveTowardConditionRule extends Rule {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1960271275522912946L;
         String name;
         Conditional condition;
 
@@ -122,6 +170,11 @@ public class Model_D extends Scape {
     };
 
     class MoveAwayConditionRule extends MoveTowardConditionRule {
+
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 5013964885340095059L;
 
         public MoveAwayConditionRule(String name, Conditional condition) {
             super(name, condition);

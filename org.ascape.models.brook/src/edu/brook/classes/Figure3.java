@@ -10,9 +10,19 @@ package edu.brook.classes;
 
 public class Figure3 extends Figure2 {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 3635094581503240509L;
+
     public void createScape() {
         super.createScape();
         agents.setPrototypeAgent(new Bargainer() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -3989370190199939534L;
+
             public void initialize() {
                 super.initialize();
                 initializeMemoryHiLow();

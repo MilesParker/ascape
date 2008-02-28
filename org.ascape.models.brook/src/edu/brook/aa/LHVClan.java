@@ -20,6 +20,11 @@ import org.ascape.view.vis.ChartView;
  */
 public class LHVClan extends LHVDisaggregate {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -5102792644057845317L;
+
     public void createScape() {
         super.createScape();
         people.setPrototypeAgent(new PersonClan());

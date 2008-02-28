@@ -36,11 +36,20 @@ import org.ascape.view.vis.Overhead2DView;
 public class ConwayLife extends Scape {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = -6825695188923587693L;
+
+    /**
      * The portion of cells that will be alive when we start the model.
      */
     private static float initialAliveDensity = 0.1f;
 
     public final static Rule NEXT_STATE_CALC = new Rule("Determine Next State") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -188714168999737619L;
         public void execute(Agent agent) {
             ((LifeCell) agent).nextAlive = ((LifeCell) agent).calculateNextAlive();
         }
@@ -53,6 +62,10 @@ public class ConwayLife extends Scape {
     };
 
     public final static Rule NEXT_STATE_UPDATE = new Rule("Determine Next State") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -3196280105259514656L;
         public void execute(Agent agent) {
             ((LifeCell) agent).alive = ((LifeCell) agent).nextAlive;
         }
@@ -71,6 +84,10 @@ public class ConwayLife extends Scape {
      * This rule provides the basic functionality
      */
     public final static Rule NEXT_STATE_SYNCHRONOUS = new ExecuteThenUpdate("Determine Next State") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 4775093433702008839L;
         public void execute(Agent agent) {
             ((LifeCell) agent).nextAlive = ((LifeCell) agent).calculateNextAlive();
         }
@@ -91,6 +108,11 @@ public class ConwayLife extends Scape {
      * Conway's life. Since we are calculating the next state of blahh...
      */
     public final static Rule NEXT_STATE_ASYNCHRONOUS = new Rule("Determine Next State Asynchronsously") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 5674573245383950666L;
+
         public void execute(Agent agent) {
             ((LifeCell) agent).alive = ((LifeCell) agent).calculateNextAlive();
         }

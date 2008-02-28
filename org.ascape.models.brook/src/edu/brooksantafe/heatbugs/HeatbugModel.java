@@ -32,9 +32,19 @@ import org.ascape.view.vis.Overhead2DView;
 public class HeatbugModel extends Scape {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 745055616548469504L;
+
+    /**
      * The rule for heat diffusion for the model's heat cells.
      */
     private ParameterizedDiffusion heatDiffusionRule = new ParameterizedDiffusion("Parameterized", 1.0f, .99f) {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -6616482548513041921L;
+
         public final double getDiffusionValue(Agent agent) {
             return ((HeatCell) agent).getHeat();
         }
@@ -107,16 +117,31 @@ public class HeatbugModel extends Scape {
         add(heatbugs);
         //Add rules to the scapes
         Rule happinessRule = new Rule("Calculate Happiness") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 7518971432062457992L;
+
             public void execute(Agent a) {
                 ((Heatbug) a).calculateHappiness();
             }
         };
         Rule classicRule = new Rule("Classic Movement & Heat") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 665608531104091849L;
+
             public void execute(Agent a) {
                 ((Heatbug) a).movementAndHeat();
             }
         };
         Rule heatRule = new Rule("Generate Heat") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 1137755911248874362L;
+
             public void execute(Agent a) {
                 ((Heatbug) a).generateHeat();
             }
@@ -150,6 +175,11 @@ public class HeatbugModel extends Scape {
         Overhead2DView heatView = new Overhead2DView();
         final ColorFeatureGradiated colorCellForHeat = new ColorFeatureGradiatedIndex("Heat");
         colorCellForHeat.setDataPoint(new UnitIntervalDataPoint() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -2531885404699139679L;
+
             public double getValue(Object object) {
                 return ((double) ((HeatCell) object).getHeat() / HeatCell.MAX_HEAT);
             }
@@ -165,6 +195,11 @@ public class HeatbugModel extends Scape {
 
         final StatCollector[] stats = {
             new StatCollectorCSAMM("Unhappiness") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 1128002607217575644L;
+
                 public double getValue(Object object) {
                     return ((Heatbug) object).getUnhappiness();
                 }
@@ -172,7 +207,7 @@ public class HeatbugModel extends Scape {
         };
 //Add the new values stats to agents
         heatbugs.addStatCollectors(stats);
-        if (!(getUserEnvironment().isInApplet())) {
+        if (!(getUIEnvironment().isInApplet())) {
             /*ChartView happinessChart = new ChartView();
             heatbugs.addView(happinessChart);
             happinessChart.addSeries("Average Unhappiness", Color.blue);*/

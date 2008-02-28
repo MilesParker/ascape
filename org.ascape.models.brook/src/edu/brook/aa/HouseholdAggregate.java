@@ -13,6 +13,11 @@ import org.ascape.util.data.StatCollectorCSAMM;
 
 public class HouseholdAggregate extends HouseholdBase {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 5091800912116536871L;
+
     private int age;
 
     private int nutritionNeed;
@@ -94,6 +99,11 @@ public class HouseholdAggregate extends HouseholdBase {
         stats[1] = new StatCollector("Deaths Old Age", false);
         stats[2] = new StatCollector("Births", false);
         stats[3] = new StatCollectorCSAMM("Household Size") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 5919164193477195628L;
+
             public final double getValue(Object o) {
                 return 5;
             }

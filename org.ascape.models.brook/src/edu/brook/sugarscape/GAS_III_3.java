@@ -17,11 +17,21 @@ import org.ascape.view.vis.ChartView;
 
 public class GAS_III_3 extends GAS_SexBase {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -1108945364026864952L;
+
     public void createViews() {
         super.createViews();
 
         StatCollector[] stats = new StatCollector[4];
         stats[0] = new StatCollectorCond() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -4160771888469617582L;
+
             public boolean meetsCondition(Object object) {
                 return (((SugarAgent) object).getSugarMetabolism() == 1);
             }
@@ -31,6 +41,11 @@ public class GAS_III_3 extends GAS_SexBase {
             }
         };
         stats[1] = new StatCollectorCond() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 6193160368787158151L;
+
             public boolean meetsCondition(Object object) {
                 return (((SugarAgent) object).getSugarMetabolism() == 2);
             }
@@ -40,6 +55,11 @@ public class GAS_III_3 extends GAS_SexBase {
             }
         };
         stats[2] = new StatCollectorCond() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 7332637310050895866L;
+
             public boolean meetsCondition(Object object) {
                 return (((SugarAgent) object).getSugarMetabolism() == 3);
             }
@@ -49,6 +69,11 @@ public class GAS_III_3 extends GAS_SexBase {
             }
         };
         stats[3] = new StatCollectorCond() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 4954887989494659855L;
+
             public boolean meetsCondition(Object object) {
                 return (((SugarAgent) object).getSugarMetabolism() == 4);
             }
@@ -66,6 +91,11 @@ public class GAS_III_3 extends GAS_SexBase {
 
         //Set the method that the view will use to determine agent color
         sugarView.setHostedAgentColorFeature(new ColorFeatureConcrete("Sugar Metabolism") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -4800113817922755765L;
+
             public Color getColor(Object object) {
                 return colorForMetabolism[((SugarAgent) object).getSugarMetabolism()];
             }

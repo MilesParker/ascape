@@ -14,12 +14,17 @@ import java.io.IOException;
 
 import org.ascape.model.event.ScapeEvent;
 import org.ascape.model.space.Array2D;
+import org.ascape.view.nonvis.ConsoleOutView;
 import org.ascape.view.nonvis.DataOutputView;
-import org.ascape.view.nonvis.StandardOutView;
 
 
 
 public class ModelData_N extends Model_M {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 8893034206324137213L;
 
     public void createScape() {
         super.createScape();
@@ -27,7 +32,12 @@ public class ModelData_N extends Model_M {
     }
 
     public void createViews() {
-        addView(new StandardOutView() {
+        addView(new ConsoleOutView() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -9217108775962180478L;
+
             public void scapeIterated(ScapeEvent scapeEvent) {
                 super.scapeIterated(scapeEvent);
                 if ((getPeriod() / 10) * 10 == getPeriod())

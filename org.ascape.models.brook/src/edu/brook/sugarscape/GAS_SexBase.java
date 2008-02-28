@@ -10,6 +10,11 @@ package edu.brook.sugarscape;
 
 public class GAS_SexBase extends GAS_Base {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -7323806302172641112L;
+
     public void createScape() {
         super.createScape();
         SexualAgent agent = new SexualAgent();

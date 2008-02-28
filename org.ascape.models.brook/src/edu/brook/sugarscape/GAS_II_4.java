@@ -16,10 +16,20 @@ import org.ascape.view.vis.ChartView;
 
 public class GAS_II_4 extends GAS_III_2 {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 8164788204620699378L;
+
     public void createViews() {
         super.createViews();
 
         final StatCollectorCSAMM wealth = new StatCollectorCSAMM() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 4322388161358953355L;
+
             public double getValue(Object o) {
                 return ((SugarAgent) o).getSugar().getStock();
             }
@@ -32,6 +42,10 @@ public class GAS_II_4 extends GAS_III_2 {
 
         class DecileCollector extends StatCollectorCond {
 
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -8146962501703395280L;
             int decile;
 
             public DecileCollector(int decile) {

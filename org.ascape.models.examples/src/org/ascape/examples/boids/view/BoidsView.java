@@ -26,9 +26,13 @@ import org.ascape.view.vis.Overhead2DContinuousView;
 public class BoidsView extends Overhead2DContinuousView {
 
     public final DrawFeature boid_polygon_draw_feature = new DrawFeature("Boid Polygon") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 7912571631811473142L;
+
         public void draw(Graphics g, Object object, int x, int y) {
             if (object instanceof Obstacle) {
-                Obstacle o = (Obstacle) object;
                 g.setColor(Color.black);
                 g.drawLine(-x / 2, y / 2, x / 2, -y / 2);
                 g.drawLine(-x / 2, -y / 2, x / 2, y / 2);

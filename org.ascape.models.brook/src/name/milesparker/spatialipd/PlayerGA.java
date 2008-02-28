@@ -27,6 +27,11 @@ import edu.brook.pd.Player;
  **/
 public class PlayerGA extends Player {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 2542404872757513114L;
+
     Chromosome strategies;
 
     //Chromosome identity;
@@ -213,6 +218,11 @@ public class PlayerGA extends Player {
     }
 
     Rule play_all = new Rule("Play") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 2310662184769678048L;
+
         public void execute(Agent a) {
             PlayerGA.this.play(a);
         }
@@ -221,6 +231,11 @@ public class PlayerGA extends Player {
     public void playAll() {
         playBegin();
         getScape().executeOnMembers(new Rule("Play") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 2999967533894163283L;
+
             public void execute(Agent a) {
                 PlayerGA.this.play(a);
             }
@@ -329,26 +344,51 @@ public class PlayerGA extends Player {
             }
         });*/
         getScape().addRule(new Rule("Play All") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 2624996512918858385L;
+
             public void execute(Agent a) {
                 ((PlayerGA) a).playAll();
             }
         }, false);
         getScape().addRule(new Rule("Play Closest") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 2282755988782060805L;
+
             public void execute(Agent a) {
                 ((PlayerGA) a).playClosest();
             }
         }, false);
         getScape().addRule(new Rule("Play Furthest") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 5252852787075969595L;
+
             public void execute(Agent a) {
                 ((PlayerGA) a).playFurthest();
             }
         }, false);
         getScape().addRule(new Rule("Crossover") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 582547545111225412L;
+
             public void execute(Agent a) {
                 ((PlayerGA) a).crossover();
             }
         });
         getScape().addRule(new Rule("Mutation") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 5233061733786103253L;
+
             public void execute(Agent a) {
                 ((PlayerGA) a).mutation();
             }

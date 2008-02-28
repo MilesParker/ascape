@@ -10,6 +10,11 @@ package edu.brook.cv;
 
 public class CVModelInterGroupRetr extends CVModelInterGroup {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 8791752128151010978L;
+
     public void createScape() {
         super.createScape();
         people.getRules().setSelected(Citizen.DECIDE_STATE, false);

@@ -25,6 +25,11 @@ import org.ascape.view.vis.StretchyView;
 public class Model1 extends Scape {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = -6879053433696894545L;
+
+    /**
      * The n agents.
      */
     private static int nAgents = 500;
@@ -74,6 +79,11 @@ public class Model1 extends Scape {
     public void createViews() {
         super.createViews();
         final StatCollectorCSAMM firmUnitOutput = new StatCollectorCSAMM("Firm Unit Output") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 4318959934381762180L;
+
             public double getValue(Object object) {
                 return (((Firm) object).getAvgOutput());
             }
@@ -101,6 +111,11 @@ return ((Firm) object).getAvgEffort();
         firmView.setAgentColorFeature(colorForAvgEffort);*/
         final ColorFeatureGradiated colorForAvgOutput = new ColorFeatureGradiated("Avg Output");
         colorForAvgOutput.setDataPoint(new UnitIntervalDataPoint() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -6033261844239803432L;
+
             public double getValue(Object object) {
                 return ((Firm) object).getAvgOutput() / firmUnitOutput.getMax();
             }

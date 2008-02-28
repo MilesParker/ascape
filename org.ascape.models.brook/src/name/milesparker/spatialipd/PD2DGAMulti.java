@@ -44,6 +44,10 @@ import org.ascape.view.nonvis.DataScape;
 
 public class PD2DGAMulti extends PD2DGA implements DataScape {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 2714970231178689621L;
     int rankSize = 8;
 
     public void writePeriodHeader(DataOutputStream os) throws IOException {
@@ -53,6 +57,11 @@ public class PD2DGAMulti extends PD2DGA implements DataScape {
     }
 
     class WealthCollector extends StatCollectorCSAMM {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -6751951496344134801L;
+
         public double getValue(Object object) {
             return ((PlayerGA) object).getWealth();
         }
@@ -69,6 +78,11 @@ public class PD2DGAMulti extends PD2DGA implements DataScape {
     public void writeRunData(DataOutputStream os) throws IOException {
         final Map genomeForStats = new HashMap();
         getAgents().executeOnMembers(new Rule("Genome Stats") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -8053932730990368821L;
+
             public void execute(Agent agent) {
                 PlayerGA player = (PlayerGA) agent;
                 StatCollectorCSAMM stat = (StatCollectorCSAMM) genomeForStats.get(player.getChromosomeStrategyAsString());

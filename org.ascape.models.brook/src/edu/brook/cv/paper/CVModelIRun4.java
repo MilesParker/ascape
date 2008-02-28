@@ -12,6 +12,11 @@ import org.ascape.model.event.ScapeEvent;
 
 public class CVModelIRun4 extends CVModelIRun3and4and5 {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 5710627172682128045L;
+
     public void scapeIterated(ScapeEvent event) {
         super.scapeIterated(event);
         if (getIteration() == 75) {

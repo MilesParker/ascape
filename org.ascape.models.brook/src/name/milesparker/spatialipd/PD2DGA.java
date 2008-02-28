@@ -27,6 +27,11 @@ import edu.brook.pd.Player;
 
 public class PD2DGA extends PD2D {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 3597254165125498079L;
+
     private int memorySize;
 
     private double mutationProbability;
@@ -71,6 +76,10 @@ public class PD2DGA extends PD2D {
 
         class ChromosomeCounter extends StatCollectorCond {
 
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 2187810462349131650L;
             Chromosome toMatch;
 
             public ChromosomeCounter(int size, int encoding) {
@@ -102,16 +111,31 @@ public class PD2DGA extends PD2D {
         }
         final StatCollector[] stats = {
             new StatCollectorCSA("Cooperate Ratio") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 4953205107244731317L;
+
                 public double getValue(Object object) {
                     return (((PlayerGA) object).getCooperateRatio());
                 }
             },
             new StatCollectorCSA("Defect Ratio") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = -3585230644697248732L;
+
                 public double getValue(Object object) {
                     return (((PlayerGA) object).getDefectRatio());
                 }
             },
             new StatCollectorCSA("Cooperate Closest") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = -4017303274711283888L;
+
                 public double getValue(Object object) {
                     if (((PlayerGA) object).getPreference() == PlayerGA.PREFERENCE_CLOSEST) {
                         return ((PlayerGA) object).getCooperateRatio();
@@ -121,6 +145,11 @@ public class PD2DGA extends PD2D {
                 }
             },
             new StatCollectorCSA("Cooperate Farthest") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = -108812264304163302L;
+
                 public double getValue(Object object) {
                     if (((PlayerGA) object).getPreference() == PlayerGA.PREFERENCE_FARTHEST) {
                         return ((PlayerGA) object).getCooperateRatio();
@@ -130,6 +159,11 @@ public class PD2DGA extends PD2D {
                 }
             },
             new StatCollectorCSA("Defect Closest") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = -7062136652450813079L;
+
                 public double getValue(Object object) {
                     if (((PlayerGA) object).getPreference() == PlayerGA.PREFERENCE_CLOSEST) {
                         return 1.0 - ((PlayerGA) object).getCooperateRatio();
@@ -139,6 +173,11 @@ public class PD2DGA extends PD2D {
                 }
             },
             new StatCollectorCSA("Defect Farthest") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = -1344857283422696934L;
+
                 public double getValue(Object object) {
                     if (((PlayerGA) object).getPreference() == PlayerGA.PREFERENCE_FARTHEST) {
                         return 1.0 - ((PlayerGA) object).getCooperateRatio();
@@ -158,6 +197,11 @@ public class PD2DGA extends PD2D {
 
         final ColorFeatureGradiated colorAgentForCooperation =
             new ColorFeatureGradiated("Grievance", Color.blue, Color.red, new UnitIntervalDataPoint() {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 8102928121683237634L;
+
                 public double getValue(Object object) {
                     return ((PlayerGA) object).getCooperateRatio();
                 }
@@ -165,6 +209,11 @@ public class PD2DGA extends PD2D {
         getOverheadView().setHostedAgentColorFeature(colorAgentForCooperation);
 
         final DrawFeature drawGenome = new DrawFeature("Chromosome") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -3227731101196939958L;
+
             public void draw(Graphics g, Object o, int width, int height) {
                 g.setColor(Color.LIGHT_GRAY);
                 g.fillRect(0, 0, width, height);
@@ -188,7 +237,7 @@ public class PD2DGA extends PD2D {
         getOverheadView().getDrawSelection().clearSelection();
         getOverheadView().getDrawSelection().setSelected(drawGenome, true);
 
-        if (!(getUserEnvironment().isInApplet())) {
+        if (!(getUIEnvironment().isInApplet())) {
             //Create a new getChart()
             getChart().clearSeries();
             //And add some of the stat series we've just created to it

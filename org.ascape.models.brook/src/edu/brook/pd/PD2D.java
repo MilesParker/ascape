@@ -7,8 +7,6 @@
 
 package edu.brook.pd;
 
-import java.awt.Color;
-
 import org.ascape.model.HostCell;
 import org.ascape.model.Scape;
 import org.ascape.model.event.ScapeEvent;
@@ -23,6 +21,11 @@ import org.ascape.view.vis.ChartView;
 import org.ascape.view.vis.Overhead2DView;
 
 public class PD2D extends Scape {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1461378363148512788L;
 
     private int nAgents = 100;
 
@@ -149,16 +152,31 @@ public class PD2D extends Scape {
         //statistic (if you are using a condition class), and/or get some value.
         final StatCollector[] stats = {
             new StatCollectorCond("Cooperate") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 5738886903792177925L;
+
                 public boolean meetsCondition(Object object) {
                     return (((Player) object).strategy == PD2D.COOPERATE);
                 }
             },
             new StatCollectorCond("Defect") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 2833380489676651687L;
+
                 public boolean meetsCondition(Object object) {
                     return (((Player) object).strategy == PD2D.DEFECT);
                 }
             },
             new StatCollectorCondCSAMM("Defect Wealth") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 4485688701773607436L;
+
                 public boolean meetsCondition(Object object) {
                     return (((Player) object).strategy == PD2D.DEFECT);
                 }
@@ -168,6 +186,11 @@ public class PD2D extends Scape {
                 }
             },
             new StatCollectorCondCSAMM("Cooperate Wealth") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = -6601556083383014471L;
+
                 public boolean meetsCondition(Object object) {
                     return (((Player) object).strategy == PD2D.COOPERATE);
                 }
@@ -177,11 +200,21 @@ public class PD2D extends Scape {
                 }
             },
             new StatCollectorCSAMM("Overall Wealth") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = -5731868426967367061L;
+
                 public double getValue(Object object) {
                     return ((Player) object).getWealth();
                 }
             },
             new StatCollectorCondCSAMM("Cooperate Age") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 5347740434370481691L;
+
                 public boolean meetsCondition(Object object) {
                     return (((Player) object).strategy == PD2D.COOPERATE);
                 }
@@ -191,6 +224,11 @@ public class PD2D extends Scape {
                 }
             },
             new StatCollectorCondCSAMM("Defect Age") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 125404326092586749L;
+
                 public boolean meetsCondition(Object object) {
                     return (((Player) object).strategy == PD2D.DEFECT);
                 }
@@ -200,6 +238,11 @@ public class PD2D extends Scape {
                 }
             },
             new StatCollectorCSAMM("Overall Age") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 6308680480497904021L;
+
                 public double getValue(Object object) {
                     return ((Player) object).getAge();
                 }
@@ -213,14 +256,14 @@ public class PD2D extends Scape {
         super.createGraphicViews();
 
         //Create a new chart
-        chart = new ChartView();
-        //Add the chart view
-        agents.addView(chart);
-        //And add some of the stat series we've just created to it
-        chart.addSeries("Count Cooperate", Color.blue);
-        chart.addSeries("Count Defect", Color.red);
-        //Set starting data point we're interested in
-        chart.setDisplayPoints(100);
+//        chart = new ChartView();
+//        //Add the chart view
+//        agents.addView(chart);
+//        //And add some of the stat series we've just created to it
+//        chart.addSeries("Count Cooperate", Color.blue);
+//        chart.addSeries("Count Defect", Color.red);
+//        //Set starting data point we're interested in
+//        chart.setDisplayPoints(100);
 
 //Now, add a simple overhead view so that we can view the lattice:
         overheadView = new Overhead2DView("Player's View");

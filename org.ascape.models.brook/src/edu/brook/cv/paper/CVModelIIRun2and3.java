@@ -10,6 +10,11 @@ package edu.brook.cv.paper;
 
 public class CVModelIIRun2and3 extends CVModelIIRun1 {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 7668485550778262059L;
+
     public void createScape() {
         super.createScape();
         legitimacy = .80;

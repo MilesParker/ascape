@@ -225,8 +225,6 @@ class Bga {
 
     //------------------------------------------------------------------------
     void step() {
-        int i;
-
         currentRule++;
         if (currentRule == numberOfRules) {
             this.evolve();
@@ -278,7 +276,6 @@ class Bga {
 
     //------------------------------------------------------------------------
     void evolve() {
-        int i;
         this.prepare();
         this.selectParents();
         this.selectSurvivers();
@@ -378,7 +375,6 @@ class Bga {
 
     //------------------------------------------------------------------------
     void cross() {
-        double deb;
         int i,j,xp;
         char work;
         char genoma0[],genoma1[];

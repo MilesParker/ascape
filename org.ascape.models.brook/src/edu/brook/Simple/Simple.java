@@ -23,6 +23,10 @@ import org.ascape.view.vis.Overhead2DView;
 
 public class Simple extends Scape {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 461570696836424850L;
     public int nAgents = 2;
     private int latticeWidth = 30;
     private int latticeHeight = 30;
@@ -90,6 +94,11 @@ public class Simple extends Scape {
         super.createViews();
 
         StatCollector happy = new StatCollectorCSAMM("Happiness", true) {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -5478630723934768327L;
+
             public double getValue(Object object) {
                 return ((SimpleAgent) object).getHappiness();
             }

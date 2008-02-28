@@ -20,6 +20,11 @@ import org.ascape.util.vis.Drawable;
 
 public class WaterSource extends Cell implements Drawable {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -847405276616547520L;
+
     public final static int PERMANENT = 2;
 
     public final static int RESERVOIR = 3;

@@ -14,6 +14,11 @@ import org.ascape.model.rule.Rule;
 
 public class TrackSocialNetwork extends Rule {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -434412567804291718L;
+
     public TrackSocialNetwork() {
         super("Track Social Network");
     }

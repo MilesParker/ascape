@@ -21,6 +21,10 @@ import org.ascape.view.vis.Overhead2DView;
 
 class ABCell extends Cell {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 2392320215965879432L;
     public final static int A = 1;
     public final static int B = 2;
     protected int state = B;
@@ -71,6 +75,11 @@ class ABCell extends Cell {
 
 public class ABModel extends Scape {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -2306726586870156818L;
+
     protected int span = 50;
 
     public Scape cells;
@@ -82,6 +91,11 @@ public class ABModel extends Scape {
         cells.setExtent(new Coordinate2DDiscrete(span, span));
         cells.setPrototypeAgent(new ABCell());
         cells.addRule(new Rule("Decide State") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -750095707537534296L;
+
             public void execute(Agent a) {
                 ((ABCell) a).decideState();
             }

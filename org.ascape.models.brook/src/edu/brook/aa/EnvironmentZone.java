@@ -14,6 +14,11 @@ import org.ascape.model.space.Singleton;
 
 public class EnvironmentZone extends Scape {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -2493621424309157834L;
+
     private double pdsi;
 
     private double hydro;

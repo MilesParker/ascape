@@ -21,7 +21,16 @@ public class Cop extends CellOccupant {
 
     //public double vision = 0.0;
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 7755622689815803828L;
     public static Conditional CONTAINS_COP = new Conditional() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -5847480327062056459L;
+
         public boolean meetsCondition(Object o) {
             if (((HostCell) o).getOccupant() instanceof Cop) {
                 return true;
@@ -43,6 +52,11 @@ public class Cop extends CellOccupant {
         scape.addInitialRule(MOVE_RANDOM_LOCATION_RULE);
         //scape.addInitialRule(new MoveRandomWithin(0, 0, 10, 10));
         scape.addRule(new Rule("Patrol") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 4416435136439233492L;
+
             public void execute(Agent a) {
                 ((Cop) a).patrol();
             }

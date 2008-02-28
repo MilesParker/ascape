@@ -30,6 +30,11 @@ import org.ascape.view.vis.erv.EntityRelationView;
 
 public class Model_R extends Scape {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -4983941083287303944L;
+
     private Scape graph;
 
     private Scape redBions;
@@ -62,6 +67,10 @@ public class Model_R extends Scape {
 
     class MoveTowardConditionRule extends Rule {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -1247397306235344839L;
         String name;
         Conditional condition;
 
@@ -82,6 +91,11 @@ public class Model_R extends Scape {
 
     class MoveAwayConditionRule extends MoveTowardConditionRule {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 4020131205086266317L;
+
         public MoveAwayConditionRule(String name, Conditional condition) {
             super(name, condition);
         }
@@ -96,18 +110,33 @@ public class Model_R extends Scape {
     };
 
     public static Conditional CONTAINS_RED = new Conditional() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -8647013045934251232L;
+
         public boolean meetsCondition(Object o) {
             return (((HostCell) o).getOccupant() instanceof RedBion);
         }
     };
 
     public static Conditional CONTAINS_ORANGE = new Conditional() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -6442279018980024253L;
+
         public boolean meetsCondition(Object o) {
             return (((HostCell) o).getOccupant() instanceof OrangeBion);
         }
     };
 
     public static Conditional CONTAINS_BLUE = new Conditional() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 711142646734494016L;
+
         public boolean meetsCondition(Object o) {
             return (((HostCell) o).getOccupant() instanceof BlueBion);
         }
@@ -126,6 +155,11 @@ public class Model_R extends Scape {
     public final Rule MOVE_AWAY_BLUE_RULE = new MoveAwayConditionRule("Move Away Blue", CONTAINS_BLUE);
 
     public final static Rule ASSIGN_RANDOM_NEIGHBORS_RULE = new Rule("Assign Neighbors Randomly") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -8557509988712583473L;
+
         public void execute(Agent a) {
             final Cell node = (Cell) a;
             Graph graph = (Graph) ((Model_R) a.getRoot()).getGraph().getSpace();
@@ -144,6 +178,11 @@ public class Model_R extends Scape {
     };
 
     public final static Rule CHANGE_NEIGHBORS_RULE = new Rule("Change Neighbors") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 3651969577083618074L;
+
         public void execute(Agent a) {
             final Cell node = (Cell) a;
             Model_R model = (Model_R) a.getRoot();
@@ -222,6 +261,11 @@ public class Model_R extends Scape {
         view.setBackground(Color.white);
         view.addEntityFeature(
             new DefaultEntityFeature(graph, "Graph Nodes") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = -6747972304065555498L;
+
                 public double getHeight(Object o) {
                     return ((LocatedAgent) o).getAgentSize();
                 }
@@ -242,6 +286,11 @@ public class Model_R extends Scape {
         );
         view.addRelationFeature(
             new DefaultRelationFeature() {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = -4242555042680052693L;
+
                 public boolean includesRelation(Object source, Object target) {
                     return ((Graph) graph.getSpace()).isNeighbor((Cell) source, (Cell) target);
                 }
@@ -271,6 +320,10 @@ public class Model_R extends Scape {
 
     private class Bion extends CellOccupant {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 7888773110860599816L;
         protected double vision;
 
         public void initialize() {
@@ -290,6 +343,11 @@ public class Model_R extends Scape {
 
     class RedBion extends Bion {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -1643892823450738543L;
+
         public Color getColor() {
             return Color.red;
         }
@@ -305,6 +363,11 @@ public class Model_R extends Scape {
 
     class OrangeBion extends Bion {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 8477338556896950917L;
+
         public Color getColor() {
             return Color.orange;
         }
@@ -319,6 +382,11 @@ public class Model_R extends Scape {
     }
 
     class BlueBion extends Bion {
+
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1031034108379262939L;
 
         public Color getColor() {
             return Color.blue;

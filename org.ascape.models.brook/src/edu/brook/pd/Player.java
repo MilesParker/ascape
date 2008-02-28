@@ -25,8 +25,17 @@ import org.ascape.util.vis.ImageFeatureFixed;
  **/
 public class Player extends CellOccupant {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 2683265117149321229L;
+
     class AgentWealthStatCollector extends StatCollectorCondCSA {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -5551487009721295781L;
         private Agent agent;
         private int number;
 

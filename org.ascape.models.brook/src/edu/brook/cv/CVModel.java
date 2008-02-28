@@ -17,7 +17,6 @@ import java.util.Dictionary;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import org.ascape.explorer.UserEnvironment;
 import org.ascape.model.Cell;
 import org.ascape.model.CellOccupant;
 import org.ascape.model.HostCell;
@@ -27,6 +26,7 @@ import org.ascape.model.space.Array2DMoore;
 import org.ascape.model.space.Coordinate1DDiscrete;
 import org.ascape.model.space.Coordinate2DDiscrete;
 import org.ascape.model.space.Mutable;
+import org.ascape.runtime.swing.DesktopEnvironment;
 import org.ascape.util.data.StatCollector;
 import org.ascape.util.data.StatCollectorCSA;
 import org.ascape.util.data.StatCollectorCalculated;
@@ -45,6 +45,11 @@ import org.ascape.view.vis.ComponentView;
 import org.ascape.view.vis.Overhead2DView;
 
 public class CVModel extends Scape {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 6136885380116175919L;
 
     protected double initialPopulationDensity = 0.70;
 
@@ -122,6 +127,11 @@ public class CVModel extends Scape {
     JPanel customPanel;
 
     private CustomSliderPanel legitimacySlide = new CustomSliderPanel("Legitimacy", 0.0, 1.0, 2) {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -5856083478333148823L;
+
         public double getActualValue() {
             return getLegitimacy();
         }
@@ -133,6 +143,11 @@ public class CVModel extends Scape {
         }
     };
     private CustomSliderPanel copVisionSlide = new CustomSliderPanel("Cop Vision", 0.0, 16.0, 1) {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 7262707779307331658L;
+
         public double getActualValue() {
             return getCopVision();
         }
@@ -143,6 +158,11 @@ public class CVModel extends Scape {
         }
     };
     private CustomSliderPanel personVisionSlide = new CustomSliderPanel("Citizen Vision", 0.0, 16.0, 1) {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 4503135655636886212L;
+
         public double getActualValue() {
             return getCitizenVision();
         }
@@ -153,6 +173,11 @@ public class CVModel extends Scape {
         }
     };
     private CustomSliderPanel targetCopDensitySlide = new CustomSliderPanel("Target Cop Density", 0.0, 0.1, 3) {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -3563315742789563055L;
+
         public double getActualValue() {
             return getTargetCopDensity();
         }
@@ -163,6 +188,11 @@ public class CVModel extends Scape {
         }
     };
     private CustomSliderPanel jailTermSlide = new org.ascape.util.swing.CustomSliderPanelInf("Jail Term", 0.0, 1000.0, 0) {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 4472209572158945135L;
+
         public double getActualValue() {
             return getJailTerm();
         }
@@ -173,6 +203,11 @@ public class CVModel extends Scape {
         }
     };
     private CustomSliderPanel initialPopulationSlide = new CustomSliderPanel("Initial Population Density", 0.0, 1.0, 2) {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -2246939563861488097L;
+
         public double getActualValue() {
             return getInitialPopulationDensity();
         }
@@ -183,6 +218,11 @@ public class CVModel extends Scape {
         }
     };
     private CustomSliderPanel initialCopDensitySlide = new CustomSliderPanel("Initial Cop Density", 0.0, 0.1, 3) {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -4471014243905395542L;
+
         public double getActualValue() {
             return getInitialCopDensity();
         }
@@ -219,17 +259,32 @@ public class CVModel extends Scape {
 
         final ColorFeatureGradiated colorAgentForGrievance =
             new ColorFeatureGradiated("Grievance", Color.red, new UnitIntervalDataPoint() {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = -5516447619379417428L;
+
                 public double getValue(Object object) {
                     return ((Citizen) object).getGrievance();
                 }
             });
         final ColorFeatureGradiated colorAgentForRiskAversion =
             new ColorFeatureGradiated("Risk Aversion", Color.yellow, new UnitIntervalDataPoint() {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = -5957840065532306454L;
+
                 public double getValue(Object object) {
                     return ((Citizen) object).getRiskAversion();
                 }
             });
         final ColorFeature colorIfNotCop = new ColorFeatureConcrete("Grievance") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 3131676225052217287L;
+
             public Color getColor(Object object) {
                 if (object instanceof Citizen) {
                     return colorAgentForGrievance.getColor(object);
@@ -241,6 +296,11 @@ public class CVModel extends Scape {
         ColorFeatureFixed background = new ColorFeatureFixed("Brown", new Color(237, 230, 214));
         final Overhead2DView grievanceView = new Overhead2DView("Grievance View");
         final DrawFeature riskAversionFeature = new DrawFeature("Agent Risk Aversion") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 1416871935140791570L;
+
             public void draw(Graphics g, Object object, int width, int height) {
                 CellOccupant occupant = (CellOccupant) ((Cell) object).getOccupant();
                 if (occupant instanceof Citizen) {
@@ -305,36 +365,71 @@ public class CVModel extends Scape {
 		//agentView.getDrawSelection().setSelected("Draw Target Agent", true);*/
 
         final StatCollectorCond activeStat = new StatCollectorCond("Active") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -1799133551683376351L;
+
             public boolean meetsCondition(Object object) {
                 return (((Citizen) object).getState() == Citizen.ACTIVE);
             }
         };
         final StatCollectorCond quiescentStat = new StatCollectorCond("Quiescent") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -1832475342086515016L;
+
             public boolean meetsCondition(Object object) {
                 return (((Citizen) object).getState() == Citizen.QUIESCENT);
             }
         };
         final StatCollectorCond jailedStat = new StatCollectorCond("Jailed") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -5172569367804591671L;
+
             public boolean meetsCondition(Object object) {
                 return (((Citizen) object).getState() == Citizen.IN_JAIL);
             }
         };
         final StatCollectorCond nonJailedStat = new StatCollectorCond("Non-Jailed") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -8649533987820545827L;
+
             public boolean meetsCondition(Object object) {
                 return (((Citizen) object).getState() != Citizen.IN_JAIL);
             }
         };
         final StatCollectorCSA riskAversionStat = new StatCollectorCSA("Risk Aversion") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -4383137972043954727L;
+
             public double getValue(Object object) {
                 return ((Citizen) object).getRiskAversion();
             }
         };
         final StatCollectorCSA grievanceStat = new StatCollectorCSA("Grievance") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 1577310168633977346L;
+
             public double getValue(Object object) {
                 return ((Citizen) object).getGrievance();
             }
         };
         final StatCollectorCondCSA riskAversionNonJailStat = new StatCollectorCondCSA("Non-Jailed Risk Aversion") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -3915022638682637313L;
+
             public double getValue(Object object) {
                 return ((Citizen) object).getRiskAversion();
             }
@@ -344,6 +439,11 @@ public class CVModel extends Scape {
             }
         };
         final StatCollectorCondCSA grievanceNonJailStat = new StatCollectorCondCSA("Non-Jailed Grievance") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 6981876763210293161L;
+
             public double getValue(Object object) {
                 return ((Citizen) object).getGrievance();
             }
@@ -353,6 +453,11 @@ public class CVModel extends Scape {
             }
         };
         final StatCollectorCalculated activeRatioStat = new StatCollectorCalculated("Active Ratio") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 819462462218968871L;
+
             public double calculateValue() {
                 if (nonJailedStat.getCount() != 0) {
                     return (double) activeStat.getCount() / (double) nonJailedStat.getCount();
@@ -362,6 +467,11 @@ public class CVModel extends Scape {
             }
         };
         final StatCollectorCalculated quiescentRatioStat = new StatCollectorCalculated("Quiescent Ratio") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -6704785089883262054L;
+
             public double calculateValue() {
                 if (nonJailedStat.getCount() != 0) {
                     return (double) quiescentStat.getCount() / (double) nonJailedStat.getCount();
@@ -371,16 +481,31 @@ public class CVModel extends Scape {
             }
         };
         final StatCollectorCalculated tensionStat = new StatCollectorCalculated("Tension") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 7408024115056438717L;
+
             public double calculateValue() {
                 return (grievanceNonJailStat.getAvg() * quiescentRatioStat.getSum()) / riskAversionNonJailStat.getAvg();
             }
         };
         final StatCollectorCalculated legitimacyStat = new StatCollectorCalculated("Legitimacy") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -3878670181590365627L;
+
             public double calculateValue() {
                 return (legitimacy * 1000);
             }
         };
         final StatCollectorCalculated copDensityStat = new StatCollectorCalculated("Cop Density") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 6273927700877313170L;
+
             public double calculateValue() {
                 return (targetCopDensity * 10000);
             }
@@ -435,7 +560,7 @@ public class CVModel extends Scape {
                 CVModel.this.buildCustomizer();
             }
         };
-        setCustomizer(customizer);
+        getUIEnvironment().setCustomizer(customizer);
     }
 
     protected void buildCustomizer() {
@@ -478,7 +603,7 @@ public class CVModel extends Scape {
         cgbc.gridy++;
         customPanel.add(initialCopDensitySlide, cgbc);
         initialCopDensitySlide.build();
-        customizer.getTabPane().addTab("Sliders", UserEnvironment.getIcon("FingerUp"), customPanel, "Change Values Using Sliders");
+        customizer.getTabPane().addTab("Sliders", DesktopEnvironment.getIcon("FingerUp"), customPanel, "Change Values Using Sliders");
         customizer.getTabPane().setSelectedComponent(customPanel);
     }
 

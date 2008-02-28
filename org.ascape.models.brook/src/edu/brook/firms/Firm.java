@@ -21,6 +21,11 @@ import org.ascape.model.Scape;
 public class Firm extends Scape {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 6654613651194368202L;
+
+    /**
      * The age.
      */
     private int age = 0;

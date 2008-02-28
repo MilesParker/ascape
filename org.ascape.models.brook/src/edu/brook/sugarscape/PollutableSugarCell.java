@@ -13,6 +13,11 @@ import org.ascape.model.rule.Diffusion;
 
 public class PollutableSugarCell extends SugarCell implements Diffusable {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 8290780660743245711L;
+
     private static float maxPollution = 1;
 
     /**
@@ -30,6 +35,11 @@ public class PollutableSugarCell extends SugarCell implements Diffusable {
 
     public void scapeCreated() {
         scape.addRule(new Diffusion("Pollution") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 572246971519175438L;
+
             public double getDiffusionValue(Agent agent) {
                 return ((PollutableSugarCell) agent).getPollution();
             }

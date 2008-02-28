@@ -19,6 +19,11 @@ import org.ascape.model.space.Coordinate2DDiscrete;
 
 class PersonCoupled extends Person {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -6986405455167038931L;
+
     public void initialize() {
         super.initialize();
         //age = ((Population) getScape()).getAge(((Coordinate2DDiscrete) getCoordinate()).getYValue());
@@ -64,6 +69,10 @@ class PersonCoupled extends Person {
 
 public class PopulationCoupled extends Population {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -7148641790053453019L;
     private double fractionCoupled = .05;
 
     public PopulationCoupled() {

@@ -17,36 +17,71 @@ import org.ascape.view.vis.ChartView;
 
 public class GAS_III_2 extends GAS_SexBase {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -6453293880101053525L;
+
     public void createViews() {
         super.createViews();
 
         StatCollector[] stats = new StatCollector[6];
         stats[0] = new StatCollectorCond("Vision = 1") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 1452135301328798642L;
+
             public boolean meetsCondition(Object object) {
                 return (((SugarAgent) object).getVision() == 1);
             }
         };
         stats[1] = new StatCollectorCond("Vision = 2") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 8874155818019066315L;
+
             public boolean meetsCondition(Object object) {
                 return (((SugarAgent) object).getVision() == 2);
             }
         };
         stats[2] = new StatCollectorCond("Vision = 3") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 1696357349659728887L;
+
             public boolean meetsCondition(Object object) {
                 return (((SugarAgent) object).getVision() == 3);
             }
         };
         stats[3] = new StatCollectorCond("Vision = 4") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 7089372720155589994L;
+
             public boolean meetsCondition(Object object) {
                 return (((SugarAgent) object).getVision() == 4);
             }
         };
         stats[4] = new StatCollectorCond("Vision = 5") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 2794643255803005425L;
+
             public boolean meetsCondition(Object object) {
                 return (((SugarAgent) object).getVision() == 5);
             }
         };
         stats[5] = new StatCollectorCond("Vision = 6") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 7646427930023594520L;
+
             public boolean meetsCondition(Object object) {
                 return (((SugarAgent) object).getVision() == 6);
             }
@@ -60,6 +95,11 @@ public class GAS_III_2 extends GAS_SexBase {
 
         //Set the method that the view will use to determine agent color
         sugarView.setHostedAgentColorFeature(new ColorFeatureConcrete("Vision") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -1973227148597116052L;
+
             public Color getColor(Object object) {
                 return colorForVision[((SugarAgent) object).getVision()];
             }

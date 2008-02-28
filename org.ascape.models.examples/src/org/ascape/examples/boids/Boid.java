@@ -22,6 +22,11 @@ import org.ascape.util.Conditional;
 
 public class Boid extends MomentumAgent {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -6428946301242899342L;
+
     protected Color color;
 
     public static final int RED_TEAM = 1;
@@ -71,18 +76,33 @@ public class Boid extends MomentumAgent {
         prioritySet = false;
 
         sameTeam = new Conditional() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 4949406469034346937L;
+
             public boolean meetsCondition(Object o) {
                 return ((team == ((Boid) o).getTeam()) && (((Boid) o) != Boid.this));
             }
         };
 
         oppositeTeam = new Conditional() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 329593340935090412L;
+
             public boolean meetsCondition(Object o) {
                 return ((team != ((Boid) o).getTeam()) && (((Boid) o) != Boid.this));
             }
         };
 
         obstacles = new Conditional() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -7647513210026088443L;
+
             public boolean meetsCondition(Object o) {
                 return (o instanceof Obstacle);
             }

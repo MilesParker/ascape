@@ -19,6 +19,11 @@ import org.ascape.util.vis.DrawFeature;
 
 public class Car extends CellOccupant {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -5269249467282322260L;
+
     public final static int ACCELERATING = 1;
 
     public final static int DECELERATING = 2;
@@ -30,6 +35,11 @@ public class Car extends CellOccupant {
     public final static int DEFECTOR = 2;
 
     public final static DrawFeature DRAW_SIMPLE_CAR = new DrawFeature("Simple Car") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -8319184138398108914L;
+
         public final void draw(Graphics g, Object object, int width, int height) {
             Car car = (Car) ((HostCell) object).getOccupant();
             if (car != null) {

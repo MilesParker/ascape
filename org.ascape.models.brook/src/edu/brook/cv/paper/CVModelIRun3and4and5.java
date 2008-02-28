@@ -14,6 +14,11 @@ import org.ascape.model.event.ScapeEvent;
 
 public class CVModelIRun3and4and5 extends CVModelI {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -3581711081946699315L;
+
     public void createScape() {
         super.createScape();
         copVision = 7.0;

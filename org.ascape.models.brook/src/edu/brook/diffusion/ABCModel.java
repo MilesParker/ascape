@@ -16,6 +16,7 @@ import org.ascape.model.Scape;
 import org.ascape.model.rule.Rule;
 import org.ascape.model.space.Array2DMoore;
 import org.ascape.model.space.Coordinate2DDiscrete;
+import org.ascape.runtime.swing.DesktopEnvironment;
 import org.ascape.util.data.StatCollector;
 import org.ascape.util.data.StatCollectorCond;
 import org.ascape.view.vis.ChartView;
@@ -24,6 +25,10 @@ import org.ascape.view.vis.Overhead2DView;
 
 class ABCCell extends Cell {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -6610868233830226053L;
     public final static int L = 1;
     public final static int M = 2;
     public final static int H = 3;
@@ -190,6 +195,11 @@ class ABCCell extends Cell {
 
 public class ABCModel extends Scape {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 5742740681892297292L;
+
     protected int span = 10;
 
     public Scape cells;
@@ -202,6 +212,11 @@ public class ABCModel extends Scape {
         cells.setPrototypeAgent(new ABCCell());
         cells.getRules().clear();
         cells.addRule(new Rule("Decide action") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 1102819080745575069L;
+
             public void execute(Agent a) {
                 ((ABCCell) a).decideAction();
             }
@@ -221,31 +236,61 @@ public class ABCModel extends Scape {
         cells.addView(overheadView);
         final StatCollector[] stats = {
             new StatCollectorCond("A Above") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 8849512783255158066L;
+
                 public boolean meetsCondition(Object object) {
                     return ((((ABCCell) object).action == ABCCell.A) && (((ABCCell) object).isAbove()));
                 }
             },
             new StatCollectorCond("B Above") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 170439218897171315L;
+
                 public boolean meetsCondition(Object object) {
                     return ((((ABCCell) object).action == ABCCell.B) && (((ABCCell) object).isAbove()));
                 }
             },
             new StatCollectorCond("C Above") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 6229601841670968974L;
+
                 public boolean meetsCondition(Object object) {
                     return ((((ABCCell) object).action == ABCCell.C) && (((ABCCell) object).isAbove()));
                 }
             },
             new StatCollectorCond("A Below") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = -7362245732365689100L;
+
                 public boolean meetsCondition(Object object) {
                     return ((((ABCCell) object).action == ABCCell.A) && !(((ABCCell) object).isAbove()));
                 }
             },
             new StatCollectorCond("B Below") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 808968209958625010L;
+
                 public boolean meetsCondition(Object object) {
                     return ((((ABCCell) object).action == ABCCell.B) && !(((ABCCell) object).isAbove()));
                 }
             },
             new StatCollectorCond("C Below") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = -5954295570053480848L;
+
                 public boolean meetsCondition(Object object) {
                     return ((((ABCCell) object).action == ABCCell.C) && !(((ABCCell) object).isAbove()));
                 }
@@ -253,7 +298,7 @@ public class ABCModel extends Scape {
         };
         cells.addStatCollectors(stats);
 
-        if (!(getUserEnvironment().isInApplet())) {
+        if (!(((DesktopEnvironment) getUIEnvironment()).isInApplet())) {
             ChartView aboveChart = new ChartView();
             aboveChart.setName("Action Above");
             cells.addView(aboveChart);

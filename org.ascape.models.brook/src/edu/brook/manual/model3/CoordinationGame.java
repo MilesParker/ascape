@@ -20,6 +20,11 @@ import org.ascape.view.vis.Overhead2DView;
 
 public class CoordinationGame extends Scape {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -1066533372885692772L;
+
     // model-scope variables
     // model-scope variables
     protected int nPlayers = 100;
@@ -58,16 +63,31 @@ public class CoordinationGame extends Scape {
         add(players);
 
         StatCollector CountReds = new StatCollectorCond("Reds") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -1204087946730275898L;
+
             public boolean meetsCondition(Object object) {
                 return (((CoordinationGamePlayer) object).getColor() == Color.red);
             }
         };
         StatCollector CountBlues = new StatCollectorCond("Blues") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 6690746035332487734L;
+
             public boolean meetsCondition(Object object) {
                 return (((CoordinationGamePlayer) object).getColor() == Color.blue);
             }
         };
         StatCollector AvgPayoff = new StatCollectorCSAMM("Payoff") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 5181166978735324715L;
+
             public double getValue(Object object) {
                 return ((CoordinationGamePlayer) object).getRunningTotal();
             }

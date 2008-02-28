@@ -22,6 +22,11 @@ import org.ascape.util.data.StatCollectorCond;
  a */
 public class LHVDisaggregate extends LHV {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -6752232051261561854L;
+
     public Scape people;
 
     protected int personMinInitialAge = 0;
@@ -37,6 +42,11 @@ public class LHVDisaggregate extends LHV {
         people.addRule(METABOLISM_RULE);
         people.addRule(DEATH_RULE);
         people.addRule(new Rule("Form Household") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -1104523698642038557L;
+
             public void execute(Agent a) {
                 ((Person) a).householdFormation();
             }
@@ -63,46 +73,91 @@ public class LHVDisaggregate extends LHV {
         super.createViews();
         StatCollector[] stats = new StatCollector[9];
         stats[0] = new StatCollectorCond("Size = 1") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -6187477562807067038L;
+
             public boolean meetsCondition(Object object) {
                 return (((Person) object).getHousehold().getSize() == 1);
             }
         };
         stats[1] = new StatCollectorCond("Size = 2") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -2088909634350675904L;
+
             public boolean meetsCondition(Object object) {
                 return (((Person) object).getHousehold().getSize() == 2);
             }
         };
         stats[2] = new StatCollectorCond("Size = 3") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -8327106276659553656L;
+
             public boolean meetsCondition(Object object) {
                 return (((Person) object).getHousehold().getSize() == 3);
             }
         };
         stats[3] = new StatCollectorCond("Size = 4") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -2207871416202810012L;
+
             public boolean meetsCondition(Object object) {
                 return (((Person) object).getHousehold().getSize() == 4);
             }
         };
         stats[4] = new StatCollectorCond("Size = 5") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -3782509565955129394L;
+
             public boolean meetsCondition(Object object) {
                 return (((Person) object).getHousehold().getSize() == 5);
             }
         };
         stats[5] = new StatCollectorCond("Size = 6") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 6268992466489178017L;
+
             public boolean meetsCondition(Object object) {
                 return (((Person) object).getHousehold().getSize() == 6);
             }
         };
         stats[6] = new StatCollectorCond("Size = 7") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 8816932454170339947L;
+
             public boolean meetsCondition(Object object) {
                 return (((Person) object).getHousehold().getSize() == 7);
             }
         };
         stats[7] = new StatCollectorCond("Size = 8") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 8428713312506109519L;
+
             public boolean meetsCondition(Object object) {
                 return (((Person) object).getHousehold().getSize() == 8);
             }
         };
         stats[8] = new StatCollectorCond("Size = 9+") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -7184518477319545048L;
+
             public boolean meetsCondition(Object object) {
                 return (((Person) object).getHousehold().getSize() >= 9);
             }

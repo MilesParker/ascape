@@ -20,6 +20,11 @@ import org.ascape.util.swing.CustomSliderPanel;
 
 public class CVModelInterGroup extends CVModel {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -4613947171716443781L;
+
     private float greenLegitimacy;
 
     private float blueLegitimacy;
@@ -77,31 +82,61 @@ public class CVModelInterGroup extends CVModel {
         //setRandomSeed(941562289135L);
         //Visitor's suggestion..
         final StatCollectorCond blueStat = new StatCollectorCond("Blue") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 7888374739179927241L;
+
             public boolean meetsCondition(Object object) {
                 return (((CitizenBlueGreen) object).group == CitizenBlueGreen.BLUE);
             }
         };
         final StatCollectorCond blueQuiescentStat = new StatCollectorCond("Blue Quiescent") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 3364674504003591650L;
+
             public boolean meetsCondition(Object object) {
                 return ((((CitizenBlueGreen) object).group == CitizenBlueGreen.BLUE) && ((CitizenBlueGreen) object).getState() == CitizenBlueGreen.QUIESCENT);
             }
         };
         final StatCollectorCond blueActiveStat = new StatCollectorCond("Blue Active") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -7845639503004273737L;
+
             public boolean meetsCondition(Object object) {
                 return ((((CitizenBlueGreen) object).group == CitizenBlueGreen.BLUE) && ((Citizen) object).getState() == Citizen.ACTIVE);
             }
         };
-        final StatCollectorCond blueJailedStat = new StatCollectorCond("Blue Jailed") {
-            public boolean meetsCondition(Object object) {
-                return ((((CitizenBlueGreen) object).group == CitizenBlueGreen.BLUE) && ((Citizen) object).getState() == Citizen.IN_JAIL);
-            }
-        };
+//        final StatCollectorCond blueJailedStat = new StatCollectorCond("Blue Jailed") {
+//            /**
+//             * 
+//             */
+//            private static final long serialVersionUID = -667286813613366730L;
+//
+//            public boolean meetsCondition(Object object) {
+//                return ((((CitizenBlueGreen) object).group == CitizenBlueGreen.BLUE) && ((Citizen) object).getState() == Citizen.IN_JAIL);
+//            }
+//        };
         final StatCollectorCond blueNonJailedStat = new StatCollectorCond("Blue Non-Jailed") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 3781427193621644681L;
+
             public boolean meetsCondition(Object object) {
                 return ((((CitizenBlueGreen) object).group == CitizenBlueGreen.BLUE) && ((Citizen) object).getState() != Citizen.IN_JAIL);
             }
         };
         final StatCollectorCondCSA blueRiskAversionStat = new StatCollectorCondCSA("Blue Non-Jailed Risk Aversion") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 3103971942527087391L;
+
             public double getValue(Object object) {
                 return ((Citizen) object).getRiskAversion();
             }
@@ -111,6 +146,11 @@ public class CVModelInterGroup extends CVModel {
             }
         };
         final StatCollectorCondCSA blueGrievanceStat = new StatCollectorCondCSA("Blue Non-Jailed Grievance") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 8521355647391359517L;
+
             public double getValue(Object object) {
                 return ((Citizen) object).getGrievance();
             }
@@ -120,6 +160,11 @@ public class CVModelInterGroup extends CVModel {
             }
         };
         final StatCollectorCalculated blueActiveRatioStat = new StatCollectorCalculated("Blue Active Ratio") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -5375130605901629843L;
+
             public double calculateValue() {
                 if (blueNonJailedStat.getCount() != 0) {
                     return (float) blueActiveStat.getCount() / (float) blueNonJailedStat.getCount();
@@ -129,6 +174,11 @@ public class CVModelInterGroup extends CVModel {
             }
         };
         final StatCollectorCalculated blueQuiescentRatioStat = new StatCollectorCalculated("Blue Quiescent Ratio") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 9082276914534966534L;
+
             public double calculateValue() {
                 if (blueNonJailedStat.getCount() != 0) {
                     return (float) blueQuiescentStat.getCount() / (float) blueNonJailedStat.getCount();
@@ -138,36 +188,71 @@ public class CVModelInterGroup extends CVModel {
             }
         };
         final StatCollectorCalculated blueTensionStat = new StatCollectorCalculated("Blue Tension") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -3766099475025282839L;
+
             public double calculateValue() {
                 return (float) blueGrievanceStat.getAvg() / (1 - blueQuiescentRatioStat.getSum() * blueRiskAversionStat.getAvg());
             }
         };
         final StatCollectorCond greenStat = new StatCollectorCond("Green") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -7988130264310952707L;
+
             public boolean meetsCondition(Object object) {
                 return (((CitizenBlueGreen) object).group == CitizenBlueGreen.GREEN);
             }
         };
         final StatCollectorCond greenQuiescentStat = new StatCollectorCond("Green Quiescent") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 7892509905444120172L;
+
             public boolean meetsCondition(Object object) {
                 return ((((CitizenBlueGreen) object).group == CitizenBlueGreen.GREEN) && ((CitizenBlueGreen) object).getState() == CitizenBlueGreen.QUIESCENT);
             }
         };
         final StatCollectorCond greenActiveStat = new StatCollectorCond("Green Active") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 7683303350094163983L;
+
             public boolean meetsCondition(Object object) {
                 return ((((CitizenBlueGreen) object).group == CitizenBlueGreen.GREEN) && ((Citizen) object).getState() == Citizen.ACTIVE);
             }
         };
-        final StatCollectorCond greenJailedStat = new StatCollectorCond("Green Jailed") {
-            public boolean meetsCondition(Object object) {
-                return ((((CitizenBlueGreen) object).group == CitizenBlueGreen.GREEN) && ((Citizen) object).getState() == Citizen.IN_JAIL);
-            }
-        };
+//        final StatCollectorCond greenJailedStat = new StatCollectorCond("Green Jailed") {
+//            /**
+//             * 
+//             */
+//            private static final long serialVersionUID = -1120820648396968268L;
+//
+//            public boolean meetsCondition(Object object) {
+//                return ((((CitizenBlueGreen) object).group == CitizenBlueGreen.GREEN) && ((Citizen) object).getState() == Citizen.IN_JAIL);
+//            }
+//        };
         final StatCollectorCond greenNonJailedStat = new StatCollectorCond("Green Non-Jailed") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 7142663382880228863L;
+
             public boolean meetsCondition(Object object) {
                 return ((((CitizenBlueGreen) object).group == CitizenBlueGreen.GREEN) && ((Citizen) object).getState() != Citizen.IN_JAIL);
             }
         };
         final StatCollectorCondCSA greenRiskAversionStat = new StatCollectorCondCSA("Green Non-Jailed Risk Aversion") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -4970671627151480208L;
+
             public double getValue(Object object) {
                 return ((Citizen) object).getRiskAversion();
             }
@@ -177,6 +262,11 @@ public class CVModelInterGroup extends CVModel {
             }
         };
         final StatCollectorCondCSA greenGrievanceStat = new StatCollectorCondCSA("Green Non-Jailed Grievance") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -8923200124907479565L;
+
             public double getValue(Object object) {
                 return ((Citizen) object).getGrievance();
             }
@@ -186,6 +276,11 @@ public class CVModelInterGroup extends CVModel {
             }
         };
         final StatCollectorCalculated greenActiveRatioStat = new StatCollectorCalculated("Green Active Ratio") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 6036068897288518223L;
+
             public double calculateValue() {
                 if (greenNonJailedStat.getCount() != 0) {
                     return (float) greenActiveStat.getCount() / (float) greenNonJailedStat.getCount();
@@ -195,6 +290,11 @@ public class CVModelInterGroup extends CVModel {
             }
         };
         final StatCollectorCalculated greenQuiescentRatioStat = new StatCollectorCalculated("Green Quiescent Ratio") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -6290355912284306442L;
+
             public double calculateValue() {
                 if (greenNonJailedStat.getCount() != 0) {
                     return (float) greenQuiescentStat.getCount() / (float) greenNonJailedStat.getCount();
@@ -204,6 +304,11 @@ public class CVModelInterGroup extends CVModel {
             }
         };
         final StatCollectorCalculated greenTensionStat = new StatCollectorCalculated("Green Tension") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -5419065143084068964L;
+
             public double calculateValue() {
                 return (float) greenGrievanceStat.getAvg() / (1 - greenQuiescentRatioStat.getSum() * greenRiskAversionStat.getAvg());
             }
@@ -211,6 +316,11 @@ public class CVModelInterGroup extends CVModel {
         final StatCollector greensKillBluesStat = new StatCollector("Greens Killed By Blue", false);
         final StatCollector bluesKillGreensStat = new StatCollector("Blues Killed By Green", false);
         final StatCollectorCalculated calculateLegitimacy = new StatCollectorCalculated("[Calculate Legitimacy]") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -4044718344856318486L;
+
             public double calculateValue() {
                 if (getPeriod() > 1) {
                     if (greenStat.getCount() != 0) {
@@ -234,11 +344,21 @@ public class CVModelInterGroup extends CVModel {
             }
         };
         final StatCollectorCalculated blueLegitimacyStat = new StatCollectorCalculated("Blue Legitimacy") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 7308611012432757221L;
+
             public double calculateValue() {
                 return blueLegitimacy;
             }
         };
         final StatCollectorCalculated greenLegitimacyStat = new StatCollectorCalculated("Green Legitimacy") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -6291388430081544624L;
+
             public double calculateValue() {
                 return greenLegitimacy;
             }
@@ -304,6 +424,11 @@ public class CVModelInterGroup extends CVModel {
     }
 
     private CustomSliderPanel initialBlueLegitimacySlide = new CustomSliderPanel("Initial Blue Legitimacy", 0.0, 1.0, 2) {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -6859661418091949959L;
+
         public double getActualValue() {
             return getInitialBlueLegitimacy();
         }
@@ -316,6 +441,11 @@ public class CVModelInterGroup extends CVModel {
     };
 
     private CustomSliderPanel initialGreenLegitimacySlide = new CustomSliderPanel("Intiial Green Legitimacy", 0.0, 1.0, 2) {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -556103970425376428L;
+
         public double getActualValue() {
             return getInitialGreenLegitimacy();
         }
@@ -328,6 +458,11 @@ public class CVModelInterGroup extends CVModel {
     };
 
     private CustomSliderPanel evaporationSlide = new CustomSliderPanel("Evaporation of History", 0.0, 1.0, 2) {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 8535825148500574319L;
+
         public double getActualValue() {
             return (double) evaporation;
         }

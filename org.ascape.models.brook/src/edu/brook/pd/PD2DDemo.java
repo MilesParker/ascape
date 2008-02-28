@@ -15,6 +15,7 @@ import org.ascape.model.event.ScapeEvent;
 import org.ascape.model.space.Array2DVonNeumann;
 import org.ascape.model.space.Coordinate1DDiscrete;
 import org.ascape.model.space.Coordinate2DDiscrete;
+import org.ascape.runtime.swing.DesktopEnvironment;
 import org.ascape.util.data.StatCollector;
 import org.ascape.util.data.StatCollectorCSAMM;
 import org.ascape.util.data.StatCollectorCond;
@@ -23,6 +24,11 @@ import org.ascape.view.vis.ChartView;
 import org.ascape.view.vis.Overhead2DView;
 
 public class PD2DDemo extends Scape {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1756086256638619391L;
 
     /**
      * The cooperation strategy symbol.
@@ -93,16 +99,31 @@ public class PD2DDemo extends Scape {
         //statistic (if you are using a condition class), and/or get some value.
         final StatCollector[] stats = {
             new StatCollectorCond("Cooperate") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 5727339695903190034L;
+
                 public boolean meetsCondition(Object object) {
                     return (((Player) object).strategy == PD2D.COOPERATE);
                 }
             },
             new StatCollectorCond("Defect") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 6238817052413774650L;
+
                 public boolean meetsCondition(Object object) {
                     return (((Player) object).strategy == PD2D.DEFECT);
                 }
             },
             new StatCollectorCondCSAMM("Defect Wealth") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 4744520173387871334L;
+
                 public boolean meetsCondition(Object object) {
                     return (((Player) object).strategy == PD2D.DEFECT);
                 }
@@ -112,6 +133,11 @@ public class PD2DDemo extends Scape {
                 }
             },
             new StatCollectorCondCSAMM("Cooperate Wealth") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = -2364422563246662316L;
+
                 public boolean meetsCondition(Object object) {
                     return (((Player) object).strategy == PD2D.COOPERATE);
                 }
@@ -121,6 +147,11 @@ public class PD2DDemo extends Scape {
                 }
             },
             new StatCollectorCSAMM("Overall Wealth") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = -7758387941606861788L;
+
                 public double getValue(Object object) {
                     return ((Player) object).getWealth();
                 }
@@ -129,7 +160,7 @@ public class PD2DDemo extends Scape {
 //Add the new values stats to agents
         agents.addStatCollectors(stats);
 
-        if (!(getUserEnvironment().isInApplet())) {
+        if (!(((DesktopEnvironment) getUIEnvironment()).isInApplet())) {
             //Create a new chart
             ChartView chart = new ChartView();
             //Add the chart view

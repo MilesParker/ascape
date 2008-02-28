@@ -13,6 +13,11 @@ import org.ascape.model.rule.Rule;
 
 class MaximizeOptionsAndEffort extends Rule {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -8742177948793238525L;
+
     public MaximizeOptionsAndEffort() {
         super("Maximize Options and Effort");
     }
@@ -39,6 +44,10 @@ class MaximizeOptionsAndEffort extends Rule {
  */
 public class Worker extends Employee {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 246173895124782312L;
     /**
      * The Constant costOfMoving.
      */

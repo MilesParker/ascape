@@ -23,6 +23,11 @@ import org.ascape.util.Utility;
  **/
 public class PromiscuousSpiceReprod extends Rule {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -8806691766925186443L;
+
     public PromiscuousSpiceReprod() {
         super("Promiscuous Spice Rule");
     }

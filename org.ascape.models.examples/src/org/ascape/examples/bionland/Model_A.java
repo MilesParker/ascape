@@ -17,6 +17,11 @@ import org.ascape.view.vis.Overhead2DView;
 
 public class Model_A extends Scape {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -2512386128295267885L;
+
     private Scape territory;
 
     private Scape bions;

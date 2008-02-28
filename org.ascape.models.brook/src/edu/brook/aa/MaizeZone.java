@@ -14,6 +14,10 @@ import org.ascape.model.space.Singleton;
 
 public class MaizeZone extends Scape {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 7378302753497194685L;
     private Color color;
 
     public MaizeZone(String name, Color color) {

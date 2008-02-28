@@ -16,19 +16,39 @@ import org.ascape.util.Conditional;
 
 public class Location extends Cell implements Comparable {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -748678910819856437L;
+
     public final static Conditional HAS_WATER = new Conditional() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -7865447439916098804L;
+
         public boolean meetsCondition(Object o) {
             return (((Location) o).isOnMap() && ((Location) o).isCurrentWaterSource());
         }
     };
 
     public final static Conditional LOW_EROSION = new Conditional() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 7358607915800653400L;
+
         public boolean meetsCondition(Object o) {
             return (((Location) o).isOnMap() && (((Location) o).getEnvironmentZone().getHydrology() <= 0.0));
         }
     };
 
     public final static Conditional KAYENTA_1_SETTLEMENT = new Conditional() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -3431191777565656996L;
+
         public boolean meetsCondition(Object o) {
             return ((((Location) o).isOnMap()) && (((Location) o).getFarm() == null) && (((Location) o).hasWithin(LOW_EROSION, true, 1.0)));
         }

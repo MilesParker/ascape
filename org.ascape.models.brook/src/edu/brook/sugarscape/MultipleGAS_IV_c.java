@@ -16,6 +16,11 @@ import org.ascape.view.nonvis.DataOutputView;
 
 public class MultipleGAS_IV_c extends GAS_IV_c {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -3370656485202228991L;
+
     public void createViews() {
         DataOutputView dataView = new DataOutputView();
         sugarscape.addView(dataView);

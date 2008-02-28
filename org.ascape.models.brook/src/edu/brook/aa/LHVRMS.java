@@ -10,8 +10,8 @@ package edu.brook.aa;
 import java.io.File;
 import java.io.IOException;
 
-import org.ascape.model.ModelRoot;
 import org.ascape.model.event.ScapeEvent;
+import org.ascape.runtime.Runner;
 import org.ascape.util.data.DataSeries;
 import org.ascape.util.data.StatCollector;
 import org.ascape.util.data.StatCollectorCSA;
@@ -23,8 +23,13 @@ import org.ascape.view.nonvis.SweepControlView;
 
 public class LHVRMS extends LHV {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 2150359023356917398L;
+
     public void createScape() {
-        ModelRoot.setDisplayGraphics(false);
+        Runner.setDisplayGraphics(false);
         super.createScape();
     }
 
@@ -52,12 +57,22 @@ public class LHVRMS extends LHV {
         final StatCollectorCSA historicSum = (StatCollectorCSA) getData().getStatCollector("Historic Households");
         final StatCollector simulationCount = getData().getStatCollector("Households");
         final StatCollectorCalculated difference = new StatCollectorCalculated("Difference Squared") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 3202736665468154175L;
+
             public double calculateValue() {
                 return (simulationCount.getCount() - historicSum.getSum());
             }
         };
         addStatCollector(difference);
         final StatCollectorCalculated differenceSquared = new StatCollectorCalculated("Difference Squared") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -2762498053282275679L;
+
             public double calculateValue() {
                 return Math.pow((simulationCount.getCount() - historicSum.getSum()), 2.0);
             }
@@ -69,6 +84,11 @@ public class LHVRMS extends LHV {
 
         //DataOutputView dataView = batchView.getDataView();
         DataOutputView dataView = new DataOutputView() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -2438657673200490202L;
+
             public void writeRunHeader() throws IOException {
                 super.writeRunHeader();
                 runDataStream.writeBytes("Minimum Difference");
@@ -96,7 +116,7 @@ public class LHVRMS extends LHV {
             public void scapeIterated(ScapeEvent scapeEvent) {
                 super.scapeIterated(scapeEvent);
                 if ((getPeriod() < 1000) && (difference.getSum() > 300)) {
-                    getScape().getModel().stop();
+                    getScape().getRunner().stop();
                 }
             }
         };

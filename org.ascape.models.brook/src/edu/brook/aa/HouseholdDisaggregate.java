@@ -19,6 +19,11 @@ import org.ascape.util.data.StatCollectorCond;
  */
 public class HouseholdDisaggregate extends HouseholdBase {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 479643522137191595L;
+
     public void initialize() {
         setAutoCreate(false);
         clear();
@@ -85,6 +90,11 @@ public class HouseholdDisaggregate extends HouseholdBase {
     }
 
     private final static StatCollectorCSA[] calculateNutritionNeed = {new StatCollectorCSA() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -129288260390992758L;
+
         public double getValue(Object object) {
             return ((Person) object).getNutritionNeed();
         }
@@ -123,6 +133,11 @@ public class HouseholdDisaggregate extends HouseholdBase {
         stats[0] = new StatCollector("Households Formed", false);
         stats[1] = new StatCollector("Households Disbanded", false);
         stats[2] = new StatCollectorCSAMM("Household Size") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -6891269369011896010L;
+
             public double getValue(Object o) {
                 return ((HouseholdDisaggregate) o).getSize();
             }
@@ -139,6 +154,10 @@ public class HouseholdDisaggregate extends HouseholdBase {
 
 class ClanStat extends StatCollectorCond {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 8450032997440700233L;
     Clan clan;
 
     public ClanStat(Clan clan) {

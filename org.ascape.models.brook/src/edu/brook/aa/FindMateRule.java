@@ -12,6 +12,10 @@ import org.ascape.model.rule.Rule;
 
 public class FindMateRule extends Rule {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 6567466917857780539L;
     public Person candidate;
     public Person lastMate;
 

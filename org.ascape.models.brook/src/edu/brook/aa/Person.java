@@ -13,6 +13,11 @@ import org.ascape.util.data.StatCollector;
 
 public class Person extends Cell {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 2643326983426692833L;
+
     public final static boolean FEMALE = true;
 
     public final static boolean MALE = false;

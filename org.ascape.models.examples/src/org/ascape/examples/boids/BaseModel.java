@@ -20,6 +20,11 @@ import org.ascape.examples.boids.view.BoidsView;
 import org.ascape.view.vis.Overhead2DContinuousView;
 public class BaseModel extends Scape {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 720243153187275842L;
+
     private Scape world;
 
     private Scape boids;
@@ -54,6 +59,11 @@ public class BaseModel extends Scape {
      * Steer towards the average heading of local neighbors.
      */
     private final static Rule ALIGNMENT_RULE = new Rule("Alignment Rule") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 6553285310121032975L;
+
         public void execute(Agent a) {
             ((Boid) a).alignHeading();
         }
@@ -63,12 +73,22 @@ public class BaseModel extends Scape {
      * Steer to avoid crowding local neighbors.
      */
     private final static Rule COLLISION_RULE = new Rule("Avoid Collisions Rule") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 8257554942449032768L;
+
         public void execute(Agent a) {
             ((Boid) a).avoidCollisions();
         }
     };
 
     private final static Rule AVOID_OBSTACLES_RULE = new Rule("Avoid Obstacles Rule") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 647255445252501513L;
+
         public void execute(Agent a) {
             ((Boid) a).avoidObstacles();
         }
@@ -78,6 +98,11 @@ public class BaseModel extends Scape {
      * Steer to move towards the average position of local neighbors.
      */
     private final static Rule COHESION_RULE = new Rule("Cohesion Rule") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -5723083430731638115L;
+
         public void execute(Agent a) {
             ((Boid) a).cohesion();
         }

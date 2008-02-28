@@ -19,6 +19,11 @@ import org.ascape.util.vis.ColorFeatureConcrete;
 
 public class GAS_III_6 extends GAS_II_2 {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 7697945539722553586L;
+
     public void createScape() {
         super.createScape();
         setSugarMoundness(.005f);
@@ -35,6 +40,11 @@ public class GAS_III_6 extends GAS_II_2 {
     public void createViews() {
         super.createViews();
         sugarView.setHostedAgentColorFeature(new ColorFeatureConcrete("Culture") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 5780368552228821750L;
+
             public Color getColor(Object object) {
                 if (((CulturalSexualAgent) object).getMajority()) {
                     return Color.blue;
@@ -47,6 +57,11 @@ public class GAS_III_6 extends GAS_II_2 {
 }
 
 class CulturalReproduction extends Rule {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -4430571309485409403L;
 
     public CulturalReproduction() {
         super("Cultural Reproduction");

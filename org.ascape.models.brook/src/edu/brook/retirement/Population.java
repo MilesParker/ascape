@@ -26,6 +26,11 @@ import org.ascape.view.vis.OverheadRelative2DView;
 
 public class Population extends Scape {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -826827440399030214L;
+
     private int youngestRow;
 
     private int cohortSize = 100;
@@ -107,11 +112,21 @@ public class Population extends Scape {
         view.setBorderSize(1);
         ColorFeatureGradiated cellColor =
             new ColorFeatureGradiated("Age", Color.blue, new UnitIntervalDataPoint() {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 2563022449995502359L;
+
                 public double getValue(Object object) {
                     return ((double) (((Person) object).getAge() - youngestAge) / ((Population) ((Agent) object).getScape()).getAgeSpan());
                 }
             });
         DrawColorFeature drawAge = new DrawColorFeature("Draw Age", cellColor) {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -1777757536635594803L;
+
             public void draw(Graphics g, Object object, int width, int height) {
                 g.setColor(getColor(object));
                 g.fillRect(0, 0, width, height);

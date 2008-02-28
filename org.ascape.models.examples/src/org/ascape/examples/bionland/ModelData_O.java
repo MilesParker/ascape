@@ -14,13 +14,18 @@ import java.io.IOException;
 import org.ascape.model.event.ScapeEvent;
 import org.ascape.model.space.Array2D;
 import org.ascape.util.sweep.SweepDimension;
+import org.ascape.view.nonvis.ConsoleOutView;
 import org.ascape.view.nonvis.DataOutputView;
-import org.ascape.view.nonvis.StandardOutView;
 import org.ascape.view.nonvis.SweepControlView;
 
 
 
 public class ModelData_O extends Model_M {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -8344288107930733062L;
 
     public void createScape() {
         super.createScape();
@@ -28,7 +33,12 @@ public class ModelData_O extends Model_M {
     }
 
     public void createViews() {
-        addView(new StandardOutView() {
+        addView(new ConsoleOutView() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -7460871229923903844L;
+
             public void scapeIterated(ScapeEvent scapeEvent) {
                 super.scapeIterated(scapeEvent);
                 if ((getPeriod() / 10) * 10 == getPeriod())

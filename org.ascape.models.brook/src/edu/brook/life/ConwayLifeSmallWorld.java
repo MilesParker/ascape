@@ -38,6 +38,11 @@ import org.ascape.view.vis.Overhead2DView;
 public class ConwayLifeSmallWorld extends Scape {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 5885601299141329884L;
+
+    /**
      * The portion of cells that will be alive when we start the core.
      */
     private float initialAliveDensity = 0.1f;
@@ -50,6 +55,11 @@ public class ConwayLifeSmallWorld extends Scape {
      * on any kind of object.
      */
     private final static Conditional IS_ALIVE = new Conditional() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -9007565316398725824L;
+
         public boolean meetsCondition(Object object) {
             return ((LifeCell) object).alive;
         }
@@ -60,6 +70,10 @@ public class ConwayLifeSmallWorld extends Scape {
      */
     class LifeCell extends Cell {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -1432014335182103627L;
         //Is the cell currently alive?
         public boolean alive;
         //Stores the cells 'next' alive state; that is, the state that the cell should be in
@@ -107,6 +121,11 @@ public class ConwayLifeSmallWorld extends Scape {
      * This rule provides the basic functionality
      */
     public final static Rule NEXT_STATE_SYNCHRONOUS = new ExecuteThenUpdate("Determine Next State") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1435363025482125974L;
+
         public void execute(Agent agent) {
             ((LifeCell) agent).nextAlive = ((LifeCell) agent).calculateNextAlive();
         }
@@ -121,6 +140,11 @@ public class ConwayLifeSmallWorld extends Scape {
      * Conway's life. Since we are calculating the next state of blahh...
      */
     public final static Rule NEXT_STATE_ASYNCHRONOUS = new Rule("Determine Next State Asynchronsously") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -3131177131129262703L;
+
         public void execute(Agent agent) {
             ((LifeCell) agent).alive = ((LifeCell) agent).calculateNextAlive();
         }

@@ -10,6 +10,11 @@ package edu.brook.diffusion;
 
 public class BigABCDEFModel extends ABCDEFModel {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 4556977130954208754L;
+
     public void createScape() {
         span = 20;
         super.createScape();

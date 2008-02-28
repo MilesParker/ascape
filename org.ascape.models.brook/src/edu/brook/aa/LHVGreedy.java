@@ -16,6 +16,11 @@ package edu.brook.aa;
  */
 public class LHVGreedy extends LHV {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1650824422643975056L;
+
     public void createScape() {
         super.createScape();
         households.setPrototypeAgent(new HouseholdGreedy());

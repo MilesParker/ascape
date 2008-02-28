@@ -25,6 +25,10 @@ import org.ascape.util.Utility;
  */
 public class TradeT2 extends TradeT {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -6862251579748082480L;
     private Exchange2 exchange;
 
     public void execute(Agent agent) {

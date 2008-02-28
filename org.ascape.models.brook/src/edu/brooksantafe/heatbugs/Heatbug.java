@@ -21,6 +21,11 @@ import org.ascape.util.data.DataPoint;
 public class Heatbug extends CellOccupant {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = -3644065018295193171L;
+
+    /**
      * The current unhappiness the bug is experiencing due to non-ideal heat conditions.
      */
     private double unhappiness;

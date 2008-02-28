@@ -19,6 +19,10 @@ import org.ascape.util.vis.DrawSymbol;
 
 public class ABCDEFCell extends Cell {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -3770207188502231021L;
     public static float beta = .1f;
     public static float gamma = 40.0f;
 
@@ -258,6 +262,11 @@ public class ABCDEFCell extends Cell {
     }
 
     public final static DrawFeature DRAW_BandW_Feature = new DrawFeature("Black & White") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 2298379242651178745L;
+
         public void draw(Graphics g, Object object, int width, int height) {
             switch (((ABCDEFCell) object).action) {
                 case A:

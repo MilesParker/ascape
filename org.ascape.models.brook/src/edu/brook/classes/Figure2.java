@@ -10,6 +10,11 @@ package edu.brook.classes;
 
 public class Figure2 extends BargainingModelOne {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -7046721481059081029L;
+
     public void createScape() {
         super.createScape();
         setMinimumMemorySize(20);

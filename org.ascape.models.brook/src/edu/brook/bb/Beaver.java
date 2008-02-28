@@ -16,6 +16,11 @@ import org.ascape.model.rule.Rule;
 
 public class Beaver extends CellOccupant {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 4179121434655882917L;
+
     static int counter,
     tapeLength,
     maxStati,
@@ -177,7 +182,7 @@ public class Beaver extends CellOccupant {
 
     //----------------------------------------------------------------
     public void decode() {
-        int i,j,s;
+        int i,s;
 
         for (i = 0; i < maxStati * 2; i++) {
             if (aVectorRule[i * (mode + 2)] == '1')
@@ -207,7 +212,7 @@ public class Beaver extends CellOccupant {
 
     //-----------------------------------------------------------------
     public void setGeneticSubRules(int st) {
-        int i,j,s;
+        int i,s;
 
         bga = mga[st];
         bga.step();
@@ -242,6 +247,11 @@ public class Beaver extends CellOccupant {
 
     //-----------------------------------------------------------------
     public static final Rule STEP = new Rule("Step") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -3308874521315266173L;
+
         public void execute(Agent beaver) {
             ((Beaver) beaver).step();
         }

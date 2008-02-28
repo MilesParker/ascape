@@ -33,7 +33,17 @@ import org.ascape.util.data.StatCollectorCSAMM;
  */
 public class SugarAgent extends CellOccupant {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 7249004118591072497L;
+
     public final static Rule DEATH_STARVATION_RULE = new Rule("Death Starvation") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -74109594775448280L;
+
         public void execute(Agent agent) {
             if ((((SugarAgent) agent).getSugar().getStock() <= 0)) {
                 agent.die();
@@ -42,6 +52,11 @@ public class SugarAgent extends CellOccupant {
     };
 
     public final static Rule DEATH_STARVATION_OLD_AGE_RULE = new Rule("Death Starvation or Old Age") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -6064131481294308735L;
+
         public void execute(Agent agent) {
             if ((((SugarAgent) agent).getSugar().getStock() <= 0) || (((SugarAgent) agent).getAge() >= ((SugarAgent) agent).getDeathAge())) {
                 agent.die();
@@ -50,6 +65,11 @@ public class SugarAgent extends CellOccupant {
     };
 
     public final static Rule DEATH_REPLACEMENT_RULE = new Rule("Death Replacement") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -3794366718314163108L;
+
         public void execute(Agent agent) {
             if ((((SugarAgent) agent).getSugarStock() <= 0) || (((SugarAgent) agent).getAge() >= ((SugarAgent) agent).getDeathAge())) {
                 agent.die();
@@ -59,6 +79,11 @@ public class SugarAgent extends CellOccupant {
     };
 
     public final static Rule HARVEST_RULE = new Rule("Harvest") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 6733179840843438968L;
+
         public void execute(Agent agent) {
             ((SugarAgent) agent).harvest();
         }
@@ -112,6 +137,11 @@ public class SugarAgent extends CellOccupant {
 
     public void scapeCreated() {
         StatCollector[] stats = {new StatCollectorCSAMM() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 1026552789605891665L;
+
             public double getValue(Object object) {
                 return ((SugarAgent) object).getSugar().getStock();
             }
@@ -121,7 +151,12 @@ public class SugarAgent extends CellOccupant {
             }
         },
                                  new StatCollectorCSAMM() {
-                                     public double getValue(Object object) {
+                                     /**
+                                     * 
+                                     */
+                                    private static final long serialVersionUID = -4921601134107850321L;
+
+                                    public double getValue(Object object) {
                                          return -((SugarAgent) object).getAge();
                                      }
 
@@ -130,7 +165,12 @@ public class SugarAgent extends CellOccupant {
                                      }
                                  },
                                  new StatCollectorCSAMM() {
-                                     public double getValue(Object object) {
+                                     /**
+                                     * 
+                                     */
+                                    private static final long serialVersionUID = -6328308124120217985L;
+
+                                    public double getValue(Object object) {
                                          return ((SugarAgent) object).getVision();
                                      }
 
@@ -139,7 +179,12 @@ public class SugarAgent extends CellOccupant {
                                      }
                                  },
                                  new StatCollectorCSAMM() {
-                                     public double getValue(Object object) {
+                                     /**
+                                     * 
+                                     */
+                                    private static final long serialVersionUID = -9026524001803218091L;
+
+                                    public double getValue(Object object) {
                                          return ((SugarAgent) object).getSugarMetabolism();
                                      }
 
@@ -155,6 +200,11 @@ public class SugarAgent extends CellOccupant {
     }
 
     final static DataPoint SUGAR = new DataPointConcrete("Sugar Value") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 5198939801775563573L;
+
         public double getValue(Object o) {
             return ((SugarCell) o).getPerceivedValue();
         }
