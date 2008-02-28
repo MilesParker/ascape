@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: All Tests for Ascape
+Bundle-SymbolicName: org.ascape.core.test
+Bundle-Version: 5.1.0
+Bundle-Vendor: ascape.org
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: org.junit;bundle-version="3.8.2",
+ org.ascape.core;bundle-version="5.1.0"
