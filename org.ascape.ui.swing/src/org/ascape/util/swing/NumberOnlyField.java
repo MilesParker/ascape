@@ -23,6 +23,11 @@ import javax.swing.text.PlainDocument;
  */
 public class NumberOnlyField extends JTextField {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -5563810786594381089L;
+
     public NumberOnlyField(String text, int cols) {
         super(text, cols);
     }
@@ -32,6 +37,11 @@ public class NumberOnlyField extends JTextField {
     }
 
     private static class NumberOnlyDocument extends PlainDocument {
+
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 8013609598759177913L;
 
         public void insertString(int offs, String str, AttributeSet a) throws BadLocationException {
             if (str == null) {

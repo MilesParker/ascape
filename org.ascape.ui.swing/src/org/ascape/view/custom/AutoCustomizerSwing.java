@@ -288,11 +288,21 @@ public class AutoCustomizerSwing extends ModelCustomizerSwing {
 
         //JToolBar ruleToolBar = new JToolBar();
         JToolBar ruleToolBar = new JToolBar() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 8585239316583324182L;
+
             protected JButton createActionComponent(Action a) {
                 String text = (String) a.getValue(Action.NAME);
                 Icon icon = (Icon) a.getValue(Action.SMALL_ICON);
 
                 JButton b = new JButton(text, icon) {
+                    /**
+                     * 
+                     */
+                    private static final long serialVersionUID = -4172003541451360545L;
+
                     // I override JButton's createActionPropertyChangeListener
                     // to avoid the creation of a AbstractButton$ButtonActionPropertyChangeListener,
                     // which is not serializable!
@@ -316,6 +326,11 @@ public class AutoCustomizerSwing extends ModelCustomizerSwing {
         //JButton upButton = new JButton("Up", UserEnvironment.getIcon("Up"));
         //rulesButtonPanel.add(upButton);
         JButton upButton = ruleToolBar.add(new AbstractAction() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -3146863773300440121L;
+
             public void actionPerformed(ActionEvent e) {
                 int[] userSelRules = ruleTable.getSelectedRows();
                 if (userSelRules.length > 0) {
@@ -348,6 +363,11 @@ public class AutoCustomizerSwing extends ModelCustomizerSwing {
         //JButton downButton = new JButton("Down", UserEnvironment.getIcon("Down"));
         //rulesButtonPanel.add(downButton);
         JButton downButton = ruleToolBar.add(new AbstractAction() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 5813119641427818112L;
+
             public void actionPerformed(ActionEvent e) {
                 int[] userSelRules = ruleTable.getSelectedRows();
                 if (userSelRules.length > 0) {
@@ -606,6 +626,11 @@ public class AutoCustomizerSwing extends ModelCustomizerSwing {
      */
     class SettingsModel extends AbstractTableModel implements Serializable {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 7875452172418054545L;
+
         /* (non-Javadoc)
          * @see javax.swing.table.TableModel#getRowCount()
          */
@@ -682,6 +707,11 @@ public class AutoCustomizerSwing extends ModelCustomizerSwing {
      */
     class RuleModel extends AbstractTableModel implements Serializable {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -403965821643653911L;
+
         /* (non-Javadoc)
          * @see javax.swing.table.TableModel#getRowCount()
          */
@@ -757,6 +787,11 @@ public class AutoCustomizerSwing extends ModelCustomizerSwing {
         //    super(); //Unfortunately, the constructor
         //    component = new JCheckBox();
         //}
+
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 873374720540276339L;
 
         /* (non-Javadoc)
          * @see javax.swing.table.DefaultTableCellRenderer#getTableCellRendererComponent(javax.swing.JTable, java.lang.Object, boolean, boolean, int, int)

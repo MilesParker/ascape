@@ -47,6 +47,11 @@ import org.ascape.util.Utility;
  */
 public abstract class CustomSliderPanel extends JPanel {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -6626601592336438979L;
+
     protected JSlider slider;
 
     private JLabel label;

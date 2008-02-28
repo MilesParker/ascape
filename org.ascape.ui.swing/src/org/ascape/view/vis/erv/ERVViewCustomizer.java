@@ -65,6 +65,11 @@ public class ERVViewCustomizer extends BaseCustomizer {
      */
     class AvailableFeatureModel extends AbstractTableModel implements Serializable {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 965104711773717071L;
+
         /* (non-Javadoc)
          * @see javax.swing.table.TableModel#getRowCount()
          */
@@ -124,6 +129,11 @@ public class ERVViewCustomizer extends BaseCustomizer {
      * Describe class <code>NullCheckBoxRenderer</code> here.
      */
     class NullCheckBoxRenderer extends DefaultTableCellRenderer implements Serializable {
+
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -5450463752732774757L;
 
         /* (non-Javadoc)
          * @see javax.swing.table.DefaultTableCellRenderer#getTableCellRendererComponent(javax.swing.JTable, java.lang.Object, boolean, boolean, int, int)
@@ -229,6 +239,11 @@ public class ERVViewCustomizer extends BaseCustomizer {
         featureToolBar.setFloatable(false);
         JButton upButton = featureToolBar.add(
             new AbstractAction() {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 9085229251345355909L;
+
                 public void actionPerformed(ActionEvent e) {
                     int[] userSelFeatures = featureTable.getSelectedRows();
                     if (userSelFeatures.length > 0) {
@@ -265,6 +280,11 @@ public class ERVViewCustomizer extends BaseCustomizer {
         upButton.setIcon(DesktopEnvironment.getIcon("Up"));
         JButton downButton = featureToolBar.add(
             new AbstractAction() {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 8981085140803144384L;
+
                 public void actionPerformed(ActionEvent e) {
                     int[] userSelFeatures = featureTable.getSelectedRows();
                     if (userSelFeatures.length > 0) {

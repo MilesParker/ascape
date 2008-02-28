@@ -53,6 +53,11 @@ public class SearchView extends PanelView {
     private class DialogButton extends JButton {
 
         /**
+         * 
+         */
+        private static final long serialVersionUID = -3774436696137676290L;
+
+        /**
          * Instantiates a new dialog button.
          * 
          * @param text
@@ -133,6 +138,11 @@ public class SearchView extends PanelView {
 
         JButton search = new DialogButton("Search");
         search.setAction(new AbstractAction("Search") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -972914149190896812L;
+
             public void actionPerformed(ActionEvent e) {
                 final Query query;
                 try {
@@ -193,16 +203,31 @@ public class SearchView extends PanelView {
         });
         JButton cancel = new DialogButton("Cancel");
         cancel.setAction(new AbstractAction("Cancel") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 6027128893612115906L;
+
             public void actionPerformed(ActionEvent e) {
                 SearchView.this.getViewFrame().dispose();
             }
         });
         JButton help = new DialogButton("Help");
         help.setAction(new AbstractAction("Help") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 7531098784367856449L;
+
             public void actionPerformed(ActionEvent e) {
                 String urlString ="";
                 try {
                     final JPanel panel = new JPanel() {
+                        /**
+                         * 
+                         */
+                        private static final long serialVersionUID = 8991627308734234096L;
+
                         public Dimension getPreferredSize() {
                             return new Dimension(700, 600);
                         }

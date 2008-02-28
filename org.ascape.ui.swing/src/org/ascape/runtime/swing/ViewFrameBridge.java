@@ -79,6 +79,11 @@ import org.ascape.view.vis.ComponentView;
 public class ViewFrameBridge implements Serializable {
     
     /**
+     * 
+     */
+    private static final long serialVersionUID = 3459580209958069427L;
+
+    /**
      * The Constant POPUP_MAP_WIDTH.
      */
     private static final int POPUP_MAP_WIDTH = 500;
@@ -92,6 +97,11 @@ public class ViewFrameBridge implements Serializable {
      * Provides a basic (non-swing) Frame for an ascape view.
      */
     class ViewFrame extends Frame implements Serializable {
+
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 5646334137198779963L;
 
         /**
          * Returns the content pane. In this case, returns self; used for
@@ -127,6 +137,11 @@ public class ViewFrameBridge implements Serializable {
     class ViewJFrame extends JFrame implements Serializable {
 
         /**
+         * 
+         */
+        private static final long serialVersionUID = -9145580460391689664L;
+
+        /**
          * Set initial size upon notification of peer creation.
          */
         public void addNotify() {
@@ -148,6 +163,11 @@ public class ViewFrameBridge implements Serializable {
      * A class providing an internal frame for an ascape view.
      */
     class ViewJInternalFrame extends JInternalFrame implements ViewPanZoomFrame, Serializable {
+
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1677193503023573560L;
 
         /**
          * Set initial size upon notification of peer creation.
@@ -270,6 +290,11 @@ public class ViewFrameBridge implements Serializable {
 
 
         /**
+         * 
+         */
+        private static final long serialVersionUID = 7421071765403310411L;
+
+        /**
          * Instantiates a new view J window.
          */
         public ViewJWindow() {
@@ -372,6 +397,11 @@ public class ViewFrameBridge implements Serializable {
      */
     private class ViewPanel extends JPanel implements Scrollable {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 924757892310665777L;
+
         /* (non-Javadoc)
          * @see javax.swing.Scrollable#getPreferredScrollableViewportSize()
          */
@@ -413,6 +443,10 @@ public class ViewFrameBridge implements Serializable {
      */
     private abstract class ZoomAction extends AbstractAction {
         
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -3527370556448927637L;
         /**
          * The delta.
          */
@@ -456,6 +490,11 @@ public class ViewFrameBridge implements Serializable {
     private class ZoomInAction extends ZoomAction {
         
         /**
+         * 
+         */
+        private static final long serialVersionUID = -1718533012688935439L;
+
+        /**
          * Instantiates a new zoom in action.
          */
         public ZoomInAction() {
@@ -470,6 +509,11 @@ public class ViewFrameBridge implements Serializable {
     private class ZoomOutAction extends ZoomAction {
 
         /**
+         * 
+         */
+        private static final long serialVersionUID = -8991802904647063089L;
+
+        /**
          * Instantiates a new zoom out action.
          */
         public ZoomOutAction() {
@@ -482,6 +526,11 @@ public class ViewFrameBridge implements Serializable {
      * The Class ZoomLockAction.
      */
     private class ZoomLockAction extends AbstractAction {
+
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -5023319833662503132L;
 
         /**
          * Instantiates a new zoom lock action.
@@ -503,6 +552,11 @@ public class ViewFrameBridge implements Serializable {
      * The Class ZoomUnLockAction.
      */
     private class ZoomUnLockAction extends AbstractAction {
+
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -4163993041024403592L;
 
         /**
          * Instantiates a new zoom un lock action.
@@ -828,6 +882,11 @@ public class ViewFrameBridge implements Serializable {
         if (isAgentView()) {
             viewToolbar = DesktopEnvironment.createToolbar();
             JPanel statusPanel = new JPanel() {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 6659317059108565822L;
+
                 public Dimension getPreferredSize() {
                     return new Dimension(120, super.getPreferredSize().height);
                 }
@@ -871,6 +930,11 @@ public class ViewFrameBridge implements Serializable {
                         JPanel subPanel = new JPanel();
                         subPanel.setLayout(new BorderLayout());
                         JLabel label = new JLabel(views[i].getName()) {
+                            /**
+                             * 
+                             */
+                            private static final long serialVersionUID = -7034603443217265799L;
+
                             public Dimension getPreferredSize() {
                                 return new Dimension(0, labelSize);
                             }

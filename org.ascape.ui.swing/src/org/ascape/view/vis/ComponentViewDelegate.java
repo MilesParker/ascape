@@ -37,6 +37,11 @@ import org.ascape.movie.MovieRecorder;
 public class ComponentViewDelegate extends ScapeListenerDelegate {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 4516264130312781075L;
+
+    /**
      * Are we waiting for a record to occur?.
      */
     private boolean recordNext;

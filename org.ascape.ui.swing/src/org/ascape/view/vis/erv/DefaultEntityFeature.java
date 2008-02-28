@@ -30,6 +30,11 @@ import org.ascape.util.vis.EntityFeature;
 public class DefaultEntityFeature implements EntityFeature, java.io.Serializable {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 473788354164046131L;
+
+    /**
      * The scape.
      */
     private Scape scape;

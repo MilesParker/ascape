@@ -670,6 +670,11 @@ public abstract class AgentView extends BufferView implements Observer {
 class DrawFeatureObservable extends Observable implements Serializable {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = -4241617900817151329L;
+
+    /**
      * Have to provide this silly method because set changed is protected for some reason.
      */
     public void setChanged() {

@@ -5,8 +5,10 @@
  * Any referenced or included libraries carry licenses of their respective copyright holders. 
  */
 
-package org.ascape.ant;
+package org.ascape.ant.swing;
 
+import org.ascape.ant.AntViewElement;
+import org.ascape.ant.SelectionSet;
 import org.ascape.model.Scape;
 import org.ascape.view.vis.AgentView;
 
@@ -16,6 +18,10 @@ import org.ascape.view.vis.AgentView;
  */
 public class AntAgentViewElement extends AntViewElement {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 4297846855885337497L;
     /**
      * The draw set.
      */

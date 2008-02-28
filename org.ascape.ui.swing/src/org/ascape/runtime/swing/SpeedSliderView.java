@@ -40,6 +40,11 @@ public class SpeedSliderView extends ScapeTransitionView /* implements Externali
     class SpeedSlider extends JSlider {
 
         /**
+         * 
+         */
+        private static final long serialVersionUID = -4465792600546767334L;
+
+        /**
          * The Constant KNOB_SNAP.
          */
         final static int KNOB_SNAP = 3;
@@ -160,6 +165,11 @@ public class SpeedSliderView extends ScapeTransitionView /* implements Externali
          */
         private class ModelListener implements ChangeListener, Serializable {
 
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -1045068819492557821L;
+
             /* (non-Javadoc)
              * @see javax.swing.event.ChangeListener#stateChanged(javax.swing.event.ChangeEvent)
              */
@@ -173,6 +183,11 @@ public class SpeedSliderView extends ScapeTransitionView /* implements Externali
          */
         public ChangeListener createChangeListener() {
             return new ModelListener() {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 1659898244402772719L;
+
                 public void stateChanged(ChangeEvent e) {
                     BoundedRangeModel source = (BoundedRangeModel) e.getSource();
 

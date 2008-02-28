@@ -26,6 +26,11 @@ public class ShadowBorder extends BevelBorder {
 
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = -6329334022969277925L;
+
+    /**
      * Creates a bevel border with the specified type and whose
      * colors will be derived from the background color of the
      * component passed into the paintBorder method.

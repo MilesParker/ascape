@@ -106,6 +106,11 @@ public class MapView extends AgentView implements Serializable, LayerStatusListe
     class MapLocationLayer extends LocationLayer {
 
         /**
+         * 
+         */
+        private static final long serialVersionUID = 9174527535905429663L;
+
+        /**
          * Gets the locationHandlers attribute of the MapLocationLayer object
          *
          * @return   The locationHandlers value
@@ -116,6 +121,10 @@ public class MapView extends AgentView implements Serializable, LayerStatusListe
     }
 
     class MapRouteLayer extends Layer {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1473830944658611412L;
         private OMGraphicList omgraphics;
         public MapRouteLayer() {
             setName("MapRouteLayer");
@@ -159,6 +168,11 @@ public class MapView extends AgentView implements Serializable, LayerStatusListe
     public class ViewMapBean extends BufferedMapBean {
 
         /**
+         * 
+         */
+        private static final long serialVersionUID = -6197742887793359498L;
+
+        /**
          * A layer that displays graphics supplied by LocationHandlers
          */
         LocationLayer locLayer;
@@ -195,6 +209,11 @@ public class MapView extends AgentView implements Serializable, LayerStatusListe
             if (agentColorFeature == null) {
                 agentColorFeature =
                     new ColorFeatureConcrete("Default Agent Color") {
+                        /**
+                         * 
+                         */
+                        private static final long serialVersionUID = 3692823319544557523L;
+
                         public Color getColor(Object object) {
                             return ((Agent) object).getColor();
                         }
@@ -426,6 +445,11 @@ public class MapView extends AgentView implements Serializable, LayerStatusListe
         setName("Map View");
 
         setDelegate(new ComponentViewDelegate(this) {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -6173856857264450020L;
+
             public void viewPainted() {
                 if (!awaitingMapBeanPaint && !awaitingMapBeanWorking) {
                     super.viewPainted();

@@ -27,6 +27,11 @@ import org.ascape.util.Utility;
 public abstract class CustomSliderPanelInf extends CustomSliderPanel {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = -2903784979153258556L;
+
+    /**
      * Constructs a slider panel that can be set to any value between minimum and infinity,
      * and that allows changes to the given decimal place precision. Note that value specified
      * by maximum will be replaced with infinity, so if you want that value to be selectable,

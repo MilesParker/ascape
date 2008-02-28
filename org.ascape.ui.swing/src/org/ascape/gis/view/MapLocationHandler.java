@@ -34,6 +34,10 @@ public class MapLocationHandler extends AbstractLocationHandler
     implements MouseListener, ActionListener, Serializable {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 7729758986778278346L;
+    /**
      * An instance of MapView
      */
     private MapView view;

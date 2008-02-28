@@ -21,6 +21,11 @@ import javax.swing.tree.DefaultMutableTreeNode;
  */
 public class StringNode extends DefaultMutableTreeNode {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 996862836806940457L;
+
     String string;
 
     boolean booleanOp;

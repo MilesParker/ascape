@@ -115,11 +115,21 @@ public abstract class MovieRecorder {
             recordContainer = recordFrame.getContentPane();
             recordContainer.setLayout(new BorderLayout());
             cancelOrStopButton = new JButton("Cancel") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 2636768903600459051L;
+
                 public Dimension getPreferredSize() {
                     return new Dimension(100, super.getPreferredSize().height);
                 }
             };
             cancelOrStopButton.addActionListener(new AbstractAction() {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 8873376030622446171L;
+
                 public void actionPerformed(ActionEvent e) {
                     cancelOrStop();
                 }

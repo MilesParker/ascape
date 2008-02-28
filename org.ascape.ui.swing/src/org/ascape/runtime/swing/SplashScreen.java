@@ -75,7 +75,7 @@ public class SplashScreen {
             duration = Long.parseLong(args[0]);
         }
 
-        SplashScreen bs = new SplashScreen(duration);
+        new SplashScreen(duration);
         System.exit(0);
     }
 

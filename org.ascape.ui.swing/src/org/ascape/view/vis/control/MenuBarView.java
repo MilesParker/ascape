@@ -89,6 +89,11 @@ public class MenuBarView extends ControlActionView {
         super(name);
 
         fullWindowAction = new AbstractAction() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 1556930508272488966L;
+
             public void actionPerformed(ActionEvent e) {
                 DesktopEnvironment.DEFAULT_ENVIRONMENT.setFullScreen(true);
             }
@@ -97,6 +102,11 @@ public class MenuBarView extends ControlActionView {
         fullWindowAction.putValue(Action.SHORT_DESCRIPTION, "Display Ascape in Full Screen");
 
         normalWindowAction = new AbstractAction() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 609757419862169763L;
+
             public void actionPerformed(ActionEvent e) {
                 DesktopEnvironment.DEFAULT_ENVIRONMENT.setFullScreen(false);
             }
@@ -105,6 +115,11 @@ public class MenuBarView extends ControlActionView {
         normalWindowAction.putValue(Action.SHORT_DESCRIPTION, "Display Ascape in Normal Application Window");
 
         showToolBarAction = new AbstractAction() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -6431361141666126911L;
+
             public void actionPerformed(ActionEvent e) {
                 DesktopEnvironment.DEFAULT_ENVIRONMENT.getUserFrame().setShowToolBar(true);
                 toolbarItem.setAction(hideToolBarAction);
@@ -114,6 +129,11 @@ public class MenuBarView extends ControlActionView {
         showToolBarAction.putValue(Action.NAME, "Toolbar");
         showToolBarAction.putValue(Action.SHORT_DESCRIPTION, "Show Toolbar");
         hideToolBarAction = new AbstractAction() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -4739257836212809903L;
+
             public void actionPerformed(ActionEvent e) {
                 DesktopEnvironment.DEFAULT_ENVIRONMENT.getUserFrame().setShowToolBar(false);
                 toolbarItem.setAction(showToolBarAction);

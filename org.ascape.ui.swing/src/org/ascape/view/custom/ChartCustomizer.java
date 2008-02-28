@@ -547,6 +547,11 @@ public class ChartCustomizer extends BaseCustomizer implements Serializable {
     private void setUpColorEditor(JTable table) {
         //First, set up the button that brings up the dialog.
         final JButton button = new JRowButton("") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 5842237790364872497L;
+
             public void setText(String s) {
                 //Button never shows text -- only color.
             }
@@ -605,6 +610,11 @@ public class ChartCustomizer extends BaseCustomizer implements Serializable {
      * The data model for displaying all series that may be added to the chart.
      */
     class AvailableDataModel extends AbstractTableModel implements Serializable {
+
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 4759032635778249844L;
 
         /* (non-Javadoc)
          * @see javax.swing.table.TableModel#getRowCount()
@@ -697,6 +707,11 @@ public class ChartCustomizer extends BaseCustomizer implements Serializable {
      */
     class SelectedDataModel extends AbstractTableModel implements Serializable {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -4531534031089806395L;
+
         /* (non-Javadoc)
          * @see javax.swing.table.TableModel#getRowCount()
          */
@@ -777,6 +792,11 @@ public class ChartCustomizer extends BaseCustomizer implements Serializable {
 
 class JRowButton extends JButton implements Serializable {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -4806113943445633794L;
+
     public JRowButton(String s) {
         super(s);
     }
@@ -791,6 +811,11 @@ class NullCheckBoxRenderer extends DefaultTableCellRenderer implements Serializa
     //    super(); //Unfortunately, the constructor
     //    component = new JCheckBox();
     //}
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -1533657479611690117L;
 
     public Component getTableCellRendererComponent(
         JTable table, Object value,
@@ -831,6 +856,10 @@ class NullCheckBoxRenderer extends DefaultTableCellRenderer implements Serializa
 
 class ColorEditor extends DefaultCellEditor implements Serializable {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -462567358233937941L;
     Color currentColor = null;
 
     public ColorEditor(JButton b) {

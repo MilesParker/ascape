@@ -55,6 +55,11 @@ public class AgentCustomizerPanel {
      */
     class PropertiesModel extends AbstractTableModel implements Serializable {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -7556103457969889396L;
+
         /* (non-Javadoc)
          * @see javax.swing.table.TableModel#getRowCount()
          */
@@ -74,7 +79,7 @@ public class AgentCustomizerPanel {
          */
         public synchronized void setValueAt(Object object, int row, int col) {
             try {
-                Object oldValue = accessors[row].getReadMethod().invoke(object, null);
+                Object oldValue = accessors[row].getReadMethod().invoke(object, (Object[]) null);
                 PropertyAccessor.setAsText(agent, (String) object, accessors[row]);
                 if (propertySupport != null) {
                     propertySupport.firePropertyChange(accessors[row].getName(), oldValue, object);
@@ -126,6 +131,11 @@ public class AgentCustomizerPanel {
      * The Class JGrayNonEditTable.
      */
     static class JGrayNonEditTable extends JTable {
+
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -174752549754256913L;
 
         /**
          * Instantiates a new j gray non edit table.

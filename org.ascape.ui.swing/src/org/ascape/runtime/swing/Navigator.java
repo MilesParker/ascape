@@ -80,6 +80,11 @@ public class Navigator extends PanelView {
     public Navigator() {
         super("Scape Navigator");
         delegate = new ComponentViewDelegate(this) {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 6905412538045347381L;
+
             public void scapeAdded(ScapeEvent scapeEvent) throws TooManyListenersException {
                 scape = (Scape) scapeEvent.getSource();
             }
@@ -212,6 +217,11 @@ public class Navigator extends PanelView {
 
 //        tree.putClientProperty("JTree.lineStyle", "Angled");
         DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 1371869534479837978L;
+
             public Component getTreeCellRendererComponent(JTree tree, Object value,
                                                           boolean sel,
                                                           boolean expanded,
@@ -261,6 +271,11 @@ public class Navigator extends PanelView {
     class BaseNode extends DefaultMutableTreeNode {
         
         /**
+         * 
+         */
+        private static final long serialVersionUID = -1339361794486509129L;
+
+        /**
          * The scape.
          */
         Scape scape;
@@ -283,6 +298,11 @@ public class Navigator extends PanelView {
             this.scape = scape;
 
             listener = new DefaultScapeListener("Tree Members Listener") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 6739656535899709964L;
+
                 private void update() {
                     TreePath nodePath = new TreePath(BaseNode.this.getPath());
                     if (scape.isMutable() && (tree.isVisible(nodePath))) {
@@ -359,6 +379,10 @@ public class Navigator extends PanelView {
     class AccessorNode extends BaseNode {
         
         /**
+         * 
+         */
+        private static final long serialVersionUID = 6327681491877012320L;
+        /**
          * The accessor.
          */
         private PropertyAccessor accessor;
@@ -391,6 +415,11 @@ public class Navigator extends PanelView {
     class RuleNode extends BaseNode {
         
         /**
+         * 
+         */
+        private static final long serialVersionUID = -6204254579116806384L;
+
+        /**
          * Instantiates a new rule node.
          * 
          * @param scape
@@ -408,6 +437,11 @@ public class Navigator extends PanelView {
      */
     class RulesNode extends BaseNode {
         
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 5237720048765754585L;
+
         /**
          * The selection observer.
          */
@@ -429,6 +463,11 @@ public class Navigator extends PanelView {
             this.scape = scape;
             currentRules = new HashMap();
             listener = new DefaultScapeListener("Tree Members Listener") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 5414250624546793220L;
+
                 public void scapeStarted(ScapeEvent scapeEvent) {
                     requestUpdateChildren();
                 }
@@ -473,6 +512,11 @@ public class Navigator extends PanelView {
      */
     class PropertiesNode extends BaseNode {
         
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 8638479208005464388L;
+
         /**
          * The accessors.
          */
@@ -564,6 +608,11 @@ public class Navigator extends PanelView {
     class AgentNode extends PropertiesNode {
         
         /**
+         * 
+         */
+        private static final long serialVersionUID = -5046377326408958875L;
+
+        /**
          * Instantiates a new agent node.
          * 
          * @param scape
@@ -581,6 +630,11 @@ public class Navigator extends PanelView {
      */
     class ScapeNode extends BaseNode {
         
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -7469682418324424534L;
+
         /**
          * Instantiates a new scape node.
          * 
@@ -616,6 +670,11 @@ public class Navigator extends PanelView {
      */
     class ScapeGroupNode extends ScapeMembersNode {
         
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 3489960978154121203L;
+
         /**
          * The start index.
          */
@@ -665,6 +724,11 @@ public class Navigator extends PanelView {
      */
     class ScapeMembersNode extends BaseNode {
         
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 3696674806064654573L;
+
         /**
          * Instantiates a new scape members node.
          * 

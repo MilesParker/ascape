@@ -31,7 +31,6 @@ import org.ascape.movie.RecorderListener;
 import org.ascape.movie.qt.QuickTimeRecorder;
 import org.ascape.runtime.swing.DesktopEnvironment;
 import org.ascape.runtime.swing.SearchView;
-import org.ascape.runtime.swing.SwingRunner;
 import org.ascape.view.custom.BaseCustomizer;
 import org.ascape.view.vis.ChartView;
 import org.ascape.view.vis.ComponentView;
@@ -207,6 +206,11 @@ public class ControlActionView extends ScapeTransitionView implements RecorderLi
     public ControlActionView(String name) {
         super(name);
         startRestartAction = new AbstractAction() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 5557060914978519081L;
+
             public void actionPerformed(ActionEvent e) {
                 if (!getScape().isRunning()) {
                     getScape().respondControl(new ControlEvent(this, ControlEvent.REQUEST_START));
@@ -220,6 +224,11 @@ public class ControlActionView extends ScapeTransitionView implements RecorderLi
         startRestartAction.putValue(Action.SMALL_ICON, DesktopEnvironment.getIcon("ClockGo"));
 
         pauseResumeAction = new AbstractAction() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 1092243053425962189L;
+
             public void actionPerformed(ActionEvent e) {
                 if (modelIsPaused) {
                     getScape().respondControl(new ControlEvent(this, ControlEvent.REQUEST_RESUME));
@@ -239,6 +248,11 @@ public class ControlActionView extends ScapeTransitionView implements RecorderLi
         pauseResumeAction.putValue(Action.SMALL_ICON, DesktopEnvironment.getIcon("RedFlag"));
 
         stepAction = new AbstractAction() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -4251437686821330596L;
+
             public void actionPerformed(ActionEvent e) {
                 scapeNowStepping();
                 //Force change back to pause on next update
@@ -254,6 +268,11 @@ public class ControlActionView extends ScapeTransitionView implements RecorderLi
 //        stepAction.isEnabled();
 
         stopAction = new AbstractAction() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -4509621518176505478L;
+
             public void actionPerformed(ActionEvent e) {
                 getScape().respondControl(new ControlEvent(this, ControlEvent.REQUEST_STOP));
             }
@@ -264,6 +283,11 @@ public class ControlActionView extends ScapeTransitionView implements RecorderLi
 
 
         openAction = new AbstractAction() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 4510642692479060522L;
+
             public void actionPerformed(ActionEvent e) {
                 if (getScape() != null) {
                     getScape().respondControl(new ControlEvent(this, ControlEvent.REQUEST_OPEN));
@@ -277,6 +301,11 @@ public class ControlActionView extends ScapeTransitionView implements RecorderLi
         openAction.putValue(Action.SMALL_ICON, DesktopEnvironment.getIcon("OpenArrow"));
 
         openSavedAction = new AbstractAction() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -79740733780101978L;
+
             public void actionPerformed(ActionEvent e) {
                 if (getScape() != null) {
                     getScape().respondControl(new ControlEvent(this, ControlEvent.REQUEST_OPEN_SAVED));
@@ -290,6 +319,11 @@ public class ControlActionView extends ScapeTransitionView implements RecorderLi
         openSavedAction.putValue(Action.SMALL_ICON, DesktopEnvironment.getIcon("OpenDoc"));
 
         closeAction = new AbstractAction() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -5421754824561277042L;
+
             public void actionPerformed(ActionEvent e) {
                 if (scape != null) {
                     getScape().respondControl(new ControlEvent(this, ControlEvent.REQUEST_CLOSE));
@@ -301,6 +335,11 @@ public class ControlActionView extends ScapeTransitionView implements RecorderLi
         closeAction.putValue(Action.SMALL_ICON, DesktopEnvironment.getIcon("DeleteSheet"));
 
         saveAction = new AbstractAction() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -473518649914694666L;
+
             public void actionPerformed(ActionEvent e) {
                 getScape().respondControl(new ControlEvent(this, ControlEvent.REQUEST_SAVE));
             }
@@ -310,6 +349,11 @@ public class ControlActionView extends ScapeTransitionView implements RecorderLi
         saveAction.putValue(Action.SMALL_ICON, DesktopEnvironment.getIcon("Save"));
 
         quitAction = new AbstractAction() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -3147220495521509564L;
+
             public void actionPerformed(ActionEvent e) {
                 getScape().respondControl(new ControlEvent(this, ControlEvent.REQUEST_QUIT));
                 getScape().getRunner().getEnvironment().quit();
@@ -320,6 +364,11 @@ public class ControlActionView extends ScapeTransitionView implements RecorderLi
         quitAction.putValue(Action.SMALL_ICON, DesktopEnvironment.getIcon("Delete"));
 
         settingsAction = new AbstractAction() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -2962923969270143073L;
+
             public void actionPerformed(ActionEvent e) {
                 if (!(getScape().getScapeListeners().contains(getScape().getUIEnvironment().getCustomizer()))) {
                     getScape().addView(getScape().getUIEnvironment().getCustomizer());
@@ -342,6 +391,11 @@ public class ControlActionView extends ScapeTransitionView implements RecorderLi
         settingsAction.putValue(Action.SMALL_ICON, DesktopEnvironment.getIcon("World"));
 
         searchAction = new AbstractAction() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 2248339728714978093L;
+
             public void actionPerformed(ActionEvent e) {
                 getScape().addView(new SearchView());
             }
@@ -351,6 +405,11 @@ public class ControlActionView extends ScapeTransitionView implements RecorderLi
         searchAction.putValue(Action.SMALL_ICON, DesktopEnvironment.getIcon("Binocular"));
 
         captureDeskAction = new AbstractAction() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 608361368433987948L;
+
             public void actionPerformed(ActionEvent actionEvent) {
                 Component desk = DesktopEnvironment.DEFAULT_ENVIRONMENT.getUserFrame().getDesk();
                      int w = desk.getWidth(), h = desk.getHeight();
@@ -371,6 +430,11 @@ public class ControlActionView extends ScapeTransitionView implements RecorderLi
         captureDeskAction.putValue(Action.SMALL_ICON, DesktopEnvironment.getIcon("CameraFlash"));
 
         recordStartAction = new AbstractAction() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 1505297333726705163L;
+
             public void actionPerformed(ActionEvent e) {
                 if (recorder == null) {
                     recorder = new QuickTimeRecorder(DesktopEnvironment.DEFAULT_ENVIRONMENT.getUserFrame().getDesk());
@@ -383,6 +447,11 @@ public class ControlActionView extends ScapeTransitionView implements RecorderLi
         recordStartAction.putValue(Action.SMALL_ICON, DesktopEnvironment.getIcon("Camera"));
 
         recordStopAction = new AbstractAction() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 1114129941923489755L;
+
             public void actionPerformed(ActionEvent e) {
                 recordingCancelStop();
             }
@@ -392,6 +461,11 @@ public class ControlActionView extends ScapeTransitionView implements RecorderLi
         recordStopAction.putValue(Action.SMALL_ICON, DesktopEnvironment.getIcon("CameraFlash"));
 
         infoAction = new AbstractAction() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -8431813556281975870L;
+
             public void actionPerformed(ActionEvent e) {
                 DesktopEnvironment.displayAboutDialog(scape);
             }
@@ -401,6 +475,11 @@ public class ControlActionView extends ScapeTransitionView implements RecorderLi
         infoAction.putValue(Action.SMALL_ICON, DesktopEnvironment.getIcon("Inform"));
 
         addTSAction = new AbstractAction() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -4300893818212408338L;
+
             public void actionPerformed(ActionEvent e) {
                 newChart(ChartView.TIME_SERIES);
             }
@@ -410,6 +489,11 @@ public class ControlActionView extends ScapeTransitionView implements RecorderLi
         addTSAction.putValue(Action.SMALL_ICON, DesktopEnvironment.getIcon("LineGraph"));
 
         addHistAction = new AbstractAction() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 6063864949471473037L;
+
             public void actionPerformed(ActionEvent e) {
                 newChart(ChartView.HISTOGRAM);
             }
@@ -419,6 +503,11 @@ public class ControlActionView extends ScapeTransitionView implements RecorderLi
         addHistAction.putValue(Action.SMALL_ICON, DesktopEnvironment.getIcon("BarGraph"));
 
         addPieAction = new AbstractAction() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 8425068395400505182L;
+
             public void actionPerformed(ActionEvent e) {
                 newChart(ChartView.PIE);
             }
@@ -428,6 +517,11 @@ public class ControlActionView extends ScapeTransitionView implements RecorderLi
         addPieAction.putValue(Action.SMALL_ICON, DesktopEnvironment.getIcon("PieGraph"));
 
         fullWindowAction = new AbstractAction() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 1361316239693434267L;
+
             public void actionPerformed(ActionEvent e) {
                 DesktopEnvironment.DEFAULT_ENVIRONMENT.setFullScreen(true);
             }
@@ -438,6 +532,11 @@ public class ControlActionView extends ScapeTransitionView implements RecorderLi
             fullWindowAction.putValue(Action.SMALL_ICON, DesktopEnvironment.getIcon("Computer"));
 
             normalWindowAction = new AbstractAction() {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = -4242913283035409066L;
+
                 public void actionPerformed(ActionEvent e) {
                     DesktopEnvironment.DEFAULT_ENVIRONMENT.setFullScreen(false);
                 }

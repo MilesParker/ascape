@@ -64,6 +64,11 @@ public class Scrolling1DView extends CellView {
         setName(name);
         setCellSize(2);
         setDelegate(new ComponentViewDelegate(this) {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 7075869804727213331L;
+
             public synchronized void scapeNotification(ScapeEvent scapeEvent) {
                 super.scapeNotification(scapeEvent);
                 //Updatge graphics even when we are _not_ going to be painting to the screen this period

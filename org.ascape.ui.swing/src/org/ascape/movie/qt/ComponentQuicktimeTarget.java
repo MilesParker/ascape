@@ -22,7 +22,6 @@ import quicktime.app.image.QTImageDrawer;
  * @version 2.9 (Ascape)
  * @history 5/9/2002 first in
  */
-@SuppressWarnings("deprecation")
 public class ComponentQuicktimeTarget implements QuicktimeTarget {
 
     private Component component;

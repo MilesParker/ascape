@@ -54,6 +54,11 @@ public abstract class HostedAgentView extends CellView {
      * an oval using the agent color feature on the occupant.
      */
     public final DrawFeature agents_oval_cells_draw_feature = new DrawFeature("Default Oval Agent") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -6272510346583316008L;
+
         public final void draw(Graphics g, Object object, int width, int height) {
             if (object != null) {
                 g.setColor(agentColorFeature.getColor(object));
@@ -79,6 +84,11 @@ public abstract class HostedAgentView extends CellView {
      * an oval using the agent color feature on the occupant.
      */
     public final DrawFeature agents_oval_cells_boundary_draw_feature = new DrawFeature("Default Oval Agent") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 4911219526716031691L;
+
         public final void draw(Graphics g, Object object, int width, int height) {
             g.setColor(agentColorFeature.getColor(object));
             g.fillRect(0, 0, width, height);
@@ -99,6 +109,11 @@ public abstract class HostedAgentView extends CellView {
      * descriptive string next to any agents.
      */
     public final DrawFeature agents_oval_cells_desc_draw_feature = new DrawFeature("Default Oval Agent") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -4498969872571450812L;
+
         public final void draw(Graphics g, Object object, int width, int height) {
             CellOccupant occupant = (CellOccupant) ((Cell) object).getOccupant();
             if (occupant != null) {
@@ -115,6 +130,11 @@ public abstract class HostedAgentView extends CellView {
      * occupant.
      */
     public final DrawFeature agents_fill_cells_draw_feature = new DrawFeature("Default Fill Agent") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -2515862414367192654L;
+
         public final void draw(Graphics g, Object object, int width, int height) {
             CellOccupant occupant = (CellOccupant) ((Cell) object).getOccupant();
             if (occupant != null) {
@@ -133,6 +153,11 @@ public abstract class HostedAgentView extends CellView {
      * an oval using the agent color feature on the occupant.
      */
     public final DrawFeature agents_image_cells_draw_feature = new DrawFeature("Default Image Agent") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -100190730941724219L;
+
         public final void draw(Graphics g, Object object, int width, int height) {
             g.setColor(agentColorFeature.getColor(object));
             g.fillRect(0, 0, width, height);
@@ -153,6 +178,11 @@ public abstract class HostedAgentView extends CellView {
         //System.out.println("build "+this);
         if (hostedAgentColorFeature == null) {
             hostedAgentColorFeature = new ColorFeatureConcrete("Default Agent Color") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = -197439982190788937L;
+
                 public Color getColor(Object object) {
                     return ((Agent) object).getColor();
                 }
@@ -160,6 +190,11 @@ public abstract class HostedAgentView extends CellView {
         }
         if (hostedAgentImageFeature == null) {
             hostedAgentImageFeature = new ImageFeatureConcrete("Default Agent Image") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 8347260892400147273L;
+
                 public Image getImage(Object object) {
                     return ((Agent) object).getImage();
                 }

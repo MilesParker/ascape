@@ -5,7 +5,7 @@
  * Any referenced or included libraries carry licenses of their respective copyright holders. 
  */
 
-package org.ascape.ant;
+package org.ascape.ant.swing;
 
 import java.awt.Color;
 import java.awt.Rectangle;
@@ -15,6 +15,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.TooManyListenersException;
 
+import org.ascape.ant.ChartSeriesElement;
+import org.ascape.ant.RectangleElement;
+import org.ascape.ant.ViewElement;
 import org.ascape.model.Scape;
 import org.ascape.model.event.ScapeEvent;
 import org.ascape.view.vis.ChartView;
@@ -22,7 +25,7 @@ import org.ascape.view.vis.ChartView;
 /**
  * The Class AntChartView.
  */
-public class AntChartView extends ChartView implements ViewElement, Serializable {
+public class AntChartViewElement extends ChartView implements ViewElement, Serializable {
 
     /**
      * The series elements.

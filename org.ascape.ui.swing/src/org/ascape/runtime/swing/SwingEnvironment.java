@@ -26,7 +26,6 @@ import javax.swing.SwingUtilities;
 import org.ascape.model.Scape;
 import org.ascape.model.event.ScapeListener;
 import org.ascape.runtime.AbstractUIEnvironment;
-import org.ascape.view.custom.ModelCustomizer;
 import org.ascape.view.vis.ComponentView;
 import org.ascape.view.vis.control.ControlBarView;
 
@@ -37,21 +36,14 @@ import org.ascape.view.vis.control.ControlBarView;
 public abstract class SwingEnvironment extends AbstractUIEnvironment {
     
     /**
-     * A customizer for the model.
+     * 
      */
-    private transient ModelCustomizer customizer;
+    private static final long serialVersionUID = -8950328979037923978L;
     
     /**
      * The control bar view.
      */
     protected transient ControlBarView controlBarView;
-    
-    /**
-     * This is simply a static representation of the user environment. For now
-     * we can safeuly use a stic because we can assume that there will be only
-     * one user environment per vm.
-     */
-    private transient static DesktopEnvironment uiEnvironment;
     
     /**
      * The root pane.
@@ -318,6 +310,11 @@ public abstract class SwingEnvironment extends AbstractUIEnvironment {
         while (!(modelName == null)) {
 
             final JPanel specifyModelPanel = new JPanel() {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 2882328601287498142L;
+
                 public Dimension getPreferredSize() {
                     return new Dimension(240, super.getPreferredSize().height);
                 }

@@ -33,7 +33,6 @@ import javax.swing.event.InternalFrameAdapter;
 import org.ascape.model.event.ScapeEvent;
 import org.ascape.runtime.swing.DesktopEnvironment;
 import org.ascape.runtime.swing.SpeedSliderView;
-import org.ascape.runtime.swing.SwingRunner;
 import org.ascape.runtime.swing.ViewFrameBridge;
 
 /**
@@ -321,6 +320,11 @@ public class ControlBarView extends ControlActionView /* implements Externalizab
         if (DesktopEnvironment.DEFAULT_ENVIRONMENT != null) {
             framePanel.removeAll();
             frameList = new JComboBox(DesktopEnvironment.DEFAULT_ENVIRONMENT.getAllFrames()) {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 4025909775510833732L;
+
                 public Dimension getPreferredSize() {
                     return new Dimension(100, super.getPreferredSize().height);
                 }

@@ -23,6 +23,11 @@ public class ColorRenderer extends JLabel
     implements Serializable, TableCellRenderer {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = -8762840075101590635L;
+
+    /**
      * The unselected border.
      */
     Border unselectedBorder = null;

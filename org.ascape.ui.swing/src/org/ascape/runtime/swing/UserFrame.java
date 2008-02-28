@@ -58,6 +58,11 @@ import org.ascape.view.vis.control.MenuBarView;
 public class UserFrame extends JFrame {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 5621172820611162226L;
+
+    /**
      * The desk.
      */
     private JDesktopPane desk;
@@ -273,6 +278,11 @@ public class UserFrame extends JFrame {
         if (DesktopEnvironment.isShowNavigator()) {
             Navigator navigator = new Navigator();
             JPanel navTitle = new JPanel() {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 6048424073628257167L;
+
                 public void paint(Graphics g) {
                     super.paint(g);
                     g.setColor(Color.white);
@@ -303,11 +313,21 @@ public class UserFrame extends JFrame {
 
         if (DesktopEnvironment.isRedirectConsole()) {
             final JScrollPane consoleScroll = new JScrollPane() {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 5505727044708554260L;
+
                 public Dimension getPreferredSize() {
                     return new Dimension(super.getPreferredSize().width, 120);
                 }
             };
             ConsoleOutput console = new ConsoleOutput() {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = -2375015593304873880L;
+
                 public void append(String text) {
                     super.append(text);
                     JScrollBar b = consoleScroll.getVerticalScrollBar();
@@ -319,6 +339,11 @@ public class UserFrame extends JFrame {
             JPanel consolePanel = new JPanel(new BorderLayout());
             consolePanel.add(consoleScroll, BorderLayout.CENTER);
             JPanel consoleTitle = new JPanel() {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 5592101534908366502L;
+
                 public void paint(Graphics g) {
                     super.paint(g);
                     g.setColor(Color.white);
@@ -736,6 +761,10 @@ public class UserFrame extends JFrame {
     private class UserDesktopManager extends DefaultDesktopManager {
 
         /**
+         * 
+         */
+        private static final long serialVersionUID = 6102706823874157676L;
+        /**
          * The last bounds.
          */
         Rectangle lastBounds;
@@ -965,6 +994,11 @@ public class UserFrame extends JFrame {
 }
 
 class ConsoleOutput extends JTextArea {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -2358292646446121662L;
 
     private boolean runThread = true;
 

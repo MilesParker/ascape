@@ -42,8 +42,6 @@ import org.ascape.model.Scape;
 import org.ascape.model.event.ControlEvent;
 import org.ascape.model.event.ScapeEvent;
 import org.ascape.model.event.ScapeListener;
-import org.ascape.runtime.AbstractUIEnvironment;
-import org.ascape.runtime.Runner;
 import org.ascape.runtime.swing.DesktopEnvironment;
 import org.ascape.util.sweep.SweepDimension;
 import org.ascape.util.sweep.SweepGroup;
@@ -246,6 +244,11 @@ public class BatchView extends PanelView {
     public BatchView() {
         sweepView = new SweepControlView();
         sweepView.setSweepGroup(new SweepGroup() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -8973165433109317254L;
+
             public void addMember(Sweepable sweep) {
                 super.addMember(sweep);
                 sweepModel.fireTableDataChanged();
@@ -253,6 +256,11 @@ public class BatchView extends PanelView {
         });
         //Make the data output view batch view aware
         dataView = new DataOutputView() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -5100918563727511434L;
+
             public void setRunFile(File file) throws IOException {
                 super.setRunFile(file);
                 BatchView.this.runFileCandidate = file;
@@ -272,6 +280,11 @@ public class BatchView extends PanelView {
         add(contentPanel, BorderLayout.CENTER);
 
         sweepModel = new AbstractTableModel() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 8292222004446498779L;
+
             public int getRowCount() {
                 return sweepView.getSweepGroup().getUnlinkedSize();
             }
@@ -542,12 +555,22 @@ public class BatchView extends PanelView {
             };
         });
         JButton runFileButton = new JButton() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 5465170239793211349L;
+
             public Dimension getPreferredSize() {
                 int size = runFileField.getPreferredSize().height + 10;
                 return new Dimension(size, size);
             }
         };
         runFileButton.addActionListener(new ScapeControlAction() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -130652294726718684L;
+
             public void actionPerformed(ActionEvent e) {
                 System.out.println(runFileCandidate);
                 JFileChooser fileChooser = new JFileChooser();
@@ -570,12 +593,22 @@ public class BatchView extends PanelView {
         runFileButton.setToolTipText("Choose Run File");
         runFileButton.setIcon(DesktopEnvironment.getIcon("Folder"));
         JButton clearRunFileButton = new JButton() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -2447525984460908398L;
+
             public Dimension getPreferredSize() {
                 int size = runFileField.getPreferredSize().height + 10;
                 return new Dimension(size, size);
             }
         };
         clearRunFileButton.addActionListener(new ScapeControlAction() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -6165518468762587609L;
+
             public void actionPerformed(ActionEvent e) {
                 runFileCandidate = null;
                 runFileField.setText("");
@@ -622,12 +655,22 @@ public class BatchView extends PanelView {
             };
         });
         JButton periodFileButton = new JButton() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 4409725700105528718L;
+
             public Dimension getPreferredSize() {
                 int size = periodFileField.getPreferredSize().height + 10;
                 return new Dimension(size, size);
             }
         };
         periodFileButton.addActionListener(new ScapeControlAction() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -547816975971961987L;
+
             public void actionPerformed(ActionEvent e) {
                 System.out.println(periodFileCandidate);
                 JFileChooser fileChooser = new JFileChooser();
@@ -650,12 +693,22 @@ public class BatchView extends PanelView {
         periodFileButton.setToolTipText("Choose Run File");
         periodFileButton.setIcon(DesktopEnvironment.getIcon("Folder"));
         JButton clearPeriodFileButton = new JButton() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -6180626721687218456L;
+
             public Dimension getPreferredSize() {
                 int size = periodFileField.getPreferredSize().height + 10;
                 return new Dimension(size, size);
             }
         };
         clearPeriodFileButton.addActionListener(new ScapeControlAction() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 1922019701775676799L;
+
             public void actionPerformed(ActionEvent e) {
                 periodFileCandidate = null;
                 periodFileField.setText("");
@@ -729,6 +782,11 @@ public class BatchView extends PanelView {
         toolBar = new JToolBar();
         ToolTipManager.sharedInstance().setInitialDelay(50);
         startStopAction = new ScapeControlAction() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 2573638775694459860L;
+
             public void actionPerformed(ActionEvent e) {
                 if (!scapeAppearsRunning) {
                     try {
@@ -748,6 +806,11 @@ public class BatchView extends PanelView {
         startStopButton.setIcon(DesktopEnvironment.getIcon("ClockGo"));
 
         pauseToggleAction = new ScapeControlAction() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -2678577358841435312L;
+
             public void actionPerformed(ActionEvent e) {
                 if (!scapeAppearsPaused) {
                     scape.respondControl(new ControlEvent(this, ControlEvent.REQUEST_PAUSE));
@@ -763,6 +826,11 @@ public class BatchView extends PanelView {
         toolBar.addSeparator();
 
         openAction = new ScapeControlAction() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -7621049533313261247L;
+
             public void actionPerformed(ActionEvent e) {
                 if (scape != null) {
                     scape.respondControl(new ControlEvent(this, ControlEvent.REQUEST_OPEN));
@@ -774,6 +842,11 @@ public class BatchView extends PanelView {
         openButton.setIcon(DesktopEnvironment.getIcon("OpenArrow"));
 
         quitAction = new ScapeControlAction() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 4084017518199443791L;
+
             public void actionPerformed(ActionEvent e) {
                 scape.respondControl(new ControlEvent(this, ControlEvent.REQUEST_QUIT));
             }
@@ -785,6 +858,11 @@ public class BatchView extends PanelView {
         toolBar.addSeparator();
 
         settingsAction = new ScapeControlAction() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -3257310071059420569L;
+
             public void actionPerformed(ActionEvent e) {
                 getScape().addView((ScapeListener) (getScape().getUIEnvironment().getCustomizer()));
             }
@@ -794,6 +872,11 @@ public class BatchView extends PanelView {
         settingsButton.setIcon(DesktopEnvironment.getIcon("World"));
 
         infoAction = new ScapeControlAction() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 3247427874416911674L;
+
             public void actionPerformed(ActionEvent e) {
                 DesktopEnvironment.displayAboutDialog(scape);
             }
@@ -943,6 +1026,11 @@ public class BatchView extends PanelView {
  * A class representing actions that generate scape control events.
  */
 abstract class ScapeControlAction extends AbstractAction {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -3576701771298860547L;
 
     public ScapeControlAction() {
         super("", null);

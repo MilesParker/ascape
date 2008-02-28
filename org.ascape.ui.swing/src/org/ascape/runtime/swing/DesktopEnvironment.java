@@ -92,9 +92,14 @@ import org.ascape.view.vis.control.ControlBarView;
  */
 public class DesktopEnvironment extends SwingEnvironment {
 
-	public static DesktopEnvironment DEFAULT_ENVIRONMENT;
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 6486119781336287766L;
+
+    public static DesktopEnvironment DEFAULT_ENVIRONMENT;
 	
-	{ImageRegistry.INSTANCE.register(new SwingImageProvider());}
+	{ImageRegistry.register(new SwingImageProvider());}
 	
     /**
      * Symbol indicating the manager is supporting an applet view.
@@ -389,6 +394,11 @@ public class DesktopEnvironment extends SwingEnvironment {
     static class ModelPickAction extends AbstractAction {
 
         /**
+         * 
+         */
+        private static final long serialVersionUID = -5460430400163046083L;
+
+        /**
          * The model name.
          */
         String modelName;
@@ -521,6 +531,11 @@ public class DesktopEnvironment extends SwingEnvironment {
             return;
         } else {
             final JPanel licenseAgreementPanel = new JPanel() {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 6149078982117986788L;
+
                 public Dimension getPreferredSize() {
                     return new Dimension(700, 600);
                 }
@@ -759,11 +774,21 @@ public class DesktopEnvironment extends SwingEnvironment {
      */
     public static JToolBar createToolbar() {
         JToolBar toolBar = new JToolBar() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -8540667211494555623L;
+
             protected JButton createActionComponent(Action a) {
                 String text = (String) a.getValue(Action.NAME);
                 Icon icon = (Icon) a.getValue(Action.SMALL_ICON);
 
                 JButton b = new JButton(text, icon) {
+                    /**
+                     * 
+                     */
+                    private static final long serialVersionUID = 8206012016638039497L;
+
                     // I override JButton's createActionPropertyChangeListener
                     // to avoid the creation of a AbstractButton$ButtonActionPropertyChangeListener,
                     // which is not serializable!
@@ -797,6 +822,11 @@ public class DesktopEnvironment extends SwingEnvironment {
      */
     public static JButton addToolBarButton(final JToolBar toolBar, final Action action) {
         final JButton actionButton = new JButton() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 6986329468889324677L;
+
             public void setAction(Action action) {
                 //We don't want to have names on toolbar buttons
                 action.putValue(Action.NAME, "");
@@ -897,6 +927,11 @@ public class DesktopEnvironment extends SwingEnvironment {
      */
     public static JLabel createLabel(final int width) {
         JLabel label = new JLabel() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -3556511509121905878L;
+
             public Dimension getPreferredSize() {
                 return new Dimension(width, super.getPreferredSize().height);
             }
@@ -982,6 +1017,10 @@ public class DesktopEnvironment extends SwingEnvironment {
  */
 class ComboMenuBar extends JMenuBar {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1032440877619114505L;
     private JMenu menu;
     private Dimension preferredSize;
 
@@ -1064,6 +1103,11 @@ class ComboMenuBar extends JMenuBar {
 class ComboMenu extends JMenu {
 
     //ArrowIcon iconRenderer;
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -5636927286300121887L;
 
     public ComboMenu(String label) {
         super(label);

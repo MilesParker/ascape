@@ -43,6 +43,11 @@ public class AgentSelectionView extends PanelView {
      * The agent selection.
      */
     AbstractTableModel agentSelection = new AbstractTableModel() {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -1892988083028382121L;
+
         public int getColumnCount() {
             return agentDescriptors.length;
         }

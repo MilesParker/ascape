@@ -67,6 +67,11 @@ public class Overhead2DContinuousView extends AgentView implements Serializable 
      * agent color feature.
      */
     public final DrawFeature agents_fill_draw_feature = new DrawFeature("Agent Fill") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -6961184796443185786L;
+
         public void draw(Graphics g, Object object, int x, int y) {
             g.setColor(agentColorFeature.getColor(object));
             LocatedAgent a = (LocatedAgent) object;
@@ -81,6 +86,11 @@ public class Overhead2DContinuousView extends AgentView implements Serializable 
      * agent color feature.
      */
     public final DrawFeature agents_fill_draw_inset_feature = new DrawFeature("Border Agent") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 3566236494167356035L;
+
         public void draw(Graphics g, Object object, int x, int y) {
             g.setColor(agentColorFeature.getColor(object));
             g.fillOval(-x / 2 + 2, -y / 2 + 2, x - 2, y - 2);
@@ -94,6 +104,11 @@ public class Overhead2DContinuousView extends AgentView implements Serializable 
      * an oval using the agent color feature on the occupant.
      */
     public final DrawFeature agents_image_cells_draw_feature = new DrawFeature("Default Image Agent") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -5986344579765431238L;
+
         public final void draw(Graphics g, Object object, int width, int height) {
             g.drawImage(agentImageFeature.getImage(object), 0, 0, null);
         }
@@ -127,6 +142,11 @@ public class Overhead2DContinuousView extends AgentView implements Serializable 
         super.build();
         if (agentColorFeature == null) {
             agentColorFeature = new ColorFeatureConcrete("Default Agent Color") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 5727313277431144451L;
+
                 public Color getColor(Object object) {
                     return ((Agent) object).getColor();
                 }
@@ -134,6 +154,11 @@ public class Overhead2DContinuousView extends AgentView implements Serializable 
         }
         if (agentImageFeature == null) {
             agentImageFeature = new ImageFeatureConcrete("Default Agent Image") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = -7509323116837685796L;
+
                 public Image getImage(Object object) {
                     return ((Agent) object).getImage();
                 }

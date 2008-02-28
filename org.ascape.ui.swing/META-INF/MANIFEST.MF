@@ -6,10 +6,8 @@ Bundle-Version: 5.1.0
 Bundle-Vendor: Ascape.org
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.ascape.core;bundle-version="1.0.0",
- org.apache.ant;bundle-version="1.7.0",
  org.junit;bundle-version="3.8.2"
-Export-Package: org.ascape.ant,
- org.ascape.ant.test,
+Export-Package: org.ascape.ant.swing,
  org.ascape.gis.view,
  org.ascape.movie,
  org.ascape.movie.qt,

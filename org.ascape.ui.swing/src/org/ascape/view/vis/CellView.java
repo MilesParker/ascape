@@ -44,6 +44,11 @@ public abstract class CellView extends AgentSizedView {
      * cell color feature.
      */
     public final DrawFeature cells_fill_draw_feature = new DrawFeature("Cell Fill") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 7839214134595858090L;
+
         public final void draw(Graphics g, Object object, int width, int height) {
             g.setColor(agentColorFeature.getColor(object));
             g.fillRect(0, 0, width, height);
@@ -55,6 +60,11 @@ public abstract class CellView extends AgentSizedView {
      * cell color feature.
      */
     public final DrawFeature cells_fill_draw_inset_feature = new DrawFeature("Border Cell") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 7121529492206023085L;
+
         public final void draw(Graphics g, Object object, int width, int height) {
             g.setColor(agentColorFeature.getColor(object));
             g.fillRect(1, 1, width - 2, height - 2);
@@ -82,6 +92,11 @@ public abstract class CellView extends AgentSizedView {
         super.build();
         if (agentColorFeature == null) {
             agentColorFeature = new ColorFeatureConcrete("Default Cell Color") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = -3220486698290440285L;
+
                 public Color getColor(Object object) {
                     return ((Agent) object).getColor();
                 }

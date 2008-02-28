@@ -100,6 +100,11 @@ public abstract class ModelCustomizer extends BaseCustomizer {
             //okButton = new JButton("Done", new ImageIcon(Scape.getAscapeHome() + getScape().getBasePath() + "lib/images/Check.gif"));
             //Let's make consistent w/ Swing dialogs instead
             okButton = new Button("OK") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = -4941867529746520446L;
+
                 public Dimension getPreferredSize() {
                     return new Dimension(60, super.getPreferredSize().height);
                 }
@@ -114,6 +119,11 @@ public abstract class ModelCustomizer extends BaseCustomizer {
                 }
             });
             cancelButton = new Button("Cancel") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = -4012850953280950300L;
+
                 public Dimension getPreferredSize() {
                     return new Dimension(60, super.getPreferredSize().height);
                 }
@@ -127,6 +137,11 @@ public abstract class ModelCustomizer extends BaseCustomizer {
                 }
             });
             applyButton = new Button("Apply") {
+                /**
+                 * 
+                 */
+                private static final long serialVersionUID = 891536700468630158L;
+
                 public Dimension getPreferredSize() {
                     return new Dimension(60, super.getPreferredSize().height);
                 }

@@ -5,7 +5,7 @@
  * Any referenced or included libraries carry licenses of their respective copyright holders. 
  */
 
-package org.ascape.ant;
+package org.ascape.ant.swing;
 
 import java.io.Serializable;
 
@@ -15,12 +15,17 @@ import org.apache.tools.ant.Task;
 /**
  * The Class AscapeAntTask.
  */
-public class AscapeAntTask extends Task implements Serializable {
+public class AscapeSwingAntTask extends Task implements Serializable {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 30929709154741243L;
 
     /**
      * The scape elem.
      */
-    private ScapeElement scapeElem;
+    private ScapeSwingElement scapeElem;
 
     /**
      * The root directory.
@@ -33,7 +38,7 @@ public class AscapeAntTask extends Task implements Serializable {
      * @param scape
      *            the scape
      */
-    public void addScape(ScapeElement scape) {
+    public void addScape(ScapeSwingElement scape) {
         this.scapeElem = scape;
     }
 
@@ -49,7 +54,7 @@ public class AscapeAntTask extends Task implements Serializable {
      * 
      * @return the scape element
      */
-    public ScapeElement getScapeElement() {
+    public ScapeSwingElement getScapeElement() {
         return scapeElem;
     }
 

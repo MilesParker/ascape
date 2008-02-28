@@ -34,7 +34,12 @@ import org.ascape.runtime.RuntimeEnvironment;
  */
 public class SwingRunner extends Runner {
 
-	public SwingRunner() {
+	/**
+     * 
+     */
+    private static final long serialVersionUID = -2041589422471681672L;
+
+    public SwingRunner() {
 		super();
 		environment = new DesktopEnvironment();
 	}
@@ -74,7 +79,9 @@ public class SwingRunner extends Runner {
 	}
 	
 	public void openImplementation(Object applet, String[] args, boolean block) {
-		environment = new RuntimeEnvironment();
+	    if (environment == null) {
+    		environment = new RuntimeEnvironment();
+	    }
 		assignEnvionrmentParameters(args, false);
 		if (isDisplayGraphics()) {
 			environment = new DesktopEnvironment();
@@ -141,11 +148,9 @@ public class SwingRunner extends Runner {
 	 */
 	public void closeAndOpenSavedFinally(Scape oldScape) {
 		boolean exit = false;
-		Runner model = null;
 		if (oldScape != null) {
 			if (!oldScape.isPaused()) {
 				oldScape.getRunner().pause();
-				model = oldScape.getRunner();
 			}
 		}
 		while (!exit) {
@@ -158,7 +163,12 @@ public class SwingRunner extends Runner {
 								.getSelectedFile());
 						if (newScape != null && oldScape != null) {
 							oldScape.addView(new DefaultScapeListener() {
-								public void scapeClosing(ScapeEvent scapeEvent) {
+								/**
+                                 * 
+                                 */
+                                private static final long serialVersionUID = 3300275064817945877L;
+
+                                public void scapeClosing(ScapeEvent scapeEvent) {
 									newScape.getRunner().start();
 									// open(modelName);
 								}

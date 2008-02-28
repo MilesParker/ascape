@@ -120,6 +120,11 @@ public class EntityRelationView extends AgentView {
     public class RelationDrawFeature extends DrawFeature {
 
         /**
+         * 
+         */
+        private static final long serialVersionUID = 2342598931329577651L;
+
+        /**
          * The <code>RelationFeature</code> used in this
          * <code>RelationDrawFeature</code> .
          */
@@ -382,6 +387,11 @@ public class EntityRelationView extends AgentView {
      * @author Miles Parker, Matthew Hendrey, and others
      */
     class EntityDrawFeature extends DrawFeature {
+
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -5816035986967047522L;
 
         /**
          * The <code>EntityFeature</code> used in this entity draw feature.

@@ -30,6 +30,11 @@ import org.ascape.model.Scape;
 public class ModelApplet extends Applet {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 5306407518107234640L;
+
+    /**
      * The root (model) scape that this applet is displaying.
      */
     private Scape scape;

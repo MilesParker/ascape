@@ -64,6 +64,11 @@ public class ScapeTransitionView extends PanelView {
     public ScapeTransitionView(String name) {
         super(name);
         delegate = new ComponentViewDelegate(this) {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -5981783677753234533L;
+
             public void scapeAdded(ScapeEvent scapeEvent) throws TooManyListenersException {
                 scape = (Scape) scapeEvent.getSource();
             }

@@ -76,6 +76,11 @@ public class ViewCustomizer extends BaseCustomizer {
      */
     class AvailableFeatureModel extends AbstractTableModel implements Serializable {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 4387350730111166920L;
+
         /* (non-Javadoc)
          * @see javax.swing.table.TableModel#getRowCount()
          */
@@ -173,6 +178,11 @@ public class ViewCustomizer extends BaseCustomizer {
         //    super(); //Unfortunately, the constructor
         //    component = new JCheckBox();
         //}
+
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 7637386380155118668L;
 
         /* (non-Javadoc)
          * @see javax.swing.table.DefaultTableCellRenderer#getTableCellRendererComponent(javax.swing.JTable, java.lang.Object, boolean, boolean, int, int)
@@ -318,6 +328,11 @@ public class ViewCustomizer extends BaseCustomizer {
         JToolBar featureToolBar = new JToolBar();
         featureToolBar.setFloatable(false);
         JButton upButton = featureToolBar.add(new AbstractAction() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -7566393552336232557L;
+
             public void actionPerformed(ActionEvent e) {
                 int[] userSelFeatures = featureTable.getSelectedRows();
                 if (userSelFeatures.length > 0) {
@@ -351,6 +366,11 @@ public class ViewCustomizer extends BaseCustomizer {
         upButton.setToolTipText("Move Selected Feature Up (Draw Before)");
         upButton.setIcon(DesktopEnvironment.getIcon("Up"));
         JButton downButton = featureToolBar.add(new AbstractAction() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = -4839257381827214350L;
+
             public void actionPerformed(ActionEvent e) {
                 int[] userSelFeatures = featureTable.getSelectedRows();
                 if (userSelFeatures.length > 0) {
