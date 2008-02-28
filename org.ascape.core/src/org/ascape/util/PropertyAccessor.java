@@ -17,6 +17,7 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
  * A class containing an object and a property descriptor.
  * Used to dynamically reflect accessor and invoke objects.
@@ -275,5 +276,29 @@ public class PropertyAccessor implements Comparable, Serializable {
 
     public int compareTo(Object o) {
         return getName().compareTo(((PropertyAccessor) o).getName());
+    }
+
+    public static String paramName(String arg) {
+        int equalAt = arg.lastIndexOf("=");
+        if (equalAt > 0) {
+            return arg.substring(0, equalAt);
+        }
+        return null;
+    }
+
+    public static String paramValue(String arg) {
+        return arg.substring(arg.lastIndexOf("=") + 1);
+    }
+
+    public static Integer paramValueInt(String arg) {
+        return (Integer) stringAsClass(Integer.TYPE, PropertyAccessor.paramValue(arg));
+    }
+
+    public static Long paramValueLong(String arg) {
+        return Long.parseLong(PropertyAccessor.paramValue(arg));
+    }
+
+    public static Boolean paramValueBoolean(String arg) {
+        return (Boolean) stringAsClass(Boolean.TYPE, PropertyAccessor.paramValue(arg));
     }
 }
