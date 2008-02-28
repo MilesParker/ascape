@@ -34,241 +34,232 @@ import org.ascape.runtime.RuntimeEnvironment;
  */
 public class SwingRunner extends Runner {
 
-	/**
+    /**
      * 
      */
     private static final long serialVersionUID = -2041589422471681672L;
 
     public SwingRunner() {
-		super();
-		environment = new DesktopEnvironment();
-	}
+        super();
+        environment = new DesktopEnvironment();
+    }
 
-	/**
-	 * Creates, initializes and runs the model specified in the argument. To
-	 * allow the running of a model directly from the command line, you should
-	 * subclass this method as shown below:
-	 * 
-	 * <pre><code><BR>
-	 *     public MyModel extends Model {
-	 *         public static void main(String[] args) {
-	 *             (open(&quot;mypath.MyModel&quot;)).start();
-	 *         }
-	 *     }
-	 * <BR>
-	 * </pre></code> Otherwise, assuming your classpath is set up correctly, to invoke
-	 * a model from the command line type:
-	 * 
-	 * <pre><code><BR>
-	 *     java org.ascape.model.Scape mypath.myModel
-	 * </pre></code>
-	 * 
-	 * @param args
-	 *            at index 0; the name of the subclass of this class to run
-	 */
-	public static void main(String[] args) {
-		// Register environment
-		Runner runner = new SwingRunner();
-		try {
-			runner.launch(args);
-		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null,
-					"Exception attempting to load model.", "Error",
-					JOptionPane.INFORMATION_MESSAGE);
-		}
-	}
-	
-	public void openImplementation(Object applet, String[] args, boolean block) {
-	    if (environment == null) {
-    		environment = new RuntimeEnvironment();
-	    }
-		assignEnvionrmentParameters(args, false);
-		if (isDisplayGraphics()) {
-			environment = new DesktopEnvironment();
-		}
-		super.openImplementation(applet, args, block);
-	}
+    /**
+     * Creates, initializes and runs the model specified in the argument. To
+     * allow the running of a model directly from the command line, you should
+     * subclass this method as shown below:
+     * 
+     * <pre><code><BR>
+     *     public MyModel extends Model {
+     *         public static void main(String[] args) {
+     *             (open(&quot;mypath.MyModel&quot;)).start();
+     *         }
+     *     }
+     * <BR>
+     * </pre></code> Otherwise, assuming your classpath is set up correctly, to invoke
+     * a model from the command line type:
+     * 
+     * <pre><code><BR>
+     *     java org.ascape.model.Scape mypath.myModel
+     * </pre></code>
+     * 
+     * @param args
+     *            at index 0; the name of the subclass of this class to run
+     */
+    public static void main(String[] args) {
+        // Register environment
+        Runner runner = new SwingRunner();
+        try {
+            runner.launch(args);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Exception attempting to load model.", "Error",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
 
-	/**
-	 * Save the state of the scape to a file.
-	 */
-	public void saveChoose() {
-		JFileChooser chooser = null;
-		boolean overwrite = false;
-		File savedFile;
-		while (!overwrite) {
-			chooser = new JFileChooser();
-			int option = chooser.showSaveDialog(null);
-			if (option == JFileChooser.APPROVE_OPTION) {
-				savedFile = chooser.getSelectedFile();
-			} else {
-				// user cancelled
-				return;
-			}
-			if (savedFile.exists()) {
-				// warn user about overwriting already existing file
-				int n = JOptionPane.showConfirmDialog(chooser,
-						"Warning - A file already exists by this name!\n"
-								+ "Do you want to overwrite it?\n",
-						"Save Confirmation", JOptionPane.YES_NO_OPTION);
-				if (n == JOptionPane.YES_OPTION) {
-					overwrite = true;
-				} else if (n == JOptionPane.CANCEL_OPTION) {
-					// need to break out of the loop and return to the model
-					chooser.cancelSelection();
-					getRootScape().getRunner().resume();
-				}
-			} else {
-				overwrite = true;
-			}
-		}
-		if (chooser.getSelectedFile() != null) {
-			try {
-				getRootScape().save(chooser.getSelectedFile());
-			} catch (IOException e) {
-				e.printStackTrace();
-				JOptionPane.showMessageDialog(null,
-						"Sorry, couldn't save model because an input/output exception occured:\n"
-								+ e, "Error", JOptionPane.ERROR_MESSAGE);
-			}
-		} else {
-			JOptionPane.showMessageDialog(null,
-					"You must enter a file name or cancel.", "Message",
-					JOptionPane.INFORMATION_MESSAGE);
-			// To Do, possible (though quite unlikely) stack exception, replace
-			// w/ loop strucuture
-			saveChoose();
-		}
-	}
+    public void openImplementation(Object applet, String[] args, boolean block) {
+        if (environment == null) {
+            environment = new RuntimeEnvironment();
+        }
+        assignEnvironmentParameters(args);
+        if (isDisplayGraphics()) {
+            environment = new DesktopEnvironment();
+        }
+        super.openImplementation(applet, args, block);
+    }
 
-	/**
-	 * Requests the scape to open a saved run, closing the existing one. Will
-	 * not occur until the current iteration is complete; use static forms to
-	 * open concurrently. Always called on root.
-	 */
-	public void closeAndOpenSavedFinally(Scape oldScape) {
-		boolean exit = false;
-		if (oldScape != null) {
-			if (!oldScape.isPaused()) {
-				oldScape.getRunner().pause();
-			}
-		}
-		while (!exit) {
-			JFileChooser chooser = new JFileChooser();
-			int option = chooser.showOpenDialog(null);
-			if (option == JFileChooser.APPROVE_OPTION) {
-				if (chooser.getSelectedFile() != null) {
-					try {
-						final Scape newScape = openSavedRun(chooser
-								.getSelectedFile());
-						if (newScape != null && oldScape != null) {
-							oldScape.addView(new DefaultScapeListener() {
-								/**
+    /**
+     * Save the state of the scape to a file.
+     */
+    public void saveChoose() {
+        JFileChooser chooser = null;
+        boolean overwrite = false;
+        File savedFile;
+        while (!overwrite) {
+            chooser = new JFileChooser();
+            int option = chooser.showSaveDialog(null);
+            if (option == JFileChooser.APPROVE_OPTION) {
+                savedFile = chooser.getSelectedFile();
+            } else {
+                // user cancelled
+                return;
+            }
+            if (savedFile.exists()) {
+                // warn user about overwriting already existing file
+                int n = JOptionPane.showConfirmDialog(chooser, "Warning - A file already exists by this name!\n"
+                        + "Do you want to overwrite it?\n", "Save Confirmation", JOptionPane.YES_NO_OPTION);
+                if (n == JOptionPane.YES_OPTION) {
+                    overwrite = true;
+                } else if (n == JOptionPane.CANCEL_OPTION) {
+                    // need to break out of the loop and return to the model
+                    chooser.cancelSelection();
+                    getRootScape().getRunner().resume();
+                }
+            } else {
+                overwrite = true;
+            }
+        }
+        if (chooser.getSelectedFile() != null) {
+            try {
+                getRootScape().save(chooser.getSelectedFile());
+            } catch (IOException e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null,
+                        "Sorry, couldn't save model because an input/output exception occured:\n" + e, "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "You must enter a file name or cancel.", "Message",
+                    JOptionPane.INFORMATION_MESSAGE);
+            // To Do, possible (though quite unlikely) stack exception, replace
+            // w/ loop strucuture
+            saveChoose();
+        }
+    }
+
+    /**
+     * Requests the scape to open a saved run, closing the existing one. Will
+     * not occur until the current iteration is complete; use static forms to
+     * open concurrently. Always called on root.
+     */
+    public void closeAndOpenSavedFinally(Scape oldScape) {
+        boolean exit = false;
+        if (oldScape != null) {
+            if (!oldScape.isPaused()) {
+                oldScape.getRunner().pause();
+            }
+        }
+        while (!exit) {
+            JFileChooser chooser = new JFileChooser();
+            int option = chooser.showOpenDialog(null);
+            if (option == JFileChooser.APPROVE_OPTION) {
+                if (chooser.getSelectedFile() != null) {
+                    try {
+                        final Scape newScape = openSavedRun(chooser.getSelectedFile());
+                        if (newScape != null && oldScape != null) {
+                            oldScape.addView(new DefaultScapeListener() {
+                                /**
                                  * 
                                  */
                                 private static final long serialVersionUID = 3300275064817945877L;
 
                                 public void scapeClosing(ScapeEvent scapeEvent) {
-									newScape.getRunner().start();
-									// open(modelName);
-								}
-							});
-							oldScape.getRunner().close();
-							exit = true;
-						}
-					} catch (FileNotFoundException e) {
-						JOptionPane.showMessageDialog(null,
-								"Sorry, could not find the file you specified:\n"
-										+ chooser.getSelectedFile(), "Error",
-								JOptionPane.INFORMATION_MESSAGE);
-					} catch (IOException e) {
-						String msg = "Sorry, couldn't open model because a file exception occured:";
-						System.err.println(msg);
-						e.printStackTrace();
-						JOptionPane.showMessageDialog(null, msg + "\n" + e,
-								"Error", JOptionPane.ERROR_MESSAGE);
-					}
-				} else {
-					JOptionPane.showMessageDialog(null,
-							"You must enter a file name or cancel.", "Message",
-							JOptionPane.INFORMATION_MESSAGE);
-					closeAndOpenSavedFinally(oldScape);
-				}
-			} else {
-				exit = true;
-			}
-		}
-		// if (oldScape != null) {
-		// oldScape.getModel().close();
-		// }
-		// if ((oldScape != null) && !oldWasPaused) {
-		// oldScape.resume();
-		// }
-	}
+                                    newScape.getRunner().start();
+                                    // open(modelName);
+                                }
+                            });
+                            oldScape.getRunner().close();
+                            exit = true;
+                        }
+                    } catch (FileNotFoundException e) {
+                        JOptionPane.showMessageDialog(null, "Sorry, could not find the file you specified:\n"
+                                + chooser.getSelectedFile(), "Error", JOptionPane.INFORMATION_MESSAGE);
+                    } catch (IOException e) {
+                        String msg = "Sorry, couldn't open model because a file exception occured:";
+                        System.err.println(msg);
+                        e.printStackTrace();
+                        JOptionPane.showMessageDialog(null, msg + "\n" + e, "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "You must enter a file name or cancel.", "Message",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    closeAndOpenSavedFinally(oldScape);
+                }
+            } else {
+                exit = true;
+            }
+        }
+        // if (oldScape != null) {
+        // oldScape.getModel().close();
+        // }
+        // if ((oldScape != null) && !oldWasPaused) {
+        // oldScape.resume();
+        // }
+    }
 
-	public void notify(final ScapeEvent event, final ScapeListener listener) {
-		if (listener instanceof JComponent) {
-			SwingUtilities.invokeLater(new Runnable() {
-				public void run() {
-					listener.scapeNotification(event);
-				}
-			});
-		} else {
-			listener.scapeNotification(event);
-		}
-	}
+    public void notify(final ScapeEvent event, final ScapeListener listener) {
+        if (listener instanceof JComponent) {
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    listener.scapeNotification(event);
+                }
+            });
+        } else {
+            listener.scapeNotification(event);
+        }
+    }
 
-	private IOException defaultWriteException;
+    private IOException defaultWriteException;
 
-	public void write(final java.io.ObjectOutputStream out) throws IOException {
-		if (SwingUtilities.isEventDispatchThread()) {
-			// This is all that is necessary if we are already in
-			// the event dispatch thread, e.g. a user clicked a
-			// button which caused the object to be written
-			// System.err.println("Scape.writeObject - name: " + getName()+",
-			// class: " + getClass());
-			out.defaultWriteObject();
-		} else {
-			try {
-				// we want to wait until the object has been written
-				// before continuing. If we called this from the
-				// event dispatch thread we would get an exception
-				SwingUtilities.invokeAndWait(new Runnable() {
-					public void run() {
-						try {
-							// easiest way to indicate to the enclosing class
-							// that an exception occurred is to have a member
-							// which keeps the IOException
-							defaultWriteException = null;
-							// we call the actual write object method
-							out.defaultWriteObject();
-						} catch (IOException ex) {
-							// oops, an exception occurred, remember the
-							// exception object
-							defaultWriteException = ex;
-						}
-					}
-				});
-				if (defaultWriteException != null) {
-					// an exception occurred in the code above, throw it!
-					throw defaultWriteException;
-				}
-			} catch (InterruptedException ex) {
-				// I'm not quite sure what do here, perhaps:
-				Thread.currentThread().interrupt();
-				return;
-			} catch (InvocationTargetException ex) {
-				// This can actually only be a RuntimeException or an
-				// Error - in either case we want to rethrow them
-				Throwable target = ex.getTargetException();
-				if (target instanceof RuntimeException) {
-					throw (RuntimeException) target;
-				} else if (target instanceof Error) {
-					throw (Error) target;
-				}
-				ex.printStackTrace(); // this should not happen!
-				throw new RuntimeException(ex.toString());
-			}
-		}
-	}
+    public void write(final java.io.ObjectOutputStream out) throws IOException {
+        if (SwingUtilities.isEventDispatchThread()) {
+            // This is all that is necessary if we are already in
+            // the event dispatch thread, e.g. a user clicked a
+            // button which caused the object to be written
+            // System.err.println("Scape.writeObject - name: " + getName()+",
+            // class: " + getClass());
+            out.defaultWriteObject();
+        } else {
+            try {
+                // we want to wait until the object has been written
+                // before continuing. If we called this from the
+                // event dispatch thread we would get an exception
+                SwingUtilities.invokeAndWait(new Runnable() {
+                    public void run() {
+                        try {
+                            // easiest way to indicate to the enclosing class
+                            // that an exception occurred is to have a member
+                            // which keeps the IOException
+                            defaultWriteException = null;
+                            // we call the actual write object method
+                            out.defaultWriteObject();
+                        } catch (IOException ex) {
+                            // oops, an exception occurred, remember the
+                            // exception object
+                            defaultWriteException = ex;
+                        }
+                    }
+                });
+                if (defaultWriteException != null) {
+                    // an exception occurred in the code above, throw it!
+                    throw defaultWriteException;
+                }
+            } catch (InterruptedException ex) {
+                // I'm not quite sure what do here, perhaps:
+                Thread.currentThread().interrupt();
+                return;
+            } catch (InvocationTargetException ex) {
+                // This can actually only be a RuntimeException or an
+                // Error - in either case we want to rethrow them
+                Throwable target = ex.getTargetException();
+                if (target instanceof RuntimeException) {
+                    throw (RuntimeException) target;
+                } else if (target instanceof Error) {
+                    throw (Error) target;
+                }
+                ex.printStackTrace(); // this should not happen!
+                throw new RuntimeException(ex.toString());
+            }
+        }
+    }
 }
