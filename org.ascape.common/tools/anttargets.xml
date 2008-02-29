@@ -54,8 +54,8 @@
 
 	<target name="compile" description="compiles the source code">
 		<mkdir dir="${dir.bin}" />
-		<javac srcdir="${dir.src}" destdir="${dir.bin}" includes="${dir.includes}" excludes="${dir.excludes}" classpath="${dir.classpath}" debug="${javac.debug}" deprecation="${javac.deprecation}" optimize="${javac.optimize}" verbose="false" source="1.5">
-		</javac>
+        <javac srcdir="${dir.ascape.src}" destdir="${dir.ascape.bin}" includes="${dir.includes}" excludes="${dir.excludes}" classpath="${dir.classpath}" debug="${javac.debug}" deprecation="${javac.deprecation}" optimize="${javac.optimize}" verbose="false" source="1.5"/>
+		<javac srcdir="${dir.src}" destdir="${dir.bin}" includes="${dir.includes}" excludes="${dir.excludes}" classpath="${dir.classpath}" debug="${javac.debug}" deprecation="${javac.deprecation}" optimize="${javac.optimize}" verbose="false" source="1.5"/>
 	</target>
 
 	<target name="copyres" description="copies resources to the build dir">
@@ -97,7 +97,7 @@
 		<junit printsummary="yes" haltonfailure="yes" fork="on" maxmemory="200m" dir="${dir.work}">
 
 			<classpath>
-				<pathelement path="${dir.classpath}" />
+				<pathelement path="${dir.classpath};${dir.ascape.lib}/lib/junit.jar" />
 			</classpath>
 
 			<test name="${test.main.class}" todir="${dir.reports}">

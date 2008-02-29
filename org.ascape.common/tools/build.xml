@@ -4,7 +4,7 @@
 
 <project name="buildAscape" default="build">
 
-    <property name="dir.ascape.common" value="../"/>
+    <property name="dir.ascape.core" value="../../org.ascape.core"/>
 	
 	<import file="antascape.xml" />
 	<import file="anttargets.xml" />
@@ -77,7 +77,7 @@
 		<copy todir="${rtpath}/tools">
 			<fileset dir="${dir.base}/tools" includes="antascape.xml,antdirs.xml,run.xml,project.dtd,runproject.dtd" />
 		</copy>
-		<jar jarfile="${rtpath}/lib/${name}-common.jar">
+		<jar jarfile="${rtpath}/lib/${name}-core.jar">
 			<zipfileset dir="${dir.bin}" />
 			<manifest id="none">
 				<attribute name="Main-Class" value="${manifest.main.class}" />
@@ -118,7 +118,7 @@
 		<mkdir dir="${rpath}/"/>
 		<delete file="${rpath}/${Name}SDK${DSTAMP}.zip"/>
 		<zip destfile="${rpath}/${Name}SDK${DSTAMP}.zip">
-			<zipfileset dir="../../" includes="org.ascape.common/**/*.*,org.ascape.models.examples/**/*.*,org.ascape.models.brook/**/*.*" excludes="**/releases/**,org.ascape.ide*"/>
+			<zipfileset dir="../../" includes="org.ascape.core/**/*.*,org.ascape.models.examples/**/*.*,org.ascape.models.brook/**/*.*" excludes="**/releases/**,org.ascape.ide*"/>
 		</zip>
 	</target>
 

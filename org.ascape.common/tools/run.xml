@@ -10,7 +10,7 @@
     <import file="antdirs.xml"/>
 	<import file="anttargets.xml" />
 	
-    <taskdef name="ascape" classpath="${dir.ascape.all.classpath}" classname="org.ascape.ant.AscapeAntTask"/>
+    <taskdef name="ascape" classpath="${dir.ascape.all.classpath}" classname="org.ascape.ant.swing.AscapeSwingAntTask"/>
 
     <target name="run prep">
         <!--Uncomment following to compile for each run: <ant antfile="build.xml" target="compile"/>-->
