@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<!DOCTYPE project PUBLIC "-//ANT//DTD project//EN" "project.dtd" [
+        ]>
+
+<project name="buildAscape" default="build">
+
+    <property name="dir.ascape.core" value="../"/>
+	
+	<import file="antascape.xml" />
+	<import file="anttargets.xml" />
+	
+	<!--
+    ===================================================================
+    Packaging Targets
+    ===================================================================
+    -->
+	
+	<target name="jarAscape" depends="build, manifest" description="generates jar file for core ascape classes only in main lib directory">
+		<jar jarfile="${dir.classes}/ascape.jar" basedir="${dir.classes}" includes="${dir.ascape},${dir.ascape.x}" excludes="**/MANIFEST.MF" manifest="${manifest.file}">
+		</jar>
+	</target>
+
+	<target name="jarAscapeModels" depends="build, manifest" description="generates jar file for core ascape model classes only in main lib directory">
+		<jar jarfile="${dir.classes}/ascapemodels.jar" basedir="${dir.classes}" includes="${dir.models.brook},${dir.models.examples}" excludes="**/MANIFEST.MF" manifest="${manifest.file}">
+		</jar>
+	</target>
+
+	<target name="jarAscapeUni" depends="build" description="generates jar file for core ascape model classes only in bin directory">
+		<tstamp />
+		<jar jarfile="${dir.release}/ascapeuni${DSTAMP}.jar">
+			<zipfileset dir="${dir.bin}" />
+			<manifest id="none">
+				<attribute name="Main-Class" value="org.ascape.model.Scape" />
+				<attribute name="Class-Path" value="" />
+			</manifest>
+		</jar>
+	</target>
+	
+	<target name="jjtree-compile" depends="prepare">
+		<delete failonerror="true">
+			<fileset file="${dir.src}/org/ascape/query/parser/BoolExprTree.jj">
+				<include name="*.jj" />
+			</fileset>
+		</delete>
+		<delete failonerror="true">
+			<fileset dir="${dir.src}/org/ascape/query/parser">
+				<include name="*.java" />
+				<exclude name="QT*" />
+			</fileset>
+		</delete>
+
+		<jjtree target="${dir.src}/org/ascape/query/parser/BoolExprTree.jjt" javacchome="${javacchome}" outputdirectory="${dir.src}/org/ascape/query/parser" nodeusesparser="true" />
+	</target>
+
+	<target name="javacc-compile" depends="prepare">
+		<javacc target="${dir.src}/org/ascape/query/parser/BoolExprTree.jj" static="no" javacchome="${javacchome}" />
+	</target>
+
+	<target name="javacc-build" depends="jjtree-compile, javacc-compile, compile" />
+
+	<target name="build-examples" depends="" description="generates jar file">
+		<ant antfile="buildexamples.xml" inheritall="false"/>
+	</target>
+	
+	<target name="release-runtime" depends="build" description="Build Ascape stand-alone jar and RunTime zip">
+		<tstamp />
+		<property name="rname" value="${Name}${DSTAMP}" />
+		<property name="rpath" value="${dir.release}/${rname}" />
+		<property name="rtpath" value="${rpath}/Runtime" />
+		<mkdir dir="${rpath}/"/>
+		<delete dir="${rtpath}/"/>
+		<delete file="${rpath}/${Name}Runtime${DSTAMP}.zip"/>
+		<delete file="${rpath}/${Name}.jar"/>
+		<copy todir="${rtpath}/lib">
+			<fileset dir="${dir.lib}" includes="${dir.ascape.jars.includes}"/>
+		</copy>
+		<copy todir="${rtpath}/tools">
+			<fileset dir="${dir.base}/tools" includes="antascape.xml,antdirs.xml,run.xml,project.dtd,runproject.dtd" />
+		</copy>
+		<jar jarfile="${rtpath}/lib/${name}-core.jar">
+			<zipfileset dir="${dir.bin}" />
+			<manifest id="none">
+				<attribute name="Main-Class" value="${manifest.main.class}" />
+				<attribute name="Class-Path" value="${dir.ascape.jars.includes}" />
+			</manifest>
+		</jar>
+		<jar jarfile="${rtpath}/lib/${name}-models.jar">
+			<zipfileset dir="../../org.ascape.models.brook/bin" />
+			<zipfileset dir="../../org.ascape.models.examples/bin" />
+			<manifest id="none">
+				<attribute name="Main-Class" value="${manifest.main.class}" />
+				<attribute name="Class-Path" value="${dir.ascape.jars.includes}" />
+			</manifest>
+		</jar>
+		<zip destfile="${rpath}/${Name}Runtime${DSTAMP}.zip">
+			<zipfileset dir="${rtpath}" />
+		</zip>
+		<mkdir dir="${rtpath}/temp"/>
+		<unjar dest="${rtpath}/temp">
+			<fileset dir="${rtpath}/lib"/>
+		</unjar>
+		<delete dir="${rtpath}/temp/META-INF"/>
+		<jar jarfile="${rpath}/${Name}.jar">
+			<zipfileset dir="${rtpath}/temp" />
+			<manifest id="none">
+				<attribute name="Main-Class" value="${manifest.main.class}" />
+				<attribute name="Class-Path" value="${dir.jars.includes}" />
+			</manifest>
+		</jar>
+		<delete dir="${rtpath}/temp"/>
+		<delete dir="${rtpath}"/>
+	</target>
+
+	<target name="release-sdk" depends="" description="Builds Ascape SDK zip">
+		<tstamp />
+		<property name="rname" value="${Name}${DSTAMP}" />
+		<property name="rpath" value="${dir.release}/${rname}" />
+		<mkdir dir="${rpath}/"/>
+		<delete file="${rpath}/${Name}SDK${DSTAMP}.zip"/>
+		<zip destfile="${rpath}/${Name}SDK${DSTAMP}.zip">
+			<zipfileset dir="../../" includes="org.ascape.core/**/*.*,org.ascape.models.examples/**/*.*,org.ascape.models.brook/**/*.*" excludes="**/releases/**,org.ascape.ide*"/>
+		</zip>
+	</target>
+
+	<target name="release-docs" depends="" description="Builds Ascape Doc zip">
+		<tstamp />
+		<property name="rname" value="${Name}${DSTAMP}" />
+		<property name="rpath" value="${dir.release}/${rname}" />
+		<mkdir dir="${rpath}/"/>
+		<delete file="${rpath}/${Name}Docs${DSTAMP}.zip"/>
+		<zip destfile="${rpath}/${Name}Docs${DSTAMP}.zip">
+			<zipfileset dir="../../" includes="org.ascape.doc/**/*.*"/>
+		</zip>
+	</target>
+
+	<target name="release-all" depends="release-runtime,release-sdk,release-docs" description="Builds all release artifacts for Ascape Sourceforge site.">
+	</target>
+</project>
