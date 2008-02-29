@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE project PUBLIC "-//ANT//DTD project//EN" "project.dtd" [
+        ]>
+
+<project name="ascapeSetup" default="">
+
+    <import file="antdirs.xml"/>
+
+    <property name="Name" value="Ascape"/>
+    <property name="name" value="ascape"/>
+    <property name="test.main.class" value="org.ascape.test.AllAscape"/>
+    <property name="manifest.main.class" value="org.ascape.model.Scape"/>
+
+    <property name="dir.classpath" value="${dir.ascape.classpath}"/>
+    <property name="dir.base" value="${dir.ascape.common}"/>
+    <property name="dir.lib" value="${dir.ascape.lib}"/>
+    <property name="dir.includes" value="${dir.ascape.includes}"/>
+    <property name="dir.excludes" value="${dir.ascape.excludes}"/>
+</project>
