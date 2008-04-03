@@ -9,6 +9,7 @@ Require-Bundle: org.ascape.core,
  org.junit;bundle-version="3.8.2"
 Export-Package: org.ascape.ant.swing,
  org.ascape.gis.view,
+ org.ascape.model,
  org.ascape.movie,
  org.ascape.movie.qt,
  org.ascape.runtime.swing,

@@ -11,6 +11,7 @@ import java.awt.Color;
 import java.util.List;
 
 import org.ascape.model.space.Discrete;
+import org.ascape.model.space.Location;
 import org.ascape.model.space.Node;
 import org.ascape.util.Conditional;
 

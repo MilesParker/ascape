@@ -203,6 +203,10 @@ public class Navigator extends PanelView {
      */
     public void addNotify() {
         super.addNotify();
+        createTree();
+    }
+
+    protected void createTree() {
         tree = new JTree();
         tree.setFont(getFont().deriveFont(10.0f));
         //Just so we don't see that silly built-in table
@@ -932,6 +936,9 @@ public class Navigator extends PanelView {
      */
     public void scapeAdded(ScapeEvent scapeEvent) throws TooManyListenersException {
         super.scapeAdded(scapeEvent);
+        if (tree == null) {
+            createTree();
+        }
         root = new ScapeNode(scape);
         scapeModel = new DefaultTreeModel(root);
         tree.setModel(scapeModel);

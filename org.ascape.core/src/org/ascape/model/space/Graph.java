@@ -102,6 +102,10 @@ public class Graph extends Discrete {
         return findNearestBFS(origin, condition, includeOrigin, distance);
     }
 
+    public List findNeighbors(Node location) {
+        return getNeighborsFor(location);
+    }
+
     /* (non-Javadoc)
      * @see org.ascape.model.space.CollectionSpace#withinIterator(org.ascape.model.space.Coordinate, org.ascape.util.Conditional, boolean, double)
      */

@@ -208,7 +208,11 @@ public abstract class Runner implements Serializable, Runnable {
     private static boolean muiltWinEnvironment;
 
     public Runner() {
-        environment = new RuntimeEnvironment();
+        this(new RuntimeEnvironment());
+    }
+
+    public Runner(RuntimeEnvironment environment) {
+        this.environment = environment;
     }
 
     protected void initialize() {
@@ -451,7 +455,7 @@ public abstract class Runner implements Serializable, Runnable {
                 private static final long serialVersionUID = 1L;
 
                 public void scapeClosing(ScapeEvent scapeEvent) {
-                    open(modelName);
+                    openInstance(modelName);
                 }
             });
             oldScape.getRunner().close();
@@ -612,7 +616,7 @@ public abstract class Runner implements Serializable, Runnable {
      *            and if errors in invocation should be reported, false
      *            otherwise
      */
-    public boolean assignEnvironmentParameters(String[] args) {
+    public static boolean assignEnvironmentParameters(String[] args) {
         boolean found = args.length == 0;
         for (String arg : args) {
             String paramName = PropertyAccessor.paramName(arg);
@@ -996,7 +1000,7 @@ public abstract class Runner implements Serializable, Runnable {
      *            the fully qualified name of the Java class for the model's
      *            root scape
      */
-    public Scape open(String modelName) {
+    public Scape openInstance(String modelName) {
         return open(modelName, null, new String[0], false);
     }
 

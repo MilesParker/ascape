@@ -8,6 +8,7 @@
 package org.ascape.model.space;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -91,6 +92,8 @@ public interface Space extends Collection, RandomFunctions {
      * @return the location
      */
     Location findNearest(Coordinate origin, Conditional condition, boolean includeOrigin, double distance);
+
+    Location findNearest(Location origin, Conditional condition, boolean includeOrigin, double distance);
 
     /**
      * Find within.
@@ -217,6 +220,10 @@ public interface Space extends Collection, RandomFunctions {
      * @return the location
      */
     Location findRandom(Conditional condition);
+
+    Location findRandom(Location exclude, Conditional condition);
+
+    Location findRandomWithin(Location origin, Conditional condition, boolean includeSelf, double distance);
 
     /**
      * Find minimum.

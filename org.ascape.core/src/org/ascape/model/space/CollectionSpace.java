@@ -26,7 +26,6 @@ import org.ascape.util.ResetableIterator;
 import org.ascape.util.data.DataPoint;
 import org.ascape.util.data.DataPointConcrete;
 
-
 /**
  * The Class CollectionSpace.
  */
@@ -53,7 +52,6 @@ public class CollectionSpace implements Space, Cloneable, Serializable {
      */
     private boolean deleteSweepNeeded;
 
-
     /**
      * The context.
      */
@@ -75,11 +73,12 @@ public class CollectionSpace implements Space, Cloneable, Serializable {
      */
     protected Coordinate extent;
 
-//    protected class CSMutableIterator extends CSIterator implements Serializable {
+    // protected class CSMutableIterator extends CSIterator implements
+    // Serializable {
     /**
- * The Class CSMutableIterator.
- */
-protected class CSMutableIterator extends CSIterator {
+     * The Class CSMutableIterator.
+     */
+    protected class CSMutableIterator extends CSIterator {
 
         /**
          * 
@@ -90,7 +89,9 @@ protected class CSMutableIterator extends CSIterator {
          */
         int i;
 
-        /* (non-Javadoc)
+        /*
+         * (non-Javadoc)
+         * 
          * @see org.ascape.model.space.CollectionSpace.CSIterator#hasNext()
          */
         public final boolean hasNext() {
@@ -104,18 +105,23 @@ protected class CSMutableIterator extends CSIterator {
             return false;
         }
 
-        /* (non-Javadoc)
+        /*
+         * (non-Javadoc)
+         * 
          * @see org.ascape.model.space.CollectionSpace.CSIterator#remove()
          */
         public final void remove() {
             Object removeObject = this.copy.get(i);
-            //The backing collection may not be deleted immeadiatly..
+            // The backing collection may not be deleted immeadiatly..
             CollectionSpace.this.collection.remove(removeObject);
-            //However, we do want to remove the item from the clone collection immediatly
+            // However, we do want to remove the item from the clone collection
+            // immediatly
             copy.remove(removeObject);
         }
 
-        /* (non-Javadoc)
+        /*
+         * (non-Javadoc)
+         * 
          * @see org.ascape.model.space.CollectionSpace.CSIterator#next()
          */
         public final Object next() {
@@ -142,7 +148,7 @@ protected class CSMutableIterator extends CSIterator {
          * The copy.
          */
         protected List copy;
-        
+
         /**
          * The copy iterator.
          */
@@ -156,29 +162,37 @@ protected class CSMutableIterator extends CSIterator {
             copyIterator = copy.listIterator();
         }
 
-        /* (non-Javadoc)
+        /*
+         * (non-Javadoc)
+         * 
          * @see org.ascape.util.ResetableIterator#first()
          */
         public void first() {
-            //Just create a new iterator..
+            // Just create a new iterator..
             copyIterator = copy.listIterator();
         }
 
-        /* (non-Javadoc)
+        /*
+         * (non-Javadoc)
+         * 
          * @see java.util.Iterator#hasNext()
          */
         public boolean hasNext() {
             return copyIterator.hasNext();
         }
 
-        /* (non-Javadoc)
+        /*
+         * (non-Javadoc)
+         * 
          * @see java.util.Iterator#remove()
          */
         public void remove() {
             throw new UnsupportedOperationException("Can't remove an agent from an immutable context!");
         }
 
-        /* (non-Javadoc)
+        /*
+         * (non-Javadoc)
+         * 
          * @see java.util.Iterator#next()
          */
         public Object next() {
@@ -253,11 +267,14 @@ protected class CSMutableIterator extends CSIterator {
             randomize();
         }
 
-        /* (non-Javadoc)
+        /*
+         * (non-Javadoc)
+         * 
          * @see org.ascape.util.Randomizable#randomize()
          */
         public void randomize() {
-            //The Java API shuffle appears to be correct (follows Knuth's algorithm), so we will use it here
+            // The Java API shuffle appears to be correct (follows Knuth's
+            // algorithm), so we will use it here
             Collections.shuffle(copy, getRandom());
         }
     }
@@ -280,11 +297,14 @@ protected class CSMutableIterator extends CSIterator {
             randomize();
         }
 
-        /* (non-Javadoc)
+        /*
+         * (non-Javadoc)
+         * 
          * @see org.ascape.util.Randomizable#randomize()
          */
         public void randomize() {
-            //The Java API shuffle appears to be correct (follows Knuth's algorithm), so we will use it here
+            // The Java API shuffle appears to be correct (follows Knuth's
+            // algorithm), so we will use it here
             Collections.shuffle(copy, getRandom());
         }
     }
@@ -303,9 +323,11 @@ protected class CSMutableIterator extends CSIterator {
      */
     public void deleteSweep() {
         if (deleteSweepNeeded) {
-            //Generally quicker to construct a new array collection than to delete from the existing one!
+            // Generally quicker to construct a new array collection than to
+            // delete from the existing one!
             ArrayList newList = new ArrayList();
-            //We want the internal iterator, that is the iterator before a delete sweep has occurred
+            // We want the internal iterator, that is the iterator before a
+            // delete sweep has occurred
             Iterator i = collection.iterator();
             while (i.hasNext()) {
                 Location candidate = (Location) i.next();
@@ -340,7 +362,7 @@ protected class CSMutableIterator extends CSIterator {
      */
     public synchronized Location newLocation(boolean randomLocation) {
         Location newLocation = (Location) getContext().getPrototype().clone();
-        //Rather than override entire new Location method
+        // Rather than override entire new Location method
         if (!randomLocation || !(this instanceof ListBase)) {
             add(newLocation);
         } else {
@@ -368,7 +390,8 @@ protected class CSMutableIterator extends CSIterator {
      * @return true if the context contains the agent
      */
     public boolean contains(Object o) {
-        //Make sure the agent (if it is an agent) has not been deleted from this collection..
+        // Make sure the agent (if it is an agent) has not been deleted from
+        // this collection..
         if (!(o instanceof Location) || !((Location) o).isDelete() || !getContext().isHome((Location) o)) {
             return collection.contains(o);
         } else {
@@ -462,7 +485,8 @@ protected class CSMutableIterator extends CSIterator {
      */
     public boolean removeAll(java.util.Collection c) {
         clearCoordinates(c);
-        //We don't know how many agents were in either collections, so we have to do a sweep to make sure we have the right size
+        // We don't know how many agents were in either collections, so we have
+        // to do a sweep to make sure we have the right size
         deleteSweep();
         setSize(collection.size());
         return collection.removeAll(c);
@@ -480,7 +504,8 @@ protected class CSMutableIterator extends CSIterator {
         Iterator iter = iterator();
         while (iter.hasNext()) {
             Location a = (Location) iter.next();
-            //Probably not terribly efficient; potential reengineer candidate if this method gets a lot of use
+            // Probably not terribly efficient; potential reengineer candidate
+            // if this method gets a lot of use
             if (getContext().isHome(a) && (a instanceof Node)) {
                 if (!c.contains(a)) {
                     ((Node) a).setCoordinate(null);
@@ -488,7 +513,8 @@ protected class CSMutableIterator extends CSIterator {
             }
         }
         boolean retainedAll = collection.retainAll(c);
-        //We don't know how many agents were in both collections, so we have to do a sweep to make sure we have the right size
+        // We don't know how many agents were in both collections, so we have to
+        // do a sweep to make sure we have the right size
         deleteSweep();
         setSize(collection.size());
         return retainedAll;
@@ -533,7 +559,7 @@ protected class CSMutableIterator extends CSIterator {
         } else {
             added = collection.add(o);
         }
-        //setSize(getSize() + 1);
+        // setSize(getSize() + 1);
         setSize(getSize() + 1);
         return added;
     }
@@ -592,7 +618,9 @@ protected class CSMutableIterator extends CSIterator {
         return collection.iterator();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.ascape.model.space.Space#safeIterator(int, int)
      */
     public ResetableIterator safeIterator(int start, int limit) {
@@ -603,7 +631,8 @@ protected class CSMutableIterator extends CSIterator {
                 return new CollectionSpace.SubIterator(start, limit);
             }
         } else {
-            throw new UnsupportedOperationException("The collection must implement list, or the space must provide its own implementation of context iterator.");
+            throw new UnsupportedOperationException(
+                    "The collection must implement list, or the space must provide its own implementation of context iterator.");
         }
     }
 
@@ -709,12 +738,12 @@ protected class CSMutableIterator extends CSIterator {
          * The iter.
          */
         Iterator iter;
-        
+
         /**
          * The condition.
          */
         Conditional condition;
-        
+
         /**
          * The next.
          */
@@ -747,14 +776,18 @@ protected class CSMutableIterator extends CSIterator {
             }
         }
 
-        /* (non-Javadoc)
+        /*
+         * (non-Javadoc)
+         * 
          * @see java.util.Iterator#hasNext()
          */
         public boolean hasNext() {
             return next != null;
         }
 
-        /* (non-Javadoc)
+        /*
+         * (non-Javadoc)
+         * 
          * @see java.util.Iterator#next()
          */
         public Object next() {
@@ -767,7 +800,9 @@ protected class CSMutableIterator extends CSIterator {
             }
         }
 
-        /* (non-Javadoc)
+        /*
+         * (non-Javadoc)
+         * 
          * @see java.util.Iterator#remove()
          */
         public void remove() {
@@ -797,7 +832,8 @@ protected class CSMutableIterator extends CSIterator {
      * @return the location
      */
     public Location findMaximum(final Iterator iter, DataPoint dataPoint) {
-        //The code is written in such a way that there will not be the cost of Array creation if only one maximum exists
+        // The code is written in such a way that there will not be the cost of
+        // Array creation if only one maximum exists
         ArrayList multipleMaxObjects = null;
         double maxValue = -Double.MAX_VALUE;
         Location maxObject = null;
@@ -808,8 +844,9 @@ protected class CSMutableIterator extends CSIterator {
                 maxObject = (Location) next;
                 multipleMaxObjects = null;
             }
-// Awaiting decision to become depndent on 1.4
-//            else if (Double.compare(dataPoint.getValue(next), maxValue) == 0) {
+            // Awaiting decision to become depndent on 1.4
+            // else if (Double.compare(dataPoint.getValue(next), maxValue) == 0)
+            // {
             else if (DataPointConcrete.equals(dataPoint.getValue(next), maxValue)) {
                 if (multipleMaxObjects == null) {
                     multipleMaxObjects = new ArrayList();
@@ -850,7 +887,9 @@ protected class CSMutableIterator extends CSIterator {
             this.origin = origin;
         }
 
-        /* (non-Javadoc)
+        /*
+         * (non-Javadoc)
+         * 
          * @see org.ascape.util.data.DataPointConcrete#getValue(java.lang.Object)
          */
         public double getValue(Object o) {
@@ -875,6 +914,24 @@ protected class CSMutableIterator extends CSIterator {
     public Location findNearest(final Coordinate origin, Conditional condition, boolean includeOrigin, double distance) {
         return findMinimum(withinIterator(origin, condition, includeOrigin, distance), new ClosestDataPoint(origin));
     }
+    
+    /**
+     * Finds the nearest agent that meets some condition. Spaces without
+     * coordinate meaing should override this method.
+     * 
+     * @param origin
+     *            the lcoation to find agents near
+     * @param condition
+     *            the condition that found agent must meet
+     * @param includeOrigin
+     *            if the origin should be included
+     * @param distance
+     *            the maximum distance around the origin to look
+     * @return the location
+     */
+    public Location findNearest(Location origin, Conditional condition, boolean includeOrigin, double distance) {
+        return findNearest(origin.getCoordinate(), condition, includeOrigin, distance);
+    }
 
     /**
      * Returns a coordinate randomly selected from the collection's space.
@@ -882,7 +939,7 @@ protected class CSMutableIterator extends CSIterator {
      * @return the coordinate
      */
     public Coordinate findRandomCoordinate() {
-        //todo we'll need to replace with shuffle if we don't have a collection
+        // todo we'll need to replace with shuffle if we don't have a collection
         return new Coordinate1DDiscrete(randomToLimit(collection.size()));
     }
 
@@ -971,18 +1028,27 @@ protected class CSMutableIterator extends CSIterator {
         return withinIterator(origin, condition, includeSelf, distance).hasNext();
     }
 
-
-    /* (non-Javadoc)
-     * @see org.ascape.model.space.Space#findMinimumWithin(org.ascape.model.space.Coordinate, org.ascape.util.data.DataPoint, org.ascape.util.Conditional, boolean, double)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.ascape.model.space.Space#findMinimumWithin(org.ascape.model.space.Coordinate,
+     *      org.ascape.util.data.DataPoint, org.ascape.util.Conditional,
+     *      boolean, double)
      */
-    public Location findMinimumWithin(Coordinate coordinate, DataPoint dataPoint, Conditional condition, boolean includeSelf, double distance) {
+    public Location findMinimumWithin(Coordinate coordinate, DataPoint dataPoint, Conditional condition,
+            boolean includeSelf, double distance) {
         return findMinimum(withinIterator(coordinate, condition, includeSelf, distance), dataPoint);
     }
 
-    /* (non-Javadoc)
-     * @see org.ascape.model.space.Space#findMaximumWithin(org.ascape.model.space.Coordinate, org.ascape.util.data.DataPoint, org.ascape.util.Conditional, boolean, double)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.ascape.model.space.Space#findMaximumWithin(org.ascape.model.space.Coordinate,
+     *      org.ascape.util.data.DataPoint, org.ascape.util.Conditional,
+     *      boolean, double)
      */
-    public Location findMaximumWithin(Coordinate coordinate, DataPoint dataPoint, Conditional condition, boolean includeSelf, double distance) {
+    public Location findMaximumWithin(Coordinate coordinate, DataPoint dataPoint, Conditional condition,
+            boolean includeSelf, double distance) {
         return findMaximum(withinIterator(coordinate, condition, includeSelf, distance), dataPoint);
     }
 
@@ -996,7 +1062,8 @@ protected class CSMutableIterator extends CSIterator {
      * @return the location
      */
     public Location findMinimum(final Iterator iter, DataPoint dataPoint) {
-        //The code is written in such a way that there will not be the cost of Array creation if only one minimum exists
+        // The code is written in such a way that there will not be the cost of
+        // Array creation if only one minimum exists
         ArrayList multipleMinObjects = null;
         double minValue = Double.MAX_VALUE;
         Location minObject = null;
@@ -1007,8 +1074,9 @@ protected class CSMutableIterator extends CSIterator {
                 minObject = (Location) next;
                 multipleMinObjects = null;
             }
-// Awaiting decision to become depndent on 1.4
-//            else if (Double.compare(dataPoint.getValue(next), minValue) == 0) {
+            // Awaiting decision to become depndent on 1.4
+            // else if (Double.compare(dataPoint.getValue(next), minValue) == 0)
+            // {
             else if (DataPointConcrete.equals(dataPoint.getValue(next), minValue)) {
                 if (multipleMinObjects == null) {
                     multipleMinObjects = new ArrayList();
@@ -1051,7 +1119,8 @@ protected class CSMutableIterator extends CSIterator {
                 return new CSIterator();
             }
         } else {
-            throw new UnsupportedOperationException("The collection must implement list, or the space must provide its own implementation of context iterator.");
+            throw new UnsupportedOperationException(
+                    "The collection must implement list, or the space must provide its own implementation of context iterator.");
         }
     }
 
@@ -1070,7 +1139,8 @@ protected class CSMutableIterator extends CSIterator {
                 return new ListRandomIterator();
             }
         } else {
-            throw new UnsupportedOperationException("The collection must implement list, or the space must provide its own implementation of context iterator.");
+            throw new UnsupportedOperationException(
+                    "The collection must implement list, or the space must provide its own implementation of context iterator.");
         }
     }
 
@@ -1087,7 +1157,9 @@ protected class CSMutableIterator extends CSIterator {
         return new CollectionSpace.ConditionalIterator(iter, condition);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.ascape.model.space.Space#conditionalIterator(org.ascape.util.Conditional)
      */
     public Iterator conditionalIterator(final Conditional condition) {
@@ -1132,7 +1204,8 @@ protected class CSMutableIterator extends CSIterator {
      *            the condition
      * @return the iterator
      */
-    public Iterator withinIterator(final Coordinate origin, Conditional condition, boolean includeSelf, final double distance) {
+    public Iterator withinIterator(final Coordinate origin, Conditional condition, boolean includeSelf,
+            final double distance) {
         Conditional allConditions = createSpatialConditional(origin, condition, includeSelf, distance);
         if (allConditions != null) {
             return conditionalIterator(iterator(), allConditions);
@@ -1154,8 +1227,9 @@ protected class CSMutableIterator extends CSIterator {
      *            the distance
      * @return the conditional
      */
-    protected Conditional createSpatialConditional(final Coordinate origin, Conditional condition, boolean includeSelf, final double distance) {
-        //Wrap all of the conditionals together to save execution time.
+    protected Conditional createSpatialConditional(final Coordinate origin, Conditional condition, boolean includeSelf,
+            final double distance) {
+        // Wrap all of the conditionals together to save execution time.
         Conditional allConditions = null;
         if (distance < Double.MAX_VALUE) {
             allConditions = new Conditional() {
@@ -1169,9 +1243,9 @@ protected class CSMutableIterator extends CSIterator {
                 }
             };
         }
-        //Save the supplied condtional till now as we do not know its cost
+        // Save the supplied condtional till now as we do not know its cost
         allConditions = Conditionals.and(allConditions, condition);
-        //Least common case
+        // Least common case
         if (!includeSelf) {
             allConditions = Conditionals.and(allConditions, new Conditional() {
                 /**
@@ -1205,7 +1279,8 @@ protected class CSMutableIterator extends CSIterator {
                 return null;
             }
         } else {
-            throw new UnsupportedOperationException("Can't find random within a bare collection. You must use a list or provide a find random method.");
+            throw new UnsupportedOperationException(
+                    "Can't find random within a bare collection. You must use a list or provide a find random method.");
         }
     }
 
@@ -1246,6 +1321,34 @@ protected class CSMutableIterator extends CSIterator {
     }
 
     /**
+     * Returns an agent randomly that matches a condition, excluding the
+     * coordinate. Note: If there are no agents in the collection that meet the
+     * condition, the method returns null.
+     * 
+     * @param condition
+     *            the condition that must be matched
+     * @return the location
+     */
+    public Location findRandom(Location exclude, Conditional condition) {
+        Iterator it = safeRandomIterator();
+        while (it.hasNext()) {
+            Object agent = it.next();
+            if (condition.meetsCondition(agent) && ((Location) agent).getCoordinate() != exclude.getCoordinate()) {
+                return (Location) agent;
+            }
+        }
+        return null;
+    }
+    
+    public Location findRandomWithin(Location origin, Conditional condition, boolean includeSelf, double distance) {
+        List locations = findWithin(origin.getCoordinate(), condition, includeSelf, distance);
+        if (!locations.isEmpty()) {
+            return (Location) locations.get(randomToLimit(locations.size()));
+        }
+        return null;
+    }
+
+    /**
      * Returns the agent with the minimum value.
      * 
      * @param point
@@ -1278,7 +1381,8 @@ protected class CSMutableIterator extends CSIterator {
         try {
             return (Location) ((List) collection).get(((Coordinate1DDiscrete) coordinate).getXValue());
         } catch (ClassCastException e) {
-            throw new UnsupportedOperationException("The underlying space is not a list and cannot be accessed randomly.");
+            throw new UnsupportedOperationException(
+                    "The underlying space is not a list and cannot be accessed randomly.");
         }
     }
 
@@ -1294,8 +1398,8 @@ protected class CSMutableIterator extends CSIterator {
         try {
             ((List) collection).set(((Coordinate1DDiscrete) coordinate).getXValue(), agent);
         } catch (ClassCastException e) {
-            throw new
-                UnsupportedOperationException("The underlying space is not a list and cannot be accessed randomly.");
+            throw new UnsupportedOperationException(
+                    "The underlying space is not a list and cannot be accessed randomly.");
         }
     }
 
@@ -1326,7 +1430,7 @@ protected class CSMutableIterator extends CSIterator {
      */
     public int getSize() {
         return ((Coordinate1DDiscrete) extent).getXValue();
-        //return vector.size();
+        // return vector.size();
     }
 
     /**
@@ -1378,19 +1482,24 @@ protected class CSMutableIterator extends CSIterator {
         ((Coordinate1DDiscrete) getExtent()).setXValue(internalSize);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.ascape.model.space.Space#construct()
      */
     public void construct() {
         collection = new ArrayList(ESTIMATED_MAXIMUM_SIZE);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.ascape.model.space.Space#populate()
      */
     public void populate() {
         if (extent != null) {
-            //Use an array to and then dump all at once to collectioon for better performance.
+            // Use an array to and then dump all at once to collectioon for
+            // better performance.
             Location[] newPopulation = new Location[getSize()];
             for (int i = 0; i < newPopulation.length; i++) {
                 newPopulation[i] = (Location) getContext().getPrototype().clone();
@@ -1400,7 +1509,9 @@ protected class CSMutableIterator extends CSIterator {
         }
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.ascape.model.space.Space#initialize()
      */
     public void initialize() {
@@ -1454,28 +1565,36 @@ protected class CSMutableIterator extends CSIterator {
         return random.nextBoolean();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.ascape.model.space.Space#getContext()
      */
     public SpaceContext getContext() {
         return context;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.ascape.model.space.Space#setContext(org.ascape.model.space.SpaceContext)
      */
     public void setContext(SpaceContext context) {
         this.context = context;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.ascape.util.RandomFunctions#getRandom()
      */
     public Random getRandom() {
         return random;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.ascape.util.RandomFunctions#setRandom(java.util.Random)
      */
     public void setRandom(Random random) {
@@ -1501,7 +1620,7 @@ protected class CSMutableIterator extends CSIterator {
      */
     protected void setGeometry(Geometry geometry) {
         this.geometry = geometry;
-        //setInitialized(false);
+        // setInitialized(false);
     }
 
     /**
@@ -1555,7 +1674,7 @@ protected class CSMutableIterator extends CSIterator {
      */
     public static int[] createOrder(int length) {
         int[] order = new int[length];
-        //Set initial order (sequential)
+        // Set initial order (sequential)
         for (int i = 0; i < order.length; i++) {
             order[i] = i;
         }
@@ -1572,12 +1691,13 @@ protected class CSMutableIterator extends CSIterator {
      * @return the int[]
      */
     public static int[] randomizeOrder(int[] order, Random random) {
-        //Random Shuffle
-        //See Knuth Volume 2, 3.4.2, Algorithm P
-        //Count with i from highest index down to one greater than lowest index..
+        // Random Shuffle
+        // See Knuth Volume 2, 3.4.2, Algorithm P
+        // Count with i from highest index down to one greater than lowest
+        // index..
         for (int j = order.length - 1; j > 0; j--) {
             int k = (random.nextInt() & Integer.MAX_VALUE) % (j + 1);
-            //No reason to swap if index is the same
+            // No reason to swap if index is the same
             if (k != j) {
                 int swap = order[j];
                 order[j] = order[k];
@@ -1586,8 +1706,8 @@ protected class CSMutableIterator extends CSIterator {
         }
         return order;
     }
-    
+
     public List toList() {
-    	return new ArrayList(this);
+        return new ArrayList(this);
     }
 }

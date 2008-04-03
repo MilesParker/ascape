@@ -163,7 +163,7 @@ public abstract class SwingEnvironment extends AbstractUIEnvironment {
                     case 1:
                         String modelName = scape.getClass().getName();
                         scape.getRunner().close();
-                        getScape().getRunner().open(modelName);
+                        getScape().getRunner().openInstance(modelName);
                         break;
                     case 2:
                         scape.getRunner().quitFinally();

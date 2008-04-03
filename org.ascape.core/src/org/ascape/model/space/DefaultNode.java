@@ -42,6 +42,13 @@ public class DefaultNode extends DefaultLocation implements Node {
     }
 
     /* (non-Javadoc)
+     * @see org.ascape.model.space.Node#findRandomNeighbor()
+     */
+    public Node findRandomAvailableNeighbor() {
+        throw new UnsupportedOperationException("No support for occupants");
+    }
+
+    /* (non-Javadoc)
      * @see org.ascape.model.space.Node#getOccupant()
      */
     public Node getOccupant() {

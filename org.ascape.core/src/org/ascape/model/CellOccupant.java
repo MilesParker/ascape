@@ -13,6 +13,8 @@ import java.util.List;
 import org.ascape.model.rule.Rule;
 import org.ascape.model.space.Coordinate;
 import org.ascape.model.space.Discrete;
+import org.ascape.model.space.Location;
+import org.ascape.model.space.Node;
 import org.ascape.util.Conditional;
 
 /**
@@ -256,6 +258,18 @@ public class CellOccupant extends Cell {
         } else {
             return null;
         }
+    }
+    
+    public Node findRandomAvailableNeighbor() {
+        return getHostCell().findRandomAvailableNeighbor();
+    }
+    
+    public Node findRandomNeighbor() {
+        return findRandomNeighborOnHost();
+    }
+
+    public List findNeighbors() {
+        return findNeighborsOnHost();
     }
 
     /**

@@ -16,6 +16,7 @@ import java.util.List;
 import org.ascape.model.rule.Rule;
 import org.ascape.model.space.Coordinate;
 import org.ascape.model.space.Discrete;
+import org.ascape.model.space.Location;
 import org.ascape.model.space.Node;
 import org.ascape.model.space.Relative;
 import org.ascape.model.space.Space;
@@ -303,7 +304,11 @@ public class Cell extends LocatedAgent implements Node {
             throw new RuntimeException("No neighbors when trying to find random neighbor for: " + this);
         }
     }
-
+    
+    public Node findRandomAvailableNeighbor() {
+        return findRandomNeighbor();
+    }
+    
     /**
      * Returns any occupants of this cell. Cell occupants are incapable of
      * hosting agents, so this will always be null for instantiations of this class.

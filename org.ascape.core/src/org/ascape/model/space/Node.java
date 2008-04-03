@@ -29,6 +29,13 @@ public interface Node extends Location {
     public Node findRandomNeighbor();
 
     /**
+     * Find random neighbor.
+     * 
+     * @return the node
+     */
+    public Node findRandomAvailableNeighbor();
+
+    /**
      * Find neighbors.
      * 
      * @return the list

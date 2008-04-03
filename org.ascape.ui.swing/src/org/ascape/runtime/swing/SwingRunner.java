@@ -40,8 +40,7 @@ public class SwingRunner extends Runner {
     private static final long serialVersionUID = -2041589422471681672L;
 
     public SwingRunner() {
-        super();
-        environment = new DesktopEnvironment();
+        super(new DesktopEnvironment());
     }
 
     /**
@@ -78,11 +77,8 @@ public class SwingRunner extends Runner {
     }
 
     public void openImplementation(Object applet, String[] args, boolean block) {
-        if (environment == null) {
-            environment = new RuntimeEnvironment();
-        }
-        assignEnvironmentParameters(args);
-        if (isDisplayGraphics()) {
+        Runner.assignEnvironmentParameters(args);
+        if (isDisplayGraphics() && !(environment instanceof DesktopEnvironment)) {
             environment = new DesktopEnvironment();
         }
         super.openImplementation(applet, args, block);

@@ -9,11 +9,15 @@ package org.ascape.model.space;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.locks.Condition;
 
+import org.ascape.model.HostCell;
 import org.ascape.util.Conditional;
+import org.ascape.util.Conditionals;
 
 
 
@@ -101,6 +105,43 @@ public abstract class Discrete extends CollectionSpace {
         return findOccupants(this);
     }
 
+    public Location findRandomNeighbor(Node location) {
+        List neighbors = findNeighbors(location);
+        if (neighbors.size() > 0) {
+            return (Location) neighbors.get(randomToLimit(neighbors.size()));
+        } else {
+            return null;
+        }
+    }
+
+    public Location findRandomNeighbor(Node location, Conditional condition) {
+        List neighbors = findNeighbors(location);
+        neighbors = filter(neighbors, condition);
+        if (neighbors.size() > 0) {
+            return (Location) neighbors.get(randomToLimit(neighbors.size()));
+        } else {
+            return null;
+        }
+    }
+
+    public List findNeighbors(Node location) {
+        return location.findNeighbors();
+    }
+
+    public Location findRandomAvailableNeighbor(Node location) {
+        return location.findRandomAvailableNeighbor();
+    }
+
+    public Location findRandomAvailable(Node origin, Conditional condition, boolean includeSelf, double distance) {
+        List available = findWithin(origin.getCoordinate(), Conditionals.and(condition, HostCell.IS_AVAILABLE), includeSelf, distance);
+        if (available.size() > 0) {
+            return (Location) available.get(randomToLimit(available.size()));
+        } else {
+            return null;
+        }
+
+    }
+
     /**
      * Returns all cell occupants of the provided cells.
      * 
@@ -168,8 +209,13 @@ public abstract class Discrete extends CollectionSpace {
      * locations is done.
      * 
      * @return the node
+     * @deprecated
      */
     public Node findRandomUnoccupiedCell() {
+        return findRandomAvailable();
+    }
+
+    public Node findRandomAvailable() {
         for (int i = 0; i < 10; i++) {
             Node cell = (Node) findRandom();
             if (cell.isAvailable()) {
@@ -182,6 +228,14 @@ public abstract class Discrete extends CollectionSpace {
         } else {
             return null;
         }
+    }
+
+    public Node findRandomAvailable(Conditional condition) {
+        return (Node) findRandom(Conditionals.and(condition, HostCell.IS_AVAILABLE));
+    }
+
+    public Location findNearestAvailable(final Location origin, Conditional condition, boolean includeOrigin, double distance) {
+        return findNearest(origin, Conditionals.and(condition, HostCell.IS_AVAILABLE), includeOrigin, distance);
     }
 
     /**
