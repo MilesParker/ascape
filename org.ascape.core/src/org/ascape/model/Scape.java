@@ -223,7 +223,8 @@ import org.ascape.util.vis.DrawFeature;
  * Examples:<BR>
  * <BR>
  * 
- * <pre><code>
+ * <pre>
+ * &lt;code&gt;
  *     public class MyModel extends Scape {
  *        ...
  *        createScape() {
@@ -234,13 +235,15 @@ import org.ascape.util.vis.DrawFeature;
  *        }
  *        ...
  *     }
- * </code></pre>
+ * &lt;/code&gt;
+ * </pre>
  * 
  * Application:<BR>
  * 
  * <pre>
  * java org.ascape.model.Scape mypath.MyModel
- * <BR></pre>
+ * &lt;BR&gt;
+ * </pre>
  * 
  * Applet:<BR>
  * 
@@ -1598,7 +1601,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
             if (scape != null) {
                 scape.memberUpdated(this);
                 // if (isInitialized() ) {
-                // getRuntimeEnvironment().getConsole().println(scape.updatedListeners
+                // getRuntimeEnvironment().getConsole().println(scape.
+                // updatedListeners
                 // + "/" +
                 // scape.scapeListeners.length + ", " + scape.updatedMembers +
                 // "/"+scape.getSize() + " for " + scape + " from " + this);
@@ -1839,6 +1843,18 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
     }
 
     /**
+     * Returns the root of this scape, which may be this scape. This was an
+     * older usage and is retained for backward compatability only. It is now
+     * not a all good name as it confuses model for a view / control component,
+     * and may be removed in the future.
+     * 
+     * @deprecated please use #getRunner().
+     */
+    public Runner getModel() {
+        return getRunner();
+    }
+
+    /**
      * Returns the runtime model environment, which manages model-wide state
      * such as run status.
      * 
@@ -1920,8 +1936,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * for you. Typically, you will need to request updates when the internal
      * state of a cell changes and that is reflected in how a cell is
      * represeneted in a view, for example, if you color an agent for wealth,
-     * you will need to call <code>requestUpdate</code> anytime the agent
-     * wealth changes.
+     * you will need to call <code>requestUpdate</code> anytime the agent wealth
+     * changes.
      * 
      * @param cellsRequestUpdates
      *            if cells should request updates, false if cell updates should
@@ -2626,7 +2642,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * place to put any user interface only views. If root, will setup the user
      * interface environment and add an auto customizer.
      */
-    public void createGraphicViews() {}
+    public void createGraphicViews() {
+    }
 
     /**
      * Overide to create and non-graphical views for the scape. If root, will
@@ -2653,7 +2670,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * sends a "initialize" event, indicating it has been initialized. Normally
      * wouldn't use in this context.
      */
-    public void scapeInitialized(ScapeEvent scapeEvent) {}
+    public void scapeInitialized(ScapeEvent scapeEvent) {
+    }
 
     /**
      * If the scape has delegated a view to itself, called each time a scape
@@ -2666,7 +2684,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * @param scapeEvent
      *            the associated scape event
      */
-    public void scapeSetup(ScapeEvent scapeEvent) {}
+    public void scapeSetup(ScapeEvent scapeEvent) {
+    }
 
     /**
      * If the scape has delegated a view to itself, called each time the scape
@@ -2676,7 +2695,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * @param scapeEvent
      *            the associated scape event
      */
-    public void scapeIterated(ScapeEvent scapeEvent) {}
+    public void scapeIterated(ScapeEvent scapeEvent) {
+    }
 
     /**
      * If the scape has delegated a view to itself, called each time the scape
@@ -2686,7 +2706,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * @param scapeEvent
      *            the associated scape event
      */
-    public void scapeStarted(ScapeEvent scapeEvent) {}
+    public void scapeStarted(ScapeEvent scapeEvent) {
+    }
 
     /**
      * If the scape has delegated a view to itself, called each time the scape
@@ -2696,7 +2717,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * @param scapeEvent
      *            the associated scape event
      */
-    public void scapeStopped(ScapeEvent scapeEvent) {}
+    public void scapeStopped(ScapeEvent scapeEvent) {
+    }
 
     /**
      * If the scape has delegated a view to itself, called each time the scape
@@ -2706,7 +2728,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * @param scapeEvent
      *            the associated scape event
      */
-    public void scapeNotification(ScapeEvent scapeEvent) {}
+    public void scapeNotification(ScapeEvent scapeEvent) {
+    }
 
     /**
      * If the scape has delegated a view to itself, called each time a scape
@@ -2715,7 +2738,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * @param scapeEvent
      *            the associated scape event
      */
-    public void scapeClosing(ScapeEvent scapeEvent) {}
+    public void scapeClosing(ScapeEvent scapeEvent) {
+    }
 
     /**
      * Method called as the entire envornmnet is about to be exited.
@@ -2723,7 +2747,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * @param scapeEvent
      *            the associated scape event
      */
-    public void environmentQuiting(ScapeEvent scapeEvent) {}
+    public void environmentQuiting(ScapeEvent scapeEvent) {
+    }
 
     /**
      * If the scape has delegated a view to itself, called each time a scape
@@ -2748,7 +2773,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * @param scapeEvent
      *            the associated scape event
      */
-    public void scapeAdded(ScapeEvent scapeEvent) throws TooManyListenersException {}
+    public void scapeAdded(ScapeEvent scapeEvent) throws TooManyListenersException {
+    }
 
     /**
      * Notifies the listener that the scape has removed it. Just here to fulfill
@@ -2757,7 +2783,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * @param scapeEvent
      *            the associated scape event
      */
-    public void scapeRemoved(ScapeEvent scapeEvent) {}
+    public void scapeRemoved(ScapeEvent scapeEvent) {
+    }
 
     /**
      * Returns false the scape is not a graphical user interface component.
