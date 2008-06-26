@@ -1,8 +1,9 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors. 
- * All rights reserved.
- * This program and the accompanying materials are made available solely under the BSD license "ascape-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc.,
+ * Metascape LLC, and contributors. All rights reserved. This program and the
+ * accompanying materials are made available solely under the BSD license
+ * "ascape-license.txt". Any referenced or included libraries carry licenses of
+ * their respective copyright holders.
  */
 
 package org.ascape.model;
@@ -321,17 +322,19 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * Copyright and credits information for ascape w/ HTML style tags. Again,
      * we keep this in Scape since it is typically the invoked class.
      */
-    public final static String copyrightAndCredits = "<B>Ascape version "
-            + version
-            + "</B><BR></BR>"
-            + "Portions copyright 2000-2007, NuTech Solutions, Inc.<BR></BR>"
-            +
-            // "http://ascape.nutechsolutions.com<BR></BR>" +
-            "Portions copyright 1998-2000, The Brookings Institution<BR></BR>"
-            + "JFreeChart Copyright (c) 2000, 2001, Simba Management Limited and others. (See licence-LGPL.txt)<BR></BR>"
-            + "Icons (C)1998 Dean S. Jones<BR></BR>"
-            + "Use subject to license agreement - see License.txt.<BR></BR>"
-            + "Government Users -- Commercial Software subject to 48 C.F.R. ß12.212 or 48 C.F.R. ßß227.7202-1 through 227.7202-4.";
+    public final static String copyrightAndCredits =
+                    "<B>Ascape version "
+                                    + version
+                                    + "</B><BR></BR>"
+                                    + "Portions copyright 2000-2007, NuTech Solutions, Inc.<BR></BR>"
+                                    +
+                                    // "http://ascape.nutechsolutions.com<BR></BR>"
+                                    // +
+                                    "Portions copyright 1998-2000, The Brookings Institution<BR></BR>"
+                                    + "JFreeChart Copyright (c) 2000, 2001, Simba Management Limited and others. (See licence-LGPL.txt)<BR></BR>"
+                                    + "Icons (C)1998 Dean S. Jones<BR></BR>"
+                                    + "Use subject to license agreement - see License.txt.<BR></BR>"
+                                    + "Government Users -- Commercial Software subject to 48 C.F.R. ß12.212 or 48 C.F.R. ßß227.7202-1 through 227.7202-4.";
 
     /**
      * A rule causing the target scape and all its children scapes to be
@@ -346,8 +349,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
         /**
          * populates the scape and all its children.
          * 
-         * @param agent
-         *            the playing agent
+         * @param agent the playing agent
          */
         public void execute(Agent agent) {
             if (((Scape) agent).isAutoCreate()) {
@@ -378,8 +380,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
         /**
          * Creates views for all of the scapes.
          * 
-         * @param agent
-         *            the playing agent
+         * @param agent the playing agent
          */
         public void execute(Agent agent) {
             ((Scape) agent).createViews();
@@ -403,8 +404,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
         /**
          * Creates views for all of the scapes.
          * 
-         * @param agent
-         *            the playing agent
+         * @param agent the playing agent
          */
         public void execute(Agent agent) {
             ((Scape) agent).createGraphicViews();
@@ -428,8 +428,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
         /**
          * populates the scape and all its children.
          * 
-         * @param agent
-         *            the playing agent
+         * @param agent the playing agent
          */
         public void execute(Agent agent) {
             ((Scape) agent).createScape();
@@ -452,8 +451,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
         /**
          * Initializes the scape and all its children.
          * 
-         * @param agent
-         *            the playing agent
+         * @param agent the playing agent
          * @see Scape#getInitialRules()
          */
         public void execute(Agent agent) {
@@ -493,8 +491,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
         /**
          * Iterate over every member and child.
          * 
-         * @param agent
-         *            the target agent
+         * @param agent the target agent
          */
         public void execute(Agent agent) {
             ((Scape) agent).executeOnMembers();
@@ -517,8 +514,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
         /**
          * Iterate over every member and child.
          * 
-         * @param agent
-         *            the target agent
+         * @param agent the target agent
          */
         public void execute(Agent agent) {
             CollectStats collectStats = ((Scape) agent).getCollectStats();
@@ -544,8 +540,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
         /**
          * Iterate over every member and child.
          * 
-         * @param agent
-         *            the target agent
+         * @param agent the target agent
          */
         public void execute(Agent agent) {
             CollectStats collectStats = ((Scape) agent).getCollectStats();
@@ -724,8 +719,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
     /**
      * Constructs a scape.
      * 
-     * @param space
-     *            the topology for this scape
+     * @param space the topology for this scape
      */
     public Scape(CollectionSpace space) {
         this(space, null, null);
@@ -735,10 +729,9 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * Constructs a scape of provided geometry, to be populated with clones of
      * provided agent.
      * 
-     * @param name
-     *            a descriptive name for the scape
-     * @param prototypeAgent
-     *            the agent whose clones will be used to populate this scape
+     * @param name a descriptive name for the scape
+     * @param prototypeAgent the agent whose clones will be used to populate
+     *            this scape
      */
     public Scape(String name, Agent prototypeAgent) {
         this(null, name, prototypeAgent);
@@ -748,12 +741,10 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * Constructs a scape of provided geometry, to be populated with clones of
      * provided agent.
      * 
-     * @param name
-     *            a descriptive name for the scape
-     * @param prototypeAgent
-     *            the agent whose clones will be used to populate this scape
-     * @param space
-     *            the topology for this scape
+     * @param name a descriptive name for the scape
+     * @param prototypeAgent the agent whose clones will be used to populate
+     *            this scape
+     * @param space the topology for this scape
      */
     public Scape(CollectionSpace space, String name, Agent prototypeAgent) {
         super();
@@ -777,8 +768,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * will be cloned to populate this scape. It is an error to call while the
      * scape is running.
      * 
-     * @param prototypeAgent
-     *            the agent whose clones will populate this scape
+     * @param prototypeAgent the agent whose clones will populate this scape
      */
     public void setPrototypeAgent(Agent prototypeAgent) {
         this.prototypeAgent = prototypeAgent;
@@ -865,8 +855,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * subclass ExecuteAndUpdate, 'by rule' execution is the only order that
      * makes sense.
      * 
-     * @param symbol
-     *            RULE_ORDER for by rule execution, AGENT_ORDER for by agent
+     * @param symbol RULE_ORDER for by rule execution, AGENT_ORDER for by agent
      *            execution
      */
     public void setExecutionOrder(int symbol) {
@@ -893,8 +882,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * plausible, but a repeated draw approach can produce different and
      * interesting results.
      * 
-     * @param symbol
-     *            one of COMPLETE_TOUR or REPEATED_DRAW
+     * @param symbol one of COMPLETE_TOUR or REPEATED_DRAW
      */
     public void setExecutionStyle(int symbol) {
         this.executionStyle = symbol;
@@ -918,8 +906,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * extents, but all other scapes do. It is an error to set extent while a
      * scape is running.
      * 
-     * @param extent
-     *            a coordinate at the maximum extent
+     * @param extent a coordinate at the maximum extent
      */
     public void setExtent(Coordinate extent) {
         if (getRunner() != null && getRunner().isRunning()) {
@@ -933,10 +920,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * extents, but all other scapes do. It is an error to set extent while a
      * scape is running.
      * 
-     * @throws RuntimeException
-     *             if the scape is currently running
-     * @param xval
-     *            coordinate 1 of the extent
+     * @throws RuntimeException if the scape is currently running
+     * @param xval coordinate 1 of the extent
      */
     public void setExtent(int xval) {
         if (runner != null && runner.isRunning()) {
@@ -953,14 +938,11 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * extents, but all other scapes do. It is an error to set extent while a
      * scape is running.
      * 
-     * @param xval
-     *            coordinate 1 of the extent
-     * @param yval
-     *            coordinate 2 of the extent
-     * @throws RuntimeException
-     *             if the scape is currently running
-     * @throws UnsupportedOperationException
-     *             if the underlying space isn't appropriate
+     * @param xval coordinate 1 of the extent
+     * @param yval coordinate 2 of the extent
+     * @throws RuntimeException if the scape is currently running
+     * @throws UnsupportedOperationException if the underlying space isn't
+     *             appropriate
      */
     public void setExtent(int xval, int yval) {
         if (runner != null && runner.isRunning()) {
@@ -1176,7 +1158,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
         super.initialize();
         getSpace().initialize();
         if (!(getSpace() instanceof Continuous) && (getPrototypeAgent() != null)
-                && (getPrototypeAgent().getScape() == this) && (!getSpace().isMutable())) {
+                        && (getPrototypeAgent().getScape() == this) && (!getSpace().isMutable())) {
             executeOnMembers(Cell.CALCULATE_NEIGHBORS_RULE);
         }
     }
@@ -1230,17 +1212,15 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * selected (run) automatically? If the selection is not changed, rules are
      * executed in the order they are added.
      * 
-     * @param rule
-     *            the rule to add
-     * @param select
-     *            if rule should be run false if rule should just be made
+     * @param rule the rule to add
+     * @param select if rule should be run false if rule should just be made
      *            available to be run
      */
     public synchronized void addRule(Rule rule, boolean select) {
         if ((rule instanceof ExecuteThenUpdate) && (getExecutionOrder() != RULE_ORDER)) {
             // bug mtp: need to add similar check when setting rule order.
             throw new RuntimeException(
-                    "Tried to add execute and update rule to AGENT_ORDER Scape. Set Scape to RULE_ORDER execution first.");
+                            "Tried to add execute and update rule to AGENT_ORDER Scape. Set Scape to RULE_ORDER execution first.");
         }
         if (rule.getScape() == null) {
             rule.setScape(this);
@@ -1259,8 +1239,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * Adds a rule to be executed once following initialization. Rule is
      * automatically selected for running.
      * 
-     * @param rule
-     *            to be executed at simulation start
+     * @param rule to be executed at simulation start
      */
     public synchronized void addInitialRule(Rule rule) {
         addInitialRule(rule, true);
@@ -1270,10 +1249,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * Adds a rule to be executed once following initialization. If the
      * selection is not chagned, rules are executed in the order they are added.
      * 
-     * @param rule
-     *            to be executed at simulation start
-     * @param select
-     *            if rule should be run false if rule should just be made
+     * @param rule to be executed at simulation start
+     * @param select if rule should be run false if rule should just be made
      *            available to be run
      */
     public synchronized void addInitialRule(Rule rule, boolean select) {
@@ -1299,8 +1276,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * registering view as listener, and creating window for view to be
      * displayed within.
      * 
-     * @param view
-     *            ComponentView to display in window
+     * @param view ComponentView to display in window
      */
     public synchronized void addView(ScapeListener view) {
         this.addView(view, true);
@@ -1314,12 +1290,9 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * instace when temporaily instrumenting a non-gui run with diagnostics.
      * Normally addScapeListener should be used.
      * 
-     * @param view
-     *            ComponentView to display in window
-     * @param createFrame
-     *            should the view be placed within a new window frame?
-     * @param forceGUI
-     *            add a GUI view witout regard to the display GUI setting
+     * @param view ComponentView to display in window
+     * @param createFrame should the view be placed within a new window frame?
+     * @param forceGUI add a GUI view witout regard to the display GUI setting
      */
     public synchronized void addView(final ScapeListener view, boolean createFrame, boolean forceGUI) {
         if (forceGUI || Runner.isDisplayGraphics() || !view.isGraphic() || Runner.isServeGraphics()) {
@@ -1364,10 +1337,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * regardless of the value of display GUI by using addViewForce. Note: Even
      * with the conveneince of this method, it is often nec
      * 
-     * @param view
-     *            ComponentView to display in window
-     * @param createFrame
-     *            should the view be placed within a new window frame?
+     * @param view ComponentView to display in window
+     * @param createFrame should the view be placed within a new window frame?
      */
     public synchronized void addView(ScapeListener view, boolean createFrame) {
         addView(view, createFrame, false);
@@ -1378,8 +1349,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * registering view as listener, and creating window for view to be
      * displayed within.
      * 
-     * @param views
-     *            ComponentView to display in window
+     * @param views ComponentView to display in window
      */
     public synchronized void addViews(ScapeListener[] views) {
         this.addViews(views, true);
@@ -1393,12 +1363,9 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * for instace when temporaily instrumenting a non-gui run with diagnostics.
      * Normally addScapeListener should be used.
      * 
-     * @param views
-     *            ComponentViews array to display in window
-     * @param createFrame
-     *            should the view be placed within a new window frame?
-     * @param forceGUI
-     *            add a GUI view witout regard to the dispaly GUI setting
+     * @param views ComponentViews array to display in window
+     * @param createFrame should the view be placed within a new window frame?
+     * @param forceGUI add a GUI view witout regard to the dispaly GUI setting
      */
     public synchronized void addViews(ScapeListener[] views, boolean createFrame, boolean forceGUI) {
         if (forceGUI || Runner.isDisplayGraphics() || !views[0].isGraphic()) {
@@ -1436,10 +1403,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * without worrying about checking for GUI display state. Views can be added
      * regardless of the value of dispaly GUI by using addViewForce.
      * 
-     * @param views
-     *            ComponentViews to display in window
-     * @param createFrame
-     *            should the view be placed within a new window frame?
+     * @param views ComponentViews to display in window
+     * @param createFrame should the view be placed within a new window frame?
      */
     public synchronized void addViews(ScapeListener[] views, boolean createFrame) {
         // To do, test and throw error for case where user tries to add mixed
@@ -1453,8 +1418,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * it has updated itself. This method also adds the scape to the listener as
      * a control listener.
      * 
-     * @param listener
-     *            the listern to add
+     * @param listener the listern to add
      */
     public synchronized void addScapeListener(ScapeListener listener) {
         if (listener == null) {
@@ -1477,8 +1441,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * to the beginning of the list. This can be useful if there are listeners
      * that need to be called first.
      * 
-     * @param listener
-     *            the listern to add
+     * @param listener the listern to add
      */
     public synchronized void addScapeListenerFirst(ScapeListener listener) {
         if (listener == null) {
@@ -1505,7 +1468,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
         boolean success = scapeListeners.remove(listener);
         if (!success) {
             getEnvironment().getConsole().println(
-                    "WARNING: Tried to remove unregistered scape listener " + listener + " from scape " + this + ".");
+                            "WARNING: Tried to remove unregistered scape listener " + listener + " from scape " + this
+                                            + ".");
         }
 
         listener.scapeRemoved(new ScapeEvent(this, ScapeEvent.REPORT_REMOVED));
@@ -1593,8 +1557,9 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
         // getPrototypeAgent()).isMembersActive())) || (!(getPrototypeAgent()
         // instanceof AgentScape)) || (updatedMembers >= getSize()))) {
         if ((updatedListeners >= scapeListeners.size())
-                && ((updatedMembers >= getSize()) || (!(getPrototypeAgent() instanceof Scape))
-                        || (getSpace() instanceof Singleton) || (!((Scape) getPrototypeAgent()).isMembersActive()))) {
+                        && ((updatedMembers >= getSize()) || (!(getPrototypeAgent() instanceof Scape))
+                                        || (getSpace() instanceof Singleton) || (!((Scape) getPrototypeAgent())
+                                        .isMembersActive()))) {
             listenersAndMembersCurrent = true;
             updatedListeners = 0;
             updatedMembers = 0;
@@ -1614,8 +1579,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
     /**
      * Called whenever a listener has been updated.
      * 
-     * @param listener
-     *            the listener tha has been updated
+     * @param listener the listener tha has been updated
      */
     public synchronized void listenerUpdated(ScapeListener listener) {
         updatedListeners++;
@@ -1630,8 +1594,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
     /**
      * Called whenever a member has been updated.
      * 
-     * @param member
-     *            the member that has been updated
+     * @param member the member that has been updated
      */
     public synchronized void memberUpdated(Scape member) {
         updatedMembers++;
@@ -1673,8 +1636,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * parent scape's thread, which causes scape to iterate. If set false, the
      * scape will be stopped when the current iteration is complete.
      * 
-     * @param running
-     *            if true, starts the thread, if false, stops it.
+     * @param running if true, starts the thread, if false, stops it.
      */
     public void setRunning(boolean running) {
         getRunner().setRunning(running);
@@ -1697,8 +1659,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * any scape in the model; the request is propogated up to the parent scape.
      * If set true, a pause will occur when the current iteration is complete.
      * 
-     * @param pause
-     *            if true, pauses, otherwise resumes iterations
+     * @param pause if true, pauses, otherwise resumes iterations
      */
     public void setPaused(boolean pause) {
         if (pause) {
@@ -1724,8 +1685,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * Sets the earliest period this scape is expected to be run at. 0 by
      * default.
      * 
-     * @param earliestPeriod
-     *            the lowest period value this scape can have
+     * @param earliestPeriod the lowest period value this scape can have
      */
     public void setEarliestPeriod(int earliestPeriod) {
         getRunner().setEarliestPeriod(earliestPeriod);
@@ -1735,8 +1695,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * Sets the latest period this scape is expected to be run at. Max of
      * integer (effectively unlimited) by default.
      * 
-     * @param latestPeriod
-     *            the highest period value this scape can have
+     * @param latestPeriod the highest period value this scape can have
      */
     public void setLatestPeriod(int latestPeriod) {
         getRunner().setLatestPeriod(latestPeriod);
@@ -1745,8 +1704,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
     /**
      * Is the supplied period a valid period for this scape?
      * 
-     * @param period
-     *            the period to test
+     * @param period the period to test
      * @return true if within earliest and latest periods, false otherwise
      */
     public boolean isValidPeriod(int period) {
@@ -1765,8 +1723,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * Sets the start period for this scape. The start period is the period this
      * scape is given when a model run is started.
      * 
-     * @param startPeriod
-     *            the period to begin runs at
+     * @param startPeriod the period to begin runs at
      */
     public void setStartPeriod(int startPeriod) throws SpatialTemporalException {
         getRunner().setStartPeriod(startPeriod);
@@ -1785,8 +1742,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * the scape is automatically stopped at. The scape may be automatically set
      * to start agina at start value is the scape is set to restart.
      * 
-     * @param stopPeriod
-     *            the period the scape will stop at upon reaching
+     * @param stopPeriod the period the scape will stop at upon reaching
      * @see #setAutoRestart
      */
     public void setStopPeriod(int stopPeriod) throws SpatialTemporalException {
@@ -1803,8 +1759,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
     /**
      * Causes the model to pause at the specified period.
      * 
-     * @param pausePeriod
-     *            when to pause
+     * @param pausePeriod when to pause
      */
     public void setPausePeriod(int pausePeriod) {
         getRunner().setPausePeriod(pausePeriod);
@@ -1820,8 +1775,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
     /**
      * Should the scape be automatically started upon opening? True by default.
      * 
-     * @param startOnOpen
-     *            true to start the scape upon opening a model
+     * @param startOnOpen true to start the scape upon opening a model
      */
     public void setStartOnOpen(boolean startOnOpen) {
         Runner.setStartOnOpen(startOnOpen);
@@ -1833,9 +1787,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * demonstrations, model explorations, etc. See DataOutputView for an
      * example of more sophisticated handling of multiple runs.
      * 
-     * @param autoRestart
-     *            true to restart the scape upon reaching stop period, false to
-     *            simple stop
+     * @param autoRestart true to restart the scape upon reaching stop period,
+     *            false to simple stop
      * @see #setStopPeriod
      */
     public void setAutoRestart(boolean autoRestart) {
@@ -1884,8 +1837,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * that parameter can automatically be set from command line, but backing
      * variable is static.
      * 
-     * @param home
-     *            the fully qualified path name for this scape
+     * @param home the fully qualified path name for this scape
      */
     public void setHome(String home) {
         getRunner().setHome(home);
@@ -1904,8 +1856,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
     /**
      * Sets whether members of this scape actively execute rules upon members.
      * 
-     * @param membersActive
-     *            true if members actively execute rules, false otherwise
+     * @param membersActive true if members actively execute rules, false
+     *            otherwise
      */
     public void setMembersActive(boolean membersActive) {
         this.membersActive = membersActive;
@@ -1939,9 +1891,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * you will need to call <code>requestUpdate</code> anytime the agent wealth
      * changes.
      * 
-     * @param cellsRequestUpdates
-     *            if cells should request updates, false if cell updates should
-     *            be handled automatically
+     * @param cellsRequestUpdates if cells should request updates, false if cell
+     *            updates should be handled automatically
      * @see Cell#requestUpdate
      */
     public void setCellsRequestUpdates(boolean cellsRequestUpdates) {
@@ -2094,10 +2045,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * "getAsList" and Collections.binarySearch to get an O(log(n)) search. This
      * code is not thread safe, but can easily be made so.
      * 
-     * @param comparator
-     *            the Comparator to use to perfrom the search
-     * @param key
-     *            the key that an agent must match in order to be returned.
+     * @param comparator the Comparator to use to perfrom the search
+     * @param key the key that an agent must match in order to be returned.
      */
     public Agent search(Comparator comparator, Object key) {
         if (defaultSearch == null) {
@@ -2115,8 +2064,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * Searches through the scape for an object (agent) that has the minimum
      * value as defined by the comparator.
      * 
-     * @param comparator
-     *            the Comparator to use to determin the minimum
+     * @param comparator the Comparator to use to determin the minimum
      */
     public Agent searchMin(Comparator comparator) {
         if (defaultSearch == null) {
@@ -2133,8 +2081,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * Searches through the scape for an object (agent) that has the minimum
      * value as defined by the comparator.
      * 
-     * @param comparator
-     *            the Comparator to use to determin the minimum
+     * @param comparator the Comparator to use to determin the minimum
      */
     public Agent searchMax(Comparator comparator) {
         if (defaultSearch == null) {
@@ -2192,9 +2139,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * Sets wether the scape is responsible for creating itself and its members,
      * or other model components handle this.
      * 
-     * @param autoCreate
-     *            if true calls createScape at construction, otherwise model is
-     *            built manually
+     * @param autoCreate if true calls createScape at construction, otherwise
+     *            model is built manually
      */
     public void setAutoCreate(boolean autoCreate) {
         this.autoCreate = autoCreate;
@@ -2217,9 +2163,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
     /**
      * Sets wether the scape is responsible for populating itself.
      * 
-     * @param populateOnCreate
-     *            if true calls createScape at construction, otherwise model is
-     *            built manually
+     * @param populateOnCreate if true calls createScape at construction,
+     *            otherwise model is built manually
      */
     public void setPopulateOnCreate(boolean populateOnCreate) {
         this.populateOnCreate = populateOnCreate;
@@ -2230,8 +2175,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * by the scape. If this scape is not allready collecting stats, implicitly
      * sets collect stats to true. Adds the stats to the stat collection rule.
      * 
-     * @param stats
-     *            the stat collectors to add to this scape.
+     * @param stats the stat collectors to add to this scape.
      */
     public void addStatCollectors(StatCollector[] stats) {
         // stats added in collect values
@@ -2257,8 +2201,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * Adds the specified stat collector iff and only if it hasn't allready been
      * added.
      * 
-     * @param stat
-     *            the stat collector to add to this scape. todo allow
+     * @param stat the stat collector to add to this scape. todo allow
      *            replacement (cuurent version only adds if a stat does not
      *            already exist.) possibly get rid of this once issue with
      *            multiple stat collectors is resolved.
@@ -2277,8 +2220,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * by the scape. If this scape is not allready collecting stats, implicitly
      * sets collect stats to true. Adds the stat to the stat collection rule.
      * 
-     * @param stat
-     *            the stat collector to add to this scape.
+     * @param stat the stat collector to add to this scape.
      */
     public void addStatCollector(StatCollector stat) {
         StatCollector[] stats = new StatCollector[1];
@@ -2344,8 +2286,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
     /**
      * Removes the provided draw feature.
      * 
-     * @param feature
-     *            the draw feature to be removed
+     * @param feature the draw feature to be removed
      * @return returns true if successful. False, otherwise.
      */
     public boolean removeDrawFeature(DrawFeature feature) {
@@ -2425,16 +2366,15 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
         }
 
         /**
-         * @param agent
-         *            the target scape
+         * @param agent the target scape
          */
         public void execute(Agent agent) {
             try {
                 accessors.addAll(PropertyAccessor.determineReadWriteAccessors(this, Scape.class, false));
             } catch (IntrospectionException e) {
                 getEnvironment().getConsole().println(
-                        "An introspection exception occured while trying to determine model properties: "
-                                + e.getMessage());
+                                "An introspection exception occured while trying to determine model properties: "
+                                                + e.getMessage());
             }
         }
     }
@@ -2459,8 +2399,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
         }
 
         /**
-         * @param agent
-         *            the target scape
+         * @param agent the target scape
          */
         public void execute(Agent agent) {
             if (((Scape) agent).isMembersActive()) {
@@ -2468,8 +2407,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
                     accessors.addAll(PropertyAccessor.determineReadWriteAccessors(agent, Scape.class, false));
                 } catch (IntrospectionException e) {
                     getEnvironment().getConsole().println(
-                            "An introspection exception occured while trying to determine model properties: "
-                                    + e.getMessage());
+                                    "An introspection exception occured while trying to determine model properties: "
+                                                    + e.getMessage());
                 }
                 // super.execute(agent);
             }
@@ -2495,8 +2434,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
         }
 
         /**
-         * @param agent
-         *            the target scape
+         * @param agent the target scape
          */
         public void execute(Agent agent) {
             scapes.addElement(agent);
@@ -2531,7 +2469,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
     public final static Comparator COMPARE_ORDERED_QUALIFIERS = new Comparator() {
         public int compare(Object o1, Object o2) {
             return Utility.orderedQualifiers(((PropertyAccessor) o1).getLongName()).compareTo(
-                    Utility.orderedQualifiers(((PropertyAccessor) o2).getLongName()));
+                            Utility.orderedQualifiers(((PropertyAccessor) o2).getLongName()));
         }
     };
 
@@ -2585,8 +2523,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * Sets wether the scape is a view of itself. True by default for root scape
      * whn createViews is used, false otherwise. Not extensively tested yet.
      * 
-     * @param viewSelf
-     *            should the scape view itself.
+     * @param viewSelf should the scape view itself.
      */
     public void setViewSelf(boolean viewSelf) {
         if (viewSelf && !isViewSelf()) {
@@ -2681,8 +2618,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * delegate to the scape is automatically created for root scapes when the
      * standard model implementation is used.)
      * 
-     * @param scapeEvent
-     *            the associated scape event
+     * @param scapeEvent the associated scape event
      */
     public void scapeSetup(ScapeEvent scapeEvent) {
     }
@@ -2692,8 +2628,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * is iterated. (A view delegate to the scape is automatically created for
      * root scapes when the standard model implementation is used.)
      * 
-     * @param scapeEvent
-     *            the associated scape event
+     * @param scapeEvent the associated scape event
      */
     public void scapeIterated(ScapeEvent scapeEvent) {
     }
@@ -2703,8 +2638,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * is started. (A view delegate to the scape is automatically created for
      * root scapes when the standard model implementation is used.)
      * 
-     * @param scapeEvent
-     *            the associated scape event
+     * @param scapeEvent the associated scape event
      */
     public void scapeStarted(ScapeEvent scapeEvent) {
     }
@@ -2714,8 +2648,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * is stopped. (A view delegate to the scape is automatically created for
      * root scapes when the standard model implementation is used.)
      * 
-     * @param scapeEvent
-     *            the associated scape event
+     * @param scapeEvent the associated scape event
      */
     public void scapeStopped(ScapeEvent scapeEvent) {
     }
@@ -2725,8 +2658,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * is updated. (A view delegate to the scape is automatically created for
      * root scapes when the standard model implementation is used.)
      * 
-     * @param scapeEvent
-     *            the associated scape event
+     * @param scapeEvent the associated scape event
      */
     public void scapeNotification(ScapeEvent scapeEvent) {
     }
@@ -2735,8 +2667,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * If the scape has delegated a view to itself, called each time a scape
      * sends a "closing" event. Normally wouldn't use in this context.
      * 
-     * @param scapeEvent
-     *            the associated scape event
+     * @param scapeEvent the associated scape event
      */
     public void scapeClosing(ScapeEvent scapeEvent) {
     }
@@ -2744,8 +2675,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
     /**
      * Method called as the entire envornmnet is about to be exited.
      * 
-     * @param scapeEvent
-     *            the associated scape event
+     * @param scapeEvent the associated scape event
      */
     public void environmentQuiting(ScapeEvent scapeEvent) {
     }
@@ -2754,8 +2684,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * If the scape has delegated a view to itself, called each time a scape
      * sends a "deserialized" event.
      * 
-     * @param scapeEvent
-     *            the associated scape event
+     * @param scapeEvent the associated scape event
      */
     public void scapeDeserialized(ScapeEvent scapeEvent) {
         if (Runner.isDisplayGraphics()) {
@@ -2770,8 +2699,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * Add a scape to this listener. Just here to fulfill the scape listener
      * contract.
      * 
-     * @param scapeEvent
-     *            the associated scape event
+     * @param scapeEvent the associated scape event
      */
     public void scapeAdded(ScapeEvent scapeEvent) throws TooManyListenersException {
     }
@@ -2780,8 +2708,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * Notifies the listener that the scape has removed it. Just here to fulfill
      * the scape listener contract.
      * 
-     * @param scapeEvent
-     *            the associated scape event
+     * @param scapeEvent the associated scape event
      */
     public void scapeRemoved(ScapeEvent scapeEvent) {
     }
@@ -2830,7 +2757,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
         // remove the customizer and any environment (non-scape specific) views
         boolean needToAddCustomizer = false;
         if ((getUIEnvironment() != null) && getUIEnvironment().getCustomizer() != null
-                && isScapeListener(getUIEnvironment().getCustomizer())) {
+                        && isScapeListener(getUIEnvironment().getCustomizer())) {
             removeScapeListener(getUIEnvironment().getCustomizer());
             needToAddCustomizer = true;
         }
@@ -2891,13 +2818,11 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * pairs. Paramters and values are expected to be seperated with an "=", for
      * example: "MyParameter=12".
      * 
-     * @param args
-     *            an array of strings with paramter-value paris in the form
+     * @param args an array of strings with paramter-value paris in the form
      *            "{paramter-name}={paramter-value}"
-     * @param reportNotFound
-     *            if paramters not found should result in a console notification
-     *            and if errors in invocation should be reported, false
-     *            otherwise
+     * @param reportNotFound if paramters not found should result in a console
+     *            notification and if errors in invocation should be reported,
+     *            false otherwise
      */
     public void assignParameters(String[] args, boolean reportNotFound) {
         // List allAccessors = retrieveAllAccessors();
@@ -2935,7 +2860,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
                             setRandomSeed(PropertyAccessor.paramValueLong(arg));
                         } catch (NumberFormatException e) {
                             getEnvironment().getConsole().println(
-                                    "Couldn't decode random seed value: " + PropertyAccessor.paramValue(arg));
+                                            "Couldn't decode random seed value: " + PropertyAccessor.paramValue(arg));
                         }
                         found = true;
                     } else if (paramName.equalsIgnoreCase("StopPeriod")) {
@@ -2957,18 +2882,21 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
                 }
                 if (!found && reportNotFound) {
                     getEnvironment().getConsole().println(
-                            "***WARNING: Parameter not found: " + paramName + " in " + getName());
+                                    "***WARNING: Parameter not found: " + paramName + " in " + getName());
                 }
             }
         }
     }
 
     public void createViews(String[] args) {
-        for (String arg : args) {
-            if (PropertyAccessor.paramName(arg).equals("view")) {
-                ScapeListener newView = (ScapeListener) getRunner().instanceFromName(PropertyAccessor.paramValue(arg));
-                if (newView != null) {
-                    addView(newView);
+        if (args != null) {
+            for (String arg : args) {
+                if (PropertyAccessor.paramName(arg).equals("view")) {
+                    ScapeListener newView =
+                                    (ScapeListener) getRunner().instanceFromName(PropertyAccessor.paramValue(arg));
+                    if (newView != null) {
+                        addView(newView);
+                    }
                 }
             }
         }
@@ -2980,8 +2908,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * Paramters and values are expected to be seperated with an "=", for
      * example: "MyParameter=12".
      * 
-     * @param args
-     *            an array of strings with paramter-value paris in the form
+     * @param args an array of strings with paramter-value paris in the form
      *            "{paramter-name}={paramter-value}"
      */
     public void assignParameters(String[] args) {
@@ -2991,12 +2918,9 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
     /**
      * Moves an agent toward the specified agent.
      * 
-     * @param origin
-     *            the agent moving
-     * @param target
-     *            the agent's target
-     * @param distance
-     *            the distance to move
+     * @param origin the agent moving
+     * @param target the agent's target
+     * @param distance the distance to move
      */
     public final void moveAway(LocatedAgent origin, Coordinate target, double distance) {
         getSpace().moveAway(origin, target, distance);
@@ -3007,12 +2931,9 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * method on collections (and discrete discrete scapes not composed of
      * HostCells.
      * 
-     * @param origin
-     *            the agent moving
-     * @param target
-     *            the agent's target
-     * @param distance
-     *            the distance to move
+     * @param origin the agent moving
+     * @param target the agent's target
+     * @param distance the distance to move
      */
     public final void moveToward(LocatedAgent origin, Coordinate target, double distance) {
         getSpace().moveToward(origin, target, distance);
@@ -3021,10 +2942,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
     /**
      * Returns the shortest distance between one agent and another.
      * 
-     * @param origin
-     *            the starting agent
-     * @param target
-     *            the ending agent
+     * @param origin the starting agent
+     * @param target the ending agent
      */
     public double calculateDistance(LocatedAgent origin, LocatedAgent target) {
         return calculateDistance(origin.getCoordinate(), target.getCoordinate());
@@ -3038,10 +2957,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * versions of Scape, ensure that you have properly implemented a version of
      * this method. (All Ascape Scape collections properly overide this method.)
      * 
-     * @param origin
-     *            one LocatedAgent
-     * @param target
-     *            another LocatedAgent
+     * @param origin one LocatedAgent
+     * @param target another LocatedAgent
      */
     public final double calculateDistance(Coordinate origin, Coordinate target) {
         return getSpace().calculateDistance(origin, target);
@@ -3141,12 +3058,12 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
     }
 
     public final LocatedAgent findMinimumWithin(Coordinate coordinate, DataPoint dataPoint, Conditional condition,
-            boolean includeSelf, double distance) {
+                    boolean includeSelf, double distance) {
         return (LocatedAgent) getSpace().findMinimumWithin(coordinate, dataPoint, condition, includeSelf, distance);
     }
 
     public final LocatedAgent findMaximumWithin(Coordinate coordinate, DataPoint dataPoint, Conditional condition,
-            boolean includeSelf, double distance) {
+                    boolean includeSelf, double distance) {
         return (LocatedAgent) getSpace().findMaximumWithin(coordinate, dataPoint, condition, includeSelf, distance);
     }
 
@@ -3185,23 +3102,19 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * Returns an iteration across all agents the specified distance from the
      * origin.
      * 
-     * @param origin
-     *            the starting cell
-     * @param includeSelf
-     *            should the origin be included
-     * @param distance
-     *            the distance agents must be within to be included
+     * @param origin the starting cell
+     * @param includeSelf should the origin be included
+     * @param distance the distance agents must be within to be included
      */
     public final Iterator withinIterator(final Coordinate origin, Conditional condition, boolean includeSelf,
-            final double distance) {
+                    final double distance) {
         return getSpace().withinIterator(origin, condition, includeSelf, distance);
     }
 
     /**
      * Returns the agent with the minimum value.
      * 
-     * @param point
-     *            the data point to use to make the comparison for minimum
+     * @param point the data point to use to make the comparison for minimum
      */
     public LocatedAgent findMinimum(DataPoint point) {
         return findMinimum(iterator(), point);
@@ -3210,8 +3123,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
     /**
      * Returns the agent with the maximum value.
      * 
-     * @param point
-     *            the data point to use to make the comparison for maximum
+     * @param point the data point to use to make the comparison for maximum
      */
     public LocatedAgent findMaximum(DataPoint point) {
         return findMaximum(iterator(), point);
@@ -3228,17 +3140,13 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * Finds the nearest agent that meets some condition. Scapes without
      * coordinate meaing should override this method.
      * 
-     * @param origin
-     *            the coordinate to find agents near
-     * @param condition
-     *            the condition that found agent must meet
-     * @param includeOrigin
-     *            if the origin should be included
-     * @param distance
-     *            the maximum distance around the origin to look
+     * @param origin the coordinate to find agents near
+     * @param condition the condition that found agent must meet
+     * @param includeOrigin if the origin should be included
+     * @param distance the maximum distance around the origin to look
      */
     public final LocatedAgent findNearest(final Coordinate origin, Conditional condition, boolean includeOrigin,
-            double distance) {
+                    double distance) {
         return (LocatedAgent) getSpace().findNearest(origin, condition, includeOrigin, distance);
     }
 
@@ -3252,13 +3160,10 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
     /**
      * Returns all agents within the specified distance of the agent.
      * 
-     * @param origin
-     *            the coordinate at the center of the search
-     * @param includeSelf
-     *            whether or not the starting agent should be included in the
-     *            search
-     * @param distance
-     *            the distance agents must be within to be included
+     * @param origin the coordinate at the center of the search
+     * @param includeSelf whether or not the starting agent should be included
+     *            in the search
+     * @param distance the distance agents must be within to be included
      */
     public final List findWithin(Coordinate origin, Conditional condition, boolean includeSelf, double distance) {
         return getSpace().findWithin(origin, condition, includeSelf, distance);
@@ -3268,12 +3173,9 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * Returns the number of agents within the specified distance of the agent
      * that meet some condition.
      * 
-     * @param origin
-     *            the coordinate at the center of the search
-     * @param condition
-     *            the condition the agent must meet to be included
-     * @param distance
-     *            the distance agents must be within to be included
+     * @param origin the coordinate at the center of the search
+     * @param condition the condition the agent must meet to be included
+     * @param distance the distance agents must be within to be included
      */
     public final int countWithin(Coordinate origin, Conditional condition, boolean includeSelf, double distance) {
         return getSpace().countWithin(origin, condition, includeSelf, distance);
@@ -3283,12 +3185,9 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * Returns if there are agents within the specified distance of the origin
      * that meet some Condition.
      * 
-     * @param origin
-     *            the coordinate at the center of the search
-     * @param condition
-     *            the condition the agent must meet to be included
-     * @param distance
-     *            the distance agents must be within to be included
+     * @param origin the coordinate at the center of the search
+     * @param condition the condition the agent must meet to be included
+     * @param distance the distance agents must be within to be included
      */
     public final boolean hasWithin(final Coordinate origin, Conditional condition, boolean includeSelf, double distance) {
         return getSpace().hasWithin(origin, condition, includeSelf, distance);
@@ -3383,8 +3282,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * Returns a random unoccupied discrete location in the space given with the
      * lattice.
      * 
-     * @param excludeAgent
-     *            a cell to exclude from get (typically origin)
+     * @param excludeAgent a cell to exclude from get (typically origin)
      */
     public Agent findRandom(Location excludeAgent) {
         return (LocatedAgent) getSpace().findRandom(excludeAgent);
@@ -3395,8 +3293,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * agents in the collection that meet the condition, the method returns
      * null.
      * 
-     * @param condition
-     *            the condition that must be matched
+     * @param condition the condition that must be matched
      */
     public final Agent findRandom(Conditional condition) {
         return (LocatedAgent) getSpace().findRandom(condition);
@@ -3416,9 +3313,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * adding it to a random or arbitrary (last in most cases) place in the
      * collection, and initializing it.
      * 
-     * @param randomLocation
-     *            should the agent be placed in a random location, or in an
-     *            arbitrary location?
+     * @param randomLocation should the agent be placed in a random location, or
+     *            in an arbitrary location?
      */
     public synchronized Agent newAgent(boolean randomLocation) {
         Agent newAgent = (LocatedAgent) getSpace().newLocation(randomLocation);
@@ -3449,8 +3345,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
     /**
      * Returns true if the scape collection contains the object (agent.)
      * 
-     * @param o
-     *            the agent to search for
+     * @param o the agent to search for
      * @return true if the scape contains the agent
      */
     public final boolean contains(Object o) {
@@ -3474,12 +3369,10 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * Returns an array containing the current agents in this scape; the runtime
      * type is specified by the passed array.
      * 
-     * @param a
-     *            the array to copy the agents to
+     * @param a the array to copy the agents to
      * @return an array containing the agents
-     * @throws java.lang.ArrayStoreException
-     *             if the runtime type of the specified array doesn't match all
-     *             agents
+     * @throws java.lang.ArrayStoreException if the runtime type of the
+     *             specified array doesn't match all agents
      */
     public final Object[] toArray(Object a[]) {
         return getSpace().toArray(a);
@@ -3489,8 +3382,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * Returns true if this collection contains all of agents in the specified
      * collection.
      * 
-     * @param c
-     *            collection of agents to be found in the scape
+     * @param c collection of agents to be found in the scape
      * @return true if this scape contains all of the agents in the collection
      */
     public final boolean containsAll(Collection c) {
@@ -3502,8 +3394,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * scape. Assumes (but does not check) that all of the elements are
      * instances of agent.
      * 
-     * @param c
-     *            collection whose agents are to be added to the scape
+     * @param c collection whose agents are to be added to the scape
      * @return true if the scape had new agents added
      */
     public final boolean addAll(Collection c) {
@@ -3514,8 +3405,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * Removes all of the agnets contained in the collection. No attempt is made
      * to cache the removal; the agents are all removed at once.
      * 
-     * @param c
-     *            collection whose agents are to be added to the scape
+     * @param c collection whose agents are to be added to the scape
      * @return true if the scape had agents (but not neccessarily all?) removed
      */
     public final boolean removeAll(Collection c) {
@@ -3526,8 +3416,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * Retains only the elements in the scape that are in the specified
      * collection.
      * 
-     * @param c
-     *            collection whose agents are to be retained in the scape
+     * @param c collection whose agents are to be retained in the scape
      * @return true if this scape had agents removed
      */
     public final boolean retainAll(Collection c) {
@@ -3553,12 +3442,10 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * object is assumed to be an agent, though that behavior may be loosened at
      * some point.
      * 
-     * @param agent
-     *            the agent to add
-     * @param isParent
-     *            should this scape be made the parent scape of the agent?
-     * @throws UnsupportedOperationException
-     *             if this scape's space is not a list.
+     * @param agent the agent to add
+     * @param isParent should this scape be made the parent scape of the agent?
+     * @throws UnsupportedOperationException if this scape's space is not a
+     *             list.
      */
     public final boolean add(Object agent, boolean isParent) {
         if (!(agent instanceof Agent)) {
@@ -3575,8 +3462,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
     /**
      * Adds the supplied object (agent) to this collection.
      * 
-     * @throws UnsupportedOperationException
-     *             if this scape's space is not a list.
+     * @throws UnsupportedOperationException if this scape's space is not a
+     *             list.
      */
     public final void add(int index, Object a) {
         add(index, a, true);
@@ -3587,12 +3474,10 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * object is assumed to be an agent, though that behavior may be loosened at
      * some point.
      * 
-     * @param o
-     *            the agent to add
-     * @param isParent
-     *            should this scape be made the parent scape of the agent?
-     * @throws UnsupportedOperationException
-     *             if this scape's space is not a list.
+     * @param o the agent to add
+     * @param isParent should this scape be made the parent scape of the agent?
+     * @throws UnsupportedOperationException if this scape's space is not a
+     *             list.
      */
     public final void add(int index, Object o, boolean isParent) {
         try {
@@ -3608,8 +3493,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
     /**
      * Removes the supplied object (agent) from this collection.
      * 
-     * @param o
-     *            the agent to be removed
+     * @param o the agent to be removed
      * @return true if the agent was deleted, false otherwise
      */
     public boolean remove(Object o) {
@@ -3619,10 +3503,9 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
     /**
      * Removes the object at the index from this collection.
      * 
-     * @param index
-     *            the index for the agent to remove
-     * @throws UnsupportedOperationException
-     *             if this scape's space is not a list.
+     * @param index the index for the agent to remove
+     * @throws UnsupportedOperationException if this scape's space is not a
+     *             list.
      */
     public final Object remove(int index) {
         try {
@@ -3642,10 +3525,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
     /**
      * Sets the agent at the specified coordinate to the supplied agent.
      * 
-     * @param coordinate
-     *            the coordinate to add the agent at
-     * @param agent
-     *            the agent to add
+     * @param coordinate the coordinate to add the agent at
+     * @param agent the agent to add
      */
     public final void set(Coordinate coordinate, LocatedAgent agent, boolean isParent) {
         getSpace().set(coordinate, agent);
@@ -3658,10 +3539,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
     /**
      * Sets the agent at the specified coordinate to the supplied agent.
      * 
-     * @param coordinate
-     *            the coordinate to add the agent at
-     * @param agent
-     *            the agent to add
+     * @param coordinate the coordinate to add the agent at
+     * @param agent the agent to add
      */
     public void set(Coordinate coordinate, LocatedAgent agent) {
         set(coordinate, agent, true);
@@ -3670,8 +3549,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
     /**
      * Returns the cell existing at the specified location. Convenience method.
      * 
-     * @throws UnsupportedOperationException
-     *             if this scape's space is not a list.
+     * @throws UnsupportedOperationException if this scape's space is not a
+     *             list.
      */
     public final Object get(int index) {
         try {
@@ -3684,8 +3563,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
     /**
      * Sets the specified location to the provided agent. Convenience method.
      * 
-     * @throws UnsupportedOperationException
-     *             if this scape's space is not a list.
+     * @throws UnsupportedOperationException if this scape's space is not a
+     *             list.
      */
     public void set(int index, Object agent) {
         set(index, agent, true);
@@ -3694,8 +3573,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
     /**
      * Sets the specified location to the provided agent. Convenience method.
      * 
-     * @throws UnsupportedOperationException
-     *             if this scape's space is not a list.
+     * @throws UnsupportedOperationException if this scape's space is not a
+     *             list.
      */
     public void set(int index, Object agent, boolean isParent) {
         try {
@@ -3773,8 +3652,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * Sets the size of the collection, filling with clones of prototype agent.
      * It is an error to set size while a scape is running.
      * 
-     * @param size
-     *            a coordinate describing the size of this scape
+     * @param size a coordinate describing the size of this scape
      */
     public void setSize(int size) {
         if (runner != null && runner.isRunning()) {
