@@ -12,6 +12,7 @@ package edu.brook.retirement;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.TooManyListenersException;
 
 import org.ascape.model.Agent;
 import org.ascape.model.Scape;
@@ -57,7 +58,12 @@ public class Population extends Scape {
 
     public Population() {
         super();
+    }
+
+    public void createScape() {
+        super.createScape();
         setSpace(new Array2DMoore());
+        setExtent(new Coordinate2DDiscrete(cohortSize, getAgeSpan()));
         setAutoCreate(true);
         setPrototypeAgent(new Person());
         setFractionRational(.10);
@@ -70,12 +76,7 @@ public class Population extends Scape {
         //setExecutionOrder(AGENT_ORDER);
         addRule(ITERATE_RULE);
     }
-
-    public void createScape() {
-        setExtent(new Coordinate2DDiscrete(cohortSize, getAgeSpan()));
-        super.createScape();
-    }
-
+    
     public void initialize() {
         youngestRow = 0;
         if (view != null) {
