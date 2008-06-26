@@ -1,0 +1,22 @@
+<agents sizeMode="size by scape" readOrder="sequential order" assignmentOrder="sequential order">
+    <agent x="2" y="2">
+        <parameter name="IntAttr" value="10" />
+        <parameter name="StringAttr" value="Ten" />
+        <parameter name="DoubleAttr" value="10.1" />
+    </agent>
+    <agent x="3" y="3">
+        <parameter name="IntAttr" value="20" />
+        <parameter name="StringAttr" value="Twenty" />
+        <parameter name="DoubleAttr" value="20.2" />
+    </agent>
+    <agent x="4" y="4">
+        <parameter name="IntAttr" value="30" />
+        <parameter name="StringAttr" value="Thirty" />
+        <parameter name="DoubleAttr" value="30.3" />
+    </agent>
+    <agent x="5" y="5">
+        <parameter name="IntAttr" value="40" />
+        <parameter name="StringAttr" value="Forty" />
+        <parameter name="DoubleAttr" value="40.4" />
+    </agent>
+</agents>
