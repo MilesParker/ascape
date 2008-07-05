@@ -304,12 +304,12 @@ public abstract class Discrete extends CollectionSpace {
      */
     public List findWithinDefault(Coordinate origin, boolean includeSelf, double dist) {
         int distance = (int) dist;
-        if (performanceWarning) {
-            System.out.println("Warning: code is using getCellsNearDefault method, which has significant performance issues.");
-            System.out.println("An update should address this issue soon.");
-            performanceWarning = false;
-//            throw new RuntimeException();
-        }
+//        if (performanceWarning) {
+//            System.out.println("Warning: code is using getCellsNearDefault method, which has significant performance issues.");
+//            System.out.println("An update should address this issue soon.");
+//            performanceWarning = false;
+////            throw new RuntimeException();
+//        }
         Node[] candidates = getCells();
         //Performance issue -- may be better to move this to permanent scratch memory
         //at cost of memory space.
