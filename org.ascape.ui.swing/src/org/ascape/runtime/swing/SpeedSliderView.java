@@ -21,7 +21,7 @@ import javax.swing.event.ChangeListener;
 
 import org.ascape.model.event.ControlEvent;
 import org.ascape.model.event.ScapeEvent;
-import org.ascape.view.vis.ScapeTransitionView;
+import org.ascape.view.vis.ScapeTransitionPanelView;
 
 
 /**
@@ -32,7 +32,7 @@ import org.ascape.view.vis.ScapeTransitionView;
  * @history 3.0 8/13/02 refcatored out of ControlBarView
  * @since 3.0
  */
-public class SpeedSliderView extends ScapeTransitionView /* implements Externalizable */ {
+public class SpeedSliderView extends ScapeTransitionPanelView /* implements Externalizable */ {
 
     /**
      * The Class SpeedSlider.

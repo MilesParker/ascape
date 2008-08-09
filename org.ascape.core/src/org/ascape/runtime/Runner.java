@@ -206,6 +206,8 @@ public abstract class Runner implements Serializable, Runnable {
      * strucutures.
      */
     private static boolean muiltWinEnvironment;
+    
+    private Thread modelThread;
 
     public Runner() {
         this(new RuntimeEnvironment());
@@ -698,7 +700,7 @@ public abstract class Runner implements Serializable, Runnable {
      * restarts.
      * 
      * @param singlethread
-     *            should the run if restarted continue to use the same thread?
+     *            CURRENTLY IGNORED! should the run if restarted continue to use the same thread?
      */
     public void run(boolean singlethread) {
         if ((scape.getUIEnvironment() != null)
@@ -721,7 +723,8 @@ public abstract class Runner implements Serializable, Runnable {
      */
     public void start() {
         if (!isRunning()) {
-            (new Thread(this, "Ascape Main Execution Loop")).start();
+            modelThread = new Thread(this, "Ascape Main Execution Loop");
+            modelThread.start();
         } else {
             System.out.println("Warning: Tried to start an already running scape.");
         }
@@ -1586,5 +1589,9 @@ public abstract class Runner implements Serializable, Runnable {
 
     public void setEnvironment(RuntimeEnvironment environment) {
         this.environment = environment;
+    }
+
+    public Thread getModelThread() {
+        return modelThread;
     }
 }

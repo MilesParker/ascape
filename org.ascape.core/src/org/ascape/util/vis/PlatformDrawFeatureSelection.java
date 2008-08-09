@@ -19,7 +19,7 @@ import org.ascape.util.VectorSelection;
  * @version 1.2.6 10/26/99
  * @since 1.2.6
  */
-public class DrawFeatureSelection extends VectorSelection {
+public class PlatformDrawFeatureSelection extends VectorSelection {
 
     /**
      * 
@@ -31,7 +31,7 @@ public class DrawFeatureSelection extends VectorSelection {
      * Construct a new DrawFeatureSelection.
      * @param scape the scape holding the draw feature inforamtion
      */
-    public DrawFeatureSelection(Scape scape) {
+    public PlatformDrawFeatureSelection(Scape scape) {
         super(scape.getDrawFeatures());
         scape.getDrawFeaturesObservable().addObserver(this);
         this.scape = scape;
@@ -42,7 +42,7 @@ public class DrawFeatureSelection extends VectorSelection {
      * Note: This code is from ViewCustomizer.update()
      * @param drawFeature the Draw Feature to be moved to the top
      */
-    public void moveToTop(DrawFeature drawFeature) {
+    public void moveToTop(PlatformDrawFeature drawFeature) {
         int selectedRow = vector.indexOf(drawFeature);
         if (selectedRow > 0) {
             for (int i = selectedRow - 1; i >= 0; i--) {
@@ -55,7 +55,7 @@ public class DrawFeatureSelection extends VectorSelection {
         }
     }
 
-    public void moveToBottom(DrawFeature drawFeature) {
+    public void moveToBottom(PlatformDrawFeature drawFeature) {
         int selectedRow = vector.indexOf(drawFeature);
         if (selectedRow < vector.size()) {
             for (int i = selectedRow + 1; i < vector.size(); i++) {
@@ -68,7 +68,7 @@ public class DrawFeatureSelection extends VectorSelection {
         }
     }
 
-    public void moveUp(DrawFeature drawFeature) {
+    public void moveUp(PlatformDrawFeature drawFeature) {
         int selectedRow = vector.indexOf(drawFeature);
         if (selectedRow > 0) {
             Object swapFeature = vector.elementAt(selectedRow - 1);
@@ -79,7 +79,7 @@ public class DrawFeatureSelection extends VectorSelection {
         }
     }
 
-    public void moveDown(DrawFeature drawFeature) {
+    public void moveDown(PlatformDrawFeature drawFeature) {
         int selectedRow = vector.indexOf(drawFeature);
         if (selectedRow < vector.size()) {
             Object swapFeature = vector.elementAt(selectedRow + 1);
@@ -90,10 +90,10 @@ public class DrawFeatureSelection extends VectorSelection {
         }
     }
 
-    public DrawFeature findByName(String name) {
-        DrawFeature found = null;
+    public PlatformDrawFeature findByName(String name) {
+        PlatformDrawFeature found = null;
         for (Iterator iterator = vector.iterator(); iterator.hasNext();) {
-            DrawFeature feature = (DrawFeature) iterator.next();
+            PlatformDrawFeature feature = (PlatformDrawFeature) iterator.next();
             if (feature.getName().equals(name)) {
                 found = feature;
                 break;

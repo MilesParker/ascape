@@ -152,7 +152,7 @@ public class DataGroup extends Observable implements Serializable {
      */
     public void clear() {
         //super.clear();
-        periods = new Vector();
+        periods.clear();
         //period = 0;
         for (int i = 0; i < dataSeries.length; i++) {
             dataSeries[i].clear();

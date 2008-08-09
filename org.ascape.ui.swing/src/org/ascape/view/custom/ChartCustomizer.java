@@ -1,8 +1,9 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors. 
- * All rights reserved.
- * This program and the accompanying materials are made available solely under of the BSD license "ascape-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc.,
+ * Metascape LLC, and contributors. All rights reserved. This program and the
+ * accompanying materials are made available solely under of the BSD license
+ * "ascape-license.txt". Any referenced or included libraries carry licenses of
+ * their respective copyright holders.
  */
 
 package org.ascape.view.custom;
@@ -57,8 +58,6 @@ import org.ascape.util.data.StatCollector;
 import org.ascape.util.swing.NumberOnlyField;
 import org.ascape.view.vis.ChartView;
 
-
-
 /**
  * A frame (modeless dialog) for making live changes to a chart. Requires Swing.
  * This class is quite complicated, and can safely be left alone unless you're
@@ -80,7 +79,7 @@ public class ChartCustomizer extends BaseCustomizer implements Serializable {
      * The Constant WINDOW_PREFERRED_WIDTH.
      */
     private static final int WINDOW_PREFERRED_WIDTH = 460;
-    
+
     /**
      * The Constant EDITABLE_COLUMN_PREFERRED_WIDTH.
      */
@@ -114,8 +113,7 @@ public class ChartCustomizer extends BaseCustomizer implements Serializable {
     /**
      * Constructs the frame.
      * 
-     * @param chartView
-     *            the chart view being edited.
+     * @param chartView the chart view being edited.
      */
     public ChartCustomizer(ChartView chartView) {
         super();
@@ -125,8 +123,7 @@ public class ChartCustomizer extends BaseCustomizer implements Serializable {
     /**
      * Sets the chart view being edited.
      * 
-     * @param chartView
-     *            the chart view
+     * @param chartView the chart view
      */
     public void setObject(ChartView chartView) {
         super.setObject(chartView);
@@ -134,7 +131,8 @@ public class ChartCustomizer extends BaseCustomizer implements Serializable {
         selectedTable = new JTable(new SelectedDataModel());
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see org.ascape.view.custom.BaseCustomizer#build()
      */
     public void build() {
@@ -182,45 +180,47 @@ public class ChartCustomizer extends BaseCustomizer implements Serializable {
         /*
          * Available Data Table
          */
-        //(We use JPanel, not JPanel: availablePanel must use Swing)
+        // (We use JPanel, not JPanel: availablePanel must use Swing)
         contentPanel.add(new JLabel("Pick Data Series"), gbc);
         JPanel availablePanel = new JPanel();
         availablePanel.setLayout(new BorderLayout());
-        //availablePanel.setBorder(BorderFactory.createTitledBorder("Pick Data"));
+        //availablePanel.setBorder(BorderFactory.createTitledBorder("Pick Data")
+        // );
         JTable dataTable = new JTable(new AvailableDataModel());
         dataTable.setDefaultRenderer(Boolean.class, new NullCheckBoxRenderer());
         dataTable.setRowSelectionAllowed(false);
         dataTable.setShowGrid(false);
-        //dataTable.getColumn(0).setMinimumSize(dataTable.getColumn(0).getMaximumSize());
-        //dataTable.setDefaultEditor(Boolean.class, new NullCheckBoxEditor(new JCheckBox()));
+        // dataTable.getColumn(0).setMinimumSize(dataTable.getColumn(0).
+        // getMaximumSize());
+        // dataTable.setDefaultEditor(Boolean.class, new NullCheckBoxEditor(new
+        // JCheckBox()));
         JScrollPane scrollPane = new JScrollPane(dataTable);
         availablePanel.add(scrollPane, "Center");
         dataTable.getColumnModel().getColumn(0).setPreferredWidth(
-            WINDOW_PREFERRED_WIDTH - 35 - 7 * EDITABLE_COLUMN_PREFERRED_WIDTH);
+                WINDOW_PREFERRED_WIDTH - 35 - 7 * EDITABLE_COLUMN_PREFERRED_WIDTH);
         for (int i = 1; i < StatCollector.getAllMeasureNamesShort().length + 1; i++) {
             TableColumn col = dataTable.getColumnModel().getColumn(i);
-            //col.setMinWidth(40);
-            //col.setMaxWidth(40);
+            // col.setMinWidth(40);
+            // col.setMaxWidth(40);
             col.setPreferredWidth(EDITABLE_COLUMN_PREFERRED_WIDTH);
-            //col.sizeWidthToFit();
+            // col.sizeWidthToFit();
         }
-        //gbc.insets = new Insets(6, 6, 0, 6);
-        //gbc.gridwidth = GridBagConstraints.REMAINDER;
-        //gbc.gridy++;
-        //contentPanel.add(new JLabel("Pick Data Series"), gbc);
+        // gbc.insets = new Insets(6, 6, 0, 6);
+        // gbc.gridwidth = GridBagConstraints.REMAINDER;
+        // gbc.gridy++;
+        // contentPanel.add(new JLabel("Pick Data Series"), gbc);
         gbc.weighty = 1.0;
-        //gbc.insets = new Insets(2, 6, 0, 6);
+        // gbc.insets = new Insets(2, 6, 0, 6);
         gbc.gridy++;
         contentPanel.add(availablePanel, gbc);
-        /*contentPanel.add(new JLabel("Chart Name:"), gbc);
-        gbc.gridy = 1;
-        JTextField nameField = new JTextField("New Chart");
-        nameField.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                chartView.getViewModel().setName(e.getActionCommand());
-            }
-        });
-        contentPanel.add(nameField, gbc);*/
+        /*
+         * contentPanel.add(new JLabel("Chart Name:"), gbc); gbc.gridy = 1;
+         * JTextField nameField = new JTextField("New Chart");
+         * nameField.addActionListener(new ActionListener() { public void
+         * actionPerformed(ActionEvent e) {
+         * chartView.getViewModel().setName(e.getActionCommand()); } });
+         * contentPanel.add(nameField, gbc);
+         */
 
         gbc.weighty = 0.0;
         gbc.gridy++;
@@ -230,7 +230,7 @@ public class ChartCustomizer extends BaseCustomizer implements Serializable {
          */
         JPanel chartTypePanel = new JPanel();
         chartTypePanel.setLayout(new GridLayout());
-        //chartTypePanel.setBorder(BorderFactory.createTitledBorder("Type"));
+        // chartTypePanel.setBorder(BorderFactory.createTitledBorder("Type"));
 
         JPanel chartTSHolder = new JPanel(new BorderLayout(4, 0));
         chartTSHolder.add(new JLabel(DesktopEnvironment.getIcon("LineGraph")), BorderLayout.WEST);
@@ -285,7 +285,7 @@ public class ChartCustomizer extends BaseCustomizer implements Serializable {
         } else if (chartView.getChartType() == ChartView.PIE) {
             chartPieRadioButton.setSelected(true);
         }
-        //gbc.weighty = 0.0;
+        // gbc.weighty = 0.0;
         gbc.gridy++;
         contentPanel.add(chartTypePanel, gbc);
 
@@ -304,10 +304,11 @@ public class ChartCustomizer extends BaseCustomizer implements Serializable {
         cgbc.weightx = 1.0;
         cgbc.weighty = 0.0;
         chartColorsPanel.setLayout(cgbl);
-        //chartColorsPanel.setBorder(BorderFactory.createTitledBorder("Colors"));
+        //chartColorsPanel.setBorder(BorderFactory.createTitledBorder("Colors"))
+        // ;
         JPanel elementColorPanel = new JPanel();
         elementColorPanel.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEtchedBorder(),
-            BorderFactory.createEmptyBorder(3, 2, 3, 2)));
+                BorderFactory.createEmptyBorder(3, 2, 3, 2)));
         GridLayout gl = new GridLayout(3, 2, 4, 4);
         elementColorPanel.setLayout(gl);
         JLabel fl = new JLabel("Foreground");
@@ -317,12 +318,10 @@ public class ChartCustomizer extends BaseCustomizer implements Serializable {
         fb.setBorderPainted(false);
         fb.setBackground((Color) chartView.getChart().getPlot().getOutlinePaint());
         final JColorChooser fcolorChooser = new JColorChooser();
-        final JDialog fdialog = JColorChooser.createDialog(fb,
-            "Pick a Color",
-            false,
-            fcolorChooser,
-            null,
-            null); //XXXDoublecheck this is OK
+        final JDialog fdialog = JColorChooser.createDialog(fb, "Pick a Color", false, fcolorChooser, null, null); // XXXDoublecheck
+                                                                                                                  // this
+                                                                                                                  // is
+                                                                                                                  // OK
 
         fcolorChooser.getSelectionModel().addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
@@ -346,12 +345,10 @@ public class ChartCustomizer extends BaseCustomizer implements Serializable {
         bb.setBorderPainted(false);
         bb.setMargin(new Insets(0, 0, 0, 0));
         final JColorChooser bcolorChooser = new JColorChooser();
-        final JDialog bdialog = JColorChooser.createDialog(bb,
-            "Pick a Color",
-            false,
-            bcolorChooser,
-            null,
-            null); //XXXDoublecheck this is OK
+        final JDialog bdialog = JColorChooser.createDialog(bb, "Pick a Color", false, bcolorChooser, null, null); // XXXDoublecheck
+                                                                                                                  // this
+                                                                                                                  // is
+                                                                                                                  // OK
 
         bcolorChooser.getSelectionModel().addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
@@ -375,12 +372,10 @@ public class ChartCustomizer extends BaseCustomizer implements Serializable {
         pbb.setBorderPainted(false);
         pbb.setMargin(new Insets(0, 0, 0, 0));
         final JColorChooser pbcolorChooser = new JColorChooser();
-        final JDialog pbdialog = JColorChooser.createDialog(pbb,
-            "Pick a Color",
-            false,
-            pbcolorChooser,
-            null,
-            null); //XXXDoublecheck this is OK
+        final JDialog pbdialog = JColorChooser.createDialog(pbb, "Pick a Color", false, pbcolorChooser, null, null); // XXXDoublecheck
+                                                                                                                     // this
+                                                                                                                     // is
+                                                                                                                     // OK
 
         pbcolorChooser.getSelectionModel().addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
@@ -412,7 +407,7 @@ public class ChartCustomizer extends BaseCustomizer implements Serializable {
         cgbc.fill = GridBagConstraints.BOTH;
         chartColorsPanel.add(selectPane, cgbc);
 
-        //gbc.insets = new Insets(2, 6, 0, 6);
+        // gbc.insets = new Insets(2, 6, 0, 6);
         gbc.gridy++;
         gbc.weighty = 0.3;
         cgbc.fill = GridBagConstraints.HORIZONTAL;
@@ -423,12 +418,14 @@ public class ChartCustomizer extends BaseCustomizer implements Serializable {
          * Show labels?
          */
         if (chartView.getChartType() != ChartView.PIE) {
-            //Legens aren't needed for pie charts and currently they are the only options
+            // Legens aren't needed for pie charts and currently they are the
+            // only options
             gbc.gridy++;
             contentPanel.add(new JLabel("Options"), gbc);
             JPanel optionsPanel = new JPanel();
             optionsPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-            //optionsPanel.setBorder(BorderFactory.createTitledBorder("Options"));
+            //optionsPanel.setBorder(BorderFactory.createTitledBorder("Options")
+            // );
             JCheckBox showLabelCheckBox = new JCheckBox("Show Legend");
             showLabelCheckBox.setSelected(chartView.isLegendShowing());
             showLabelCheckBox.addActionListener(new ActionListener() {
@@ -449,7 +446,8 @@ public class ChartCustomizer extends BaseCustomizer implements Serializable {
             contentPanel.add(new JLabel("Data Points"), gbc);
             JPanel showPointsPanel = new JPanel();
             showPointsPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-            //showPointsPanel.setBorder(BorderFactory.createTitledBorder("Data Points"));
+            // showPointsPanel.setBorder(BorderFactory.createTitledBorder(
+            // "Data Points"));
             final JTextField pointsField = new NumberOnlyField(Integer.toString(lastDataPoints), 6);
             JRadioButton showAllPointsButton = new JRadioButton("All");
             showAllPointsButton.addActionListener(new ActionListener() {
@@ -501,9 +499,11 @@ public class ChartCustomizer extends BaseCustomizer implements Serializable {
                     updated();
                     pointsField.setText(Integer.toString(lastDataPoints));
                 };
+
                 public void insertUpdate(DocumentEvent e) {
                     updated();
                 };
+
                 public void removeUpdate(DocumentEvent e) {
                     updated();
                 };
@@ -529,23 +529,20 @@ public class ChartCustomizer extends BaseCustomizer implements Serializable {
     /**
      * Sets the up color renderer.
      * 
-     * @param table
-     *            the new up color renderer
+     * @param table the new up color renderer
      */
     private void setUpColorRenderer(JTable table) {
-        table.setDefaultRenderer(Color.class,
-            new ColorRenderer(true));
+        table.setDefaultRenderer(Color.class, new ColorRenderer(true));
     }
 
-    //Set up the editor for the Color cells.
+    // Set up the editor for the Color cells.
     /**
      * Sets the up color editor.
      * 
-     * @param table
-     *            the new up color editor
+     * @param table the new up color editor
      */
     private void setUpColorEditor(JTable table) {
-        //First, set up the button that brings up the dialog.
+        // First, set up the button that brings up the dialog.
         final JButton button = new JRowButton("") {
             /**
              * 
@@ -553,54 +550,55 @@ public class ChartCustomizer extends BaseCustomizer implements Serializable {
             private static final long serialVersionUID = 5842237790364872497L;
 
             public void setText(String s) {
-                //Button never shows text -- only color.
+                // Button never shows text -- only color.
             }
         };
-        //button.setBackground(Color.white);
+        // button.setBackground(Color.white);
         button.setBorderPainted(false);
         button.setMargin(new Insets(0, 0, 0, 0));
 
-        //Now create an editor to encapsulate the button, and
-        //set it up as the editor for all Color cells.
+        // Now create an editor to encapsulate the button, and
+        // set it up as the editor for all Color cells.
         final ColorEditor colorEditor = new ColorEditor(button);
         table.setDefaultEditor(Color.class, colorEditor);
 
-        //Set up the dialog that the button brings up.
+        // Set up the dialog that the button brings up.
         final JColorChooser colorChooser = new JColorChooser();
-        //XXX: PENDING: add the following when setPreviewPanel
-        //XXX: starts working.
-        //JComponent preview = new ColorRenderer(false);
-        //preview.setPreferredSize(new Dimension(50, 10));
-        //colorChooser.setPreviewPanel(preview);
+        // XXX: PENDING: add the following when setPreviewPanel
+        // XXX: starts working.
+        // JComponent preview = new ColorRenderer(false);
+        // preview.setPreferredSize(new Dimension(50, 10));
+        // colorChooser.setPreviewPanel(preview);
         ActionListener okListener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 colorEditor.currentColor = colorChooser.getColor();
             }
         };
-        final JDialog dialog = JColorChooser.createDialog(button,
-            "Pick a Color",
-            false,
-            colorChooser,
-            okListener,
-            null); //XXXDoublecheck this is OK
+        final JDialog dialog =
+                JColorChooser.createDialog(button, "Pick a Color", false, colorChooser, okListener, null); // XXXDoublecheck
+                                                                                                           // this
+                                                                                                           // is
+                                                                                                           // OK
 
         colorChooser.getSelectionModel().addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
-                chartView.getDataSelection().getSelectedSeriesView(((JRowButton) button).row).setColor(((ColorSelectionModel) e.getSource()).getSelectedColor());
+                chartView.getDataSelection().getSelectedSeriesView(((JRowButton) button).row).setColor(
+                        ((ColorSelectionModel) e.getSource()).getSelectedColor());
                 chartView.updateScapeGraphics();
-                //button.setBackground(((ColorSelectionModel) e.getStatCollector()).getSelectedColor());
+                // button.setBackground(((ColorSelectionModel)
+                // e.getStatCollector()).getSelectedColor());
                 selectedTable.tableChanged(new TableModelEvent(selectedTable.getModel()));
             }
         });
 
-        //Here's the code that brings up the dialog.
+        // Here's the code that brings up the dialog.
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 button.setBackground(colorEditor.currentColor);
                 colorChooser.setColor(colorEditor.currentColor);
-                //Without the following line, the dialog comes up
-                //in the middle of the screen.
-                //dialog.setLocationRelativeTo(button);
+                // Without the following line, the dialog comes up
+                // in the middle of the screen.
+                // dialog.setLocationRelativeTo(button);
                 dialog.setVisible(true);
             }
         });
@@ -616,22 +614,27 @@ public class ChartCustomizer extends BaseCustomizer implements Serializable {
          */
         private static final long serialVersionUID = 4759032635778249844L;
 
-        /* (non-Javadoc)
+        /*
+         * (non-Javadoc)
          * @see javax.swing.table.TableModel#getRowCount()
          */
         public int getRowCount() {
             return chartView.getDataSelection().getData().getStatCollectors().length;
         }
 
-        /* (non-Javadoc)
+        /*
+         * (non-Javadoc)
          * @see javax.swing.table.TableModel#getColumnCount()
          */
         public int getColumnCount() {
             return StatCollector.getAllMeasureNamesShort().length + 1;
         }
 
-        /* (non-Javadoc)
-         * @see javax.swing.table.AbstractTableModel#setValueAt(java.lang.Object, int, int)
+        /*
+         * (non-Javadoc)
+         * @see
+         * javax.swing.table.AbstractTableModel#setValueAt(java.lang.Object,
+         * int, int)
          */
         public synchronized void setValueAt(Object object, int row, int col) {
             DataSelection group = chartView.getDataSelection();
@@ -639,12 +642,13 @@ public class ChartCustomizer extends BaseCustomizer implements Serializable {
             if (series != null) {
                 group.setSelected(series, ((Boolean) object).booleanValue());
                 chartView.updateScapeGraphics();
-                //NewChart  chartView.updateChart();
+                // NewChart chartView.updateChart();
                 selectedTable.tableChanged(new TableModelEvent(this));
             }
         }
 
-        /* (non-Javadoc)
+        /*
+         * (non-Javadoc)
          * @see javax.swing.table.TableModel#getValueAt(int, int)
          */
         public Object getValueAt(int row, int col) {
@@ -652,33 +656,29 @@ public class ChartCustomizer extends BaseCustomizer implements Serializable {
             if (col == 0) {
                 return (group.getData().getStatCollectors()[row]).getName();
             } else {
-                if ((group.getData().getStatCollectors()[row]).getAllDataSeries()[col - 1] != null) {
-                    //return new Boolean(true);
-                    return new Boolean(chartView.getDataSelection().isSelected((group.getData().getStatCollectors()[row]).getAllDataSeries()[col - 1]));
+                DataSeries dataSeries = (group.getData().getStatCollectors()[row]).getAllDataSeries()[col - 1];
+                if (dataSeries != null) {
+                    // return new Boolean(true);
+                    return new Boolean(chartView.getDataSelection().isSelected(
+                            dataSeries));
                 } else {
                     return null;
                 }
-                //return viewedSeries.isSelected();
+                // return viewedSeries.isSelected();
             }
         }
 
-        /* (non-Javadoc)
+        /*
+         * (non-Javadoc)
          * @see javax.swing.table.AbstractTableModel#isCellEditable(int, int)
          */
         public boolean isCellEditable(int row, int col) {
-            if (col > 0) {
-                DataSelection group = chartView.getDataSelection();
-                if (((group.getData().getStatCollectors()[row]).getAllDataSeries()[col - 1]) != null) {
-                    return true;
-                } else {
-                    return false;
-                }
-            } else {
-                return false;
-            }
+            return col > 0
+                    && ((chartView.getDataSelection().getData().getStatCollectors()[row]).getAllDataSeries()[col - 1]) != null;
         }
 
-        /* (non-Javadoc)
+        /*
+         * (non-Javadoc)
          * @see javax.swing.table.AbstractTableModel#getColumnName(int)
          */
         public String getColumnName(int col) {
@@ -689,7 +689,8 @@ public class ChartCustomizer extends BaseCustomizer implements Serializable {
             }
         }
 
-        /* (non-Javadoc)
+        /*
+         * (non-Javadoc)
          * @see javax.swing.table.AbstractTableModel#getColumnClass(int)
          */
         public Class getColumnClass(int col) {
@@ -712,22 +713,27 @@ public class ChartCustomizer extends BaseCustomizer implements Serializable {
          */
         private static final long serialVersionUID = -4531534031089806395L;
 
-        /* (non-Javadoc)
+        /*
+         * (non-Javadoc)
          * @see javax.swing.table.TableModel#getRowCount()
          */
         public int getRowCount() {
             return chartView.getDataSelection().getSelectionSize();
         }
 
-        /* (non-Javadoc)
+        /*
+         * (non-Javadoc)
          * @see javax.swing.table.TableModel#getColumnCount()
          */
         public int getColumnCount() {
             return 2;
         }
 
-        /* (non-Javadoc)
-         * @see javax.swing.table.AbstractTableModel#setValueAt(java.lang.Object, int, int)
+        /*
+         * (non-Javadoc)
+         * @see
+         * javax.swing.table.AbstractTableModel#setValueAt(java.lang.Object,
+         * int, int)
          */
         public void setValueAt(Object value, int row, int col) {
             if (col == 1) {
@@ -735,7 +741,8 @@ public class ChartCustomizer extends BaseCustomizer implements Serializable {
             }
         }
 
-        /* (non-Javadoc)
+        /*
+         * (non-Javadoc)
          * @see javax.swing.table.TableModel#getValueAt(int, int)
          */
         public Object getValueAt(int row, int col) {
@@ -748,7 +755,8 @@ public class ChartCustomizer extends BaseCustomizer implements Serializable {
             }
         }
 
-        /* (non-Javadoc)
+        /*
+         * (non-Javadoc)
          * @see javax.swing.table.AbstractTableModel#isCellEditable(int, int)
          */
         public boolean isCellEditable(int row, int col) {
@@ -759,7 +767,8 @@ public class ChartCustomizer extends BaseCustomizer implements Serializable {
             }
         }
 
-        /* (non-Javadoc)
+        /*
+         * (non-Javadoc)
          * @see javax.swing.table.AbstractTableModel#getColumnName(int)
          */
         public String getColumnName(int col) {
@@ -772,7 +781,8 @@ public class ChartCustomizer extends BaseCustomizer implements Serializable {
             }
         }
 
-        /* (non-Javadoc)
+        /*
+         * (non-Javadoc)
          * @see javax.swing.table.AbstractTableModel#getColumnClass(int)
          */
         public Class getColumnClass(int col) {
@@ -801,28 +811,27 @@ class JRowButton extends JButton implements Serializable {
         super(s);
     }
 
-    //nasty hack!!
+    // nasty hack!!
     public int row;
 }
 
 class NullCheckBoxRenderer extends DefaultTableCellRenderer implements Serializable {
 
-    //public NullCheckBoxRenderer() {
-    //    super(); //Unfortunately, the constructor
-    //    component = new JCheckBox();
-    //}
+    // public NullCheckBoxRenderer() {
+    // super(); //Unfortunately, the constructor
+    // component = new JCheckBox();
+    // }
 
     /**
      * 
      */
     private static final long serialVersionUID = -1533657479611690117L;
 
-    public Component getTableCellRendererComponent(
-        JTable table, Object value,
-        boolean isSelected, boolean hasFocus,
-        int row, int column) {
+    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
+            int row, int column) {
         if (value instanceof Boolean) {
-            //return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+            // return super.getTableCellRendererComponent(table, value,
+            // isSelected, hasFocus, row, column);
             JCheckBox cb = new JCheckBox();
             cb.setSelected(((Boolean) value).booleanValue());
             cb.setBackground(this.getBackground());
@@ -830,14 +839,14 @@ class NullCheckBoxRenderer extends DefaultTableCellRenderer implements Serializa
             return cb;
         } else if (value instanceof String) {
             return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-            /*JTextField label = new JTextField((String) value);
-            label.setOpaque(true);
-            label.setBackground(this.getBackground());
-            label.setForeground(Color.black);
-            //label.setBorder(BorderFactory.createEtchedBorder());
-            return label;/
-            //label.setBorder(BorderFactory.createEtchedBorder());
-            return label;*/
+            /*
+             * JTextField label = new JTextField((String) value);
+             * label.setOpaque(true); label.setBackground(this.getBackground());
+             * label.setForeground(Color.black);
+             * //label.setBorder(BorderFactory.createEtchedBorder()); return
+             * label;/ //label.setBorder(BorderFactory.createEtchedBorder());
+             * return label;
+             */
         } else {
             return new JLabel();
         }
@@ -845,13 +854,11 @@ class NullCheckBoxRenderer extends DefaultTableCellRenderer implements Serializa
 }
 
 /*
- * Copied w/ changes (for live upating) from Swing examples.
- * The editor button that brings up the dialog.
- * We extend DefaultCellEditor for convenience,
- * even though it mean we have to create a dummy
- * check box.  Another approach would be to copy
- * the implementation of TableCellEditor methods
- * from the source code for DefaultCellEditor.
+ * Copied w/ changes (for live upating) from Swing examples. The editor button
+ * that brings up the dialog. We extend DefaultCellEditor for convenience, even
+ * though it mean we have to create a dummy check box. Another approach would be
+ * to copy the implementation of TableCellEditor methods from the source code
+ * for DefaultCellEditor.
  */
 
 class ColorEditor extends DefaultCellEditor implements Serializable {
@@ -863,13 +870,13 @@ class ColorEditor extends DefaultCellEditor implements Serializable {
     Color currentColor = null;
 
     public ColorEditor(JButton b) {
-        super(new JCheckBox()); //Unfortunately, the constructor
-        //expects a check box, combo box,
-        //or text field.
+        super(new JCheckBox()); // Unfortunately, the constructor
+        // expects a check box, combo box,
+        // or text field.
         editorComponent = b;
-        setClickCountToStart(1); //This is usually 1 or 2.
+        setClickCountToStart(1); // This is usually 1 or 2.
 
-        //Must do this so that editing stops when appropriate.
+        // Must do this so that editing stops when appropriate.
         b.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 fireEditingStopped();
@@ -885,15 +892,10 @@ class ColorEditor extends DefaultCellEditor implements Serializable {
         return currentColor;
     }
 
-    public Component getTableCellEditorComponent(JTable table,
-                                                 Object value,
-                                                 boolean isSelected,
-                                                 int row,
-                                                 int column) {
+    public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
         ((JButton) editorComponent).setText(value.toString());
         ((JRowButton) editorComponent).row = row;
         currentColor = (Color) value;
         return editorComponent;
     }
 }
-

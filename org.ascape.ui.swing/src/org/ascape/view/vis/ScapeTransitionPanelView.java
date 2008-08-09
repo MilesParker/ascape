@@ -21,12 +21,15 @@ import org.ascape.model.event.ScapeEvent;
  * noticed in time to immediatly alert the user, regardless of what is happening
  * with the model.
  * 
+ * Note: instead of subclassing this class consider using the cleaner delgate pattern
+ * with the ScapeTransitionListener.
+ * 
  * @author Miles Parker
  * @version 3.0
  * @history 3.0 8/13/02 refcatored out of ControlActionView
  * @since 3.0
  */
-public class ScapeTransitionView extends PanelView {
+public class ScapeTransitionPanelView extends PanelView {
 
     /**
      * The last update in millis.
@@ -51,7 +54,7 @@ public class ScapeTransitionView extends PanelView {
     /**
      * Constructs the control view, creating and laying out its components.
      */
-    public ScapeTransitionView() {
+    public ScapeTransitionPanelView() {
         this("Scape Transition View");
     }
 
@@ -61,7 +64,7 @@ public class ScapeTransitionView extends PanelView {
      * @param name
      *            a user relevant name for this view
      */
-    public ScapeTransitionView(String name) {
+    public ScapeTransitionPanelView(String name) {
         super(name);
         delegate = new ComponentViewDelegate(this) {
             /**

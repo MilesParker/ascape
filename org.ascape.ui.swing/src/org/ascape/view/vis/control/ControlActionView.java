@@ -34,7 +34,7 @@ import org.ascape.runtime.swing.SearchView;
 import org.ascape.view.custom.BaseCustomizer;
 import org.ascape.view.vis.ChartView;
 import org.ascape.view.vis.ComponentView;
-import org.ascape.view.vis.ScapeTransitionView;
+import org.ascape.view.vis.ScapeTransitionPanelView;
 
 /**
  * A class providing control a model. Provides start, stop, restart, pause,
@@ -52,7 +52,7 @@ import org.ascape.view.vis.ScapeTransitionView;
  *          other kinds of control UI
  * @since 2.9
  */
-public class ControlActionView extends ScapeTransitionView implements RecorderListener {
+public class ControlActionView extends ScapeTransitionPanelView implements RecorderListener {
 
     /**
      * Scape control for opening a new scape.

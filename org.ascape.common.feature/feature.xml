@@ -62,7 +62,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
    </license>
 
    <url>
-      <update label="metaABM Update Site" url="http://eclipse.metaabm.org/updates/releaase/site.xml"/>
+      <update label="metaABM Update Site" url="http://eclipse.metaabm.org/updates/release/site.xml"/>
    </url>
 
    <requires>

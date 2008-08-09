@@ -74,7 +74,7 @@ import org.ascape.util.data.DataGroup;
 import org.ascape.util.data.DataPoint;
 import org.ascape.util.data.DataPointConcrete;
 import org.ascape.util.data.StatCollector;
-import org.ascape.util.vis.DrawFeature;
+import org.ascape.util.vis.PlatformDrawFeature;
 
 /**
  * The base class for all collections of agents within ascape. Provides services
@@ -323,18 +323,18 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * we keep this in Scape since it is typically the invoked class.
      */
     public final static String copyrightAndCredits =
-                    "<B>Ascape version "
-                                    + version
-                                    + "</B><BR></BR>"
-                                    + "Portions copyright 2000-2007, NuTech Solutions, Inc.<BR></BR>"
-                                    +
-                                    // "http://ascape.nutechsolutions.com<BR></BR>"
-                                    // +
-                                    "Portions copyright 1998-2000, The Brookings Institution<BR></BR>"
-                                    + "JFreeChart Copyright (c) 2000, 2001, Simba Management Limited and others. (See licence-LGPL.txt)<BR></BR>"
-                                    + "Icons (C)1998 Dean S. Jones<BR></BR>"
-                                    + "Use subject to license agreement - see License.txt.<BR></BR>"
-                                    + "Government Users -- Commercial Software subject to 48 C.F.R. ß12.212 or 48 C.F.R. ßß227.7202-1 through 227.7202-4.";
+            "<B>Ascape version "
+                    + version
+                    + "</B><BR></BR>"
+                    + "Portions copyright 2000-2007, NuTech Solutions, Inc.<BR></BR>"
+                    +
+                    // "http://ascape.nutechsolutions.com<BR></BR>"
+                    // +
+                    "Portions copyright 1998-2000, The Brookings Institution<BR></BR>"
+                    + "JFreeChart Copyright (c) 2000, 2001, Simba Management Limited and others. (See licence-LGPL.txt)<BR></BR>"
+                    + "Icons (C)1998 Dean S. Jones<BR></BR>"
+                    + "Use subject to license agreement - see License.txt.<BR></BR>"
+                    + "Government Users -- Commercial Software subject to 48 C.F.R. ß12.212 or 48 C.F.R. ßß227.7202-1 through 227.7202-4.";
 
     /**
      * A rule causing the target scape and all its children scapes to be
@@ -1093,6 +1093,13 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
     }
 
     /**
+     * Has a view update been requested for this cell?
+     */
+    public boolean isUpdateNeeded() {
+        return isUpdateNeeded(getIterationsPerRedraw());
+    }
+
+    /**
      * Contructs the basic scape structure. Instantiates the agents, but does
      * not populate them. It is not neccesary to set extent before initializing
      * a collection, unless you want to have a populated vecotr to begin with.
@@ -1158,7 +1165,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
         super.initialize();
         getSpace().initialize();
         if (!(getSpace() instanceof Continuous) && (getPrototypeAgent() != null)
-                        && (getPrototypeAgent().getScape() == this) && (!getSpace().isMutable())) {
+                && (getPrototypeAgent().getScape() == this) && (!getSpace().isMutable())) {
             executeOnMembers(Cell.CALCULATE_NEIGHBORS_RULE);
         }
     }
@@ -1220,7 +1227,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
         if ((rule instanceof ExecuteThenUpdate) && (getExecutionOrder() != RULE_ORDER)) {
             // bug mtp: need to add similar check when setting rule order.
             throw new RuntimeException(
-                            "Tried to add execute and update rule to AGENT_ORDER Scape. Set Scape to RULE_ORDER execution first.");
+                    "Tried to add execute and update rule to AGENT_ORDER Scape. Set Scape to RULE_ORDER execution first.");
         }
         if (rule.getScape() == null) {
             rule.setScape(this);
@@ -1468,8 +1475,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
         boolean success = scapeListeners.remove(listener);
         if (!success) {
             getEnvironment().getConsole().println(
-                            "WARNING: Tried to remove unregistered scape listener " + listener + " from scape " + this
-                                            + ".");
+                    "WARNING: Tried to remove unregistered scape listener " + listener + " from scape " + this + ".");
         }
 
         listener.scapeRemoved(new ScapeEvent(this, ScapeEvent.REPORT_REMOVED));
@@ -1520,15 +1526,9 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
         updatedListeners = 0;
         updatedMembers = 0;
         if (scapeListeners.size() > 0) {
-            // The underlying list may be modified and we want to be sure to
-            // notify
-            // all
-            // Listeners as of the time this method was called.
-            // This is a bit of a performance concern.
             ArrayList currentListeners = (ArrayList) scapeListeners.clone();
-            for (Iterator iter = currentListeners.iterator(); iter.hasNext();) {
-                final ScapeListener listener = (ScapeListener) iter.next();
-                getRunner().notify(event, listener);
+            for (Object listener : currentListeners) {
+                getRunner().notify(event, (ScapeListener) listener);
             }
         } else {
             listenerOrMemberUpdated();
@@ -1557,9 +1557,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
         // getPrototypeAgent()).isMembersActive())) || (!(getPrototypeAgent()
         // instanceof AgentScape)) || (updatedMembers >= getSize()))) {
         if ((updatedListeners >= scapeListeners.size())
-                        && ((updatedMembers >= getSize()) || (!(getPrototypeAgent() instanceof Scape))
-                                        || (getSpace() instanceof Singleton) || (!((Scape) getPrototypeAgent())
-                                        .isMembersActive()))) {
+                && ((updatedMembers >= getSize()) || (!(getPrototypeAgent() instanceof Scape))
+                        || (getSpace() instanceof Singleton) || (!((Scape) getPrototypeAgent()).isMembersActive()))) {
             listenersAndMembersCurrent = true;
             updatedListeners = 0;
             updatedMembers = 0;
@@ -2266,13 +2265,13 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
     /**
      * Adds the provided draw feature to this scape.
      * 
-     * @see org.ascape.util.vis.DrawFeature
+     * @see org.ascape.util.vis.awt.DrawFeature
      */
-    public void addDrawFeature(DrawFeature feature) {
+    public void addDrawFeature(PlatformDrawFeature feature) {
         // Simple linear search...
         // todo, replace with hashmap mechanism
         for (Iterator iterator = drawFeatures.iterator(); iterator.hasNext();) {
-            DrawFeature drawFeature = (DrawFeature) iterator.next();
+            PlatformDrawFeature drawFeature = (PlatformDrawFeature) iterator.next();
             if (drawFeature.getName().equals(feature.getName())) {
                 // ignore, don't add feature with same name twice.
                 return;
@@ -2289,11 +2288,11 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * @param feature the draw feature to be removed
      * @return returns true if successful. False, otherwise.
      */
-    public boolean removeDrawFeature(DrawFeature feature) {
-        DrawFeature found = null;
+    public boolean removeDrawFeature(PlatformDrawFeature feature) {
+        PlatformDrawFeature found = null;
         // todo, replace with hashmap mechanism
         for (Iterator iterator = drawFeatures.iterator(); iterator.hasNext();) {
-            DrawFeature drawFeature = (DrawFeature) iterator.next();
+            PlatformDrawFeature drawFeature = (PlatformDrawFeature) iterator.next();
             if (drawFeature.getName().equals(feature.getName())) {
                 found = feature;
             }
@@ -2322,7 +2321,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * Returns, as a vector, the draw features available for interpretation of
      * members of this scape.
      * 
-     * @see org.ascape.util.vis.DrawFeature
+     * @see org.ascape.util.vis.awt.DrawFeature
      */
     public Vector getDrawFeatures() {
         return drawFeatures;
@@ -2373,8 +2372,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
                 accessors.addAll(PropertyAccessor.determineReadWriteAccessors(this, Scape.class, false));
             } catch (IntrospectionException e) {
                 getEnvironment().getConsole().println(
-                                "An introspection exception occured while trying to determine model properties: "
-                                                + e.getMessage());
+                        "An introspection exception occured while trying to determine model properties: "
+                                + e.getMessage());
             }
         }
     }
@@ -2407,8 +2406,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
                     accessors.addAll(PropertyAccessor.determineReadWriteAccessors(agent, Scape.class, false));
                 } catch (IntrospectionException e) {
                     getEnvironment().getConsole().println(
-                                    "An introspection exception occured while trying to determine model properties: "
-                                                    + e.getMessage());
+                            "An introspection exception occured while trying to determine model properties: "
+                                    + e.getMessage());
                 }
                 // super.execute(agent);
             }
@@ -2469,7 +2468,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
     public final static Comparator COMPARE_ORDERED_QUALIFIERS = new Comparator() {
         public int compare(Object o1, Object o2) {
             return Utility.orderedQualifiers(((PropertyAccessor) o1).getLongName()).compareTo(
-                            Utility.orderedQualifiers(((PropertyAccessor) o2).getLongName()));
+                    Utility.orderedQualifiers(((PropertyAccessor) o2).getLongName()));
         }
     };
 
@@ -2757,7 +2756,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
         // remove the customizer and any environment (non-scape specific) views
         boolean needToAddCustomizer = false;
         if ((getUIEnvironment() != null) && getUIEnvironment().getCustomizer() != null
-                        && isScapeListener(getUIEnvironment().getCustomizer())) {
+                && isScapeListener(getUIEnvironment().getCustomizer())) {
             removeScapeListener(getUIEnvironment().getCustomizer());
             needToAddCustomizer = true;
         }
@@ -2860,7 +2859,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
                             setRandomSeed(PropertyAccessor.paramValueLong(arg));
                         } catch (NumberFormatException e) {
                             getEnvironment().getConsole().println(
-                                            "Couldn't decode random seed value: " + PropertyAccessor.paramValue(arg));
+                                    "Couldn't decode random seed value: " + PropertyAccessor.paramValue(arg));
                         }
                         found = true;
                     } else if (paramName.equalsIgnoreCase("StopPeriod")) {
@@ -2882,7 +2881,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
                 }
                 if (!found && reportNotFound) {
                     getEnvironment().getConsole().println(
-                                    "***WARNING: Parameter not found: " + paramName + " in " + getName());
+                            "***WARNING: Parameter not found: " + paramName + " in " + getName());
                 }
             }
         }
@@ -2893,7 +2892,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
             for (String arg : args) {
                 if (PropertyAccessor.paramName(arg).equals("view")) {
                     ScapeListener newView =
-                                    (ScapeListener) getRunner().instanceFromName(PropertyAccessor.paramValue(arg));
+                            (ScapeListener) getRunner().instanceFromName(PropertyAccessor.paramValue(arg));
                     if (newView != null) {
                         addView(newView);
                     }
@@ -3058,12 +3057,12 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
     }
 
     public final LocatedAgent findMinimumWithin(Coordinate coordinate, DataPoint dataPoint, Conditional condition,
-                    boolean includeSelf, double distance) {
+            boolean includeSelf, double distance) {
         return (LocatedAgent) getSpace().findMinimumWithin(coordinate, dataPoint, condition, includeSelf, distance);
     }
 
     public final LocatedAgent findMaximumWithin(Coordinate coordinate, DataPoint dataPoint, Conditional condition,
-                    boolean includeSelf, double distance) {
+            boolean includeSelf, double distance) {
         return (LocatedAgent) getSpace().findMaximumWithin(coordinate, dataPoint, condition, includeSelf, distance);
     }
 
@@ -3107,7 +3106,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * @param distance the distance agents must be within to be included
      */
     public final Iterator withinIterator(final Coordinate origin, Conditional condition, boolean includeSelf,
-                    final double distance) {
+            final double distance) {
         return getSpace().withinIterator(origin, condition, includeSelf, distance);
     }
 
@@ -3146,7 +3145,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * @param distance the maximum distance around the origin to look
      */
     public final LocatedAgent findNearest(final Coordinate origin, Conditional condition, boolean includeOrigin,
-                    double distance) {
+            double distance) {
         return (LocatedAgent) getSpace().findNearest(origin, condition, includeOrigin, distance);
     }
 
@@ -3608,11 +3607,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
     }
 
     public Scape getSuperScape() {
-        try {
-            return (Scape) ((SubSpace) getSpace()).getSuperSpace().getContext();
-        } catch (ClassCastException e) {
-            throw new UnsupportedOperationException("Underlying scape is no a SubSpace.");
-        }
+        return getSpace() instanceof SubSpace ? (Scape) ((SubSpace) getSpace()).getSuperSpace().getContext() : null;
     }
 
     public void setSuperScape(Scape superScape) {

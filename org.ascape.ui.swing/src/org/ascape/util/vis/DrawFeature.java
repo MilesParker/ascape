@@ -29,7 +29,7 @@ import org.ascape.util.HasName;
  * @history 1.0.1 3/13/99 renamed from DrawSource
  * @since 1.0
  */
-public abstract class DrawFeature implements HasName, Serializable {
+public abstract class DrawFeature implements PlatformDrawFeature, Serializable {
 
     /**
      * 

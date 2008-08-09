@@ -22,7 +22,6 @@ import org.ascape.model.event.DefaultScapeListener;
 import org.ascape.model.event.ScapeEvent;
 import org.ascape.model.event.ScapeListener;
 import org.ascape.runtime.Runner;
-import org.ascape.runtime.RuntimeEnvironment;
 
 /**
  * Manages model runs in a Swing UI environment.

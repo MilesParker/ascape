@@ -11,8 +11,8 @@ import java.util.Iterator;
 import java.util.Vector;
 
 import org.ascape.util.VectorSelection;
-import org.ascape.util.vis.DrawFeature;
-import org.ascape.util.vis.DrawFeatureSelection;
+import org.ascape.util.vis.PlatformDrawFeature;
+import org.ascape.util.vis.PlatformDrawFeatureSelection;
 
 /**
  * User: jmiller Date: Jun 12, 2006 Time: 1:21:05 PM To change this template use
@@ -51,7 +51,7 @@ VectorSelection dfNameSelection;
      * @param drawFeatureSelection
      *            the draw feature selection
      */
-    public DrawFeatureEvent(Object source, DrawFeatureSelection drawFeatureSelection) {
+    public DrawFeatureEvent(Object source, PlatformDrawFeatureSelection drawFeatureSelection) {
         this(source, drawFeatureSelection, false);
     }
 
@@ -65,12 +65,12 @@ VectorSelection dfNameSelection;
      * @param originator
      *            the originator
      */
-    public DrawFeatureEvent(Object source, DrawFeatureSelection drawFeatureSelection, boolean originator) {
+    public DrawFeatureEvent(Object source, PlatformDrawFeatureSelection drawFeatureSelection, boolean originator) {
         super(source);
 //        selectedDrawFeaturesByName = new ArrayList(drawFeatureSelection.getSelectionSize());
         dfNameSelection = new VectorSelection(new Vector());
         for (Iterator iterator = drawFeatureSelection.getVector().iterator(); iterator.hasNext();) {
-            DrawFeature drawFeature = (DrawFeature) iterator.next();
+            PlatformDrawFeature drawFeature = (PlatformDrawFeature) iterator.next();
             boolean selected = drawFeatureSelection.isSelected(drawFeature);
             dfNameSelection.addElement(drawFeature.getName(), selected);
         }

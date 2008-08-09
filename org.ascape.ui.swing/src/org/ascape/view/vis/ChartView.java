@@ -856,21 +856,21 @@ private JFreeChart chart;
         getDataSelection().getSeriesView(valueName).setColor(color);
     }
 
-    /**
-     * Adds a series to the chart being viewed. Convenience method.
-     * 
-     * @param valueName
-     *            the name of the series to add
-     * @param color
-     *            the color to use for the series in the chart
-     * @param continuous
-     *            boolean should the series be drawn as a line or series of
-     *            symbols?
-     */
-    public void addSeries(String valueName, Color color, boolean continuous) {
-        this.addSeries(valueName, color);
-        getDataSelection().getSeriesView(valueName).setContinuous(continuous);
-    }
+//    /**
+//     * Adds a series to the chart being viewed. Convenience method.
+//     * 
+//     * @param valueName
+//     *            the name of the series to add
+//     * @param color
+//     *            the color to use for the series in the chart
+//     * @param continuous
+//     *            boolean should the series be drawn as a line or series of
+//     *            symbols?
+//     */
+//    public void addSeries(String valueName, Color color, boolean continuous) {
+//        this.addSeries(valueName, color);
+//        getDataSelection().getSeriesView(valueName).setContinuous(continuous);
+//    }
 
     /**
      * Removes a series from the chart being viewed. Convenience method.
