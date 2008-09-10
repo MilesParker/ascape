@@ -14,7 +14,7 @@ import java.util.EventObject;
  * 
  * @author Miles Parker
  * @version 2.9.1
- * @history 2.9.1 7/10/02 Refacotred to .event, changed names to better conform
+ * @history 2.9.1 7/10/02 Refactored to .event, changed names to better conform
  *          to standard usage
  * @since 1.0
  */

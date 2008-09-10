@@ -16,7 +16,6 @@ import java.util.List;
 import org.ascape.model.rule.Rule;
 import org.ascape.model.space.Coordinate;
 import org.ascape.model.space.Discrete;
-import org.ascape.model.space.Location;
 import org.ascape.model.space.Node;
 import org.ascape.model.space.Relative;
 import org.ascape.model.space.Space;

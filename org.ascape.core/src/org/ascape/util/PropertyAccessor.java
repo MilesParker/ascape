@@ -95,7 +95,16 @@ public class PropertyAccessor implements Comparable, Serializable {
         //the wrapper class for a primitive type at run-time. Let me know if you have
         //found a way to do this.
         try {
-            if (wrapper == Integer.TYPE) {
+            final Object[] enumValues = wrapper.getEnumConstants();
+            if (enumValues != null) {
+                for (Object object : enumValues) {
+                    final Enum<?> en = (Enum<?>) object;
+                    if (en.toString().equals(string)) {
+                        return en;
+                    }
+                }
+                throw new IllegalArgumentException("No enumerator matching: " + string + " in " + wrapper.getName());
+            } else if (wrapper == Integer.TYPE) {
                 return new Integer(string);
             } else if (wrapper == Double.TYPE) {
                 return new Double(string);

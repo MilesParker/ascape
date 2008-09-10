@@ -2836,11 +2836,12 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
             String paramName = PropertyAccessor.paramName(arg);
             if (paramName != null) {
                 boolean found = false;
+                String paramValue = PropertyAccessor.paramValue(arg);
                 for (Iterator iterator = allAccessors.iterator(); iterator.hasNext();) {
                     PropertyAccessor accessor = (PropertyAccessor) iterator.next();
                     if (accessor.getName().equalsIgnoreCase(paramName)) {
                         try {
-                            accessor.setAsText(PropertyAccessor.paramValue(arg));
+                            accessor.setAsText(paramValue);
                         } catch (InvocationTargetException e) {
                             if (reportNotFound) {
                                 throw new Error("Exception in called method: " + e.getTargetException());
@@ -2852,14 +2853,14 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
                     }
                 }
 
-                found = found || getRunner().assignEnvironmentParameters(args);
+                found = found || Runner.assignEnvironmentParameter(paramName, paramValue);
                 if (!found) {
                     if (paramName.equalsIgnoreCase("RandomSeed")) {
                         try {
                             setRandomSeed(PropertyAccessor.paramValueLong(arg));
                         } catch (NumberFormatException e) {
                             getEnvironment().getConsole().println(
-                                    "Couldn't decode random seed value: " + PropertyAccessor.paramValue(arg));
+                                    "Couldn't decode random seed value: " + paramValue);
                         }
                         found = true;
                     } else if (paramName.equalsIgnoreCase("StopPeriod")) {

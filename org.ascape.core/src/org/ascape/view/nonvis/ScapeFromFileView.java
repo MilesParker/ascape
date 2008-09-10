@@ -25,6 +25,7 @@ import java.util.StringTokenizer;
 import java.util.TooManyListenersException;
 
 import org.ascape.model.Agent;
+import org.ascape.model.LocatedAgent;
 import org.ascape.model.Scape;
 import org.ascape.model.event.ScapeEvent;
 import org.ascape.util.PropertyAccessor;
@@ -296,9 +297,9 @@ public class ScapeFromFileView extends NonGraphicView {
                     }
                 } else {
                     if (order == ASSIGN_SEQUENTIAL_ORDER) {
-                        currentAgent = getScape().newAgent();
+                        currentAgent = (Agent) getScape().getSpace().newLocation(false);
                     } else if (order == ASSIGN_RANDOM_ORDER) {
-                        currentAgent = getScape().newAgent(true);
+                        currentAgent = (Agent) getScape().getSpace().newLocation(true);
                     } else {
                         throw new RuntimeException("Undefined or unknown order value.");
                     }

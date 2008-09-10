@@ -184,7 +184,7 @@ public class ChartCustomizer extends BaseCustomizer implements Serializable {
         contentPanel.add(new JLabel("Pick Data Series"), gbc);
         JPanel availablePanel = new JPanel();
         availablePanel.setLayout(new BorderLayout());
-        //availablePanel.setBorder(BorderFactory.createTitledBorder("Pick Data")
+        // availablePanel.setBorder(BorderFactory.createTitledBorder("Pick Data")
         // );
         JTable dataTable = new JTable(new AvailableDataModel());
         dataTable.setDefaultRenderer(Boolean.class, new NullCheckBoxRenderer());
@@ -304,7 +304,7 @@ public class ChartCustomizer extends BaseCustomizer implements Serializable {
         cgbc.weightx = 1.0;
         cgbc.weighty = 0.0;
         chartColorsPanel.setLayout(cgbl);
-        //chartColorsPanel.setBorder(BorderFactory.createTitledBorder("Colors"))
+        // chartColorsPanel.setBorder(BorderFactory.createTitledBorder("Colors"))
         // ;
         JPanel elementColorPanel = new JPanel();
         elementColorPanel.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEtchedBorder(),
@@ -319,9 +319,9 @@ public class ChartCustomizer extends BaseCustomizer implements Serializable {
         fb.setBackground((Color) chartView.getChart().getPlot().getOutlinePaint());
         final JColorChooser fcolorChooser = new JColorChooser();
         final JDialog fdialog = JColorChooser.createDialog(fb, "Pick a Color", false, fcolorChooser, null, null); // XXXDoublecheck
-                                                                                                                  // this
-                                                                                                                  // is
-                                                                                                                  // OK
+        // this
+        // is
+        // OK
 
         fcolorChooser.getSelectionModel().addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
@@ -345,10 +345,7 @@ public class ChartCustomizer extends BaseCustomizer implements Serializable {
         bb.setBorderPainted(false);
         bb.setMargin(new Insets(0, 0, 0, 0));
         final JColorChooser bcolorChooser = new JColorChooser();
-        final JDialog bdialog = JColorChooser.createDialog(bb, "Pick a Color", false, bcolorChooser, null, null); // XXXDoublecheck
-                                                                                                                  // this
-                                                                                                                  // is
-                                                                                                                  // OK
+        final JDialog bdialog = JColorChooser.createDialog(bb, "Pick a Color", false, bcolorChooser, null, null); 
 
         bcolorChooser.getSelectionModel().addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
@@ -372,10 +369,7 @@ public class ChartCustomizer extends BaseCustomizer implements Serializable {
         pbb.setBorderPainted(false);
         pbb.setMargin(new Insets(0, 0, 0, 0));
         final JColorChooser pbcolorChooser = new JColorChooser();
-        final JDialog pbdialog = JColorChooser.createDialog(pbb, "Pick a Color", false, pbcolorChooser, null, null); // XXXDoublecheck
-                                                                                                                     // this
-                                                                                                                     // is
-                                                                                                                     // OK
+        final JDialog pbdialog = JColorChooser.createDialog(pbb, "Pick a Color", false, pbcolorChooser, null, null); 
 
         pbcolorChooser.getSelectionModel().addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
@@ -424,7 +418,7 @@ public class ChartCustomizer extends BaseCustomizer implements Serializable {
             contentPanel.add(new JLabel("Options"), gbc);
             JPanel optionsPanel = new JPanel();
             optionsPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-            //optionsPanel.setBorder(BorderFactory.createTitledBorder("Options")
+            // optionsPanel.setBorder(BorderFactory.createTitledBorder("Options")
             // );
             JCheckBox showLabelCheckBox = new JCheckBox("Show Legend");
             showLabelCheckBox.setSelected(chartView.isLegendShowing());
@@ -576,9 +570,9 @@ public class ChartCustomizer extends BaseCustomizer implements Serializable {
         };
         final JDialog dialog =
                 JColorChooser.createDialog(button, "Pick a Color", false, colorChooser, okListener, null); // XXXDoublecheck
-                                                                                                           // this
-                                                                                                           // is
-                                                                                                           // OK
+        // this
+        // is
+        // OK
 
         colorChooser.getSelectionModel().addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
@@ -659,8 +653,7 @@ public class ChartCustomizer extends BaseCustomizer implements Serializable {
                 DataSeries dataSeries = (group.getData().getStatCollectors()[row]).getAllDataSeries()[col - 1];
                 if (dataSeries != null) {
                     // return new Boolean(true);
-                    return new Boolean(chartView.getDataSelection().isSelected(
-                            dataSeries));
+                    return new Boolean(chartView.getDataSelection().isSelected(dataSeries));
                 } else {
                     return null;
                 }

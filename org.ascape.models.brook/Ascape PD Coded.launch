@@ -11,7 +11,7 @@
 <mapEntry key="apple.awt.graphics.UseQuartz" value="false"/>
 </mapAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.ascape.runtime.swing.SwingRunner"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="edu.brook.pd.PD2D"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="edu.brook.pd.PD2D stopPeriod=19"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="org.ascape.models.brook"/>
 <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xmx512M"/>
 </launchConfiguration>

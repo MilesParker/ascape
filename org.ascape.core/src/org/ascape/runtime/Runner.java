@@ -622,27 +622,33 @@ public abstract class Runner implements Serializable, Runnable {
         boolean found = args.length == 0;
         for (String arg : args) {
             String paramName = PropertyAccessor.paramName(arg);
-            if (paramName != null) {
-                if (paramName.equalsIgnoreCase("DisplayGraphics")) {
-                    Runner.setDisplayGraphics(PropertyAccessor.paramValueBoolean(arg));
-                    found = true;
-                } else if (paramName.equalsIgnoreCase("ServeGraphics")) {
-                    Runner.setServeGraphics(PropertyAccessor.paramValueBoolean(arg));
-                    found = true;
-                } else if (paramName.equalsIgnoreCase("MultiWin")) {
-                    Runner.setMultiWinEnvironment(PropertyAccessor.paramValueBoolean(arg));
-                    found = true;
-                } else if (paramName.equalsIgnoreCase("RedirectConsole")) {
-                    AbstractUIEnvironment.setRedirectConsole(PropertyAccessor.paramValueBoolean(arg));
-                    found = true;
-                } else if (paramName.equalsIgnoreCase("ShowNavigator")) {
-                    AbstractUIEnvironment.setShowNavigator(PropertyAccessor.paramValueBoolean(arg));
-                    found = true;
-                }
+            found = found || assignEnvironmentParameter(arg, paramName);
+        }
+        return found;
+    }
+
+    public static boolean assignEnvironmentParameter(String arg, String paramName) {
+        boolean found = false;
+        if (paramName != null) {
+            if (paramName.equalsIgnoreCase("DisplayGraphics")) {
+                Runner.setDisplayGraphics(PropertyAccessor.paramValueBoolean(arg));
+                found = true;
+            } else if (paramName.equalsIgnoreCase("ServeGraphics")) {
+                Runner.setServeGraphics(PropertyAccessor.paramValueBoolean(arg));
+                found = true;
+            } else if (paramName.equalsIgnoreCase("MultiWin")) {
+                Runner.setMultiWinEnvironment(PropertyAccessor.paramValueBoolean(arg));
+                found = true;
+            } else if (paramName.equalsIgnoreCase("RedirectConsole")) {
+                AbstractUIEnvironment.setRedirectConsole(PropertyAccessor.paramValueBoolean(arg));
+                found = true;
+            } else if (paramName.equalsIgnoreCase("ShowNavigator")) {
+                AbstractUIEnvironment.setShowNavigator(PropertyAccessor.paramValueBoolean(arg));
+                found = true;
+            }
 //                if (!found && reportNotFound) {
 //                    getEnvironment().getConsole().println("***WARNING: Parameter not found: " + paramName);
 //                }
-            }
         }
         return found;
     }
