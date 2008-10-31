@@ -381,7 +381,9 @@ public abstract class AgentView extends BufferView implements Observer {
      */
     public VectorSelection getDrawSelection() {
         if (drawSelection == null) {
-            throw new RuntimeException("Error calling getDrawSelection(). You must add the view to a scape before accessing its draw selection.");
+            RuntimeException e = new RuntimeException("Error calling getDrawSelection(). You must add the view to a scape before accessing its draw selection.");
+            e.printStackTrace();
+			throw e;
         }
         return drawSelection;
     }
