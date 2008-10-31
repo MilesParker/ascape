@@ -712,6 +712,13 @@ public class Agent extends AscapeObject implements Cloneable {
     }
 
     /**
+     * The agent color as platform specific (i.e. non-AWT).
+     */
+    public Object getPlatformColor() {
+        return getColor();
+    }
+
+    /**
      * This agent's default color, used by many simple views.
      * Black is default; override to provide an appropriate color.
      */

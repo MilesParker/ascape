@@ -83,13 +83,10 @@ import org.ascape.util.vis.PlatformDrawFeature;
  * a model is simply a special use of a scape.<BR>
  * <BR>
  * While scapes are essentially collections of agents, there is no assumption
- * that these collections must be discrete. While there are currently no scapes
- * representing continuous space, there is no strong reason why a scape couldn't
- * do so. Continuous (or at least very fine-grained!) time may also be supported
- * at some point. Scapes are the basic building block of ascape models. Pick a
- * scape appropriate for your model. For example, you might want to create a
- * model that uses cells in a 2-dimensional array. Simply create an instance of
- * the scape you want:
+ * that these collections must be discrete. Scapes are the basic building block
+ * of ascape models. Pick a scape appropriate for your model. For example, you
+ * might want to create a model that uses cells in a 2-dimensional array. Simply
+ * create an instance of the scape you want:
  * 
  * <pre>
  * Scape lattice = new Scape(new Array2DVonNeumann());
@@ -106,6 +103,8 @@ import org.ascape.util.vis.PlatformDrawFeature;
  * 
  * <pre>
  * root = new Scape();
+ * lattice = newScape();
+ * lattice.setSpace(new Array2D());
  * root.add(lattice);
  * </pre>
  * 
@@ -144,14 +143,10 @@ import org.ascape.util.vis.PlatformDrawFeature;
  * each of its views, and then waits for the views to update. It is every view's
  * responsibility to inform its scape when it has updated, which it does by
  * sending a control event. More general control events are used to control
- * scape execution. Usually, you simply add a control bar view, which gives the
- * user complete control over model execution.
+ * scape execution. Normally you don't need to worry about controls as they are
+ * managed automatically by the framework.
  * 
- * <pre>
- * lattice.addView(new ControlBarView());
- * </pre>
- * 
- * (A model scape adds a control bar automatically.) Scapes can automatically
+ * Scapes can automatically
  * collect statistics on their members. (See StatCollectorCSA documentation for
  * a description of how stats are created.) Here is an example of how this might
  * be done:
@@ -205,7 +200,7 @@ import org.ascape.util.vis.PlatformDrawFeature;
  * 
  * Scapes are initialized and iterated hierarchically. The initialization and
  * iteration process are rules, and their behavior is well defined. For example,
- * if you use a vector for your root scape, scapes will be initialized and
+ * if you use the default list space for your root scape, scapes will be initialized and
  * iterated in the order in which they were added to the root. Of course, this
  * is an imporant consideration whenever there are dependencies between scapes.
  * On initialization, each scape first instantiates all of its members, and then
@@ -234,6 +229,9 @@ import org.ascape.util.vis.PlatformDrawFeature;
  *        createViews() {
  *            [and views to the model.]
  *        }
+ *        createGraphicViews() {
+ *            [and graphic views to the model. Ignored when displayGraphics=false]
+ *        }
  *        ...
  *     }
  * &lt;/code&gt;
@@ -261,7 +259,8 @@ import org.ascape.util.vis.PlatformDrawFeature;
  * @see org.ascape.util.data.StatCollector
  * @see org.ascape.model.event.ControlEvent
  * @author Miles Parker
- * @version 3.0
+ * @version 5.0
+ * @history 3.0 2008 factored out runtime support
  * @history 3.0 9/10/02 significant refactoring of scape model hierarchy
  * @history 2.9 6-7/02 refactorings to relationships to user environments and
  *          scape listeners
@@ -2859,8 +2858,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
                         try {
                             setRandomSeed(PropertyAccessor.paramValueLong(arg));
                         } catch (NumberFormatException e) {
-                            getEnvironment().getConsole().println(
-                                    "Couldn't decode random seed value: " + paramValue);
+                            getEnvironment().getConsole().println("Couldn't decode random seed value: " + paramValue);
                         }
                         found = true;
                     } else if (paramName.equalsIgnoreCase("StopPeriod")) {

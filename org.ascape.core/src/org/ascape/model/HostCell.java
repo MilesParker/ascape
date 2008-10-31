@@ -84,8 +84,7 @@ public class HostCell extends Cell {
         }
     }*/
 
-    //Not thread safe!
-    private static int[] neighborsAvailableIndices = new int[0];
+    private int[] neighborsAvailableIndices = new int[0];
 
     /**
      * Sets this cell's neighbors. Used by agent scape intialize

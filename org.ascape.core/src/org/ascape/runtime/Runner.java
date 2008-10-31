@@ -935,10 +935,12 @@ public abstract class Runner implements Serializable, Runnable {
         Object newObject;
         try {
             newObject = Thread.currentThread().getContextClassLoader().loadClass(modelName).newInstance();
+        } catch (NullPointerException e) {
+            throw new RuntimeException("An error ocurred while attempting to read " + modelName + ": " + e.getMessage(), e);
         } catch (InstantiationException e) {
-            throw new RuntimeException("An internal Ascape or vm error ocurred: " + e.getMessage());
+            throw new RuntimeException("An error ocurred while attempting to read " + modelName + ": " + e.getMessage(), e);
         } catch (IllegalAccessException e) {
-            throw new RuntimeException("An internal Ascape or vm error ocurred: " + e.getMessage());
+            throw new RuntimeException("An error ocurred while attempting to read " + modelName + ": " + e.getMessage(), e);
         } catch (ClassNotFoundException e) {
             try {
                 Class c = Class.forName(modelName);

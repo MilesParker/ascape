@@ -318,7 +318,6 @@ public class CVModel extends Scape {
         agentView = new Overhead2DView("Agent View");
         agentView.setCellSize(viewCellSize);
         agentView.setPrimaryAgentColorFeature(background);
-        grievanceView.setCellSize(viewCellSize);
         grievanceView.setHostedAgentColorFeature(colorIfNotCop);
         grievanceView.setPrimaryAgentColorFeature(background);
         //riskView.getDrawSelection().setSelected(riskView.agents_fill_cells_draw_feature, true);
