@@ -21,13 +21,11 @@ import org.ascape.util.data.StatCollector;
 import org.ascape.util.data.StatCollectorCSAMM;
 
 /**
- * A basic sugarscape citizen. Provides basic funtionality for sugarscape agents
- * as well as all desired functionality that could be included in base class without
- * compromising good design or supporting unnecessary member variables.
- * Despite the relativly large size of this class it is actually
- * quite simple; much of the code is simply getters and setters for various
- * initialization paramaters.
- *
+ * A basic sugarscape citizen. Provides basic funtionality for sugarscape agents as well as all desired functionality
+ * that could be included in base class without compromising good design or supporting unnecessary member variables.
+ * Despite the relativly large size of this class it is actually quite simple; much of the code is simply getters and
+ * setters for various initialization paramaters.
+ * 
  * @author Miles T. Parker
  * @version 1.0
  */
@@ -58,7 +56,8 @@ public class SugarAgent extends CellOccupant {
         private static final long serialVersionUID = -6064131481294308735L;
 
         public void execute(Agent agent) {
-            if ((((SugarAgent) agent).getSugar().getStock() <= 0) || (((SugarAgent) agent).getAge() >= ((SugarAgent) agent).getDeathAge())) {
+            if ((((SugarAgent) agent).getSugar().getStock() <= 0)
+                    || (((SugarAgent) agent).getAge() >= ((SugarAgent) agent).getDeathAge())) {
                 agent.die();
             }
         }
@@ -71,7 +70,8 @@ public class SugarAgent extends CellOccupant {
         private static final long serialVersionUID = -3794366718314163108L;
 
         public void execute(Agent agent) {
-            if ((((SugarAgent) agent).getSugarStock() <= 0) || (((SugarAgent) agent).getAge() >= ((SugarAgent) agent).getDeathAge())) {
+            if ((((SugarAgent) agent).getSugarStock() <= 0)
+                    || (((SugarAgent) agent).getAge() >= ((SugarAgent) agent).getDeathAge())) {
                 agent.die();
                 agent.getScape().newAgent();
             }
@@ -89,8 +89,7 @@ public class SugarAgent extends CellOccupant {
         }
     };
 
-
-    //Agent attributes
+    // Agent attributes
     protected int age;
     private int vision;
     protected int sugarMetabolism;
@@ -102,8 +101,7 @@ public class SugarAgent extends CellOccupant {
     public CommodityStock sugar;
 
     /**
-     * Begining population values. Vision is random draw, coordinate placement is random
-     * in scape.
+     * Begining population values. Vision is random draw, coordinate placement is random in scape.
      */
     public void initialize() {
         super.initialize();
@@ -117,13 +115,14 @@ public class SugarAgent extends CellOccupant {
         setDeathAge(randomInRange(((GAS_Base) getRoot()).getMinDeathAge(), ((GAS_Base) getRoot()).getMaxDeathAge()));
         setAge(randomInRange(0, getDeathAge()));
         setVision(randomInRange(((GAS_Base) getRoot()).getMinVision(), ((GAS_Base) getRoot()).getMaxVision()));
-        setSugarMetabolism(randomInRange(((GAS_Base) getRoot()).getMinSugarMetabolism(), ((GAS_Base) getRoot()).getMaxSugarMetabolism()));
+        setSugarMetabolism(randomInRange(((GAS_Base) getRoot()).getMinSugarMetabolism(), ((GAS_Base) getRoot())
+                .getMaxSugarMetabolism()));
         setSugar(randomInRange(((GAS_Base) getRoot()).getMinInitialSugar(), ((GAS_Base) getRoot()).getMaxInitialSugar()));
         if (!initialColorRandom) {
             if (getColor() == null) {
                 setColor(Color.red);
             }
-        } else { //Random initial color requested
+        } else { // Random initial color requested
             color = new Color((float) Math.random(), (float) Math.random(), (float) Math.random());
         }
     }
@@ -133,66 +132,6 @@ public class SugarAgent extends CellOccupant {
      */
     public void setInitialColorRandom(boolean initialColorRandom) {
         this.initialColorRandom = initialColorRandom;
-    }
-
-    public void scapeCreated() {
-        StatCollector[] stats = {new StatCollectorCSAMM() {
-            /**
-             * 
-             */
-            private static final long serialVersionUID = 1026552789605891665L;
-
-            public double getValue(Object object) {
-                return ((SugarAgent) object).getSugar().getStock();
-            }
-
-            public String getName() {
-                return "Sugar";
-            }
-        },
-                                 new StatCollectorCSAMM() {
-                                     /**
-                                     * 
-                                     */
-                                    private static final long serialVersionUID = -4921601134107850321L;
-
-                                    public double getValue(Object object) {
-                                         return -((SugarAgent) object).getAge();
-                                     }
-
-                                     public String getName() {
-                                         return "Age";
-                                     }
-                                 },
-                                 new StatCollectorCSAMM() {
-                                     /**
-                                     * 
-                                     */
-                                    private static final long serialVersionUID = -6328308124120217985L;
-
-                                    public double getValue(Object object) {
-                                         return ((SugarAgent) object).getVision();
-                                     }
-
-                                     public String getName() {
-                                         return "Vision";
-                                     }
-                                 },
-                                 new StatCollectorCSAMM() {
-                                     /**
-                                     * 
-                                     */
-                                    private static final long serialVersionUID = -9026524001803218091L;
-
-                                    public double getValue(Object object) {
-                                         return ((SugarAgent) object).getSugarMetabolism();
-                                     }
-
-                                     public String getName() {
-                                         return "Sugar Metabolism";
-                                     }
-                                 }};
-        scape.addStatCollectors(stats);
     }
 
     public void harvest() {

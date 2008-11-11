@@ -14,6 +14,8 @@ import org.ascape.model.event.ScapeEvent;
 import org.ascape.model.space.Array2DVonNeumann;
 import org.ascape.model.space.Coordinate1DDiscrete;
 import org.ascape.model.space.Coordinate2DDiscrete;
+import org.ascape.util.data.StatCollector;
+import org.ascape.util.data.StatCollectorCSAMM;
 import org.ascape.util.data.UnitIntervalDataPoint;
 import org.ascape.util.vis.ColorFeatureFixed;
 import org.ascape.util.vis.ColorFeatureGradiated;
@@ -185,6 +187,7 @@ public class GAS_Base extends Scape {
     }
 
     public void createScape() {
+        super.createScape();
         setName("Sugarscape Model");
         setPrototypeAgent(new Scape());
         sugarscape = new Scape(new Array2DVonNeumann());
@@ -200,6 +203,61 @@ public class GAS_Base extends Scape {
         sugarscape.setCellsRequestUpdates(true);
         add(sugarscape);
         add(agents);
+        
+        StatCollector[] stats = { new StatCollectorCSAMM() {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 1026552789605891665L;
+
+            public double getValue(Object object) {
+                return ((SugarAgent) object).getSugar().getStock();
+            }
+
+            public String getName() {
+                return "Sugar";
+            }
+        }, new StatCollectorCSAMM() {
+            /**
+                                     * 
+                                     */
+            private static final long serialVersionUID = -4921601134107850321L;
+
+            public double getValue(Object object) {
+                return -((SugarAgent) object).getAge();
+            }
+
+            public String getName() {
+                return "Age";
+            }
+        }, new StatCollectorCSAMM() {
+            /**
+                                     * 
+                                     */
+            private static final long serialVersionUID = -6328308124120217985L;
+
+            public double getValue(Object object) {
+                return ((SugarAgent) object).getVision();
+            }
+
+            public String getName() {
+                return "Vision";
+            }
+        }, new StatCollectorCSAMM() {
+            /**
+                                     * 
+                                     */
+            private static final long serialVersionUID = -9026524001803218091L;
+
+            public double getValue(Object object) {
+                return ((SugarAgent) object).getSugarMetabolism();
+            }
+
+            public String getName() {
+                return "Sugar Metabolism";
+            }
+        } };
+        agents.addStatCollectors(stats);
     }
 
     public void scapeSetup(ScapeEvent scapeEvent) {
