@@ -61,10 +61,9 @@ public class Population extends Scape {
     }
 
     public void createScape() {
-        super.createScape();
         setSpace(new Array2DMoore());
         setExtent(new Coordinate2DDiscrete(cohortSize, getAgeSpan()));
-        setAutoCreate(true);
+//        setAutoCreate(true);
         setPrototypeAgent(new Person());
         setFractionRational(.10);
         setFractionRandom(.05);
@@ -75,6 +74,7 @@ public class Population extends Scape {
         setExecutionOrder(RULE_ORDER);
         //setExecutionOrder(AGENT_ORDER);
         addRule(ITERATE_RULE);
+        super.createScape();
     }
     
     public void initialize() {

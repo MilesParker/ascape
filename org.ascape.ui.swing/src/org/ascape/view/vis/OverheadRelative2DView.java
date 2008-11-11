@@ -25,8 +25,7 @@ import org.ascape.model.space.Coordinate2DDiscrete;
 import org.ascape.util.vis.DrawFeature;
 
 /**
- * A scape view that draws a view of a 2-dimensional lattice with a relative
- * origin.
+ * A scape view that draws a view of a 2-dimensional lattice with a relative origin.
  * 
  * @author Miles Parker
  * @version 1.1.2
@@ -44,7 +43,7 @@ public class OverheadRelative2DView extends Overhead2DView {
      * The x offset.
      */
     private int xOffset;
-    
+
     /**
      * The y offset.
      */
@@ -54,7 +53,7 @@ public class OverheadRelative2DView extends Overhead2DView {
      * The x max.
      */
     private int xMax;
-    
+
     /**
      * The y max.
      */
@@ -64,18 +63,20 @@ public class OverheadRelative2DView extends Overhead2DView {
      * Constructs an overhead relative two-dimensional view.
      */
     public OverheadRelative2DView() {
-        super();
+        this("Overhead Relative 2D View");
     }
 
     /**
      * Constructs an overhead relative two-dimensional view.
      * 
      * @param name
-     *            a user relevant name for this view
+     *        a user relevant name for this view
      */
     public OverheadRelative2DView(String name) {
         super();
         this.name = name;
+        setOffset(new Coordinate2DDiscrete(0, 0));
+        drawSelectedNeighbors = true;
     }
 
     /**
@@ -91,7 +92,7 @@ public class OverheadRelative2DView extends Overhead2DView {
      * Sets the offset.
      * 
      * @param origin
-     *            the new offset
+     *        the new offset
      */
     public void setOffset(Coordinate2DDiscrete origin) {
         this.origin = origin;
@@ -112,15 +113,24 @@ public class OverheadRelative2DView extends Overhead2DView {
      */
     private int cellsSelected;
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.ascape.view.vis.AgentView#scapeStarted(org.ascape.model.event.ScapeEvent)
      */
-    public void scapeStarted(ScapeEvent scapeEvent) {
-        cellSelected = new boolean[((Array2DBase) getScape().getSpace()).getXSize()][((Array2DBase) getScape().getSpace()).getYSize()];
+    public void scapeSetup(ScapeEvent scapeEvent) {
+        cellSelected = new boolean[((Array2DBase) getScape().getSpace()).getXSize()][((Array2DBase) getScape()
+                .getSpace()).getYSize()];
         cellsSelected = 0;
+        xOffset = 0;
+        yOffset = 0;
+        xMax = ((Array2DBase) getScape().getSpace()).getXSize();
+        yMax = ((Array2DBase) getScape().getSpace()).getYSize();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.ascape.view.vis.Overhead2DView#drawCellAtIfUpdate(int, int)
      */
     public void drawCellAtIfUpdate(int x, int y) {
@@ -130,14 +140,15 @@ public class OverheadRelative2DView extends Overhead2DView {
                 ((DrawFeature) drawFeatures[i]).draw(bufferedGraphics, cell, agentSize, agentSize);
             }
         }
-        /*if (borderSize > 0) {
-            bufferedGraphics.setColor(Color.black);
-            bufferedGraphics.drawLine(0, agentSize, agentSize, agentSize);
-            bufferedGraphics.drawLine(agentSize, 0, agentSize, agentSize);
-        }*/
+        /*
+         * if (borderSize > 0) { bufferedGraphics.setColor(Color.black); bufferedGraphics.drawLine(0, agentSize,
+         * agentSize, agentSize); bufferedGraphics.drawLine(agentSize, 0, agentSize, agentSize); }
+         */
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.ascape.view.vis.Overhead2DView#drawCellAt(int, int)
      */
     public void drawCellAt(int x, int y) {
@@ -145,11 +156,10 @@ public class OverheadRelative2DView extends Overhead2DView {
         for (int i = 0; i < drawFeatures.length; i++) {
             ((DrawFeature) drawFeatures[i]).draw(bufferedGraphics, cell, agentSize, agentSize);
         }
-        /*if (borderSize > 0) {
-            bufferedGraphics.setColor(Color.black);
-            bufferedGraphics.drawLine(0, agentSize, agentSize, agentSize);
-            bufferedGraphics.drawLine(agentSize, 0, agentSize, agentSize);
-        }*/
+        /*
+         * if (borderSize > 0) { bufferedGraphics.setColor(Color.black); bufferedGraphics.drawLine(0, agentSize,
+         * agentSize, agentSize); bufferedGraphics.drawLine(agentSize, 0, agentSize, agentSize); }
+         */
     }
 
     /**
@@ -182,7 +192,7 @@ public class OverheadRelative2DView extends Overhead2DView {
     		else {
     		    if (cellsSelected > 0) {
     		        updateAllRequested = true;
-    		    }
+    }
     		    else {
     		        updateAllRequested = false;
     		    }
@@ -237,7 +247,9 @@ public class OverheadRelative2DView extends Overhead2DView {
 		}*/
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.ascape.view.vis.Overhead2DView#getAgentAtPixel(int, int)
      */
     public Agent getAgentAtPixel(int x, int y) {
@@ -247,7 +259,9 @@ public class OverheadRelative2DView extends Overhead2DView {
         return (Cell) ((Array2DBase) getScape().getSpace()).get(x, y);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.ascape.view.vis.Overhead2DView#drawSelectedAgent(java.awt.Graphics, org.ascape.model.LocatedAgent)
      */
     public void drawSelectedAgent(Graphics g, LocatedAgent a) {
@@ -268,10 +282,10 @@ public class OverheadRelative2DView extends Overhead2DView {
         }
         g.translate(-x * td, -y * td);
         if (scape.isCellsRequestUpdates()) {
-            //check x bounds;
+            // check x bounds;
             int xmin = (x - 1 < 0 ? x = 0 : x - 1);
             int xmax = (x + 1 < ((Array2DBase) getScape().getSpace()).getXSize() ? x + 1 : x);
-            //check y bounds;
+            // check y bounds;
             int ymin = (y - 1 < 0 ? y = 0 : y - 1);
             int ymax = (y + 1 < ((Array2DBase) getScape().getSpace()).getXSize() ? y + 1 : y);
             for (int i = xmin; i <= xmax; i++) {
@@ -287,64 +301,58 @@ public class OverheadRelative2DView extends Overhead2DView {
      */
     public void addNotify() {
         super.addNotify();
-        /*if (drawBorder) {
-            bufferedGraphics.setColor(Color.black);
-            int xMax = ((Array2DBase) getScape().getSpace()).getXSize();
-            int yMax = ((Array2DBase) getScape().getSpace()).getYSize();
-for (int x = 0; x < xMax; x++) {
-bufferedGraphics.drawLine(x * agentSize, 0, x * agentSize, (yMax + 1) * agentSize - 1);
-            }
-            for (int y = 0; y < yMax; y++) {
-bufferedGraphics.drawLine(0, y * agentSize, (xMax + 1) * agentSize - 1, y * agentSize);
-            }
-        }*/
-        this.addMouseListener(new MouseListener() {
-            public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() == 1) {
-                    int x = (((e.getX() / agentSize) + origin.getXValue()) % ((Array2DBase) getScape().getSpace()).getXSize());
-                    int y = (((e.getY() / agentSize) + origin.getYValue()) % ((Array2DBase) getScape().getSpace()).getYSize());
-                    if (cellSelected[x][y]) {
-                        cellSelected[x][y] = false;
-                        cellsSelected--;
-                    } else {
-                        cellSelected[x][y] = true;
-                        cellsSelected++;
-                    }
-                    //Cell cell = ((Array2DBase) getScape().getSpace()).getCell(x, y);
-//System.out.println(y);
-                }
-            }
-
-            public void mouseEntered(MouseEvent e) {
-            }
-
-            public void mouseExited(MouseEvent e) {
-            }
-
-            public void mousePressed(MouseEvent e) {
-            }
-
-            public void mouseReleased(MouseEvent e) {
-            }
-        });
+        /*
+         * if (drawBorder) { bufferedGraphics.setColor(Color.black); int xMax = ((Array2DBase)
+         * getScape().getSpace()).getXSize(); int yMax = ((Array2DBase) getScape().getSpace()).getYSize(); for (int x =
+         * 0; x < xMax; x++) { bufferedGraphics.drawLine(x agentSize, 0, x agentSize, (yMax + 1) agentSize - 1); } for
+         * (int y = 0; y < yMax; y++) { bufferedGraphics.drawLine(0, y agentSize, (xMax + 1) agentSize - 1, y
+         * agentSize); } }
+         */
+        // this.addMouseListener(new MouseListener() {
+        // public void mouseClicked(MouseEvent e) {
+        // if (e.getClickCount() == 1) {
+        // int x = (((e.getX() / agentSize) + origin.getXValue()) % ((Array2DBase) getScape().getSpace()).getXSize());
+        // int y = (((e.getY() / agentSize) + origin.getYValue()) % ((Array2DBase) getScape().getSpace()).getYSize());
+        // if (cellSelected[x][y]) {
+        // cellSelected[x][y] = false;
+        // cellsSelected--;
+        // } else {
+        // cellSelected[x][y] = true;
+        // cellsSelected++;
+        // }
+        // //Cell cell = ((Array2DBase) getScape().getSpace()).getCell(x, y);
+        // //System.out.println(y);
+        // }
+        // }
+        //
+        // public void mouseEntered(MouseEvent e) {
+        // }
+        //
+        // public void mouseExited(MouseEvent e) {
+        // }
+        //
+        // public void mousePressed(MouseEvent e) {
+        // }
+        //
+        // public void mouseReleased(MouseEvent e) {
+        // }
+        // });
     }
 
     /**
-     * Notifies the view that the scape has added it. Sets up current max and
-     * min.
+     * Notifies the view that the scape has added it. Sets up current max and min.
      * 
      * @param scapeEvent
-     *            the scape added notification event
+     *        the scape added notification event
      * @throws TooManyListenersException
-     *             the too many listeners exception
+     *         the too many listeners exception
      * @exception java.util.TooManyListenersException
-     *                on attempt to add this listener to another scape when one
-     *                has already been assigned
+     *            on attempt to add this listener to another scape when one has already been assigned
      */
     public void scapeAdded(ScapeEvent scapeEvent) throws TooManyListenersException {
         super.scapeAdded(scapeEvent);
-        Coordinate2DDiscrete extent = (Coordinate2DDiscrete) ((Scape) scapeEvent.getSource()).getCoordinate();
-        cellSelected = new boolean[extent.getXValue()][extent.getYValue()];
+        // Coordinate2DDiscrete extent = (Coordinate2DDiscrete) ((Scape) scapeEvent.getSource()).getCoordinate();
+        // cellSelected = new boolean[extent.getXValue()][extent.getYValue()];
     }
 
     /**
@@ -356,7 +364,9 @@ bufferedGraphics.drawLine(0, y * agentSize, (xMax + 1) * agentSize - 1, y * agen
         return "Two-dimensional lattice view";
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.ascape.view.vis.HostedAgentView#writeExternal(java.io.ObjectOutput)
      */
     public void writeExternal(ObjectOutput out) throws IOException {
@@ -367,7 +377,9 @@ bufferedGraphics.drawLine(0, y * agentSize, (xMax + 1) * agentSize - 1, y * agen
         out.writeObject(new Integer(yMax));
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.ascape.view.vis.HostedAgentView#readExternal(java.io.ObjectInput)
      */
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
@@ -378,4 +390,3 @@ bufferedGraphics.drawLine(0, y * agentSize, (xMax + 1) * agentSize - 1, y * agen
         yMax = ((Integer) in.readObject()).intValue();
     }
 }
-
