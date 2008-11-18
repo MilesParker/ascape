@@ -86,7 +86,7 @@ public class ScapeElement implements Serializable {
 	/**
 	 * The views.
 	 */
-	private List views;
+	private List<ViewElement> views;
 
 	/**
 	 * The extent.
@@ -102,7 +102,7 @@ public class ScapeElement implements Serializable {
 	 * Instantiates a new scape element.
 	 */
 	public ScapeElement() {
-		views = new ArrayList();
+		views = new ArrayList<ViewElement>();
 	}
 
 	/**
