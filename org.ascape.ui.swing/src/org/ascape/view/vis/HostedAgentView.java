@@ -1,8 +1,8 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors. 
+ * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors.
  * All rights reserved.
  * This program and the accompanying materials are made available solely under of the BSD license "ascape-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
 package org.ascape.view.vis;
@@ -68,9 +68,9 @@ public abstract class HostedAgentView extends CellView {
                     if (hostedAgentColorFeature == null) {
                         System.out.println("hosted agent color feature is null");
                     }
-    //                    else {
-    //                    System.out.println("not null");
-    //                }
+                    //                    else {
+                    //                    System.out.println("not null");
+                    //                }
                     g.setColor(hostedAgentColorFeature.getColor(occupant));
                     g.fillOval(1, 1, width - 2, height - 2);
                 }
@@ -163,7 +163,7 @@ public abstract class HostedAgentView extends CellView {
             g.fillRect(0, 0, width, height);
             CellOccupant occupant = (CellOccupant) ((Cell) object).getOccupant();
             // default agent.getImage is null..
-            if (occupant != null && (hostedAgentImageFeature.getImage(occupant) != null)) {
+            if (occupant != null && hostedAgentImageFeature.getImage(occupant) != null) {
                 g.drawImage(hostedAgentImageFeature.getImage(occupant), 0, 0, null);
             }
         }
@@ -184,7 +184,7 @@ public abstract class HostedAgentView extends CellView {
                 private static final long serialVersionUID = -197439982190788937L;
 
                 public Color getColor(Object object) {
-                    return ((Agent) object).getColor();
+                    return ((Agent) object).getColor(object);
                 }
             };
         }
@@ -201,15 +201,15 @@ public abstract class HostedAgentView extends CellView {
             };
         }
         addDrawFeature(agents_oval_cells_draw_feature);
-//		agents_oval_cells_draw_feature.setName(getName() + " Agents");
+        //		agents_oval_cells_draw_feature.setName(getName() + " Agents");
         addDrawFeature(agents_oval_cells_boundary_draw_feature);
-//		agents_oval_cells_boundary_draw_feature.setName(getName() + " Agents Boundary");
+        //		agents_oval_cells_boundary_draw_feature.setName(getName() + " Agents Boundary");
         addDrawFeature(agents_fill_cells_draw_feature);
-//		agents_fill_cells_draw_feature.setName(getName() + " Agents Fill");
+        //		agents_fill_cells_draw_feature.setName(getName() + " Agents Fill");
         addDrawFeature(agents_image_cells_draw_feature);
-//		agents_image_cells_draw_feature.setName(getName() + " Agents Image");
+        //		agents_image_cells_draw_feature.setName(getName() + " Agents Image");
         addDrawFeature(agents_oval_cells_desc_draw_feature);
-//		agents_oval_cells_desc_draw_feature.setName(getName() + " Agents Description");
+        //		agents_oval_cells_desc_draw_feature.setName(getName() + " Agents Description");
         //getDrawSelection().update();
         getDrawSelection().clearSelection();
         //To try images, uncomment these lines and comment out the following line

@@ -415,6 +415,7 @@ Export-Package: com.bbn.openmap;
    javax.swing",
  org.apache.commons.lang;uses:="org.apache.commons.lang.exception",
  org.apache.log4j,
+ org.apache.log4j.config,
  org.apache.tools.ant,
  org.apache.tools.ant.filters,
  org.apache.tools.ant.filters.util,

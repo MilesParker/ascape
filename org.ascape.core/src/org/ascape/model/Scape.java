@@ -322,18 +322,18 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * we keep this in Scape since it is typically the invoked class.
      */
     public final static String copyrightAndCredits =
-            "<B>Ascape version "
-                    + version
-                    + "</B><BR></BR>"
-                    + "Portions copyright 2000-2007, NuTech Solutions, Inc.<BR></BR>"
-                    +
-                    // "http://ascape.nutechsolutions.com<BR></BR>"
-                    // +
-                    "Portions copyright 1998-2000, The Brookings Institution<BR></BR>"
-                    + "JFreeChart Copyright (c) 2000, 2001, Simba Management Limited and others. (See licence-LGPL.txt)<BR></BR>"
-                    + "Icons (C)1998 Dean S. Jones<BR></BR>"
-                    + "Use subject to license agreement - see License.txt.<BR></BR>"
-                    + "Government Users -- Commercial Software subject to 48 C.F.R. ß12.212 or 48 C.F.R. ßß227.7202-1 through 227.7202-4.";
+        "<B>Ascape version "
+        + version
+        + "</B><BR></BR>"
+        + "Portions copyright 2000-2007, NuTech Solutions, Inc.<BR></BR>"
+        +
+        // "http://ascape.nutechsolutions.com<BR></BR>"
+        // +
+        "Portions copyright 1998-2000, The Brookings Institution<BR></BR>"
+        + "JFreeChart Copyright (c) 2000, 2001, Simba Management Limited and others. (See licence-LGPL.txt)<BR></BR>"
+        + "Icons (C)1998 Dean S. Jones<BR></BR>"
+        + "Use subject to license agreement - see License.txt.<BR></BR>"
+        + "Government Users -- Commercial Software subject to 48 C.F.R. ß12.212 or 48 C.F.R. ßß227.7202-1 through 227.7202-4.";
 
     /**
      * A rule causing the target scape and all its children scapes to be
@@ -564,7 +564,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
             if (collectStats != null) {
                 collectStats.calculateValues();
             }
-            if (((Scape) agent).isRoot()) {
+            if (((Scape) agent).isRoot() && ((Scape) agent).getRunner().getData() != null) {
                 ((Scape) agent).getRunner().getData().update();
                 // System.gc();
             }
@@ -771,7 +771,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      */
     public void setPrototypeAgent(Agent prototypeAgent) {
         this.prototypeAgent = prototypeAgent;
-        if ((prototypeAgent != null) && (prototypeAgent.getScape() == null)) {
+        if (prototypeAgent != null && prototypeAgent.getScape() == null) {
             prototypeAgent.setScape(this);
             prototypeAgent.scapeCreated();
         }
@@ -832,7 +832,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
                 private static final long serialVersionUID = 1L;
 
                 public void execute(Agent agent) {
-                    ((Scape) agent).setIterationsPerRedraw(((agent).getRoot().getIterationsPerRedraw()), false);
+                    ((Scape) agent).setIterationsPerRedraw(agent.getRoot().getIterationsPerRedraw(), false);
                     super.execute(agent);
                 }
             });
@@ -967,7 +967,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
     }
 
     private void loadDescriptions() {
-        if ((getRunner().getDescription() == null) || (getRunner().getHTMLDescription() == null)) {
+        if (getRunner().getDescription() == null || getRunner().getHTMLDescription() == null) {
             String fileName = "About" + Utility.getClassNameOnly(this.getClass()) + ".html";
             URL aboutFile = this.getClass().getResource(fileName);
             if (aboutFile != null) {
@@ -1088,7 +1088,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * does this root not have any parent scapes?
      */
     public boolean isRoot() {
-        return (scape == null);
+        return scape == null;
     }
 
     /**
@@ -1105,7 +1105,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      */
     public void construct() {
         space.construct();
-        if ((getSpace() instanceof Discrete) && (getPrototypeAgent() == null)) {
+        if (getSpace() instanceof Discrete && getPrototypeAgent() == null) {
             setPrototypeAgent(new Cell());
         }
     }
@@ -1138,7 +1138,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
                 setPrototypeAgent(new Scape());
             }
             if (getRunner() == null) {
-                (new NonGraphicRunner()).setRootScape(this);
+                new NonGraphicRunner().setRootScape(this);
             }
         }
         construct();
@@ -1163,8 +1163,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
         }
         super.initialize();
         getSpace().initialize();
-        if (!(getSpace() instanceof Continuous) && (getPrototypeAgent() != null)
-                && (getPrototypeAgent().getScape() == this) && (!getSpace().isMutable())) {
+        if (!(getSpace() instanceof Continuous) && getPrototypeAgent() != null
+                && getPrototypeAgent().getScape() == this && !getSpace().isMutable()) {
             executeOnMembers(Cell.CALCULATE_NEIGHBORS_RULE);
         }
     }
@@ -1223,10 +1223,10 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      *            available to be run
      */
     public synchronized void addRule(Rule rule, boolean select) {
-        if ((rule instanceof ExecuteThenUpdate) && (getExecutionOrder() != RULE_ORDER)) {
+        if (rule instanceof ExecuteThenUpdate && getExecutionOrder() != RULE_ORDER) {
             // bug mtp: need to add similar check when setting rule order.
             throw new RuntimeException(
-                    "Tried to add execute and update rule to AGENT_ORDER Scape. Set Scape to RULE_ORDER execution first.");
+            "Tried to add execute and update rule to AGENT_ORDER Scape. Set Scape to RULE_ORDER execution first.");
         }
         if (rule.getScape() == null) {
             rule.setScape(this);
@@ -1323,7 +1323,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
             } catch (TooManyListenersException e) {
                 throw new RuntimeException("Tried to add a view to more than one scape:\n" + e);
             }
-            if ((createFrame) && (view.isGraphic())) {
+            if (createFrame && view.isGraphic()) {
                 if (!Runner.isServeGraphics()) {
                     getEnvironment().addView(view);
                 }
@@ -1394,7 +1394,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
             }
             // For now, we're going to assume that if one of the views is
             // graphic, they all are
-            if ((createFrame) && (allGraphic)) {
+            if (createFrame && allGraphic) {
                 getEnvironment().addViews(views);
             }
         }
@@ -1474,7 +1474,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
         boolean success = scapeListeners.remove(listener);
         if (!success) {
             getEnvironment().getConsole().println(
-                    "WARNING: Tried to remove unregistered scape listener " + listener + " from scape " + this + ".");
+                                                  "WARNING: Tried to remove unregistered scape listener " + listener + " from scape " + this + ".");
         }
 
         listener.scapeRemoved(new ScapeEvent(this, ScapeEvent.REPORT_REMOVED));
@@ -1555,9 +1555,9 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
         // ((!(getPrototypeAgent() instanceof Scape)) || (!(((Scape)
         // getPrototypeAgent()).isMembersActive())) || (!(getPrototypeAgent()
         // instanceof AgentScape)) || (updatedMembers >= getSize()))) {
-        if ((updatedListeners >= scapeListeners.size())
-                && ((updatedMembers >= getSize()) || (!(getPrototypeAgent() instanceof Scape))
-                        || (getSpace() instanceof Singleton) || (!((Scape) getPrototypeAgent()).isMembersActive()))) {
+        if (updatedListeners >= scapeListeners.size()
+                && (updatedMembers >= getSize() || !(getPrototypeAgent() instanceof Scape)
+                        || getSpace() instanceof Singleton || !((Scape) getPrototypeAgent()).isMembersActive())) {
             listenersAndMembersCurrent = true;
             updatedListeners = 0;
             updatedMembers = 0;
@@ -1649,7 +1649,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * @return the current requested running state
      */
     public boolean isRunning() {
-        return (getRunner() != null) && getRunner().isRunning();
+        return getRunner() != null && getRunner().isRunning();
     }
 
     /**
@@ -1977,7 +1977,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      */
     public void executeOnMembers(Object[] rules) {
         if (rules.length > 0) {
-            strategy = (new StrategyFactory(this, rules, Scape.threadCount)).getStrategy();
+            strategy = new StrategyFactory(this, rules, Scape.threadCount).getStrategy();
             strategy.execute();
         }
     }
@@ -2371,8 +2371,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
                 accessors.addAll(PropertyAccessor.determineReadWriteAccessors(this, Scape.class, false));
             } catch (IntrospectionException e) {
                 getEnvironment().getConsole().println(
-                        "An introspection exception occured while trying to determine model properties: "
-                                + e.getMessage());
+                                                      "An introspection exception occured while trying to determine model properties: "
+                                                      + e.getMessage());
             }
         }
     }
@@ -2405,8 +2405,8 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
                     accessors.addAll(PropertyAccessor.determineReadWriteAccessors(agent, Scape.class, false));
                 } catch (IntrospectionException e) {
                     getEnvironment().getConsole().println(
-                            "An introspection exception occured while trying to determine model properties: "
-                                    + e.getMessage());
+                                                          "An introspection exception occured while trying to determine model properties: "
+                                                          + e.getMessage());
                 }
                 // super.execute(agent);
             }
@@ -2467,7 +2467,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
     public final static Comparator COMPARE_ORDERED_QUALIFIERS = new Comparator() {
         public int compare(Object o1, Object o2) {
             return Utility.orderedQualifiers(((PropertyAccessor) o1).getLongName()).compareTo(
-                    Utility.orderedQualifiers(((PropertyAccessor) o2).getLongName()));
+                                                                                              Utility.orderedQualifiers(((PropertyAccessor) o2).getLongName()));
         }
     };
 
@@ -2514,7 +2514,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * createViews is used, false otherwise.
      */
     public boolean isViewSelf() {
-        return (selfView != null);
+        return selfView != null;
     }
 
     /**
@@ -2557,7 +2557,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
      * called when a model is deserialized, but createGraphicViews does.
      */
     public void createViews() {
-        if (isRoot() && (getRunner().getEnvironment() == null)) {
+        if (isRoot() && getRunner().getEnvironment() == null) {
             getRunner().createEnvironment();
             addView(getRunner().getEnvironment());
         }
@@ -2754,7 +2754,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
 
         // remove the customizer and any environment (non-scape specific) views
         boolean needToAddCustomizer = false;
-        if ((getUIEnvironment() != null) && getUIEnvironment().getCustomizer() != null
+        if (getUIEnvironment() != null && getUIEnvironment().getCustomizer() != null
                 && isScapeListener(getUIEnvironment().getCustomizer())) {
             removeScapeListener(getUIEnvironment().getCustomizer());
             needToAddCustomizer = true;
@@ -2880,7 +2880,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
                 }
                 if (!found && reportNotFound) {
                     getEnvironment().getConsole().println(
-                            "***WARNING: Parameter not found: " + paramName + " in " + getName());
+                                                          "***WARNING: Parameter not found: " + paramName + " in " + getName());
                 }
             }
         }
@@ -2891,7 +2891,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
             for (String arg : args) {
                 if (PropertyAccessor.paramName(arg).equals("view")) {
                     ScapeListener newView =
-                            (ScapeListener) getRunner().instanceFromName(PropertyAccessor.paramValue(arg));
+                        (ScapeListener) getRunner().instanceFromName(PropertyAccessor.paramValue(arg));
                     if (newView != null) {
                         addView(newView);
                     }
@@ -2978,7 +2978,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
 
         private void loadNext() {
             next = null;
-            while (iter.hasNext() && (next == null)) {
+            while (iter.hasNext() && next == null) {
                 Object o = iter.next();
                 if (condition.meetsCondition(o)) {
                     next = o;
@@ -3668,7 +3668,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
     }
 
     public boolean isHome(Location a) {
-        return (((Agent) a).getScape() == this);
+        return ((Agent) a).getScape() == this;
     }
 
     /**

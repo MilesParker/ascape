@@ -1,8 +1,8 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors. 
+ * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors.
  * All rights reserved.
  * This program and the accompanying materials are made available solely under the BSD license "ascape-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
 package org.ascape.model;
@@ -46,6 +46,12 @@ public class AscapeObject extends Object implements RandomFunctions, HasName, Cl
      * Symbol for random seed to be arbitrary (current time in milliseconds.)
      */
     public final static int ARBITRARY_SEED = -1;
+
+    /**
+     * Note, this color must be set from every target platform, and the setting class must load before the model is
+     * displayed.
+     */
+    public static Object PLATFORM_DEFAULT_COLOR;
 
     /**
      * The agent that this object belongs to. Note that this object
@@ -200,7 +206,7 @@ public class AscapeObject extends Object implements RandomFunctions, HasName, Cl
      * @return uniformly distributed pseudorandom double
      */
     public double randomInRange(double low, double high) {
-        return (random.nextDouble() * (high - low)) + low;
+        return random.nextDouble() * (high - low) + low;
     }
 
     /**
@@ -241,7 +247,7 @@ public class AscapeObject extends Object implements RandomFunctions, HasName, Cl
         }
 
         public boolean equals(Object o) {
-            return ((this.o1 == ((SearchNode) o).o1) && (this.o2 == ((SearchNode) o).o2));
+            return this.o1 == ((SearchNode) o).o1 && this.o2 == ((SearchNode) o).o2;
         }
 
         public int hashCode() {
@@ -284,7 +290,7 @@ public class AscapeObject extends Object implements RandomFunctions, HasName, Cl
         if (comparisonStream != null) {
             comparisonStream.print("Validating " + n.toString() + "\n");
         }
-        if ((n.o1 != null) && (n.o2 != null)) {
+        if (n.o1 != null && n.o2 != null) {
             //Make sure we have an instance of the same object!
             if (n.o1.getClass() != n.o2.getClass()) {
                 if (comparisonStream != null) {
@@ -330,9 +336,9 @@ public class AscapeObject extends Object implements RandomFunctions, HasName, Cl
         ArrayList allDiffs = new ArrayList();
         String validateResult = diffDeepValidate(currentNode);
         if (validateResult == null) {
-            if ((currentNode.o1 != null) && (currentNode.o2 != null)) {
+            if (currentNode.o1 != null && currentNode.o2 != null) {
                 //Note for String case, we are stopping short because we don't want to inspect each element of the char array individually
-                if ((currentNode.field != null) && ((currentNode.field.getType().isPrimitive()) || (currentNode.field.getType().equals(String.class)))) {
+                if (currentNode.field != null && (currentNode.field.getType().isPrimitive() || currentNode.field.getType().equals(String.class))) {
                     String nodeVisit = diffDeepVisit(currentNode);
                     if (nodeVisit != null) {
                         allDiffs.add(nodeVisit);
@@ -352,12 +358,12 @@ public class AscapeObject extends Object implements RandomFunctions, HasName, Cl
                     SearchNode currentPair = new SearchNode("", null, currentNode.o1, currentNode.o2);
                     if (!visitedObjects.contains(currentPair)) {
                         //We need to add now, so that they are not included if discovered in any member objects
-                        if (!(currentPair.o1 instanceof String) && !(currentPair.o1 instanceof Number) && !(currentPair.o1.getClass().isArray())) {
+                        if (!(currentPair.o1 instanceof String) && !(currentPair.o1 instanceof Number) && !currentPair.o1.getClass().isArray()) {
                             visitedObjects.add(currentPair);
                         }
 
                         String className = "";
-                        for (Class c = currentNode.o1.getClass(); c != null; c = c.getSuperclass(), className = (c != null) ? c.getName() + "." : "") {
+                        for (Class c = currentNode.o1.getClass(); c != null; c = c.getSuperclass(), className = c != null ? c.getName() + "." : "") {
                             Field[] allFields = c.getDeclaredFields();
 
                             AccessibleObject.setAccessible(allFields, true);
@@ -419,9 +425,9 @@ public class AscapeObject extends Object implements RandomFunctions, HasName, Cl
         while (!queue.isEmpty()) {
             SearchNode currentNode = (SearchNode) queue.removeFirst();
             if (!visitedObjects.contains(currentNode)) {
-                if ((currentNode.field == null) || (!currentNode.field.getType().isPrimitive() && !currentNode.field.getType().equals(String.class))) {
+                if (currentNode.field == null || !currentNode.field.getType().isPrimitive() && !currentNode.field.getType().equals(String.class)) {
                     //We don't want to treat basic classes as the same object comparison..
-                    if (!(currentNode.o1 instanceof String) && !(currentNode.o1 instanceof Number) && !(currentNode.o1.getClass().isArray())) {
+                    if (!(currentNode.o1 instanceof String) && !(currentNode.o1 instanceof Number) && !currentNode.o1.getClass().isArray()) {
                         visitedObjects.add(currentNode);
                     }
                 } else {
@@ -437,7 +443,7 @@ public class AscapeObject extends Object implements RandomFunctions, HasName, Cl
                             SearchNode candidateNode = new SearchNode(currentNode.pathString + "[" + j + "]", currentNode.field, Array.get(currentNode.o1, j), Array.get(currentNode.o2, j));
                             String validateResult = diffDeepValidate(candidateNode);
                             if (validateResult == null) {
-                                if ((candidateNode.o1 != null) && (candidateNode.o2 != null)) {
+                                if (candidateNode.o1 != null && candidateNode.o2 != null) {
                                     if (!visitedObjects.contains(candidateNode)) {
                                         queue.addLast(candidateNode);
                                     }
@@ -450,10 +456,10 @@ public class AscapeObject extends Object implements RandomFunctions, HasName, Cl
                         allDiffs.add(currentNode.pathString + ": Length " + aLength + ", Length " + Array.getLength(currentNode.o2));
                     }
                 }
-                if ((currentNode.field == null) || (!(currentNode.field.getType().isPrimitive()) && !(currentNode.field.getType().equals(String.class)))) {
+                if (currentNode.field == null || !currentNode.field.getType().isPrimitive() && !currentNode.field.getType().equals(String.class)) {
 
                     String className = "";
-                    for (Class c = currentNode.o1.getClass(); c != null; c = c.getSuperclass(), className = (c != null) ? c.getName() + "." : "") {
+                    for (Class c = currentNode.o1.getClass(); c != null; c = c.getSuperclass(), className = c != null ? c.getName() + "." : "") {
                         Field[] allFields = c.getDeclaredFields();
 
                         AccessibleObject.setAccessible(allFields, true);
@@ -467,7 +473,7 @@ public class AscapeObject extends Object implements RandomFunctions, HasName, Cl
                                     SearchNode candidateNode = new SearchNode(currentNode.pathString + className + allFields[i].getName(), allFields[i], allFields[i].get(currentNode.o1), allFields[i].get(currentNode.o2));
                                     String validateResult = diffDeepValidate(candidateNode);
                                     if (validateResult == null) {
-                                        if ((candidateNode.o1 != null) && (candidateNode.o2 != null)) {
+                                        if (candidateNode.o1 != null && candidateNode.o2 != null) {
                                             if (!visitedObjects.contains(candidateNode)) {
                                                 queue.addLast(candidateNode);
                                             }
@@ -518,9 +524,9 @@ public class AscapeObject extends Object implements RandomFunctions, HasName, Cl
     public static boolean equalsDeep(HashSet visitedObjects, SearchNode currentNode) {
         String validateResult = diffDeepValidate(currentNode);
         if (validateResult == null) {
-            if ((currentNode.o1 != null) && (currentNode.o2 != null)) {
+            if (currentNode.o1 != null && currentNode.o2 != null) {
                 //Note for String case, we are stopping short because we don't want to inspect each element of the char array individually
-                if ((currentNode.field != null) && ((currentNode.field.getType().isPrimitive()) || (currentNode.field.getType().equals(String.class)))) {
+                if (currentNode.field != null && (currentNode.field.getType().isPrimitive() || currentNode.field.getType().equals(String.class))) {
                     String nodeVisit = diffDeepVisit(currentNode);
                     if (nodeVisit != null) {
                         return false;
@@ -544,7 +550,7 @@ public class AscapeObject extends Object implements RandomFunctions, HasName, Cl
                         visitedObjects.add(currentNode);
 
                         String className = "";
-                        for (Class c = currentNode.o1.getClass(); c != null; c = c.getSuperclass(), className = (c != null) ? c.getName() + "." : "") {
+                        for (Class c = currentNode.o1.getClass(); c != null; c = c.getSuperclass(), className = c != null ? c.getName() + "." : "") {
                             Field[] allFields = c.getDeclaredFields();
 
                             AccessibleObject.setAccessible(allFields, true);
@@ -553,10 +559,10 @@ public class AscapeObject extends Object implements RandomFunctions, HasName, Cl
                             }
                             for (int i = 0; i < allFields.length; i++) {  //recurse on each pair of field contents
                                 try {
-                                    if (!Modifier.isFinal(allFields[i].getModifiers()) && (!Modifier.isTransient(allFields[i].getModifiers()))) {  //we don't compare final values, saving us a lot of grief with infinite recurion, and not transietn values so we don't get swing and reflection stuff
+                                    if (!Modifier.isFinal(allFields[i].getModifiers()) && !Modifier.isTransient(allFields[i].getModifiers())) {  //we don't compare final values, saving us a lot of grief with infinite recurion, and not transietn values so we don't get swing and reflection stuff
                                         boolean equal = equalsDeep(visitedObjects,
-                                            new SearchNode(currentNode.pathString + className + allFields[i].getName(),
-                                                allFields[i], allFields[i].get(currentNode.o1), allFields[i].get(currentNode.o2)));
+                                                                   new SearchNode(currentNode.pathString + className + allFields[i].getName(),
+                                                                                  allFields[i], allFields[i].get(currentNode.o1), allFields[i].get(currentNode.o2)));
                                         if (!equal) {
                                             return false;
                                         }
@@ -572,7 +578,7 @@ public class AscapeObject extends Object implements RandomFunctions, HasName, Cl
             }
             //Else, one or both of the objects is null
             else {
-                if ((currentNode.o1 == null) && (currentNode.o2 == null)) {
+                if (currentNode.o1 == null && currentNode.o2 == null) {
                     return true;
                 } else {
                     return false;

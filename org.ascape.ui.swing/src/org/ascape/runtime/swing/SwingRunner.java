@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 import org.ascape.model.Scape;
+import org.ascape.model.event.ControlEvent;
 import org.ascape.model.event.DefaultScapeListener;
 import org.ascape.model.event.ScapeEvent;
 import org.ascape.model.event.ScapeListener;
@@ -43,9 +44,8 @@ public class SwingRunner extends Runner {
     }
 
     /**
-     * Creates, initializes and runs the model specified in the argument. To
-     * allow the running of a model directly from the command line, you should
-     * subclass this method as shown below:
+     * Creates, initializes and runs the model specified in the argument. To allow the running of a model directly from
+     * the command line, you should subclass this method as shown below:
      * 
      * <pre><code><BR>
      *     public MyModel extends Model {
@@ -54,15 +54,18 @@ public class SwingRunner extends Runner {
      *         }
      *     }
      * <BR>
-     * </pre></code> Otherwise, assuming your classpath is set up correctly, to invoke
-     * a model from the command line type:
+     * </pre>
+     * 
+     * </code> Otherwise, assuming your classpath is set up correctly, to invoke a model from the command line type:
      * 
      * <pre><code><BR>
      *     java org.ascape.model.Scape mypath.myModel
-     * </pre></code>
+     * </pre>
+     * 
+     * </code>
      * 
      * @param args
-     *            at index 0; the name of the subclass of this class to run
+     *        at index 0; the name of the subclass of this class to run
      */
     public static void main(String[] args) {
         // Register environment
@@ -71,7 +74,7 @@ public class SwingRunner extends Runner {
             runner.launch(args);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Exception attempting to load model.", "Error",
-                    JOptionPane.INFORMATION_MESSAGE);
+                                          JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
@@ -120,12 +123,12 @@ public class SwingRunner extends Runner {
             } catch (IOException e) {
                 e.printStackTrace();
                 JOptionPane.showMessageDialog(null,
-                        "Sorry, couldn't save model because an input/output exception occured:\n" + e, "Error",
-                        JOptionPane.ERROR_MESSAGE);
+                                              "Sorry, couldn't save model because an input/output exception occured:\n"
+                                                      + e, "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(null, "You must enter a file name or cancel.", "Message",
-                    JOptionPane.INFORMATION_MESSAGE);
+                                          JOptionPane.INFORMATION_MESSAGE);
             // To Do, possible (though quite unlikely) stack exception, replace
             // w/ loop strucuture
             saveChoose();
@@ -133,9 +136,8 @@ public class SwingRunner extends Runner {
     }
 
     /**
-     * Requests the scape to open a saved run, closing the existing one. Will
-     * not occur until the current iteration is complete; use static forms to
-     * open concurrently. Always called on root.
+     * Requests the scape to open a saved run, closing the existing one. Will not occur until the current iteration is
+     * complete; use static forms to open concurrently. Always called on root.
      */
     public void closeAndOpenSavedFinally(Scape oldScape) {
         boolean exit = false;
@@ -177,7 +179,7 @@ public class SwingRunner extends Runner {
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "You must enter a file name or cancel.", "Message",
-                            JOptionPane.INFORMATION_MESSAGE);
+                                                  JOptionPane.INFORMATION_MESSAGE);
                     closeAndOpenSavedFinally(oldScape);
                 }
             } else {
@@ -202,6 +204,15 @@ public class SwingRunner extends Runner {
         } else {
             listener.scapeNotification(event);
         }
+    }
+
+    public void respondControl(final ControlEvent control) {
+        //We might be in Swing thread and don't want to risk a deadlock.
+        (new Thread(new Runnable() {
+            public void run() {
+                SwingRunner.super.respondControl(control);
+            }
+        })).start();
     }
 
     private IOException defaultWriteException;

@@ -1,8 +1,8 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors. 
+ * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors.
  * All rights reserved.
  * This program and the accompanying materials are made available solely under the BSD license "ascape-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
 package org.ascape.runtime;
@@ -206,7 +206,7 @@ public abstract class Runner implements Serializable, Runnable {
      * strucutures.
      */
     private static boolean muiltWinEnvironment;
-    
+
     private Thread modelThread;
 
     public Runner() {
@@ -296,19 +296,19 @@ public abstract class Runner implements Serializable, Runnable {
                 }
             }
             if (closeAndOpenNewRequested) {
-                (new Thread(this, "Ascape Main Execution Loop") {
+                new Thread(this, "Ascape Main Execution Loop") {
                     public void run() {
                         closeAndOpenNewFinally(scape);
                     }
-                }).start();
+                }.start();
                 closeAndOpenNewRequested = false;
             }
             if (closeAndOpenSavedRequested) {
-                (new Thread(this, "Ascape Main Execution Loop") {
+                new Thread(this, "Ascape Main Execution Loop") {
                     public void run() {
                         closeAndOpenSavedFinally(scape);
                     }
-                }).start();
+                }.start();
                 closeAndOpenSavedRequested = false;
             }
             if (saveRequested) {
@@ -349,42 +349,42 @@ public abstract class Runner implements Serializable, Runnable {
      */
     public void respondControl(ControlEvent control) {
         switch (control.getID()) {
-        case ControlEvent.REQUEST_CLOSE:
-            close();
-            break;
-        case ControlEvent.REQUEST_OPEN:
-            closeAndOpenNew();
-            break;
-        case ControlEvent.REQUEST_OPEN_SAVED:
-            closeAndOpenSaved();
-            break;
-        case ControlEvent.REQUEST_SAVE:
-            save();
-            break;
-        case ControlEvent.REQUEST_START:
-            start();
-            break;
-        case ControlEvent.REQUEST_STOP:
-            stop();
-            break;
-        case ControlEvent.REQUEST_STEP:
-            setStep(true);
-            break;
-        case ControlEvent.REQUEST_RESTART:
-            restart();
-            break;
-        case ControlEvent.REQUEST_PAUSE:
-            pause();
-            break;
-        case ControlEvent.REQUEST_RESUME:
-            resume();
-            break;
-        case ControlEvent.REQUEST_QUIT:
-            quit();
-            break;
-        default:
-            throw new RuntimeException("Unknown control event sent to Agent scape: " + control + " [" + control.getID()
-                    + "]");
+            case ControlEvent.REQUEST_CLOSE:
+                close();
+                break;
+            case ControlEvent.REQUEST_OPEN:
+                closeAndOpenNew();
+                break;
+            case ControlEvent.REQUEST_OPEN_SAVED:
+                closeAndOpenSaved();
+                break;
+            case ControlEvent.REQUEST_SAVE:
+                save();
+                break;
+            case ControlEvent.REQUEST_START:
+                start();
+                break;
+            case ControlEvent.REQUEST_STOP:
+                stop();
+                break;
+            case ControlEvent.REQUEST_STEP:
+                setStep(true);
+                break;
+            case ControlEvent.REQUEST_RESTART:
+                restart();
+                break;
+            case ControlEvent.REQUEST_PAUSE:
+                pause();
+                break;
+            case ControlEvent.REQUEST_RESUME:
+                resume();
+                break;
+            case ControlEvent.REQUEST_QUIT:
+                quit();
+                break;
+            default:
+                throw new RuntimeException("Unknown control event sent to Agent scape: " + control + " [" + control.getID()
+                                           + "]");
         }
     }
 
@@ -393,7 +393,7 @@ public abstract class Runner implements Serializable, Runnable {
      * updated.
      */
     public void waitForViewsUpdate() {
-        while (!scape.isAllViewsUpdated()) {
+        while (!scape.isAllViewsUpdated() && inMainLoop) {
             try {
                 // Don't hog cycles while listeners are updating!
                 Thread.sleep(10);
@@ -427,11 +427,11 @@ public abstract class Runner implements Serializable, Runnable {
             setCloseAndOpenNewRequested(true);
         } else {
             // have to start a new thread or else the GUI locks up
-            (new Thread(this) {
+            new Thread(this) {
                 public void run() {
                     closeAndOpenSavedFinally(getRootScape());
                 }
-            }).start();
+            }.start();
         }
     }
 
@@ -522,39 +522,39 @@ public abstract class Runner implements Serializable, Runnable {
         return newScape;
     }
 
-//    public void createNewModel() {
-//        createNewModel(null, new String[0]);
-//    }
-//
-//    public void createNewModel(Object applet, String[] args) {
-//        try {
-//            if (applet != null) {
-//                scape.getUIEnvironment().setApplet(applet, scape);
-//            }
-//            if (args != null) {
-//                // first pass of parseSettingArgs,
-//                // don't report any parameters not found
-//                scape.assignParameters(args, false);
-//            }
-//            scape.executeOnRoot(Scape.CREATE_RULE);
-//            if (args != null) {
-//                // second pass of parseSettingArgs,
-//                // this time report any parameters not found
-//                scape.assignParameters(args, true);
-//            }
-//            // mtp 12/7/2000
-//            scape.executeOnRoot(Scape.CREATE_VIEW_RULE);
-//            if (Runner.isStartOnOpen()) {
-//                start();
-//            }
-//        } catch (RuntimeException e) {
-//            if (scape.getUIEnvironment() != null) {
-//                scape.getUIEnvironment().showErrorDialog(scape, e);
-//            } else {
-//                throw (e);
-//            }
-//        }
-//    }
+    //    public void createNewModel() {
+    //        createNewModel(null, new String[0]);
+    //    }
+    //
+    //    public void createNewModel(Object applet, String[] args) {
+    //        try {
+    //            if (applet != null) {
+    //                scape.getUIEnvironment().setApplet(applet, scape);
+    //            }
+    //            if (args != null) {
+    //                // first pass of parseSettingArgs,
+    //                // don't report any parameters not found
+    //                scape.assignParameters(args, false);
+    //            }
+    //            scape.executeOnRoot(Scape.CREATE_RULE);
+    //            if (args != null) {
+    //                // second pass of parseSettingArgs,
+    //                // this time report any parameters not found
+    //                scape.assignParameters(args, true);
+    //            }
+    //            // mtp 12/7/2000
+    //            scape.executeOnRoot(Scape.CREATE_VIEW_RULE);
+    //            if (Runner.isStartOnOpen()) {
+    //                start();
+    //            }
+    //        } catch (RuntimeException e) {
+    //            if (scape.getUIEnvironment() != null) {
+    //                scape.getUIEnvironment().showErrorDialog(scape, e);
+    //            } else {
+    //                throw (e);
+    //            }
+    //        }
+    //    }
 
     /**
      * Open (create) and run the model, just as in the normal open, but block
@@ -568,7 +568,7 @@ public abstract class Runner implements Serializable, Runnable {
             if (scape.getUIEnvironment() != null) {
                 scape.getUIEnvironment().showErrorDialog(scape, e);
             } else {
-                throw (e);
+                throw e;
             }
         }
     }
@@ -646,9 +646,9 @@ public abstract class Runner implements Serializable, Runnable {
                 AbstractUIEnvironment.setShowNavigator(PropertyAccessor.paramValueBoolean(arg));
                 found = true;
             }
-//                if (!found && reportNotFound) {
-//                    getEnvironment().getConsole().println("***WARNING: Parameter not found: " + paramName);
-//                }
+            //                if (!found && reportNotFound) {
+            //                    getEnvironment().getConsole().println("***WARNING: Parameter not found: " + paramName);
+            //                }
         }
         return found;
     }
@@ -709,8 +709,8 @@ public abstract class Runner implements Serializable, Runnable {
      *            CURRENTLY IGNORED! should the run if restarted continue to use the same thread?
      */
     public void run(boolean singlethread) {
-        if ((scape.getUIEnvironment() != null)
-                && (scape.getUIEnvironment().getRuntimeMode() == AbstractUIEnvironment.RELEASE_RUNTIME_MODE)) {
+        if (scape.getUIEnvironment() != null
+                && scape.getUIEnvironment().getRuntimeMode() == AbstractUIEnvironment.RELEASE_RUNTIME_MODE) {
             try {
                 runMainLoop();
             } catch (RuntimeException e) {
@@ -831,7 +831,7 @@ public abstract class Runner implements Serializable, Runnable {
             if (getEnvironment() instanceof AbstractUIEnvironment) {
                 ((AbstractUIEnvironment) getEnvironment()).showErrorDialog(scape, e);
             } else {
-                throw (e);
+                throw e;
             }
         }
     }
@@ -944,7 +944,7 @@ public abstract class Runner implements Serializable, Runnable {
         } catch (ClassNotFoundException e) {
             try {
                 Class c = Class.forName(modelName);
-                newObject = (Scape) c.newInstance();
+                newObject = c.newInstance();
             } catch (Exception e2) {
                 throw new RuntimeException("Couldn't find class: " + modelName);
             }
@@ -1052,10 +1052,10 @@ public abstract class Runner implements Serializable, Runnable {
     public abstract void saveChoose();
 
     public void close() {
+        closeRequested = true;
         if (running) {
             // Running, so we have to allow current iteration to finish
             stop();
-            closeRequested = true;
         } else {
             closeFinally();
         }
@@ -1122,7 +1122,7 @@ public abstract class Runner implements Serializable, Runnable {
             System.exit(0);
         } catch (SecurityException e) {
             System.out
-                    .println("Can't quit in this security context. (Scape is probably running in browser or viewer; quit or change that.)");
+            .println("Can't quit in this security context. (Scape is probably running in browser or viewer; quit or change that.)");
         }
     }
 
@@ -1416,7 +1416,7 @@ public abstract class Runner implements Serializable, Runnable {
      * @return true if within earliest and latest periods, false otherwise
      */
     public boolean isValidPeriod(int period) {
-        return ((period >= earliestPeriod) && (period <= latestPeriod));
+        return period >= earliestPeriod && period <= latestPeriod;
     }
 
     /**

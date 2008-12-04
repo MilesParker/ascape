@@ -17,181 +17,177 @@ import org.ascape.view.vis.SimplexView;
 
 public class BargainingModelBase extends Scape {
 
-    /**
+	/**
      * 
      */
-    private static final long serialVersionUID = 603123771815863548L;
+	private static final long serialVersionUID = 603123771815863548L;
 
-    private int population = 100;
+	private int population = 100;
 
-    protected int minMemorySize = 20;
+	protected int minMemorySize = 20;
 
-    protected int maxMemorySize = 100;
+	protected int maxMemorySize = 100;
 
-    protected float randomStrategyProbability = .1f;
+	protected float randomStrategyProbability = .1f;
 
-    protected Scape agents;
+	protected Scape agents;
 
-    public void createScape() {
-        super.createScape();
-        agents = new Scape(new Array1D());
-        agents.setExtent(new Coordinate1DDiscrete(population));
-        agents.setPrototypeAgent(new Bargainer());
-        agents.addRule(PLAY_OTHER);
-        agents.setExecutionStyle(REPEATED_DRAW);
-        agents.setAgentsPerIteration(population / 2);
-        add(agents);
-    }
+	public void createScape() {
+		super.createScape();
+		agents = new Scape(new Array1D());
+		agents.setExtent(new Coordinate1DDiscrete(population));
+		agents.setPrototypeAgent(new Bargainer());
+		agents.addRule(PLAY_OTHER);
+		agents.setExecutionStyle(REPEATED_DRAW);
+		agents.setAgentsPerIteration(population / 2);
+		add(agents);
+	}
 
-    @SuppressWarnings("unused")
-    private boolean allMedium;
+	@SuppressWarnings("unused")
+	private boolean allMedium;
 
-    Rule checkAllMedium = new Rule("Check All Medium") {
-        /**
+	Rule checkAllMedium = new Rule("Check All Medium") {
+		/**
          * 
          */
-        private static final long serialVersionUID = 7273741592235908013L;
-        public void execute(Agent a) {
-            if (((Bargainer) a).lastStrategy != Strategy.MEDIUM_STRATEGY) {
-                allMedium = false;
-            }
-        }
-        @SuppressWarnings("unused")
-        public boolean isRandom() {
-            return false;
-        }
-    };
+		private static final long serialVersionUID = 7273741592235908013L;
 
-    SimplexView intraMemoryView;
+		public void execute(Agent a) {
+			if (((Bargainer) a).lastStrategy != Strategy.MEDIUM_STRATEGY) {
+				allMedium = false;
+			}
+		}
 
-    private static float lowPayoff = 0.30f;
+		@SuppressWarnings("unused")
+		public boolean isRandom() {
+			return false;
+		}
+	};
 
-    private static float mediumPayoff = 0.50f;
+	SimplexView intraMemoryView;
 
-    private static float highPayoff = 1.0f - lowPayoff;
+	private static float lowPayoff = 0.30f;
 
-    public void createViews() {
-/*
- * agents.addView(new ConsoleOutView() { public void updateScapeGraphics() {
- * int iter = scape.getIteration(); if (((float) ( iter) / 1000) == (iter /
- * 1000)) { System.out.println(iter); } allMedium = true;
- * agents.executeOnMembers(checkAllMedium); if (allMedium) {
- * System.out.println("Medium at iteration "+iter); stop(); } } });
- */
-        super.createViews();
-        intraMemoryView = new SimplexView("Intragroup Memory", Strategy.LOW_STRATEGY.getDemand());
-        intraMemoryView.setSimplexFeature(new SimplexFeature("Memory") {
-            public float getAxis1Value(Object object) {
-                return (float) ((Bargainer) object).countIntraHigh() / (float) ((Bargainer) object).countIntra();
-            }
+	private static float mediumPayoff = 0.50f;
 
-            public String getAxis1Name() {
-                return "high";
-            }
+	private static float highPayoff = 1.0f - lowPayoff;
 
-            public float getAxis2Value(Object object) {
-                return (float) ((Bargainer) object).countIntraMedium() / (float) ((Bargainer) object).countIntra();
-            }
+	public void createViews() {
+		/*
+		 * agents.addView(new ConsoleOutView() { public void
+		 * updateScapeGraphics() { int iter = scape.getIteration(); if (((float)
+		 * ( iter) / 1000) == (iter / 1000)) { System.out.println(iter); }
+		 * allMedium = true; agents.executeOnMembers(checkAllMedium); if
+		 * (allMedium) { System.out.println("Medium at iteration "+iter);
+		 * stop(); } } });
+		 */
+		super.createViews();
+		intraMemoryView = new SimplexView("Intragroup Memory",
+				Strategy.LOW_STRATEGY.getDemand());
+		intraMemoryView.setSimplexFeature(new SimplexFeature("Memory") {
+			public float getAxis1Value(Object object) {
+				return (float) ((Bargainer) object).countIntraHigh()
+						/ (float) ((Bargainer) object).countIntra();
+			}
 
-            public String getAxis2Name() {
-                return "medium";
-            }
+			public String getAxis1Name() {
+				return "high";
+			}
 
-            public float getAxis3Value(Object object) {
-                return (float) ((Bargainer) object).countIntraLow() / (float) ((Bargainer) object).countIntra();
-            }
+			public float getAxis2Value(Object object) {
+				return (float) ((Bargainer) object).countIntraMedium()
+						/ (float) ((Bargainer) object).countIntra();
+			}
 
-            public String getAxis3Name() {
-                return "low";
-            }
-        });
+			public String getAxis2Name() {
+				return "medium";
+			}
 
-        /*final StatCollector[] stats = {
-            new StatCollector("All"),
-            new StatCollectorCond("Low") {
-public boolean meetsCondition(Object object) {
-return (((Bargainer) object).getLastStrategy() == Strategy.LOW_STRATEGY);
-}
-},
-            new StatCollectorCond("Medium") {
-public boolean meetsCondition(Object object) {
-return (((Bargainer) object).getLastStrategy() == Strategy.MEDIUM_STRATEGY);
-}
-},
-            new StatCollectorCond("Hi") {
-public boolean meetsCondition(Object object) {
-return (((Bargainer) object).getLastStrategy() == Strategy.HIGH_STRATEGY);
-}
-}
-};
-        agents.addStatCollectors(stats);
+			public float getAxis3Value(Object object) {
+				return (float) ((Bargainer) object).countIntraLow()
+						/ (float) ((Bargainer) object).countIntra();
+			}
 
-        //Create a new chart
-        ChartView chart = new ChartView();
-        //Add the chart view
-        agents.addView(chart);
-        chart.addSeries("Count Low", Color.blue);
-        chart.addSeries("Count Medium", Color.green);
-        chart.addSeries("Count Hi", Color.red);*/
-    }
+			public String getAxis3Name() {
+				return "low";
+			}
+		});
 
-    public float getRandomStrategyProbability() {
-        return randomStrategyProbability;
-    }
+		/*
+		 * final StatCollector[] stats = { new StatCollector("All"), new
+		 * StatCollectorCond("Low") { public boolean meetsCondition(Object
+		 * object) { return (((Bargainer) object).getLastStrategy() ==
+		 * Strategy.LOW_STRATEGY); } }, new StatCollectorCond("Medium") { public
+		 * boolean meetsCondition(Object object) { return (((Bargainer)
+		 * object).getLastStrategy() == Strategy.MEDIUM_STRATEGY); } }, new
+		 * StatCollectorCond("Hi") { public boolean meetsCondition(Object
+		 * object) { return (((Bargainer) object).getLastStrategy() ==
+		 * Strategy.HIGH_STRATEGY); } } }; agents.addStatCollectors(stats);
+		 * 
+		 * //Create a new chart ChartView chart = new ChartView(); //Add the
+		 * chart view agents.addView(chart); chart.addSeries("Count Low",
+		 * Color.blue); chart.addSeries("Count Medium", Color.green);
+		 * chart.addSeries("Count Hi", Color.red);
+		 */
+	}
 
-    public void setRandomStrategyProbability(float randomStrategyProbability) {
-        this.randomStrategyProbability = randomStrategyProbability;
-    }
+	public float getRandomStrategyProbability() {
+		return randomStrategyProbability;
+	}
 
-    public int getMinimumMemorySize() {
-        return minMemorySize;
-    }
+	public void setRandomStrategyProbability(float randomStrategyProbability) {
+		this.randomStrategyProbability = randomStrategyProbability;
+	}
 
-    public void setMinimumMemorySize(int minMemorySize) {
-        this.minMemorySize = minMemorySize;
-    }
+	public int getMinimumMemorySize() {
+		return minMemorySize;
+	}
 
-    public int getMaximumMemorySize() {
-        return maxMemorySize;
-    }
+	public void setMinimumMemorySize(int minMemorySize) {
+		this.minMemorySize = minMemorySize;
+	}
 
-    public void setMaximumMemorySize(int maxMemorySize) {
-        this.maxMemorySize = maxMemorySize;
-    }
+	public int getMaximumMemorySize() {
+		return maxMemorySize;
+	}
 
-    public static float getLowPayoffStatic() {
-        return lowPayoff;
-    }
+	public void setMaximumMemorySize(int maxMemorySize) {
+		this.maxMemorySize = maxMemorySize;
+	}
 
-    public float getLowPayoff() {
-        return lowPayoff;
-    }
+	public static float getLowPayoffStatic() {
+		return lowPayoff;
+	}
 
-    public void setLowPayoff(float lowPayoff) {
-        BargainingModelBase.lowPayoff = lowPayoff;
-    }
+	public float getLowPayoff() {
+		return lowPayoff;
+	}
 
-    public static float getMediumPayoffStatic() {
-        return mediumPayoff;
-    }
+	public void setLowPayoff(float lowPayoff) {
+		BargainingModelBase.lowPayoff = lowPayoff;
+	}
 
-    public float getMediumPayoff() {
-        return mediumPayoff;
-    }
+	public static float getMediumPayoffStatic() {
+		return mediumPayoff;
+	}
 
-    public void setMediumPayoff(float mediumPayoff) {
-        BargainingModelBase.mediumPayoff = mediumPayoff;
-    }
+	public float getMediumPayoff() {
+		return mediumPayoff;
+	}
 
-    public static float getHighPayoffStatic() {
-        return highPayoff;
-    }
+	public void setMediumPayoff(float mediumPayoff) {
+		BargainingModelBase.mediumPayoff = mediumPayoff;
+	}
 
-    public float getHighPayoff() {
-        return highPayoff;
-    }
+	public static float getHighPayoffStatic() {
+		return highPayoff;
+	}
 
-    public void setHighPayoff(float highPayoff) {
-        BargainingModelBase.highPayoff = highPayoff;
-    }
+	public float getHighPayoff() {
+		return highPayoff;
+	}
+
+	public void setHighPayoff(float highPayoff) {
+		BargainingModelBase.highPayoff = highPayoff;
+	}
 }

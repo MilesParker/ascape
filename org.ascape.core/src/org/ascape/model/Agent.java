@@ -1,8 +1,8 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors. 
+ * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors.
  * All rights reserved.
  * This program and the accompanying materials are made available solely under the BSD license "ascape-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
 package org.ascape.model;
@@ -489,10 +489,10 @@ public class Agent extends AscapeObject implements Cloneable {
      * every iteration. <i>You should always override this rule for custom agents
      * (or call scape.clearRules()) so that the overhead of the iterate rule isn't incurred.</i>
      *
-     * Edited - Iterate rule is no longer added by default. 
+     * Edited - Iterate rule is no longer added by default.
      */
     public void scapeCreated() {
-//        scape.addRule(ITERATE_RULE);
+        //        scape.addRule(ITERATE_RULE);
     }
 
     /*
@@ -557,7 +557,7 @@ public class Agent extends AscapeObject implements Cloneable {
      * "Kill" the agent. If the agent is a member of a mutable scape, remove it from the scape.
      */
     public void die() {
-        if ((scape != null) && (scape.isMutable())) {
+        if (scape != null && scape.isMutable()) {
             if (!scape.remove(this)) {
                 throw new RuntimeException("Agent couldn't be deleted");
             }
@@ -715,7 +715,7 @@ public class Agent extends AscapeObject implements Cloneable {
      * The agent color as platform specific (i.e. non-AWT).
      */
     public Object getPlatformColor() {
-        return getColor();
+        return PLATFORM_DEFAULT_COLOR;
     }
 
     /**
@@ -764,7 +764,7 @@ public class Agent extends AscapeObject implements Cloneable {
      * @param scape the scape this agent is belongs to
      */
     public void setScape(Scape scape) {
-        if (isDelete() && (scape != null) && (this.scape != null) && (this.scape != scape)) {
+        if (isDelete() && scape != null && this.scape != null && this.scape != scape) {
             //We need to force a deletion in the parent scape, because we are about to lose the context
             try {
                 //Assume that we were member of mutable scape before
