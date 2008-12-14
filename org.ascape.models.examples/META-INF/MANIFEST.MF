@@ -3,7 +3,7 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ManifestVersion: 2
 Bundle-Name: Examples Plug-in
 Bundle-SymbolicName: org.ascape.models.examples
-Bundle-Version: 5.0.0
+Bundle-Version: 5.1.1
 Require-Bundle: org.ascape.core;bundle-version="5.1.0",
  org.ascape.ui.swing;bundle-version="5.1.0"
 Bundle-Vendor: Ascape.org

@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Ascape Core Functionality
 Bundle-SymbolicName: org.ascape.core
-Bundle-Version: 5.1.0
+Bundle-Version: 5.1.1
 Bundle-Vendor: Ascape.org
 Require-Bundle: org.ascape.common.lib;visibility:=reexport,
  org.junit
