@@ -1,8 +1,8 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors. 
+ * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors.
  * All rights reserved.
  * This program and the accompanying materials are made available solely under of the BSD license "ascape-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
 package org.ascape.view.vis;
@@ -28,7 +28,6 @@ import java.util.Observer;
 import java.util.Set;
 import java.util.TooManyListenersException;
 import java.util.TreeSet;
-import java.util.Vector;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -161,8 +160,8 @@ public class ChartView extends PanelView implements Observer, Externalizable {
             verticalAxis = new VerticalNumberAxis("Value");
             plot = new XYPlot(horizontalAxis, verticalAxis);
             ((XYPlot) plot).setXYItemRenderer(new StandardXYItemRenderer(StandardXYItemRenderer.LINES));
-// todo: change and fix all comments marked xxx
-//            plot = new XYPlot(this, horizontalAxis, verticalAxis, new StandardXYItemRenderer(StandardXYItemRenderer.LINES));
+            // todo: change and fix all comments marked xxx
+            //            plot = new XYPlot(this, horizontalAxis, verticalAxis, new StandardXYItemRenderer(StandardXYItemRenderer.LINES));
         }
 
         /**
@@ -215,7 +214,7 @@ public class ChartView extends PanelView implements Observer, Externalizable {
          * @return The number of items within a series.
          */
         public int getItemCount(int series) {
-            Vector seriesData = dataSelection.getSelectedSeriesData(series);
+            List seriesData = dataSelection.getSelectedSeriesData(series);
             if (seriesData != null) {
                 return seriesData.size();
             } else {
@@ -241,40 +240,40 @@ public class ChartView extends PanelView implements Observer, Externalizable {
             minValue -= margin;
             maxValue += margin;
 
-//workaround for jchart problem..
-            if ((minValue == 0.0) && (maxValue > 0.0)) {
-//Set min value to a smidgen (technical term) below zero line to make it display properly.
+            //workaround for jchart problem..
+            if (minValue == 0.0 && maxValue > 0.0) {
+                //Set min value to a smidgen (technical term) below zero line to make it display properly.
                 minValue = -maxValue / getHeight();
             }
-//We need to have some kind of range to avoid JFreeChart display errors
-            if ((minValue == 0.0) && (maxValue == 0.0)) {
+            //We need to have some kind of range to avoid JFreeChart display errors
+            if (minValue == 0.0 && maxValue == 0.0) {
                 minValue = -1.0;
                 maxValue = 1.0;
             }
-            if (forcePosVerticalAxisMinToZero && (minValue > 0.0)) {
-//Force min value to floor, better representation for many statistics (ex: population)
+            if (forcePosVerticalAxisMinToZero && minValue > 0.0) {
+                //Force min value to floor, better representation for many statistics (ex: population)
                 minValue = 0.0;
             }
-            
+
             if (!Double.isNaN(verticalAxisMin)) {
                 minValue = verticalAxisMin;
             }
-            
+
             if (!Double.isNaN(verticalAxisMax)) {
                 maxValue = verticalAxisMax;
             }
-            
+
             verticalAxis.setMinimumAxisValue(minValue);
             verticalAxis.setMaximumAxisValue(maxValue);
 
-            if (Math.abs(minValue) >= 1.0e10 || Math.abs(maxValue) >= 1.0e10 || (Math.abs(minValue) < 1.0e-6 && Math.abs(maxValue) < 1.0e-6))
+            if (Math.abs(minValue) >= 1.0e10 || Math.abs(maxValue) >= 1.0e10 || Math.abs(minValue) < 1.0e-6 && Math.abs(maxValue) < 1.0e-6)
             {
-// very large or small magnitudes, so use scientific notation on the vertical axis
-// and work around JFreeChart's limited range of tick unit sizes
+                // very large or small magnitudes, so use scientific notation on the vertical axis
+                // and work around JFreeChart's limited range of tick unit sizes
                 double tickSize = chooseTickSize(minValue, maxValue);
                 verticalAxis.setTickUnit(new NumberTickUnit(new Double(tickSize), new DecimalFormat("0.##########E0")));
-// xxx
-//                verticalAxis.setTickUnit(new NumberTickUnit(tickSize, new DecimalFormat("0.############E0")));
+                // xxx
+                //                verticalAxis.setTickUnit(new NumberTickUnit(tickSize, new DecimalFormat("0.############E0")));
             } else {
                 verticalAxis.setAutoTickUnitSelection(true);
             }
@@ -345,8 +344,8 @@ public class ChartView extends PanelView implements Observer, Externalizable {
             horizontalAxis = new HorizontalCategoryAxis("Series");
             verticalAxis = new VerticalNumberAxis("Value");
             plot = new VerticalBarPlot(horizontalAxis, verticalAxis);
-// xxx
-//            plot = new XYPlot(this, horizontalAxis, verticalAxis);
+            // xxx
+            //            plot = new XYPlot(this, horizontalAxis, verticalAxis);
         }
 
         /**
@@ -407,7 +406,7 @@ public class ChartView extends PanelView implements Observer, Externalizable {
          * The set.
          */
         Set set;
-        
+
         /**
          * The list.
          */
@@ -423,8 +422,8 @@ public class ChartView extends PanelView implements Observer, Externalizable {
          */
         public PieChartDataset() {
             plot = new PiePlot();
-// xxx
-//            plot = new PiePlot(this);
+            // xxx
+            //            plot = new PiePlot(this);
         }
 
         /* (non-Javadoc)
@@ -433,17 +432,17 @@ public class ChartView extends PanelView implements Observer, Externalizable {
         public Set getCategories() {
             return set;
         }
-// xxx
-//        public List getCategories() {
-//            return list;
-//        }
+        // xxx
+        //        public List getCategories() {
+        //            return list;
+        //        }
 
         /**
- * Gets the category count.
- * 
- * @return the category count
- */
-public int getCategoryCount() {
+         * Gets the category count.
+         * 
+         * @return the category count
+         */
+        public int getCategoryCount() {
             return set.size();
         }
 
@@ -534,13 +533,13 @@ public int getCategoryCount() {
      * The panel.
      */
     private JFreeChartPanel panel;
-// xxx
-//    ChartPanel panel;
+    // xxx
+    //    ChartPanel panel;
 
     /**
- * The chart.
- */
-private JFreeChart chart;
+     * The chart.
+     */
+    private JFreeChart chart;
 
     /**
      * The plot.
@@ -596,17 +595,17 @@ private JFreeChart chart;
      * The force pos vertical axis min to zero.
      */
     private boolean forcePosVerticalAxisMinToZero = true;
-    
+
     /**
      * The vertical axis min.
      */
     private double verticalAxisMin = Double.NaN;
-    
+
     /**
      * The vertical axis max.
      */
     private double verticalAxisMax = Double.NaN;
-    
+
     /**
      * The frame, if any, that this view is displayed within.
      */
@@ -630,9 +629,9 @@ private JFreeChart chart;
         setForeground(Color.black);
         setBackground(Color.lightGray);
         setPlotBackground(Color.white);
-//        getChartArea().setBackground(new Color(230, 220, 215));
-//        getChartArea().setForeground(Color.black);
-//        getChartArea().getPlotArea().setBackground(new Color(255, 245, 220));
+        //        getChartArea().setBackground(new Color(230, 220, 215));
+        //        getChartArea().setForeground(Color.black);
+        //        getChartArea().getPlotArea().setBackground(new Color(255, 245, 220));
         setPreferredSize(new Dimension(500, 380));
         setChartType(chartType);
         name = "Chart View";
@@ -815,7 +814,7 @@ private JFreeChart chart;
      */
     public void setLegendShowing(boolean legendShowing) {
         this.legendShowing = legendShowing;
-        if ((legendShowing) && !(dataset instanceof PieChartDataset)) {
+        if (legendShowing && !(dataset instanceof PieChartDataset)) {
             if (chart != null) {
                 if (legend == null) {
                     legend = new StandardLegend(chart);
@@ -856,21 +855,21 @@ private JFreeChart chart;
         getDataSelection().getSeriesView(valueName).setColor(color);
     }
 
-//    /**
-//     * Adds a series to the chart being viewed. Convenience method.
-//     * 
-//     * @param valueName
-//     *            the name of the series to add
-//     * @param color
-//     *            the color to use for the series in the chart
-//     * @param continuous
-//     *            boolean should the series be drawn as a line or series of
-//     *            symbols?
-//     */
-//    public void addSeries(String valueName, Color color, boolean continuous) {
-//        this.addSeries(valueName, color);
-//        getDataSelection().getSeriesView(valueName).setContinuous(continuous);
-//    }
+    //    /**
+    //     * Adds a series to the chart being viewed. Convenience method.
+    //     *
+    //     * @param valueName
+    //     *            the name of the series to add
+    //     * @param color
+    //     *            the color to use for the series in the chart
+    //     * @param continuous
+    //     *            boolean should the series be drawn as a line or series of
+    //     *            symbols?
+    //     */
+    //    public void addSeries(String valueName, Color color, boolean continuous) {
+    //        this.addSeries(valueName, color);
+    //        getDataSelection().getSeriesView(valueName).setContinuous(continuous);
+    //    }
 
     /**
      * Removes a series from the chart being viewed. Convenience method.
@@ -997,17 +996,17 @@ private JFreeChart chart;
     public JFreeChartPanel getPanel() {
         return panel;
     }
-// xxx
-//    public ChartPanel getPanel() {
-//        return panel;
-//    }
+    // xxx
+    //    public ChartPanel getPanel() {
+    //        return panel;
+    //    }
 
     /**
- * Gets the chart.
- * 
- * @return the chart
- */
-public JFreeChart getChart() {
+     * Gets the chart.
+     * 
+     * @return the chart
+     */
+    public JFreeChart getChart() {
         return chart;
     }
 
