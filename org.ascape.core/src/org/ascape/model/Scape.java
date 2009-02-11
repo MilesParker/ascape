@@ -2843,7 +2843,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
                             accessor.setAsText(paramValue);
                         } catch (InvocationTargetException e) {
                             if (reportNotFound) {
-                                throw new Error("Exception in called method: " + e.getTargetException());
+                                throw new RuntimeException("Exception in called method: " + e.getTargetException());
                             }
                             // Else ignore, its ok if there is a problem calling
                             // the method at this point

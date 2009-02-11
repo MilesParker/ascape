@@ -228,7 +228,7 @@ public class PropertyAccessor implements Comparable, Serializable {
     public static List determineReadWriteAccessors(Object object, Class stopClass, boolean includeGetters) throws IntrospectionException {
         ArrayList tempPropertyAccessors = new ArrayList();
         PropertyDescriptor[] infoProperties;
-        if ((stopClass == null) || (object.getClass() == stopClass)) {
+        if (stopClass == null || object.getClass() == stopClass) {
             infoProperties = Introspector.getBeanInfo(object.getClass()).getPropertyDescriptors();
         } else {
             infoProperties = Introspector.getBeanInfo(object.getClass(), stopClass).getPropertyDescriptors();
@@ -237,7 +237,7 @@ public class PropertyAccessor implements Comparable, Serializable {
             //if (infoProperties[i].getWriteMethod() != null && infoProperties[i].getReadMethod() != null && ((infoProperties[i].getReadMethod().getReturnType() == Integer.TYPE) || (infoProperties[i].getReadMethod().getReturnType() == Double.TYPE) || (infoProperties[i].getReadMethod().getReturnType() == Float.TYPE))) {
             if ((includeGetters || infoProperties[i].getWriteMethod() != null) && infoProperties[i].getReadMethod() != null) {
                 Class pt = infoProperties[i].getReadMethod().getReturnType();
-                if ((pt == Integer.TYPE) || (pt == Double.TYPE) || (pt == String.class) || (pt == Float.TYPE) || (pt == Boolean.TYPE)) {
+                if (pt == Integer.TYPE || pt == Double.TYPE || pt == String.class || pt == Float.TYPE || pt == Boolean.TYPE) {
                     //System.out.println(infoProperties[j].getName());
                     tempPropertyAccessors.add(new PropertyAccessor(object, infoProperties[i]));
                 }

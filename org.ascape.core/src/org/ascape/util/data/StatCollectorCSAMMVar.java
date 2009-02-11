@@ -1,14 +1,14 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors. 
+ * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors.
  * All rights reserved.
  * This program and the accompanying materials are made available solely under the BSD license "ascape-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
 package org.ascape.util.data;
 
-import java.util.Enumeration;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Stores aggregate data for values obtained for a statistic, including
@@ -31,7 +31,7 @@ public class StatCollectorCSAMMVar extends StatCollectorCSAMM {
     /**
      * Vector storing all values so variance can be calculated.
      */
-    private Vector data = new Vector();
+    private List<Double> data;
 
     /**
      * Constructs a new StatCollectorCSAMMVar.
@@ -63,7 +63,7 @@ public class StatCollectorCSAMMVar extends StatCollectorCSAMM {
      */
     public void clear() {
         super.clear();
-        data = new Vector();
+        data = new ArrayList<Double>();
     }
 
     /**
@@ -72,7 +72,7 @@ public class StatCollectorCSAMMVar extends StatCollectorCSAMM {
      */
     public void addValue(double value) {
         super.addValue(value);
-        data.addElement(new Double(value));
+        data.add(new Double(value));
     }
 
     /**
@@ -81,12 +81,11 @@ public class StatCollectorCSAMMVar extends StatCollectorCSAMM {
     public double getVar() {
         double avg = getAvg();
         double variance = 0.0;
-        Enumeration e = data.elements();
-        while (e.hasMoreElements()) {
-            final double deviation = avg - ((Double) e.nextElement()).doubleValue();
+        for (Double value : data) {
+            final double deviation = avg - value;
             variance += deviation * deviation;
         }
-        variance /= (getCount() - 1.0);
+        variance /= getCount() - 1.0;
         return variance;
     }
 

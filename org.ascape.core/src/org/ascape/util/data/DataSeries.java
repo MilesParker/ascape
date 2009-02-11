@@ -1,13 +1,12 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors. 
+ * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors.
  * All rights reserved.
  * This program and the accompanying materials are made available solely under the BSD license "ascape-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
 package org.ascape.util.data;
 
-import java.util.Vector;
 
 /**
  * A class which stores the results of measurements of data points. Comprehensive statistics are kept
@@ -39,14 +38,6 @@ public abstract class DataSeries extends StatCollectorCSAMM {
      * The value point this series is tracking.
      */
     protected DataPoint point;
-
-    /**
-     * Returns a vector holding the entire series as a vector of doubles.
-     */
-    // shouldn't be in here.. leaving in till talk to Miles
-    public Vector toVector() {
-        throw new RuntimeException("Attempted to throw DataSeries.toVector(). Should call DataSeriesStore.toVector()");
-    }
 
     /**
      * Constructs a new data series.

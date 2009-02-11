@@ -238,6 +238,7 @@ public abstract class Runner implements Serializable, Runnable {
      */
     protected void runMainLoop() {
         inMainLoop = true;
+        restartRequested = false;
         if (beginningDeserializedRun) { // we are re-starting the main loop
             // after reading in a serialized model
             beginningDeserializedRun = false;
@@ -327,7 +328,6 @@ public abstract class Runner implements Serializable, Runnable {
         waitForViewsUpdate();
         if (restartRequested) {
             // Send an event to self for start
-            restartRequested = false;
             scape.respondControl(new ControlEvent(this, ControlEvent.REQUEST_START));
         }
         if (closeRequested) {

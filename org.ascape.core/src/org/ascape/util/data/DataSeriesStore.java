@@ -1,13 +1,14 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors. 
+ * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors.
  * All rights reserved.
  * This program and the accompanying materials are made available solely under the BSD license "ascape-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
 package org.ascape.util.data;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A class which stores the results of measurements of data points. Comprehensive statistics are kept
@@ -32,7 +33,7 @@ public abstract class DataSeriesStore extends DataSeries {
     /**
      * A series of double values.
      */
-    private Vector series;
+    private List<Double> series;
 
     /**
      * Constructs a new data series.
@@ -46,13 +47,13 @@ public abstract class DataSeriesStore extends DataSeries {
      */
     public void clear() {
         super.clear();
-        series = new Vector();
+        series = new ArrayList<Double>();
     }
 
     /**
-     * Returns a vector holding the entire series as a vector of doubles.
+     * Returns a list holding the entire series.
      */
-    public Vector toVector() {
+    public List<Double> toList() {
         return series;
     }
 

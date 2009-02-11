@@ -1,17 +1,18 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors. 
+ * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors.
  * All rights reserved.
  * This program and the accompanying materials are made available solely under the BSD license "ascape-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
 package org.ascape.util.data;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.Vector;
+import java.util.List;
 
 
 /**
@@ -346,9 +347,9 @@ public class StatCollector implements Comparable, DataPoint, Serializable {
     /**
      * Creates a data series for every measure of this statistic collector.
      */
-    public void createDataSeries(boolean collectingLongitudinalData) {
-        //ArrayList tempSeries = new ArrayList();
-        Vector tempSeries = new Vector();
+    public synchronized void createDataSeries(boolean collectingLongitudinalData) {
+        List<DataSeries> tempSeries = new ArrayList<DataSeries>();
+        // Vector tempSeries = new Vector();
         //the following code is a little strange; we cannot use method dispatch,
         //because we need to handle the case where the stat is _not_ an instance of each type
         //In that case, we need to create a null element for consistent sizing and ordering
@@ -387,10 +388,10 @@ public class StatCollector implements Comparable, DataPoint, Serializable {
             }
             countSeries.setDataPoint(this);
             //tempSeries.add(countSeries);
-            tempSeries.addElement(countSeries);
+            tempSeries.add(countSeries);
         } else {
             //tempSeries.add(null);
-            tempSeries.addElement(null);
+            tempSeries.add(null);
         }
         if (this instanceof StatCollectorCSAMM) {
             DataSeries minSeries;
@@ -427,10 +428,10 @@ public class StatCollector implements Comparable, DataPoint, Serializable {
             }
             minSeries.setDataPoint(this);
             //tempSeries.add(minSeries);
-            tempSeries.addElement(minSeries);
+            tempSeries.add(minSeries);
         } else {
             //tempSeries.add(null);
-            tempSeries.addElement(null);
+            tempSeries.add(null);
         }
         if (this instanceof StatCollectorCSAMM) {
             DataSeries maxSeries;
@@ -467,10 +468,10 @@ public class StatCollector implements Comparable, DataPoint, Serializable {
             }
             maxSeries.setDataPoint(this);
             //tempSeries.add(maxSeries);
-            tempSeries.addElement(maxSeries);
+            tempSeries.add(maxSeries);
         } else {
             //tempSeries.add(null);
-            tempSeries.addElement(null);
+            tempSeries.add(null);
         }
         if (this instanceof StatCollectorCSAMMVar) {
             DataSeries varianceSeries;
@@ -507,10 +508,10 @@ public class StatCollector implements Comparable, DataPoint, Serializable {
             }
             varianceSeries.setDataPoint(this);
             //tempSeries.add(varianceSeries);
-            tempSeries.addElement(varianceSeries);
+            tempSeries.add(varianceSeries);
         } else {
             //tempSeries.add(null);
-            tempSeries.addElement(null);
+            tempSeries.add(null);
         }
         if (this instanceof StatCollectorCSAMMVar) {
             DataSeries stdevSeries;
@@ -547,10 +548,10 @@ public class StatCollector implements Comparable, DataPoint, Serializable {
             }
             stdevSeries.setDataPoint(this);
             //tempSeries.add(stdevSeries);
-            tempSeries.addElement(stdevSeries);
+            tempSeries.add(stdevSeries);
         } else {
             //tempSeries.add(null);
-            tempSeries.addElement(null);
+            tempSeries.add(null);
         }
 
         if (this instanceof StatCollectorCSA) {
@@ -588,10 +589,10 @@ public class StatCollector implements Comparable, DataPoint, Serializable {
             }
             sumSeries.setDataPoint(this);
             //tempSeries.add(sumSeries);
-            tempSeries.addElement(sumSeries);
+            tempSeries.add(sumSeries);
         } else {
             //tempSeries.add(null);
-            tempSeries.addElement(null);
+            tempSeries.add(null);
         }
         if (this instanceof StatCollectorCSA) {
             DataSeries avgSeries;
@@ -628,18 +629,17 @@ public class StatCollector implements Comparable, DataPoint, Serializable {
             }
             avgSeries.setDataPoint(this);
             //tempSeries.add(avgSeries);
-            tempSeries.addElement(avgSeries);
+            tempSeries.add(avgSeries);
         } else {
             //tempSeries.add(null);
-            tempSeries.addElement(null);
+            tempSeries.add(null);
         }
         if (collectingLongitudinalData) {
             dataSeries = new DataSeriesStore[tempSeries.size()];
         } else {
             dataSeries = new DataSeries[tempSeries.size()];
         }
-        //dataSeries = (DataSeries[]) tempSeries.toArray();
-        tempSeries.copyInto(dataSeries);
+        dataSeries = tempSeries.toArray(new DataSeries[tempSeries.size()]);
     }
 
     public void setDataGroup(DataGroup dataGroup) {
@@ -689,7 +689,7 @@ public class StatCollector implements Comparable, DataPoint, Serializable {
     }
 
     private void writeObject(java.io.ObjectOutputStream out)
-        throws IOException {
+    throws IOException {
         //System.out.println("Saving "+this+"...");
         if (dataSeries != null && dataSeries[0] != null && dataSeries[0] instanceof DataSeriesStore) {
             // clear any longitudinal data series before writing out StatCollector

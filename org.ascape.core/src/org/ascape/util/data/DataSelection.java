@@ -1,8 +1,8 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors. 
+ * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors.
  * All rights reserved.
  * This program and the accompanying materials are made available solely under the BSD license "ascape-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
 package org.ascape.util.data;
@@ -12,7 +12,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.Vector;
 
 /**
  * A selection of a group of data series, useful for providing some subset of available data.
@@ -91,7 +90,7 @@ public class DataSelection extends Observable implements Observer, Cloneable, Se
      */
     public boolean isSelected(DataSeries series) {
         for (int i = 0; i < seriesSelected.length; i++) {
-            if ((seriesSelected[i]) && (dataGroup.getSeries(i) == series)) {
+            if (seriesSelected[i] && dataGroup.getSeries(i) == series) {
                 return true;
             }
         }
@@ -255,13 +254,16 @@ public class DataSelection extends Observable implements Observer, Cloneable, Se
     }
 
     /**
-     * Returns the data, as a vector, of the serties at the selection index.
-     * (Convenience method.)
-     * @param index the index in this selection of the series
+     * Returns the data, of the series at the selection index. (Convenience method.)
+     * 
+     * @throws ClassCastException
+     *         if the series is not a DataSeriesStore
+     * @param index
+     *        the index in this selection of the series
      */
-    public Vector getSelectedSeriesData(int index) {
+    public List getSelectedSeriesData(int index) {
         try {
-            return getSelectedSeries(index).toVector();
+            return ((DataSeriesStore) getSelectedSeries(index)).toList();
         } catch (RuntimeException e) {
             return null;
         }
