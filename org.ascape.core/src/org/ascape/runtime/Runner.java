@@ -236,7 +236,7 @@ public abstract class Runner implements Serializable, Runnable {
      * The main run loop of a running simulation. Seperated from run so that it
      * can be executed in different runtime modes.
      */
-    protected void runMainLoop() {
+    protected synchronized void runMainLoop() {
         inMainLoop = true;
         restartRequested = false;
         if (beginningDeserializedRun) { // we are re-starting the main loop
@@ -290,10 +290,9 @@ public abstract class Runner implements Serializable, Runnable {
             }
             if (period >= getStopPeriod()) {
                 waitForViewsUpdate();
-                if (!isAutoRestart()) {
-                    scape.respondControl(new ControlEvent(this, ControlEvent.REQUEST_STOP));
-                } else {
-                    scape.respondControl(new ControlEvent(this, ControlEvent.REQUEST_RESTART));
+                running = false;
+                if (isAutoRestart()) {
+                    restartRequested = true;
                 }
             }
             if (closeAndOpenNewRequested) {
@@ -601,7 +600,7 @@ public abstract class Runner implements Serializable, Runnable {
      * until it is paused or stopped. While paused, tick events will be sent to
      * observers, which typically chose to ignore them.
      */
-    public void run() {
+    public synchronized void run() {
         run(false);
     }
 

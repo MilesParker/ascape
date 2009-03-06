@@ -1,8 +1,8 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors. 
+ * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors.
  * All rights reserved.
  * This program and the accompanying materials are made available solely under of the BSD license "ascape-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
 package org.ascape.view.custom;
@@ -97,10 +97,11 @@ public class AgentCustomizerPanel {
          * @see javax.swing.table.TableModel#getValueAt(int, int)
          */
         public Object getValueAt(int row, int col) {
+            PropertyAccessor dummy = new PropertyAccessor(null, (PropertyDescriptor) null);
             if (col == 0) {
-                return PropertyAccessor.getLongName(accessors[row]);
+                return dummy.getLongName(accessors[row]);
             } else {
-                return PropertyAccessor.getAsText(agent, accessors[row]);
+                return dummy.getAsText(agent, accessors[row]);
             }
         }
 
@@ -165,22 +166,22 @@ public class AgentCustomizerPanel {
      * The agent.
      */
     private Agent agent;
-    
+
     /**
      * The last agent.
      */
     private Agent lastAgent;
-    
+
     /**
      * The view.
      */
     private AgentView view;
-    
+
     /**
      * The accessors.
      */
     private PropertyDescriptor[] accessors;
-    
+
     /**
      * The properties.
      */
@@ -190,7 +191,7 @@ public class AgentCustomizerPanel {
      * The label.
      */
     private JLabel label;
-    
+
     /**
      * The color.
      */
@@ -200,22 +201,22 @@ public class AgentCustomizerPanel {
      * The main panel.
      */
     private JPanel mainPanel;
-    
+
     /**
      * The detail panel.
      */
     private JPanel detailPanel;
-    
+
     /**
      * The properties panel.
      */
     private JPanel propertiesPanel;
-    
+
     /**
      * The properties table.
      */
     private JTable propertiesTable;
-    
+
     /**
      * The properties scroll pane.
      */
@@ -225,12 +226,12 @@ public class AgentCustomizerPanel {
      * The no properties message.
      */
     private JTextField noPropertiesMessage;
-    
+
     /**
      * The no selected message.
      */
     private JTextField noSelectedMessage;
-    
+
     /**
      * The no agent message.
      */
@@ -300,7 +301,7 @@ public class AgentCustomizerPanel {
 
             try {
                 if (!(agent instanceof Scape)) {
-//                    List accessorsList = PropertyAccessor.determineReadWriteAccessors(agent, Agent.class, true);
+                    //                    List accessorsList = PropertyAccessor.determineReadWriteAccessors(agent, Agent.class, true);
                     accessors = Introspector.getBeanInfo(agent.getClass(), Agent.class).getPropertyDescriptors();
                 } else {
                     accessors = Introspector.getBeanInfo(agent.getClass(), Scape.class).getPropertyDescriptors();
@@ -316,8 +317,8 @@ public class AgentCustomizerPanel {
                 accessors = (PropertyDescriptor[]) accessorsWithReadMethods.toArray(accessors);
                 Arrays.sort(accessors, new Comparator() {
                     public int compare(Object o1, Object o2) {
-                        PropertyDescriptor p1 = ((PropertyDescriptor) o1);
-                        PropertyDescriptor p2 = ((PropertyDescriptor) o2);
+                        PropertyDescriptor p1 = (PropertyDescriptor) o1;
+                        PropertyDescriptor p2 = (PropertyDescriptor) o2;
                         if (PropertyAccessor.isWriteable(p1) && !PropertyAccessor.isWriteable(p2)) {
                             return -1;
                         } else if (PropertyAccessor.isWriteable(p2) && !PropertyAccessor.isWriteable(p1)) {

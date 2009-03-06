@@ -1,8 +1,8 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors. 
+ * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors.
  * All rights reserved.
  * This program and the accompanying materials are made available solely under the BSD license "ascape-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
 package org.ascape.runtime.swing;
@@ -105,7 +105,7 @@ public class SwingRunner extends Runner {
             if (savedFile.exists()) {
                 // warn user about overwriting already existing file
                 int n = JOptionPane.showConfirmDialog(chooser, "Warning - A file already exists by this name!\n"
-                        + "Do you want to overwrite it?\n", "Save Confirmation", JOptionPane.YES_NO_OPTION);
+                                                      + "Do you want to overwrite it?\n", "Save Confirmation", JOptionPane.YES_NO_OPTION);
                 if (n == JOptionPane.YES_OPTION) {
                     overwrite = true;
                 } else if (n == JOptionPane.CANCEL_OPTION) {
@@ -124,7 +124,7 @@ public class SwingRunner extends Runner {
                 e.printStackTrace();
                 JOptionPane.showMessageDialog(null,
                                               "Sorry, couldn't save model because an input/output exception occured:\n"
-                                                      + e, "Error", JOptionPane.ERROR_MESSAGE);
+                                              + e, "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(null, "You must enter a file name or cancel.", "Message",
@@ -170,7 +170,7 @@ public class SwingRunner extends Runner {
                         }
                     } catch (FileNotFoundException e) {
                         JOptionPane.showMessageDialog(null, "Sorry, could not find the file you specified:\n"
-                                + chooser.getSelectedFile(), "Error", JOptionPane.INFORMATION_MESSAGE);
+                                                      + chooser.getSelectedFile(), "Error", JOptionPane.INFORMATION_MESSAGE);
                     } catch (IOException e) {
                         String msg = "Sorry, couldn't open model because a file exception occured:";
                         System.err.println(msg);
@@ -208,11 +208,11 @@ public class SwingRunner extends Runner {
 
     public void respondControl(final ControlEvent control) {
         //We might be in Swing thread and don't want to risk a deadlock.
-        (new Thread(new Runnable() {
+        new Thread(new Runnable() {
             public void run() {
                 SwingRunner.super.respondControl(control);
             }
-        })).start();
+        }).start();
     }
 
     private IOException defaultWriteException;

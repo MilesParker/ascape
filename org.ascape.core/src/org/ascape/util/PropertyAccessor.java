@@ -1,8 +1,8 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors. 
+ * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors.
  * All rights reserved.
  * This program and the accompanying materials are made available solely under the BSD license "ascape-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
 package org.ascape.util;
@@ -72,7 +72,7 @@ public class PropertyAccessor implements Comparable, Serializable {
         return getLongName(descriptor);
     }
 
-    public static String getLongName(PropertyDescriptor descriptor) {
+    public String getLongName(PropertyDescriptor descriptor) {
         return removeUnderscores(addSpacesToVariableName(capitalizeFirstCharacter(descriptor.getName())));
     }
 
@@ -80,12 +80,12 @@ public class PropertyAccessor implements Comparable, Serializable {
         return getAsText(object, descriptor);
     }
 
-    public static String getAsText(Object object, PropertyDescriptor descriptor) {
+    public String getAsText(Object object, PropertyDescriptor descriptor) {
         try {
             return getValue(object, descriptor).toString();
         } catch (NullPointerException e) {
             //This is no longer an issue as we want to be able to report null objects for methods w/o write access
-//            System.out.println("Warning, object " + object + " returns null for " + getLongName() + "; value=" + getValue());
+            //            System.out.println("Warning, object " + object + " returns null for " + getLongName() + "; value=" + getValue());
             return "(null)";
         }
     }
@@ -169,7 +169,7 @@ public class PropertyAccessor implements Comparable, Serializable {
         try {
             descriptor.getWriteMethod().invoke(object, args);
         }
-            //mtp bug quick fix
+        //mtp bug quick fix
         catch (NullPointerException e) {
         } catch (IllegalAccessException e) {
             throw new RuntimeException("Set as text won't work for property " + descriptor.getName() + ", access too restricted: " + e);
@@ -195,7 +195,7 @@ public class PropertyAccessor implements Comparable, Serializable {
         return getValue(object, descriptor);
     }
 
-    public static Object getValue(Object object, PropertyDescriptor descriptor) {
+    public Object getValue(Object object, PropertyDescriptor descriptor) {
         try {
             return descriptor.getReadMethod().invoke(object, (Object[]) null);
         } catch (IllegalAccessException e) {
@@ -225,7 +225,8 @@ public class PropertyAccessor implements Comparable, Serializable {
     /**
      * Returns an array of all read/write accessors for the supplied object.
      */
-    public static List determineReadWriteAccessors(Object object, Class stopClass, boolean includeGetters) throws IntrospectionException {
+    public static List determineReadWriteAccessors(Object object, Class stopClass, boolean includeGetters)
+    throws IntrospectionException {
         ArrayList tempPropertyAccessors = new ArrayList();
         PropertyDescriptor[] infoProperties;
         if (stopClass == null || object.getClass() == stopClass) {
@@ -246,7 +247,7 @@ public class PropertyAccessor implements Comparable, Serializable {
         return tempPropertyAccessors;
     }
 
-    public static final String capitalizeFirstCharacter(String string) {
+    public final String capitalizeFirstCharacter(String string) {
         if (string.length() > 1) {
             return string.substring(0, 1).toUpperCase() + string.substring(1, string.length());
         } else {
@@ -254,7 +255,7 @@ public class PropertyAccessor implements Comparable, Serializable {
         }
     }
 
-    public static final String addSpacesToVariableName(String string) {
+    public final String addSpacesToVariableName(String string) {
         if (string.length() > 0) {
             String newString = "" + string.charAt(0);
             for (int i = 1; i < string.length(); i++) {
@@ -300,14 +301,14 @@ public class PropertyAccessor implements Comparable, Serializable {
     }
 
     public static Integer paramValueInt(String arg) {
-        return (Integer) stringAsClass(Integer.TYPE, PropertyAccessor.paramValue(arg));
+        return (Integer) stringAsClass(Integer.TYPE, paramValue(arg));
     }
 
     public static Long paramValueLong(String arg) {
-        return Long.parseLong(PropertyAccessor.paramValue(arg));
+        return Long.parseLong(paramValue(arg));
     }
 
     public static Boolean paramValueBoolean(String arg) {
-        return (Boolean) stringAsClass(Boolean.TYPE, PropertyAccessor.paramValue(arg));
+        return (Boolean) stringAsClass(Boolean.TYPE, paramValue(arg));
     }
 }

@@ -1,8 +1,8 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors. 
+ * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors.
  * All rights reserved.
  * This program and the accompanying materials are made available solely under of the BSD license "ascape-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
 package org.ascape.view.nonvis;
@@ -512,7 +512,7 @@ public class DataOutputView extends DataView {
     public void scapeStarted(ScapeEvent scapeEvent) {
         startTime = System.currentTimeMillis();
         if (writeHeaders) {
-            if ((!runHeadersWritten) && (runDataStream != null)) {
+            if (!runHeadersWritten && runDataStream != null) {
                 try {
                     writeRunHeader();
                     runDataStream.writeBytes(EOLString);
@@ -521,7 +521,7 @@ public class DataOutputView extends DataView {
                     throw new RuntimeException("IO Exception occurred while sending iteration data: " + e);
                 }
             }
-            if ((!periodHeadersWritten) && (periodDataStream != null)) {
+            if (!periodHeadersWritten && periodDataStream != null) {
                 try {
                     writePeriodHeader();
                     periodDataStream.writeBytes(EOLString);
@@ -533,7 +533,7 @@ public class DataOutputView extends DataView {
         }
         //Just a firendly warning message..no point adding this view if you're not going to use it!
         if (runDataStream == null && periodDataStream == null) {
-        	getScape().getEnvironment().getConsole().println("Warning: DataOutput view added, but no output stream specified!");
+            getScape().getEnvironment().getConsole().println("Warning: DataOutput view added, but no output stream specified!");
         }
         scapeChanged();
     }
