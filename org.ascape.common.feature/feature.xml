@@ -2,7 +2,7 @@
 <feature
       id="org.ascape.common.feature"
       label="Ascape Framework and Runtime"
-      version="5.1.1.qualifier"
+      version="5.1.2.qualifier"
       provider-name="Ascape.org">
 
    <description url="http://ascape.sourceforge.net">
@@ -62,7 +62,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
    </license>
 
    <url>
-      <update label="metaABM Update Site" url="http://eclipse.metaabm.org/updates/release/site.xml"/>
+      <update label="MetaABM Update Site" url="http://eclipse.metaabm.org/updates/release"/>
    </url>
 
    <requires>

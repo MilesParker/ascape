@@ -3,7 +3,7 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ManifestVersion: 2
 Bundle-Name: Brookings Institution Ascape Models
 Bundle-SymbolicName: org.ascape.models.brook
-Bundle-Version: 5.1.1
+Bundle-Version: 5.1.2
 Require-Bundle: org.ascape.core;bundle-version="5.1.0",
  org.ascape.ui.swing;bundle-version="5.1.0"
 Export-Package: edu.brook.Simple,
