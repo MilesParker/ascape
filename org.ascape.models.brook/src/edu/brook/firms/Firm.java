@@ -1,8 +1,8 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, with revisions by Metascape LLC, and others. 
+ * Copyright 1998-2007 The Brookings Institution, with revisions by Metascape LLC, and others.
  * All rights reserved.
  * This program and the accompanying materials are made available solely under of the BSD license "brookings-models-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
 package edu.brook.firms;
@@ -142,7 +142,7 @@ public class Firm extends Scape {
      * 
      * @return the double
      */
-    public double effort() {
+    public synchronized double effort() {
         double result = 0;
         Iterator i = iterator();
         while (i.hasNext()) {
@@ -157,19 +157,22 @@ public class Firm extends Scape {
      * @return the avg effort
      */
     public double getAvgEffort() {
-        return effort() / getSize();
+        if (getSize() > 0) {
+            return effort() / getSize();
+        }
+        return 0.0;
     }
 
     /**
      * The rec output.
      */
     public double recOutput;
-    
+
     /**
      * The rec size.
      */
     public double recSize;
-    
+
     /**
      * The rec iter.
      */
@@ -181,7 +184,10 @@ public class Firm extends Scape {
      * @return the avg output
      */
     public double getAvgOutput() {
-        return output() / getSize();
+        if (getSize() > 0) {
+            return output() / getSize();
+        }
+        return 0.0;
     }
 
     /**

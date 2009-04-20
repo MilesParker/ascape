@@ -1,8 +1,8 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, with revisions by Metascape LLC, and others. 
+ * Copyright 1998-2007 The Brookings Institution, with revisions by Metascape LLC, and others.
  * All rights reserved.
  * This program and the accompanying materials are made available solely under of the BSD license "brookings-models-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
 package edu.brook.firms;
@@ -17,7 +17,6 @@ import org.ascape.util.data.StatCollectorCSAMM;
 import org.ascape.util.data.UnitIntervalDataPoint;
 import org.ascape.util.vis.ColorFeatureGradiated;
 import org.ascape.view.vis.FixedStretchyView;
-import org.ascape.view.vis.StretchyView;
 
 /**
  * The Class Model1.
@@ -44,7 +43,9 @@ public class Model1 extends Scape {
      */
     private Scape employees;
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.ascape.model.Scape#createScape()
      */
     public void createScape() {
@@ -66,18 +67,22 @@ public class Model1 extends Scape {
         employees.addRule(ITERATE_RULE);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.ascape.model.Scape#scapeSetup(org.ascape.model.event.ScapeEvent)
      */
     public void scapeSetup(ScapeEvent scapeEvent) {
         firms.setExtent(new Coordinate1DDiscrete(0));
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.ascape.model.Scape#createViews()
      */
-    public void createViews() {
-        super.createViews();
+    public void createGraphicViews() {
+        super.createGraphicViews();
         final StatCollectorCSAMM firmUnitOutput = new StatCollectorCSAMM("Firm Unit Output") {
             /**
              * 
@@ -85,30 +90,11 @@ public class Model1 extends Scape {
             private static final long serialVersionUID = 4318959934381762180L;
 
             public double getValue(Object object) {
-                return (((Firm) object).getAvgOutput());
+                return ((Firm) object).getAvgOutput();
             }
         };
         firms.addStatCollector(firmUnitOutput);
-        /*if (!(ViewFrameBridge.isInApplet())) {
-            //Create a new chart
-            ChartView chart = new ChartView();
-            //Add the chart view
-            firms.addView(chart);
-            //And add some of the stat series we've just created to it
-            chart.addSeries("Average Firm Unit Output", Color.green);
-        }*/
-        //Add the new values stats to agents
-        StretchyView firmView = new FixedStretchyView(nAgents, nAgents / 2);
-        firmView.setName("Firms");
-        /*final ColorFeatureGradiated colorForAvgEffort = new ColorFeatureGradiatedIndex("Avg Effort");
-        colorForAvgEffort.setDataPoint(new UnitIntervalDataPoint() {
-public double getValue(Object object) {
-return ((Firm) object).getAvgEffort();
-}
-        });
-        colorForAvgEffort.setMaximumColor(Color.green);
-        colorForAvgEffort.setMinimumColor(Color.red);
-        firmView.setAgentColorFeature(colorForAvgEffort);*/
+
         final ColorFeatureGradiated colorForAvgOutput = new ColorFeatureGradiated("Avg Output");
         colorForAvgOutput.setDataPoint(new UnitIntervalDataPoint() {
             /**
@@ -117,13 +103,40 @@ return ((Firm) object).getAvgEffort();
             private static final long serialVersionUID = -6033261844239803432L;
 
             public double getValue(Object object) {
-                return ((Firm) object).getAvgOutput() / firmUnitOutput.getMax();
+                double max = firmUnitOutput.getMax();
+                if (max > 0.0) {
+                    return ((Firm) object).getAvgOutput() / max;
+                }
+                return 0.0;
             }
         });
-        colorForAvgOutput.setMaximumColor(Color.green);
-        colorForAvgOutput.setMinimumColor(Color.red);
-        firmView.setCellColorFeature(colorForAvgOutput);
+        colorForAvgOutput.setMaximumColor(Color.GREEN);
+        colorForAvgOutput.setMinimumColor(Color.RED);
+
+        final ColorFeatureGradiated colorForAvgEffort = new ColorFeatureGradiated("Avg Effort");
+        colorForAvgEffort.setDataPoint(new UnitIntervalDataPoint() {
+            public double getValue(Object object) {
+                return ((Firm) object).getAvgEffort();
+            }
+        });
+        colorForAvgEffort.setMaximumColor(Color.BLUE);
+        colorForAvgEffort.setMinimumColor(Color.WHITE);
+
+        FixedStretchyView firmEffortView = createView("Firm Effort", colorForAvgEffort, false);
+        FixedStretchyView firmEffortAgeView = createView("Firm Effort by Age", colorForAvgEffort, true);
+        FixedStretchyView firmOutputView = createView("Firm Output", colorForAvgOutput, false);
+        FixedStretchyView firmOutputAgeView = createView("Firms Output by Age", colorForAvgOutput, true);
+        firms.addView(firmEffortView);
+        firms.addView(firmOutputView);
+        firms.addView(firmEffortAgeView);
+        firms.addView(firmOutputAgeView);
+    }
+
+    private FixedStretchyView createView(String name, final ColorFeatureGradiated colorFeature, boolean gaps) {
+        FixedStretchyView firmView = new FixedStretchyView(name, nAgents, nAgents / 2);
+        firmView.setCellColorFeature(colorFeature);
+        firmView.setRemoveGaps(gaps);
         firmView.setCellSize(4);
-        firms.addView(firmView);
+        return firmView;
     }
 }
