@@ -72,7 +72,7 @@ public class PropertyAccessor implements Comparable, Serializable {
         return getLongName(descriptor);
     }
 
-    public String getLongName(PropertyDescriptor descriptor) {
+    public final static String getLongName(PropertyDescriptor descriptor) {
         return removeUnderscores(addSpacesToVariableName(capitalizeFirstCharacter(descriptor.getName())));
     }
 
@@ -80,7 +80,7 @@ public class PropertyAccessor implements Comparable, Serializable {
         return getAsText(object, descriptor);
     }
 
-    public String getAsText(Object object, PropertyDescriptor descriptor) {
+    public final static String getAsText(Object object, PropertyDescriptor descriptor) {
         try {
             return getValue(object, descriptor).toString();
         } catch (NullPointerException e) {
@@ -195,7 +195,7 @@ public class PropertyAccessor implements Comparable, Serializable {
         return getValue(object, descriptor);
     }
 
-    public Object getValue(Object object, PropertyDescriptor descriptor) {
+    public final static Object getValue(Object object, PropertyDescriptor descriptor) {
         try {
             return descriptor.getReadMethod().invoke(object, (Object[]) null);
         } catch (IllegalAccessException e) {
@@ -247,7 +247,7 @@ public class PropertyAccessor implements Comparable, Serializable {
         return tempPropertyAccessors;
     }
 
-    public final String capitalizeFirstCharacter(String string) {
+    public final static String capitalizeFirstCharacter(String string) {
         if (string.length() > 1) {
             return string.substring(0, 1).toUpperCase() + string.substring(1, string.length());
         } else {
@@ -255,7 +255,7 @@ public class PropertyAccessor implements Comparable, Serializable {
         }
     }
 
-    public final String addSpacesToVariableName(String string) {
+    public final static String addSpacesToVariableName(String string) {
         if (string.length() > 0) {
             String newString = "" + string.charAt(0);
             for (int i = 1; i < string.length(); i++) {
