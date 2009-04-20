@@ -89,19 +89,15 @@ body {
 }
 </STYLE>
 </HEAD>
-<title>Ascape 5.0</title>
-<LINK REL="stylesheet" TYPE="text/css" HREF="ascapecolors.css"
-	TITLE="Style">
+<title>Ascape 5.1.3</title>
 <LINK REL="stylesheet" TYPE="text/css" HREF="ascapestyle.css"
-	TITLE="Style">
-<LINK REL="stylesheet" TYPE="text/css" HREF="ascapecontent.css"
 	TITLE="Style">
 <IMG align="RIGHT" SRC="AscapeLogo.gif" WIDTH='181' HEIGHT='84'></IMG>
 <body>
 <div id="wrap">
 <div id="header">
 <h1>Ascape Guide</h1>
-<i>5.0.0</i> -- <i>Last updated: November 9, 2007</i>
+<i>5.1.3</i> -- <i>Last updated: April 20, 2009</i>
 <P></P>
 </div>
 <div id="sidebarfake"></div>
@@ -115,9 +111,9 @@ body {
 		<li><a href="index.html#Analyzing">Analyzing</a></li>
 		<li><a href="index.html#Building">Building</a>
 		<ul>
-			<li><a href="index.html#BuildAnt">Ant</a></li>
-			<li><a href="index.html#BuildEclipse"><i>Eclipse</i></a></li>
-			<li><a href="index.html#BuildGeneric">Others</a></li>
+			<li><a href="index.html#BuildEclipseModels"><i>Eclipse Models</i></a></li>
+			<li><a href="index.html#BuildEclipseAscape"><i>Eclipse Ascape</i></a></li>
+			<li><a href="index.html#BuildGeneric"><i>Others</i></a></li>
 		</ul>
 		</li>
 		<li><a href="index.html#Developing">Developing</a></li>
@@ -218,24 +214,33 @@ who provided many useful comments, ideas and feedback.
 Ascape can be downloaded at <a href="ascape.sourceforge.net">ascape.sourceforge.org</a>
 and is available as a:
 <ul class="ul.star">
-	<li>Stand-alone jar</li>
-	<li>Runtime</li>
-	<li>SDK / Eclipse Project Plugin</li>
+	<li>Stand-alone Jar</li>
+	<li>SDK (Projects)</li>
+	<li>Eclipse (IDE Plugins)</li>
 </ul>
 The sections below explain each usage.
+Please note that the Ascape version numbers listed below are generic. So for example if you have downloaded version 5.9.9 (it doesn't exist yet!) then substitute <code>Ascape_5.m.n</code> with <code>Ascape_5.9.9</code>
 
 <h4><a name="Exploring">Exploring Models</a></h4>
+<span class="note">
+<b>Mac Users:</b>
+Currently the OS X version of Java uses a default graphics implementation that is s__l__o__w. Unfortunatly, there
+is no way to change this from the runnable jar. If you are a Mac user, we suggest you use the Command-Line method with
+to set the graphics implementation to run quickly.<br/>
+<code>java -Dapple.awt.graphics.UseQuartz=true -jar Ascape_5.m.n.jar</code></span>
 
+<h5><a name="Jars">Executable Jar</a></h5>
 <ol>
-	<li>Ensure that you have Java Runtime Environment [JRE] 1.5 or
+	<li>Ensure that you have Java Runtime Environment [JRE] or Java Deveopment Kit [JDK] 1.5 or
 	newer installed on your machine.</li>
-	<li>Download and double-click "Ascape5.0.0.jar"!</li>
+	<li>Download and double-click "Ascape_5.m.n.jar"!</li>
 </ol>
+<h5><a name="Jars">Command-Line</a></h5>
 If you can't or don't wish to use the JRE you can also start Ascape from
 the command-line by typing:
 <ol>
 	<li><pre>cd [path to Ascape directory]</pre></li>
-	<li><pre>java -cp "Ascape5.0.0.jar" org.ascape.model.Scape</pre></li>
+	<li><pre>java -cp "Ascape_5.m.n.jar" org.ascape.runtime.swing.SwingRunner</pre></li>
 </ol>
 <span class="info">If you want to add the jar to your class-path,
 note that the Ascape jar includes all library dependencies, so you will
@@ -243,11 +248,11 @@ probably want to use the Runtime download as described <a
 	href="index.html#Analyzing">below</a>.<BR>
 <BR>
 Models and parameters can be specified as command-line arguments. Try: <BR>
-<code>java -cp "Ascape5.0.0.jar" org.ascape.model.Scape
+<code>java -cp "Ascape_5.m.n.jar" org.ascape.runtime.swing.SwingRunner
 edu.brook.pd.PD2D</code><BR>
-<code>java -cp "Ascape5.0.0.jar" org.ascape.model.Scape
+<code>java -cp "Ascape_5.m.n.jar" org.ascape.runtime.swing.SwingRunner
 edu.brook.pd.PD2D mutationRate="0.2"</code><BR>
-<code>java -cp "Ascape5.0.0.jar" org.ascape.model.Scape
+<code>java -cp "Ascape_5.m.n.jar" org.ascape.runtime.swing.SwingRunner
 edu.brook.pd.PD2D stopPeriod=100 displaygraphics=false autorestart=false</code></span>
 After launching Ascape the first-time, a click-through license appears
 and then a model selection menu. <BR>
@@ -424,21 +429,22 @@ Click on the second camera icon to begin taking a movie and follow the
 dialog instructions. (Due to a change in the Apple QT runtime, movies
 are ironically currently broken under OS X.)
 
-<h4><a name="Analyzing"> Analyzing Models -- running Ascape
+<h4><a name="Analyzing"> Analyzing Models and running Ascape
 with Ant </a></h4>
-<ol>
-	<li>Download and unzip AscapeRuntime[Date].zip from the Ascape
-	web-site. <span class="note">At this point, one could add the
+<p>At this point, one could add the
 	contents of the lib directory to the classpath and execute Ascape using
 	command-line arguments as described above. But it is generally much
 	less painful to use the included Apache ant build scripts. Ascape uses
 	ant to support complex build <i>and</i> run execution support without
-	requiring complex configuration steps.</span></li>
+	requiring complex configuration steps.</p>
+<ol>
+	<li>Download and unzip Ascape_SDK_5.m.n.zip from the downlaods site.</li>
 	<li>Download and install <a href="http://ant.apache.org">ant</a>.</li>
 	<li>Ensure that ant is available in your executable path. See the
 	ant documentation for more details on ant configuration.</li>
-	<li><code>cd [path to AscapeRuntime]/tools</code></li>
-	<li><code>ant -f run.xml runPD</code></li>
+	<li>Open a command line environment. On Macs and Linux this is the "Terminal", on Windows "Console".</li>
+	<li>Change to the org.ascape.all directory that you installed into. For example<BR><code>cd /MyMachine/Ascape_SDK_5.m.n/org.ascape.all</code><BR><code>dir C:/MyAscapeDir/toolsAscape_SDK_5.m.n/org.ascape.all</code></li>
+	<li>Invoke ant run.xml by typing: <code>ant -f run.xml runPD</code></li>
 </ol>
 
 If we take a look at the run.xml file we can see that it is relatively
@@ -508,115 +514,47 @@ data output. For example: <pre>
         &lt;/ascape&gt;
     &lt;/target&gt;
 </pre> <BR>
-Here we specify data output that writes a line for each run's parameters
+<p>Here we specify data output that writes a line for each run's parameters
 to "testPDRun.txt" and a line for each model run's state to
 "runPDPeriod.txt". We also easily specify a parameter exploration by
-sweeping across death age and fission wealth.
+sweeping across death age and fission wealth.</p>
+<p>The included ant.xml file can also be used with the Ascape jar. Just place the jar in the same directory with the ant file.</p>
 
-
-<h4><a name="Building">Building Ascape and Models</a></h4>
+<h4><a name="Building">Building Ascape Models</a></h4>
 
 <h4>Basics</h4>
 It is not necessary to have an IDE (Integrated Development Environment)
 such as IntelliJ or Eclipse, but they are be an indispensable aid to the
-development process. <span class="info">While I hesitate to
+development process. 
+<span class="info">While I hesitate to
 coerce anyone into using a specific software tool, I recommend Eclipse,
 as complete Eclipse projects are provided and future related work will
 rely heavily on the Eclipse platform. <i>-Miles</i></span>
 
-<h4><i><a name="BuildAnt">Building with Ant</a></i></h4>
-In order to ensure that Ascape can be built in any environment and to
-support automated building and testing, the Ascape SDK includes complete
-ant scripts in the project <code>tools</code> directory. If you wish to
-use ant or test your basic environment, follow these steps. Otherwise,
-you can skip ahead to the next section.
-<ol>
-	<li>Ensure that you have the <A
-		HREF="http://java.sun.com/downloads/index.html">Java Development
-	Kit (JDK) 1.5</A> or higher installed on your system.<BR>
-	</li>
-	<li>Download and unzip AscapeSDK[Date].zip from the Ascape
-	web-site.</li>
-	<li>Download and install ant. (See above.)</li>
-	<li>Add junit to your classpath.<BR>
-	<span class="note">The junit.jar is included in the Ascape SDK.
-	If you do not already have it, see your platform documentation for
-	setting environment variables and add <code>[PathToAscapeSDK]/org.ascape.common/lib/junit.jar</code>
-	to CLASSPATH. </span></li>
-	<li><pre>cd [path to AscapeSDK]/org.ascape.common/tools</pre></li>
-	<li><pre>ant</pre></li>
-</ol>
-If everything is set up properly, ant should rebuild Ascape and the
-included Ascape models and run a set of unit tests to ensure that Ascape
-is functioning properly. Note that you may see a few warning messages;
-this is expected. Next, to build the demo models, you can do:
-<ol>
-	<li><pre>cd [path to AscapeSDK]/org.ascape.models.brook/tools</pre></li>
-	<li><pre>ant</pre></li>
-	<li><pre>cd [path to AscapeSDK]/org.ascape.models.examples/tools</pre></li>
-	<li><pre>ant</pre></li>
-</ol>
-You could use nothing more than ant and a text editor such as emacs to
-write and build models. Ant can also be easily used from within many
-IDE's so you may simply want to use the included <code>tools/build.xml</code>
-files to build from your IDE. A full explanation of ant configuration is
-beyond the scope of this document, but the modular nature of the
-included build files makes this pretty simple. You can simply copy the
-directory structure of <code>org.ascape.models.examples</code> and alter
-a few lines in the build.xml file.
 <h4><i><a name="BuildEclipse">Building with Eclipse</a></i></h4>
 
+<h5><a name="BuildEclipseModels">Building models with Eclipse</a></h5>
+<p>If you are not planning to change Ascape, the simplest way to develop models is to use the Eclipse plugins. 
+If you have any problems with this approach just use the <a href="#BuildEclipseAscape">"building Ascape itself"</a> instructions below instead.</p>
 <ol>
 	<li>Install <a href="http://www.eclipse.org/">Eclipse</a>. We
-	recommend Europa [3.3], the latest release.</li>
-	<li>Download and unzip AscapeSDK[Date].zip to a convenient
-	location.</li>
-	<li>Launch Eclipse</li>
-	<li>Right-click in package explorer space and select "Import".<BR>
-	<p><img align="middle" src="screens/EclipseImportMenu.png" />
-	<p>
-	</li>
-	<li>From "General" folder, choose "Existing Projects..".<BR>
-	<p><img align="middle" src="screens/EclipseImportProjects.png" />
-	<p>
-	</li>
-	<li>Browse to your install directory and select all projects.<BR>
-	<p><img align="middle" src="screens/EclipseSelectProjects.png" />
-	<p>
-	</li>
-	<li>Ascape will build automatically.<BR>
-	<span class="info">By default, Eclipse displays an imposing list
-	of java source warning messages, almost all of which have to do with
-	narrow Java 1.5 generics issues, and all of which can be safely
-	ignored. These warning can be made less aggressive by selecting
-	Eclipse:Preferences and modifying Java:Compiler:Errors/Warnings.</span></li>
-	<li>Right-click in package explorer to create a new project for
-	your Ascape model(s).<BR>
-	<p><img align="middle" src="screens/EclipseNewProjectMenu.png" />
-	<p>
-	</li>
-	<li>If you don't see Java project, you can select New:Other.. and
-	Java Project.<BR>
-	<p><img align="middle" src="screens/EclipseNewJavaProject.png" />
-	<p>
-	</li>
-	<li>Or Select New "Other.." and Java Project.<BR>
-	<p><img align="middle" src="screens/EclipseNewJavaProject.png" />
-	<p>
-	</li>
-	<li>Give the project a name and leave all of the other settings as
-	is.<BR>
-	<p><img align="middle" src="screens/EclipseCreateJavaProject.png" />
-	<p>
-	</li>
-	<li>Click Next and select the Projects tab, and click the Add
-	button to add the "org.ascape.common" project to the build path.<BR>
-	<p><img align="middle" src="screens/EclipseAddRequiredProject.png" />
-	<p>
-	<p><img align="middle"
-		src="screens/EclipseSelectRequiredProject.png" />
-	<p>
-	</li>
+	recommend Ganymede [3.4], the latest release.</li>
+	<li>Download and unzip Ascape_Eclipse_5.m.n.zip.</li>
+	<li>Copy the contents of the download into the "dropins" folder in your Eclipse install.</li>
+	<li>Launch Eclipse.</li>
+	<li>Right-click in Package Explorer and select New:Project..</li>
+	<p><img align="middle" src="screens/EclipseModelNewMenu.png" />
+	<li>In the dialog that follows, pick "Plugin Project".</li>
+	<p><img align="middle" src="screens/EclipseModelPickProject.png" />
+	<li>Enter a name and click Next.</li>
+	<p><img align="middle" src="screens/EclipseModelProjectP1.png" />
+	<li>You can deselect the plugin options on the next page and click "finish".</li>
+	<p><img align="middle" src="screens/EclipseModelProjectP2.png" />
+	<li>In the new project, open up the MANIFEST.MF file.</li>
+	<p><img align="middle" src="screens/EclipseModelManifest.png" />
+	<li>Click the Dependency tab, then the "Add.." button and select "org.ascape.ui.swing" from the long list of plugins provided.
+	You should end up with this:</li>
+	<p><img align="middle" src="screens/EclipseModelDependent.png" />
 	<li>Click Finish. Now we can build a simple Ascape model by
 	creating a new Scape class.<BR>
 	<p><img align="middle" src="screens/EclipseNewClassMenu.png" />
@@ -670,8 +608,9 @@ a few lines in the build.xml file.
 	<li>Now that we have created our model, we can launch it by
 	selecting Run:Open Run Dialog. Create a new Java Application
 	configuration using the "add document" button at the upper-left. Ensure
-	that the project name is correct and set <code>org.ascape.model.Scape</code>
+	that the project name is correct and set <code>org.ascape.runtime.swing.SwingRunner</code>
 	as the main class.<BR>
+	<span class="alert">The screenshot below is out-of-date. Use SwingRunner, not org.ascape.model.Scape as the main class.</span>
 	<p><img align="middle" src="screens/EclipseHelloRunSettings.png" />
 	<p>
 	</li>
@@ -686,48 +625,81 @@ a few lines in the build.xml file.
 	<p>
 	</li>
 </ol>
-
-<h4><i><a name="BuildGeneric">Building with another IDE</a></i></h4>
+<h5><a name="BuildEclipseAscape">Building Ascape itself in Eclipse</a></h5>
+<ol>
+	<li>Install <a href="http://www.eclipse.org/">Eclipse</a>.</li>
+	<li>Download and unzip Ascape_SDK_5.m.n.zip to a convenient
+	location.</li>
+	<li>Launch Eclipse</li>
+	<li>Right-click in package explorer space and select "Import".<BR>
+	<p><img align="middle" src="screens/EclipseImportMenu.png" />
+	<p>
+	</li>
+	<li>Browse to the directory you installed and pick the following projects (at least) from the list: org.acsape.core, org.acape.common.lib, org.ascape.ui.swing. You will probably want the model projects as well.<BR>
+	<p><img align="middle" src="screens/EclipseImportProjects.png" />
+	<p>
+	</li>
+	<li>Ascape will build automatically.<BR>
+	<span class="info">By default, Eclipse displays an imposing list
+	of java source warning messages, almost all of which have to do with
+	narrow Java 1.5 generics issues, and all of which can be safely
+	ignored. These warning can be made less aggressive by selecting
+	Eclipse:Preferences and modifying Java:Compiler:Errors/Warnings.</span></li>
+	<li>If you want to build a new model project, create a new Java project by right-clicking in the Package Explorer, and selecting "New:Java Project".<BR>
+	<p><img align="middle" src="screens/EclipseNewJavaProject.png" />
+	<p>
+	</li>
+	<li>Give the project a name and leave all of the other settings as
+	is.<BR>
+	<p><img align="middle" src="screens/EclipseCreateJavaProject.png" />
+	<p>
+	</li>
+	<li>Click Next and select the Projects tab, and click the Add
+	button to add the "org.ascape.ui.swing" project to the build path.<BR>
+	<p><img align="middle" src="screens/EclipseSelectProject.png" />
+	</li>
+	<li>You chould be able to continue with the instructions under building models above.
+</ol>
+<h5><a name="BuildAscapeMetaABM">Building Eclipse using metaABM</a></h5>
+<p>A new option is to use the metaABM Ascape tools to create Ascape models. For more information, see the <a href="http://metaabm.org/docs/installing.html">metaABM website</a>.
+<h4><i><a name="BuildGeneric">Building models with another IDE</a></i></h4>
 
 If you want to use an IDE <i>other than</i> Eclipse, set up should still
-be pretty simple. <span class="note">As we mentioned in the ant
-section above, you might simply want to import the project folders (e.g.
-<code>org.ascape.common, org.ascape.models.brook and
-org.ascape.models.examples</code> ) into your directory and then use your IDE's
-ant build tools.</span> If you wish to set things up to use your IDEs build
+be pretty simple. If you wish to set things up to use your IDEs build
 features, these are the basic steps; see you IDE documentation for more
 details.
-<h5>To build <i>Ascape</i> or the included models, do the
-following:</h5>
+
+<h5>To build your own models:</h5>
+<ol>
+	<li>Create a new project.</li>
+	<li>Add the Ascape_5.m.n.jar to your project (usually this is placed in a 'lib' directory).</li>
+	<li>Create a source (src) directory(s) or a dependent project to
+	manage your own model files.</li>
+	<li>Follow the directions above to create your first model, or place that org.acape.models.brook and org.ascape.models.examples into a source directory.</li>
+	<li>Select the IDE 'build' menu item. (In Eclipse, builds happen automatically.)</li>
+</ol>
+
+<h5>To build <i>Ascape</i> itself:</h5>
 <ol>
 	<li>Download and unzip AscapeSDK[Date].zip.</li>
 	<li>Create a new project.<BR>
 	<span class="note">Depending on your IDE, you may want top set
 	up separate projects for each of the included Ascape projects, or you
-	may simply want to add the brook and examples src directories to your
+	may simply want to add all of the src and org.ascape.common.lib directories to your
 	main project.</span></li>
-	<li>Add all of the jar files to your project libraries.<BR>
-	<span class="note">Don't leave out QT.java!</span></li>
+	<li>org.ascape.common.lib includes all dependent classes (jars) in unpacked form.</li>
+	<li>Project dependencies are org.ascape.ui.swing -> org.ascape.core -> org.ascape.common.lib</li>
 	<li>Add the 'src' directory(s) to your source files.</li>
 	<li>Select the IDE 'build' menu item. <BR>
 	<span class="info">If you were using Eclipse, this would happen
 	automatically.</span>
 </ol>
 
-<h5>To build your own models::</h5>
-<ol>
-	<li>Download and unzip AscapeSDK[Date].zip and/or
-	AscapeRuntime[Date].zip (see below).</li>
-	<li>Create a new project.</li>
-	<li>Add all of the jar files in org.ascape.common to your project
-	libraries, <b>and</b><BR>
-	<li>Add the org.ascape.common/bin directory to your build path.</li>
-	<li><b>Or</b> use the .jar files from AscapeRuntime, which include
-	ascape-common.jar and ascape-models.jar.</li>
-	<li>Create a source (src) directory(s) or a dependent project to
-	manage your own model files.</li>
-	<li>Select the IDE 'build' menu item.
-</ol>
+<span class="note"><h5>Building with Ant</h5>
+Prior Ascape releases supported automated building with ant. As there is now good consistent build support
+in Eclipse and other IDEs we are no longer using or supporting ant builds. The old scripts are available in
+org.ascape.all in the SDK and could be made to work with minimal modifications.</span>
+
 
 
 <h4><a name="Developing">Developing Models -- Where to Go from
@@ -787,9 +759,9 @@ Access to the source code repository is available at: <code>https://ascape.svn.s
 If you would like to discuss contributing to Ascape, please contact <A
 	HREF="mailto:miles@metascapeabm.com">Miles</A>.
 <h3><a name="Known Issues"> Known Issues </a></h3>
-Movies appear to be broken under recent editions of Mac OS X and have
-not been tested extensivil under other platforms. Please let us know of
-yopur expereinces with Linux and Windows.
+Because of changes in Apple QuickTime, movies may not work correctly under recent editions of Mac OS X and have
+not been tested under other platforms. Please let us know of
+your experiences with Linux and Windows.
 
 <h3><a name="Contact">Support and Contacts</a></h3>
 
@@ -825,24 +797,28 @@ Paid consulting and support options are available from the corporate
 sponsors. Otherwise please send technical questions, bug reports, etc..
 to the Ascape forums.</font></span>
 
-<h4>Brookings</h4>
-
-The Brookings Institution is a leading national policy think tank and
-home to the Center on Social and Economic Dynamics, where pioneering
-work on Agent-Based Models continues.
-<p>Website: <A HREF="http://www.brook.edu">Brookings</A><BR>
-Contact: <A HREF="mailto:csed@brookings.edu">Gordon McDonald</A><br></br>
+<h4>Metascape, LLC</h4>
+Metascape develops and supports innovative ABM software tools.
+<p>Website: <A HREF="http://www.metascapeabm.com">Metascape</A><BR>
+Contact: <A HREF="mailto:miles@metascapeabm.com">Miles T. Parker</A><br></br>
 <h4>NuTech Solutions, Inc.</h4>
-
 NuTech is a leader in applying ABMs to real-world industry and
 government problems.
 <p>Website: <A HREF="http://www.nutechsolutions.com">NuTech</A><BR>
 Contact: <A HREF="http://nutechsolutions.com/contact_question.asp">Contacts Page</A><br></br>
-<h4>Metascape, LLC</h4>
+<h4>Brookings</h4>
+The Brookings Institution is a leading national policy think tank and
+home to the Center on Social and Economic Dynamics, where pioneering
+work on Agent-Based Models continues.
+<p>Website: <A HREF="http://www.brook.edu">Brookings</A><BR>
+Contact: <A HREF="mailto:csed@brookings.edu">CSED</A><br></br>
 
-Metascape develops and supports innovative ABM software tools.
-<p>Website: <A HREF="http://www.metascapeabm.com">Metascape</A><BR>
-Contact: <A HREF="mailto:miles@metascapeabm.com">Miles T. Parker</A><br></br>
+YourKit is kindly supporting open source projects with its full-featured Java Profiler.
+YourKit, LLC is creator of innovative and intelligent tools for profiling
+Java and .NET applications. Take a look at YourKit's leading software products:
+<a href="http://www.yourkit.com/java/profiler/index.jsp">YourKit Java Profiler</a> and
+<a href="http://www.yourkit.com/.net/profiler/index.jsp">YourKit .NET Profiler</a>.</small><BR>
+
 <h3><a name="Updating"> Updating from Previous Versions </a></h3>
 We have tried to preserve as much backward compatibility as possible.
 Still, this is a the first release in over eight years, and there have
@@ -901,6 +877,24 @@ to compile it with the new version of Ascape. .
 <h3><a name="Version"> Version History</a></h3>
 
 <ul>
+    <li>[5.1.3]
+    <ul>
+        <li>Bug fixes. Factored out uneccesary lib dependencies from core. Please see <a href="http://sourceforge.net/tracker/?group_id=203744&atid=986824">Ascape bug tracker</a>.</li>
+    </ul>
+    <li>[5.1.2]
+    <ul>
+        <li>Bug fixes. Please see <a href="http://sourceforge.net/tracker/?group_id=203744&atid=986824">Ascape bug tracker</a>.</li>
+    </ul>
+    <li>[5.1.1]
+    <ul>
+        <li>Bug fixes. Please see <a href="http://sourceforge.net/tracker/?group_id=203744&atid=986824">Ascape bug tracker</a>.</li>
+    </ul>
+	<li>[5.1]
+	<ul>
+		<li>Factored out swing ui into seperate project</li>
+		<li>Other refactorings to clean up runner functionality and user environment</li>
+		<li>Small functional improments and bug fixes</li>
+	</ul>
 	<li>[5.0]
 	<ul>
 		<li>Open Source release</li>
