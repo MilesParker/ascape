@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry exported="true" kind="lib" path="" sourcepath="/Developer/eclipse-3.4M4/plugins/org.apache.ant.source_1.7.0.v200711021030/src/org.apache.ant_1.7.0.v200711021030/lib/antsrc.zip"/>
+	<classpathentry exported="true" kind="lib" path=""/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="output" path="bin"/>
