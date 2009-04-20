@@ -97,11 +97,10 @@ public class AgentCustomizerPanel {
          * @see javax.swing.table.TableModel#getValueAt(int, int)
          */
         public Object getValueAt(int row, int col) {
-            PropertyAccessor dummy = new PropertyAccessor(null, (PropertyDescriptor) null);
             if (col == 0) {
-                return dummy.getLongName(accessors[row]);
+                return PropertyAccessor.getLongName(accessors[row]);
             } else {
-                return dummy.getAsText(agent, accessors[row]);
+                return PropertyAccessor.getAsText(agent, accessors[row]);
             }
         }
 

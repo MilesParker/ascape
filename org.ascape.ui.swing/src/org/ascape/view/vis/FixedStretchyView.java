@@ -1,8 +1,8 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors. 
+ * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors.
  * All rights reserved.
  * This program and the accompanying materials are made available solely under of the BSD license "ascape-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
 package org.ascape.view.vis;
@@ -12,7 +12,6 @@ import java.awt.Graphics;
 import java.util.Iterator;
 
 import org.ascape.model.Agent;
-import org.ascape.model.Cell;
 import org.ascape.model.LocatedAgent;
 import org.ascape.model.Scape;
 import org.ascape.model.event.ScapeEvent;
@@ -36,6 +35,8 @@ public class FixedStretchyView extends StretchyView {
      */
     private boolean[] agentFoundAt;
 
+    boolean removeGaps;
+
     /**
      * Instantiates a new fixed stretchy view.
      * 
@@ -44,6 +45,19 @@ public class FixedStretchyView extends StretchyView {
      * @param maxDisplayElements
      *            the max display elements
      */
+    public FixedStretchyView(String name, int maxElements, int maxDisplayElements) {
+        super(maxElements, maxDisplayElements);
+        setName(name);
+    }
+
+    /**
+     * Instantiates a new fixed stretchy view.
+     * 
+     * @param maxElements
+     *        the max elements
+     * @param maxDisplayElements
+     *        the max display elements
+     */
     public FixedStretchyView(int maxElements, int maxDisplayElements) {
         super(maxElements, maxDisplayElements);
     }
@@ -51,7 +65,7 @@ public class FixedStretchyView extends StretchyView {
     /* (non-Javadoc)
      * @see org.ascape.view.vis.PanelView#scapeSetup(org.ascape.model.event.ScapeEvent)
      */
-    public void scapeSetup(ScapeEvent scapeEvent) {
+    public void scapeInitialized(ScapeEvent scapeEvent) {
         agentView = new Agent[maxAgents];
         agentFoundAt = new boolean[maxAgents];
     }
@@ -60,15 +74,22 @@ public class FixedStretchyView extends StretchyView {
      * @see org.ascape.view.vis.AgentView#updateScapeGraphics()
      */
     public void updateScapeGraphics() {
-        if ((scape != null) && (scape.isInitialized())) {
+        if (scape != null && scape.isInitialized()) {
             bufferedGraphics.setColor(getBackground());
             bufferedGraphics.fillRect(0, 0, bufferedImage.getWidth(null), bufferedImage.getHeight(null));
             bufferedGraphics.setColor(getForeground());
-            int agentsSize = scape.getSize();
-            for (int i = 0; i < agentView.length; i++) {
-                agentFoundAt[i] = false;
+            int agentsSize = getScape().getSize();
+            if (!removeGaps) {
+                for (int i = 0; i < agentView.length; i++) {
+                    agentFoundAt[i] = false;
+                }
+            } else {
+                for (int i = 0; i < agentView.length; i++) {
+                    agentFoundAt[i] = false;
+                    agentView[i] = null;
+                }
             }
-            Iterator n = scape.iterator();
+            Iterator n = getScape().iterator();
             while (n.hasNext()) {
                 Agent agent = (Agent) n.next();
                 boolean agentFound = false;
@@ -79,7 +100,6 @@ public class FixedStretchyView extends StretchyView {
                             firstNull = i;
                         }
                     } else if (agentView[i] == agent) {
-                        //agentMax = i;
                         agentFound = true;
                         agentFoundAt[i] = true;
                     }
@@ -109,7 +129,7 @@ public class FixedStretchyView extends StretchyView {
      */
     public Agent getAgentAtPixel(int x, int y) {
         int position = x / agentSize;
-        return (Cell) agentView[position];
+        return agentView != null ? agentView[position] : null;
     }
 
     /* (non-Javadoc)
@@ -123,6 +143,24 @@ public class FixedStretchyView extends StretchyView {
                 bufferedGraphics.drawRect(i * agentSize - 1, bufferedImage.getHeight(null) - s - 1, agentSize, s);
             }
         }
+    }
+
+    /**
+     * Should gaps be removed? Default is false.
+     * 
+     * @return
+     */
+    public boolean isRemoveGaps() {
+        return removeGaps;
+    }
+
+    /**
+     * Should gaps be removed from model as firms are removed? (New agents then appear to the right.)
+     * 
+     * @param removeGaps
+     */
+    public void setRemoveGaps(boolean removeGaps) {
+        this.removeGaps = removeGaps;
     }
 
     /**

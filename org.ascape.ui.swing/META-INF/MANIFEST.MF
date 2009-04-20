@@ -2,11 +2,15 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Ascape Swing Support
 Bundle-SymbolicName: org.ascape.ui.swing
-Bundle-Version: 5.1.2
+Bundle-Version: 5.1.3
 Bundle-Vendor: Ascape.org
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Require-Bundle: org.ascape.core;visibility:=reexport
+Require-Bundle: org.ascape.core;visibility:=reexport,
+ org.ascape.common.lib;bundle-version="5.1.3";visibility:=reexport,
+ org.apache.commons.lang;visibility:=reexport,
+ org.apache.ant
 Export-Package: org.ascape.ant.swing,
+ org.ascape.gis.model,
  org.ascape.gis.view,
  org.ascape.model,
  org.ascape.movie,
