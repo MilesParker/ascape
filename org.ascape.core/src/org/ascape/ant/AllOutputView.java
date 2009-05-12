@@ -1,8 +1,8 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors. 
+ * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors.
  * All rights reserved.
  * This program and the accompanying materials are made available solely under of the BSD license "ascape-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 package org.ascape.ant;
 
@@ -23,6 +23,7 @@ import org.ascape.util.Utility;
 import org.ascape.view.nonvis.DataOutputView;
 import org.jdom.Document;
 import org.jdom.Element;
+import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 
 /**
@@ -103,10 +104,10 @@ public class AllOutputView extends DataOutputView {
      */
     public void writeRunData() throws IOException {
         // add to the run file in proper xml format, <model name="Food Distribution" systemTime="0514865115"> with closing </model>
-//        runDataStream.writeBytes("<?xml version='1.0' encoding='utf-8'?>" + EOLString);
+        //        runDataStream.writeBytes("<?xml version='1.0' encoding='utf-8'?>" + EOLString);
 
-        rootElement.addAttribute("name", getScape().getRoot().getName());
-        rootElement.addAttribute("systemTime", (new Long(startTime)).toString());
+        rootElement.setAttribute("name", getScape().getRoot().getName());
+        rootElement.setAttribute("systemTime", new Long(startTime).toString());
 
         // write model parameters
         Element modelParametersElement = buildAndAddElement("modelParameters", rootElement);
@@ -134,24 +135,24 @@ public class AllOutputView extends DataOutputView {
         // done with model params
         // write agent data
         Element agentDataElement = buildAndAddElement("agentData", rootElement);
-//        runDataStream.writeBytes(tab+"<agentData>" + EOLString);
+        //        runDataStream.writeBytes(tab+"<agentData>" + EOLString);
         if (scape.getPrototypeAgent() instanceof Scape) {
             for (Iterator scapeIt = scape.iterator(); scapeIt.hasNext();) {
-            // todo: do this recursively, in case there are multiple layers of members
+                // todo: do this recursively, in case there are multiple layers of members
                 Scape member = (Scape) scapeIt.next();
                 Element membersElement = buildAndAddElement("members", agentDataElement);
-                membersElement.addAttribute("name", member.getName());
-//                runDataStream.writeBytes(tab+tab+"<members name=\""+member.getName()+"\" />" + EOLString);
+                membersElement.setAttribute("name", member.getName());
+                //                runDataStream.writeBytes(tab+tab+"<members name=\""+member.getName()+"\" />" + EOLString);
                 for (Iterator memberIt = member.iterator(); memberIt.hasNext();) {
                     LocatedAgent agent = (LocatedAgent) memberIt.next();
                     Element memElement = buildAndAddElement("member", membersElement);
-//                    Coordinate coordinate = agent.getCoordinate();
-//                    if (agent instanceof CellOccupant) {
-//                        coordinate = ((CellOccupant) agent).getHostCell().getCoordinate();
-//                        memElement.addAttribute("name", "coordinate");
-//                        memElement.addAttribute("value", coordinate.toString());
-//                    }
-//                    runDataStream.writeBytes(tab+tab+tab+"<member coordinate=\""+coordinate+"\" >"+ EOLString);
+                    //                    Coordinate coordinate = agent.getCoordinate();
+                    //                    if (agent instanceof CellOccupant) {
+                    //                        coordinate = ((CellOccupant) agent).getHostCell().getCoordinate();
+                    // memElement.setAttribute("name", "coordinate");
+                    // memElement.setAttribute("value", coordinate.toString());
+                    //                    }
+                    //                    runDataStream.writeBytes(tab+tab+tab+"<member coordinate=\""+coordinate+"\" >"+ EOLString);
                     List agentAccessors = retrieveAgentAccessors(agent);
                     for (Iterator agentAccessorsIt = agentAccessors.iterator(); agentAccessorsIt.hasNext();) {
                         PropertyAccessor accessor = (PropertyAccessor) agentAccessorsIt.next();
@@ -162,11 +163,11 @@ public class AllOutputView extends DataOutputView {
         } else {
             for (Iterator memberIt = scape.iterator(); memberIt.hasNext();) {
                 Element membersElement = buildAndAddElement("members", agentDataElement);
-                membersElement.addAttribute("name", scape.getName());
+                membersElement.setAttribute("name", scape.getName());
                 LocatedAgent agent = (LocatedAgent) memberIt.next();
                 Element memElement = buildAndAddElement("member", membersElement);
-                memElement.addAttribute("name", "coordinate");
-                memElement.addAttribute("value", agent.getCoordinate().toString());
+                memElement.setAttribute("name", "coordinate");
+                memElement.setAttribute("value", agent.getCoordinate().toString());
                 List agentAccessors = retrieveAgentAccessors(agent);
                 for (Iterator agentAccessorsIt = agentAccessors.iterator(); agentAccessorsIt.hasNext();) {
                     PropertyAccessor accessor = (PropertyAccessor) agentAccessorsIt.next();
@@ -224,8 +225,8 @@ public class AllOutputView extends DataOutputView {
      */
     private void buildAndAddParameterElement(String paramName, Object paramValue, Element parent) {
         Element parameterEl = new Element("parameter");
-        parameterEl.addAttribute("name", paramName);
-        parameterEl.addAttribute("value", paramValue.toString());
+        parameterEl.setAttribute("name", paramName);
+        parameterEl.setAttribute("value", paramValue.toString());
         parent.addContent(parameterEl);
     }
 
@@ -263,7 +264,7 @@ public class AllOutputView extends DataOutputView {
     private List retrieveAgentAccessors(LocatedAgent agent) {
         List agentAccessors = null;
         try {
-             agentAccessors = PropertyAccessor.determineReadWriteAccessors(agent, Agent.class, true);
+            agentAccessors = PropertyAccessor.determineReadWriteAccessors(agent, Agent.class, true);
         } catch (IntrospectionException e) {
             e.printStackTrace();  //To change body of catch statement use Options | File Templates.
         }
@@ -282,9 +283,7 @@ public class AllOutputView extends DataOutputView {
         try {
             writeRunData();
             FileOutputStream stream = new FileOutputStream(runFile);
-            XMLOutputter out = new XMLOutputter();
-            out.setNewlines(true);
-            out.setIndent("\t");
+            XMLOutputter out = new XMLOutputter(Format.getPrettyFormat());
             out.output(new Document(rootElement), stream);
             stream.close();
         } catch (IOException e) {
