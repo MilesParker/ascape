@@ -2,7 +2,7 @@
 <feature
       id="org.ascape.common.feature"
       label="Ascape Framework and Runtime"
-      version="5.1.3.qualifier"
+      version="5.2.0.qualifier"
       provider-name="Ascape.org">
 
    <description url="http://ascape.sourceforge.net">
