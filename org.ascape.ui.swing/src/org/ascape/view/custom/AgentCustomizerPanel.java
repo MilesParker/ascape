@@ -33,7 +33,7 @@ import javax.swing.table.TableCellRenderer;
 
 import org.ascape.model.Agent;
 import org.ascape.model.Scape;
-import org.ascape.runtime.swing.DesktopEnvironment;
+import org.ascape.runtime.swing.SwingEnvironment;
 import org.ascape.util.PropertyAccessor;
 import org.ascape.view.vis.AgentView;
 
@@ -294,8 +294,8 @@ public class AgentCustomizerPanel {
         if (agent != null) {
             label.setText(agent.toString());
 
-            if (DesktopEnvironment.DEFAULT_ENVIRONMENT != null) {
-                propertySupport = DesktopEnvironment.DEFAULT_ENVIRONMENT.getPropertySupportForObject(agent);
+            if (SwingEnvironment.DEFAULT_ENVIRONMENT != null) {
+                propertySupport = SwingEnvironment.DEFAULT_ENVIRONMENT.getPropertySupportForObject(agent);
             }
 
             try {

@@ -1,8 +1,8 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors. 
+ * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors.
  * All rights reserved.
  * This program and the accompanying materials are made available solely under of the BSD license "ascape-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
 package org.ascape.runtime.swing;
@@ -136,7 +136,7 @@ public class UserFrame extends JFrame {
         private void checkThread() {
             if (!SwingUtilities.isEventDispatchThread()) {
                 // throw new RuntimeException("Wrong Thread!!");
-                if ((menuView != null) && (menuView.getScape() != null) && (menuView.getScape().isRunning())) {
+                if (menuView != null && menuView.getScape() != null && menuView.getScape().isRunning()) {
                     System.err.println("Wrong Thread");
                     Thread.dumpStack();
                 }
@@ -203,11 +203,11 @@ public class UserFrame extends JFrame {
             }
 
             public void windowClosing(WindowEvent e) {
-                (new Thread("Quit") {
+                new Thread("Quit") {
                     public void run() {
                         environment.quit();
                     }
-                }).start();
+                }.start();
             }
         });
     }
@@ -250,7 +250,7 @@ public class UserFrame extends JFrame {
      */
     private void buildMenuView() {
         menuView = new MenuBarView();
-        DesktopEnvironment.DEFAULT_ENVIRONMENT.addView(menuView, false);
+        SwingEnvironment.DEFAULT_ENVIRONMENT.addView(menuView, false);
     }
 
     /**
@@ -291,7 +291,7 @@ public class UserFrame extends JFrame {
             };
             navTitle.setBackground(DesktopEnvironment.ACCENT_COLOR);
             navTitle.setBorder(BorderFactory.createRaisedBevelBorder());
-            DesktopEnvironment.DEFAULT_ENVIRONMENT.addView(navigator, false);
+            SwingEnvironment.DEFAULT_ENVIRONMENT.addView(navigator, false);
 
             JScrollPane navScroll = new JScrollPane(navigator);
 
@@ -370,7 +370,7 @@ public class UserFrame extends JFrame {
      * Handle control bar show.
      */
     private void handleControlBarShow() {
-        if (showToolBar && (toolbarPanel.getComponentCount() == 0)) {
+        if (showToolBar && toolbarPanel.getComponentCount() == 0) {
             toolbarPanel.add(environment.getControlBarView(), BorderLayout.WEST);
         } else {
             toolbarPanel.removeAll();
@@ -549,7 +549,7 @@ public class UserFrame extends JFrame {
      * @param currentList
      *            the current list
      */
-    private void componentViewsIn(Component comp, List currentList) {
+    private void componentViewsIn(Component comp, List<Component> currentList) {
         if (comp instanceof org.ascape.view.vis.ComponentView) {
             currentList.add(comp);
         } else if (comp instanceof Container) {
@@ -581,20 +581,21 @@ public class UserFrame extends JFrame {
      *            the y
      */
     public void moveComponent(JInternalFrame frame, int x, int y) {
-        DesktopEnvironment.DEFAULT_ENVIRONMENT.getUserFrame().getDesk().getDesktopManager().beginDraggingFrame(frame);
-        DesktopEnvironment.DEFAULT_ENVIRONMENT.getUserFrame().getDesk().getDesktopManager().dragFrame(frame, x, y);
-        DesktopEnvironment.DEFAULT_ENVIRONMENT.getUserFrame().getDesk().getDesktopManager().endDraggingFrame(frame);
+        DesktopEnvironment.getDefaultDesktop().getUserFrame().getDesk().getDesktopManager()
+        .beginDraggingFrame(frame);
+        DesktopEnvironment.getDefaultDesktop().getUserFrame().getDesk().getDesktopManager().dragFrame(frame, x, y);
+        DesktopEnvironment.getDefaultDesktop().getUserFrame().getDesk().getDesktopManager().endDraggingFrame(frame);
     }
 
     /**
      * Calculate visibility.
      */
     protected void calculateVisibility() {
-// SwingUtilities.invokeLater(new Runnable() {
-// public void run() {
+        // SwingUtilities.invokeLater(new Runnable() {
+        // public void run() {
         if (!minimized) {
             if (environment.getControlBarView() != null) {
-            environment.getControlBarView().setVisible(true);
+                environment.getControlBarView().setVisible(true);
             }
             JInternalFrame[] frames = desk.getAllFrames();
 
@@ -604,7 +605,7 @@ public class UserFrame extends JFrame {
             }
             desk.setPreferredSize(fullBounds.getSize());
 
-            List allComponentViews = new LinkedList();
+            List<Component> allComponentViews = new LinkedList<Component>();
             componentViewsIn(desk, allComponentViews);
             Rectangle viewBounds = deskScroll.getViewport().getViewRect();
             try {
@@ -640,7 +641,7 @@ public class UserFrame extends JFrame {
                         if (!frame2.isIcon()) {
                             // Is frame 1 in front of frame 2?
                             if (desk.getIndexOf(frame1) < desk.getIndexOf(frame2)) {
-                                List frameComponentViews = new LinkedList();
+                                List<Component> frameComponentViews = new LinkedList<Component>();
                                 componentViewsIn(frame2, frameComponentViews);
 
                                 for (Iterator iterator = frameComponentViews.iterator(); iterator.hasNext();) {
@@ -652,7 +653,7 @@ public class UserFrame extends JFrame {
                                 }
                             }
                         } else {
-                            List frameComponentViews = new LinkedList();
+                            List<Component> frameComponentViews = new LinkedList<Component>();
                             componentViewsIn(frame2, frameComponentViews);
 
                             for (Iterator iterator = frameComponentViews.iterator(); iterator.hasNext();) {
@@ -663,7 +664,7 @@ public class UserFrame extends JFrame {
                 }
             }
         } else {
-            List allComponentViews = new LinkedList();
+            List<Component> allComponentViews = new LinkedList<Component>();
             componentViewsIn(desk, allComponentViews);
             for (Iterator iterator = allComponentViews.iterator(); iterator.hasNext();) {
                 Component component = (Component) iterator.next();
@@ -673,8 +674,8 @@ public class UserFrame extends JFrame {
             environment.getControlBarView().setVisible(updateNonVisibleViews);
             environment.getControlBarView().forceScapeNotify();
         }
-// }
-// });
+        // }
+        // });
     }
 
     /**
@@ -687,14 +688,14 @@ public class UserFrame extends JFrame {
     private synchronized Rectangle calculateBoundsInFrame(Component component) {
         Point locationInDesk = new Point(0, 0);
         Component nextComponent = component;
-        while (!(nextComponent instanceof JDesktopPane) && (nextComponent.getParent() != null)) {
+        while (!(nextComponent instanceof JDesktopPane) && nextComponent.getParent() != null) {
             locationInDesk = new Point((int) (locationInDesk.getX() + nextComponent.getLocation().getX()),
-                    (int) (locationInDesk.getY() + nextComponent.getLocation().getY()));
+                                       (int) (locationInDesk.getY() + nextComponent.getLocation().getY()));
             nextComponent = nextComponent.getParent();
         }
         Rectangle componentBounds = component.getBounds();
         componentBounds = new Rectangle((int) locationInDesk.getX(), (int) locationInDesk.getY(),
-                componentBounds.width, componentBounds.height);
+                                        componentBounds.width, componentBounds.height);
         return componentBounds;
     }
 
@@ -877,15 +878,15 @@ public class UserFrame extends JFrame {
         public void setBoundsForFrame(JComponent f, int newX, int newY, int newWidth, int newHeight) {
             newX = Math.max(newX, 0);
             newY = Math.max(newY, 0);
-            if ((f instanceof ViewPanZoomFrame) && (!((JInternalFrame) f).isIcon())
-                    && (((ViewPanZoomFrame) f).getBridge().isLockZoomToFrame())
-                    && (((ViewPanZoomFrame) f).getBridge().isAgentView())) {
+            if (f instanceof ViewPanZoomFrame && !((JInternalFrame) f).isIcon()
+                    && ((ViewPanZoomFrame) f).getBridge().isLockZoomToFrame()
+                    && ((ViewPanZoomFrame) f).getBridge().isAgentView()) {
                 Dimension newWithin;
                 if (((ViewPanZoomFrame) f).getBridge().getViews()[0] instanceof Overhead2DView) {
-                    if ((newWidth > lastBounds.getWidth()) && (newHeight == lastBounds.getHeight())) {
+                    if (newWidth > lastBounds.getWidth() && newHeight == lastBounds.getHeight()) {
                         // Allow vertical to grow to any size limited onl by width
                         newHeight = Integer.MAX_VALUE;
-                    } else if ((newHeight > lastBounds.getHeight()) && (newWidth == lastBounds.getWidth())) {
+                    } else if (newHeight > lastBounds.getHeight() && newWidth == lastBounds.getWidth()) {
                         // Allow horizontal to grow to any size limited onl by height
                         newWidth = Integer.MAX_VALUE;
                     }
@@ -935,8 +936,9 @@ public class UserFrame extends JFrame {
                             currentIcon = ((JInternalFrame) components[i]).getDesktopIcon();
                         } else if (components[i] instanceof JInternalFrame.JDesktopIcon) {
                             currentIcon = (JInternalFrame.JDesktopIcon) components[i];
-                        } else
+                        } else {
                             continue;
+                        }
                         if (!currentIcon.equals(icon)) {
                             if (availableRectangle.intersects(currentIcon.getBounds())) {
                                 found = false;
@@ -953,7 +955,7 @@ public class UserFrame extends JFrame {
                         x += w; // modification here
                     }
                 }
-                return (availableRectangle);
+                return availableRectangle;
             } else {
                 return super.getBoundsForIconOf(f);
             }
@@ -1103,7 +1105,7 @@ class ConsoleOutput extends JTextArea {
                             // there is still stuff in the queue
                             int j = 0;
                             // We don't want to go anymore than 10 so as not to wait endlessly
-                            while ((nextLine != null) && runThread && j < 10) {
+                            while (nextLine != null && runThread && j < 10) {
                                 j++;
                                 currentLines.append(nextLine + "\n");
                                 nextLine = drErr.readLine();

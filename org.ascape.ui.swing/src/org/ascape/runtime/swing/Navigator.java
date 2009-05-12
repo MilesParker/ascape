@@ -1,8 +1,8 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors. 
+ * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors.
  * All rights reserved.
  * This program and the accompanying materials are made available solely under of the BSD license "ascape-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
 package org.ascape.runtime.swing;
@@ -58,7 +58,7 @@ import org.ascape.view.vis.PanelView;
  * The Class Navigator.
  */
 public class Navigator extends PanelView {
-    
+
     /**
      * The tree.
      */
@@ -68,7 +68,7 @@ public class Navigator extends PanelView {
      * The listeners.
      */
     List listeners;
-    
+
     /**
      * The scape model.
      */
@@ -101,7 +101,7 @@ public class Navigator extends PanelView {
      * The Class ScapeIcon.
      */
     class ScapeIcon implements Icon {
-        
+
         /**
          * The scape.
          */
@@ -156,7 +156,7 @@ public class Navigator extends PanelView {
      * The Class AgentIcon.
      */
     class AgentIcon implements Icon {
-        
+
         /**
          * The agent.
          */
@@ -214,12 +214,12 @@ public class Navigator extends PanelView {
         setLayout(new BorderLayout());
         add(tree, BorderLayout.CENTER);
         tree.getSelectionModel().setSelectionMode
-                (TreeSelectionModel.SINGLE_TREE_SELECTION);
+        (TreeSelectionModel.SINGLE_TREE_SELECTION);
         tree.setLargeModel(true);
         tree.setToggleClickCount(1);
         tree.setShowsRootHandles(true);
 
-//        tree.putClientProperty("JTree.lineStyle", "Angled");
+        //        tree.putClientProperty("JTree.lineStyle", "Angled");
         DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer() {
             /**
              * 
@@ -227,10 +227,10 @@ public class Navigator extends PanelView {
             private static final long serialVersionUID = 1371869534479837978L;
 
             public Component getTreeCellRendererComponent(JTree tree, Object value,
-                                                          boolean sel,
-                                                          boolean expanded,
-                                                          boolean leaf, int row,
-                                                          boolean hasFocus) {
+                    boolean sel,
+                    boolean expanded,
+                    boolean leaf, int row,
+                    boolean hasFocus) {
                 Component c = super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
                 if (value instanceof ScapeMembersNode) {
                     setIcon(DesktopEnvironment.getIcon("Members"));
@@ -253,27 +253,27 @@ public class Navigator extends PanelView {
             }
         };
         tree.setCellRenderer(renderer);
-//        tree.setCellEditor(new DefaultTreeCellEditor(tree, renderer) {
-//            public Component getTreeCellEditorComponent(JTree tree, Object value,
-//                                                        boolean isSelected,
-//                                                        boolean expanded,
-//                                                        boolean leaf, int row) {
-//                System.out.println(": "+value.getClass());
-//                return super.getTreeCellEditorComponent(tree, value, isSelected, expanded, leaf, row);
-//            }
-//        });
+        //        tree.setCellEditor(new DefaultTreeCellEditor(tree, renderer) {
+        //            public Component getTreeCellEditorComponent(JTree tree, Object value,
+        //                                                        boolean isSelected,
+        //                                                        boolean expanded,
+        //                                                        boolean leaf, int row) {
+        //                System.out.println(": "+value.getClass());
+        //                return super.getTreeCellEditorComponent(tree, value, isSelected, expanded, leaf, row);
+        //            }
+        //        });
     }
 
     /**
      * The waiting for update.
      */
-    Set waitingForUpdate = new HashSet();
+    Set<BaseNode> waitingForUpdate = new HashSet();
 
     /**
      * The Class BaseNode.
      */
     class BaseNode extends DefaultMutableTreeNode {
-        
+
         /**
          * 
          */
@@ -283,7 +283,7 @@ public class Navigator extends PanelView {
          * The scape.
          */
         Scape scape;
-        
+
         /**
          * The listener.
          */
@@ -309,7 +309,7 @@ public class Navigator extends PanelView {
 
                 private void update() {
                     TreePath nodePath = new TreePath(BaseNode.this.getPath());
-                    if (scape.isMutable() && (tree.isVisible(nodePath))) {
+                    if (scape.isMutable() && tree.isVisible(nodePath)) {
                         requestUpdateChildren();
                     }
                 }
@@ -381,7 +381,7 @@ public class Navigator extends PanelView {
      * The Class AccessorNode.
      */
     class AccessorNode extends BaseNode {
-        
+
         /**
          * 
          */
@@ -417,7 +417,7 @@ public class Navigator extends PanelView {
      * The Class RuleNode.
      */
     class RuleNode extends BaseNode {
-        
+
         /**
          * 
          */
@@ -440,7 +440,7 @@ public class Navigator extends PanelView {
      * The Class RulesNode.
      */
     class RulesNode extends BaseNode {
-        
+
         /**
          * 
          */
@@ -450,11 +450,11 @@ public class Navigator extends PanelView {
          * The selection observer.
          */
         Observer selectionObserver;
-        
+
         /**
          * The current rules.
          */
-        private Map currentRules;
+        private Map<Rule, RuleNode> currentRules;
 
         /**
          * Instantiates a new rules node.
@@ -465,7 +465,7 @@ public class Navigator extends PanelView {
         public RulesNode(final Scape scape) {
             super(scape, new String("Rules"));
             this.scape = scape;
-            currentRules = new HashMap();
+            currentRules = new HashMap<Rule, RuleNode>();
             listener = new DefaultScapeListener("Tree Members Listener") {
                 /**
                  * 
@@ -499,7 +499,7 @@ public class Navigator extends PanelView {
                         currentRules.put(rule, addNode);
                     }
                 } else {
-                    RuleNode node = (RuleNode) currentRules.get(rule);
+                    RuleNode node = currentRules.get(rule);
                     if (node != null) {
                         scapeModel.removeNodeFromParent(node);
                         currentRules.remove(rule);
@@ -515,7 +515,7 @@ public class Navigator extends PanelView {
      * The Class PropertiesNode.
      */
     class PropertiesNode extends BaseNode {
-        
+
         /**
          * 
          */
@@ -525,17 +525,17 @@ public class Navigator extends PanelView {
          * The accessors.
          */
         private PropertyAccessor[] accessors;
-        
+
         /**
          * The accessor ind.
          */
         int[] accessorInd;
-        
+
         /**
          * The property support.
          */
         PropertyChangeSupport propertySupport;
-        
+
         /**
          * The property listener.
          */
@@ -553,11 +553,11 @@ public class Navigator extends PanelView {
             super(scape, agent);
             try {
                 if (!(agent instanceof Scape)) {
-                    List accessorsList = PropertyAccessor.determineReadWriteAccessors(agent, Agent.class, true);
-                    accessors = (PropertyAccessor[]) accessorsList.toArray(new PropertyAccessor[accessorsList.size()]);
+                    List<?> accessorsList = PropertyAccessor.determineReadWriteAccessors(agent, Agent.class, true);
+                    accessors = accessorsList.toArray(new PropertyAccessor[accessorsList.size()]);
                 } else {
-                    List accessorsList = PropertyAccessor.determineReadWriteAccessors(agent, Scape.class, true);
-                    accessors = (PropertyAccessor[]) accessorsList.toArray(new PropertyAccessor[accessorsList.size()]);
+                    List<?> accessorsList = PropertyAccessor.determineReadWriteAccessors(agent, Scape.class, true);
+                    accessors = accessorsList.toArray(new PropertyAccessor[accessorsList.size()]);
                 }
                 Arrays.sort(accessors);
                 accessorInd = new int[accessors.length];
@@ -576,7 +576,7 @@ public class Navigator extends PanelView {
                     public void treeExpanded(TreeExpansionEvent event) {
                         TreePath nodePath = new TreePath(PropertiesNode.this.getPath());
                         if (event.getPath().equals(nodePath)) {
-                            propertySupport = DesktopEnvironment.DEFAULT_ENVIRONMENT.getPropertySupportForObject(getUserObject());
+                            propertySupport = SwingEnvironment.DEFAULT_ENVIRONMENT.getPropertySupportForObject(getUserObject());
                             if (propertyListener == null) {
                                 propertyListener = new PropertyChangeListener() {
                                     public void propertyChange(PropertyChangeEvent evt) {
@@ -610,7 +610,7 @@ public class Navigator extends PanelView {
      * The Class AgentNode.
      */
     class AgentNode extends PropertiesNode {
-        
+
         /**
          * 
          */
@@ -633,7 +633,7 @@ public class Navigator extends PanelView {
      * The Class ScapeNode.
      */
     class ScapeNode extends BaseNode {
-        
+
         /**
          * 
          */
@@ -650,7 +650,7 @@ public class Navigator extends PanelView {
             add(new PropertiesNode(scape, scape));
             add(new RulesNode(scape));
             if (scape instanceof Scape) {
-                ScapeMembersNode membersNode = new ScapeMembersNode((Scape) scape);
+                ScapeMembersNode membersNode = new ScapeMembersNode(scape);
                 add(membersNode);
             }
         }
@@ -673,7 +673,7 @@ public class Navigator extends PanelView {
      * The Class ScapeGroupNode.
      */
     class ScapeGroupNode extends ScapeMembersNode {
-        
+
         /**
          * 
          */
@@ -683,12 +683,12 @@ public class Navigator extends PanelView {
          * The start index.
          */
         int startIndex;
-        
+
         /**
          * The end index.
          */
         int endIndex;
-        
+
         /**
          * The iterator.
          */
@@ -727,7 +727,7 @@ public class Navigator extends PanelView {
      * The Class ScapeMembersNode.
      */
     class ScapeMembersNode extends BaseNode {
-        
+
         /**
          * 
          */
@@ -759,7 +759,7 @@ public class Navigator extends PanelView {
          * @see org.ascape.explorer.Navigator.BaseNode#updateChildren()
          */
         protected void updateChildren() {
-            if ((getChildCount() > 0) && (getFirstChild().toString().equals("Dummy"))) {
+            if (getChildCount() > 0 && getFirstChild().toString().equals("Dummy")) {
                 scapeModel.removeNodeFromParent((MutableTreeNode) getFirstChild());
             }
             updateChildren(0, scape.getSize());
@@ -867,7 +867,7 @@ public class Navigator extends PanelView {
             while (e.hasMoreElements()) {
                 BaseNode node = (BaseNode) e.nextElement();
                 //If we were formally displaying actual memebers here (e.g. the size of scape has grown past group size) we need to delete them.
-                if ((node instanceof ScapeNode) || (node instanceof AgentNode)) {
+                if (node instanceof ScapeNode || node instanceof AgentNode) {
                     scapeModel.removeNodeFromParent(node);
                     scapeModel.insertNodeInto(node, this, index);
                 } else {

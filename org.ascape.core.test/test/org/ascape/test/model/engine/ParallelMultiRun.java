@@ -10,7 +10,7 @@ import junit.framework.TestCase;
 import org.ascape.model.Scape;
 import org.ascape.runtime.NonGraphicRunner;
 import org.ascape.runtime.Runner;
-import org.ascape.runtime.swing.ModelApplet;
+import org.ascape.runtime.applet.SwingApplet;
 
 public class ParallelMultiRun extends TestCase{
     public static final int TRIALS = 5;
@@ -41,7 +41,7 @@ public class ParallelMultiRun extends TestCase{
         System.err.println("START: testSingleThread()");
         Runner model = initializeModel();
 
-        model.open((ModelApplet) null, (String[]) null, false);
+        model.open((SwingApplet) null, (String[]) null, false);
         model.run(true);
         System.err.println("END: testSingleThread()");
     }
@@ -55,7 +55,7 @@ public class ParallelMultiRun extends TestCase{
         for (int i = 0; i < TRIALS; i++) {
             Runner model = initializeModel();
 
-            model.open((ModelApplet) null, (String[]) null, false);
+            model.open((SwingApplet) null, (String[]) null, false);
             model.run(true);
         }
 
@@ -77,7 +77,7 @@ public class ParallelMultiRun extends TestCase{
                 public void run() {
                     Runner model = initializeModel();
 
-                    model.open((ModelApplet) null, (String[]) null, false);
+                    model.open((SwingApplet) null, (String[]) null, false);
                     model.run(true);
                 }
             });
@@ -103,7 +103,7 @@ public class ParallelMultiRun extends TestCase{
                 public void run() {
                     Runner model = initializeModel();
 
-                    model.open((ModelApplet) null, (String[]) null, false);
+                    model.open((SwingApplet) null, (String[]) null, false);
                     model.run(true);
                 }
             });
@@ -128,7 +128,7 @@ public class ParallelMultiRun extends TestCase{
         
         for(int i = 0; i < TRIALS; i++) {
             final Runner model = initializeModel();
-            model.open((ModelApplet) null, (String[]) null, false);
+            model.open((SwingApplet) null, (String[]) null, false);
             
             runnables.add(new Runnable() {
                 public void run() {

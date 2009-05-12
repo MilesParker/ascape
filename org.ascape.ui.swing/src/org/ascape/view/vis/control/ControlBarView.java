@@ -1,8 +1,8 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors. 
+ * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors.
  * All rights reserved.
  * This program and the accompanying materials are made available solely under of the BSD license "ascape-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
 package org.ascape.view.vis.control;
@@ -33,6 +33,7 @@ import javax.swing.event.InternalFrameAdapter;
 import org.ascape.model.event.ScapeEvent;
 import org.ascape.runtime.swing.DesktopEnvironment;
 import org.ascape.runtime.swing.SpeedSliderView;
+import org.ascape.runtime.swing.SwingEnvironment;
 import org.ascape.runtime.swing.ViewFrameBridge;
 
 /**
@@ -94,6 +95,9 @@ public class ControlBarView extends ControlActionView /* implements Externalizab
      * The record start stop button.
      */
     private JButton recordStartStopButton;
+
+    private boolean simple;
+
 
     /**
      * The gbl.
@@ -169,14 +173,22 @@ public class ControlBarView extends ControlActionView /* implements Externalizab
      *            a user relevant name for this view
      */
     public ControlBarView(String name) {
+        this(name, false);
+    }
+
+    /**
+     * Constructs the control view, creating and laying out its components.
+     * 
+     * @param name
+     *        a user relevant name for this view
+     * @param simple
+     *        should we only show run control buttons?
+     */
+    public ControlBarView(String name, boolean simple) {
         super(name);
+        this.simple = simple;
         //We have to put this here to guarantee it will be part of user environmnet
-        sliderView = new SpeedSliderView();
-        if (DesktopEnvironment.DEFAULT_ENVIRONMENT != null) {
-            DesktopEnvironment.DEFAULT_ENVIRONMENT.addView(sliderView, false);
-        } else {
-            getScape().getRunner().getEnvironment().addView(sliderView, false);
-        }
+        addSlider();
 
         gbl = new GridBagLayout();
         setLayout(gbl);
@@ -188,10 +200,12 @@ public class ControlBarView extends ControlActionView /* implements Externalizab
         gbc.weightx = 0.0;
         gbc.weighty = 0.0;
 
-        framePanel = new JPanel();
-        framePanel.setLayout(new BorderLayout());
-        framePanel.setBorder(BorderFactory.createEmptyBorder(3, 2, 3, 2));
-        add(framePanel, gbc);
+        if (!isSimple()) {
+            framePanel = new JPanel();
+            framePanel.setLayout(new BorderLayout());
+            framePanel.setBorder(BorderFactory.createEmptyBorder(3, 2, 3, 2));
+            add(framePanel, gbc);
+        }
 
         statusLabel = DesktopEnvironment.createLabel(60);
         periodLabel = DesktopEnvironment.createLabel(100);
@@ -200,25 +214,27 @@ public class ControlBarView extends ControlActionView /* implements Externalizab
         gbc.gridx++;
         add(periodLabel, gbc);
 
-        fileBar = DesktopEnvironment.createToolbar();
+        if (!isSimple()) {
+            fileBar = DesktopEnvironment.createToolbar();
 
-        gbc.gridx++;
-        gbc.weightx = 1.0;
-        gbc.weighty = 1.0;
-        add(fileBar, gbc);
+            gbc.gridx++;
+            gbc.weightx = 1.0;
+            gbc.weighty = 1.0;
+            add(fileBar, gbc);
 
 
-        DesktopEnvironment.addToolBarButton(fileBar, getOpenAction());
-        DesktopEnvironment.addToolBarButton(fileBar, getOpenSavedAction());
-        DesktopEnvironment.addToolBarButton(fileBar, getCloseAction());
-        DesktopEnvironment.addToolBarButton(fileBar, getSaveAction());
-        DesktopEnvironment.addToolBarButton(fileBar, getQuitAction());
-
+            DesktopEnvironment.addToolBarButton(fileBar, getOpenAction());
+            DesktopEnvironment.addToolBarButton(fileBar, getOpenSavedAction());
+            DesktopEnvironment.addToolBarButton(fileBar, getCloseAction());
+            DesktopEnvironment.addToolBarButton(fileBar, getSaveAction());
+            DesktopEnvironment.addToolBarButton(fileBar, getQuitAction());
+        }
         runControlBar = DesktopEnvironment.createToolbar();
 
         gbc.gridx++;
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
+
         add(runControlBar, gbc);
 
         startRestartButton = DesktopEnvironment.addToolBarButton(runControlBar);
@@ -226,31 +242,35 @@ public class ControlBarView extends ControlActionView /* implements Externalizab
         DesktopEnvironment.addToolBarButton(runControlBar, getStepAction());
         DesktopEnvironment.addToolBarButton(runControlBar, getStopAction());
 
-        runControlBar.add(sliderView);
-        sliderView.build();
+        if (!isSimple() && sliderView != null) {
+            runControlBar.add(sliderView);
+            sliderView.build();
+        }
 
-        optionsBar = DesktopEnvironment.createToolbar();
+        if (!isSimple()) {
+            optionsBar = DesktopEnvironment.createToolbar();
 
-        gbc.gridx++;
-        gbc.weightx = 1.0;
-        gbc.weighty = 1.0;
-        add(optionsBar, gbc);
+            gbc.gridx++;
+            gbc.weightx = 1.0;
+            gbc.weighty = 1.0;
+            add(optionsBar, gbc);
 
-        DesktopEnvironment.addToolBarButton(optionsBar, getSettingsAction());
-        DesktopEnvironment.addToolBarButton(optionsBar, getSearchAction());
-        DesktopEnvironment.addToolBarButton(optionsBar, getCaptureDeskAction());
-        recordStartStopButton = DesktopEnvironment.addToolBarButton(optionsBar, getRecordStartAction());
-        DesktopEnvironment.addToolBarButton(optionsBar, getInfoAction());
+            DesktopEnvironment.addToolBarButton(optionsBar, getSettingsAction());
+            DesktopEnvironment.addToolBarButton(optionsBar, getSearchAction());
+            DesktopEnvironment.addToolBarButton(optionsBar, getCaptureDeskAction());
+            recordStartStopButton = DesktopEnvironment.addToolBarButton(optionsBar, getRecordStartAction());
+            DesktopEnvironment.addToolBarButton(optionsBar, getInfoAction());
 
-        optionsBar.addSeparator();
+            optionsBar.addSeparator();
 
-        DesktopEnvironment.addToolBarButton(optionsBar, getAddTSAction());
-        DesktopEnvironment.addToolBarButton(optionsBar, getAddHistAction());
-        DesktopEnvironment.addToolBarButton(optionsBar, getAddPieAction());
+            DesktopEnvironment.addToolBarButton(optionsBar, getAddTSAction());
+            DesktopEnvironment.addToolBarButton(optionsBar, getAddHistAction());
+            DesktopEnvironment.addToolBarButton(optionsBar, getAddPieAction());
 
-        if (DesktopEnvironment.DEFAULT_ENVIRONMENT != null) {
-            fullNormalWindowButton = DesktopEnvironment.addToolBarButton(optionsBar, getFullWindowAction());
-            changeInFullScreen();
+            if (SwingEnvironment.DEFAULT_ENVIRONMENT != null) {
+                fullNormalWindowButton = DesktopEnvironment.addToolBarButton(optionsBar, getFullWindowAction());
+                changeInFullScreen();
+            }
         }
 
         //disallow resizing
@@ -265,7 +285,30 @@ public class ControlBarView extends ControlActionView /* implements Externalizab
         pauseResumeButton.setAction(getPauseResumeAction());
         statusLabel.setForeground(Color.black);
         periodLabel.setForeground(Color.black);
-        buildFrameList();
+        if (!isSimple()) {
+            buildFrameList();
+        }
+    }
+
+    boolean addSlider;
+
+    public boolean isAddSlider() {
+        return addSlider;
+    }
+
+    public void setAddSlider(boolean addSlider) {
+        this.addSlider = addSlider;
+    }
+
+    public void addSlider() {
+        if (addSlider) {
+            sliderView = new SpeedSliderView();
+            if (SwingEnvironment.DEFAULT_ENVIRONMENT != null) {
+                SwingEnvironment.DEFAULT_ENVIRONMENT.addView(sliderView, false);
+            } else {
+                getScape().getRunner().getEnvironment().addView(sliderView, false);
+            }
+        }
     }
 
     /* (non-Javadoc)
@@ -287,22 +330,22 @@ public class ControlBarView extends ControlActionView /* implements Externalizab
             if (getViewFrame().getFrameImp() instanceof Window) {
                 ((Window) getViewFrame().getFrameImp()).addWindowListener(new WindowAdapter() {
                     public void windowClosing(WindowEvent e) {
-                        (new Thread("Quit") {
+                        new Thread("Quit") {
                             public void run() {
                                 getScape().getRunner().quit();
                             }
-                        }).start();
+                        }.start();
                     }
                 });
             } else if (getViewFrame().getFrameImp() instanceof Window) {
                 ((JInternalFrame) getViewFrame().getFrameImp()).addInternalFrameListener(new InternalFrameAdapter() {
                     @SuppressWarnings("unused")
                     public void internalFrameClosing(WindowEvent e) {
-                        (new Thread("Quit") {
+                        new Thread("Quit") {
                             public void run() {
                                 getScape().getRunner().quit();
                             }
-                        }).start();
+                        }.start();
                     }
                 });
             }
@@ -317,9 +360,9 @@ public class ControlBarView extends ControlActionView /* implements Externalizab
      * Builds the frame list.
      */
     public void buildFrameList() {
-        if (DesktopEnvironment.DEFAULT_ENVIRONMENT != null) {
+        if (SwingEnvironment.DEFAULT_ENVIRONMENT != null) {
             framePanel.removeAll();
-            frameList = new JComboBox(DesktopEnvironment.DEFAULT_ENVIRONMENT.getAllFrames()) {
+            frameList = new JComboBox(SwingEnvironment.DEFAULT_ENVIRONMENT.getAllFrames()) {
                 /**
                  * 
                  */
@@ -354,13 +397,15 @@ public class ControlBarView extends ControlActionView /* implements Externalizab
         } else {
             statusLabel.setForeground(Color.gray);
         }
-        buildFrameList();
+        if (!isSimple()) {
+            buildFrameList();
+        }
         if (!scape.isPaused()) {
             periodLabel.setForeground(Color.black);
         } else {
             periodLabel.setForeground(Color.gray);
         }
-        if (sliderView.getScape() != scape) {
+        if (sliderView != null && sliderView.getScape() != scape) {
             scape.addView(sliderView, false);
         }
     }
@@ -456,7 +501,7 @@ public class ControlBarView extends ControlActionView /* implements Externalizab
         statusLabel.setForeground(Color.gray);
         periodLabel.setText("");
         statusLabel.setText("");
-//        frameList.repaint();
+        //        frameList.repaint();
     }
 
     /* (non-Javadoc)
@@ -464,7 +509,8 @@ public class ControlBarView extends ControlActionView /* implements Externalizab
      */
     public void changeInFullScreen() {
         super.changeInFullScreen();
-        if (DesktopEnvironment.DEFAULT_ENVIRONMENT.isFullScreen()) {
+        if (SwingEnvironment.DEFAULT_ENVIRONMENT instanceof DesktopEnvironment
+                && ((DesktopEnvironment) SwingEnvironment.DEFAULT_ENVIRONMENT).isFullScreen()) {
             fullNormalWindowButton.setAction(getNormalWindowAction());
         } else {
             fullNormalWindowButton.setAction(getFullWindowAction());
@@ -495,12 +541,12 @@ public class ControlBarView extends ControlActionView /* implements Externalizab
      *            the new frame selection
      */
     public void setFrameSelection(Object o) {
-        if ((frameList != null) && (o != null)) {
+        if (frameList != null && o != null) {
             if (frameList.getSelectedItem() != o) {
                 frameList.setSelectedItem(o);
             }
-            if ((recorder != null) && (recorder.getTarget() == null)) {
-//We need to delegate to a view because thats where updates occur.
+            if (recorder != null && recorder.getTarget() == null) {
+                //We need to delegate to a view because thats where updates occur.
                 recordedView = ((ViewFrameBridge) o).getViews()[0];
                 recordedView.setMovieRecorder(recorder);
                 recorder.setComponent(((ViewFrameBridge) o).getViewPanel());
@@ -564,4 +610,11 @@ public class ControlBarView extends ControlActionView /* implements Externalizab
         return runControlBar;
     }
 
+    public boolean isSimple() {
+        return simple;
+    }
+
+    public void setSimple(boolean simple) {
+        this.simple = simple;
+    }
 }

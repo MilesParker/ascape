@@ -1,15 +1,14 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors. 
+ * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors.
  * All rights reserved.
  * This program and the accompanying materials are made available solely under of the BSD license "ascape-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
 package org.ascape.runtime.swing;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GraphicsEnvironment;
@@ -21,10 +20,7 @@ import java.awt.Label;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.beans.PropertyVetoException;
 import java.io.BufferedReader;
 import java.io.File;
@@ -34,8 +30,6 @@ import java.io.InputStreamReader;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 import java.util.TooManyListenersException;
 import java.util.Vector;
@@ -43,7 +37,6 @@ import java.util.zip.GZIPOutputStream;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
-import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -58,15 +51,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
-import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.ToolTipManager;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
-import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
-import javax.swing.border.LineBorder;
 
 import org.ascape.model.Scape;
 import org.ascape.model.event.ScapeEvent;
@@ -92,15 +82,13 @@ import org.ascape.view.vis.control.ControlBarView;
  */
 public class DesktopEnvironment extends SwingEnvironment {
 
-	/**
+    /**
      * 
      */
     private static final long serialVersionUID = 6486119781336287766L;
 
-    public static DesktopEnvironment DEFAULT_ENVIRONMENT;
-	
-	{ImageRegistry.register(new SwingImageProvider());}
-	
+    {ImageRegistry.register(new SwingImageProvider());}
+
     /**
      * Symbol indicating the manager is supporting an applet view.
      */
@@ -151,41 +139,25 @@ public class DesktopEnvironment extends SwingEnvironment {
      */
     private int multiViewMode = GRID_MULTIVIEW_MODE;
 
-    /**
-     * The applet the scape is running within, if any. Should be ok to have this
-     * static, since a vm should always either be running as an applet or an
-     * application.
-     */
-    private ModelApplet applet;
-
-    /**
-     * The applet panel this scape will be displayed within. See above.
-     */
-    private JPanel appletModelPanel;
 
     /**
      * The extra space used in the screen.
      */
-//    Dimension screenBuffer = new Dimension(10, 60);
+    //    Dimension screenBuffer = new Dimension(10, 60);
     private Dimension screenBuffer = new Dimension(60, 60);
-
-    /**
-     * A sparse map for objects currently being edited by one or more editors.
-     */
-    private Map propertySupportForObject;
 
     /**
      * The selection manager.
      */
     AgentSelectionManager selectionManager;
-    
+
     //TODO..integrate multiwin w/ this schema?
     /**
      * Instantiates a new user environment.
      */
     public DesktopEnvironment() {
         ToolTipManager.sharedInstance().setInitialDelay(300);
-        DEFAULT_ENVIRONMENT = this;
+        SwingEnvironment.DEFAULT_ENVIRONMENT = this;
         setControlBarView(new ControlBarView());
         addView(getControlBarView(), false);
         switch (viewMode) {
@@ -193,19 +165,8 @@ public class DesktopEnvironment extends SwingEnvironment {
             case MDI_VIEW_MODE:
                 setCustomizer(new AutoCustomizerSwing());
                 setFullScreen(false);
-                if (Runner.isDisplayGraphics()) {
-                    showSplashScreenNotice();
-                } else {
-                    System.out.println("                 ***NOTICE***");
-                    System.out.println();
-                    System.out.println("Automatic splash screen display is disabled.");
-                    System.out.println("For copyright reasons, the splash screen MUST be");
-                    System.out.println("displayed whenever a graphical user interface is.");
-                    System.out.println("See ViewFrameBridge.showSplashScreenNotice() for details.");
-                    System.out.println();
-                    System.out.println();
-                }
-//getUserFrame().show();
+                copyrightNotice();
+                //getUserFrame().show();
                 getUserFrame().setTitle("Ascape");
             case CLASSIC_VIEW_MODE:
                 if (SwingRunner.isDisplayGraphics()) {
@@ -228,40 +189,28 @@ public class DesktopEnvironment extends SwingEnvironment {
                 break;
                 //End comment out for web
             case NON_SWING_VIEW_MODE:
-                if (Runner.isDisplayGraphics()) {
-                    showSplashScreenNotice();
-                } else {
-                    System.out.println("                 ***NOTICE***");
-                    System.out.println();
-                    System.out.println("Automatic splash screen display is disabled.");
-                    System.out.println("For copyright reasons, the splash screen MUST be");
-                    System.out.println("displayed whenever a graphical user interface is.");
-                    System.out.println("See ViewFrameBridge.showSplashScreenNotice() for details.");
-                    System.out.println();
-                    System.out.println();
-                }
+                copyrightNotice();
                 setCustomizer(new AutoCustomizer());
                 addView(new SimpleControlView(true, true));
                 break;
-            case APPLET_VIEW_MODE:
-                setCustomizer(new AutoCustomizer());
-                appletModelPanel = new JPanel();
-                appletModelPanel.setBackground(Color.white);
-                applet.getPanel().setBackground(appletModelPanel.getBackground());
-                applet.getPanel().setLayout(new BorderLayout());
-                applet.getPanel().add("Center", appletModelPanel);
-                //Create a control button bar with no quit button and to display iterations
-                SimpleControlView controlBar = new SimpleControlView(false, true);
-                addView(controlBar);
-                JPanel controlArea = new JPanel();
-                controlArea.setLayout(new BorderLayout());
-                controlArea.add("Center", controlBar);
-                applet.getPanel().add("South", controlArea);
             default:
                 throw new RuntimeException("Tried to setup a ViewFrameBridge with bad view mode specified:" + viewMode);
         }
+    }
 
-        propertySupportForObject = new HashMap();
+    private void copyrightNotice() {
+        if (Runner.isDisplayGraphics()) {
+            showSplashScreenNotice();
+        } else {
+            System.out.println("                 ***NOTICE***");
+            System.out.println();
+            System.out.println("Automatic splash screen display is disabled.");
+            System.out.println("For copyright reasons, the splash screen MUST be");
+            System.out.println("displayed whenever a graphical user interface is.");
+            System.out.println("See ViewFrameBridge.showSplashScreenNotice() for details.");
+            System.out.println();
+            System.out.println();
+        }
     }
 
     /**
@@ -286,7 +235,7 @@ public class DesktopEnvironment extends SwingEnvironment {
      */
     public void scapeAdded(ScapeEvent scapeEvent) throws TooManyListenersException {
         super.scapeAdded(scapeEvent);
-        frames = new Vector();
+        frames = new Vector<ViewFrameBridge>();
         getUserFrame().setTitle("Ascape - " + getScape().getName());
     }
 
@@ -331,7 +280,7 @@ public class DesktopEnvironment extends SwingEnvironment {
             }
             registerViewFrame(frame);
         }
-        if ((getControlBarView() != null) && (getControlBarView().getViewFrame() != null)) {
+        if (getControlBarView() != null && getControlBarView().getViewFrame() != null) {
             getControlBarView().getViewFrame().toFront();
         }
     }
@@ -346,7 +295,7 @@ public class DesktopEnvironment extends SwingEnvironment {
         if (frameImp != null) {
             if (viewMode == CLASSIC_VIEW_MODE) {
                 frameImp.setLocation(Utility.randomInRange(new Random(), 0, Toolkit.getDefaultToolkit().getScreenSize().width - frameImp.getSize().width - screenBuffer.width),
-                    Utility.randomInRange(new Random(), 0, Toolkit.getDefaultToolkit().getScreenSize().height - frameImp.getSize().height - screenBuffer.height));
+                                     Utility.randomInRange(new Random(), 0, Toolkit.getDefaultToolkit().getScreenSize().height - frameImp.getSize().height - screenBuffer.height));
             } else if (viewMode == MDI_VIEW_MODE) {
                 int maxX = Math.max((int) getUserFrame().getDeskScrollPane().getViewport().getSize().getWidth() - frameImp.getSize().width - screenBuffer.width, 1);
                 int maxY = Math.max((int) getUserFrame().getDeskScrollPane().getViewport().getSize().getHeight() - frameImp.getSize().height - screenBuffer.height, 1);
@@ -355,38 +304,6 @@ public class DesktopEnvironment extends SwingEnvironment {
         }
     }
 
-    /**
-     * If model is running in an applet vm context, returns the applet.
-     * 
-     * @return the applet
-     */
-    public ModelApplet getApplet() {
-        return applet;
-    }
-
-    /**
-     * Sets the applet scape views are to be displayed within, indicating that
-     * we are in an applet vm context.
-     * 
-     * @param _applet
-     *            the _applet
-     */
-    public void setApplet(Object _applet, Scape parent) {
-        applet = (ModelApplet) _applet;
-        applet.setScape(parent);
-        if (_applet != null) {
-            viewMode = APPLET_VIEW_MODE;
-        }
-    }
-
-    /**
-     * If model is running in an applet vm context, returns the applet.
-     * 
-     * @return the applet model panel
-     */
-    public JPanel getAppletModelPanel() {
-        return appletModelPanel;
-    }
 
     /**
      * The Class ModelPickAction.
@@ -402,7 +319,7 @@ public class DesktopEnvironment extends SwingEnvironment {
          * The model name.
          */
         String modelName;
-        
+
         /**
          * The model class name.
          */
@@ -439,26 +356,7 @@ public class DesktopEnvironment extends SwingEnvironment {
      * The about frame.
      */
     private static JInternalFrame aboutFrame = null;
-    
-    /**
-     * The Constant DEFAULT_BORDER.
-     */
-    private final static Border DEFAULT_BORDER = new EmptyBorder(4, 4, 3, 3);
-    
-    /**
-     * The Constant ROLLOVER_BORDER.
-     */
-    private final static Border ROLLOVER_BORDER = new CompoundBorder(new LineBorder(Color.darkGray), new EmptyBorder(3, 3, 2, 2));
-    
-    /**
-     * The Constant BUTTON_ROLLOVER_COLOR.
-     */
-    protected final static Color BUTTON_ROLLOVER_COLOR = new Color(180, 180, 200);
-    
-    /**
-     * The Constant ACCENT_COLOR.
-     */
-    protected final static Color ACCENT_COLOR = new Color(125, 100, 200);
+
 
     /**
      * Displays a standard about dialog.
@@ -468,7 +366,7 @@ public class DesktopEnvironment extends SwingEnvironment {
      */
     public static void displayAboutDialog(Scape scape) {
         //Comment out for web
-        if ((aboutFrame == null) || (!aboutFrame.isVisible())) {
+        if (aboutFrame == null || !aboutFrame.isVisible()) {
             String title = "About " + scape.getRoot().getName();
             String desc = "<html><head></head><title>" + title + "</title><body>";
             desc += scape.getRoot().getHTMLDescription();
@@ -478,7 +376,8 @@ public class DesktopEnvironment extends SwingEnvironment {
             JEditorPane msgArea = new JEditorPane("text/html", desc);
             msgArea.setEditable(false);
             aboutFrame = new JInternalFrame(title);
-            DEFAULT_ENVIRONMENT.getUserFrame().getDesk().add(aboutFrame, JLayeredPane.PALETTE_LAYER);
+            getDefaultDesktop().getUserFrame().getDesk()
+            .add(aboutFrame, JLayeredPane.PALETTE_LAYER);
             aboutFrame.setClosable(true);
             aboutFrame.setIconifiable(true);
             aboutFrame.setMaximizable(true);
@@ -507,19 +406,27 @@ public class DesktopEnvironment extends SwingEnvironment {
             sp.setBackground(Color.white);
             sp.setBorder(b);
             p.add(sp, pgbc);
-//todo; break out code to center into standard functionality
+            //todo; break out code to center into standard functionality
             aboutFrame.getContentPane().add(p);
             int aboutWidth = 600;
             int aboutHeight = 400;
-            aboutFrame.setBounds((int) (DEFAULT_ENVIRONMENT.getUserFrame().getDesk().getSize().getWidth() - aboutWidth) / 2, (int) (DEFAULT_ENVIRONMENT.getUserFrame().getDesk().getSize().getHeight() - aboutHeight) / 2, aboutWidth, aboutHeight);
+            aboutFrame
+            .setBounds((int) (getDefaultDesktop().getUserFrame().getDesk().getSize().getWidth() - aboutWidth) / 2,
+                       (int) (getDefaultDesktop().getUserFrame().getDesk().getSize()
+                               .getHeight() - aboutHeight) / 2, aboutWidth, aboutHeight);
             aboutFrame.show();
-//End comment out for web
+            //End comment out for web
         } else {
             try {
                 aboutFrame.setIcon(false);
             } catch (PropertyVetoException e) {
             }
         }
+    }
+
+    public static DesktopEnvironment getDefaultDesktop() {
+        return SwingEnvironment.DEFAULT_ENVIRONMENT instanceof DesktopEnvironment
+        ? (DesktopEnvironment) SwingEnvironment.DEFAULT_ENVIRONMENT : null;
     }
 
     /**
@@ -572,8 +479,8 @@ public class DesktopEnvironment extends SwingEnvironment {
             options[0] = "Do Not Agree";
             options[1] = "Agree";
             Container c = null;
-            if (DEFAULT_ENVIRONMENT != null) {
-                c = DEFAULT_ENVIRONMENT.getUserFrame();
+            if (SwingEnvironment.DEFAULT_ENVIRONMENT instanceof DesktopEnvironment) {
+                c = getDefaultDesktop().getUserFrame();
             }
             int opt = JOptionPane.showOptionDialog(c, licenseAgreementPanel, "License Agreement", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, "Open");
             if (opt == 1) {
@@ -612,7 +519,7 @@ public class DesktopEnvironment extends SwingEnvironment {
      * @return true, if is in applet
      */
     public boolean isInApplet() {
-        return (applet != null);
+        return false;
     }
 
     /**
@@ -719,14 +626,14 @@ public class DesktopEnvironment extends SwingEnvironment {
             UserFrame newFrame = new UserFrame("", this, oldFrame);
             setUserFrame(newFrame);
         }
-        if (fullScreen && (!isFullScreen() || (!getUserFrame().isShowing()))) {
+        if (fullScreen && (!isFullScreen() || !getUserFrame().isShowing())) {
             if (GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().isFullScreenSupported()) {
                 getUserFrame().setUndecorated(true);
                 GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().setFullScreenWindow(getUserFrame());
             } else {
                 JOptionPane.showMessageDialog(getUserFrame(), "Your system does not support full screen windows.");
             }
-        } else if (!fullScreen && (isFullScreen() || (!getUserFrame().isShowing()))) {
+        } else if (!fullScreen && (isFullScreen() || !getUserFrame().isShowing())) {
             Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
             getUserFrame().setLocation(0, 0);
             getUserFrame().setSize(screenSize.width, screenSize.height - 20);
@@ -750,10 +657,10 @@ public class DesktopEnvironment extends SwingEnvironment {
         }
         if (oldFrame != null) {
             oldFrame.setVisible(false);
-//            for (Iterator iterator = environmentViews.iterator(); iterator.hasNext();) {
-//                ComponentView componentView = (ComponentView) iterator.next();
-//                componentView.forceScapeNotify();
-//            }
+            //            for (Iterator iterator = environmentViews.iterator(); iterator.hasNext();) {
+            //                ComponentView componentView = (ComponentView) iterator.next();
+            //                componentView.forceScapeNotify();
+            //            }
             //oldFrame.getgetUserFrame()l().getParent().removeAll();
         }
     }
@@ -811,173 +718,6 @@ public class DesktopEnvironment extends SwingEnvironment {
     }
 
     /**
-     * A helper method to add a button to the provided toolbar for the specified
-     * action.
-     * 
-     * @param toolBar
-     *            the tool bar
-     * @param action
-     *            the action
-     * @return the j button
-     */
-    public static JButton addToolBarButton(final JToolBar toolBar, final Action action) {
-        final JButton actionButton = new JButton() {
-            /**
-             * 
-             */
-            private static final long serialVersionUID = 6986329468889324677L;
-
-            public void setAction(Action action) {
-                //We don't want to have names on toolbar buttons
-                action.putValue(Action.NAME, "");
-                super.setAction(action);
-            }
-        };
-        actionButton.setBorder(DEFAULT_BORDER);
-        actionButton.setRolloverEnabled(true);
-        actionButton.addMouseListener(new MouseAdapter() {
-            public void mouseEntered(MouseEvent e) {
-                actionButton.setBorder(ROLLOVER_BORDER);
-                //todo get the real highlight color from user settings
-                actionButton.setBackground(BUTTON_ROLLOVER_COLOR);
-                super.mouseEntered(e);
-            }
-            public void mouseExited(MouseEvent e) {
-                actionButton.setBorder(DEFAULT_BORDER);
-                actionButton.setBackground(toolBar.getBackground());
-                super.mouseExited(e);
-            }
-        });
-        //actionButton.setModel
-        if (action != null) {
-            actionButton.setAction(action);
-        }
-        toolBar.add(actionButton);
-        return actionButton;
-    }
-
-    /**
-     * A helper method to remove a button from the provided toolbar for the
-     * specified action. Keep in mind that there are a number of tool bars, so
-     * be sure to specify the correct one.
-     * 
-     * @param toolbar
-     *            the toolbar
-     * @param action
-     *            the action
-     */
-    public static void removeToolBarButton(final JToolBar toolbar, final Action action) {
-        JButton toRemove = null;
-        for (int i = 0; i < toolbar.getComponents().length; i++) {
-            Component component = toolbar.getComponents()[i];
-            if (component instanceof JButton) {
-                JButton button = (JButton) component;
-                if (button.getAction().equals(action)) {
-                    toRemove = button;
-                    break;
-                }
-            }
-        }
-        if (toRemove != null) {
-            toolbar.remove(toRemove);
-        }
-    }
-
-    /**
-     * A helper method to add a button to the provided toolbar for the specified
-     * action.
-     * 
-     * @param toolBar
-     *            the tool bar
-     * @return the j button
-     */
-    public static JButton addToolBarButton(JToolBar toolBar) {
-        return addToolBarButton(toolBar, null);
-    }
-
-    /**
-     * Sets the up label.
-     * 
-     * @param label
-     *            the new up label
-     */
-    protected static void setupLabel(JLabel label) {
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        label.setOpaque(true);
-        label.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2), getInfoAreaBorder()));
-    }
-
-    /**
-     * Creates the label.
-     * 
-     * @return the j label
-     */
-    protected static JLabel createLabel() {
-        JLabel label = new JLabel();
-        setupLabel(label);
-        return label;
-    }
-
-    /**
-     * Creates the label.
-     * 
-     * @param width
-     *            the width
-     * @return the j label
-     */
-    public static JLabel createLabel(final int width) {
-        JLabel label = new JLabel() {
-            /**
-             * 
-             */
-            private static final long serialVersionUID = -3556511509121905878L;
-
-            public Dimension getPreferredSize() {
-                return new Dimension(width, super.getPreferredSize().height);
-            }
-        };
-        setupLabel(label);
-        return label;
-    }
-
-    /**
-     * Returns PropertyChangeSupport for the object provided. This property
-     * change support should then be used to manage all <i>UI edited</i>
-     * property changes. All customizers, inspectors and renderers should use
-     * this object to ensure that they are properly updated when a change to an
-     * object occurs and that they properly notify property change support when
-     * they cause a change to occur. Note that for efficiency reasons, computed
-     * (e.g. through a running model) changes are _not_ reported using this
-     * mechanism, and setters should <i>not</i> fire their own property change
-     * events. Renderers should instead register as ScapeListeners to ensure
-     * that they are properly notified of changes in model state. Thus, the
-     * supporting map is assumed to be relativly sparse, and should only contain
-     * those objects that have at one point been activly edited or rendered
-     * through an inspector, customizer or other UI tool.
-     * 
-     * @param object
-     *            an object of relevance to user
-     * @return a manger for proerty changes.
-     */
-    public PropertyChangeSupport getPropertySupportForObject(Object object) {
-        PropertyChangeSupport pcs = (PropertyChangeSupport) propertySupportForObject.get(object);
-        if (pcs == null) {
-            pcs = new PropertyChangeSupport(object);
-            propertySupportForObject.put(object, pcs);
-        }
-        return pcs;
-    }
-
-    /**
-     * Gets the info area border.
-     * 
-     * @return the info area border
-     */
-    public static Border getInfoAreaBorder() {
-        return BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1), BorderFactory.createLineBorder(Color.GRAY));
-    }
-
-    /**
      * Gets the selection manager.
      * 
      * @return the selection manager
@@ -1005,10 +745,10 @@ public class DesktopEnvironment extends SwingEnvironment {
         setRootPane(userFrame);
     }
 
-//
-//    public void setShowToolbar(boolean show) {
-//        if (show)
-//    }
+    //
+    //    public void setShowToolbar(boolean show) {
+    //        if (show)
+    //    }
 }
 
 /**
@@ -1029,7 +769,7 @@ class ComboMenuBar extends JMenuBar {
 
         Color color = UIManager.getColor("Menu.selectionBackground");
         UIManager.put("Menu.selectionBackground",
-            UIManager.getColor("Menu.background"));
+                      UIManager.getColor("Menu.background"));
         menu.updateUI();
         UIManager.put("Menu.selectionBackground", color);
 
@@ -1073,7 +813,7 @@ class ComboMenuBar extends JMenuBar {
             Dimension menuD = getItemSize(menu);
             Insets margin = menu.getMargin();
             Dimension retD = new Dimension(menuD.width,
-                margin.top + margin.bottom + menuD.height);
+                                           margin.top + margin.bottom + menuD.height);
             menu.setPreferredSize(retD);
             preferredSize = retD;
         }

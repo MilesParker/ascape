@@ -1,8 +1,8 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors. 
+ * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors.
  * All rights reserved.
  * This program and the accompanying materials are made available solely under of the BSD license "ascape-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
 package org.ascape.view.vis.control;
@@ -140,7 +140,7 @@ public class ControlActionView extends ScapeTransitionPanelView implements Recor
      * Scape control for creating a new pie chart.
      */
     private Action addPieAction;
-    
+
     /**
      * Scape control for capturing the contents of the desktop, containing the
      * Ascape views and customizers (i.e. the scrollable area within the MDI
@@ -234,12 +234,12 @@ public class ControlActionView extends ScapeTransitionPanelView implements Recor
                     getScape().respondControl(new ControlEvent(this, ControlEvent.REQUEST_RESUME));
                     modelIsPaused = false;
                     stepAction.setEnabled(false);
-//                    stepAction.isEnabled();
+                    //                    stepAction.isEnabled();
                 } else {
                     getScape().respondControl(new ControlEvent(this, ControlEvent.REQUEST_PAUSE));
                     modelIsPaused = true;
                     stepAction.setEnabled(true);
-//                    stepAction.isEnabled();
+                    //                    stepAction.isEnabled();
                 }
             }
         };
@@ -264,8 +264,8 @@ public class ControlActionView extends ScapeTransitionPanelView implements Recor
         stepAction.putValue(Action.SHORT_DESCRIPTION, "Step One Iteration");
         stepAction.putValue(Action.SMALL_ICON, DesktopEnvironment.getIcon("Enter"));
         stepAction.setEnabled(false);
-//        System.err.println("ControlActionView - setting stepAction dis-enabled");
-//        stepAction.isEnabled();
+        //        System.err.println("ControlActionView - setting stepAction dis-enabled");
+        //        stepAction.isEnabled();
 
         stopAction = new AbstractAction() {
             /**
@@ -310,7 +310,7 @@ public class ControlActionView extends ScapeTransitionPanelView implements Recor
                 if (getScape() != null) {
                     getScape().respondControl(new ControlEvent(this, ControlEvent.REQUEST_OPEN_SAVED));
                 } else {
-                	getScape().getRunner().openSavedChoose();
+                    getScape().getRunner().openSavedChoose();
                 }
             }
         };
@@ -370,7 +370,7 @@ public class ControlActionView extends ScapeTransitionPanelView implements Recor
             private static final long serialVersionUID = -2962923969270143073L;
 
             public void actionPerformed(ActionEvent e) {
-                if (!(getScape().getScapeListeners().contains(getScape().getUIEnvironment().getCustomizer()))) {
+                if (!getScape().getScapeListeners().contains(getScape().getUIEnvironment().getCustomizer())) {
                     getScape().addView(getScape().getUIEnvironment().getCustomizer());
                     if (lastCustomizerLocation != null) {
                         final Frame frame = JOptionPane.getFrameForComponent((Component) getScape().getUIEnvironment().getCustomizer());
@@ -381,7 +381,7 @@ public class ControlActionView extends ScapeTransitionPanelView implements Recor
                             }
                         });
                     }
-//                    getScape().addView(new SearchView()); // not sure why this is here
+                    //                    getScape().addView(new SearchView()); // not sure why this is here
                 }
                 ((BaseCustomizer) getScape().getUIEnvironment().getCustomizer()).selected();
             }
@@ -411,18 +411,18 @@ public class ControlActionView extends ScapeTransitionPanelView implements Recor
             private static final long serialVersionUID = 608361368433987948L;
 
             public void actionPerformed(ActionEvent actionEvent) {
-                Component desk = DesktopEnvironment.DEFAULT_ENVIRONMENT.getUserFrame().getDesk();
-                     int w = desk.getWidth(), h = desk.getHeight();
-                     BufferedImage image = new BufferedImage(w, h,
-                         BufferedImage.TYPE_INT_RGB);
-                     Graphics2D g2 = image.createGraphics();
-                     desk.paint(g2);
-                     g2.dispose();
+                Component desk = DesktopEnvironment.getDefaultDesktop().getUserFrame().getDesk();
+                int w = desk.getWidth(), h = desk.getHeight();
+                BufferedImage image = new BufferedImage(w, h,
+                                                        BufferedImage.TYPE_INT_RGB);
+                Graphics2D g2 = image.createGraphics();
+                desk.paint(g2);
+                g2.dispose();
                 try {
-                     ImageIO.write(image, "png", new File("ascape.png"));
-                 } catch (IOException e) {
-                     System.err.println(e);
-                 }
+                    ImageIO.write(image, "png", new File("ascape.png"));
+                } catch (IOException e) {
+                    System.err.println(e);
+                }
             }
         };
         captureDeskAction.putValue(Action.NAME, "Capture Image");
@@ -437,7 +437,7 @@ public class ControlActionView extends ScapeTransitionPanelView implements Recor
 
             public void actionPerformed(ActionEvent e) {
                 if (recorder == null) {
-                    recorder = new QuickTimeRecorder(DesktopEnvironment.DEFAULT_ENVIRONMENT.getUserFrame().getDesk());
+                    recorder = new QuickTimeRecorder(DesktopEnvironment.getDefaultDesktop().getUserFrame().getDesk());
                     recorder.addListener(ControlActionView.this);
                 }
             }
@@ -523,10 +523,10 @@ public class ControlActionView extends ScapeTransitionPanelView implements Recor
             private static final long serialVersionUID = 1361316239693434267L;
 
             public void actionPerformed(ActionEvent e) {
-                DesktopEnvironment.DEFAULT_ENVIRONMENT.setFullScreen(true);
+                DesktopEnvironment.getDefaultDesktop().setFullScreen(true);
             }
         };
-        if (DesktopEnvironment.DEFAULT_ENVIRONMENT != null) {
+        if (DesktopEnvironment.getDefaultDesktop() != null) {
             fullWindowAction.putValue(Action.NAME, "Full Screen");
             fullWindowAction.putValue(Action.SHORT_DESCRIPTION, "Display Ascape in Full Screen");
             fullWindowAction.putValue(Action.SMALL_ICON, DesktopEnvironment.getIcon("Computer"));
@@ -538,7 +538,7 @@ public class ControlActionView extends ScapeTransitionPanelView implements Recor
                 private static final long serialVersionUID = -4242913283035409066L;
 
                 public void actionPerformed(ActionEvent e) {
-                    DesktopEnvironment.DEFAULT_ENVIRONMENT.setFullScreen(false);
+                    DesktopEnvironment.getDefaultDesktop().setFullScreen(false);
                 }
             };
             normalWindowAction.putValue(Action.NAME, "Normal Screen");
@@ -577,8 +577,8 @@ public class ControlActionView extends ScapeTransitionPanelView implements Recor
         startRestartAction.setEnabled(true);
         stopAction.setEnabled(true);
         stepAction.setEnabled(false);
-//        System.err.println("ControlActionView.scapeNowRunning - setting it dis-enabled");
-//        stepAction.isEnabled();
+        //        System.err.println("ControlActionView.scapeNowRunning - setting it dis-enabled");
+        //        stepAction.isEnabled();
         pauseResumeAction.setEnabled(true);
         saveAction.setEnabled(getScape().isSerializable());
     }
@@ -591,8 +591,8 @@ public class ControlActionView extends ScapeTransitionPanelView implements Recor
         stopAction.setEnabled(false);
         pauseResumeAction.setEnabled(false);
         stepAction.setEnabled(false);
-//        System.err.println("ControlActionView.scapeNowStopped - setting it to false");
-//        stepAction.isEnabled();
+        //        System.err.println("ControlActionView.scapeNowStopped - setting it to false");
+        //        stepAction.isEnabled();
         saveAction.setEnabled(false);
     }
 
@@ -601,8 +601,8 @@ public class ControlActionView extends ScapeTransitionPanelView implements Recor
      */
     public void scapeNowPaused() {
         stepAction.setEnabled(true);
-//        System.err.println("ControlActionView.scapeNowPaused - setting it to true");
-//        stepAction.isEnabled();
+        //        System.err.println("ControlActionView.scapeNowPaused - setting it to true");
+        //        stepAction.isEnabled();
     }
 
     /* (non-Javadoc)
@@ -624,8 +624,8 @@ public class ControlActionView extends ScapeTransitionPanelView implements Recor
      */
     public void scapeNowSteppable() {
         stepAction.setEnabled(true);
-//        System.err.println("ControlActionView.scapeNowSteppable - setting it true");
-//        stepAction.isEnabled();
+        //        System.err.println("ControlActionView.scapeNowSteppable - setting it true");
+        //        stepAction.isEnabled();
     }
 
     /* (non-Javadoc)
@@ -675,8 +675,8 @@ public class ControlActionView extends ScapeTransitionPanelView implements Recor
     }
 
     /*
-    * A factory method to produce charts from their action buttons
-    */
+     * A factory method to produce charts from their action buttons
+     */
     /**
      * New chart.
      * 
@@ -738,7 +738,7 @@ public class ControlActionView extends ScapeTransitionPanelView implements Recor
      * Change in full screen.
      */
     public void changeInFullScreen() {
-        if (DesktopEnvironment.DEFAULT_ENVIRONMENT.isFullScreen()) {
+        if (DesktopEnvironment.getDefaultDesktop().isFullScreen()) {
             fullWindowAction.setEnabled(false);
             normalWindowAction.setEnabled(true);
         } else {
@@ -967,15 +967,15 @@ public class ControlActionView extends ScapeTransitionPanelView implements Recor
         }
     }
 
-//    private void writeObject(java.io.ObjectOutputStream out)
-//         throws IOException {
-//      if (SwingUtilities.isEventDispatchThread()) {
-//        // This is all that is necessary if we are already in
-//        // the event dispatch thread, e.g. a user clicked a
-//        // button which caused the object to be serialized
-//        out.defaultWriteObject();
-//      } else {
-//          System.out.println(this+": cannot write because not in Event Dispatch Thread!");
-//      }
-//    }
+    //    private void writeObject(java.io.ObjectOutputStream out)
+    //         throws IOException {
+    //      if (SwingUtilities.isEventDispatchThread()) {
+    //        // This is all that is necessary if we are already in
+    //        // the event dispatch thread, e.g. a user clicked a
+    //        // button which caused the object to be serialized
+    //        out.defaultWriteObject();
+    //      } else {
+    //          System.out.println(this+": cannot write because not in Event Dispatch Thread!");
+    //      }
+    //    }
 }

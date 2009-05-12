@@ -1,8 +1,8 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors. 
+ * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors.
  * All rights reserved.
  * This program and the accompanying materials are made available solely under of the BSD license "ascape-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
 package org.ascape.view.custom;
@@ -75,31 +75,33 @@ public abstract class ModelCustomizerSwing extends ModelCustomizer {
         super.build();
 
         /*
-        * JButton Panel
-        */
+         * JButton Panel
+         */
         if (!isLive()) {
             buttonPanel.removeAll();
             //okButton = new JButton("Done", new ImageIcon(Scape.getAscapeHome() + getScape().getBasePath() + "lib/images/Check.gif"));
             //Let's make consistent w/ Swing dialogs instead
-//            okButton = new JButton("Done", UserEnvironment.getIcon("Check")) {
-//                // I override JButton's createActionPropertyChangeListener
-//                // to avoid the creation of a AbstractButton$ButtonActionPropertyChangeListener,
-//                // which is not serializable!
-//                protected PropertyChangeListener createActionPropertyChangeListener(Action a) {
-//                    return null;
-//                }
-//            };
-//            buttonPanel.add(okButton);
-//            okButton.addActionListener(new ActionListener() {
-//                public void actionPerformed(ActionEvent e) {
-//                    assignSettings();
-//                    getViewFrame().dispose();
-//                    //We need to update once because the current update will be missed
-//		            //notifyScapeUpdated();
-//                }
-//            });
+            //            okButton = new JButton("Done", UserEnvironment.getIcon("Check")) {
+            //                // I override JButton's createActionPropertyChangeListener
+            //                // to avoid the creation of a AbstractButton$ButtonActionPropertyChangeListener,
+            //                // which is not serializable!
+            //                protected PropertyChangeListener createActionPropertyChangeListener(Action a) {
+            //                    return null;
+            //                }
+            //            };
+            //            buttonPanel.add(okButton);
+            //            okButton.addActionListener(new ActionListener() {
+            //                public void actionPerformed(ActionEvent e) {
+            //                    assignSettings();
+            //                    getViewFrame().dispose();
+            //                    //We need to update once because the current update will be missed
+            //		            //notifyScapeUpdated();
+            //                }
+            //            });
         }
-        getViewFrame().setTitle("Model Settings");
+        if (getViewFrame() != null) {
+            getViewFrame().setTitle("Model Settings");
+        }
     }
 
     /**

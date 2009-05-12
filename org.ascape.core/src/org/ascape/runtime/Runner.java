@@ -796,11 +796,8 @@ public abstract class Runner implements Serializable, Runnable {
      * Method neccessary because of amibiguous null values in simpler signature
      * methods.
      */
-    public void openImplementation(Object applet, String[] args, boolean block) {
+    public void openImplementation(String[] args, boolean block) {
         try {
-            if (applet != null) {
-                scape.getUIEnvironment().setApplet(applet, scape);
-            }
             if (args != null) {
                 // first pass of parseSettingArgs,
                 // don't report any parameters not found
@@ -846,7 +843,7 @@ public abstract class Runner implements Serializable, Runnable {
      *            should this call block or run in a new thread?
      */
     public void open(Object applet, String[] args, boolean block) {
-        openImplementation(applet, args, block);
+        openImplementation(args, block);
     }
 
     /**
@@ -858,7 +855,7 @@ public abstract class Runner implements Serializable, Runnable {
      *            paramter arguments for the scape
      */
     public void open(Object applet, String[] args) {
-        openImplementation(applet, args, false);
+        openImplementation(args, false);
     }
 
     /**
@@ -870,7 +867,7 @@ public abstract class Runner implements Serializable, Runnable {
      *            should this call block or run in a new thread?
      */
     public void open(String[] args, boolean block) {
-        openImplementation(null, args, block);
+        openImplementation(args, block);
     }
 
     /**
@@ -880,14 +877,14 @@ public abstract class Runner implements Serializable, Runnable {
      *            paramter arguments for the scape
      */
     public void open(String[] args) {
-        openImplementation(null, args, false);
+        openImplementation(args, false);
     }
 
     /**
      * Creates and runs (if start on open is true) this model scape.
      */
     public void open() {
-        openImplementation(null, null, false);
+        openImplementation(null, false);
     }
 
     /**
@@ -897,7 +894,7 @@ public abstract class Runner implements Serializable, Runnable {
      *            should this call block or run in a new thread?
      */
     public void open(boolean block) {
-        openImplementation(null, null, block);
+        openImplementation(null, block);
     }
 
     /**
@@ -909,26 +906,6 @@ public abstract class Runner implements Serializable, Runnable {
 
     public abstract void closeAndOpenSavedFinally(Scape oldScape);
 
-    /**
-     * Constructs, creates and runs (if start on open is true) the supplied
-     * model.
-     * 
-     * @param modelName
-     *            the fully qualified name of the Java class for the model's
-     *            root scape
-     * @param applet
-     *            the applet if are we in an applet vm context
-     * @param args
-     *            paramter arguments for the scape
-     * @param block
-     *            should this call block or run in a new thread?
-     */
-    public Scape open(String modelName, Object applet, String[] args, boolean block) {
-        Scape newAgent = (Scape) instanceFromName(modelName);
-        setRootScape(newAgent);
-        open(applet, args, block);
-        return getRootScape();
-    }
 
     public Object instanceFromName(String modelName) {
         Object newObject;
@@ -952,16 +929,32 @@ public abstract class Runner implements Serializable, Runnable {
     }
 
     /**
+     * Constructs, creates and runs (if start on open is true) the supplied model.
+     * 
+     * @deprecated Applets are no longer executed this way
+     * @param modelName
+     *        the fully qualified name of the Java class for the model's root scape
+     * @param applet
+     *        the applet if are we in an applet vm context
+     * @param args
+     *        paramter arguments for the scape
+     * @param block
+     *        should this call block or run in a new thread?
+     */
+    public Scape open(String modelName, Object applet, String[] args, boolean block) {
+        return open(modelName, args, block);
+    }
+
+    /**
      * Constructs, creates and runs the supplied model.
      * 
      * @param modelName
-     *            the fully qualified name of the Java class for the model's
-     *            root scape
+     *        the fully qualified name of the Java class for the model's root scape
      * @param args
-     *            paramter arguments for the scape
+     *        paramter arguments for the scape
      */
     public Scape open(String modelName, String[] args) {
-        return open(modelName, null, args, false);
+        return open(modelName, args, false);
     }
 
     /**
@@ -976,20 +969,24 @@ public abstract class Runner implements Serializable, Runnable {
      *            should this call block or run in a new thread?
      */
     public Scape open(String modelName, String[] args, boolean block) {
-        return open(modelName, null, args, block);
+
+        Scape newAgent = (Scape) instanceFromName(modelName);
+        setRootScape(newAgent);
+        open(args, block);
+        return getRootScape();
     }
 
     /**
      * Constructs, creates and runs the supplied model.
      * 
+     * @deprecated Applets are no longer executed this way
      * @param modelName
-     *            the fully qualified name of the Java class for the model's
-     *            root scape
+     *        the fully qualified name of the Java class for the model's root scape
      * @param applet
-     *            the applet if are we in an applet vm context
+     *        the applet if are we in an applet vm context
      */
     public Scape open(String modelName, Object applet) {
-        return open(modelName, applet, null, false);
+        return open(modelName, null, null, false);
     }
 
     /**

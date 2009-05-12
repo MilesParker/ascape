@@ -1,8 +1,8 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors. 
+ * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors.
  * All rights reserved.
  * This program and the accompanying materials are made available solely under of the BSD license "ascape-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 package org.ascape.runtime.swing;
 
@@ -59,7 +59,7 @@ public class AgentSelectionView extends PanelView {
         public Object getValueAt(int rowIndex, int columnIndex) {
             try {
                 Method readMethod = agentDescriptors[columnIndex].getReadMethod();
-                if ((readMethod != null) && (agentDescriptors[columnIndex].getPropertyType() != Image.class)) {
+                if (readMethod != null && agentDescriptors[columnIndex].getPropertyType() != Image.class) {
                     return readMethod.invoke(query.getResults().get(rowIndex), new Object[0]);
                 } else {
                     return "";
@@ -73,7 +73,7 @@ public class AgentSelectionView extends PanelView {
             return agentDescriptors[column].getName();
         }
 
-        public Class getColumnClass(int columnIndex) {
+        public Class<?> getColumnClass(int columnIndex) {
             Class type = agentDescriptors[columnIndex].getPropertyType();
             if (type == Color.class) {
                 return type;
@@ -82,7 +82,7 @@ public class AgentSelectionView extends PanelView {
             }
         }
     };
-    
+
     /**
      * The agent descriptors.
      */

@@ -1,8 +1,8 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors. 
+ * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors.
  * All rights reserved.
  * This program and the accompanying materials are made available solely under of the BSD license "ascape-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
 package org.ascape.runtime.swing;
@@ -152,7 +152,7 @@ public class SearchView extends PanelView {
                     if (dynamicCheckBox.isSelected()) {
                         searchScape.addView(query);
                     }
-                    Container frameImp = DesktopEnvironment.DEFAULT_ENVIRONMENT.getUserFrame();
+                    Container frameImp = DesktopEnvironment.getDefaultDesktop().getUserFrame();
                     final ProgressMonitor monitor = new ProgressMonitor(frameImp, "Searching...", "", 0, query.getSearchSize());
                     monitor.setNote("                                                                                                    ");
                     monitor.setMillisToPopup(0);
@@ -166,7 +166,7 @@ public class SearchView extends PanelView {
                         }
                     };
                     queryThread.start();
-                    (new Thread("Progress Monitor: " + queryArea.getText()) {
+                    new Thread("Progress Monitor: " + queryArea.getText()) {
                         public void run() {
                             while (!query.isEvaluating()) {
                                 try {
@@ -195,7 +195,7 @@ public class SearchView extends PanelView {
                             }
                             monitor.close();
                         }
-                    }).start();
+                    }.start();
                 } catch (ParseException e1) {
                     JOptionPane.showMessageDialog(SearchView.this, "Couldn't understand query: " + e1.toString(), "Query Error", JOptionPane.ERROR_MESSAGE);  //To change body of catch statement use Options | File Templates.
                 }

@@ -345,7 +345,7 @@ public class DataOutputView extends DataView {
      * @throws IOException
      *             Signals that an I/O exception has occurred.
      */
-    private void writeStats(DataOutputStream stream) throws IOException {
+    public void writeStats(DataOutputStream stream) throws IOException {
         for (int i = 0; i < dataSelection.getSelectionSize(); i++) {
             stream.writeBytes("\t");
             stream.writeBytes(Double.toString(dataSelection.getSelectedSeries(i).getValue()));

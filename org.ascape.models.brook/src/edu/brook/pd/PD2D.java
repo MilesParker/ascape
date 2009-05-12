@@ -1,8 +1,8 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, with revisions by Metascape LLC, and others. 
+ * Copyright 1998-2007 The Brookings Institution, with revisions by Metascape LLC, and others.
  * All rights reserved.
  * This program and the accompanying materials are made available solely under of the BSD license "brookings-models-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
 package edu.brook.pd;
@@ -158,7 +158,7 @@ public class PD2D extends Scape {
                 private static final long serialVersionUID = 5738886903792177925L;
 
                 public boolean meetsCondition(Object object) {
-                    return (((Player) object).strategy == PD2D.COOPERATE);
+                    return ((Player) object).strategy == PD2D.COOPERATE;
                 }
             },
             new StatCollectorCond("Defect") {
@@ -168,7 +168,7 @@ public class PD2D extends Scape {
                 private static final long serialVersionUID = 2833380489676651687L;
 
                 public boolean meetsCondition(Object object) {
-                    return (((Player) object).strategy == PD2D.DEFECT);
+                    return ((Player) object).strategy == PD2D.DEFECT;
                 }
             },
             new StatCollectorCondCSAMM("Defect Wealth") {
@@ -178,7 +178,7 @@ public class PD2D extends Scape {
                 private static final long serialVersionUID = 4485688701773607436L;
 
                 public boolean meetsCondition(Object object) {
-                    return (((Player) object).strategy == PD2D.DEFECT);
+                    return ((Player) object).strategy == PD2D.DEFECT;
                 }
 
                 public double getValue(Object object) {
@@ -192,7 +192,7 @@ public class PD2D extends Scape {
                 private static final long serialVersionUID = -6601556083383014471L;
 
                 public boolean meetsCondition(Object object) {
-                    return (((Player) object).strategy == PD2D.COOPERATE);
+                    return ((Player) object).strategy == PD2D.COOPERATE;
                 }
 
                 public double getValue(Object object) {
@@ -216,7 +216,7 @@ public class PD2D extends Scape {
                 private static final long serialVersionUID = 5347740434370481691L;
 
                 public boolean meetsCondition(Object object) {
-                    return (((Player) object).strategy == PD2D.COOPERATE);
+                    return ((Player) object).strategy == PD2D.COOPERATE;
                 }
 
                 public double getValue(Object object) {
@@ -230,7 +230,7 @@ public class PD2D extends Scape {
                 private static final long serialVersionUID = 125404326092586749L;
 
                 public boolean meetsCondition(Object object) {
-                    return (((Player) object).strategy == PD2D.DEFECT);
+                    return ((Player) object).strategy == PD2D.DEFECT;
                 }
 
                 public double getValue(Object object) {
@@ -248,7 +248,7 @@ public class PD2D extends Scape {
                 }
             }
         };
-//Add the new values stats to agents
+        //Add the new values stats to agents
         agents.addStatCollectors(stats);
     }
 
@@ -256,20 +256,20 @@ public class PD2D extends Scape {
         super.createGraphicViews();
 
         //Create a new chart
-//        chart = new ChartView();
-//        //Add the chart view
-//        agents.addView(chart);
-//        //And add some of the stat series we've just created to it
-//        chart.addSeries("Count Cooperate", Color.blue);
-//        chart.addSeries("Count Defect", Color.red);
-//        //Set starting data point we're interested in
-//        chart.setDisplayPoints(100);
+        chart = new ChartView();
+        // Add the chart view
+        addView(chart);
+        // And add some of the stat series we've just created to it
+        chart.addSeries("Count Cooperate", java.awt.Color.blue);
+        chart.addSeries("Count Defect", java.awt.Color.red);
+        // Set starting data point we're interested in
+        chart.setDisplayPoints(100);
 
-//Now, add a simple overhead view so that we can view the lattice:
+        //Now, add a simple overhead view so that we can view the lattice:
         overheadView = new Overhead2DView("Player's View");
-//Set its cell size to 12
+        //Set its cell size to 12
         overheadView.setCellSize(12);
-//add it to the lattice so that it can view and be controlled by it
+        //add it to the lattice so that it can view and be controlled by it
         lattice.addView(overheadView);
     }
 
@@ -302,21 +302,19 @@ public class PD2D extends Scape {
         nAgents = _nAgents;
     }
 
-    /*public int getLatticeWidth() {
-        return latticeWidth;
+    public static void main(String[] args) {
+        new org.ascape.runtime.swing.SwingRunner().open("edu.brook.pd.PD2D", new String[] {});
     }
 
-    public void setLatticeWidth(int _latticeWidth) {
-        latticeWidth = _latticeWidth;
-    }
-
-    public int getLatticeHeight() {
-        return latticeHeight;
-    }
-
-    public void setLatticeHeight(int _latticeHeight) {
-        latticeHeight = _latticeHeight;
-    }*/
+    /*
+     * public int getLatticeWidth() { return latticeWidth; }
+     * 
+     * public void setLatticeWidth(int _latticeWidth) { latticeWidth = _latticeWidth; }
+     * 
+     * public int getLatticeHeight() { return latticeHeight; }
+     * 
+     * public void setLatticeHeight(int _latticeHeight) { latticeHeight = _latticeHeight; }
+     */
 
     public int getFissionWealth() {
         return fissionWealth;

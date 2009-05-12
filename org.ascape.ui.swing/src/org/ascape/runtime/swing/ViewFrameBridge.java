@@ -1,8 +1,8 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors. 
+ * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors.
  * All rights reserved.
  * This program and the accompanying materials are made available solely under of the BSD license "ascape-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
 package org.ascape.runtime.swing;
@@ -77,7 +77,7 @@ import org.ascape.view.vis.ComponentView;
  * @since 1.2
  */
 public class ViewFrameBridge implements Serializable {
-    
+
     /**
      * 
      */
@@ -87,7 +87,7 @@ public class ViewFrameBridge implements Serializable {
      * The Constant POPUP_MAP_WIDTH.
      */
     private static final int POPUP_MAP_WIDTH = 500;
-    
+
     /**
      * The Constant POPUP_MAP_HEIGHT.
      */
@@ -207,13 +207,14 @@ public class ViewFrameBridge implements Serializable {
                 if (views.length == 1) {
                     d = views[0].getPreferredSizeWithin(d);
                 } else if (views.length > 1) {
-                    if ((DesktopEnvironment.DEFAULT_ENVIRONMENT.getMultiViewMode() == DesktopEnvironment.GRID_MULTIVIEW_MODE) || ((DesktopEnvironment.DEFAULT_ENVIRONMENT.getMultiViewMode() == DesktopEnvironment.GRID_MULTIVIEW_LABEL_MODE)))
+                    if (DesktopEnvironment.getDefaultDesktop().getMultiViewMode() == DesktopEnvironment.GRID_MULTIVIEW_MODE
+                            || DesktopEnvironment.getDefaultDesktop().getMultiViewMode() == DesktopEnvironment.GRID_MULTIVIEW_LABEL_MODE)
                     {
                         int xRows = ((GridLayout) viewPanel.getLayout()).getRows();
                         int xCols = ((GridLayout) viewPanel.getLayout()).getColumns();
                         //The following code is somewhat confusing, don't touch unless you understand logic
                         //The basic idea is that we need to translate size to individual cell size and back again
-                        if (DesktopEnvironment.DEFAULT_ENVIRONMENT.getMultiViewMode() == DesktopEnvironment.GRID_MULTIVIEW_MODE) {
+                        if (DesktopEnvironment.getDefaultDesktop().getMultiViewMode() == DesktopEnvironment.GRID_MULTIVIEW_MODE) {
                             d.setSize((int) ((d.getWidth() + gridBorderSize) / xCols) - gridBorderSize, (int) ((d.getHeight() + gridBorderSize) / xRows) - gridBorderSize);
                             d = views[0].getPreferredSizeWithin(d);
                             d.setSize((int) ((d.getWidth() + gridBorderSize) * xCols) - gridBorderSize, (int) ((d.getHeight() + gridBorderSize) * xRows) - gridBorderSize);
@@ -222,7 +223,7 @@ public class ViewFrameBridge implements Serializable {
                             d = views[0].getPreferredSizeWithin(d);
                             d.setSize((int) ((d.getWidth() + gridBorderSize) * xCols) - gridBorderSize, (int) ((d.getHeight() + gridBorderSize + labelSize) * xRows) - gridBorderSize);
                         }
-                    } else if (DesktopEnvironment.DEFAULT_ENVIRONMENT.getMultiViewMode() == DesktopEnvironment.TABBED_MULTIVIEW_MODE) {
+                    } else if (DesktopEnvironment.getDefaultDesktop().getMultiViewMode() == DesktopEnvironment.TABBED_MULTIVIEW_MODE) {
                         //Just que off of first view size, though we may want to do max instead...
                         d = views[0].getPreferredSizeWithin(d);
                     }
@@ -244,19 +245,20 @@ public class ViewFrameBridge implements Serializable {
             if (views.length == 1) {
                 d = ((AgentSizedView) views[0]).calculateViewSizeForAgentSize(size);
             } else if (views.length > 1) {
-                if ((DesktopEnvironment.DEFAULT_ENVIRONMENT.getMultiViewMode() == DesktopEnvironment.GRID_MULTIVIEW_MODE) || ((DesktopEnvironment.DEFAULT_ENVIRONMENT.getMultiViewMode() == DesktopEnvironment.GRID_MULTIVIEW_LABEL_MODE)))
+                if (DesktopEnvironment.getDefaultDesktop().getMultiViewMode() == DesktopEnvironment.GRID_MULTIVIEW_MODE
+                        || DesktopEnvironment.getDefaultDesktop().getMultiViewMode() == DesktopEnvironment.GRID_MULTIVIEW_LABEL_MODE)
                 {
                     int xRows = ((GridLayout) viewPanel.getLayout()).getRows();
                     int xCols = ((GridLayout) viewPanel.getLayout()).getColumns();
                     //The following code is somewhat confusing, don't touch unless you understand logic
                     //The basic idea is that we need to translate size to individual cell size and back again
                     d = ((AgentSizedView) views[0]).calculateViewSizeForAgentSize(size);
-                    if (DesktopEnvironment.DEFAULT_ENVIRONMENT.getMultiViewMode() == DesktopEnvironment.GRID_MULTIVIEW_MODE) {
+                    if (DesktopEnvironment.getDefaultDesktop().getMultiViewMode() == DesktopEnvironment.GRID_MULTIVIEW_MODE) {
                         d.setSize((int) ((d.getWidth() + gridBorderSize) * xCols) - gridBorderSize, (int) ((d.getHeight() + gridBorderSize) * xRows) - gridBorderSize);
                     } else {
                         d.setSize((int) ((d.getWidth() + gridBorderSize) * xCols) - gridBorderSize, (int) ((d.getHeight() + gridBorderSize + labelSize) * xRows) - gridBorderSize);
                     }
-                } else if (DesktopEnvironment.DEFAULT_ENVIRONMENT.getMultiViewMode() == DesktopEnvironment.TABBED_MULTIVIEW_MODE) {
+                } else if (DesktopEnvironment.getDefaultDesktop().getMultiViewMode() == DesktopEnvironment.TABBED_MULTIVIEW_MODE) {
                     d = ((AgentSizedView) views[0]).calculateViewSizeForAgentSize(size);
                 }
             }
@@ -318,13 +320,14 @@ public class ViewFrameBridge implements Serializable {
                 if (views.length == 1) {
                     d = views[0].getPreferredSizeWithin(d);
                 } else if (views.length > 1) {
-                    if ((DesktopEnvironment.DEFAULT_ENVIRONMENT.getMultiViewMode() == DesktopEnvironment.GRID_MULTIVIEW_MODE) || ((DesktopEnvironment.DEFAULT_ENVIRONMENT.getMultiViewMode() == DesktopEnvironment.GRID_MULTIVIEW_LABEL_MODE)))
+                    if (DesktopEnvironment.getDefaultDesktop().getMultiViewMode() == DesktopEnvironment.GRID_MULTIVIEW_MODE
+                            || DesktopEnvironment.getDefaultDesktop().getMultiViewMode() == DesktopEnvironment.GRID_MULTIVIEW_LABEL_MODE)
                     {
                         int xRows = ((GridLayout) viewPanel.getLayout()).getRows();
                         int xCols = ((GridLayout) viewPanel.getLayout()).getColumns();
                         //The following code is somewhat confusing, don't touch unless you understand logic
                         //The basic idea is that we need to translate size to individual cell size and back again
-                        if (DesktopEnvironment.DEFAULT_ENVIRONMENT.getMultiViewMode() == DesktopEnvironment.GRID_MULTIVIEW_MODE) {
+                        if (DesktopEnvironment.getDefaultDesktop().getMultiViewMode() == DesktopEnvironment.GRID_MULTIVIEW_MODE) {
                             d.setSize((int) ((d.getWidth() + gridBorderSize) / xCols) - gridBorderSize, (int) ((d.getHeight() + gridBorderSize) / xRows) - gridBorderSize);
                             d = views[0].getPreferredSizeWithin(d);
                             d.setSize((int) ((d.getWidth() + gridBorderSize) * xCols) - gridBorderSize, (int) ((d.getHeight() + gridBorderSize) * xRows) - gridBorderSize);
@@ -333,13 +336,13 @@ public class ViewFrameBridge implements Serializable {
                             d = views[0].getPreferredSizeWithin(d);
                             d.setSize((int) ((d.getWidth() + gridBorderSize) * xCols) - gridBorderSize, (int) ((d.getHeight() + gridBorderSize + labelSize) * xRows) - gridBorderSize);
                         }
-                    } else if (DesktopEnvironment.DEFAULT_ENVIRONMENT.getMultiViewMode() == DesktopEnvironment.TABBED_MULTIVIEW_MODE) {
+                    } else if (DesktopEnvironment.getDefaultDesktop().getMultiViewMode() == DesktopEnvironment.TABBED_MULTIVIEW_MODE) {
                         //Just que off of first view size, though we may want to do max instead...
                         d = views[0].getPreferredSizeWithin(d);
                     }
                 }
                 d.setSize((int) d.getWidth() + frameWidth, (int) d.getHeight() + frameHeight);
-                
+
             }
             return d;
         }
@@ -354,19 +357,20 @@ public class ViewFrameBridge implements Serializable {
             if (views.length == 1) {
                 d = ((AgentSizedView) views[0]).calculateViewSizeForAgentSize(size);
             } else if (views.length > 1) {
-                if ((DesktopEnvironment.DEFAULT_ENVIRONMENT.getMultiViewMode() == DesktopEnvironment.GRID_MULTIVIEW_MODE) || ((DesktopEnvironment.DEFAULT_ENVIRONMENT.getMultiViewMode() == DesktopEnvironment.GRID_MULTIVIEW_LABEL_MODE)))
+                if (DesktopEnvironment.getDefaultDesktop().getMultiViewMode() == DesktopEnvironment.GRID_MULTIVIEW_MODE
+                        || DesktopEnvironment.getDefaultDesktop().getMultiViewMode() == DesktopEnvironment.GRID_MULTIVIEW_LABEL_MODE)
                 {
                     int xRows = ((GridLayout) viewPanel.getLayout()).getRows();
                     int xCols = ((GridLayout) viewPanel.getLayout()).getColumns();
                     //The following code is somewhat confusing, don't touch unless you understand logic
                     //The basic idea is that we need to translate size to individual cell size and back again
                     d = ((AgentSizedView) views[0]).calculateViewSizeForAgentSize(size);
-                    if (DesktopEnvironment.DEFAULT_ENVIRONMENT.getMultiViewMode() == DesktopEnvironment.GRID_MULTIVIEW_MODE) {
+                    if (DesktopEnvironment.getDefaultDesktop().getMultiViewMode() == DesktopEnvironment.GRID_MULTIVIEW_MODE) {
                         d.setSize((int) ((d.getWidth() + gridBorderSize) * xCols) - gridBorderSize, (int) ((d.getHeight() + gridBorderSize) * xRows) - gridBorderSize);
                     } else {
                         d.setSize((int) ((d.getWidth() + gridBorderSize) * xCols) - gridBorderSize, (int) ((d.getHeight() + gridBorderSize + labelSize) * xRows) - gridBorderSize);
                     }
-                } else if (DesktopEnvironment.DEFAULT_ENVIRONMENT.getMultiViewMode() == DesktopEnvironment.TABBED_MULTIVIEW_MODE) {
+                } else if (DesktopEnvironment.getDefaultDesktop().getMultiViewMode() == DesktopEnvironment.TABBED_MULTIVIEW_MODE) {
                     d = ((AgentSizedView) views[0]).calculateViewSizeForAgentSize(size);
                 }
             }
@@ -442,7 +446,7 @@ public class ViewFrameBridge implements Serializable {
      * The Class ZoomAction.
      */
     private abstract class ZoomAction extends AbstractAction {
-        
+
         /**
          * 
          */
@@ -451,7 +455,7 @@ public class ViewFrameBridge implements Serializable {
          * The delta.
          */
         int delta;
-        
+
         /**
          * Instantiates a new zoom action.
          * 
@@ -466,12 +470,12 @@ public class ViewFrameBridge implements Serializable {
             super(name, icon);
             this.delta = delta;
         }
-        
+
         /* (non-Javadoc)
          * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
          */
         public void actionPerformed(ActionEvent e) {
-            AgentSizedView agentSizedView = ((AgentSizedView) views[0]);
+            AgentSizedView agentSizedView = (AgentSizedView) views[0];
             if (isLockZoomToFrame()) {
                 getFrameImp().setSize(((ViewPanZoomFrame) getFrameImp()).getSizeForAgentSize(agentSizedView.getAgentSize() + delta));
                 agentSizedView.setAgentSize(agentSizedView.getAgentSize() + delta);
@@ -483,12 +487,12 @@ public class ViewFrameBridge implements Serializable {
             }
         }
     }
-    
+
     /**
      * The Class ZoomInAction.
      */
     private class ZoomInAction extends ZoomAction {
-        
+
         /**
          * 
          */
@@ -678,8 +682,8 @@ public class ViewFrameBridge implements Serializable {
      */
     private void selectFrameImp() {
         if (!SwingRunner.isMultiWinEnvironment()) {
-            switch (DesktopEnvironment.DEFAULT_ENVIRONMENT.getViewMode()) {
-//Comment out the following lines to support non-swing versions
+            switch (DesktopEnvironment.getDefaultDesktop().getViewMode()) {
+                //Comment out the following lines to support non-swing versions
                 case DesktopEnvironment.CLASSIC_VIEW_MODE:
                     frameImp = new ViewJFrame();
                     //Test without, better for customizers
@@ -690,75 +694,94 @@ public class ViewFrameBridge implements Serializable {
                     frameImp.setSize(0, 0);
                     ((ViewJFrame) frameImp).addWindowListener(new WindowAdapter() {
                         public void windowActivated(WindowEvent e) {
-                            if (DesktopEnvironment.DEFAULT_ENVIRONMENT.getControlBarView() != null) {
-                                if (ViewFrameBridge.this != DesktopEnvironment.DEFAULT_ENVIRONMENT.getControlBarView().getViewFrame()) {
-                                    DesktopEnvironment.DEFAULT_ENVIRONMENT.getControlBarView().setIgnoreFrameSelection(true);
-                                    DesktopEnvironment.DEFAULT_ENVIRONMENT.getControlBarView().setFrameSelection(ViewFrameBridge.this);
-                                    DesktopEnvironment.DEFAULT_ENVIRONMENT.getControlBarView().setIgnoreFrameSelection(false);
+                            if (DesktopEnvironment.getDefaultDesktop().getControlBarView() != null) {
+                                if (ViewFrameBridge.this != DesktopEnvironment.getDefaultDesktop().getControlBarView()
+                                        .getViewFrame()) {
+                                    DesktopEnvironment.getDefaultDesktop().getControlBarView()
+                                    .setIgnoreFrameSelection(true);
+                                    DesktopEnvironment.getDefaultDesktop().getControlBarView()
+                                    .setFrameSelection(ViewFrameBridge.this);
+                                    DesktopEnvironment.getDefaultDesktop().getControlBarView()
+                                    .setIgnoreFrameSelection(false);
                                 } else {
-                                    DesktopEnvironment.DEFAULT_ENVIRONMENT.getControlBarView().setIgnoreFrameSelection(true);
-                                    DesktopEnvironment.DEFAULT_ENVIRONMENT.getControlBarView().setFrameSelection(null);
-                                    DesktopEnvironment.DEFAULT_ENVIRONMENT.getControlBarView().setIgnoreFrameSelection(false);
+                                    DesktopEnvironment.getDefaultDesktop().getControlBarView()
+                                    .setIgnoreFrameSelection(true);
+                                    DesktopEnvironment.getDefaultDesktop().getControlBarView().setFrameSelection(null);
+                                    DesktopEnvironment.getDefaultDesktop().getControlBarView()
+                                    .setIgnoreFrameSelection(false);
                                 }
                             }
                         }
 
                         public void windowDeiconified(WindowEvent e) {
-                            if (DesktopEnvironment.DEFAULT_ENVIRONMENT.getControlBarView() != null) {
-                                if (ViewFrameBridge.this != DesktopEnvironment.DEFAULT_ENVIRONMENT.getControlBarView().getViewFrame()) {
-                                    DesktopEnvironment.DEFAULT_ENVIRONMENT.getControlBarView().setIgnoreFrameSelection(true);
-                                    DesktopEnvironment.DEFAULT_ENVIRONMENT.getControlBarView().setFrameSelection(ViewFrameBridge.this);
-                                    DesktopEnvironment.DEFAULT_ENVIRONMENT.getControlBarView().setIgnoreFrameSelection(false);
+                            if (DesktopEnvironment.getDefaultDesktop().getControlBarView() != null) {
+                                if (ViewFrameBridge.this != DesktopEnvironment.getDefaultDesktop().getControlBarView()
+                                        .getViewFrame()) {
+                                    DesktopEnvironment.getDefaultDesktop().getControlBarView()
+                                    .setIgnoreFrameSelection(true);
+                                    DesktopEnvironment.getDefaultDesktop().getControlBarView()
+                                    .setFrameSelection(ViewFrameBridge.this);
+                                    DesktopEnvironment.getDefaultDesktop().getControlBarView()
+                                    .setIgnoreFrameSelection(false);
                                 } else {
-                                    DesktopEnvironment.DEFAULT_ENVIRONMENT.getControlBarView().setIgnoreFrameSelection(true);
-                                    DesktopEnvironment.DEFAULT_ENVIRONMENT.getControlBarView().setFrameSelection(null);
-                                    DesktopEnvironment.DEFAULT_ENVIRONMENT.getControlBarView().setIgnoreFrameSelection(false);
+                                    DesktopEnvironment.getDefaultDesktop().getControlBarView()
+                                    .setIgnoreFrameSelection(true);
+                                    DesktopEnvironment.getDefaultDesktop().getControlBarView().setFrameSelection(null);
+                                    DesktopEnvironment.getDefaultDesktop().getControlBarView()
+                                    .setIgnoreFrameSelection(false);
                                 }
                             }
                         }
 
                         public void windowClosed(WindowEvent e) {
-                            DesktopEnvironment.DEFAULT_ENVIRONMENT.frames.removeElement(this);
-                            if (DesktopEnvironment.DEFAULT_ENVIRONMENT.getControlBarView() != null) {
-                                DesktopEnvironment.DEFAULT_ENVIRONMENT.getControlBarView().setFrameSelection(null);
+                            DesktopEnvironment.getDefaultDesktop().frames.removeElement(this);
+                            if (DesktopEnvironment.getDefaultDesktop().getControlBarView() != null) {
+                                DesktopEnvironment.getDefaultDesktop().getControlBarView().setFrameSelection(null);
                             }
                         }
                     });
                     break;
                 case DesktopEnvironment.MDI_VIEW_MODE:
                     frameImp = new ViewJInternalFrame();
-                    DesktopEnvironment.DEFAULT_ENVIRONMENT.getUserFrame().getDesk().add(frameImp, JLayeredPane.DEFAULT_LAYER);
+                    DesktopEnvironment.getDefaultDesktop().getUserFrame().getDesk().add(frameImp,
+                                                                                        JLayeredPane.DEFAULT_LAYER);
                     ((ViewJInternalFrame) frameImp).setDefaultCloseOperation(ViewJInternalFrame.DISPOSE_ON_CLOSE);
                     frameImp.setVisible(false);
-//				frameImp.setSize(0,0);
+                    //				frameImp.setSize(0,0);
                     ((ViewJInternalFrame) frameImp).setClosable(true);
                     ((ViewJInternalFrame) frameImp).setDoubleBuffered(false);
                     ((ViewJInternalFrame) frameImp).setIconifiable(true);
                     ((ViewJInternalFrame) frameImp).setResizable(true);
                     ((ViewJInternalFrame) frameImp).addInternalFrameListener(new InternalFrameAdapter() {
                         public void internalFrameActivated(InternalFrameEvent e) {
-                            if (DesktopEnvironment.DEFAULT_ENVIRONMENT.getControlBarView() != null) {
-                                if (ViewFrameBridge.this != DesktopEnvironment.DEFAULT_ENVIRONMENT.getControlBarView().getViewFrame()) {
-                                    DesktopEnvironment.DEFAULT_ENVIRONMENT.getControlBarView().setIgnoreFrameSelection(true);
-                                    DesktopEnvironment.DEFAULT_ENVIRONMENT.getControlBarView().setFrameSelection(ViewFrameBridge.this);
-                                    DesktopEnvironment.DEFAULT_ENVIRONMENT.getControlBarView().setIgnoreFrameSelection(false);
+                            if (DesktopEnvironment.getDefaultDesktop().getControlBarView() != null) {
+                                if (ViewFrameBridge.this != DesktopEnvironment.getDefaultDesktop().getControlBarView()
+                                        .getViewFrame()) {
+                                    DesktopEnvironment.getDefaultDesktop().getControlBarView()
+                                    .setIgnoreFrameSelection(true);
+                                    DesktopEnvironment.getDefaultDesktop().getControlBarView()
+                                    .setFrameSelection(ViewFrameBridge.this);
+                                    DesktopEnvironment.getDefaultDesktop().getControlBarView()
+                                    .setIgnoreFrameSelection(false);
                                 } else {
-                                    DesktopEnvironment.DEFAULT_ENVIRONMENT.getControlBarView().setIgnoreFrameSelection(true);
-                                    DesktopEnvironment.DEFAULT_ENVIRONMENT.getControlBarView().setFrameSelection(null);
-                                    DesktopEnvironment.DEFAULT_ENVIRONMENT.getControlBarView().setIgnoreFrameSelection(false);
+                                    DesktopEnvironment.getDefaultDesktop().getControlBarView()
+                                    .setIgnoreFrameSelection(true);
+                                    DesktopEnvironment.getDefaultDesktop().getControlBarView().setFrameSelection(null);
+                                    DesktopEnvironment.getDefaultDesktop().getControlBarView()
+                                    .setIgnoreFrameSelection(false);
                                 }
                             }
                         }
 
                         public void internalFrameClosed(InternalFrameEvent e) {
-                            DesktopEnvironment.DEFAULT_ENVIRONMENT.frames.removeElement(this);
-                            if (DesktopEnvironment.DEFAULT_ENVIRONMENT.getControlBarView() != null) {
-                                DesktopEnvironment.DEFAULT_ENVIRONMENT.getControlBarView().setFrameSelection(null);
+                            DesktopEnvironment.getDefaultDesktop().frames.removeElement(this);
+                            if (DesktopEnvironment.getDefaultDesktop().getControlBarView() != null) {
+                                DesktopEnvironment.getDefaultDesktop().getControlBarView().setFrameSelection(null);
                             }
                         }
                     });
                     break;
-//End comment out here
+                    //End comment out here
                 case DesktopEnvironment.NON_SWING_VIEW_MODE:
                     //The following code will only be called for applet mode in the case
                     //where a frame is being created from within an applet, i.e. a settings dialog.
@@ -782,7 +805,7 @@ public class ViewFrameBridge implements Serializable {
 
                     Timer timer = new Timer(5000, new ActionListener() {
                         public void actionPerformed(ActionEvent evt) {
-//                            ((ViewJFrame) frameImp).getOwner().toBack();
+                            //                            ((ViewJFrame) frameImp).getOwner().toBack();
                             ((ViewJFrame) frameImp).toBack();
                         }
                     });
@@ -791,13 +814,13 @@ public class ViewFrameBridge implements Serializable {
                 } else {
                     frameImp = new ViewJWindow();
                 }
-/*
+                /*
             // this is another way to get an undecorated window, but so far it doesn't seem to work under X-windows,
             // because the X windows manager (e.g. twm) still decorates it:
                 frameImp = new ViewJFrame();
 //                JFrame.setDefaultLookAndFeelDecorated(true);
                 ((ViewJFrame) frameImp).setUndecorated(true);
-*/
+                 */
             } else {
                 frameImp = new ViewJFrame();
 
@@ -807,13 +830,13 @@ public class ViewFrameBridge implements Serializable {
                 // corner at 0, 0, where they are hard to grab on the touch panel screens at VT.
                 frameImp.setLocation(30, 30);
             }
-//            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-//            frameImp.setBounds(0, 0, screenSize.width, screenSize.height);
+            //            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+            //            frameImp.setBounds(0, 0, screenSize.width, screenSize.height);
             GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().setFullScreenWindow(null);
             frameImp.validate();
             frameImp.setVisible(isAgentView() && !isPopUpMap());
             frameImp.setFocusable(!isAgentView() || isPopUpMap());
-/*
+            /*
             // use the following if you want to send the agent views to the back
             if (isAgentView()) {
                 (new Timer(1000, new ActionListener() {
@@ -823,8 +846,8 @@ public class ViewFrameBridge implements Serializable {
                     }
                 })).start();
             }
-*/
-//            frameImp.add();
+             */
+            //            frameImp.add();
         }
     }
 
@@ -848,15 +871,15 @@ public class ViewFrameBridge implements Serializable {
         if (SwingRunner.isMultiWinEnvironment()) {
             ((JFrame) frameImp).setDefaultCloseOperation(closeOp);
         } else {
-            switch (DesktopEnvironment.DEFAULT_ENVIRONMENT.getViewMode()) {
-    //Comment out the following lines to support non-swing versions
+            switch (DesktopEnvironment.getDefaultDesktop().getViewMode()) {
+                //Comment out the following lines to support non-swing versions
                 case DesktopEnvironment.CLASSIC_VIEW_MODE:
                     ((ViewJFrame) frameImp).setDefaultCloseOperation(closeOp);
                     break;
                 case DesktopEnvironment.MDI_VIEW_MODE:
                     ((ViewJInternalFrame) frameImp).setDefaultCloseOperation(closeOp);
                     break;
-    //End comment out here
+                    //End comment out here
                 case DesktopEnvironment.NON_SWING_VIEW_MODE:
                     //The following code will only be called for applet mode in the case
                     //where a frame is being created from within an applet, i.e. a settings dialog.
@@ -900,13 +923,13 @@ public class ViewFrameBridge implements Serializable {
             lockUnlockZoomButton = DesktopEnvironment.addToolBarButton(viewToolbar);
             viewToolbar.add(lockUnlockZoomButton);
             setLockZoomToFrame(!SwingRunner.isMultiWinEnvironment());
-            if ((views.length > 0) && (views[0] instanceof AgentSizedView)) {
+            if (views.length > 0 && views[0] instanceof AgentSizedView) {
                 DesktopEnvironment.addToolBarButton(viewToolbar, new ZoomInAction());
                 DesktopEnvironment.addToolBarButton(viewToolbar, new ZoomOutAction());
             }
-//            if (!ModelRoot.isMultiWinEnvironment()) {
-                getContentPane().add(viewToolbar, BorderLayout.SOUTH);
-//            }
+            //            if (!ModelRoot.isMultiWinEnvironment()) {
+            getContentPane().add(viewToolbar, BorderLayout.SOUTH);
+            //            }
         } else {
             lockZoomToFrame = true;
             if (getFrameImp() instanceof JInternalFrame) {
@@ -915,13 +938,14 @@ public class ViewFrameBridge implements Serializable {
         }
 
         if (views.length > 1) {
-            if ((DesktopEnvironment.DEFAULT_ENVIRONMENT.getMultiViewMode() == DesktopEnvironment.GRID_MULTIVIEW_MODE) || ((DesktopEnvironment.DEFAULT_ENVIRONMENT.getMultiViewMode() == DesktopEnvironment.GRID_MULTIVIEW_LABEL_MODE)))
+            if (DesktopEnvironment.getDefaultDesktop().getMultiViewMode() == DesktopEnvironment.GRID_MULTIVIEW_MODE
+                    || DesktopEnvironment.getDefaultDesktop().getMultiViewMode() == DesktopEnvironment.GRID_MULTIVIEW_LABEL_MODE)
             {
                 //Pick smallest n x m grid that will contain all views, biasing toward wider vs. taller.
-                int xRows = Math.max((int) Math.floor(Math.sqrt((double) views.length)), 1);
+                int xRows = Math.max((int) Math.floor(Math.sqrt(views.length)), 1);
                 int xCols = (int) Math.ceil((double) views.length / (double) xRows);
                 viewPanel.setLayout(new GridLayout(xRows, xCols, gridBorderSize, gridBorderSize));
-                if (DesktopEnvironment.DEFAULT_ENVIRONMENT.getMultiViewMode() == DesktopEnvironment.GRID_MULTIVIEW_MODE) {
+                if (DesktopEnvironment.getDefaultDesktop().getMultiViewMode() == DesktopEnvironment.GRID_MULTIVIEW_MODE) {
                     for (int i = 0; i < views.length; i++) {
                         viewPanel.add((Component) views[i]);
                     }
@@ -945,7 +969,7 @@ public class ViewFrameBridge implements Serializable {
                         viewPanel.add(subPanel);
                     }
                 }
-            } else if (DesktopEnvironment.DEFAULT_ENVIRONMENT.getMultiViewMode() == DesktopEnvironment.TABBED_MULTIVIEW_MODE) {
+            } else if (DesktopEnvironment.getDefaultDesktop().getMultiViewMode() == DesktopEnvironment.TABBED_MULTIVIEW_MODE) {
                 JTabbedPane tabPane = new JTabbedPane();
                 viewPanel.setLayout(new BorderLayout());
                 viewPanel.add(tabPane, BorderLayout.CENTER);
@@ -992,7 +1016,7 @@ public class ViewFrameBridge implements Serializable {
                                 Agent agent = ((AgentView) e.getComponent()).getAgentAtPixel(e.getX(), e.getY());
                                 if (agent != null) {
                                     String statusLine = agent.toString();
-                                    if ((agent instanceof Cell) && ((Cell) agent).getOccupant() != null) {
+                                    if (agent instanceof Cell && ((Cell) agent).getOccupant() != null) {
                                         statusLine = ((Cell) agent).getOccupant() + "  [" + statusLine + "]";
                                     }
                                     statusText.setText(" " + statusLine);
@@ -1006,17 +1030,17 @@ public class ViewFrameBridge implements Serializable {
                     }
 
                     public void mouseDragged(MouseEvent e) {
-                        if (SwingUtilities.isLeftMouseButton(e) && (!e.isAltDown()) && (!e.isShiftDown()) &&
-                                (!e.isControlDown()) && (!isLockZoomToFrame())) {
+                        if (SwingUtilities.isLeftMouseButton(e) && !e.isAltDown() && !e.isShiftDown() &&
+                                !e.isControlDown() && !isLockZoomToFrame()) {
                             final Point viewPosition = scrollPanel.getViewport().getViewPosition();
                             final Dimension viewPortSize = scrollPanel.getViewport().getSize();
                             final Dimension viewPanelSize = viewPanel.getSize();
                             final Point mousePoint = e.getPoint();
                             Point newViewPosition = new Point(
-                                    Math.min(Math.max(viewPosition.x + startMouseDrag.x - mousePoint.x, 0),
-                                            viewPanelSize.width - viewPortSize.width),
-                                    Math.min(Math.max(viewPosition.y + startMouseDrag.y - mousePoint.y, 0),
-                                            viewPanelSize.height - viewPortSize.height));
+                                                              Math.min(Math.max(viewPosition.x + startMouseDrag.x - mousePoint.x, 0),
+                                                                       viewPanelSize.width - viewPortSize.width),
+                                                                       Math.min(Math.max(viewPosition.y + startMouseDrag.y - mousePoint.y, 0),
+                                                                                viewPanelSize.height - viewPortSize.height));
                             scrollPanel.getViewport().setViewPosition(newViewPosition);
                         }
                     }
@@ -1024,8 +1048,8 @@ public class ViewFrameBridge implements Serializable {
                 ((Component) view).addMouseListener(new MouseAdapter() {
                     public void mousePressed(MouseEvent e) {
                         if (SwingUtilities.isLeftMouseButton(e)) {
-                            if ((!e.isAltDown()) && (!e.isShiftDown()) && (!e.isControlDown()) &&
-                                    (!isLockZoomToFrame())) {
+                            if (!e.isAltDown() && !e.isShiftDown() && !e.isControlDown() &&
+                                    !isLockZoomToFrame()) {
                                 mouseDown = true;
                                 startMouseDrag = new Point(e.getPoint());
                             }
@@ -1075,7 +1099,9 @@ public class ViewFrameBridge implements Serializable {
             }
             setTitle(frameName);
 
-            if ((DesktopEnvironment.DEFAULT_ENVIRONMENT == null) || (DesktopEnvironment.DEFAULT_ENVIRONMENT.getMultiViewMode() != DesktopEnvironment.APPLET_VIEW_MODE) || (views[0] instanceof Customizer)) {
+            if (DesktopEnvironment.getDefaultDesktop() == null
+                    || DesktopEnvironment.getDefaultDesktop().getMultiViewMode() != DesktopEnvironment.APPLET_VIEW_MODE
+                    || views[0] instanceof Customizer) {
                 //End comment out for web
                 if (frameImp.getSize().width * frameImp.getSize().height <= 0) {
                     pack();
@@ -1111,7 +1137,7 @@ public class ViewFrameBridge implements Serializable {
     public void viewDeserialized() {
         if (getFrameImp() == null) {
             setViews(views);
-            DesktopEnvironment.DEFAULT_ENVIRONMENT.registerViewFrame(this);
+            DesktopEnvironment.getDefaultDesktop().registerViewFrame(this);
             try {
                 ((JInternalFrame) this.getFrameImp()).setIcon(iconified);
             } catch (PropertyVetoException e) {
@@ -1150,9 +1176,9 @@ public class ViewFrameBridge implements Serializable {
             } else if (frameImp instanceof ViewJInternalFrame) {
                 ((ViewJInternalFrame) frameImp).toFront();
                 ((ViewJInternalFrame) frameImp).grabFocus();
-                if (DesktopEnvironment.DEFAULT_ENVIRONMENT.getUserFrame() != null) {
+                if (DesktopEnvironment.getDefaultDesktop().getUserFrame() != null) {
                     //A little violation of proper encapsulation here...
-                    DesktopEnvironment.DEFAULT_ENVIRONMENT.getUserFrame().calculateVisibility();
+                    DesktopEnvironment.getDefaultDesktop().getUserFrame().calculateVisibility();
                 }
             } else if (frameImp instanceof ViewJWindow) {
                 ((ViewJWindow) frameImp).toFront();
@@ -1165,16 +1191,16 @@ public class ViewFrameBridge implements Serializable {
      * Called whenever the bridged frames are disposed.
      */
     protected void onFrameDispose() {
-        if ((views.length > 0) && (views[0] instanceof BaseCustomizer) && (frameImp != null)) {
+        if (views.length > 0 && views[0] instanceof BaseCustomizer && frameImp != null) {
             ((BaseCustomizer) views[0]).setLastBounds(frameImp.getBounds());
         }
         frameImp = null;
         for (int i = 0; i < views.length; i++) {
-            if ((views[i].getScape() != null) && views[i].getScape().getScapeListeners().contains(views[i])) {
+            if (views[i].getScape() != null && views[i].getScape().getScapeListeners().contains(views[i])) {
                 views[i].getScape().removeScapeListener(views[i]);
             }
-            if (DesktopEnvironment.DEFAULT_ENVIRONMENT != null) {
-                DesktopEnvironment.DEFAULT_ENVIRONMENT.removeView(views[i]);
+            if (DesktopEnvironment.getDefaultDesktop() != null) {
+                DesktopEnvironment.getDefaultDesktop().removeView(views[i]);
             }
         }
         if (frameImp instanceof ViewJFrame) {
@@ -1337,7 +1363,9 @@ public class ViewFrameBridge implements Serializable {
      * @return the content pane
      */
     public Container getContentPane() {
-        if ((DesktopEnvironment.DEFAULT_ENVIRONMENT == null) || (DesktopEnvironment.DEFAULT_ENVIRONMENT.getViewMode() != DesktopEnvironment.APPLET_VIEW_MODE) || (views[0] instanceof Customizer))
+        if (DesktopEnvironment.getDefaultDesktop() == null
+                || DesktopEnvironment.getDefaultDesktop().getViewMode() != DesktopEnvironment.APPLET_VIEW_MODE
+                || views[0] instanceof Customizer)
         {
             if (frameImp != null) {
                 //todo--si this really neccessary!!
@@ -1360,7 +1388,7 @@ public class ViewFrameBridge implements Serializable {
                 return null;
             }
         } else {
-            return DesktopEnvironment.DEFAULT_ENVIRONMENT.getAppletModelPanel();
+            return null;
         }
     }
 
@@ -1437,7 +1465,7 @@ public class ViewFrameBridge implements Serializable {
      * @return true, if is agent view
      */
     public boolean isAgentView() {
-        return (views.length > 0) && (views[0] instanceof AgentView);
+        return views.length > 0 && views[0] instanceof AgentView;
     }
 
     /**

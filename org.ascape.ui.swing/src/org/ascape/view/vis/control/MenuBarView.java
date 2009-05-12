@@ -1,8 +1,8 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors. 
+ * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors.
  * All rights reserved.
  * This program and the accompanying materials are made available solely under of the BSD license "ascape-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
 package org.ascape.view.vis.control;
@@ -36,7 +36,7 @@ import org.ascape.runtime.swing.DesktopEnvironment;
  * @since 3.0
  */
 public class MenuBarView extends ControlActionView {
-    
+
     /**
      * The menu bar.
      */
@@ -95,7 +95,7 @@ public class MenuBarView extends ControlActionView {
             private static final long serialVersionUID = 1556930508272488966L;
 
             public void actionPerformed(ActionEvent e) {
-                DesktopEnvironment.DEFAULT_ENVIRONMENT.setFullScreen(true);
+                DesktopEnvironment.getDefaultDesktop().setFullScreen(true);
             }
         };
         fullWindowAction.putValue(Action.NAME, "Full Screen");
@@ -108,7 +108,7 @@ public class MenuBarView extends ControlActionView {
             private static final long serialVersionUID = 609757419862169763L;
 
             public void actionPerformed(ActionEvent e) {
-                DesktopEnvironment.DEFAULT_ENVIRONMENT.setFullScreen(false);
+                DesktopEnvironment.getDefaultDesktop().setFullScreen(false);
             }
         };
         normalWindowAction.putValue(Action.NAME, "Full Screen");
@@ -121,7 +121,7 @@ public class MenuBarView extends ControlActionView {
             private static final long serialVersionUID = -6431361141666126911L;
 
             public void actionPerformed(ActionEvent e) {
-                DesktopEnvironment.DEFAULT_ENVIRONMENT.getUserFrame().setShowToolBar(true);
+                DesktopEnvironment.getDefaultDesktop().getUserFrame().setShowToolBar(true);
                 toolbarItem.setAction(hideToolBarAction);
                 toolbarItem.setState(true);
             }
@@ -135,7 +135,7 @@ public class MenuBarView extends ControlActionView {
             private static final long serialVersionUID = -4739257836212809903L;
 
             public void actionPerformed(ActionEvent e) {
-                DesktopEnvironment.DEFAULT_ENVIRONMENT.getUserFrame().setShowToolBar(false);
+                DesktopEnvironment.getDefaultDesktop().getUserFrame().setShowToolBar(false);
                 toolbarItem.setAction(showToolBarAction);
                 toolbarItem.setState(false);
             }
@@ -143,44 +143,44 @@ public class MenuBarView extends ControlActionView {
         hideToolBarAction.putValue(Action.NAME, "Toolbar");
         hideToolBarAction.putValue(Action.SHORT_DESCRIPTION, "Hide Toolbar");
 
-//        showNavigatorAction = new AbstractAction() {
-//            public void actionPerformed(ActionEvent e) {
-//                UserEnvironment.getDefaultEnvironment().getUserFrame().setShowNavigator(true);
-//                navigatorItem.setAction(hideNavigatorAction);
-//                navigatorItem.setState(true);
-//            }
-//        };
-//        showNavigatorAction.putValue(Action.NAME, "Navigator");
-//        showNavigatorAction.putValue(Action.SHORT_DESCRIPTION, "Show Navigator");
-//        hideNavigatorAction = new AbstractAction() {
-//            public void actionPerformed(ActionEvent e) {
-//                UserEnvironment.getDefaultEnvironment().getUserFrame().setShowNavigator(false);
-//                navigatorItem.setAction(showNavigatorAction);
-//                navigatorItem.setState(false);
-//            }
-//        };
-//        hideNavigatorAction.putValue(Action.NAME, "Navigator");
-//        hideNavigatorAction.putValue(Action.SHORT_DESCRIPTION, "Hide Navigator");
-//
-//        showConsoleAction = new AbstractAction() {
-//            public void actionPerformed(ActionEvent e) {
-//                UserEnvironment.getDefaultEnvironment().getUserFrame().setRedirectConsole(true);
-//                consoleItem.setAction(hideConsoleAction);
-//                consoleItem.setState(true);
-//            }
-//        };
-//        showConsoleAction.putValue(Action.NAME, "Console");
-//        showConsoleAction.putValue(Action.SHORT_DESCRIPTION, "Show Console");
-//
-//        hideConsoleAction = new AbstractAction() {
-//            public void actionPerformed(ActionEvent e) {
-//                UserEnvironment.getDefaultEnvironment().getUserFrame().setRedirectConsole(false);
-//                consoleItem.setAction(showConsoleAction);
-//                consoleItem.setState(false);
-//            }
-//        };
-//        hideConsoleAction.putValue(Action.NAME, "Console");
-//        hideConsoleAction.putValue(Action.SHORT_DESCRIPTION, "Hide Console");
+        //        showNavigatorAction = new AbstractAction() {
+        //            public void actionPerformed(ActionEvent e) {
+        //                UserEnvironment.getDefaultEnvironment().getUserFrame().setShowNavigator(true);
+        //                navigatorItem.setAction(hideNavigatorAction);
+        //                navigatorItem.setState(true);
+        //            }
+        //        };
+        //        showNavigatorAction.putValue(Action.NAME, "Navigator");
+        //        showNavigatorAction.putValue(Action.SHORT_DESCRIPTION, "Show Navigator");
+        //        hideNavigatorAction = new AbstractAction() {
+        //            public void actionPerformed(ActionEvent e) {
+        //                UserEnvironment.getDefaultEnvironment().getUserFrame().setShowNavigator(false);
+        //                navigatorItem.setAction(showNavigatorAction);
+        //                navigatorItem.setState(false);
+        //            }
+        //        };
+        //        hideNavigatorAction.putValue(Action.NAME, "Navigator");
+        //        hideNavigatorAction.putValue(Action.SHORT_DESCRIPTION, "Hide Navigator");
+        //
+        //        showConsoleAction = new AbstractAction() {
+        //            public void actionPerformed(ActionEvent e) {
+        //                UserEnvironment.getDefaultEnvironment().getUserFrame().setRedirectConsole(true);
+        //                consoleItem.setAction(hideConsoleAction);
+        //                consoleItem.setState(true);
+        //            }
+        //        };
+        //        showConsoleAction.putValue(Action.NAME, "Console");
+        //        showConsoleAction.putValue(Action.SHORT_DESCRIPTION, "Show Console");
+        //
+        //        hideConsoleAction = new AbstractAction() {
+        //            public void actionPerformed(ActionEvent e) {
+        //                UserEnvironment.getDefaultEnvironment().getUserFrame().setRedirectConsole(false);
+        //                consoleItem.setAction(showConsoleAction);
+        //                consoleItem.setState(false);
+        //            }
+        //        };
+        //        hideConsoleAction.putValue(Action.NAME, "Console");
+        //        hideConsoleAction.putValue(Action.SHORT_DESCRIPTION, "Hide Console");
 
         setLayout(new FlowLayout());
 
@@ -191,7 +191,7 @@ public class MenuBarView extends ControlActionView {
         addMenuBarAction(fileMenu, getOpenAction());
         addMenuBarAction(fileMenu, getOpenSavedAction());
         addMenuBarAction(fileMenu, getSaveAction());
-//        addMenuBarAction(fileMenu, getCloseAction());
+        //        addMenuBarAction(fileMenu, getCloseAction());
         fileMenu.addSeparator();
         addMenuBarAction(fileMenu, getQuitAction());
         menuBar.add(fileMenu);
@@ -201,10 +201,10 @@ public class MenuBarView extends ControlActionView {
         viewMenu.add(fullScreenItem);
         toolbarItem = new JCheckBoxMenuItem();
         viewMenu.add(toolbarItem);
-//        navigatorItem = new JCheckBoxMenuItem();
-//        viewMenu.add(navigatorItem);
-//        consoleItem = new JCheckBoxMenuItem();
-//        viewMenu.add(consoleItem);
+        //        navigatorItem = new JCheckBoxMenuItem();
+        //        viewMenu.add(navigatorItem);
+        //        consoleItem = new JCheckBoxMenuItem();
+        //        viewMenu.add(consoleItem);
         viewMenu.addSeparator();
         addMenuBarAction(viewMenu, getAddTSAction());
         addMenuBarAction(viewMenu, getAddHistAction());
@@ -212,20 +212,20 @@ public class MenuBarView extends ControlActionView {
         menuBar.add(viewMenu);
         toolbarItem.setAction(hideToolBarAction);
         toolbarItem.setState(true);
-//        navigatorItem.setAction(hideNavigatorAction);
-//        navigatorItem.setState(true);
-//        consoleItem.setAction(hideConsoleAction);
-//        consoleItem.setState(true);
+        //        navigatorItem.setAction(hideNavigatorAction);
+        //        navigatorItem.setState(true);
+        //        consoleItem.setAction(hideConsoleAction);
+        //        consoleItem.setState(true);
         changeInFullScreen();
 
         controlMenu = new JMenu("Control");
         addMenuBarAction(controlMenu, getStartRestartAction());
-//        addMenuBarAction(controlMenu, getRestartAction());
-//        addMenuBarAction(controlMenu, getStopAction());
+        //        addMenuBarAction(controlMenu, getRestartAction());
+        //        addMenuBarAction(controlMenu, getStopAction());
         controlMenu.addSeparator();
         addMenuBarAction(controlMenu, getPauseResumeAction());
-//        addMenuBarAction(controlMenu, getPauseAction());
-//        addMenuBarAction(controlMenu, getResumeAction());
+        //        addMenuBarAction(controlMenu, getPauseAction());
+        //        addMenuBarAction(controlMenu, getResumeAction());
         addMenuBarAction(controlMenu, getStepAction());
         menuBar.add(controlMenu);
 
@@ -233,9 +233,9 @@ public class MenuBarView extends ControlActionView {
         addMenuBarAction(optionsMenu, getSettingsAction());
         addMenuBarAction(optionsMenu, getSearchAction());
         addMenuBarAction(optionsMenu, getInfoAction());
-//        optionsMenu.addSeparator();
-//        addMenuBarAction(optionsMenu, getRecordStartAction());
-//        addMenuBarAction(optionsMenu, getRecordStopAction());
+        //        optionsMenu.addSeparator();
+        //        addMenuBarAction(optionsMenu, getRecordStartAction());
+        //        addMenuBarAction(optionsMenu, getRecordStopAction());
         menuBar.add(optionsMenu);
         //Force since we won't be adding anywhere.
         environmentNowNoScape();
@@ -255,7 +255,7 @@ public class MenuBarView extends ControlActionView {
      */
     public void changeInFullScreen() {
         super.changeInFullScreen();
-        if (DesktopEnvironment.DEFAULT_ENVIRONMENT.isFullScreen()) {
+        if (DesktopEnvironment.getDefaultDesktop().isFullScreen()) {
             fullScreenItem.setAction(getNormalWindowAction());
             fullScreenItem.setIcon(null);
             fullScreenItem.setState(true);

@@ -1,8 +1,8 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors. 
+ * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors.
  * All rights reserved.
  * This program and the accompanying materials are made available solely under of the BSD license "ascape-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
 package org.ascape.view.custom;
@@ -54,6 +54,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import org.ascape.model.Scape;
 import org.ascape.model.rule.Rule;
 import org.ascape.runtime.swing.DesktopEnvironment;
+import org.ascape.runtime.swing.SwingEnvironment;
 import org.ascape.util.PropertyAccessor;
 
 /**
@@ -114,12 +115,12 @@ public class AutoCustomizerSwing extends ModelCustomizerSwing {
     public void build() {
         super.build();
 
-        propertySupport = DesktopEnvironment.DEFAULT_ENVIRONMENT.getPropertySupportForObject(getScape());
+        propertySupport = SwingEnvironment.DEFAULT_ENVIRONMENT.getPropertySupportForObject(getScape());
 
         buildSettingsPanel();
         buildRulePanel();
         addPanels();
-//        setPreferredSize(new Dimension(280, getPreferredSize().height));
+        //        setPreferredSize(new Dimension(280, getPreferredSize().height));
         setPreferredSize(new Dimension(320, getPreferredSize().height)); // changed 8/4/03 to fit 3 tab panes for NIMA
         validate();
     }
@@ -149,7 +150,7 @@ public class AutoCustomizerSwing extends ModelCustomizerSwing {
      * The all accessors.
      */
     private PropertyAccessor[] allAccessors;
-    
+
     /**
      * The settings table.
      */
@@ -184,12 +185,12 @@ public class AutoCustomizerSwing extends ModelCustomizerSwing {
         //Fix table behavior so that clicks edit immeadiatly and edits are live
         final DefaultCellEditor ed = (DefaultCellEditor) settingsTable.getDefaultEditor(Object.class);
         ed.setClickCountToStart(0);
-        final JTextField f = (JTextField) (ed).getComponent();
+        final JTextField f = (JTextField) ed.getComponent();
         DocumentListener myListener = new DocumentListener() {
             public void anyUpdate() {
                 int r = settingsTable.getEditingRow();
                 int c = settingsTable.getEditingColumn();
-                if ((r != -1) && (c != -1)) {
+                if (r != -1 && c != -1) {
                     settingsTable.setValueAt(ed.getCellEditorValue(), r, c);
                 }
             }
@@ -255,7 +256,7 @@ public class AutoCustomizerSwing extends ModelCustomizerSwing {
         }
         rulePanel.add(new JLabel("Select Scape"), gbc);
         final JComboBox scapeList = new JComboBox(new Vector(scapes));
-//        final JComboBox Scape = new JComboBox(scape.getAllScapes());
+        //        final JComboBox Scape = new JComboBox(scape.getAllScapes());
         scapeList.setEditable(false);
         currentScape = (Scape) scapeList.getSelectedItem();
         final RuleModel availableRules = new RuleModel();
@@ -339,8 +340,12 @@ public class AutoCustomizerSwing extends ModelCustomizerSwing {
                     //Even though seleciton model is single interval, we can't be sure that they will
                     //be in order since this isn't specified in the api...
                     for (int i = 1; i < userSelRules.length; i++) {
-                        if (userSelRules[i] < min) min = userSelRules[i];
-                        if (userSelRules[i] > max) max = userSelRules[i];
+                        if (userSelRules[i] < min) {
+                            min = userSelRules[i];
+                        }
+                        if (userSelRules[i] > max) {
+                            max = userSelRules[i];
+                        }
                     }
                     if (min > 0) {
                         //If min = 0, can't move up, so do nothing
@@ -376,8 +381,12 @@ public class AutoCustomizerSwing extends ModelCustomizerSwing {
                     //Even though seleciton model is single interval, we can't be sure that they will
                     //be in order since this isn't specified in the api...
                     for (int i = 1; i < userSelRules.length; i++) {
-                        if (userSelRules[i] < min) min = userSelRules[i];
-                        if (userSelRules[i] > max) max = userSelRules[i];
+                        if (userSelRules[i] < min) {
+                            min = userSelRules[i];
+                        }
+                        if (userSelRules[i] > max) {
+                            max = userSelRules[i];
+                        }
                     }
                     Vector allRules = currentScape.getRules().getVector();
                     if (max < allRules.size() - 1) {
@@ -609,7 +618,7 @@ public class AutoCustomizerSwing extends ModelCustomizerSwing {
         int r = settingsTable.getEditingRow();
         int c = settingsTable.getEditingColumn();
 
-        if ((r != -1) && (c != -1)) {
+        if (r != -1 && c != -1) {
             // some cell is being edited
             CellEditor ed = settingsTable.getCellEditor(r, c);
             // try to stop cell editing and cause Java to
@@ -797,9 +806,9 @@ public class AutoCustomizerSwing extends ModelCustomizerSwing {
          * @see javax.swing.table.DefaultTableCellRenderer#getTableCellRendererComponent(javax.swing.JTable, java.lang.Object, boolean, boolean, int, int)
          */
         public Component getTableCellRendererComponent(
-            JTable table, Object value,
-            boolean isSelected, boolean hasFocus,
-            int row, int column) {
+                JTable table, Object value,
+                boolean isSelected, boolean hasFocus,
+                int row, int column) {
             if (value instanceof Boolean) {
                 //return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
                 JCheckBox cb = new JCheckBox();
@@ -820,4 +829,5 @@ public class AutoCustomizerSwing extends ModelCustomizerSwing {
             }
         }
     }
+
 }

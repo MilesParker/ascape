@@ -12,16 +12,13 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
-import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 import org.ascape.model.Scape;
-import org.ascape.model.event.ControlEvent;
 import org.ascape.model.event.DefaultScapeListener;
 import org.ascape.model.event.ScapeEvent;
-import org.ascape.model.event.ScapeListener;
 import org.ascape.runtime.Runner;
 
 /**
@@ -32,7 +29,7 @@ import org.ascape.runtime.Runner;
  * @version 3.0
  * @history June 14 first in
  */
-public class SwingRunner extends Runner {
+public class SwingRunner extends BasicSwingRunner {
 
     /**
      * 
@@ -78,12 +75,12 @@ public class SwingRunner extends Runner {
         }
     }
 
-    public void openImplementation(Object applet, String[] args, boolean block) {
+    public void openImplementation(String[] args, boolean block) {
         Runner.assignEnvironmentParameters(args);
         if (isDisplayGraphics() && !(environment instanceof DesktopEnvironment)) {
             environment = new DesktopEnvironment();
         }
-        super.openImplementation(applet, args, block);
+        super.openImplementation(args, block);
     }
 
     /**
@@ -194,26 +191,6 @@ public class SwingRunner extends Runner {
         // }
     }
 
-    public void notify(final ScapeEvent event, final ScapeListener listener) {
-        if (listener instanceof JComponent) {
-            SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    listener.scapeNotification(event);
-                }
-            });
-        } else {
-            listener.scapeNotification(event);
-        }
-    }
-
-    public void respondControl(final ControlEvent control) {
-        //We might be in Swing thread and don't want to risk a deadlock.
-        new Thread(new Runnable() {
-            public void run() {
-                SwingRunner.super.respondControl(control);
-            }
-        }).start();
-    }
 
     private IOException defaultWriteException;
 
