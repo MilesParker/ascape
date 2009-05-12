@@ -518,4 +518,3 @@ Export-Package: com.bbn.openmap;
    quicktime.std.image,
    quicktime.std.movies.media"
 Bundle-Vendor: Ascape.org
-Require-Bundle: org.ascape.core.lib;bundle-version="5.1.3";visibility:=reexport
