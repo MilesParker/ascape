@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Ant
+Bundle-SymbolicName: org.ascape.ant
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: org.ascape.ant
+Require-Bundle: org.apache.ant,
+ org.jdom;bundle-version="1.0.0",
+ org.ascape.core;bundle-version="5.2.0"
