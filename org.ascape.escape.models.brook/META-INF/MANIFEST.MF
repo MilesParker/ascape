@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Escape Example Brookings Models
+Bundle-SymbolicName: org.ascape.escape.models.brook
+Bundle-Version: 1.0.0
+Bundle-Vendor: Metascape.com
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.ascape.core;bundle-version="5.2.0",
+ org.eclipse.jface;bundle-version="3.5.0",
+ org.eclipse.amp.agf.chart;bundle-version="0.2.0",
+ org.eclipse.amp.escape.ascape,
+ org.ascape.ui.amp;bundle-version="0.2.0",
+ org.eclipse.amp.escape.ascape.chart;bundle-version="0.2.0",
+ org.eclipse.amp.escape.ascape.agf3d;bundle-version="0.2.0"

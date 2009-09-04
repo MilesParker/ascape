@@ -1,0 +1,228 @@
+/*
+ * Copyright 1998-2007 The Brookings Institution, with revisions by Metascape LLC, and others. 
+ * All rights reserved.
+ * This program and the accompanying materials are made available solely under of the BSD license "brookings-models-license.txt".
+ * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ */
+
+package edu.brook.classes;
+
+import org.ascape.model.Agent;
+import org.ascape.model.Scape;
+import org.ascape.model.event.ScapeEvent;
+import org.ascape.model.rule.Rule;
+import org.ascape.model.space.Array1D;
+import org.ascape.model.space.Coordinate1DDiscrete;
+import org.ascape.util.vis.SimplexFeature;
+import org.ascape.view.vis.SimplexView;
+
+
+public class BargainingModelBase extends Scape {
+
+	protected final static class IntraSimplexFeature extends SimplexFeature {
+		IntraSimplexFeature(String name) {
+			super(name);
+		}
+
+		public float getAxis1Value(Object object) {
+			return (float) ((Bargainer) object).countIntraHigh()
+					/ (float) ((Bargainer) object).countIntra();
+		}
+
+		public String getAxis1Name() {
+			return "high";
+		}
+
+		public float getAxis2Value(Object object) {
+			return (float) ((Bargainer) object).countIntraMedium()
+					/ (float) ((Bargainer) object).countIntra();
+		}
+
+		public String getAxis2Name() {
+			return "medium";
+		}
+
+		public float getAxis3Value(Object object) {
+			return (float) ((Bargainer) object).countIntraLow()
+					/ (float) ((Bargainer) object).countIntra();
+		}
+
+		public String getAxis3Name() {
+			return "low";
+		}
+	}
+
+    protected final class InterSimplexFeature extends SimplexFeature {
+		InterSimplexFeature(String name) {
+			super(name);
+		}
+
+		public float getAxis1Value(Object object) {
+		    return (float) ((BargainerTagged) object).countInterHigh() / (float) ((BargainerTagged) object).countInter();
+		}
+
+		public String getAxis1Name() {
+		    return "high";
+		}
+
+		public float getAxis2Value(Object object) {
+		    return (float) ((BargainerTagged) object).countInterMedium() / (float) ((BargainerTagged) object).countInter();
+		}
+
+		public String getAxis2Name() {
+		    return "medium";
+		}
+
+		public float getAxis3Value(Object object) {
+		    return (float) ((BargainerTagged) object).countInterLow() / (float) ((BargainerTagged) object).countInter();
+		}
+
+		public String getAxis3Name() {
+		    return "low";
+		}
+	}
+	/**
+     * 
+     */
+	private static final long serialVersionUID = 603123771815863548L;
+
+	private int population = 100;
+
+	protected int minMemorySize = 20;
+
+	protected int maxMemorySize = 100;
+
+	protected float randomStrategyProbability = .1f;
+
+	protected Scape agents;
+
+	public void createScape() {
+		super.createScape();
+		agents = new Scape(new Array1D());
+		agents.setExtent(new Coordinate1DDiscrete(population));
+		agents.setPrototypeAgent(new Bargainer());
+		agents.addRule(PLAY_OTHER);
+		agents.setExecutionStyle(REPEATED_DRAW);
+		agents.setAgentsPerIteration(population / 2);
+		add(agents);
+	}
+
+	@SuppressWarnings("unused")
+	private boolean allMedium;
+
+	Rule checkAllMedium = new Rule("Check All Medium") {
+		/**
+         * 
+         */
+		private static final long serialVersionUID = 7273741592235908013L;
+
+		public void execute(Agent a) {
+			if (((Bargainer) a).lastStrategy != Strategy.MEDIUM_STRATEGY) {
+				allMedium = false;
+			}
+		}
+
+		@SuppressWarnings("unused")
+		public boolean isRandom() {
+			return false;
+		}
+	};
+
+	SimplexView intraMemoryView;
+
+	private static float lowPayoff = 0.30f;
+
+	private static float mediumPayoff = 0.50f;
+
+	private static float highPayoff = 1.0f - lowPayoff;
+
+	public void createGraphicViews() {
+		super.createGraphicViews();
+		intraMemoryView = new SimplexView();
+		agents.addView(intraMemoryView);
+		intraMemoryView.setCentroidTradeoff(Strategy.LOW_STRATEGY.getDemand());
+		intraMemoryView.setSimplexFeature(new IntraSimplexFeature("Memory"));	
+		/*
+		 * final StatCollector[] stats = { new StatCollector("All"), new
+		 * StatCollectorCond("Low") { public boolean meetsCondition(Object
+		 * object) { return (((Bargainer) object).getLastStrategy() ==
+		 * Strategy.LOW_STRATEGY); } }, new StatCollectorCond("Medium") { public
+		 * boolean meetsCondition(Object object) { return (((Bargainer)
+		 * object).getLastStrategy() == Strategy.MEDIUM_STRATEGY); } }, new
+		 * StatCollectorCond("Hi") { public boolean meetsCondition(Object
+		 * object) { return (((Bargainer) object).getLastStrategy() ==
+		 * Strategy.HIGH_STRATEGY); } } }; agents.addStatCollectors(stats);
+		 * 
+		 * //Create a new chart ChartView chart = new ChartView(); //Add the
+		 * chart view agents.addView(chart); chart.addSeries("Count Low", BLUE);
+		 * chart.addSeries("Count Medium", GREEN); chart.addSeries("Count Hi",
+		 * RED);
+		 */
+	}
+
+	@Override
+	public void scapeSetup(ScapeEvent scapeEvent) {
+		// TODO Auto-generated method stub
+		super.scapeSetup(scapeEvent);}
+
+	
+	public float getRandomStrategyProbability() {
+		return randomStrategyProbability;
+	}
+
+	public void setRandomStrategyProbability(float randomStrategyProbability) {
+		this.randomStrategyProbability = randomStrategyProbability;
+	}
+
+	public int getMinimumMemorySize() {
+		return minMemorySize;
+	}
+
+	public void setMinimumMemorySize(int minMemorySize) {
+		this.minMemorySize = minMemorySize;
+	}
+
+	public int getMaximumMemorySize() {
+		return maxMemorySize;
+	}
+
+	public void setMaximumMemorySize(int maxMemorySize) {
+		this.maxMemorySize = maxMemorySize;
+	}
+
+	public static float getLowPayoffStatic() {
+		return lowPayoff;
+	}
+
+	public float getLowPayoff() {
+		return lowPayoff;
+	}
+
+	public void setLowPayoff(float lowPayoff) {
+		BargainingModelBase.lowPayoff = lowPayoff;
+	}
+
+	public static float getMediumPayoffStatic() {
+		return mediumPayoff;
+	}
+
+	public float getMediumPayoff() {
+		return mediumPayoff;
+	}
+
+	public void setMediumPayoff(float mediumPayoff) {
+		BargainingModelBase.mediumPayoff = mediumPayoff;
+	}
+
+	public static float getHighPayoffStatic() {
+		return highPayoff;
+	}
+
+	public float getHighPayoff() {
+		return highPayoff;
+	}
+
+	public void setHighPayoff(float highPayoff) {
+		BargainingModelBase.highPayoff = highPayoff;
+	}
+}
