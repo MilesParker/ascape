@@ -4,13 +4,9 @@ Bundle-Name: Ascape Core Functionality
 Bundle-SymbolicName: org.ascape.core
 Bundle-Version: 5.2.0
 Bundle-Vendor: Ascape.org
-Require-Bundle: 
- org.apache.ant,
- org.jdom;bundle-version="1.0.0"
 Bundle-ClassPath: .
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.ascape.ant,
- org.ascape.model,
+Export-Package: org.ascape.model,
  org.ascape.model.engine,
  org.ascape.model.event,
  org.ascape.model.rule,
