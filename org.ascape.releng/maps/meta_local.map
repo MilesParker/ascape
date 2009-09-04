@@ -1,0 +1,27 @@
+!***************  PROJECT CONTRIBUTION  ******************************************************** 
+
+!*** Special entries from eclipse
+
+plugin@org.eclipse.test=v20070226,:pserver:anonymous@dev.eclipse.org:/cvsroot/eclipse,
+fragment@org.eclipse.ant.optional.junit=v20050226,:pserver:anonymous@dev.eclipse.org:/cvsroot/eclipse,
+
+!***DOCUMENTATION
+
+!***EXAMPLES
+
+!***FEATURES
+feature@org.ascape.core.feature=COPY,/Volumes/Resources/Developer/repos/eclipse,org.ascape/features/org.ascape.core.feature
+feature@org.ascape.swing.feature=COPY,/Volumes/Resources/Developer/repos/ascape,org.ascape.swing.feature
+feature@org.ascape.examples.feature=COPY,/Volumes/Resources/Developer/repos/ascape,examples/org.ascape.examples.feature
+feature@org.ascape.sdk.feature=COPY,/Volumes/Resources/Developer/repos/ascape,org.ascape.sdk.feature
+
+
+!***PLUGINS
+plugin@org.ascape.core=COPY,/Volumes/Resources/Developer/repos/eclipse,org.ascape/plugins/org.ascape.core
+plugin@org.ascape.common.lib=COPY,/Volumes/Resources/Developer/repos/ascape,org.ascape.common.lib
+plugin@org.ascape.ui.swing=COPY,/Volumes/Resources/Developer/repos/ascape,org.ascape.ui.swing
+plugin@org.ascape.ant=COPY,/Volumes/Resources/Developer/repos/ascape,org.ascape.ant
+plugin@org.ascape.escape.models.brook=COPY,/Volumes/Resources/Developer/repos/ascape,examples/org.ascape.escape.models.brook
+plugin@org.ascape.models.brook=COPY,/Volumes/Resources/Developer/repos/ascape,examples/org.ascape.models.brook
+plugin@org.ascape.models.examples=COPY,/Volumes/Resources/Developer/repos/ascape,examples/org.ascape.models.examples
+
