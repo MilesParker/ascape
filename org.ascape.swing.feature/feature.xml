@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.ascape.swing.feature"
-      label="Ascape support for Java Swing"
+      label="Ascape Swing Runtime"
       version="5.2.0.qualifier"
       provider-name="Ascape.org">
 
@@ -60,6 +60,18 @@ THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
    </license>
 
+   <includes
+         id="org.ascape.core.feature"
+         version="0.0.0"/>
+
+   <requires>
+      <import plugin="org.jdom" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.ascape.core" version="5.2.0" match="greaterOrEqual"/>
+      <import plugin="org.ascape.common.lib" version="5.2.0" match="greaterOrEqual"/>
+      <import plugin="org.ascape.ant" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.osgi"/>
+   </requires>
+
    <plugin
          id="org.ascape.ant"
          download-size="0"
@@ -73,5 +85,25 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
          install-size="0"
          version="0.0.0"
          unpack="false"/>
+
+   <plugin
+         id="org.ascape.common.lib"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.jdom"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.ant"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
 
 </feature>
