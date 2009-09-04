@@ -24,3 +24,4 @@ Export-Package: org.ascape.ant.swing,
  org.ascape.view.vis.control,
  org.ascape.view.vis.erv
 Bundle-ClassPath: .
+Import-Package: org.apache.tools.ant
