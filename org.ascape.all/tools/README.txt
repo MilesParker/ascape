@@ -1,0 +1,1 @@
+The files in the tools directory are mostly deprecated (we use Eclipse builders now) but might be useful as guides for more complex ant builds. 

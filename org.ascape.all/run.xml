@@ -1,0 +1,180 @@
+<?xml version="1.0"?>
+<!DOCTYPE project PUBLIC "-//ANT//DTD project//EN" "runproject.dtd" [
+]>
+
+<!--  To run, assuming ANT is intalled correctly, type the following at the command prompt:  -->
+<!--  ant -f run.xml [target] -->
+
+<project name="runAscape" default="runPD">
+	
+	<property name="ascape.version" value="5.1.0"/>
+	<property name="dir.projects" value=".."/>
+	<property name="ascape.bin.classpath" value="${dir.projects}/org.ascape.core/bin;${dir.projects}/org.ascape.ui.swing/bin;${dir.projects}/org.ascape.common.lib/;${dir.projects}/org.ascape.models.brook/bin;${dir.projects}/org.ascape.models.examples/bin"/>
+	<property name="ascape.jar.classpath" value="Ascape_${ascape.version}.jar"/>
+	<property name="ascape.classpath" value="${ascape.bin.classpath};${ascape.jar.classpath}"/>
+	
+    <taskdef name="ascape" classpath="${ascape.classpath}" classname="org.ascape.ant.swing.AscapeSwingAntTask"/>
+    <taskdef name="ascapeNoGraphics" classpath="${ascape.classpath}" classname="org.ascape.ant.AscapeAntTask"/>
+
+    <target name="runPD">
+        <ascape>
+            <scape modelClass="edu.brook.pd.PD2D">
+                <propertySet
+                    displayGraphics="true"
+                    numberOfAgents="100"
+                    stopPeriod="250"/>
+            </scape>
+        </ascape>
+    </target>
+
+    <target name="runPDDataOut" >
+        <ascapeNoGraphics>
+            <scape modelClass="edu.brook.pd.PD2D">
+                <propertySet
+                    displayGraphics="false"
+                    autoRestart="true"
+                    stopPeriod="30"
+                    numberOfAgents="80"/>
+                <dataOutputView runFile="testPDRun.txt" periodFile="testPDPeriod.txt"/>
+                <sweepView>
+                    <sweepDimension parameter="deathAge" startValue="40" endValue="60" increment="10"/>
+                    <sweepDimension parameter="fissionWealth" startValue="8" endValue="12" increment="1"/>
+                </sweepView>
+            </scape>
+        </ascapeNoGraphics>
+    </target>
+
+    <target name="runPDConfigExample" >
+        <ascape>
+            <scape modelClass="edu.brook.pd.PD2D">
+                <propertySet numberOfAgents="100"/>
+                <ruleSet selectAll="false"/>
+                <chartView name="Defect v. Cooperate Wealth" legendShowing="false">
+                    <windowBounds x="5" y="5" width="500" height="300"/>
+                    <series valueName="Sum Cooperate Wealth" colorName="BLUE"/>
+                    <series valueName="Sum Defect Wealth" colorHex="#FF0000"/>
+                </chartView>
+                <members>
+                    <scape memberName="Players">
+                        <ruleSet clearAll="true"
+                                 randomWalk="true"/>
+                    </scape>
+                    <scape memberName="Environment">
+                        <agentView viewName="Overhead2DView">
+                            <drawSet clearAll="true"
+                                     defaultFillAgent="true"/>
+                        </agentView>
+                    </scape>
+                </members>
+            </scape>
+        </ascape>
+    </target>
+
+    <target name="runPDAllOut" >
+        <ascapeNoGraphics>
+            <scape modelClass="edu.brook.pd.PD2D">
+                <propertySet
+                    autoRestart="false"
+                    latticeWidth="3"
+                    latticeHeight="3"
+                    displayGraphics="false"
+                    stopPeriod="1"
+                    numberOfAgents="2"/>
+                <allOutputView runFile="runPDAllOut.xml">
+                    <outputData name="latticeHeight" />
+                    <outputData name="latticeWidth" />
+                    <outputData name="fissionWealth" />
+                </allOutputView>
+            </scape>
+        </ascapeNoGraphics>
+    </target>
+
+    <target name="runTraffic" >
+        <ascape>
+            <scape modelClass="org.ascape.examples.traffic.TrafficModel">
+                <propertySet
+                    displayGraphics="true"
+                    multiWin="true"
+                    stopPeriod="100000"
+                    autoRestart="false"
+                    threadCount="1"/>
+                <extent x="400" y="400"/>
+            </scape>
+        </ascape>
+    </target>
+
+    <target name="runConwayLife" >
+        <ascape>
+            <scape modelClass="edu.brook.life.ConwayLife">
+                <propertySet
+                    displayGraphics="true"
+                    stopPeriod="100000"
+                    autoRestart="false"
+                    threadCount="1"/>
+                <extent x="50" y="50"/>
+            </scape>
+        </ascape>
+    </target>
+
+    <target name="runAA" >
+        <ascape>
+            <scape modelClass="edu.brook.aa.LHV">
+                <propertySet
+                    displayGraphics="true"
+                    autoRestart="false"
+                    threadCount="1"
+					minFertility=".125"
+					maxFertility=".125"
+					baseNutritionNeed="800"
+					minFertilityAge="16"
+					maxFertilityAge="16"
+					minDeathAge="30"
+					maxDeathAge="30"
+					householdMinInitialAge="0"
+					householdMaxInitialAge="29"
+					householdMinInitialCorn="2000"
+					householdMaxInitialCorn="2400"/>
+            </scape>
+        </ascape>
+    </target>
+
+    <target name="runSugarscape" >
+        <ascape>
+            <scape modelClass="edu.brook.sugarscape.GAS_II_6">
+                <propertySet
+                    displayGraphics="true"
+                    numberOfAgents="100"
+                    stopPeriod="100"/>
+            </scape>
+        </ascape>
+    </target>
+
+    <target name="runNorms" >
+        <ascape>
+            <scape modelClass="edu.brook.norms.Norms"/>
+        </ascape>
+    </target>
+
+    <target name="runFirms" >
+        <ascape>
+            <scape modelClass="edu.brook.firms.Model1"/>
+        </ascape>
+    </target>
+
+    <target name="runParallelBenchmark" >
+        <java fork="yes" classname="org.ascape.test.model.engine.ParallelBenchmark" classpath="${dir.classes};${dir.classpath}">
+            <jvmarg line="-ea -Xmx512M"/>
+        </java>
+    </target>
+
+    <target name="runParallelMemoryTest" >
+        <java fork="yes" classname="org.exp.ParallelMemoryTest" classpath="${dir.classes};${dir.classpath}">
+            <jvmarg line="-ea -Xmx512M"/>
+        </java>
+    </target>
+
+    <target name="runproject.dtd"
+        description="creates a dtd for ant run.xml files">
+        <antstructure output="runproject.dtd"/>
+    </target>
+</project>

@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!DOCTYPE project PUBLIC "-//ANT//DTD project//EN" "project.dtd" [
+        ]>
+
+<project name="commonDirs" default="">
+
+	<property name="workspace.ascape" value="../../"/>
+
+    <!--Quick and dirty build, e.g. don't clean and don't test-->
+    <!--    <property name="build.clean" value="true"/>-->
+    <property name="build.local" value="true"/>
+    <!--    <property name="build.notest" value="true"/>-->
+
+    <property name="javac.debug" value="true"/>
+    <property name="javac.deprecation" value="false"/>
+    <property name="javac.optimize" value="false"/>
+
+    <property name="javacchome" value="../tools/javacc"/>
+
+    <property name="dir.test" value=""/>
+    <property name="dir.reports" value="../reports"/>
+    <property name="dir.input" value="../input"/>
+    <property name="dir.classes" value="../lib"/>
+    <property name="dir.lib" value="../lib"/>
+    <property name="dir.release" value="../releases"/>
+    <property name="dir.releaseClasses" value="../releases/lib"/>
+    <property name="dir.docs" value="../docs"/>
+    <property name="dir.api" value="../api"/>
+    <property name="dir.work" value="../tools"/>
+    <property name="dir.doccheck" value="../doccheck"/>
+    <property name="dir.scripts" value="../cma"/>
+    <property name="dir.javadoc.src" value="../src"/>
+
+    <property name="dir.ascape.core" value="${workspace.ascape}/org.ascape.core"/>
+    <property name="dir.ascape.res" value="${workspace.ascape}/org.ascape.ui.swing/res"/>
+    <property name="dir.ascape.all" value="${workspace.ascape}/org.ascape.all"/>
+    <property name="dir.ascape.swing" value="${workspace.ascape}/org.ascape.ui.swing"/>
+    <property name="dir.ascape.swing.bin" value="${dir.ascape.swing}/bin"/>
+    <property name="dir.ascape.lib" value="${workspace.ascape}/org.ascape.common.lib"/>
+    <property name="dir.ascape.models.brook" value="${workspace.ascape}/org.ascape.models.brook"/>
+    <property name="dir.ascape.models.examples" value="${workspace.ascape}/org.ascape.models.examples"/>
+    <property name="dir.ascape"
+              value="org/ascape/model/**,org/ascape/explorer/**,org/ascape/util/**,org/ascape/query/**,org/ascape/ant/**,org/ascape/view/**,org/ascape/gis/**,org/ascape/movie/**"/>
+    <property name="dir.ascape.test" value="org/ascape/test/**"/>
+    <property name="dir.models.brook"
+              value="edu/**,name/milesparker/**"/>
+    <property name="dir.models.example"
+              value="org/ascape/examples/**"/>
+    <property name="dir.ascape.includes"
+              value="${dir.ascape},${dir.ascapeexplorer},${dir.ascape.test},${dir.ascape.x},${dir.models.brook},${dir.models.example},${dir.ascape.test}"/>
+
+    <property name="dir.ascape.src" value="${dir.ascape.core}/src;${dir.ascape.swing}/src"/>
+    <property name="dir.ascape.bin" value="${dir.ascape.core}/bin;${dir.ascape.swing}/bin"/>
+    <property name="dir.ascape.lib" value="${dir.ascape.lib}"/>
+    <property name="dir.ascape.res" value="${dir.ascape.core}/res"/>
+    <property name="dir.ascape.classpath" value="${dir.ascape.bin};${dir.ascape.lib}"/>
+	
+    <property name="dir.ascape.all.classpath" value="${dir.ascape.classpath};${dir.ascape.swing.bin};${dir.ascape.models.brook}/bin;${dir.ascape.models.examples}/bin"/>
+	
+    <property name="manifest.class.path" value=""/>
+    <property name="manifest.file" value="../META-INF/MANIFEST.MF"/>
+</project>
