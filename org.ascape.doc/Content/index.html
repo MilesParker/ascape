@@ -97,7 +97,7 @@ body {
 <div id="wrap">
 <div id="header">
 <h1>Ascape Guide</h1>
-<i>5.2.0</i> -- <i>Last updated: April 20, 2009</i>
+<i>5.2.0</i> -- <i>Last updated: September 8, 2009</i>
 <P></P>
 </div>
 <div id="sidebarfake"></div>
@@ -113,6 +113,7 @@ body {
 		<ul>
 			<li><a href="index.html#BuildEclipseModels"><i>Eclipse Models</i></a></li>
 			<li><a href="index.html#BuildEclipseAscape"><i>Eclipse Ascape</i></a></li>
+			<li><a href="index.html#BuildEclipseAMP"><i>AMP</i></a></li>
 			<li><a href="index.html#BuildGeneric"><i>Others</i></a></li>
 		</ul>
 		</li>
@@ -214,9 +215,9 @@ who provided many useful comments, ideas and feedback.
 Ascape can be downloaded at <a href="ascape.sourceforge.net">ascape.sourceforge.org</a>
 and is available as a:
 <ul class="ul.star">
-	<li>Stand-alone Jar</li>
 	<li>SDK (Projects)</li>
-	<li>Eclipse (IDE Plugins)</li>
+	<li>Stand-alone Jar</li>
+	<li>Applet Jar</li>
 </ul>
 The sections below explain each usage.
 Please note that the Ascape version numbers listed below are generic. So for example if you have downloaded version 5.9.9 (it doesn't exist yet!) then substitute <code>Ascape_5.m.n</code> with <code>Ascape_5.9.9</code>
@@ -537,11 +538,9 @@ rely heavily on the Eclipse platform. <i>-Miles</i></span>
 <p>If you are not planning to change Ascape, the simplest way to develop models is to use the Eclipse plugins. 
 If you have any problems with this approach just use the <a href="#BuildEclipseAscape">"building Ascape itself"</a> instructions below instead.</p>
 <ol>
-	<li>Install <a href="http://www.eclipse.org/">Eclipse</a>. We
-	recommend Ganymede [3.4], the latest release.</li>
-	<li>Download and unzip Ascape_Eclipse_5.m.n.zip.</li>
-	<li>Copy the contents of the download into the "dropins" folder in your Eclipse install.</li>
-	<li>Launch Eclipse.</li>
+	<li>Install <a href="http://www.eclipse.org/downloads">Eclipse</a>. The "Eclipse Classic" release is a good one to use.</li>
+	<li>Install Ascape. We now have an Eclipse Update Manager site which should make this process quite easy. The update site is <code>http://ascape.sourceforge.net/eclipse</code>. Please see the Eclipse <a href="http://help.eclipse.org/galileo/topic/org.eclipse.platform.doc.user/tasks/tasks-124.htm">user documentation</a> for more details and post a support message if you have any difficulties.
+	If this isn't working well for you for whatever reason then you can always <a href="#BuildEclipseAscape">build Ascape</a> directly in your workspace.</li>
 	<li>Right-click in Package Explorer and select New:Project..</li>
 	<p><img align="middle" src="screens/EclipseModelNewMenu.png" />
 	<li>In the dialog that follows, pick "Plugin Project".</li>
@@ -627,7 +626,7 @@ If you have any problems with this approach just use the <a href="#BuildEclipseA
 </ol>
 <h5><a name="BuildEclipseAscape">Building Ascape itself in Eclipse</a></h5>
 <ol>
-	<li>Install <a href="http://www.eclipse.org/">Eclipse</a>.</li>
+	<li>Install <a href="http://www.eclipse.org/downloads">Eclipse</a>.</li>
 	<li>Download and unzip Ascape_SDK_5.m.n.zip to a convenient
 	location.</li>
 	<li>Launch Eclipse</li>
@@ -660,8 +659,8 @@ If you have any problems with this approach just use the <a href="#BuildEclipseA
 	</li>
 	<li>You chould be able to continue with the instructions under building models above.
 </ol>
-<h5><a name="BuildAscapeMetaABM">Building Eclipse using metaABM</a></h5>
-<p>A new option is to use the metaABM Ascape tools to create Ascape models. For more information, see the <a href="http://metaabm.org/docs/installing.html">metaABM website</a>.
+<h5><a name="BuildEclipseAMP">Building using the Eclipse AMP tools.</a></h5>
+<p>A new option is to use the <a href="http://eclipse.org/amp">Eclipse AMP</a> AMF tools to create Ascape projects. AMP is a new project but it has great built-in support for Ascape, and you can even try the new Escape environment which allows you to run Ascape models within a self-hosted Eclipe environment!</a>.
 <h4><i><a name="BuildGeneric">Building models with another IDE</a></i></h4>
 
 If you want to use an IDE <i>other than</i> Eclipse, set up should still
