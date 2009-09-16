@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Bundle-Name.0
+Bundle-SymbolicName: org.jdom
+Bundle-Localization: plugin
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: %Bundle-Vendor.0
+Export-Package: org.jdom;version="1.0.0",
+ org.jdom.adapters;version="1.0.0",
+ org.jdom.filter;version="1.0.0",
+ org.jdom.input;version="1.0.0",
+ org.jdom.output;version="1.0.0",
+ org.jdom.transform;version="1.0.0",
+ org.jdom.xpath;version="1.0.0"
+Require-Bundle: org.apache.xerces;resolution:=optional
+Bundle-RequiredExecutionEnvironment: J2SE-1.4
