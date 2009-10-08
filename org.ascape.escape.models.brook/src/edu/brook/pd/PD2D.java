@@ -269,8 +269,8 @@ public class PD2D extends Scape {
         // Add the chart view
         agents.addView(chart);
         // // And add some of the stat series we've just created to it
-         chart.addSeries("Count Cooperate", ColorFeatureFixed.BLUE);
-         chart.addSeries("Count Defect", ColorFeatureFixed.RED);
+        chart.addSeries("Count Cooperate", ColorFeatureFixed.BLUE);
+        chart.addSeries("Count Defect", ColorFeatureFixed.RED);
         //Set starting data point we're interested in
         //chart.setDisplayPoints(100);
         //
