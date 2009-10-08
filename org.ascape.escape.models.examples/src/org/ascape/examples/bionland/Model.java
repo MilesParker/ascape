@@ -1,14 +1,14 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors. 
+ * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors.
  * All rights reserved.
  * This program and the accompanying materials are made available solely under of the BSD license "ascape-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
 
 package org.ascape.examples.bionland;
 
-import java.awt.Color;
+
 
 import org.ascape.model.Agent;
 import org.ascape.model.CellOccupant;
@@ -24,6 +24,7 @@ import org.ascape.util.data.DataPoint;
 import org.ascape.util.data.DataPointConcrete;
 import org.ascape.util.data.StatCollectorCSAMM;
 import org.ascape.util.vis.ColorFeature;
+import org.ascape.util.vis.ColorFeatureConcrete;
 import org.ascape.view.vis.Scrolling1DView;
 
 public class Model extends Scape {
@@ -114,7 +115,8 @@ public class Model extends Scape {
         protected double blueEnergy;
 
         public Object getPlatformColor() {
-            return new Color(Math.min(1.0f, (float) (redEnergy + orangeEnergy)), (float) orangeEnergy * .8f, (float) blueEnergy);
+            return ColorFeatureConcrete.create(Math.min(1.0f, (float) (redEnergy + orangeEnergy)),
+                                               (float) orangeEnergy * .8f, (float) blueEnergy);
         }
 
         public double getRedEnergy() {
@@ -356,7 +358,7 @@ public class Model extends Scape {
 
         public void execute(Agent a) {
             HostCell cell = (HostCell) ((CellOccupant) a).getHostCell()
-                .findNearest(conditional, false, ((Bion) a).getVision());
+            .findNearest(conditional, false, ((Bion) a).getVision());
             if (cell != null) {
                 ((CellOccupant) a).moveToward(cell);
             }
@@ -378,7 +380,7 @@ public class Model extends Scape {
 
         public void execute(Agent a) {
             HostCell cell = (HostCell) ((CellOccupant) a).getHostCell()
-                .findNearest(conditional, false, ((Bion) a).getVision());
+            .findNearest(conditional, false, ((Bion) a).getVision());
             if (cell != null) {
                 ((CellOccupant) a).moveAway(cell);
             }
@@ -468,7 +470,7 @@ public class Model extends Scape {
             double energy =
                 Math.min(((BionTile) ((Bion) a).getHostCell()).getRedEnergy(), bionEnergyConsumption);
             ((BionTile) ((Bion) a).getHostCell()).setRedEnergy(
-                ((BionTile) ((Bion) a).getHostCell()).getRedEnergy() - energy);
+                                                               ((BionTile) ((Bion) a).getHostCell()).getRedEnergy() - energy);
             ((Bion) a).addEnergy(energy);
         }
     };
@@ -483,7 +485,7 @@ public class Model extends Scape {
             double energy =
                 Math.min(((BionTile) ((Bion) a).getHostCell()).getOrangeEnergy(), bionEnergyConsumption);
             ((BionTile) ((Bion) a).getHostCell()).setOrangeEnergy(
-                ((BionTile) ((Bion) a).getHostCell()).getOrangeEnergy() - energy);
+                                                                  ((BionTile) ((Bion) a).getHostCell()).getOrangeEnergy() - energy);
             ((Bion) a).addEnergy(energy);
         }
     };
@@ -498,7 +500,7 @@ public class Model extends Scape {
             double energy =
                 Math.min(((BionTile) ((Bion) a).getHostCell()).getBlueEnergy(), bionEnergyConsumption);
             ((BionTile) ((Bion) a).getHostCell()).setBlueEnergy(
-                ((BionTile) ((Bion) a).getHostCell()).getBlueEnergy() - energy);
+                                                                ((BionTile) ((Bion) a).getHostCell()).getBlueEnergy() - energy);
             ((Bion) a).addEnergy(energy);
         }
     };
@@ -519,7 +521,7 @@ public class Model extends Scape {
         public void leaveEnergy() {
             super.leaveEnergy();
             double energy = Math.min(((BionTile) getHostCell()).getRedEnergy()
-                + bionEnergyLeakage * energyGain, 1.0f);
+                                     + bionEnergyLeakage * energyGain, 1.0f);
             ((BionTile) getHostCell()).setRedEnergy(energy);
         }
     }
@@ -540,7 +542,7 @@ public class Model extends Scape {
         public void leaveEnergy() {
             super.leaveEnergy();
             double energy = Math.min(((BionTile) getHostCell()).getOrangeEnergy()
-                + bionEnergyLeakage * energyGain, 1.0f);
+                                     + bionEnergyLeakage * energyGain, 1.0f);
             ((BionTile) getHostCell()).setOrangeEnergy(energy);
         }
     }
@@ -561,7 +563,7 @@ public class Model extends Scape {
         public void leaveEnergy() {
             super.leaveEnergy();
             double energy = Math.min(((BionTile) getHostCell()).getBlueEnergy()
-                + bionEnergyLeakage * energyGain, 1.0f);
+                                     + bionEnergyLeakage * energyGain, 1.0f);
             ((BionTile) getHostCell()).setBlueEnergy(energy);
         }
     }

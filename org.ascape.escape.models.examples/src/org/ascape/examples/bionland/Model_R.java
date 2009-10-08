@@ -274,7 +274,7 @@ public class Model_R extends Scape {
         // }
         //
         // public Color getBorderColor(Object o) {
-        // return Color.black;
+        // return ColorFeature.BLACK;
         // }
         // }
         // );
@@ -300,7 +300,7 @@ public class Model_R extends Scape {
         //
         // public Color getLineColor(Object source, Object target) {
         // if (isShowEdges()) {
-        // return Color.black;
+        // return ColorFeature.BLACK;
         // } else {
         // return Color.white;
         // }
