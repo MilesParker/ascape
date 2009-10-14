@@ -18,7 +18,7 @@ public class PD2_5D extends PD2D {
                             if (model instanceof Player) {
                                 return new CubeEdit3DPart() {
                                     protected void updateGraphics() {
-                                        getCube().setColor(((Player) getModel()).getPlatformColor(), 255);
+                                        getFigure().setForegroundColor(((Player) getModel()).getPlatformColor());
                                     }
                                 };
                             }
