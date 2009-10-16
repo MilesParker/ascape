@@ -1,8 +1,8 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, with revisions by Metascape LLC, and others. 
+ * Copyright 1998-2007 The Brookings Institution, with revisions by Metascape LLC, and others.
  * All rights reserved.
  * This program and the accompanying materials are made available solely under of the BSD license "brookings-models-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
 package edu.brook.pd;
@@ -12,7 +12,6 @@ import org.ascape.model.CellOccupant;
 import org.ascape.model.Scape;
 import org.ascape.util.data.StatCollectorCondCSA;
 import org.ascape.util.vis.ColorFeature;
-import org.eclipse.swt.graphics.Color;
 
 
 /**
@@ -23,198 +22,199 @@ import org.eclipse.swt.graphics.Color;
  **/
 public class Player extends CellOccupant {
 
-	/**
+    /**
      * 
      */
-	private static final long serialVersionUID = 2683265117149321229L;
+    private static final long serialVersionUID = 2683265117149321229L;
 
-	class AgentWealthStatCollector extends StatCollectorCondCSA {
+    class AgentWealthStatCollector extends StatCollectorCondCSA {
 
-		/**
+        /**
          * 
          */
-		private static final long serialVersionUID = -5551487009721295781L;
-		private Agent agent;
-		private int number;
+        private static final long serialVersionUID = -5551487009721295781L;
+        private Agent agent;
+        private int number;
 
-		// private static int currentAgentNumber = 0;
-		public AgentWealthStatCollector(Agent agent) {
-			this.agent = agent;
-			// number = currentAgentNumber;
-			// currentAgentNumber++;
-		}
+        // private static int currentAgentNumber = 0;
+        public AgentWealthStatCollector(Agent agent) {
+            this.agent = agent;
+            // number = currentAgentNumber;
+            // currentAgentNumber++;
+        }
 
-		public boolean meetsCondition(Object object) {
-			return (agent == object);
-		}
+        public boolean meetsCondition(Object object) {
+            return agent == object;
+        }
 
-		public double getValue(Object object) {
-			return ((Player) object).wealth;
-		}
+        public double getValue(Object object) {
+            return ((Player) object).wealth;
+        }
 
-		public String getName() {
-			return "Agent " + number + " Wealth";
-		}
-	}
+        public String getName() {
+            return "Agent " + number + " Wealth";
+        }
+    }
 
-	/**
-	 * The agent's current (fixed for now) strategy.
-	 */
-	protected int strategy;
-
-	/**
-	 * The agent's current age.
-	 */
-	protected int age;
-
-	/**
-	 * The agent's death age.
-	 */
-	// protected int deathAge;
-	/**
-	 * The agent's current wealth.
-	 */
-	protected int wealth = 6;
-
-	/**
-	 * The agent's last period wealth.
-	 */
-	@SuppressWarnings("unused")
-	private int lpWealth = 0;
-
-	/**
-	 * Begining population values. Cooperation is random draw, coordinate
-	 * placement is random in scape. Age is random to maximum age.
-	 */
-	public void initialize() {
-		super.initialize();
-		if (randomIs()) {
-			strategy = PD2D.COOPERATE;
-		} else {
-			strategy = PD2D.DEFECT;
-		}
-		age = randomInRange(0, ((PD2D) scape.getRoot()).getDeathAge());
-		wealth = ((PD2D) scape.getRoot()).getInitialWealth();
-	}
-
-	/**
+    /**
+     * The agent's current (fixed for now) strategy.
      */
-	public void scapeCreated() {
-		getScape().addInitialRule(MOVE_RANDOM_LOCATION_RULE);
-		getScape().addRule(RANDOM_WALK_RULE);
-		getScape().addRule(PLAY_RANDOM_NEIGHBOR_RULE);
-		getScape().addRule(PLAY_NEIGHBORS_RULE, false);
-		getScape().addRule(PLAY_OTHER, false);
-		getScape().addRule(FISSIONING_RULE);
-		getScape().addRule(UPDATE_RULE);
-		getScape().addRule(DEATH_RULE);
-	}
+    protected int strategy;
 
-	public void update() {
-		// wealth--;
-		lpWealth = wealth;
-		age++;
-	}
+    /**
+     * The agent's current age.
+     */
+    protected int age;
 
-	public boolean deathCondition() {
-		return ((getWealth() < 0) || (getAge() > ((PD2D) getScape().getRoot())
-				.getDeathAge()));
-	}
+    /**
+     * The agent's death age.
+     */
+    // protected int deathAge;
+    /**
+     * The agent's current wealth.
+     */
+    protected int wealth = 6;
 
-	public boolean fissionCondition() {
-		return (wealth > ((PD2D) scape.getRoot()).getFissionWealth());
-	}
+    /**
+     * The agent's last period wealth.
+     */
+    @SuppressWarnings("unused")
+    private int lpWealth = 0;
 
-	public void fission() {
-		if (getHostCell().isNeighborAvailable()) {
-			Player child = (Player) this.clone();
-			getScape().add(child);
-			child.moveTo(getHostCell().findRandomAvailableNeighbor());
-			child.wealth = ((PD2D) scape.getRoot()).getInheiritedWealth();
-			child.age = 0;
-			wealth -= ((PD2D) scape.getRoot()).getInheiritedWealth();
-			if (getRandom().nextFloat() < ((PD2D) scape.getRoot())
-					.getMutationRate()) {
-				if (randomIs()) {
-					child.strategy = PD2D.COOPERATE;
-				} else {
-					child.strategy = PD2D.DEFECT;
-				}
-			} else {
-				child.strategy = this.strategy;
-			}
-		}
-	}
+    /**
+     * Begining population values. Cooperation is random draw, coordinate
+     * placement is random in scape. Age is random to maximum age.
+     */
+    public void initialize() {
+        super.initialize();
+        if (randomIs()) {
+            strategy = PD2D.COOPERATE;
+        } else {
+            strategy = PD2D.DEFECT;
+        }
+        age = randomInRange(0, ((PD2D) scape.getRoot()).getDeathAge());
+        wealth = ((PD2D) scape.getRoot()).getInitialWealth();
+    }
 
-	/**
-	 * Play one round of the game with another agent.
-	 */
-	public void play(Agent partner) {
-		if (this.strategy == PD2D.COOPERATE) {
-			if (((Player) partner).strategy == PD2D.COOPERATE) {
-				this.wealth += ((PD2D) scape.getRoot()).getPayoff_C_C();
-				((Player) partner).wealth += ((PD2D) scape.getRoot())
-						.getPayoff_C_C();
-			} else { // partner defects
-				this.wealth += ((PD2D) scape.getRoot()).getPayoff_C_D();
-				((Player) partner).wealth += ((PD2D) scape.getRoot())
-						.getPayoff_D_C();
-			}
-		} else { // this defects
-			if (((Player) partner).strategy == PD2D.COOPERATE) {
-				this.wealth += ((PD2D) scape.getRoot()).getPayoff_D_C();
-				((Player) partner).wealth += ((PD2D) scape.getRoot())
-						.getPayoff_C_D();
-			} else { // partner defects
-				this.wealth += ((PD2D) scape.getRoot()).getPayoff_D_D();
-				((Player) partner).wealth += ((PD2D) scape.getRoot())
-						.getPayoff_D_D();
-			}
-		}
-	}
+    /**
+     */
+    public void scapeCreated() {
+        getScape().addInitialRule(MOVE_RANDOM_LOCATION_RULE);
+        getScape().addRule(RANDOM_WALK_RULE);
+        getScape().addRule(PLAY_RANDOM_NEIGHBOR_RULE);
+        getScape().addRule(PLAY_NEIGHBORS_RULE, false);
+        getScape().addRule(PLAY_OTHER, false);
+        getScape().addRule(FISSIONING_RULE);
+        getScape().addRule(UPDATE_RULE);
+        getScape().addRule(DEATH_RULE);
+    }
 
-	/**
-	 * Sets the agent scape that all scape of this class will belong to.
-	 **/
-	public void setScape(Scape scape) {
-		this.scape = scape;
-	}
+    public void update() {
+        // wealth--;
+        lpWealth = wealth;
+        age++;
+    }
 
-	/**
-	 * The color to paint this agent; blue if cooperate, red if defect.
-	 */
-	public Color getPlatformColor() {
-		if (strategy == PD2D.COOPERATE) {
-			return ColorFeature.BLUE;
-		} else {
-			return ColorFeature.RED;
-		}
-	}
+    public boolean deathCondition() {
+        return getWealth() < 0 || getAge() > ((PD2D) getScape().getRoot())
+        .getDeathAge();
+    }
 
-	public int getWealth() {
-		return wealth;
-	}
+    public boolean fissionCondition() {
+        return wealth > ((PD2D) scape.getRoot()).getFissionWealth();
+    }
 
-	public void setWealth(int wealth) {
-		this.wealth = wealth;
-	}
+    public void fission() {
+        if (getHostCell().isNeighborAvailable()) {
+            Player child = (Player) this.clone();
+            getScape().add(child);
+            child.moveTo(getHostCell().findRandomAvailableNeighbor());
+            child.wealth = ((PD2D) scape.getRoot()).getInheiritedWealth();
+            child.age = 0;
+            wealth -= ((PD2D) scape.getRoot()).getInheiritedWealth();
+            if (getRandom().nextFloat() < ((PD2D) scape.getRoot())
+                    .getMutationRate()) {
+                if (randomIs()) {
+                    child.strategy = PD2D.COOPERATE;
+                } else {
+                    child.strategy = PD2D.DEFECT;
+                }
+            } else {
+                child.strategy = this.strategy;
+            }
+        }
+    }
 
-	public int getAge() {
-		return age;
-	}
+    /**
+     * Play one round of the game with another agent.
+     */
+    public void play(Agent partner) {
+        if (this.strategy == PD2D.COOPERATE) {
+            if (((Player) partner).strategy == PD2D.COOPERATE) {
+                this.wealth += ((PD2D) scape.getRoot()).getPayoff_C_C();
+                ((Player) partner).wealth += ((PD2D) scape.getRoot())
+                .getPayoff_C_C();
+            } else { // partner defects
+                this.wealth += ((PD2D) scape.getRoot()).getPayoff_C_D();
+                ((Player) partner).wealth += ((PD2D) scape.getRoot())
+                .getPayoff_D_C();
+            }
+        } else { // this defects
+            if (((Player) partner).strategy == PD2D.COOPERATE) {
+                this.wealth += ((PD2D) scape.getRoot()).getPayoff_D_C();
+                ((Player) partner).wealth += ((PD2D) scape.getRoot())
+                .getPayoff_C_D();
+            } else { // partner defects
+                this.wealth += ((PD2D) scape.getRoot()).getPayoff_D_D();
+                ((Player) partner).wealth += ((PD2D) scape.getRoot())
+                .getPayoff_D_D();
+            }
+        }
+    }
 
-	public void setAge(int age) {
-		this.age = age;
-	}
+    /**
+     * Sets the agent scape that all scape of this class will belong to.
+     **/
+    public void setScape(Scape scape) {
+        this.scape = scape;
+    }
 
-	public int getStrategy() {
-		return strategy;
-	}
+    /**
+     * The color to paint this agent; blue if cooperate, red if defect.
+     */
+    @Override
+    public Object getPlatformColor() {
+        if (strategy == PD2D.COOPERATE) {
+            return ColorFeature.BLUE;
+        } else {
+            return ColorFeature.RED;
+        }
+    }
 
-	/**
-	 * A small string representation of this agent.
-	 */
-	public String getName() {
-		return (strategy == PD2D.COOPERATE ? "Cooperator " : "Defector ");
-	}
+    public int getWealth() {
+        return wealth;
+    }
+
+    public void setWealth(int wealth) {
+        this.wealth = wealth;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getStrategy() {
+        return strategy;
+    }
+
+    /**
+     * A small string representation of this agent.
+     */
+    public String getName() {
+        return strategy == PD2D.COOPERATE ? "Cooperator " : "Defector ";
+    }
 }
