@@ -22,8 +22,8 @@ public class GAS_III_3 extends GAS_SexBase {
      */
 	private static final long serialVersionUID = -1108945364026864952L;
 
-	public void createViews() {
-		super.createViews();
+	public void createGraphicViews() {
+		super.createGraphicViews();
 
 		StatCollector[] stats = new StatCollector[4];
 		stats[0] = new StatCollectorCond() {

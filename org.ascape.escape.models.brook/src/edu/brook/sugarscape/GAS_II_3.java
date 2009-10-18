@@ -16,8 +16,8 @@ public class GAS_II_3 extends GAS_II_2 {
 
     private static final long serialVersionUID = 1854992312550139759L;
 
-    public void createViews() {
-        super.createViews();
+    public void createGraphicViews() {
+        super.createGraphicViews();
         agents.addStatCollector(new StatCollector("All"));
         ChartView population = new ChartView();
         agents.addView(population);

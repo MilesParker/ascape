@@ -239,6 +239,11 @@ public class SugarAgent extends CellOccupant implements IColorProvider {
         this.deathAge = deathAge;
     }
 
+    @Override
+    public Object getPlatformColor() {
+    	return getBackground(null);
+    }
+    
     public Color getBackground(Object object) {
         return color;
     }
