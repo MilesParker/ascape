@@ -46,6 +46,8 @@ public class Scrolling1DView extends CellView {
      * The max agent width.
      */
     protected int maxAgentWidth;
+    
+    protected int currentPosition;
 
     /**
      * Constructs a new scrolling view, setting its initial cell size to 2.
@@ -62,7 +64,7 @@ public class Scrolling1DView extends CellView {
      */
     public Scrolling1DView(String name) {
         setName(name);
-        setCellSize(2);
+//        setCellSize(2);
         setDelegate(new ComponentViewDelegate(this) {
             /**
              * 
