@@ -39,6 +39,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.MutableTreeNode;
+import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
@@ -70,9 +71,10 @@ public class Navigator extends PanelView {
     List listeners;
 
     /**
-     * The scape model.
+     * The scape model. Initially blank (i.e.: no root node). A root
+     * node is added when the scape is added via {@link #scapeAdded(ScapeEvent)}.
      */
-    private DefaultTreeModel scapeModel;
+    private final DefaultTreeModel scapeModel = new DefaultTreeModel(null);
 
     /**
      * Instantiates a new navigator.
@@ -203,14 +205,13 @@ public class Navigator extends PanelView {
      */
     public void addNotify() {
         super.addNotify();
-        createTree();
+        createTree(scapeModel);
     }
 
-    protected void createTree() {
+    protected void createTree(TreeModel treeModel) {
         tree = new JTree();
         tree.setFont(getFont().deriveFont(10.0f));
-        //Just so we don't see that silly built-in table
-        tree.setModel(new DefaultTreeModel(null));
+        tree.setModel(treeModel);
         setLayout(new BorderLayout());
         add(tree, BorderLayout.CENTER);
         tree.getSelectionModel().setSelectionMode
@@ -652,6 +653,7 @@ public class Navigator extends PanelView {
             if (scape instanceof Scape) {
                 ScapeMembersNode membersNode = new ScapeMembersNode(scape);
                 add(membersNode);
+
                 
 				//if scape can modify the tree, call the modifyTree method 
                 //of the scape on the AWT Event thread
@@ -767,6 +769,15 @@ public class Navigator extends PanelView {
          */
         public ScapeMembersNode(Scape scape) {
             this(scape, "Members");
+            
+            
+            // display children
+            updateChildren();
+            
+            // navigate the tree to the newly created node
+    		tree.expandPath(new TreePath(this.getPath()));
+    		 
+
         }
 
         /* (non-Javadoc)
@@ -950,12 +961,14 @@ public class Navigator extends PanelView {
      */
     public void scapeAdded(ScapeEvent scapeEvent) throws TooManyListenersException {
         super.scapeAdded(scapeEvent);
+        
         if (tree == null) {
-            createTree();
+            createTree(scapeModel);
         }
         root = new ScapeNode(scape);
-        scapeModel = new DefaultTreeModel(root);
-        tree.setModel(scapeModel);
+        scapeModel.setRoot(root);
+        //tree.invalidate();
+        //tree.setModel(scapeModel);
     }
 
     /* (non-Javadoc)
