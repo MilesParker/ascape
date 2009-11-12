@@ -19,6 +19,8 @@ import java.util.TooManyListenersException;
 
 import javax.swing.Icon;
 import javax.swing.JTree;
+import javax.swing.event.TreeExpansionEvent;
+import javax.swing.event.TreeExpansionListener;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
@@ -261,6 +263,31 @@ public class Navigator extends PanelView {
 		// expanded, leaf, row);
 		// }
 		// });
+		
+		
+		
+		
+/*		// add a tree listener that updates the children
+		// when this node is expanded
+		tree.addTreeExpansionListener(new TreeExpansionListener() {
+			public void treeCollapsed(TreeExpansionEvent event) {
+			}
+
+			// update children when node is expanded
+			// this method is executed on the AWT thread
+			// this is needed otherwise ScapeMembersNodes
+			// won't display any children
+			public void treeExpanded(TreeExpansionEvent event) {
+				BaseNoevent.getPath().getLastPathComponent()
+				
+				TreePath nodePath = new TreePath(BaseNode.this.getPath());
+				if (event.getPath().equals(nodePath.getParentPath())) {
+					updateChildren();
+				}
+			}
+		});
+*/
+		
 	}
 
 	@Override
@@ -286,7 +313,9 @@ public class Navigator extends PanelView {
 
 	/**
 	 * When scape is iterated, update children of nodes that are waiting for an
-	 * update if the node is visible.
+	 * update if the node is visible. This method is called from
+	 * {@link BasicSwingRunner#notify(ScapeEvent, org.ascape.model.event.ScapeListener)}
+	 * on the AWT event thread.
 	 * 
 	 * @param scapeEvent
 	 *            scape event
@@ -298,6 +327,7 @@ public class Navigator extends PanelView {
 
 				// update children of nodes that are waiting for an update
 				// if they are visible
+				System.out.println("waitingForUpdate.size(): " + waitingForUpdate.size() );
 				for (Iterator iterator = waitingForUpdate.iterator(); iterator
 						.hasNext();) {
 					BaseNode node = (BaseNode) iterator.next();
