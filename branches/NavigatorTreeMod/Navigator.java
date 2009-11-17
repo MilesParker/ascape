@@ -12,6 +12,7 @@ import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -50,13 +51,8 @@ public class Navigator extends PanelView {
 	 */
 	private final JTree tree = new JTree();
 
-	/**
-	 * The waiting for update.
-	 */
-	private final Set<BaseNode> waitingForUpdate = new HashSet();
-
 	private final NavigatorTreeBuilder treeBuilder =
-			new NavigatorTreeBuilder(tree, waitingForUpdate);
+			new NavigatorTreeBuilder(tree);
 
 	/**
 	 * Instantiates a new navigator.
@@ -78,11 +74,6 @@ public class Navigator extends PanelView {
 			}
 		};
 	}
-
-	/**
-	 * The lock.
-	 */
-	Object lock = new Object();
 
 	/**
 	 * The Class ScapeIcon.
@@ -263,31 +254,23 @@ public class Navigator extends PanelView {
 		// expanded, leaf, row);
 		// }
 		// });
-		
-		
-		
-		
-/*		// add a tree listener that updates the children
-		// when this node is expanded
-		tree.addTreeExpansionListener(new TreeExpansionListener() {
-			public void treeCollapsed(TreeExpansionEvent event) {
-			}
 
-			// update children when node is expanded
-			// this method is executed on the AWT thread
-			// this is needed otherwise ScapeMembersNodes
-			// won't display any children
-			public void treeExpanded(TreeExpansionEvent event) {
-				BaseNoevent.getPath().getLastPathComponent()
-				
-				TreePath nodePath = new TreePath(BaseNode.this.getPath());
-				if (event.getPath().equals(nodePath.getParentPath())) {
-					updateChildren();
-				}
-			}
-		});
-*/
-		
+		/*
+		 * // add a tree listener that updates the children // when this node is
+		 * expanded tree.addTreeExpansionListener(new TreeExpansionListener() {
+		 * public void treeCollapsed(TreeExpansionEvent event) { }
+		 * 
+		 * // update children when node is expanded // this method is executed
+		 * on the AWT thread // this is needed otherwise ScapeMembersNodes //
+		 * won't display any children public void
+		 * treeExpanded(TreeExpansionEvent event) {
+		 * BaseNoevent.getPath().getLastPathComponent()
+		 * 
+		 * TreePath nodePath = new TreePath(BaseNode.this.getPath()); if
+		 * (event.getPath().equals(nodePath.getParentPath())) {
+		 * updateChildren(); } } });
+		 */
+
 	}
 
 	@Override
@@ -323,24 +306,21 @@ public class Navigator extends PanelView {
 	@Override
 	public void scapeNotification(ScapeEvent scapeEvent) {
 		if (scapeEvent.getID() == ScapeEvent.REPORT_ITERATE) {
-			synchronized (waitingForUpdate) {
-
-				// update children of nodes that are waiting for an update
-				// if they are visible
-				System.out.println("waitingForUpdate.size(): " + waitingForUpdate.size() );
-				for (Iterator iterator = waitingForUpdate.iterator(); iterator
-						.hasNext();) {
-					BaseNode node = (BaseNode) iterator.next();
-					TreePath nodePath = new TreePath(node);
-					if (tree.isVisible(nodePath)) {
-						node.updateChildren();
-					}
-				}
-
-				waitingForUpdate.clear();
+			iterateVisibleNodes();
+		}
+		notifyScapeUpdated();
+	}
+	
+	/**
+	 * Call the iterate method on nodes of the tree
+	 * that are visible and are a {@link NavigatorTreeBuilder.BaseNode}.
+	 */
+	private void iterateVisibleNodes() {
+		for (int i = 0; i < tree.getRowCount(); i++) {
+			Object node = tree.getPathForRow(i).getLastPathComponent();
+			if (node instanceof BaseNode) {
+				((BaseNode) node).iterate();
 			}
 		}
-		tree.repaint();
-		notifyScapeUpdated();
 	}
 }

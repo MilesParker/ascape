@@ -1,8 +1,3 @@
-/*
- * @(#)LazyMutableTreeNode.java 10/9/2005
- *
- * Copyright 2002 - 2005 JIDE Software Inc. All rights reserved.
- */
 package org.ascape.runtime.swing;
 
 import javax.swing.JTree;
@@ -13,8 +8,9 @@ import javax.swing.tree.DefaultTreeModel;
  * A {@link DefaultMutableTreeNode} that lazily create children when they are
  * needed.
  * <p>
- * Creates children whenever {@link #getChildCount()} is called. This can happen
- * when the following are called:
+ * Creates children (via abstract method {@link #updateChildren()}) whenever
+ * {@link #getChildCount()} is called. This can happen when the following are
+ * called:
  * <ul>
  * <li>{@link DefaultTreeModel#nodeStructureChanged(javax.swing.tree.TreeNode)}
  * <li>{@link DefaultMutableTreeNode#add(javax.swing.tree.MutableTreeNode)}
@@ -25,9 +21,15 @@ import javax.swing.tree.DefaultTreeModel;
  * particularly the children of the last unexpanded node at the currently
  * expanded level of the hierarchy.
  * 
+ * Adapted from com.jidesoft.plaf.basic.LazyMutableTreeNode.
  */
 public abstract class LazyMutableTreeNode extends DefaultMutableTreeNode {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5234855334034342509L;
+	
 	protected boolean _loaded = false;
 
 	public LazyMutableTreeNode() {

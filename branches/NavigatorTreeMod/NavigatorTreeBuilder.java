@@ -7,6 +7,7 @@ import java.beans.PropertyChangeSupport;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -21,12 +22,15 @@ import javax.swing.JTree;
 import javax.swing.SwingUtilities;
 import javax.swing.event.TreeExpansionEvent;
 import javax.swing.event.TreeExpansionListener;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.MutableTreeNode;
+import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
 import org.ascape.model.Agent;
+import org.ascape.model.AscapeObject;
 import org.ascape.model.Scape;
 import org.ascape.model.event.DefaultScapeListener;
 import org.ascape.model.event.ScapeEvent;
@@ -35,7 +39,29 @@ import org.ascape.model.rule.Rule;
 import org.ascape.util.PropertyAccessor;
 import org.ascape.util.ResetableIterator;
 
-public class NavigatorTreeBuilder {
+public class NavigatorTreeBuilder implements TreeBuilder {
+
+
+	public DefaultTreeModel getDefaultTreeModel() {
+		return scapeModel;
+	}
+
+	public TreeNode getTreeNode(AscapeObject modelElement) {
+        if (modelElement instanceof Scape) {
+        	Scape scape = (Scape) modelElement;
+            return new ScapeNode(scape);
+        } else if (modelElement instanceof Agent) {
+        	Agent agent = (Agent) modelElement;
+        	return new AgentNode(agent);
+        } else {
+            throw new RuntimeException("No node for the model element: " + modelElement
+                                       + (modelElement != null ? "[" + modelElement.getClass() + "]" : ""));
+        }
+	}
+
+	public List<TreeSelectionListener> getTreeSelectionListeners() {
+		return Collections.emptyList();
+	}
 
 	/**
 	 * The group size.
@@ -57,23 +83,13 @@ public class NavigatorTreeBuilder {
 		return scapeModel;
 	}
 
-	public void build(Scape scape) {
-		ScapeNode root = new ScapeNode(scape);
-		scapeModel.setRoot(root);
-	}
-
-	/**
-	 * Set of all visible nodes each iteration. These nodes will have their
-	 * children updated on the AWT thread, and the tree will be repainted in one
-	 * batch by {@link Navigator#scapeNotification(ScapeEvent)}.
-	 */
-	private final Set<BaseNode> waitingForUpdate;
-
-	public NavigatorTreeBuilder(JTree tree,
-			final Set<BaseNode> waitingForUpdate) {
+	public NavigatorTreeBuilder(JTree tree) {
 		super();
 		this.tree = tree;
-		this.waitingForUpdate = waitingForUpdate;
+	}
+
+	public void build(Scape scape) {
+		scapeModel.setRoot(new ScapeNode(scape));
 	}
 
 	/**
@@ -100,11 +116,6 @@ public class NavigatorTreeBuilder {
 		private static final long serialVersionUID = -1339361794486509129L;
 
 		/**
-		 * The scape.
-		 */
-		final Scape scape;
-
-		/**
 		 * Instantiates a new base node.
 		 * 
 		 * @param scape
@@ -112,100 +123,28 @@ public class NavigatorTreeBuilder {
 		 * @param userObject
 		 *            the user object
 		 */
-		public BaseNode(Scape scape, Object userObject) {
+		public BaseNode(Object userObject) {
 			super(userObject);
-			this.scape = scape;
-
-			// create a scape listener that updates children
-			// when the scape starts or is iterated
-			ScapeListener listener =
-					new DefaultScapeListener("Tree Members Listener") {
-						private static final long serialVersionUID =
-								6739656535899709964L;
-
-						private void update() {
-							TreePath nodePath =
-									new TreePath(BaseNode.this.getPath());
-							if (scape.isMutable() && tree.isVisible(nodePath)) {
-								requestUpdateChildren();
-							}
-						}
-
-						public void scapeStarted(ScapeEvent scapeEvent) {
-							update();
-						}
-
-						public void scapeIterated(ScapeEvent scapeEvent) {
-						update();
-						}
-					};
-			scape.addView(listener);
-
-			// add a tree listener that updates the children
-			// when this node is expanded
-			tree.addTreeExpansionListener(new TreeExpansionListener() {
-				public void treeCollapsed(TreeExpansionEvent event) {
-				}
-
-				// update children when node is expanded
-				// this method is executed on the AWT thread
-				// this is needed otherwise ScapeMembersNodes
-				// won't display any children
-				public void treeExpanded(TreeExpansionEvent event) {
-					TreePath nodePath = new TreePath(BaseNode.this.getPath());
-					if (event.getPath().equals(nodePath.getParentPath())) {
-						//System.out.println("\nExpanded" + BaseNode.this.toString() + "\n");
-						 //updateChildren();
-					}
-				}
-			});
 		}
 
-		/**
-		 * If scape is not running, update the children now on the AWT thread,
-		 * otherwise add this node to the waitingForUpdate list.
-		 */
-		protected void requestUpdateChildren() {
-			if (!scape.isRunning()) {
-				invokeUpdateChildren();
-			} else {
-				synchronized (waitingForUpdate) {
-					waitingForUpdate.add(BaseNode.this);
-				}
-			}
-		}
-
-		/**
-		 * Invoke update children on the AWT thread.
-		 */
-		protected void invokeUpdateChildren() {
-			try {
-				SwingUtilities.invokeAndWait(new Runnable() {
-					public void run() {
-						updateChildren();
-					}
-				});
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			} catch (InvocationTargetException e) {
-				System.out.println(e);
-				e.printStackTrace();
-			}
-		}
-
-		/**
-		 * Update children.
-		 */
+		@Override
 		protected void updateChildren() {
-			printMe();
+			//debugPrintMe();
 		}
 
-		protected void printMe() {
+		protected void debugPrintMe() {
 			System.out
 					.println("updateChildren: "
 							+ this.getClass().getSimpleName() + " "
 							+ "\"" + this.toString() + "\" parent: " + parent);
 		}
+		
+		/**
+		 * Operation to perform every iteration of the scape.
+		 */
+		protected void iterate() {
+		}
+		
 	}
 
 	/**
@@ -225,13 +164,11 @@ public class NavigatorTreeBuilder {
 		/**
 		 * Instantiates a new accessor node.
 		 * 
-		 * @param scape
-		 *            the scape
 		 * @param accessor
 		 *            the accessor
 		 */
-		public AccessorNode(Scape scape, PropertyAccessor accessor) {
-			super(scape, accessor);
+		public AccessorNode(PropertyAccessor accessor) {
+			super(accessor);
 			this.accessor = accessor;
 		}
 
@@ -260,8 +197,8 @@ public class NavigatorTreeBuilder {
 		 * @param userObject
 		 *            the user object
 		 */
-		public RuleNode(Scape scape, Object userObject) {
-			super(scape, userObject);
+		public RuleNode(Object userObject) {
+			super(userObject);
 		}
 	}
 
@@ -276,14 +213,11 @@ public class NavigatorTreeBuilder {
 		private static final long serialVersionUID = 5237720048765754585L;
 
 		/**
-		 * The selection observer.
-		 */
-		Observer selectionObserver;
-
-		/**
 		 * The current rules.
 		 */
 		private Map<Rule, RuleNode> currentRules;
+		
+		private final Scape scape;
 
 		/**
 		 * Instantiates a new rules node.
@@ -292,23 +226,16 @@ public class NavigatorTreeBuilder {
 		 *            the scape
 		 */
 		public RulesNode(final Scape scape) {
-			super(scape, "Rules");
+			super("Rules");
+			this.scape = scape;
 
 			currentRules = new HashMap<Rule, RuleNode>();
-			ScapeListener listener =
-					new DefaultScapeListener("Tree Members Listener") {
-						/**
-	             * 
-	             */
-						private static final long serialVersionUID =
-								5414250624546793220L;
 
-						public void scapeStarted(ScapeEvent scapeEvent) {
-							requestUpdateChildren();
-						}
-					};
-			scape.addView(listener);
-			selectionObserver = new Observer() {
+			Observer selectionObserver = new Observer() {
+				
+				// when a rule is activated/deactivated
+				// via Model Settings, update the RulesNode's
+				// children
 				public void update(Observable o, Object arg) {
 					updateChildren();
 				}
@@ -317,22 +244,25 @@ public class NavigatorTreeBuilder {
 		}
 
 		/**
-		 * 
+		 * Add/remove rules.
 		 */
 		protected void updateChildren() {
-			printMe();
 			// todo does not handle updating order
 			for (int i = 0; i < scape.getRules().getVector().size(); i++) {
 				Rule rule = (Rule) scape.getRules().getVector().elementAt(i);
 				if (scape.getRules().isSelected(i)) {
+					
+					// if rule doesn't exist as a child, add it
 					if (currentRules.get(rule) == null) {
-						RuleNode addNode = new RuleNode(scape, rule);
+						RuleNode addNode = new RuleNode(rule);
 						scapeModel.insertNodeInto(addNode, this, Math.min(
 								scapeModel.getChildCount(this), scape
 										.getRules().getSelectedIndex(rule)));
 						currentRules.put(rule, addNode);
 					}
 				} else {
+					
+					// if rule exists as a child, remove it
 					RuleNode node = currentRules.get(rule);
 					if (node != null) {
 						scapeModel.removeNodeFromParent(node);
@@ -341,7 +271,6 @@ public class NavigatorTreeBuilder {
 				}
 
 			}
-			//tree.repaint();
 		}
 	}
 
@@ -383,8 +312,8 @@ public class NavigatorTreeBuilder {
 		 * @param agent
 		 *            the agent
 		 */
-		public PropertiesNode(Scape scape, Agent agent) {
-			super(scape, agent);
+		public PropertiesNode(Agent agent) {
+			super(agent);
 			try {
 				if (!(agent instanceof Scape)) {
 					List<?> accessorsList =
@@ -406,7 +335,7 @@ public class NavigatorTreeBuilder {
 				Arrays.sort(accessors);
 				accessorInd = new int[accessors.length];
 				for (int i = 0; i < accessors.length; i++) {
-					add(new AccessorNode(scape, accessors[i]));
+					add(new AccessorNode(accessors[i]));
 					accessorInd[i] = i;
 				}
 
@@ -415,6 +344,7 @@ public class NavigatorTreeBuilder {
 			}
 
 		}
+		
 	}
 
 	/**
@@ -435,8 +365,8 @@ public class NavigatorTreeBuilder {
 		 * @param agent
 		 *            the agent
 		 */
-		public AgentNode(Scape scape, Agent agent) {
-			super(scape, agent);
+		public AgentNode(Agent agent) {
+			super(agent);
 		}
 	}
 
@@ -456,9 +386,9 @@ public class NavigatorTreeBuilder {
 		 * @param scape
 		 *            the scape
 		 */
-		public ScapeNode(Scape scape) {
-			super(scape, scape);
-			add(new PropertiesNode(scape, scape));
+		public ScapeNode(final Scape scape) {
+			super(scape);
+			add(new PropertiesNode(scape));
 			add(new RulesNode(scape));
 			if (scape instanceof Scape) {
 				ScapeMembersNode membersNode = new ScapeMembersNode(scape);
@@ -466,10 +396,10 @@ public class NavigatorTreeBuilder {
 
 				// if scape can modify the tree, call the modifyTree method
 				// of the scape on the AWT Event thread
-				if (this.scape instanceof TreeModifier) {
+				if (scape instanceof TreeModifier) {
 					Runnable doWorkRunnable = new Runnable() {
 						public void run() {
-							((TreeModifier) ScapeNode.this.scape).modifyTree(
+							((TreeModifier) scape).modifyTree(
 									tree,
 									(DefaultMutableTreeNode) ScapeNode.this);
 						}
@@ -525,8 +455,8 @@ public class NavigatorTreeBuilder {
 		/**
 		 * Update this group's children. 
 		 */
+		@Override
 		protected void updateChildren() {
-			printMe();
 			updateChildren(startIndex, endIndex);
 		}
 	}
@@ -541,6 +471,8 @@ public class NavigatorTreeBuilder {
 	     */
 		private static final long serialVersionUID = 3696674806064654573L;
 
+		private final Scape scape;
+		
 		/**
 		 * Instantiates a new scape members node.
 		 * 
@@ -550,7 +482,8 @@ public class NavigatorTreeBuilder {
 		 *            the desc
 		 */
 		public ScapeMembersNode(Scape scape, String desc) {
-			super(scape, desc);
+			super(desc);
+			this.scape = scape;
 		}
 
 		/**
@@ -561,23 +494,16 @@ public class NavigatorTreeBuilder {
 		 */
 		public ScapeMembersNode(Scape scape) {
 			this(scape, "Members");
-
-			// display children OJM
-			updateChildren(); // NOPMD
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see org.ascape.explorer.Navigator.BaseNode#updateChildren()
-		 */
+		
+		@Override
+		protected void iterate() {
+			updateChildren();
+		}
+
+		@Override
 		protected void updateChildren() {
-			printMe();
-			if (getChildCount() > 0
-					&& getFirstChild().toString().equals("Dummy")) {
-				scapeModel
-						.removeNodeFromParent((MutableTreeNode) getFirstChild());
-			}
 			updateChildren(0, scape.getSize());
 		}
 
@@ -627,7 +553,11 @@ public class NavigatorTreeBuilder {
 			}
 			Set remain = new HashSet();
 			List delete = new ArrayList();
+
+			// get this node's existing children
 			Enumeration e = children();
+			
+			
 			while (e.hasMoreElements()) {
 				BaseNode node = (BaseNode) e.nextElement();
 
@@ -640,11 +570,13 @@ public class NavigatorTreeBuilder {
 			}
 			scapeMembers.removeAll(remain);
 
+			// add all the scape members that are not already children of this node
 			for (Iterator addIterator = scapeMembers.iterator(); addIterator
 					.hasNext();) {
 				addNodes((Agent) addIterator.next());
 			}
 
+			// remove children of this node that are no longer scape members
 			for (Iterator delIterator = delete.iterator(); delIterator
 					.hasNext();) {
 				MutableTreeNode node = (MutableTreeNode) delIterator.next();
@@ -685,32 +617,39 @@ public class NavigatorTreeBuilder {
 				numChildren = size / groupSize;
 			}
 			Enumeration e = children();
-			int i = start;
-			int index = 0;
+			int groupStep = start;
+			int childIndex = 0;
 			while (e.hasMoreElements()) {
 				BaseNode node = (BaseNode) e.nextElement();
-				// If we were formally displaying actual memebers here (e.g. the
-				// size of scape has grown past group size) we need to delete
-				// them.
 				if (node instanceof ScapeNode || node instanceof AgentNode) {
+					// If we were formally displaying actual members here (e.g. the
+					// size of scape has grown past group size) we need to delete
+					// them.
 					scapeModel.removeNodeFromParent(node);
-					scapeModel.insertNodeInto(node, this, index);
 				} else {
-					((ScapeGroupNode) node).startIndex = i;
+					
+					// child is a scape group node
+					// set the start and end indices, and description
+					
+					((ScapeGroupNode) node).startIndex = groupStep;
 					((ScapeGroupNode) node).endIndex =
-							Math.min(end, i + numChildren);
-					((ScapeGroupNode) node).setUserObject(desc(i,
+							Math.min(end, groupStep + numChildren);
+					((ScapeGroupNode) node).setUserObject(desc(groupStep,
 							((ScapeGroupNode) node).endIndex));
 				}
-				if (i >= end) {
-					scapeModel.removeNodeFromParent(node);
-				}
-				index++;
-				i = Math.min(end, i + numChildren);
+				
+				//if (groupStep >= end) {
+				//	scapeModel.removeNodeFromParent(node);
+				//}
+				
+				childIndex++;
+				groupStep = Math.min(end, groupStep + numChildren);
 			}
-			for (; i < end; i = Math.min(end, i + numChildren)) {
+			
+			// create new ScapeGroup nodes
+			for (; groupStep < end; groupStep = Math.min(end, groupStep + numChildren)) {
 				ScapeGroupNode node =
-						new ScapeGroupNode(scape, i, Math.min(end, i
+						new ScapeGroupNode(scape, groupStep, Math.min(end, groupStep
 								+ numChildren));
 				scapeModel.insertNodeInto(node, this, getChildCount());
 			}
@@ -751,11 +690,12 @@ public class NavigatorTreeBuilder {
 			if (agent instanceof Scape) {
 				treeNode = new ScapeNode((Scape) agent);
 			} else { // Agent
-				treeNode = new AgentNode(scape, agent);
+				treeNode = new AgentNode(agent);
 			}
 			scapeModel.insertNodeInto(treeNode, ScapeMembersNode.this,
 					getChildCount());
 		}
+		
 	}
 
 }
