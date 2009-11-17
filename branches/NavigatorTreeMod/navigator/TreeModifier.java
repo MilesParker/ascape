@@ -1,4 +1,4 @@
-package org.ascape.runtime.swing;
+package org.ascape.runtime.swing.navigator;
 
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;

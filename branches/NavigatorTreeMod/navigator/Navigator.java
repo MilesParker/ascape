@@ -5,39 +5,26 @@
  * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
-package org.ascape.runtime.swing;
+package org.ascape.runtime.swing.navigator;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.util.Enumeration;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
 import java.util.TooManyListenersException;
 
 import javax.swing.Icon;
 import javax.swing.JTree;
-import javax.swing.event.TreeExpansionEvent;
-import javax.swing.event.TreeExpansionListener;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreeModel;
-import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
 import org.ascape.model.Agent;
 import org.ascape.model.Scape;
 import org.ascape.model.event.ScapeEvent;
-import org.ascape.runtime.swing.NavigatorTreeBuilder.AccessorNode;
-import org.ascape.runtime.swing.NavigatorTreeBuilder.AgentNode;
-import org.ascape.runtime.swing.NavigatorTreeBuilder.BaseNode;
-import org.ascape.runtime.swing.NavigatorTreeBuilder.PropertiesNode;
-import org.ascape.runtime.swing.NavigatorTreeBuilder.RuleNode;
-import org.ascape.runtime.swing.NavigatorTreeBuilder.RulesNode;
-import org.ascape.runtime.swing.NavigatorTreeBuilder.ScapeMembersNode;
-import org.ascape.runtime.swing.NavigatorTreeBuilder.ScapeNode;
+import org.ascape.runtime.swing.BasicSwingRunner;
+import org.ascape.runtime.swing.DesktopEnvironment;
 import org.ascape.view.vis.ComponentViewDelegate;
 import org.ascape.view.vis.PanelView;
 
@@ -60,7 +47,7 @@ public class Navigator extends PanelView {
 	public Navigator() {
 		super("Scape Navigator");
 
-		createTree(treeBuilder.getScapeModel());
+		createTree(treeBuilder.getScapeTreeModel());
 
 		delegate = new ComponentViewDelegate(this) {
 			/**

@@ -1,4 +1,4 @@
-package org.ascape.runtime.swing;
+package org.ascape.runtime.swing.navigator;
 
 import java.util.Collections;
 import java.util.List;

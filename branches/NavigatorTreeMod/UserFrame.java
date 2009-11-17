@@ -49,6 +49,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.plaf.basic.BasicSplitPaneUI;
 
+import org.ascape.runtime.swing.navigator.Navigator;
 import org.ascape.view.vis.Overhead2DView;
 import org.ascape.view.vis.control.MenuBarView;
 
