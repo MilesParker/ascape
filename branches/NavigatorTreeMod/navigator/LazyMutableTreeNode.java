@@ -5,7 +5,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
 /**
- * A {@link DefaultMutableTreeNode} that lazily create children when they are
+ * A {@link DefaultMutableTreeNode} that lazily creates children when they are
  * needed.
  * <p>
  * Creates children (via abstract method {@link #updateChildren()}) whenever

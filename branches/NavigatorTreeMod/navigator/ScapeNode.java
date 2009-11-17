@@ -1,9 +1,5 @@
 package org.ascape.runtime.swing.navigator;
 
-import javax.swing.SwingUtilities;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
-
 import org.ascape.model.Scape;
 
 /**
@@ -22,13 +18,13 @@ public class ScapeNode extends BaseNode {
 	 * @param scape
 	 *            the scape
 	 */
-	public ScapeNode(final Scape scape, DefaultTreeModel treeModel) {
+	public ScapeNode(final Scape scape, TreeBuilder treeBuilder) {
 		super(scape);
 		add(new PropertiesNode(scape));
-		add(new RulesNode(scape, treeModel));
+		add(new RulesNode(scape, treeBuilder.getTreeModel()));
 		if (scape instanceof Scape) {
 			ScapeMembersNode membersNode =
-					new ScapeMembersNode(scape, treeModel);
+					new ScapeMembersNode(scape, treeBuilder);
 			add(membersNode);
 
 			// if scape can modify the tree, call the modifyTree method

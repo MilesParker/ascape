@@ -16,15 +16,19 @@ import java.util.TooManyListenersException;
 
 import javax.swing.Icon;
 import javax.swing.JTree;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultTreeCellRenderer;
+import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreeSelectionModel;
 
 import org.ascape.model.Agent;
 import org.ascape.model.Scape;
 import org.ascape.model.event.ScapeEvent;
+import org.ascape.runtime.RuntimeEnvironment;
 import org.ascape.runtime.swing.BasicSwingRunner;
 import org.ascape.runtime.swing.DesktopEnvironment;
+import org.ascape.runtime.swing.SwingEnvironment;
 import org.ascape.view.vis.ComponentViewDelegate;
 import org.ascape.view.vis.PanelView;
 
@@ -38,16 +42,11 @@ public class Navigator extends PanelView {
 	 */
 	private final JTree tree = new JTree();
 
-	private final NavigatorTreeBuilder treeBuilder =
-			new NavigatorTreeBuilder(tree);
-
 	/**
 	 * Instantiates a new navigator.
 	 */
 	public Navigator() {
 		super("Scape Navigator");
-
-		createTree(treeBuilder.getScapeTreeModel());
 
 		delegate = new ComponentViewDelegate(this) {
 			/**
@@ -183,7 +182,63 @@ public class Navigator extends PanelView {
 		}
 	}
 
-	private void createTree(TreeModel treeModel) {
+	/**
+	 * Calls {@link #setupNavigatorTree()} to build the tree AFTER the scape is
+	 * added. This allows the scape to specify an alternative
+	 * {@link TreeBuilder}.
+	 */
+	@Override
+	public void scapeAdded(ScapeEvent scapeEvent)
+			throws TooManyListenersException {
+		super.scapeAdded(scapeEvent);
+		setupNavigatorTree();
+	}
+
+	/**
+	 * Setup the JTree and the tree model for the Navigator.
+	 */
+	private void setupNavigatorTree() {
+		DefaultTreeModel scapeTreeModel = new DefaultTreeModel(null);
+
+		TreeBuilder treeBuilder = getNavigatorTreeBuilder();
+
+		if (treeBuilder == null) {
+			throw new RuntimeException("Cannot setup Navigator tree : "
+					+ "not running in a Swing environment.");
+		}
+
+		treeBuilder.setTreeModel(scapeTreeModel);
+
+		// setup the JTree
+		createTree(scapeTreeModel, treeBuilder);
+
+		// build the tree model
+		scapeTreeModel.setRoot(treeBuilder.getTreeNode(scape));
+	}
+
+	/**
+	 * Get the {@link TreeBuilder} from the runtime environment.
+	 * 
+	 * @return tree builder
+	 */
+	private TreeBuilder getNavigatorTreeBuilder() {
+		RuntimeEnvironment runtime = scape.getRunner().getEnvironment();
+		if (runtime instanceof SwingEnvironment) {
+			return ((SwingEnvironment) runtime).getNavigatorTreeBuilder();
+		} else {
+			return null;
+		}
+	}
+
+	/***
+	 * Setup the Swing aspects of the JTree.
+	 * 
+	 * @param treeModel
+	 *            tree model
+	 * @param treeBuilder
+	 *            tree builder
+	 */
+	private void createTree(TreeModel treeModel, TreeBuilder treeBuilder) {
 		tree.setFont(getFont().deriveFont(10.0f));
 		tree.setModel(treeModel);
 		setLayout(new BorderLayout());
@@ -193,6 +248,11 @@ public class Navigator extends PanelView {
 		tree.setLargeModel(true);
 		tree.setToggleClickCount(1);
 		tree.setShowsRootHandles(true);
+
+		for (TreeSelectionListener tsl : treeBuilder
+				.getTreeSelectionListeners()) {
+			tree.addTreeSelectionListener(tsl);
+		}
 
 		// tree.putClientProperty("JTree.lineStyle", "Angled");
 		DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer() {
@@ -231,43 +291,6 @@ public class Navigator extends PanelView {
 			}
 		};
 		tree.setCellRenderer(renderer);
-		// tree.setCellEditor(new DefaultTreeCellEditor(tree, renderer) {
-		// public Component getTreeCellEditorComponent(JTree tree, Object value,
-		// boolean isSelected,
-		// boolean expanded,
-		// boolean leaf, int row) {
-		// System.out.println(": "+value.getClass());
-		// return super.getTreeCellEditorComponent(tree, value, isSelected,
-		// expanded, leaf, row);
-		// }
-		// });
-
-		/*
-		 * // add a tree listener that updates the children // when this node is
-		 * expanded tree.addTreeExpansionListener(new TreeExpansionListener() {
-		 * public void treeCollapsed(TreeExpansionEvent event) { }
-		 * 
-		 * // update children when node is expanded // this method is executed
-		 * on the AWT thread // this is needed otherwise ScapeMembersNodes //
-		 * won't display any children public void
-		 * treeExpanded(TreeExpansionEvent event) {
-		 * BaseNoevent.getPath().getLastPathComponent()
-		 * 
-		 * TreePath nodePath = new TreePath(BaseNode.this.getPath()); if
-		 * (event.getPath().equals(nodePath.getParentPath())) {
-		 * updateChildren(); } } });
-		 */
-
-	}
-
-	@Override
-	public void scapeAdded(ScapeEvent scapeEvent)
-			throws TooManyListenersException {
-		super.scapeAdded(scapeEvent);
-
-		// build the tree for scape
-		treeBuilder.build(scape);
-
 	}
 
 	@Override
@@ -297,10 +320,10 @@ public class Navigator extends PanelView {
 		}
 		notifyScapeUpdated();
 	}
-	
+
 	/**
-	 * Call the iterate method on nodes of the tree
-	 * that are visible and are a {@link NavigatorTreeBuilder.BaseNode}.
+	 * Call the iterate method on nodes of the tree that are visible and are a
+	 * {@link DefaultTreeBuilder.BaseNode}.
 	 */
 	private void iterateVisibleNodes() {
 		for (int i = 0; i < tree.getRowCount(); i++) {

@@ -31,6 +31,7 @@ public class ScapeMembersNode extends BaseNode {
 	
 	private final Scape scape;
 	private final DefaultTreeModel treeModel;
+	private final TreeBuilder treeBuilder;
 
 	/**
 	 * Instantiates a new scape members node.
@@ -40,11 +41,12 @@ public class ScapeMembersNode extends BaseNode {
 	 * @param desc
 	 *            the desc
 	 */
-	public ScapeMembersNode(Scape scape, DefaultTreeModel treeModel,
+	public ScapeMembersNode(Scape scape, TreeBuilder treeBuilder,
 			String desc) {
 		super(desc);
 		this.scape = scape;
-		this.treeModel = treeModel;
+		this.treeModel = treeBuilder.getTreeModel();
+		this.treeBuilder = treeBuilder;
 	}
 
 	/**
@@ -53,8 +55,8 @@ public class ScapeMembersNode extends BaseNode {
 	 * @param scape
 	 *            the scape
 	 */
-	public ScapeMembersNode(Scape scape, DefaultTreeModel treeModel) {
-		this(scape, treeModel, "Members");
+	public ScapeMembersNode(Scape scape, TreeBuilder treeBuilder) {
+		this(scape, treeBuilder, "Members");
 	}
 
 
@@ -224,7 +226,7 @@ public class ScapeMembersNode extends BaseNode {
 		for (; groupStep < end; groupStep =
 				Math.min(end, groupStep + numChildren)) {
 			ScapeGroupNode node =
-					new ScapeGroupNode(scape, treeModel, groupStep, Math.min(
+					new ScapeGroupNode(scape, treeBuilder, groupStep, Math.min(
 							end, groupStep + numChildren));
 			treeModel.insertNodeInto(node, this, getChildCount());
 		}
@@ -247,7 +249,7 @@ public class ScapeMembersNode extends BaseNode {
 		int index = 0;
 		for (int i = start; i < end; i = Math.min(end, i + numChildren)) {
 			ScapeGroupNode node =
-					new ScapeGroupNode(scape, treeModel, i, Math.min(end, i
+					new ScapeGroupNode(scape, treeBuilder, i, Math.min(end, i
 							+ numChildren));
 			treeModel.insertNodeInto(node, this, index);
 			index++;
@@ -261,12 +263,7 @@ public class ScapeMembersNode extends BaseNode {
 	 *            the agent
 	 */
 	void addNodes(Agent agent) {
-		MutableTreeNode treeNode;
-		if (agent instanceof Scape) {
-			treeNode = new ScapeNode((Scape) agent, treeModel);
-		} else { // Agent
-			treeNode = new AgentNode(agent);
-		}
+		MutableTreeNode treeNode = treeBuilder.getTreeNode(agent);
 		treeModel.insertNodeInto(treeNode, ScapeMembersNode.this,
 				getChildCount());
 	}

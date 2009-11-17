@@ -40,8 +40,8 @@ public class ScapeGroupNode extends ScapeMembersNode {
 	 * @param endIndex
 	 *            the end index
 	 */
-	public ScapeGroupNode(Scape scape, DefaultTreeModel treeModel, int startIndex, int endIndex) {
-		super(scape, treeModel, desc(startIndex, endIndex));
+	public ScapeGroupNode(Scape scape, TreeBuilder treeBuilder, int startIndex, int endIndex) {
+		super(scape, treeBuilder, desc(startIndex, endIndex));
 		this.startIndex = startIndex;
 		this.endIndex = endIndex;
 	}

@@ -42,6 +42,8 @@ import javax.swing.border.LineBorder;
 import org.ascape.model.Scape;
 import org.ascape.model.event.ScapeListener;
 import org.ascape.runtime.AbstractUIEnvironment;
+import org.ascape.runtime.swing.navigator.DefaultTreeBuilder;
+import org.ascape.runtime.swing.navigator.TreeBuilder;
 import org.ascape.view.vis.ComponentView;
 import org.ascape.view.vis.control.ControlBarView;
 
@@ -107,6 +109,16 @@ public abstract class SwingEnvironment extends AbstractUIEnvironment {
 
     public static SwingEnvironment DEFAULT_ENVIRONMENT;
 
+    private TreeBuilder navigatorTreeBuilder = new DefaultTreeBuilder(); 
+
+    public TreeBuilder getNavigatorTreeBuilder() {
+		return navigatorTreeBuilder;
+	}
+
+	public void setNavigatorTreeBuilder(TreeBuilder navigatorTreeBuilder) {
+		this.navigatorTreeBuilder = navigatorTreeBuilder;
+	}
+    
     /**
      * Instantiates a new UI environment.
      */
