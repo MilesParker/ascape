@@ -5,6 +5,6 @@ Bundle-SymbolicName: org.ascape.escape.models.examples
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: Ascape.org
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Require-Bundle: org.eclipse.amp.escape.ascape;bundle-version="0.2.0",
+Require-Bundle: org.eclipse.amp.escape.ascape;bundle-version="0.5.0",
  org.ascape.core;bundle-version="5.2.0",
- org.ascape.ui.amp;bundle-version="0.7.0"
+ org.ascape.ui.amp

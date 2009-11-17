@@ -118,7 +118,7 @@ public class SugarAgent extends CellOccupant implements IColorProvider {
         sugar.setName("sugar");
         sugar.setOwner(this);
         Cell cell = (Cell) ((Discrete) getHostScape().getSpace())
-.findRandomAvailable();
+        .findRandomAvailable();
         if (cell != null) {
             moveTo((HostCell) cell);
         }
