@@ -1,9 +1,11 @@
 package org.ascape.runtime.swing.navigator;
 
+import javax.swing.tree.DefaultMutableTreeNode;
+
 /**
  * The Class RuleNode.
  */
-public class RuleNode extends BaseNode {
+public class RuleNode extends DefaultMutableTreeNode {
 
 	/**
      * 

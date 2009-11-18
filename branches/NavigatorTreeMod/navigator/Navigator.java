@@ -184,8 +184,8 @@ public class Navigator extends PanelView {
 
 	/**
 	 * Calls {@link #setupNavigatorTree()} to build the tree AFTER the scape is
-	 * added. This allows the scape to specify an alternative
-	 * {@link TreeBuilder}.
+	 * created and added to this listener. This allows the scape to specify an
+	 * alternative {@link TreeBuilder}.
 	 */
 	@Override
 	public void scapeAdded(ScapeEvent scapeEvent)
@@ -213,7 +213,7 @@ public class Navigator extends PanelView {
 		createTree(scapeTreeModel, treeBuilder);
 
 		// build the tree model
-		scapeTreeModel.setRoot(treeBuilder.getTreeNode(scape));
+		scapeTreeModel.setRoot(treeBuilder.createTreeNode(scape));
 	}
 
 	/**
@@ -323,13 +323,13 @@ public class Navigator extends PanelView {
 
 	/**
 	 * Call the iterate method on nodes of the tree that are visible and are a
-	 * {@link DefaultTreeBuilder.BaseNode}.
+	 * {@link DefaultTreeBuilder.LazyIterableNode}.
 	 */
 	private void iterateVisibleNodes() {
 		for (int i = 0; i < tree.getRowCount(); i++) {
 			Object node = tree.getPathForRow(i).getLastPathComponent();
-			if (node instanceof BaseNode) {
-				((BaseNode) node).iterate();
+			if (node instanceof LazyIterableNode) {
+				((LazyIterableNode) node).iterate();
 			}
 		}
 	}

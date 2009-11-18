@@ -13,7 +13,7 @@ import org.ascape.model.rule.Rule;
 /**
  * The Class RulesNode.
  */
-public class RulesNode extends BaseNode {
+public class RulesNode extends LazyMutableTreeNode {
 
 	/**
      * 
@@ -23,7 +23,8 @@ public class RulesNode extends BaseNode {
 	/**
 	 * The current rules.
 	 */
-	private Map<Rule, RuleNode> currentRules;
+	private final Map<Rule, RuleNode> currentRules =
+			new HashMap<Rule, RuleNode>();;
 
 	private final Scape scape;
 
@@ -34,13 +35,13 @@ public class RulesNode extends BaseNode {
 	 * 
 	 * @param scape
 	 *            the scape
+	 * @param treeModel
+	 *            tree model for adding nodes
 	 */
 	public RulesNode(final Scape scape, DefaultTreeModel treeModel) {
 		super("Rules");
 		this.scape = scape;
 		this.treeModel = treeModel;
-
-		currentRules = new HashMap<Rule, RuleNode>();
 
 		Observer selectionObserver = new Observer() {
 

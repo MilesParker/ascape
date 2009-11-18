@@ -1,11 +1,13 @@
 package org.ascape.runtime.swing.navigator;
 
+import javax.swing.tree.DefaultMutableTreeNode;
+
 import org.ascape.util.PropertyAccessor;
 
 /**
  * The Class AccessorNode.
  */
-public class AccessorNode extends BaseNode {
+public class AccessorNode extends DefaultMutableTreeNode {
 
 	/**
      * 

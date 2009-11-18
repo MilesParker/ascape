@@ -1,11 +1,13 @@
 package org.ascape.runtime.swing.navigator;
 
+import javax.swing.tree.DefaultMutableTreeNode;
+
 import org.ascape.model.Scape;
 
 /**
  * The Class ScapeNode.
  */
-public class ScapeNode extends BaseNode {
+public class ScapeNode extends DefaultMutableTreeNode {
 
 	/**
      * 
@@ -17,6 +19,8 @@ public class ScapeNode extends BaseNode {
 	 * 
 	 * @param scape
 	 *            the scape
+	 * @param treeBuilder
+	 *            tree builder for creating children
 	 */
 	public ScapeNode(final Scape scape, TreeBuilder treeBuilder) {
 		super(scape);
@@ -26,19 +30,6 @@ public class ScapeNode extends BaseNode {
 			ScapeMembersNode membersNode =
 					new ScapeMembersNode(scape, treeBuilder);
 			add(membersNode);
-
-			// if scape can modify the tree, call the modifyTree method
-			// of the scape on the AWT Event thread
-/*			if (scape instanceof TreeModifier) {
-				Runnable doWorkRunnable = new Runnable() {
-					public void run() {
-						((TreeModifier) scape).modifyTree(tree,
-								(DefaultMutableTreeNode) ScapeNode.this);
-					}
-				};
-				SwingUtilities.invokeLater(doWorkRunnable);
-			}
-*/
 		}
 	}
 }

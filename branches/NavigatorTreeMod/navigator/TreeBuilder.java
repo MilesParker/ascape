@@ -18,13 +18,13 @@ import org.ascape.model.AscapeObject;
 public interface TreeBuilder {
 
 	/**
-	 * Creates a tree node for a given model element (eg: scape or agent).
+	 * Creates a new tree node for a given model element (eg: scape or agent).
 	 * 
 	 * @param modelElement
 	 *            ascape model element
 	 * @return tree node
 	 */
-	MutableTreeNode getTreeNode(AscapeObject modelElement);
+	MutableTreeNode createTreeNode(AscapeObject modelElement);
 
 	/**
 	 * Get the tree model. This may be used by nodes to create children.
@@ -35,14 +35,15 @@ public interface TreeBuilder {
 
 	/**
 	 * Set the tree model. This must be called before any
-	 * {@link #getTreeNode(AscapeObject)} calls.
+	 * {@link #createTreeNode(AscapeObject)} calls.
 	 * 
-	 * @param treeModel tree model
+	 * @param treeModel
+	 *            tree model
 	 */
 	void setTreeModel(DefaultTreeModel treeModel);
 
 	/**
-	 * Set of {@link TreeSelectionListener} to add to the Navigator JTree.
+	 * Set of {@link TreeSelectionListener}s to add to the Navigator JTree.
 	 * 
 	 * @return tree selections listeners
 	 */

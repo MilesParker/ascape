@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.MutableTreeNode;
 
@@ -16,7 +17,7 @@ import org.ascape.model.Scape;
 /**
  * The Class ScapeMembersNode.
  */
-public class ScapeMembersNode extends BaseNode {
+public class ScapeMembersNode extends LazyIterableNode {
 
 	/**
      * 
@@ -26,9 +27,8 @@ public class ScapeMembersNode extends BaseNode {
 	/**
 	 * The group size.
 	 */
-	private static final int groupSize = 20;
-	
-	
+	private static final int GROUP_SIZE = 20;
+
 	private final Scape scape;
 	private final DefaultTreeModel treeModel;
 	private final TreeBuilder treeBuilder;
@@ -38,11 +38,12 @@ public class ScapeMembersNode extends BaseNode {
 	 * 
 	 * @param scape
 	 *            the scape
+	 * @param treeBuilder
+	 *            tree builder for creating children
 	 * @param desc
-	 *            the desc
+	 *            node text
 	 */
-	public ScapeMembersNode(Scape scape, TreeBuilder treeBuilder,
-			String desc) {
+	public ScapeMembersNode(Scape scape, TreeBuilder treeBuilder, String desc) {
 		super(desc);
 		this.scape = scape;
 		this.treeModel = treeBuilder.getTreeModel();
@@ -54,11 +55,12 @@ public class ScapeMembersNode extends BaseNode {
 	 * 
 	 * @param scape
 	 *            the scape
+	 * @param treeBuilder
+	 *            tree builder for creating children
 	 */
 	public ScapeMembersNode(Scape scape, TreeBuilder treeBuilder) {
 		this(scape, treeBuilder, "Members");
 	}
-
 
 	/**
 	 * Desc.
@@ -73,8 +75,6 @@ public class ScapeMembersNode extends BaseNode {
 		return "Members " + startIndex + "-" + (endIndex - 1);
 	}
 
-
-	
 	@Override
 	protected void iterate() {
 		updateChildren();
@@ -95,7 +95,7 @@ public class ScapeMembersNode extends BaseNode {
 	 */
 	void updateChildren(int startIndex, int endIndex) {
 		int size = endIndex - startIndex;
-		if (size <= groupSize) {
+		if (size <= GROUP_SIZE) {
 			if (scape.isMutable()) {
 				insertMutableMembers(startIndex, endIndex);
 			} else {
@@ -136,7 +136,8 @@ public class ScapeMembersNode extends BaseNode {
 		Enumeration e = children();
 
 		while (e.hasMoreElements()) {
-			BaseNode node = (BaseNode) e.nextElement();
+			DefaultMutableTreeNode node =
+					(DefaultMutableTreeNode) e.nextElement();
 
 			if (!scapeMembers.contains(node.getUserObject())) {
 				delete.add(node);
@@ -188,15 +189,15 @@ public class ScapeMembersNode extends BaseNode {
 	 */
 	void insertMutableGroups(int start, int end) {
 		int size = end - start;
-		int numChildren = groupSize;
-		if (size / groupSize >= groupSize) {
-			numChildren = size / groupSize;
+		int numChildren = GROUP_SIZE;
+		if (size / GROUP_SIZE >= GROUP_SIZE) {
+			numChildren = size / GROUP_SIZE;
 		}
 		Enumeration e = children();
 		int groupStep = start;
 		int childIndex = 0;
 		while (e.hasMoreElements()) {
-			BaseNode node = (BaseNode) e.nextElement();
+			MutableTreeNode node = (MutableTreeNode) e.nextElement();
 			if (node instanceof ScapeNode || node instanceof AgentNode) {
 				// If we were formally displaying actual members here (e.g. the
 				// size of scape has grown past group size) we need to delete
@@ -226,8 +227,8 @@ public class ScapeMembersNode extends BaseNode {
 		for (; groupStep < end; groupStep =
 				Math.min(end, groupStep + numChildren)) {
 			ScapeGroupNode node =
-					new ScapeGroupNode(scape, treeBuilder, groupStep, Math.min(
-							end, groupStep + numChildren));
+					new ScapeGroupNode(scape, treeBuilder, groupStep, Math
+							.min(end, groupStep + numChildren));
 			treeModel.insertNodeInto(node, this, getChildCount());
 		}
 	}
@@ -242,9 +243,9 @@ public class ScapeMembersNode extends BaseNode {
 	 */
 	void insertImmutableGroups(int start, int end) {
 		int size = end - start;
-		int numChildren = groupSize;
-		if (size / groupSize >= groupSize) {
-			numChildren = size / groupSize;
+		int numChildren = GROUP_SIZE;
+		if (size / GROUP_SIZE >= GROUP_SIZE) {
+			numChildren = size / GROUP_SIZE;
 		}
 		int index = 0;
 		for (int i = start; i < end; i = Math.min(end, i + numChildren)) {
@@ -263,7 +264,7 @@ public class ScapeMembersNode extends BaseNode {
 	 *            the agent
 	 */
 	void addNodes(Agent agent) {
-		MutableTreeNode treeNode = treeBuilder.getTreeNode(agent);
+		MutableTreeNode treeNode = treeBuilder.createTreeNode(agent);
 		treeModel.insertNodeInto(treeNode, ScapeMembersNode.this,
 				getChildCount());
 	}

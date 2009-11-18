@@ -12,11 +12,12 @@ import org.ascape.model.AscapeObject;
 import org.ascape.model.Scape;
 
 /**
- * Default implementation of {@link TreeBuilder}.
+ * Default implementation of {@link TreeBuilder}. Produces {@link ScapeNode}s
+ * for scapes, and {@link AgentNode}s for agents.
  * 
  * @author Oliver Mannion
  * @version $Revision$
- *
+ * 
  */
 public class DefaultTreeBuilder implements TreeBuilder {
 
@@ -38,7 +39,7 @@ public class DefaultTreeBuilder implements TreeBuilder {
 	 * @return returns {@link ScapeNode} for scapes, and {@link AgentNode} for
 	 *         agents.
 	 */
-	public MutableTreeNode getTreeNode(AscapeObject modelElement) {
+	public MutableTreeNode createTreeNode(AscapeObject modelElement) {
 		if (modelElement instanceof Scape) {
 			Scape scape = (Scape) modelElement;
 			return new ScapeNode(scape, this);

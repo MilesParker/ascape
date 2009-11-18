@@ -1,9 +1,6 @@
 package org.ascape.runtime.swing.navigator;
 
-import javax.swing.tree.DefaultTreeModel;
-
 import org.ascape.model.Scape;
-import org.ascape.util.ResetableIterator;
 
 /**
  * The Class ScapeGroupNode.
@@ -26,34 +23,29 @@ public class ScapeGroupNode extends ScapeMembersNode {
 	int endIndex;
 
 	/**
-	 * The iterator.
-	 */
-	ResetableIterator iterator;
-
-	/**
 	 * Instantiates a new scape group node.
 	 * 
 	 * @param scape
 	 *            the scape
+	 * @param treeBuilder
+	 *            tree builder for creating children
 	 * @param startIndex
 	 *            the start index
 	 * @param endIndex
 	 *            the end index
 	 */
-	public ScapeGroupNode(Scape scape, TreeBuilder treeBuilder, int startIndex, int endIndex) {
+	public ScapeGroupNode(Scape scape, TreeBuilder treeBuilder,
+			int startIndex, int endIndex) {
 		super(scape, treeBuilder, desc(startIndex, endIndex));
 		this.startIndex = startIndex;
 		this.endIndex = endIndex;
 	}
 
-	
-	
 	/**
-	 * Update this group's children. 
+	 * Update this group's children.
 	 */
 	@Override
 	protected void updateChildren() {
 		updateChildren(startIndex, endIndex);
 	}
 }
-
