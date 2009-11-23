@@ -41,6 +41,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.RepaintManager;
 import javax.swing.SwingUtilities;
@@ -48,6 +49,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.plaf.basic.BasicSplitPaneUI;
 
+import org.ascape.runtime.swing.navigator.Navigator;
 import org.ascape.view.vis.Overhead2DView;
 import org.ascape.view.vis.control.MenuBarView;
 
@@ -71,6 +73,17 @@ public class UserFrame extends JFrame {
      * The desk scroll.
      */
     private JScrollPane deskScroll;
+
+    /**
+     * The tabbed console pane at the bottom of the screen.
+     */
+    private JTabbedPane consolePane;
+
+    /**
+     * The split pane between the console section and the rest 
+     * of the screen.
+     */
+    private JSplitPane deskTreeConsole;
 
     /**
      * The environment.
@@ -352,9 +365,15 @@ public class UserFrame extends JFrame {
             };
             consoleTitle.setBackground(DesktopEnvironment.ACCENT_COLOR);
             consoleTitle.setBorder(BorderFactory.createRaisedBevelBorder());
-            consolePanel.add(consoleTitle, BorderLayout.NORTH);
+            
+            //Create a tabbed pane to hold the consolePane
+            //on a tab called "Log".
+            consolePane = new JTabbedPane();
+            consolePane.addTab("Log", consolePanel);
 
-            JSplitPane deskTreeConsole = new JSplitPane(JSplitPane.VERTICAL_SPLIT, true, mainDesk, consolePanel);
+            //Create split between console and rest of desktop
+            deskTreeConsole = new JSplitPane(
+            		JSplitPane.VERTICAL_SPLIT, true, mainDesk, consolePane);
             deskTreeConsole.setDividerSize(8);
             deskTreeConsole.setUI(new BasicSplitPaneUI());
             deskTreeConsole.setOneTouchExpandable(true);
@@ -715,6 +734,24 @@ public class UserFrame extends JFrame {
      */
     public JScrollPane getDeskScrollPane() {
         return deskScroll;
+    }
+
+    /**
+     * Gets the tabbed console pane.
+     * 
+     * @return the console JTabbedPane 
+     */
+    public JTabbedPane getConsolePane() {
+        return consolePane;
+    }
+
+    /**
+     * Gets the split plane between the console and the desktop.
+     * 
+     * @return the console JSplitPane
+     */
+    public JSplitPane getConsoleSplit() {
+        return deskTreeConsole;
     }
 
     /**
