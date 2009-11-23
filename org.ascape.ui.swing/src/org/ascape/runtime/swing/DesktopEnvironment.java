@@ -19,7 +19,6 @@ import java.awt.Insets;
 import java.awt.Label;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyVetoException;
 import java.io.BufferedReader;
@@ -45,15 +44,12 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
 import javax.swing.SwingUtilities;
 import javax.swing.ToolTipManager;
-import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
@@ -528,7 +524,7 @@ public class DesktopEnvironment extends SwingEnvironment {
      * @return true, if supports swing
      */
     public boolean supportsSwing() {
-        return (viewMode == CLASSIC_VIEW_MODE) || (viewMode == MDI_VIEW_MODE);
+        return viewMode == CLASSIC_VIEW_MODE || viewMode == MDI_VIEW_MODE;
     }
 
     /**
@@ -749,95 +745,6 @@ public class DesktopEnvironment extends SwingEnvironment {
     //    public void setShowToolbar(boolean show) {
     //        if (show)
     //    }
-}
-
-/**
- * Nobuo Tamemasa
- * @version 1.0 05/10/99
- */
-class ComboMenuBar extends JMenuBar {
-
-    /**
-     * 
-     */
-    private static final long serialVersionUID = 1032440877619114505L;
-    private JMenu menu;
-    private Dimension preferredSize;
-
-    public ComboMenuBar(JMenu menu) {
-        this.menu = menu;
-
-        Color color = UIManager.getColor("Menu.selectionBackground");
-        UIManager.put("Menu.selectionBackground",
-                      UIManager.getColor("Menu.background"));
-        menu.updateUI();
-        UIManager.put("Menu.selectionBackground", color);
-
-        MenuItemListener listener = new MenuItemListener();
-        setListener(menu, listener);
-
-        add(menu);
-    }
-
-    public static JMenu createMenu(String label) {
-        return new ComboMenu(label);
-    }
-
-    class MenuItemListener implements ActionListener {
-
-        public void actionPerformed(ActionEvent e) {
-            //JMenuItem item = (JMenuItem)e.getSource();
-            //menu.setText(item.getText());
-            menu.requestFocus();
-        }
-    }
-
-    private void setListener(JMenuItem item, ActionListener listener) {
-        if (item instanceof JMenu) {
-            JMenu menu = (JMenu) item;
-            int n = menu.getItemCount();
-            for (int i = 0; i < n; i++) {
-                setListener(menu.getItem(i), listener);
-            }
-        } else if (item != null) {                         // null means separator
-            item.addActionListener(listener);
-        }
-    }
-
-    public void setPreferredSize(Dimension size) {
-        preferredSize = size;
-    }
-
-    public Dimension getPreferredSize() {
-        if (preferredSize == null) {
-            Dimension menuD = getItemSize(menu);
-            Insets margin = menu.getMargin();
-            Dimension retD = new Dimension(menuD.width,
-                                           margin.top + margin.bottom + menuD.height);
-            menu.setPreferredSize(retD);
-            preferredSize = retD;
-        }
-        return preferredSize;
-    }
-
-    private Dimension getItemSize(JMenu menu) {
-        Dimension d = new Dimension(0, 0);
-        int n = menu.getItemCount();
-        for (int i = 0; i < n; i++) {
-            Dimension itemD;
-            JMenuItem item = menu.getItem(i);
-            if (item instanceof JMenu) {
-                itemD = getItemSize((JMenu) item);
-            } else if (item != null) {
-                itemD = item.getPreferredSize();
-            } else {
-                itemD = new Dimension(0, 0);                // separator
-            }
-            d.width = Math.max(d.width, itemD.width);
-            d.height = Math.max(d.height, itemD.height);
-        }
-        return d;
-    }
 }
 
 class ComboMenu extends JMenu {

@@ -11,6 +11,9 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeSupport;
@@ -27,6 +30,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -34,6 +38,7 @@ import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
@@ -46,6 +51,8 @@ import org.ascape.runtime.swing.navigator.DefaultTreeBuilder;
 import org.ascape.runtime.swing.navigator.TreeBuilder;
 import org.ascape.view.vis.ComponentView;
 import org.ascape.view.vis.control.ControlBarView;
+
+
 
 /**
  * User: milesparker Date: May 26, 2006 Time: 7:29:23 PM To change this template use File | Settings | File Templates.
@@ -109,16 +116,16 @@ public abstract class SwingEnvironment extends AbstractUIEnvironment {
 
     public static SwingEnvironment DEFAULT_ENVIRONMENT;
 
-    private TreeBuilder navigatorTreeBuilder = new DefaultTreeBuilder(); 
+    private TreeBuilder navigatorTreeBuilder = new DefaultTreeBuilder();
 
     public TreeBuilder getNavigatorTreeBuilder() {
-		return navigatorTreeBuilder;
-	}
+        return navigatorTreeBuilder;
+    }
 
-	public void setNavigatorTreeBuilder(TreeBuilder navigatorTreeBuilder) {
-		this.navigatorTreeBuilder = navigatorTreeBuilder;
-	}
-    
+    public void setNavigatorTreeBuilder(TreeBuilder navigatorTreeBuilder) {
+        this.navigatorTreeBuilder = navigatorTreeBuilder;
+    }
+
     /**
      * Instantiates a new UI environment.
      */
@@ -649,5 +656,94 @@ public abstract class SwingEnvironment extends AbstractUIEnvironment {
      */
     public Vector getAllFrames() {
         return frames;
+    }
+}
+
+/**
+ * Nobuo Tamemasa
+ * @version 1.0 05/10/99
+ */
+class ComboMenuBar extends JMenuBar {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1032440877619114505L;
+    private JMenu menu;
+    private Dimension preferredSize;
+
+    public ComboMenuBar(JMenu menu) {
+        this.menu = menu;
+
+        Color color = UIManager.getColor("Menu.selectionBackground");
+        UIManager.put("Menu.selectionBackground",
+                      UIManager.getColor("Menu.background"));
+        menu.updateUI();
+        UIManager.put("Menu.selectionBackground", color);
+
+        MenuItemListener listener = new MenuItemListener();
+        setListener(menu, listener);
+
+        add(menu);
+    }
+
+    public static JMenu createMenu(String label) {
+        return new ComboMenu(label);
+    }
+
+    class MenuItemListener implements ActionListener {
+
+        public void actionPerformed(ActionEvent e) {
+            //JMenuItem item = (JMenuItem)e.getSource();
+            //menu.setText(item.getText());
+            menu.requestFocus();
+        }
+    }
+
+    private void setListener(JMenuItem item, ActionListener listener) {
+        if (item instanceof JMenu) {
+            JMenu menu = (JMenu) item;
+            int n = menu.getItemCount();
+            for (int i = 0; i < n; i++) {
+                setListener(menu.getItem(i), listener);
+            }
+        } else if (item != null) {                         // null means separator
+            item.addActionListener(listener);
+        }
+    }
+
+    public void setPreferredSize(Dimension size) {
+        preferredSize = size;
+    }
+
+    public Dimension getPreferredSize() {
+        if (preferredSize == null) {
+            Dimension menuD = getItemSize(menu);
+            Insets margin = menu.getMargin();
+            Dimension retD = new Dimension(menuD.width,
+                                           margin.top + margin.bottom + menuD.height);
+            menu.setPreferredSize(retD);
+            preferredSize = retD;
+        }
+        return preferredSize;
+    }
+
+    private Dimension getItemSize(JMenu menu) {
+        Dimension d = new Dimension(0, 0);
+        int n = menu.getItemCount();
+        for (int i = 0; i < n; i++) {
+            Dimension itemD;
+            JMenuItem item = menu.getItem(i);
+            if (item instanceof JMenu) {
+                itemD = getItemSize((JMenu) item);
+            } else if (item != null) {
+                itemD = item.getPreferredSize();
+            } else {
+                itemD = new Dimension(0, 0);                // separator
+            }
+            d.width = Math.max(d.width, itemD.width);
+            d.height = Math.max(d.height, itemD.height);
+        }
+        return d;
     }
 }
