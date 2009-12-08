@@ -6,6 +6,7 @@ import org.ascape.model.Scape;
 import org.ascape.runtime.RuntimeEnvironment;
 import org.ascape.runtime.swing.DesktopEnvironment;
 import org.ascape.runtime.swing.SwingEnvironment;
+import org.ascape.runtime.swing.UserFrame;
 import org.ascape.runtime.swing.navigator.TreeBuilder;
 
 /**
@@ -31,10 +32,63 @@ public final class AscapeGUIUtil {
 	 * @return dimensions of Ascape's desktop pane.
 	 */
 	public static Dimension getDesktopSize(Scape scape) {
+		UserFrame frame = getUserFrame(scape);
+		return (frame == null) ? null : frame.getDeskScrollPane()
+				.getViewport().getSize();
+	}
+
+	public static void flushConsoleLog(Scape scape) {
+		UserFrame frame = getUserFrame(scape);
+		if (frame != null) {
+			frame.flushConsoleLog();
+		}
+	}
+
+	/**
+	 * Get the {@link UserFrame}.
+	 * 
+	 * @param scape
+	 *            scape
+	 * @return {@link UserFrame} or {@code null} if not running in desktop
+	 *         environment
+	 */
+	public static UserFrame getUserFrame(Scape scape) {
+		DesktopEnvironment desktop = getDesktopEnvironment(scape);
+		if (desktop == null) {
+			return null;
+		}
+		return desktop.getUserFrame();
+	}
+
+	/**
+	 * Get the {@link DesktopEnvironment}.
+	 * 
+	 * @param scape
+	 *            scape
+	 * @return {@link DesktopEnvironment} or {@code null} if not running in
+	 *         desktop environment
+	 */
+	public static DesktopEnvironment getDesktopEnvironment(Scape scape) {
 		RuntimeEnvironment runtime = scape.getRunner().getEnvironment();
 		if (runtime instanceof DesktopEnvironment) {
-			return ((DesktopEnvironment) runtime).getUserFrame()
-					.getDeskScrollPane().getViewport().getSize();
+			return (DesktopEnvironment) runtime;
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Get the {@link SwingEnvironment}.
+	 * 
+	 * @param scape
+	 *            scape
+	 * @return {@link SwingEnvironment} or {@code null} if not running in swing
+	 *         environment
+	 */
+	public static SwingEnvironment getSwingEnvironment(Scape scape) {
+		RuntimeEnvironment runtime = scape.getRunner().getEnvironment();
+		if (runtime instanceof SwingEnvironment) {
+			return (SwingEnvironment) runtime;
 		} else {
 			return null;
 		}
@@ -48,12 +102,8 @@ public final class AscapeGUIUtil {
 	 * @return tree builder
 	 */
 	public static TreeBuilder getNavigatorTreeBuilder(Scape scape) {
-		RuntimeEnvironment runtime = scape.getRunner().getEnvironment();
-		if (runtime instanceof SwingEnvironment) {
-			return ((SwingEnvironment) runtime).getNavigatorTreeBuilder();
-		} else {
-			return null;
-		}
+		SwingEnvironment runtime = getSwingEnvironment(scape);
+		return (runtime == null) ? null : runtime.getNavigatorTreeBuilder();
 	}
 
 	/**
@@ -66,9 +116,9 @@ public final class AscapeGUIUtil {
 	 */
 	public static void setNavigatorTreeBuilder(Scape scape,
 			TreeBuilder treeBuilder) {
-		RuntimeEnvironment runtime = scape.getRunner().getEnvironment();
-		if (runtime instanceof SwingEnvironment) {
-			((SwingEnvironment) runtime).setNavigatorTreeBuilder(treeBuilder);
+		SwingEnvironment runtime = getSwingEnvironment(scape);
+		if (runtime != null) {
+			runtime.setNavigatorTreeBuilder(treeBuilder);
 		}
 	}
 
