@@ -13,7 +13,6 @@ import java.util.Map;
 import org.ascape.model.AscapeObject;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.RGB;
-import org.eclipse.swt.widgets.Display;
 
 /**
  * A Color feature returns a color based on the state of an object of known type provided to it.
@@ -83,8 +82,8 @@ public abstract class ColorFeatureConcrete implements Cloneable, ColorFeature {
     public static Color adjustBrightness(Color color, float factor) {
         // TODO Cache generated values
         float[] agentHSB = color.getRGB().getHSB();
-        float newBright = Math.min(1.0f, agentHSB[1] * factor);
-        Color brighter = new Color(Display.getCurrent(), new RGB(agentHSB[0], newBright, agentHSB[2]));
+        float newBright = Math.min(1.0f, agentHSB[2] * factor);
+        Color brighter = createHSB(agentHSB[0], agentHSB[1], newBright);
         return brighter;
     }
 

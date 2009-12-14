@@ -9,10 +9,13 @@ package org.ascape.view.vis;
 
 import org.ascape.model.Agent;
 import org.ascape.model.LocatedAgent;
-import org.ascape.util.vis.ColorFeatureConcrete;
 import org.ascape.util.vis.DrawFeature;
 import org.eclipse.draw2d.Graphics;
+import org.eclipse.draw2d.SWTGraphics;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.swt.graphics.GC;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Display;
 
 
 
@@ -31,11 +34,6 @@ import org.eclipse.draw2d.geometry.Dimension;
 public class Scrolling1DView extends CellView {
 
     private static final long serialVersionUID = 3644306272230219573L;
-
-    /**
-     * The last iteration.
-     */
-    private int lastIteration = -1;
 
     /**
      * The max agent width.
@@ -57,78 +55,27 @@ public class Scrolling1DView extends CellView {
      */
     public Scrolling1DView(String name) {
         super(name);
-        // setCellSize(2);
-        // setDelegate(new ComponentViewDelegate(this) {
-        // /**
-        // *
-        // */
-        // private static final long serialVersionUID = 7075869804727213331L;
-        //
-        // public synchronized void scapeNotification(ScapeEvent scapeEvent) {
-        // super.scapeNotification(scapeEvent);
-        // //Updatge graphics even when we are _not_ going to be painting to the screen this period
-        // if ((((ComponentView) getScapeListener()).getViewFrame() != null) && (scapeEvent.getID() != ScapeEvent.TICK)
-        // && ((Container) getScapeListener()).isVisible() && ((Container) getScapeListener()).isShowing() &&
-        // ((currentUpdate != ((ComponentView) getScapeListener()).getgetIterPerRedraw()()) &&
-        // (getScape().isInitialized()))) {
-        // ((ComponentView) getScapeListener()).updateScapeGraphics(Graphics);
-        // }
-        // }
-        // });
-        // setSize(200, 300);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.ascape.view.vis.BufferView#buildGraphicsBuffer()
-     */
-    // public void buildGraphicsBuffer() {
-    // //For some reason. size is changing between the first call and the second!
-    // if (graphics != null) {
-    // graphics.dispose();
-    // }
-    // int width = (int) getSize().getWidth();
-    // int height = (int) getSize().getHeight();
-    // if (width * height <= 0) {
-    // width = (int) getPreferredSize().getWidth();
-    // height = (int) getPreferredSize().getHeight();
-    // }
-    // VolatileImage newImage = createVolatileImage(width, height);
-    // Graphics newGraphics = newImage.getGraphics();
-    // if (bufferedImage != null) {
-    // newGraphics.drawImage(bufferedImage, 0, height - getSize().width, width, getSize().width, this);
-    // }
-    // bufferedImage = newImage;
-    // graphics = newGraphics;
-    // }
-    /**
-     * Sets the size of the view, rescaling and moving the buffer as neccesary.
-     * 
-     * @param x
-     *        the x
-     * @param y
-     *        the y
-     * @param width
-     *        the width
-     * @param height
-     *        the height
-     */
-
-    // public synchronized void setBounds(int x, int y, int width, int height) {
-    // if (height > 0) {
-    // height = (height / agentSize) * agentSize;
-    // }
-    // super.setBounds(x, y, width, height);
-    // }
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.ascape.view.vis.AgentSizedView#getPreferredSizeWithin(java.awt.Dimension)
-     */
-    public Dimension getPreferredSizeWithin(Dimension d) {
-        int tempCellSize = calculateAgentSizeForViewSize(d);
-        return new Dimension(Math.max(getScape().getSize(), 1) * tempCellSize, Math.max(1, d.height));
+    public synchronized void createImage() {
+        Dimension size = getPreferredSizeWithin(imageFigure.getSize());
+        if (size.width <= 0 || size.height <= 0) {
+            size = new Dimension(1, 1);
+        }
+        Image oldImage = image;
+        GC oldGC = imageGC;
+        Graphics oldGraphics = imageGraphics;
+        image = new Image(Display.getCurrent(), new org.eclipse.swt.graphics.Rectangle(0, 0, size.width, size.height));
+        imageGC = new GC(image);
+        imageGraphics = new SWTGraphics(imageGC);
+        if (oldImage != null) {
+            imageGC.drawImage(oldImage, 0, agentSize);
+        }
+        if (oldImage != null && !oldImage.isDisposed()) {
+            oldGraphics.dispose();
+            oldImage.dispose();
+            oldGC.dispose();
+        }
     }
 
     /*
@@ -136,8 +83,9 @@ public class Scrolling1DView extends CellView {
      * 
      * @see org.ascape.view.vis.AgentSizedView#calculateViewSizeForAgentSize(int)
      */
+    @Override
     public Dimension calculateViewSizeForAgentSize(Dimension availableSize, int cellSize) {
-        return new Dimension(Math.max(getScape().getSize(), 1) * cellSize, Math.max(1, availableSize.width));
+        return new Dimension(agentSize * getScape().getSize(), availableSize.height);
     }
 
     /*
@@ -145,6 +93,7 @@ public class Scrolling1DView extends CellView {
      * 
      * @see org.ascape.view.vis.AgentSizedView#calculateAgentSizeForViewSize(java.awt.Dimension)
      */
+    @Override
     public int calculateAgentSizeForViewSize(Dimension d) {
         int width = d.width / getScape().getSize();
         return Math.max(1, width);
@@ -183,67 +132,20 @@ public class Scrolling1DView extends CellView {
      * view.
      */
     public void updateScapeGraphics(Graphics g) {
-        if (getScape().getIteration() != lastIteration) {
+        if (getSize().height > 0) {
             Object[] drawFeatures = getDrawSelection().getSelection();
             if (drawFeatures.length > 0) {
                 // graphics.copyArea(0, agentSize, getSize().width, getSize().width, 0, -agentSize);
-                int lastRow = getSize().width - agentSize;
                 // Transform tr = createTR(graphics);
-                g.translate(0, lastRow);
-                if (drawFeatures.length != 0) {
-                    for (int p = 0; p < getScape().getSize(); p++) {
-                        g.setBackgroundColor(ColorFeatureConcrete.CYAN);
-                        g.fillOval(0, 0, 3, 3);
-                        // Cell cell = (Agent) ((ScapeArray1D) getScape()).get(p);
-                        Agent agent = (Agent) getScape().get(p);
-                        for (Object drawFeature : drawFeatures) {
-                            ((DrawFeature) drawFeature).draw(g, agent, agentSize, agentSize);
-                        }
-                        g.translate(agentSize, 0);
+                // g.translate(0, getAgentSize());
+                for (Object object : getScape()) {
+                    Agent agent = (Agent) object;
+                    for (Object drawFeature : drawFeatures) {
+                        ((DrawFeature) drawFeature).draw(g, agent, agentSize, agentSize);
                     }
-                } else {
-                    // Special common case where there is only one draw feature
-                    DrawFeature f = (DrawFeature) drawFeatures[0];
-                    for (int p = 0; p < getScape().getSize(); p++) {
-                        // Cell cell = ((ScapeArray1D) getScape()).get(p);
-                        Agent agent = (Agent) getScape().get(p);
-                        f.draw(g, agent, agentSize, agentSize);
-                        g.translate(agentSize, 0);
-                    }
+                    g.translate(agentSize, 0);
                 }
-                g.translate(-getScape().getSize() * agentSize, -lastRow);
-                lastIteration = getScape().getIteration();
             }
         }
     }
-
-    /**
-     * Repaints the canvas, drawing the buffer into it. If the view is wider than the buffer (size of agents), copies
-     * the buffer alongside it, to provide a continuous view of a periodic scape. To do: override this behavior for
-     * aperiod scapes, and provide some means for scrolling the horizontal origin.
-     * 
-     * @param g
-     *        the graphics context.
-     */
-    // public void paint(Graphics g) {
-    // super.paint(g);
-    // /*int curPosition = 0;
-    // while (curPosition < this.getSize().width) {
-    // if (bufferedImage != null) {
-    // g.drawImage(bufferedImage, curPosition, -1, null);
-    // }
-    // curPosition = curPosition + maxAgentWidth;
-    // }*/
-    // if (bufferedImage != null) {
-    // g.drawImage(bufferedImage, 0, -1, null);
-    // }
-    // if (getAgentCustomizer() != null) {
-    // Cell cell = (Cell) getAgentCustomizer().getAgent();
-    // if (cell != null) {
-    // int p = ((Coordinate1DDiscrete) cell.getCoordinate()).getValue();
-    // g.setForegroundColor(Color.yellow);
-    // g.drawRectangle(p * agentSize - 1, 0, agentSize, this.getSize().height);
-    // }
-    // }
-    // }
 }

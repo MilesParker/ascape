@@ -16,11 +16,13 @@ import org.ascape.model.Agent;
 import org.ascape.model.LocatedAgent;
 import org.ascape.util.VectorSelection;
 import org.ascape.util.vis.ColorFeature;
+import org.ascape.util.vis.ColorFeatureConcrete;
 import org.ascape.util.vis.DrawFeature;
 import org.ascape.util.vis.DrawFeatureSelection;
 import org.ascape.util.vis.IDrawSelection;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.swt.graphics.Color;
 
 
 
@@ -58,6 +60,11 @@ public abstract class AgentView extends GraphicsView implements IDrawSelection, 
     private DrawFeatureObservable drawFeatureObservable = new DrawFeatureObservable();
 
     /**
+     * The generic color feature used to set the color for the primary agent type.
+     */
+    protected ColorFeature agentColorFeature;
+
+    /**
      * Instantiates a new agent view.
      */
     public AgentView() {
@@ -84,6 +91,18 @@ public abstract class AgentView extends GraphicsView implements IDrawSelection, 
      */
     protected Observable getDrawFeaturesObservable() {
         return drawFeatureObservable;
+    }
+
+    public void createFeatures() {
+        if (agentColorFeature == null) {
+            agentColorFeature = new ColorFeatureConcrete("Default Agent Color") {
+                private static final long serialVersionUID = -3220486698290440285L;
+
+                public Color getColor(Object object) {
+                    return (Color) ((Agent) object).getPlatformColor();
+                }
+            };
+        }
     }
 
     /**
