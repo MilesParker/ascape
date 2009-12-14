@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
-Bundle-SymbolicName: org.ascape.ui.amp.temp;singleton:=true
+Bundle-SymbolicName: org.ascape.ui.amp;singleton:=true
 Bundle-Version: 0.8.0.qualifier
 Bundle-Activator: org.ascape.AscapeRuntimePlugin
 Require-Bundle: org.eclipse.core.resources;bundle-version="3.4.0";visibility:=reexport,
