@@ -16,7 +16,6 @@ import org.ascape.model.space.Discrete;
 import org.ascape.util.data.DataPoint;
 import org.ascape.util.data.DataPointConcrete;
 import org.ascape.util.vis.ColorFeature;
-import org.ascape.util.vis.ColorFeatureConcrete;
 import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.swt.graphics.Color;
 
@@ -132,13 +131,6 @@ public class SugarAgent extends CellOccupant implements IColorProvider {
                                          .getMaxSugarMetabolism()));
         setSugar(randomInRange(((GAS_Base) getRoot()).getMinInitialSugar(),
                                ((GAS_Base) getRoot()).getMaxInitialSugar()));
-        if (!initialColorRandom) {
-            if (getColor() == null) {
-                setColor(ColorFeature.RED);
-            }
-        } else { // Random initial color requested
-            color = ColorFeatureConcrete.createRandom();
-        }
     }
 
     /**
@@ -241,15 +233,15 @@ public class SugarAgent extends CellOccupant implements IColorProvider {
 
     @Override
     public Object getPlatformColor() {
-    	return getBackground(null);
+        return getBackground(null);
     }
-    
+
     public Color getBackground(Object object) {
-        return color;
+        return ColorFeature.RED;
     }
 
     public Color getForeground(Object object) {
-        return getBackground(object);
+        return ColorFeature.RED;
     }
 
     public void setColor(Color color) {
