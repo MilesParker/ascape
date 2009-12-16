@@ -2,10 +2,10 @@
 <project default="deploy" name="Create Runnable Jar for Project org.ascape.all">
 	<!--this file was created by Eclipse Runnable JAR Export Wizard-->
 	<!--ANT 1.7 is required                                        -->
-	<property name="dir.build" value="/Volumes/Resources/Developer/builds/ascape" />
+	<property name="ascape.version" value="5.3.0" />
+	<property name="dir.build" value="/Volumes/Resources/Developer/builds/ascape/${ascape.version}" />
 	<property name="dir.projects" value=".." />
 	<property name="dir.eclipse" value="/Developer/eclipse" />
-	<property name="ascape.version" value="5.2.0" />
 
 	<target name="create_run_jar">
 		<jar destfile="${dir.build}/Ascape_${ascape.version}.jar" filesetmanifest="mergewithoutmain">
@@ -50,6 +50,11 @@
 				<include name="examples/org.ascape.models.examples/**" />
 			</fileset>
 		</copy>
+		<copy todir="${dir.build}/Ascape_SDK_${ascape.version}">
+			<fileset dir="${dir.projects}/../eclipse/org.ascape/plugins/" defaultexcludes="no">
+				<include name="org.ascape.core/**" />
+			</fileset>
+		</copy>
 		<zip destfile="${dir.build}/Ascape_SDK_${ascape.version}.zip">
 			<fileset dir="${dir.build}/Ascape_SDK_${ascape.version}" includes="**/**" />
 		</zip>
@@ -72,5 +77,5 @@
         </zip>
     </target>
 	
-	<target name="deploy" depends="create_run_jar,create_applet_jar,create_sdk,create_docs" />
+	<target name="deploy" depends="create_sdk" />
 </project>

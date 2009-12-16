@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: All Tests for Ascape
+Bundle-Name: Ascape Unit Tests
 Bundle-SymbolicName: org.ascape.core.test
-Bundle-Version: 5.2.0
-Bundle-Vendor: ascape.org
+Bundle-Version: 5.3.0
+Bundle-Vendor: Ascape.org
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.junit4;bundle-version="4.3.1",
  org.ascape.core;bundle-version="5.1.0",

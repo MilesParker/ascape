@@ -3,17 +3,16 @@
 !*** Special entries from eclipse
 
 plugin@org.eclipse.test=v20070226,:pserver:anonymous@dev.eclipse.org:/cvsroot/eclipse,
-fragment@org.eclipse.ant.optional.junit=v20050226,:pserver:anonymous@dev.eclipse.org:/cvsroot/eclipse,
+fragment@org.eclipse.ant.optional.junit=v20050226,:pserver:anonymous@dev.eclipse.org:/cvsroot/eclipse
 
 !***DOCUMENTATION
 
 !***EXAMPLES
 
 !***FEATURES
-feature@org.ascape.core.feature=COPY,/Volumes/Resources/Developer/repos/eclipse,org.ascape/features/org.ascape.core.feature
-feature@org.ascape.swing.feature=COPY,/Volumes/Resources/Developer/repos/ascape,org.ascape.swing.feature
-feature@org.ascape.examples.feature=COPY,/Volumes/Resources/Developer/repos/ascape,examples/org.ascape.examples.feature
-feature@org.ascape.sdk.feature=COPY,/Volumes/Resources/Developer/repos/ascape,org.ascape.sdk.feature
+feature@org.ascape.core=COPY,/Volumes/Resources/Developer/repos/eclipse,org.ascape/features/org.ascape.core-feature
+feature@org.ascape.swing=COPY,/Volumes/Resources/Developer/repos/ascape,features/org.ascape.swing-feature
+feature@org.ascape.sdk=COPY,/Volumes/Resources/Developer/repos/ascape,features/org.ascape.sdk-feature
 
 
 !***PLUGINS

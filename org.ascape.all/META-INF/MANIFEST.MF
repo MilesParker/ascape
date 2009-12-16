@@ -8,3 +8,4 @@ Require-Bundle: org.ascape.core;bundle-version="5.1.0",
  org.ascape.models.brook;bundle-version="5.0.0",
  org.ascape.models.examples;bundle-version="5.0.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Localization: plugin

@@ -32,7 +32,7 @@
 				convenience, set in common.releng/server.properties. You can override them in your build.properties, or define 
 				different defaults in server.properties, if you intend to run more than one build on this server.  
 				
-					dependencyURLs=http://download.eclipse.org/eclipse/downloads/drops/S-3.5M5-200902021535/eclipse-SDK-3.5M5-linux-gtk.tar.gz 
+					dependencyURLs=http://download.eclipse.org/eclipse/downloads/drops/S-3.5M5.3.0902021535/eclipse-SDK-3.5M5-linux-gtk.tar.gz 
 					JAVA_HOME=${JAVA14_HOME}
 		-->
 
