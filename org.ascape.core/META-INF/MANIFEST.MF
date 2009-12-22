@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Ascape Core Functionality
-Bundle-SymbolicName: org.ascape.core
-Bundle-Version: 5.3.0
-Bundle-Vendor: Ascape.org
+Bundle-Name: %pluginName
+Bundle-Vendor: %providerName
+Bundle-SymbolicName: org.ascape.core;singleton:=true
+Bundle-Version: 5.2.0.qualifier
 Bundle-ClassPath: .
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.ascape.model,
@@ -19,3 +19,4 @@ Export-Package: org.ascape.model,
  org.ascape.util.sweep,
  org.ascape.util.vis,
  org.ascape.view.nonvis
+Bundle-Localization: plugin
