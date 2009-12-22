@@ -10,16 +10,10 @@ fragment@org.eclipse.ant.optional.junit=v20050226,:pserver:anonymous@dev.eclipse
 !***EXAMPLES
 
 !***FEATURES
-feature@org.ascape.core=COPY,/Volumes/Resources/Developer/repos/eclipse,org.ascape/features/org.ascape.core-feature
 feature@org.ascape.swing=COPY,/Volumes/Resources/Developer/repos/ascape,features/org.ascape.swing-feature
-feature@org.ascape.sdk=COPY,/Volumes/Resources/Developer/repos/ascape,features/org.ascape.sdk-feature
 
 !***PLUGINS
 plugin@org.ascape.core=COPY,/Volumes/Resources/Developer/repos/ascape,org.ascape.core
 plugin@org.ascape.common.lib=COPY,/Volumes/Resources/Developer/repos/ascape,org.ascape.common.lib
 plugin@org.ascape.ui.swing=COPY,/Volumes/Resources/Developer/repos/ascape,org.ascape.ui.swing
 plugin@org.ascape.ant=COPY,/Volumes/Resources/Developer/repos/ascape,org.ascape.ant
-plugin@org.jdom=COPY,/Volumes/Resources/Developer/repos/eclipse,dependencies/plugins/org.jdom_1.0.0
-plugin@org.apache.ant=COPY,/Volumes/Resources/Developer/repos,eclipse/dependencies/plugins/org.apache.ant
-
-

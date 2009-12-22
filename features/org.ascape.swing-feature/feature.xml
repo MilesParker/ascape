@@ -63,7 +63,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
    <requires>
       <import plugin="org.ascape.core" version="5.3.0" match="greaterOrEqual"/>
       <import plugin="org.ascape.common.lib" version="5.3.0" match="greaterOrEqual"/>
-      <import plugin="org.ascape.ant" version="5.3.0" match="greaterOrEqual"/>
+      <import plugin="org.apache.ant"/>
    </requires>
 
    <plugin
@@ -82,6 +82,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
    <plugin
          id="org.ascape.common.lib"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.ascape.core"
          download-size="0"
          install-size="0"
          version="0.0.0"
