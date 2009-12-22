@@ -11,25 +11,25 @@ import org.ascape.model.event.ScapeEvent;
 
 public class CVModelIRun5 extends CVModelIRun3and4and5 {
 
-	/**
+    /**
      * 
      */
-	private static final long serialVersionUID = 7423322517274724326L;
+    private static final long serialVersionUID = 7423322517274724326L;
 
-	public void scapeSetup(ScapeEvent scapeEvent) {
-		super.scapeSetup(scapeEvent);
-		setLegitimacy(0.80);
-		setTargetCopDensity(.06);
-	}
+    public void scapeSetup(ScapeEvent scapeEvent) {
+        super.scapeSetup(scapeEvent);
+        setLegitimacy(0.80);
+        setTargetCopDensity(.06);
+    }
 
-	public void scapeIterated(ScapeEvent event) {
-		super.scapeIterated(event);
-		if (getTargetCopDensity() - 0.001 > 0.0) {
-			setTargetCopDensity(getTargetCopDensity() - 0.001);
-		} else {
-			setTargetCopDensity(0.0);
-		}
-		// chart.removeSeries("Sum Legitimacy");
-		// chart.addSeries("Sum Cop Density", GRAY);
-	}
+    public void scapeIterated(ScapeEvent event) {
+        super.scapeIterated(event);
+        if (getTargetCopDensity() - 0.001 > 0.0) {
+            setTargetCopDensity(getTargetCopDensity() - 0.001);
+        } else {
+            setTargetCopDensity(0.0);
+        }
+        // chart.removeSeries("Sum Legitimacy");
+        // chart.addSeries("Sum Cop Density", GRAY);
+    }
 }

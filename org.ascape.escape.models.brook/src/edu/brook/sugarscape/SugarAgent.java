@@ -19,14 +19,11 @@ import org.ascape.util.vis.ColorFeature;
 import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.swt.graphics.Color;
 
-
 /**
- * A basic sugarscape citizen. Provides basic funtionality for sugarscape agents
- * as well as all desired functionality that could be included in base class
- * without compromising good design or supporting unnecessary member variables.
- * Despite the relativly large size of this class it is actually quite simple;
- * much of the code is simply getters and setters for various initialization
- * paramaters.
+ * A basic sugarscape citizen. Provides basic funtionality for sugarscape agents as well as all desired functionality
+ * that could be included in base class without compromising good design or supporting unnecessary member variables.
+ * Despite the relativly large size of this class it is actually quite simple; much of the code is simply getters and
+ * setters for various initialization paramaters.
  * 
  * @author Miles T. Parker
  * @version 1.0
@@ -38,8 +35,7 @@ public class SugarAgent extends CellOccupant implements IColorProvider {
      */
     private static final long serialVersionUID = 7249004118591072497L;
 
-    public final static Rule DEATH_STARVATION_RULE = new Rule(
-    "Death Starvation") {
+    public final static Rule DEATH_STARVATION_RULE = new Rule("Death Starvation") {
         /**
          * 
          */
@@ -52,8 +48,7 @@ public class SugarAgent extends CellOccupant implements IColorProvider {
         }
     };
 
-    public final static Rule DEATH_STARVATION_OLD_AGE_RULE = new Rule(
-    "Death Starvation or Old Age") {
+    public final static Rule DEATH_STARVATION_OLD_AGE_RULE = new Rule("Death Starvation or Old Age") {
         /**
          * 
          */
@@ -61,15 +56,13 @@ public class SugarAgent extends CellOccupant implements IColorProvider {
 
         public void execute(Agent agent) {
             if (((SugarAgent) agent).getSugar().getStock() <= 0
-                    || ((SugarAgent) agent).getAge() >= ((SugarAgent) agent)
-                    .getDeathAge()) {
+                || ((SugarAgent) agent).getAge() >= ((SugarAgent) agent).getDeathAge()) {
                 agent.die();
             }
         }
     };
 
-    public final static Rule DEATH_REPLACEMENT_RULE = new Rule(
-    "Death Replacement") {
+    public final static Rule DEATH_REPLACEMENT_RULE = new Rule("Death Replacement") {
         /**
          * 
          */
@@ -77,8 +70,7 @@ public class SugarAgent extends CellOccupant implements IColorProvider {
 
         public void execute(Agent agent) {
             if (((SugarAgent) agent).getSugarStock() <= 0
-                    || ((SugarAgent) agent).getAge() >= ((SugarAgent) agent)
-                    .getDeathAge()) {
+                || ((SugarAgent) agent).getAge() >= ((SugarAgent) agent).getDeathAge()) {
                 agent.die();
                 agent.getScape().newAgent();
             }
@@ -108,29 +100,23 @@ public class SugarAgent extends CellOccupant implements IColorProvider {
     public CommodityStock sugar;
 
     /**
-     * Begining population values. Vision is random draw, coordinate placement
-     * is random in scape.
+     * Begining population values. Vision is random draw, coordinate placement is random in scape.
      */
     public void initialize() {
         super.initialize();
         sugar = new CommodityStock();
         sugar.setName("sugar");
         sugar.setOwner(this);
-        Cell cell = (Cell) ((Discrete) getHostScape().getSpace())
-        .findRandomAvailable();
+        Cell cell = (Cell) ((Discrete) getHostScape().getSpace()).findRandomAvailable();
         if (cell != null) {
             moveTo((HostCell) cell);
         }
-        setDeathAge(randomInRange(((GAS_Base) getRoot()).getMinDeathAge(),
-                                  ((GAS_Base) getRoot()).getMaxDeathAge()));
+        setDeathAge(randomInRange(((GAS_Base) getRoot()).getMinDeathAge(), ((GAS_Base) getRoot()).getMaxDeathAge()));
         setAge(randomInRange(0, getDeathAge()));
-        setVision(randomInRange(((GAS_Base) getRoot()).getMinVision(),
-                                ((GAS_Base) getRoot()).getMaxVision()));
-        setSugarMetabolism(randomInRange(((GAS_Base) getRoot())
-                                         .getMinSugarMetabolism(), ((GAS_Base) getRoot())
-                                         .getMaxSugarMetabolism()));
-        setSugar(randomInRange(((GAS_Base) getRoot()).getMinInitialSugar(),
-                               ((GAS_Base) getRoot()).getMaxInitialSugar()));
+        setVision(randomInRange(((GAS_Base) getRoot()).getMinVision(), ((GAS_Base) getRoot()).getMaxVision()));
+        setSugarMetabolism(randomInRange(((GAS_Base) getRoot()).getMinSugarMetabolism(), ((GAS_Base) getRoot())
+                .getMaxSugarMetabolism()));
+        setSugar(randomInRange(((GAS_Base) getRoot()).getMinInitialSugar(), ((GAS_Base) getRoot()).getMaxInitialSugar()));
     }
 
     /**
@@ -159,8 +145,7 @@ public class SugarAgent extends CellOccupant implements IColorProvider {
         // Note: this was changed from getCellsNear(..)
         // If the model breaks and we , this is probably the problem.
         // jm, 9/18/02
-        HostCell bestCell = (HostCell) getHostCell().findMaximumWithin(SUGAR,
-                                                                       true, getVision());
+        HostCell bestCell = (HostCell) getHostCell().findMaximumWithin(SUGAR, true, getVision());
         if (bestCell != null && bestCell.isAvailable()) {
             moveTo(bestCell);
         }

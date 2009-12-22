@@ -11,28 +11,22 @@ import org.ascape.view.nonvis.DataOutputView;
 
 public class LHVMultiple extends LHV {
 
-	/**
+    /**
      * 
      */
-	private static final long serialVersionUID = -8087699266408541306L;
+    private static final long serialVersionUID = -8087699266408541306L;
 
-	public void createViews() {
-		super.createViews();
-		DataOutputView dataView = new DataOutputView();
-		valley.addView(dataView);
-		/*
-		 * dataView.getSweep().setRunsPer(3); try { valley.setStopPeriod(5); }
-		 * catch (SpatialTemporalException e) { } setMinDeathAge(20);
-		 * setMaxDeathAge(40); //We don't need to export historic data, and we
-		 * want to match current C++ output
-		 * dataView.getDataSelection().setSelected("Count Historic Households",
-		 * false);
-		 * dataView.getDataSelection().setSelected("Count Historic Households",
-		 * false);
-		 * dataView.getDataSelection().setSelected("Sum Historic Households",
-		 * false);
-		 * dataView.getDataSelection().setSelected("Average Historic Households"
-		 * , false); setViewSelf(true);
-		 */
-	}
+    public void createViews() {
+        super.createViews();
+        DataOutputView dataView = new DataOutputView();
+        valley.addView(dataView);
+        /*
+         * dataView.getSweep().setRunsPer(3); try { valley.setStopPeriod(5); } catch (SpatialTemporalException e) { }
+         * setMinDeathAge(20); setMaxDeathAge(40); //We don't need to export historic data, and we want to match current
+         * C++ output dataView.getDataSelection().setSelected("Count Historic Households", false);
+         * dataView.getDataSelection().setSelected("Count Historic Households", false);
+         * dataView.getDataSelection().setSelected("Sum Historic Households", false);
+         * dataView.getDataSelection().setSelected("Average Historic Households" , false); setViewSelf(true);
+         */
+    }
 }

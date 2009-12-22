@@ -16,31 +16,31 @@ import org.ascape.model.space.Coordinate2DDiscrete;
 
 public class GAS_IV_e extends GAS_SpiceBase {
 
-	/**
+    /**
      * 
      */
-	private static final long serialVersionUID = -1957911852008665808L;
+    private static final long serialVersionUID = -1957911852008665808L;
 
-	public void createScape() {
-		setPrototypeAgent(new Scape());
-		sugarscape = new Scape(new Array2DVonNeumann());
-		sugarscape.setName("SpiceScape");
-		sugarscape.setPrototypeAgent(new SpiceCell());
-		sugarscape.setExtent(new Coordinate2DDiscrete(50, 50));
-		SexualSpiceAgent agent = new SexualSpiceAgent();
-		agent.setHostScape(sugarscape);
-		agents = new Scape();
-		agents.setPrototypeAgent(agent);
-		agents.setExtent(new Coordinate1DDiscrete(400));
-		sugarscape.setExecutionOrder(Scape.RULE_ORDER);
-		sugarscape.setCellsRequestUpdates(true);
-		add(sugarscape);
-		add(agents);
-		sugarscape.addRule(SpiceCell.SUGAR_SPICE_GROW_BACK_1_RULE);
-		agents.addRule(MOVEMENT_RULE);
-		agents.addRule(SugarAgent.HARVEST_RULE);
-		agents.addRule(SpiceAgent.DEATH_STARVATION_OLD_AGE_SPICE_RULE);
-		agents.addRule(METABOLISM_RULE);
-		agents.addRule(new PromiscuousSpiceReprod());
-	}
+    public void createScape() {
+        setPrototypeAgent(new Scape());
+        sugarscape = new Scape(new Array2DVonNeumann());
+        sugarscape.setName("SpiceScape");
+        sugarscape.setPrototypeAgent(new SpiceCell());
+        sugarscape.setExtent(new Coordinate2DDiscrete(50, 50));
+        SexualSpiceAgent agent = new SexualSpiceAgent();
+        agent.setHostScape(sugarscape);
+        agents = new Scape();
+        agents.setPrototypeAgent(agent);
+        agents.setExtent(new Coordinate1DDiscrete(400));
+        sugarscape.setExecutionOrder(Scape.RULE_ORDER);
+        sugarscape.setCellsRequestUpdates(true);
+        add(sugarscape);
+        add(agents);
+        sugarscape.addRule(SpiceCell.SUGAR_SPICE_GROW_BACK_1_RULE);
+        agents.addRule(MOVEMENT_RULE);
+        agents.addRule(SugarAgent.HARVEST_RULE);
+        agents.addRule(SpiceAgent.DEATH_STARVATION_OLD_AGE_SPICE_RULE);
+        agents.addRule(METABOLISM_RULE);
+        agents.addRule(new PromiscuousSpiceReprod());
+    }
 }

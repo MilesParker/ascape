@@ -9,24 +9,24 @@ package edu.brook.sugarscape;
 
 public class GAS_SexBase extends GAS_Base {
 
-	/**
+    /**
      * 
      */
-	private static final long serialVersionUID = -7323806302172641112L;
+    private static final long serialVersionUID = -7323806302172641112L;
 
-	public void createScape() {
-		super.createScape();
-		SexualAgent agent = new SexualAgent();
-		agent.setHostScape(sugarscape);
-		agents.setPrototypeAgent(agent);
-		agents.setExtent(new org.ascape.model.space.Coordinate1DDiscrete(300));
-		agents.getRules().clear();
-		agents.addRule(MOVEMENT_RULE);
-		agents.addRule(SugarAgent.HARVEST_RULE);
-		agents.addRule(METABOLISM_RULE);
-		agents.addRule(new PromiscuousReprod());
-		agents.addRule(SugarAgent.DEATH_STARVATION_OLD_AGE_RULE);
-		sugarscape.getRules().clear();
-		sugarscape.addRule(SugarCell.SUGAR_GROW_BACK_1_RULE);
-	}
+    public void createScape() {
+        super.createScape();
+        SexualAgent agent = new SexualAgent();
+        agent.setHostScape(sugarscape);
+        agents.setPrototypeAgent(agent);
+        agents.setExtent(new org.ascape.model.space.Coordinate1DDiscrete(300));
+        agents.getRules().clear();
+        agents.addRule(MOVEMENT_RULE);
+        agents.addRule(SugarAgent.HARVEST_RULE);
+        agents.addRule(METABOLISM_RULE);
+        agents.addRule(new PromiscuousReprod());
+        agents.addRule(SugarAgent.DEATH_STARVATION_OLD_AGE_RULE);
+        sugarscape.getRules().clear();
+        sugarscape.addRule(SugarCell.SUGAR_GROW_BACK_1_RULE);
+    }
 }

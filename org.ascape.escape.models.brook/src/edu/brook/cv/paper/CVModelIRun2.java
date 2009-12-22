@@ -9,20 +9,20 @@ package edu.brook.cv.paper;
 
 public class CVModelIRun2 extends CVModelI {
 
-	/**
+    /**
      * 
      */
-	private static final long serialVersionUID = -429945992065495397L;
+    private static final long serialVersionUID = -429945992065495397L;
 
-	public void createScape() {
-		super.createScape();
-		// Rnadom seed used for working paper...
-		// setRandomSeed(955396277049L);
-		copVision = 7.0;
-		personVision = 7.0;
-		legitimacy = .82;
-		jailTerm = 30;
-		initialCopDensity = .04;
-		targetCopDensity = initialCopDensity;
-	}
+    public void createScape() {
+        super.createScape();
+        // Rnadom seed used for working paper...
+        // setRandomSeed(955396277049L);
+        copVision = 7.0;
+        personVision = 7.0;
+        legitimacy = .82;
+        jailTerm = 30;
+        initialCopDensity = .04;
+        targetCopDensity = initialCopDensity;
+    }
 }

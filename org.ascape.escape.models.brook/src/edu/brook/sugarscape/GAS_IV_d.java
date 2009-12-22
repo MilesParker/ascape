@@ -16,30 +16,30 @@ import org.ascape.model.space.Coordinate2DDiscrete;
 
 public class GAS_IV_d extends GAS_IV_1 {
 
-	/**
+    /**
      * 
      */
-	private static final long serialVersionUID = 8605512364108764030L;
+    private static final long serialVersionUID = 8605512364108764030L;
 
-	public void createScape() {
-		setPrototypeAgent(new Scape());
-		sugarscape = new Scape(new Array2DVonNeumann());
-		sugarscape.setName("SpiceScape");
-		sugarscape.setPrototypeAgent(new SpiceCell());
-		sugarscape.setExtent(new Coordinate2DDiscrete(50, 50));
-		NegotiatingAgent agent = new NegotiatingAgent();
-		agent.setHostScape(sugarscape);
-		agents = new Scape();
-		agents.setPrototypeAgent(agent);
-		agents.setExtent(new Coordinate1DDiscrete(400));
-		sugarscape.setExecutionOrder(Scape.RULE_ORDER);
-		sugarscape.setCellsRequestUpdates(true);
-		add(sugarscape);
-		add(agents);
-		agents.addRule(MOVEMENT_RULE);
-		agents.addRule(SugarAgent.HARVEST_RULE);
-		agents.addRule(SpiceAgent.DEATH_STARVATION_SPICE_RULE);
-		agents.addRule(METABOLISM_RULE);
-		agents.addRule(new TradeT4());
-	}
+    public void createScape() {
+        setPrototypeAgent(new Scape());
+        sugarscape = new Scape(new Array2DVonNeumann());
+        sugarscape.setName("SpiceScape");
+        sugarscape.setPrototypeAgent(new SpiceCell());
+        sugarscape.setExtent(new Coordinate2DDiscrete(50, 50));
+        NegotiatingAgent agent = new NegotiatingAgent();
+        agent.setHostScape(sugarscape);
+        agents = new Scape();
+        agents.setPrototypeAgent(agent);
+        agents.setExtent(new Coordinate1DDiscrete(400));
+        sugarscape.setExecutionOrder(Scape.RULE_ORDER);
+        sugarscape.setCellsRequestUpdates(true);
+        add(sugarscape);
+        add(agents);
+        agents.addRule(MOVEMENT_RULE);
+        agents.addRule(SugarAgent.HARVEST_RULE);
+        agents.addRule(SpiceAgent.DEATH_STARVATION_SPICE_RULE);
+        agents.addRule(METABOLISM_RULE);
+        agents.addRule(new TradeT4());
+    }
 }

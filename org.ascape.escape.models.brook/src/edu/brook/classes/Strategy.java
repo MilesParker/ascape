@@ -13,39 +13,38 @@ import org.ascape.util.Utility;
 
 public abstract class Strategy {
 
-	public abstract float getDemand();
+    public abstract float getDemand();
 
-	public final static Strategy LOW_STRATEGY = new Strategy() {
-		public final float getDemand() {
-			return BargainingModelBase.getLowPayoffStatic();
-		}
-	};
+    public final static Strategy LOW_STRATEGY = new Strategy() {
+        public final float getDemand() {
+            return BargainingModelBase.getLowPayoffStatic();
+        }
+    };
 
-	public final static Strategy MEDIUM_STRATEGY = new Strategy() {
-		public final float getDemand() {
-			return BargainingModelBase.getMediumPayoffStatic();
-		}
-	};
+    public final static Strategy MEDIUM_STRATEGY = new Strategy() {
+        public final float getDemand() {
+            return BargainingModelBase.getMediumPayoffStatic();
+        }
+    };
 
-	public final static Strategy HIGH_STRATEGY = new Strategy() {
-		public final float getDemand() {
-			return BargainingModelBase.getHighPayoffStatic();
-		}
-	};
+    public final static Strategy HIGH_STRATEGY = new Strategy() {
+        public final float getDemand() {
+            return BargainingModelBase.getHighPayoffStatic();
+        }
+    };
 
-	public static Strategy randomStrategy(Random random) {
-		int strategy = Utility.randomToLimit(random, 3);
-		switch (strategy) {
-		case 0:
-			return LOW_STRATEGY;
-		case 1:
-			return MEDIUM_STRATEGY;
-		case 2:
-			return HIGH_STRATEGY;
-		default:
-			// Should never get here, but to satisfy compiler..
-			throw new RuntimeException(
-					"Unexpected internal error in Bargainer.");
-		}
-	}
+    public static Strategy randomStrategy(Random random) {
+        int strategy = Utility.randomToLimit(random, 3);
+        switch (strategy) {
+            case 0:
+                return LOW_STRATEGY;
+            case 1:
+                return MEDIUM_STRATEGY;
+            case 2:
+                return HIGH_STRATEGY;
+            default:
+                // Should never get here, but to satisfy compiler..
+                throw new RuntimeException("Unexpected internal error in Bargainer.");
+        }
+    }
 }

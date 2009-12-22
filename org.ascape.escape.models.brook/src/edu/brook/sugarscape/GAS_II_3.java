@@ -11,7 +11,6 @@ import org.ascape.util.data.StatCollector;
 import org.ascape.util.vis.ColorFeature;
 import org.ascape.view.vis.ChartView;
 
-
 public class GAS_II_3 extends GAS_II_2 {
 
     private static final long serialVersionUID = 1854992312550139759L;

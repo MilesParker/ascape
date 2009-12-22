@@ -16,71 +16,70 @@ import org.ascape.util.vis.ColorFeature;
 import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.swt.graphics.Color;
 
-
 public class Cop extends CellOccupant implements IColorProvider {
 
-	// public double vision = 0.0;
+    // public double vision = 0.0;
 
-	/**
+    /**
      * 
      */
-	private static final long serialVersionUID = 7755622689815803828L;
-	public static Conditional CONTAINS_COP = new Conditional() {
-		/**
+    private static final long serialVersionUID = 7755622689815803828L;
+    public static Conditional CONTAINS_COP = new Conditional() {
+        /**
          * 
          */
-		private static final long serialVersionUID = -5847480327062056459L;
+        private static final long serialVersionUID = -5847480327062056459L;
 
-		public boolean meetsCondition(Object o) {
-			if (((HostCell) o).getOccupant() instanceof Cop) {
-				return true;
-			}
-			return false;
-		}
-	};
+        public boolean meetsCondition(Object o) {
+            if (((HostCell) o).getOccupant() instanceof Cop) {
+                return true;
+            }
+            return false;
+        }
+    };
 
-	public void patrol() {
-		HostCell a = (HostCell) getHostCell().findNearest(
-				Citizen.CONTAINS_ACTIVE, ((CVModel) getRoot()).getCopVision());
-		if (a != null) {
-			// moveToward(a);
-			((Citizen) a.getOccupant()).capture();
-			moveTo(a);
-		}
-	}
+    public void patrol() {
+        HostCell a = (HostCell) getHostCell()
+                .findNearest(Citizen.CONTAINS_ACTIVE, ((CVModel) getRoot()).getCopVision());
+        if (a != null) {
+            // moveToward(a);
+            ((Citizen) a.getOccupant()).capture();
+            moveTo(a);
+        }
+    }
 
-	public void scapeCreated() {
-		scape.addInitialRule(MOVE_RANDOM_LOCATION_RULE);
-		// scape.addInitialRule(new MoveRandomWithin(0, 0, 10, 10));
-		scape.addRule(new Rule("Patrol") {
-			/**
+    public void scapeCreated() {
+        scape.addInitialRule(MOVE_RANDOM_LOCATION_RULE);
+        // scape.addInitialRule(new MoveRandomWithin(0, 0, 10, 10));
+        scape.addRule(new Rule("Patrol") {
+            /**
              * 
              */
-			private static final long serialVersionUID = 4416435136439233492L;
+            private static final long serialVersionUID = 4416435136439233492L;
 
-			public void execute(Agent a) {
-				((Cop) a).patrol();
-			}
-		});
-		scape.addRule(RANDOM_WALK_RULE);
-	}
+            public void execute(Agent a) {
+                ((Cop) a).patrol();
+            }
+        });
+        scape.addRule(RANDOM_WALK_RULE);
+    }
 
-	public Color getBackground(Object object) {
-		return ColorFeature.BLACK;
-	}
+    public Color getBackground(Object object) {
+        return ColorFeature.BLACK;
+    }
 
-	public Color getForeground(Object object) {
-		return getBackground(object);
-	}
+    public Color getForeground(Object object) {
+        return getBackground(object);
+    }
 
-	// public Image getImage() {
-	// return ImageFeatureFixed.blackBall;
-	// }
+    // public Image getImage() {
+    // return ImageFeatureFixed.blackBall;
+    // }
 
-	/**
-	 * A small string representation of this agent.
-	 */
-	public String getName() {
-		return "Cop";
-	}
+    /**
+     * A small string representation of this agent.
+     */
+    public String getName() {
+        return "Cop";
+    }
 }

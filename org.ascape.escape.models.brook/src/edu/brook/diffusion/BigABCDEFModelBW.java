@@ -9,12 +9,12 @@ package edu.brook.diffusion;
 
 public class BigABCDEFModelBW extends BigABCDEFModel {
 
-	/**
+    /**
      * 
      */
-	private static final long serialVersionUID = 3892626176139221101L;
+    private static final long serialVersionUID = 3892626176139221101L;
 
-	public void createViews() {
-		super.createViews();
-	}
+    public void createViews() {
+        super.createViews();
+    }
 }

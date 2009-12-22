@@ -6,3 +6,4 @@ Bundle-Version: 1.0.0
 Bundle-Vendor: Metascape.com
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.amp.escape.runtime;bundle-version="0.5.0"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5

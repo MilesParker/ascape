@@ -18,7 +18,6 @@ import org.ascape.util.vis.ColorFeatureGradiated;
 import org.ascape.util.vis.ColorFeatureGradiatedIndex;
 import org.ascape.view.vis.FixedStretchyView;
 
-
 /**
  * The Class Model1.
  */

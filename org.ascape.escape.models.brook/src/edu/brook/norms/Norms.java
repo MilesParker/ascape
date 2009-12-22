@@ -25,7 +25,6 @@ import org.ascape.util.vis.ColorFeature;
 import org.ascape.util.vis.ColorFeatureGradiated;
 import org.ascape.view.vis.Scrolling1DView;
 
-
 public class Norms extends Scape {
 
     /**
@@ -71,11 +70,9 @@ public class Norms extends Scape {
             // setStrategy(0);
             setRadius(randomToLimit(initMaxRadius));
             /*
-             * float randomDraw = getRandom().nextFloat(); if (randomDraw < .10)
-             * { strategyFixed = true; radiusFixed = false; } else if
-             * (randomDraw > 1.0 - .00) { radiusFixed = true; strategyFixed =
-             * false; setRadius(20); } else { strategyFixed = false; radiusFixed
-             * = false; }
+             * float randomDraw = getRandom().nextFloat(); if (randomDraw < .10) { strategyFixed = true; radiusFixed =
+             * false; } else if (randomDraw > 1.0 - .00) { radiusFixed = true; strategyFixed = false; setRadius(20); }
+             * else { strategyFixed = false; radiusFixed = false; }
              */
         }
 
@@ -132,9 +129,8 @@ public class Norms extends Scape {
             // if (getAttributeValue("Radius") != CoordinateSeries2D.MAX_RANK -
             // 1) {
             /*
-             * if (strategyFixed) { if (getStrategy() == 0) {. return
-             * BLUE.darker(); } else { return YELLOW.darker(); } } else if
-             * (radiusFixed) {
+             * if (strategyFixed) { if (getStrategy() == 0) {. return BLUE.darker(); } else { return YELLOW.darker(); }
+             * } else if (radiusFixed) {
              */
             /*
              * if (getStrategy() == 0) { return BLACK; } else { return WHITE; }
@@ -166,18 +162,15 @@ public class Norms extends Scape {
             double averageRadius = ((StatCollectorCSAMM) values[0]).getAvg();
             valueCollector.clear();
             scape.execute(valueCollector, nearMinusOneAgents);
-            double averageRadiusMinusOne = ((StatCollectorCSAMM) values[0])
-            .getAvg();
+            double averageRadiusMinusOne = ((StatCollectorCSAMM) values[0]).getAvg();
             valueCollector.clear();
             scape.execute(valueCollector, nearPlusOneAgents);
-            double averageRadiusPlusOne = ((StatCollectorCSAMM) values[0])
-            .getAvg();
+            double averageRadiusPlusOne = ((StatCollectorCSAMM) values[0]).getAvg();
             valueCollector.clear();
-            if (averageRadiusPlusOne <= averageRadius - tolerance
-                    || averageRadiusPlusOne >= averageRadius + tolerance) {
+            if (averageRadiusPlusOne <= averageRadius - tolerance || averageRadiusPlusOne >= averageRadius + tolerance) {
                 setRadius(Math.min(getRadius() + 1, maxRadius));
             } else if (averageRadiusMinusOne >= averageRadius - tolerance
-                    || averageRadiusMinusOne <= averageRadius + tolerance) {
+                || averageRadiusMinusOne <= averageRadius + tolerance) {
                 setRadius(getRadius() - 1);
             }
         }
@@ -189,8 +182,7 @@ public class Norms extends Scape {
                 // if (getIteration() < 145 || getIteration() >= 155) {
                 // Non-random case
                 scape.execute(valueCollector, nearAgents);
-                double newAverageRadius = ((StatCollectorCSAMM) values[0])
-                .getAvg();
+                double newAverageRadius = ((StatCollectorCSAMM) values[0]).getAvg();
                 if (newAverageRadius < 0.5) {
                     setStrategy(0);
                 } else {
@@ -278,34 +270,34 @@ public class Norms extends Scape {
         strategyView.setName("Strategy");
         Scrolling1DView radiusView = new Scrolling1DView();
         radiusView.setName("Radius");
-        ColorFeatureGradiated radiusColor = new ColorFeatureGradiated("Radius",
-                                                                    ColorFeature.WHITE, ColorFeature.BLACK, new UnitIntervalDataPoint() {
-            /**
+        ColorFeatureGradiated radiusColor = new ColorFeatureGradiated("Radius", ColorFeature.WHITE, ColorFeature.BLACK,
+            new UnitIntervalDataPoint() {
+                /**
              * 
              */
-            private static final long serialVersionUID = -9060315707944996127L;
+                private static final long serialVersionUID = -9060315707944996127L;
 
-            public double getValue(Object object) {
-                return (((NormCell) object).getRadius() - 1.0) / whiteRadiusMinusOne;// 2.5
-            }
-        });
+                public double getValue(Object object) {
+                    return (((NormCell) object).getRadius() - 1.0) / whiteRadiusMinusOne;// 2.5
+                }
+            });
         radiusView.setCellColorFeature(radiusColor);
         ScapeListener[] views = new ScapeListener[2];
         views[0] = strategyView;
         views[1] = radiusView;
         addViews(views);
 
-        //		// And time series
-        //		if (!(getUIEnvironment().isInApplet())) {
-        //			ChartView ts = new ChartView();
-        //			addView(ts);
-        //			ts.addSeries("Variance Radius", ColorFeature.BLUE);
-        //			ts.addSeries("Standard Deviation Radius", ColorFeature.YELLOW);
-        //			ts.addSeries("Minimum Radius", ColorFeature.RED);
-        //			ts.addSeries("Average Radius", ColorFeature.DARK_YELLOW);
-        //			ts.addSeries("Maximum Radius", ColorFeature.RED);
-        //			//ts.setDisplayPoints(100);
-        //		}
+        // // And time series
+        // if (!(getUIEnvironment().isInApplet())) {
+        // ChartView ts = new ChartView();
+        // addView(ts);
+        // ts.addSeries("Variance Radius", ColorFeature.BLUE);
+        // ts.addSeries("Standard Deviation Radius", ColorFeature.YELLOW);
+        // ts.addSeries("Minimum Radius", ColorFeature.RED);
+        // ts.addSeries("Average Radius", ColorFeature.DARK_YELLOW);
+        // ts.addSeries("Maximum Radius", ColorFeature.RED);
+        // //ts.setDisplayPoints(100);
+        // }
     }
 
     public double getAmbientNoise() {

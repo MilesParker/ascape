@@ -14,34 +14,31 @@ import org.ascape.model.CellOccupant;
 import org.ascape.util.Utility;
 
 /**
- * This trade rule orders neighbors randomly, and trades once with each of the
- * neighbors. Methods for making and accepting offers are attributes of the
- * trading agents, themselves.
+ * This trade rule orders neighbors randomly, and trades once with each of the neighbors. Methods for making and
+ * accepting offers are attributes of the trading agents, themselves.
  * 
  * @author Alan Lockard
  * @version 1.0
  */
 public class TradeT2 extends TradeT {
 
-	/**
+    /**
      * 
      */
-	private static final long serialVersionUID = -6862251579748082480L;
-	private Exchange2 exchange;
+    private static final long serialVersionUID = -6862251579748082480L;
+    private Exchange2 exchange;
 
-	public void execute(Agent agent) {
-		List neighbors = ((CellOccupant) agent).findNeighborsOnHost();
-		// pick a random series from the set of series that match the number of
-		// neighbors
-		// (Assumes von Neumann neighborhood, otherwise creates error)
-		int[] series = Utility.uniqueSeries[neighbors.size()][randomToLimit(Utility.uniqueSeries[neighbors
-				.size()].length)];
-		for (int i = 0; i < series.length; i++) {
-			exchange = new Exchange2(((SpiceAgent) agent),
-					((SpiceAgent) neighbors.get(i)));
-			if (((SpiceAgent) neighbors.get(i)).acceptOffer(exchange)) {
-				executeTrade(exchange);
-			}
-		}
-	}
+    public void execute(Agent agent) {
+        List neighbors = ((CellOccupant) agent).findNeighborsOnHost();
+        // pick a random series from the set of series that match the number of
+        // neighbors
+        // (Assumes von Neumann neighborhood, otherwise creates error)
+        int[] series = Utility.uniqueSeries[neighbors.size()][randomToLimit(Utility.uniqueSeries[neighbors.size()].length)];
+        for (int i = 0; i < series.length; i++) {
+            exchange = new Exchange2(((SpiceAgent) agent), ((SpiceAgent) neighbors.get(i)));
+            if (((SpiceAgent) neighbors.get(i)).acceptOffer(exchange)) {
+                executeTrade(exchange);
+            }
+        }
+    }
 }

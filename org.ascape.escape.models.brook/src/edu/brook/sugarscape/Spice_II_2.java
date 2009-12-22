@@ -9,15 +9,15 @@ package edu.brook.sugarscape;
 
 public class Spice_II_2 extends Spice_II_1 {
 
-	/**
+    /**
      * 
      */
-	private static final long serialVersionUID = 3477348667289811638L;
+    private static final long serialVersionUID = 3477348667289811638L;
 
-	public void createScape() {
-		super.createScape();
-		// Get rid of grow back infinite rule added in superclass
-		sugarscape.getRules().clear();
-		sugarscape.addRule(SugarCell.SUGAR_GROW_BACK_1_RULE);
-	}
+    public void createScape() {
+        super.createScape();
+        // Get rid of grow back infinite rule added in superclass
+        sugarscape.getRules().clear();
+        sugarscape.addRule(SugarCell.SUGAR_GROW_BACK_1_RULE);
+    }
 }

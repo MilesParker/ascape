@@ -11,13 +11,13 @@ package edu.brook.sugarscape;
 
 public class GAS_IV_g extends GAS_IV_e {
 
-	/**
+    /**
      * 
      */
-	private static final long serialVersionUID = 3542586036703330538L;
+    private static final long serialVersionUID = 3542586036703330538L;
 
-	public void createScape() {
-		super.createScape();
-		agents.addRule(new TradeT2());
-	}
+    public void createScape() {
+        super.createScape();
+        agents.addRule(new TradeT2());
+    }
 }

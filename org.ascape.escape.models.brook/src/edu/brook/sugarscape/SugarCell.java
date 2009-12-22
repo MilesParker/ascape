@@ -15,12 +15,11 @@ import org.ascape.util.data.UnitIntervalDataPoint;
 import org.ascape.util.vis.ColorFeature;
 import org.ascape.util.vis.ColorFeatureGradiated;
 
-
 /**
- * @history 19990624 AAL changed variables from private to protected so
- *          SpiceCell could inherit seperated peak creation from initialize()
- * @history 19990629 AAL removed a variety of "sugar"related methods and
- *          attributes, and put them in new class CommoditySource
+ * @history 19990624 AAL changed variables from private to protected so SpiceCell could inherit seperated peak creation
+ *          from initialize()
+ * @history 19990629 AAL removed a variety of "sugar"related methods and attributes, and put them in new class
+ *          CommoditySource
  */
 public class SugarCell extends HostCell {
 
@@ -41,15 +40,14 @@ public class SugarCell extends HostCell {
     };
 
     public final static ColorFeature COLOR_CELL_FOR_SUGAR = new ColorFeatureGradiated("Sugar", ColorFeature.YELLOW,
-                                                                                      COLOR_FOR_SUGAR_QUANTITY);
+        COLOR_FOR_SUGAR_QUANTITY);
 
     /**
      * 
      */
     private static final long serialVersionUID = 4734924131622807190L;
 
-    public final static Rule SUGAR_GROW_BACK_1_RULE = new Rule(
-    "Sugar-Grow Back 1") {
+    public final static Rule SUGAR_GROW_BACK_1_RULE = new Rule("Sugar-Grow Back 1") {
         /**
          * 
          */
@@ -60,8 +58,7 @@ public class SugarCell extends HostCell {
         }
     };
 
-    public final static Rule SUGAR_GROW_BACK_INF_RULE = new Rule(
-    "Sugar-Grow Back Infinite") {
+    public final static Rule SUGAR_GROW_BACK_INF_RULE = new Rule("Sugar-Grow Back Infinite") {
         /**
          * 
          */
@@ -84,36 +81,29 @@ public class SugarCell extends HostCell {
         sugar.setName("sugar");
         sugar.setOwner(this);
         if (sugarPeaks == null) {
-            Coordinate2DDiscrete size = (Coordinate2DDiscrete) getScape()
-            .getExtent();
+            Coordinate2DDiscrete size = (Coordinate2DDiscrete) getScape().getExtent();
             sugarPeaks = new Coordinate2DDiscrete[2];
-            sugarPeaks[0] = new Coordinate2DDiscrete(
-                                                     (int) (size.getXValue() * .8),
-                                                     (int) (size.getYValue() * .2));
-            sugarPeaks[1] = new Coordinate2DDiscrete(
-                                                     (int) (size.getXValue() * .3),
-                                                     (int) (size.getYValue() * .7));
+            sugarPeaks[0] = new Coordinate2DDiscrete((int) (size.getXValue() * .8), (int) (size.getYValue() * .2));
+            sugarPeaks[1] = new Coordinate2DDiscrete((int) (size.getXValue() * .3), (int) (size.getYValue() * .7));
         }
         Coordinate2DDiscrete here = (Coordinate2DDiscrete) getCoordinate();
         float calc = 0.0f;
         for (int i = 0; i < sugarPeaks.length; i++) {
             calc += Math.exp(-((GAS_Base) scape.getRoot()).getSugarMoundness()
-                             * Math.pow(here.getDistance(sugarPeaks[i]), 2));
+                * Math.pow(here.getDistance(sugarPeaks[i]), 2));
         }
         sugar.setCapacity(Math.round(MAX_SUGAR * Math.min(1, calc)));
         sugar.setQuantity(sugar.getCapacity());
     }
 
     /**
-     * Override default cell method so that iterate won't be called on each
-     * cell.
+     * Override default cell method so that iterate won't be called on each cell.
      */
     public void scapeCreated() {
     }
 
     public double getValue(Object object) {
-        return 1.0 - (double) ((CommoditySource) object).getQuantity()
-        / (double) SugarCell.MAX_SUGAR;
+        return 1.0 - (double) ((CommoditySource) object).getQuantity() / (double) SugarCell.MAX_SUGAR;
     }
 
     public float getPerceivedValue() {

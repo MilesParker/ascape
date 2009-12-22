@@ -20,9 +20,8 @@ import org.ascape.util.data.UnitIntervalDataPoint;
 import org.ascape.util.vis.ColorFeature;
 import org.ascape.util.vis.ColorFeatureGradiated;
 import org.ascape.util.vis.DrawColorFeature;
-import org.ascape.view.vis.Overhead2DView;
+import org.escape.view.vis.Overhead2DView;
 import org.eclipse.draw2d.Graphics;
-
 
 public class Population extends Scape {
 
@@ -62,7 +61,7 @@ public class Population extends Scape {
     public void createScape() {
         setSpace(new Array2DMoore());
         setExtent(new Coordinate2DDiscrete(cohortSize, getAgeSpan()));
-        //        setAutoCreate(true);
+        // setAutoCreate(true);
         setPrototypeAgent(new Person());
         setFractionRational(.10);
         setFractionRandom(.05);
@@ -89,8 +88,7 @@ public class Population extends Scape {
 
     public int getAgeForRow(int row) {
         // Do it yourself %, Java's is useless for common operations.
-        return row >= youngestRow ? youngestAge + row - youngestRow : row
-            + oldestAge - youngestRow + 1;
+        return row >= youngestRow ? youngestAge + row - youngestRow : row + oldestAge - youngestRow + 1;
     }
 
     public int getRowForAge(int age) {
@@ -112,20 +110,20 @@ public class Population extends Scape {
     public void createGraphicViews() {
         super.createGraphicViews();
         view = new Overhead2DView();
-        //		view.setCellSize(4);
-        //		view.setBorderSize(1);
-        ColorFeatureGradiated cellColor = new ColorFeatureGradiated("Age",
-                                                                    ColorFeature.BLUE, new UnitIntervalDataPoint() {
-            /**
+        // view.setCellSize(4);
+        // view.setBorderSize(1);
+        ColorFeatureGradiated cellColor = new ColorFeatureGradiated("Age", ColorFeature.BLUE,
+            new UnitIntervalDataPoint() {
+                /**
              * 
              */
-            private static final long serialVersionUID = 2563022449995502359L;
+                private static final long serialVersionUID = 2563022449995502359L;
 
-            public double getValue(Object object) {
-                return (double) (((Person) object).getAge() - youngestAge) / ((Population) ((Agent) object)
-                        .getScape()).getAgeSpan();
-            }
-        });
+                public double getValue(Object object) {
+                    return (double) (((Person) object).getAge() - youngestAge)
+                        / ((Population) ((Agent) object).getScape()).getAgeSpan();
+                }
+            });
         DrawColorFeature drawAge = new DrawColorFeature("Draw Age", cellColor) {
             /**
              * 
@@ -141,17 +139,13 @@ public class Population extends Scape {
         // This is just a simple way to verify that calls are cocuring in
         // specified (random) order;
         /*
-         * ColorFeatureGradiated callColor = new ColorFeatureGradiated();
-         * callColor.setDataPoint(new UnitIntervalDataPoint() { public double
-         * getValue(Object object) { return ((double) (double) (((Person)
-         * object).callOrder) / ((Population) ((Agent)
-         * object).getScape()).getSize()); } public String getName() { return
-         * "Call"; } }); callColor.setMaximumColor(BLACK); DrawColorFeature
-         * drawCall = new DrawColorFeature() { public void draw(Graphics g, Object
-         * object, int width, int height) { g.setForegroundColor(getColor(object));
-         * g.fillRectangle(0, 0, width, height); } };
-         * drawCall.setColorFeature(callColor); drawCall.setName("Call Order");
-         * addDrwFeature(drawCall);
+         * ColorFeatureGradiated callColor = new ColorFeatureGradiated(); callColor.setDataPoint(new
+         * UnitIntervalDataPoint() { public double getValue(Object object) { return ((double) (double) (((Person)
+         * object).callOrder) / ((Population) ((Agent) object).getScape()).getSize()); } public String getName() {
+         * return "Call"; } }); callColor.setMaximumColor(BLACK); DrawColorFeature drawCall = new DrawColorFeature() {
+         * public void draw(Graphics g, Object object, int width, int height) { g.setForegroundColor(getColor(object));
+         * g.fillRectangle(0, 0, width, height); } }; drawCall.setColorFeature(callColor);
+         * drawCall.setName("Call Order"); addDrwFeature(drawCall);
          */
         // view.setDrawNetwork(true);
         addView(view);
@@ -220,8 +214,7 @@ public class Population extends Scape {
     public void setFractionRational(double fractionRational) {
         this.fractionRational = fractionRational;
         if (fractionRational + fractionRandom > 1.0) {
-            throw new RuntimeException(
-            "Warning: fraction random and fraction rational greater than 1.0.");
+            throw new RuntimeException("Warning: fraction random and fraction rational greater than 1.0.");
         }
     }
 
@@ -232,8 +225,7 @@ public class Population extends Scape {
     public void setFractionRandom(double fractionRandom) {
         this.fractionRandom = fractionRandom;
         if (fractionRational + fractionRandom > 1.0) {
-            throw new RuntimeException(
-            "Warning: fraction random and fraction rational greater than 1.0.");
+            throw new RuntimeException("Warning: fraction random and fraction rational greater than 1.0.");
         }
     }
 

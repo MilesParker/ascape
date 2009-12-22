@@ -11,20 +11,20 @@ import edu.brook.cv.Citizen;
 
 public class CVModelIRun1 extends CVModelI {
 
-	/**
+    /**
      * 
      */
-	private static final long serialVersionUID = -7577047616416112439L;
+    private static final long serialVersionUID = -7577047616416112439L;
 
-	public void createScape() {
-		super.createScape();
-		copVision = 1.7;
-		personVision = 1.7;
-		legitimacy = .89;
-		// No Movement for this run
-		people.getRules().clear();
-		// people.addInitialRule(MOVE_RANDOM_LOCATION_RULE);
-		people.addRule(Citizen.CHECK_JAIL);
-		people.addRule(Citizen.DECIDE_STATE);
-	}
+    public void createScape() {
+        super.createScape();
+        copVision = 1.7;
+        personVision = 1.7;
+        legitimacy = .89;
+        // No Movement for this run
+        people.getRules().clear();
+        // people.addInitialRule(MOVE_RANDOM_LOCATION_RULE);
+        people.addRule(Citizen.CHECK_JAIL);
+        people.addRule(Citizen.DECIDE_STATE);
+    }
 }

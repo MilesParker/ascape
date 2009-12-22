@@ -13,44 +13,44 @@ import org.ascape.view.nonvis.DataOutputView;
 
 public class MultipleGAS_IV_g extends GAS_IV_g {
 
-	/**
+    /**
      * 
      */
-	private static final long serialVersionUID = -8550278330273576463L;
+    private static final long serialVersionUID = -8550278330273576463L;
 
-	public void createViews() {
-		DataOutputView dataView = new DataOutputView();
-		sugarscape.addView(dataView);
-		try {
-			setStopPeriod(100);
-		} catch (org.ascape.model.space.SpatialTemporalException e) {
-			throw new RuntimeException("Internal Logic Error");
-		}
-		// dataView.getSweep().setRunsPer(2);
-		// dataView.getDataSelection().setSelected("Count Age", false);
-		// dataView.getDataSelection().setSelected("Minimun Age", false);
-		// dataView.getDataSelection().setSelected("Maximum Age", false);
-		// dataView.getDataSelection().setSelected("Average Age", false);
-		// dataView.getDataSelection().setSelected("Count Vision", false);
-		// dataView.getDataSelection().setSelected("Minimun Vision", false);
-		// dataView.getDataSelection().setSelected("Maximum Vision", false);
-		// dataView.getDataSelection().setSelected("Average Vision", false);
-		// dataView.getDataSelection().setSelected("Count Sugar Metabolism",
-		// false);
-		// dataView.getDataSelection().setSelected("Minimun Sugar Metabolism",
-		// false);
-		// dataView.getDataSelection().setSelected("Maximum Sugar Metabolism",
-		// false);
-		// dataView.getDataSelection().setSelected("Average Sugar Metabolism",
-		// false);
-		// dataView.getDataSelection().setSelected("Count Spice Metabolism",
-		// false);
-		// dataView.getDataSelection().setSelected("Minimun Spice Metabolism",
-		// false);
-		// dataView.getDataSelection().setSelected("Maximum Spice Metabolism",
-		// false);
-		// dataView.getDataSelection().setSelected("Average Spice Metabolism",
-		// false);
-		setViewSelf(true);
-	}
+    public void createViews() {
+        DataOutputView dataView = new DataOutputView();
+        sugarscape.addView(dataView);
+        try {
+            setStopPeriod(100);
+        } catch (org.ascape.model.space.SpatialTemporalException e) {
+            throw new RuntimeException("Internal Logic Error");
+        }
+        // dataView.getSweep().setRunsPer(2);
+        // dataView.getDataSelection().setSelected("Count Age", false);
+        // dataView.getDataSelection().setSelected("Minimun Age", false);
+        // dataView.getDataSelection().setSelected("Maximum Age", false);
+        // dataView.getDataSelection().setSelected("Average Age", false);
+        // dataView.getDataSelection().setSelected("Count Vision", false);
+        // dataView.getDataSelection().setSelected("Minimun Vision", false);
+        // dataView.getDataSelection().setSelected("Maximum Vision", false);
+        // dataView.getDataSelection().setSelected("Average Vision", false);
+        // dataView.getDataSelection().setSelected("Count Sugar Metabolism",
+        // false);
+        // dataView.getDataSelection().setSelected("Minimun Sugar Metabolism",
+        // false);
+        // dataView.getDataSelection().setSelected("Maximum Sugar Metabolism",
+        // false);
+        // dataView.getDataSelection().setSelected("Average Sugar Metabolism",
+        // false);
+        // dataView.getDataSelection().setSelected("Count Spice Metabolism",
+        // false);
+        // dataView.getDataSelection().setSelected("Minimun Spice Metabolism",
+        // false);
+        // dataView.getDataSelection().setSelected("Maximum Spice Metabolism",
+        // false);
+        // dataView.getDataSelection().setSelected("Average Spice Metabolism",
+        // false);
+        setViewSelf(true);
+    }
 }

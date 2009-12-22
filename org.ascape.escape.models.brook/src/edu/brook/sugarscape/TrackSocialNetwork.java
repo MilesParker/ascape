@@ -14,16 +14,16 @@ import org.ascape.model.rule.Rule;
 
 public class TrackSocialNetwork extends Rule {
 
-	/**
+    /**
      * 
      */
-	private static final long serialVersionUID = -434412567804291718L;
+    private static final long serialVersionUID = -434412567804291718L;
 
-	public TrackSocialNetwork() {
-		super("Track Social Network");
-	}
+    public TrackSocialNetwork() {
+        super("Track Social Network");
+    }
 
-	public void execute(Agent agent) {
-		((Cell) agent).setNetwork(((CellOccupant) agent).findNeighborsOnHost());
-	}
+    public void execute(Agent agent) {
+        ((Cell) agent).setNetwork(((CellOccupant) agent).findNeighborsOnHost());
+    }
 }

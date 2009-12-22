@@ -14,120 +14,119 @@ import org.ascape.util.data.StatCollector;
 import org.ascape.util.data.StatCollectorCond;
 import org.ascape.util.vis.ColorFeature;
 import org.ascape.view.vis.ChartView;
-import org.ascape.view.vis.Overhead2DView;
-
+import org.escape.view.vis.Overhead2DView;
 
 public class CoordinationGame extends Scape {
 
-	/**
+    /**
      * 
      */
-	private static final long serialVersionUID = 4678492434310893920L;
+    private static final long serialVersionUID = 4678492434310893920L;
 
-	// model-scope variables
-	protected int nPlayers = 100;
+    // model-scope variables
+    protected int nPlayers = 100;
 
-	protected int latticeWidth = 30;
+    protected int latticeWidth = 30;
 
-	protected int latticeHeight = 30;
+    protected int latticeHeight = 30;
 
-	public int coordinateOnBlue = 1;
+    public int coordinateOnBlue = 1;
 
-	public int coordinateOnRed = 1;
+    public int coordinateOnRed = 1;
 
-	public int error = 0;
+    public int error = 0;
 
-	Scape lattice;
+    Scape lattice;
 
-	Scape players;
+    Scape players;
 
-	Overhead2DView overheadView;
+    Overhead2DView overheadView;
 
-	// creates scapes and agents
-	public void createScape() {
-		super.createScape();
-		lattice = new Scape(new Array2DVonNeumann());
-		lattice.setPrototypeAgent(new HostCell());
-		lattice.setExtent(latticeWidth, latticeHeight);
+    // creates scapes and agents
+    public void createScape() {
+        super.createScape();
+        lattice = new Scape(new Array2DVonNeumann());
+        lattice.setPrototypeAgent(new HostCell());
+        lattice.setExtent(latticeWidth, latticeHeight);
 
-		CoordinationGamePlayer cgplayer = new CoordinationGamePlayer();
-		cgplayer.setHostScape(lattice);
-		players = new Scape();
-		players.setName("Players");
-		players.setPrototypeAgent(cgplayer);
-		players.setExecutionOrder(Scape.RULE_ORDER);
+        CoordinationGamePlayer cgplayer = new CoordinationGamePlayer();
+        cgplayer.setHostScape(lattice);
+        players = new Scape();
+        players.setName("Players");
+        players.setPrototypeAgent(cgplayer);
+        players.setExecutionOrder(Scape.RULE_ORDER);
 
-		add(lattice);
-		add(players);
+        add(lattice);
+        add(players);
 
-		StatCollector CountReds = new StatCollectorCond("Reds") {
-			/**
+        StatCollector CountReds = new StatCollectorCond("Reds") {
+            /**
              * 
              */
-			private static final long serialVersionUID = 6600504153131744863L;
+            private static final long serialVersionUID = 6600504153131744863L;
 
-			public boolean meetsCondition(Object object) {
-				return (((CoordinationGamePlayer) object).myColor == ColorFeature.RED);
-			}
-		};
-		StatCollector CountBlues = new StatCollectorCond("Blues") {
-			/**
+            public boolean meetsCondition(Object object) {
+                return (((CoordinationGamePlayer) object).myColor == ColorFeature.RED);
+            }
+        };
+        StatCollector CountBlues = new StatCollectorCond("Blues") {
+            /**
              * 
              */
-			private static final long serialVersionUID = 1692219686197143821L;
+            private static final long serialVersionUID = 1692219686197143821L;
 
-			public boolean meetsCondition(Object object) {
-				return (((CoordinationGamePlayer) object).myColor == ColorFeature.BLUE);
-			}
-		};
+            public boolean meetsCondition(Object object) {
+                return (((CoordinationGamePlayer) object).myColor == ColorFeature.BLUE);
+            }
+        };
 
-		players.addStatCollector(CountReds);
-		players.addStatCollector(CountBlues);
-	}
+        players.addStatCollector(CountReds);
+        players.addStatCollector(CountBlues);
+    }
 
-	public void scapeSetup(ScapeEvent scapeEvent) {
-		(players).setExtent(nPlayers);
-	}
+    public void scapeSetup(ScapeEvent scapeEvent) {
+        (players).setExtent(nPlayers);
+    }
 
-	// create views and charts
-	public void createGraphicViews() {
-		super.createGraphicViews();
-		ChartView chart = new ChartView();
-		players.addView(chart);
-		chart.addSeries("Count Reds", ColorFeature.RED);
-		chart.addSeries("Count Blues", ColorFeature.BLUE);
-		// chart.setDisplayPoints(100);
+    // create views and charts
+    public void createGraphicViews() {
+        super.createGraphicViews();
+        ChartView chart = new ChartView();
+        players.addView(chart);
+        chart.addSeries("Count Reds", ColorFeature.RED);
+        chart.addSeries("Count Blues", ColorFeature.BLUE);
+        // chart.setDisplayPoints(100);
 
-		overheadView = new Overhead2DView();
-		// overheadView.setCellSize(15);
-		lattice.addView(overheadView);
-	}
+        overheadView = new Overhead2DView();
+        // overheadView.setCellSize(15);
+        lattice.addView(overheadView);
+    }
 
-	// get() and set() methods for the model variables
-	public int getRedScore() {
-		return coordinateOnRed;
-	}
+    // get() and set() methods for the model variables
+    public int getRedScore() {
+        return coordinateOnRed;
+    }
 
-	public void setRedScore(int NewcoordinateOnRed) {
-		coordinateOnRed = NewcoordinateOnRed;
+    public void setRedScore(int NewcoordinateOnRed) {
+        coordinateOnRed = NewcoordinateOnRed;
 
-	}
+    }
 
-	public int getBlueScore() {
-		return coordinateOnBlue;
-	}
+    public int getBlueScore() {
+        return coordinateOnBlue;
+    }
 
-	public void setBlueScore(int NewcoordinateOnBlue) {
-		coordinateOnBlue = NewcoordinateOnBlue;
+    public void setBlueScore(int NewcoordinateOnBlue) {
+        coordinateOnBlue = NewcoordinateOnBlue;
 
-	}
+    }
 
-	public int getnPlayers() {
-		return nPlayers;
-	}
+    public int getnPlayers() {
+        return nPlayers;
+    }
 
-	public void setnPlayers(int NewnPlayers) {
-		nPlayers = NewnPlayers;
+    public void setnPlayers(int NewnPlayers) {
+        nPlayers = NewnPlayers;
 
-	}
+    }
 }

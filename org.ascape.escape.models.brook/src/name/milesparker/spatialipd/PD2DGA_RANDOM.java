@@ -9,13 +9,13 @@ package name.milesparker.spatialipd;
 
 public class PD2DGA_RANDOM extends PD2DGA {
 
-	/**
+    /**
      * 
      */
-	private static final long serialVersionUID = -8409782963290415239L;
+    private static final long serialVersionUID = -8409782963290415239L;
 
-	public void createScape() {
-		super.createScape();
-		getAgents().getRules().setSelected(PLAY_RANDOM_NEIGHBOR_RULE, true);
-	}
+    public void createScape() {
+        super.createScape();
+        getAgents().getRules().setSelected(PLAY_RANDOM_NEIGHBOR_RULE, true);
+    }
 }

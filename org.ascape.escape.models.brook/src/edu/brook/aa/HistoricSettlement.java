@@ -20,7 +20,6 @@ import org.ascape.util.vis.ColorFeatureGradiated;
 import org.ascape.util.vis.Drawable;
 import org.eclipse.draw2d.Graphics;
 
-
 public class HistoricSettlement extends Cell implements Drawable {
 
     /**
@@ -83,8 +82,7 @@ public class HistoricSettlement extends Cell implements Drawable {
         // if ((startDate <= getScape().getPeriod()) && (endDate >
         // getScape().getPeriod()))
         // System.out.println(getScape().getPeriod());
-        return startDate <= getScape().getPeriod() && endDate > getScape()
-        .getPeriod();
+        return startDate <= getScape().getPeriod() && endDate > getScape().getPeriod();
     }
 
     public int getType() {
@@ -118,13 +116,11 @@ public class HistoricSettlement extends Cell implements Drawable {
     public int getSize() {
         int period = getScape().getPeriod();
         if (period > medianDate) {
-            return (int) Math.max(Math
-                                  .ceil(baselineHouseholds * (float) (endDate - period)
-                                        / (endDate - medianDate)), 1);
+            return (int) Math.max(Math.ceil(baselineHouseholds * (float) (endDate - period) / (endDate - medianDate)),
+                                  1);
         } else if (period < medianDate) {
-            return (int) Math.max(Math
-                                  .ceil(baselineHouseholds * (float) (period - startDate)
-                                        / (medianDate - startDate)), 1);
+            return (int) Math.max(Math.ceil(baselineHouseholds * (float) (period - startDate)
+                / (medianDate - startDate)), 1);
         } else {
             return baselineHouseholds;
         }
@@ -133,30 +129,27 @@ public class HistoricSettlement extends Cell implements Drawable {
     public int getHouseholdCount() {
         int period = getScape().getPeriod();
         if (period > medianDate) {
-            return (int) Math.max(Math
-                                  .ceil(baselineHouseholds * (float) (endDate - period)
-                                        / (endDate - medianDate)), 1);
+            return (int) Math.max(Math.ceil(baselineHouseholds * (float) (endDate - period) / (endDate - medianDate)),
+                                  1);
         } else if (period < medianDate) {
-            return (int) Math.max(Math
-                                  .ceil(baselineHouseholds * (float) (period - startDate)
-                                        / (medianDate - startDate)), 1);
+            return (int) Math.max(Math.ceil(baselineHouseholds * (float) (period - startDate)
+                / (medianDate - startDate)), 1);
         } else {
             return baselineHouseholds;
         }
     }
 
-    final ColorFeatureGradiated settlementColorFeature = new ColorFeatureGradiated(
-                                                                                   "Settlement Size", ColorFeature.BLACK,
-                                                                                   new UnitIntervalDataPoint() {
-                                                                                       /**
+    final ColorFeatureGradiated settlementColorFeature = new ColorFeatureGradiated("Settlement Size",
+        ColorFeature.BLACK, new UnitIntervalDataPoint() {
+            /**
                                                                                         * 
                                                                                         */
-                                                                                       private static final long serialVersionUID = 1992474238329035019L;
+            private static final long serialVersionUID = 1992474238329035019L;
 
-                                                                                       public double getValue(Object object) {
-                                                                                           return ((HistoricSettlement) object).getHouseholdCount() / 10.0;
-                                                                                       }
-                                                                                   });
+            public double getValue(Object object) {
+                return ((HistoricSettlement) object).getHouseholdCount() / 10.0;
+            }
+        });
 
     public void scapeCreated() {
         StatCollector[] stats = new StatCollector[2];

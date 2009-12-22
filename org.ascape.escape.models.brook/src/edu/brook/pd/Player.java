@@ -13,7 +13,6 @@ import org.ascape.model.Scape;
 import org.ascape.util.data.StatCollectorCondCSA;
 import org.ascape.util.vis.ColorFeature;
 
-
 /**
  * A player in the prisoner's dilemma game.
  * 
@@ -82,8 +81,8 @@ public class Player extends CellOccupant {
     private int lpWealth = 0;
 
     /**
-     * Begining population values. Cooperation is random draw, coordinate
-     * placement is random in scape. Age is random to maximum age.
+     * Begining population values. Cooperation is random draw, coordinate placement is random in scape. Age is random to
+     * maximum age.
      */
     public void initialize() {
         super.initialize();
@@ -116,8 +115,7 @@ public class Player extends CellOccupant {
     }
 
     public boolean deathCondition() {
-        return getWealth() < 0 || getAge() > ((PD2D) getScape().getRoot())
-        .getDeathAge();
+        return getWealth() < 0 || getAge() > ((PD2D) getScape().getRoot()).getDeathAge();
     }
 
     public boolean fissionCondition() {
@@ -132,8 +130,7 @@ public class Player extends CellOccupant {
             child.wealth = ((PD2D) scape.getRoot()).getInheiritedWealth();
             child.age = 0;
             wealth -= ((PD2D) scape.getRoot()).getInheiritedWealth();
-            if (getRandom().nextFloat() < ((PD2D) scape.getRoot())
-                    .getMutationRate()) {
+            if (getRandom().nextFloat() < ((PD2D) scape.getRoot()).getMutationRate()) {
                 if (randomIs()) {
                     child.strategy = PD2D.COOPERATE;
                 } else {
@@ -152,22 +149,18 @@ public class Player extends CellOccupant {
         if (this.strategy == PD2D.COOPERATE) {
             if (((Player) partner).strategy == PD2D.COOPERATE) {
                 this.wealth += ((PD2D) scape.getRoot()).getPayoff_C_C();
-                ((Player) partner).wealth += ((PD2D) scape.getRoot())
-                .getPayoff_C_C();
+                ((Player) partner).wealth += ((PD2D) scape.getRoot()).getPayoff_C_C();
             } else { // partner defects
                 this.wealth += ((PD2D) scape.getRoot()).getPayoff_C_D();
-                ((Player) partner).wealth += ((PD2D) scape.getRoot())
-                .getPayoff_D_C();
+                ((Player) partner).wealth += ((PD2D) scape.getRoot()).getPayoff_D_C();
             }
         } else { // this defects
             if (((Player) partner).strategy == PD2D.COOPERATE) {
                 this.wealth += ((PD2D) scape.getRoot()).getPayoff_D_C();
-                ((Player) partner).wealth += ((PD2D) scape.getRoot())
-                .getPayoff_C_D();
+                ((Player) partner).wealth += ((PD2D) scape.getRoot()).getPayoff_C_D();
             } else { // partner defects
                 this.wealth += ((PD2D) scape.getRoot()).getPayoff_D_D();
-                ((Player) partner).wealth += ((PD2D) scape.getRoot())
-                .getPayoff_D_D();
+                ((Player) partner).wealth += ((PD2D) scape.getRoot()).getPayoff_D_D();
             }
         }
     }

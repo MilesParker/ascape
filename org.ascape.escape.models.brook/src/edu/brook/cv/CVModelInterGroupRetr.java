@@ -9,19 +9,16 @@ package edu.brook.cv;
 
 public class CVModelInterGroupRetr extends CVModelInterGroup {
 
-	/**
+    /**
      * 
      */
-	private static final long serialVersionUID = 8791752128151010978L;
+    private static final long serialVersionUID = 8791752128151010978L;
 
-	public void createScape() {
-		super.createScape();
-		people.getRules().setSelected(Citizen.DECIDE_STATE, false);
-		people.getRules().setSelected(
-				CitizenBlueGreen.DECIDE_STATE_RETRIBUTION, true);
-		people.getRules().setSelected(
-				CitizenBlueGreen.DECIDE_STATE_RETRIBUTION_2, false);
-		people.getRules().setSelected(
-				CitizenBlueGreen.DECIDE_STATE_RETRIBUTION_3, false);
-	}
+    public void createScape() {
+        super.createScape();
+        people.getRules().setSelected(Citizen.DECIDE_STATE, false);
+        people.getRules().setSelected(CitizenBlueGreen.DECIDE_STATE_RETRIBUTION, true);
+        people.getRules().setSelected(CitizenBlueGreen.DECIDE_STATE_RETRIBUTION_2, false);
+        people.getRules().setSelected(CitizenBlueGreen.DECIDE_STATE_RETRIBUTION_3, false);
+    }
 }

@@ -11,24 +11,21 @@ import org.ascape.model.Agent;
 
 public class ClanFindMateRule extends FindMateRule {
 
-	/**
+    /**
      * 
      */
-	private static final long serialVersionUID = 938548733973182435L;
+    private static final long serialVersionUID = 938548733973182435L;
 
-	public ClanFindMateRule(Person candidate) {
-		super(candidate);
-	}
+    public ClanFindMateRule(Person candidate) {
+        super(candidate);
+    }
 
-	public void execute(Agent a) {
-		if ((((Person) a).getMate() == null)
-				&& (((Person) a).getSex() == Person.MALE)
-				&& (((Person) a).getAge() > ((LHV) a.getRoot())
-						.getMinFertilityAge())
-				&& (((Person) a).getHousehold().getClan() != candidate
-						.getHousehold().getClan())
-				&& (((Person) a).getHousehold() != candidate.getHousehold())) {
-			lastMate = ((Person) a);
-		}
-	}
+    public void execute(Agent a) {
+        if ((((Person) a).getMate() == null) && (((Person) a).getSex() == Person.MALE)
+            && (((Person) a).getAge() > ((LHV) a.getRoot()).getMinFertilityAge())
+            && (((Person) a).getHousehold().getClan() != candidate.getHousehold().getClan())
+            && (((Person) a).getHousehold() != candidate.getHousehold())) {
+            lastMate = ((Person) a);
+        }
+    }
 };

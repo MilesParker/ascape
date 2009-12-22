@@ -11,19 +11,19 @@ import org.ascape.model.event.ScapeEvent;
 
 public class CVModelIRun3 extends CVModelIRun3and4and5 {
 
-	/**
+    /**
      * 
      */
-	private static final long serialVersionUID = 7267855718918516992L;
+    private static final long serialVersionUID = 7267855718918516992L;
 
-	public void scapeIterated(ScapeEvent event) {
-		super.scapeIterated(event);
-		if ((getIteration() % 3) == 0) {
-			if (getLegitimacy() - 0.01 > 0.0) {
-				setLegitimacy(getLegitimacy() - 0.01);
-			} else {
-				setLegitimacy(0.0);
-			}
-		}
-	}
+    public void scapeIterated(ScapeEvent event) {
+        super.scapeIterated(event);
+        if ((getIteration() % 3) == 0) {
+            if (getLegitimacy() - 0.01 > 0.0) {
+                setLegitimacy(getLegitimacy() - 0.01);
+            } else {
+                setLegitimacy(0.0);
+            }
+        }
+    }
 }

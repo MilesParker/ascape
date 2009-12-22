@@ -9,14 +9,14 @@ package edu.brook.cv.paper;
 
 public class CVModelI extends edu.brook.cv.CVModel {
 
-	/**
+    /**
      * 
      */
-	private static final long serialVersionUID = -1087160376134801280L;
+    private static final long serialVersionUID = -1087160376134801280L;
 
-	public void createScape() {
-		super.createScape();
-		initialPopulationDensity = 0.70;
-		// setRandomSeed(941562289135L);
-	}
+    public void createScape() {
+        super.createScape();
+        initialPopulationDensity = 0.70;
+        // setRandomSeed(941562289135L);
+    }
 }

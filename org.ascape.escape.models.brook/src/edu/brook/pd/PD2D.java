@@ -19,8 +19,7 @@ import org.ascape.util.data.StatCollectorCond;
 import org.ascape.util.data.StatCollectorCondCSAMM;
 import org.ascape.util.vis.ColorFeatureFixed;
 import org.ascape.view.vis.ChartView;
-import org.ascape.view.vis.Overhead2DView;
-
+import org.escape.view.vis.Overhead2DView;
 
 public class PD2D extends Scape {
 
@@ -56,8 +55,7 @@ public class PD2D extends Scape {
     private int payoff_D_C = 6;
 
     /**
-     * The payoff when an agent cooperates and the other agent defects.
-     * (Sucker!)
+     * The payoff when an agent cooperates and the other agent defects. (Sucker!)
      */
     private int payoff_C_D = -6;
 
@@ -119,8 +117,7 @@ public class PD2D extends Scape {
         lattice.getRules().clear();
         // Set the size by setting the coordinate at the lattices largest
         // extent.
-        lattice
-        .setExtent(new Coordinate2DDiscrete(latticeWidth, latticeHeight));
+        lattice.setExtent(new Coordinate2DDiscrete(latticeWidth, latticeHeight));
         // W can set the lattice to expect cells to request updates only when
         // neccesary.
         // This greatly enhances perfomance, but requires us to manually request
@@ -264,17 +261,17 @@ public class PD2D extends Scape {
     public void createGraphicViews() {
         super.createGraphicViews();
 
-        //Create a new chart
+        // Create a new chart
         chart = new ChartView();
         // Add the chart view
         agents.addView(chart);
         // // And add some of the stat series we've just created to it
         chart.addSeries("Count Cooperate", ColorFeatureFixed.BLUE);
         chart.addSeries("Count Defect", ColorFeatureFixed.RED);
-        //Set starting data point we're interested in
-        //chart.setDisplayPoints(100);
+        // Set starting data point we're interested in
+        // chart.setDisplayPoints(100);
         //
-        //		// Now, add a simple overhead view so that we can view the lattice:
+        // // Now, add a simple overhead view so that we can view the lattice:
         // overheadView = new Overhead2DView();
         // lattice.addView(overheadView);
         // overheadView.setName("Player's View");
@@ -315,13 +312,11 @@ public class PD2D extends Scape {
     /*
      * public int getLatticeWidth() { return latticeWidth; }
      * 
-     * public void setLatticeWidth(int _latticeWidth) { latticeWidth =
-     * _latticeWidth; }
+     * public void setLatticeWidth(int _latticeWidth) { latticeWidth = _latticeWidth; }
      * 
      * public int getLatticeHeight() { return latticeHeight; }
      * 
-     * public void setLatticeHeight(int _latticeHeight) { latticeHeight =
-     * _latticeHeight; }
+     * public void setLatticeHeight(int _latticeHeight) { latticeHeight = _latticeHeight; }
      */
 
     public int getFissionWealth() {

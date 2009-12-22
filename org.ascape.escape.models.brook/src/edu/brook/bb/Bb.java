@@ -15,177 +15,176 @@ import org.ascape.util.data.StatCollector;
 import org.ascape.util.data.StatCollectorCondCSAMM;
 import org.ascape.util.vis.ColorFeature;
 import org.ascape.view.vis.ChartView;
-import org.ascape.view.vis.Overhead2DView;
-
+import org.escape.view.vis.Overhead2DView;
 
 //-------------------------------------------------------------------
 
 public class Bb extends Scape {
 
-	/**
+    /**
      * 
      */
-	private static final long serialVersionUID = -8582291081028346390L;
-	public int nAgents = 16;
-	private int latticeWidth = 30;
-	private int latticeHeight = 30;
+    private static final long serialVersionUID = -8582291081028346390L;
+    public int nAgents = 16;
+    private int latticeWidth = 30;
+    private int latticeHeight = 30;
 
-	Scape lattice;
-	Scape agents;
+    Scape lattice;
+    Scape agents;
 
-	public Overhead2DView overheadView;
+    public Overhead2DView overheadView;
 
-	// -------------------------------------------------------------------
-	public void createScape() {
-		super.createScape();
+    // -------------------------------------------------------------------
+    public void createScape() {
+        super.createScape();
 
-		lattice = new Scape(new Array2DVonNeumann());
-		lattice.setPrototypeAgent(new HostCell());
-		lattice.getRules().clear();
-		lattice.setExtent(latticeWidth, latticeHeight);
+        lattice = new Scape(new Array2DVonNeumann());
+        lattice.setPrototypeAgent(new HostCell());
+        lattice.getRules().clear();
+        lattice.setExtent(latticeWidth, latticeHeight);
 
-		Beaver beaver = new edu.brook.bb.Beaver(512, 3, 50, 32, 100);
-		beaver.setHostScape(lattice);
+        Beaver beaver = new edu.brook.bb.Beaver(512, 3, 50, 32, 100);
+        beaver.setHostScape(lattice);
 
-		agents = new Scape();
-		agents.setName("Beavers");
-		agents.setPrototypeAgent(beaver);
-		agents.setExecutionOrder(Scape.RULE_ORDER);
+        agents = new Scape();
+        agents.setName("Beavers");
+        agents.setPrototypeAgent(beaver);
+        agents.setExecutionOrder(Scape.RULE_ORDER);
 
-		add(lattice);
-		add(agents);
-	}
+        add(lattice);
+        add(agents);
+    }
 
-	// -------------------------------------------------------------------
-	public void createViews() {
-		super.createViews();
-		final StatCollector[] stats = { new StatCollectorCondCSAMM("RAOnes") {
-			/**
+    // -------------------------------------------------------------------
+    public void createViews() {
+        super.createViews();
+        final StatCollector[] stats = { new StatCollectorCondCSAMM("RAOnes") {
+            /**
                      * 
                      */
-			private static final long serialVersionUID = 2370540143893336314L;
+            private static final long serialVersionUID = 2370540143893336314L;
 
-			public boolean meetsCondition(Object object) {
-				return (((Beaver) object).type == 'r');
-			}
+            public boolean meetsCondition(Object object) {
+                return (((Beaver) object).type == 'r');
+            }
 
-			public double getValue(Object object) {
-				return ((Beaver) object).getAverageOnes();
-			}
-		},
+            public double getValue(Object object) {
+                return ((Beaver) object).getAverageOnes();
+            }
+        },
 
-		new StatCollectorCondCSAMM("GAOnes") {
-			/**
+        new StatCollectorCondCSAMM("GAOnes") {
+            /**
                      * 
                      */
-			private static final long serialVersionUID = -1927524352420113407L;
+            private static final long serialVersionUID = -1927524352420113407L;
 
-			public boolean meetsCondition(Object object) {
-				return (((Beaver) object).type == 'g');
-			}
+            public boolean meetsCondition(Object object) {
+                return (((Beaver) object).type == 'g');
+            }
 
-			public double getValue(Object object) {
-				return ((Beaver) object).getAverageOnes();
-			}
-		},
+            public double getValue(Object object) {
+                return ((Beaver) object).getAverageOnes();
+            }
+        },
 
-		new StatCollectorCondCSAMM("MAOnes") {
-			/**
+        new StatCollectorCondCSAMM("MAOnes") {
+            /**
                      * 
                      */
-			private static final long serialVersionUID = 8471511633523923118L;
+            private static final long serialVersionUID = 8471511633523923118L;
 
-			public boolean meetsCondition(Object object) {
-				return (((Beaver) object).type == 'm');
-			}
+            public boolean meetsCondition(Object object) {
+                return (((Beaver) object).type == 'm');
+            }
 
-			public double getValue(Object object) {
-				return ((Beaver) object).getAverageOnes();
-			}
-		}, new StatCollectorCondCSAMM("SMOnes") {
-			/**
+            public double getValue(Object object) {
+                return ((Beaver) object).getAverageOnes();
+            }
+        }, new StatCollectorCondCSAMM("SMOnes") {
+            /**
                      * 
                      */
-			private static final long serialVersionUID = -4568612482588841368L;
+            private static final long serialVersionUID = -4568612482588841368L;
 
-			public boolean meetsCondition(Object object) {
-				return (((Beaver) object).type == 's');
-			}
+            public boolean meetsCondition(Object object) {
+                return (((Beaver) object).type == 's');
+            }
 
-			public double getValue(Object object) {
-				return ((Beaver) object).getMaxOnes();
-			}
-		},
+            public double getValue(Object object) {
+                return ((Beaver) object).getMaxOnes();
+            }
+        },
 
-		new StatCollectorCondCSAMM("RMOnes") {
-			/**
+        new StatCollectorCondCSAMM("RMOnes") {
+            /**
                      * 
                      */
-			private static final long serialVersionUID = 2173715284919243224L;
+            private static final long serialVersionUID = 2173715284919243224L;
 
-			public boolean meetsCondition(Object object) {
-				return (((Beaver) object).type == 'r');
-			}
+            public boolean meetsCondition(Object object) {
+                return (((Beaver) object).type == 'r');
+            }
 
-			public double getValue(Object object) {
-				return ((Beaver) object).getMaxOnes();
-			}
-		},
+            public double getValue(Object object) {
+                return ((Beaver) object).getMaxOnes();
+            }
+        },
 
-		new StatCollectorCondCSAMM("GMOnes") {
-			/**
+        new StatCollectorCondCSAMM("GMOnes") {
+            /**
                      * 
                      */
-			private static final long serialVersionUID = 971721732849969268L;
+            private static final long serialVersionUID = 971721732849969268L;
 
-			public boolean meetsCondition(Object object) {
-				return (((Beaver) object).type == 'g');
-			}
+            public boolean meetsCondition(Object object) {
+                return (((Beaver) object).type == 'g');
+            }
 
-			public double getValue(Object object) {
-				return ((Beaver) object).getMaxOnes();
-			}
-		},
+            public double getValue(Object object) {
+                return ((Beaver) object).getMaxOnes();
+            }
+        },
 
-		new StatCollectorCondCSAMM("MMOnes") {
-			/**
+        new StatCollectorCondCSAMM("MMOnes") {
+            /**
                      * 
                      */
-			private static final long serialVersionUID = -254230837428062800L;
+            private static final long serialVersionUID = -254230837428062800L;
 
-			public boolean meetsCondition(Object object) {
-				return (((Beaver) object).type == 'm');
-			}
+            public boolean meetsCondition(Object object) {
+                return (((Beaver) object).type == 'm');
+            }
 
-			public double getValue(Object object) {
-				return ((Beaver) object).getMaxOnes();
-			}
-		}
+            public double getValue(Object object) {
+                return ((Beaver) object).getMaxOnes();
+            }
+        }
 
-		};
+        };
 
-		agents.addStatCollectors(stats);
+        agents.addStatCollectors(stats);
 
-		ChartView chart = new ChartView();
-		agents.addView(chart);
-		chart.addSeries("Maximum RAOnes", ColorFeature.YELLOW);
-		chart.addSeries("Maximum GAOnes", ColorFeature.GREEN);
-		chart.addSeries("Maximum MAOnes", ColorFeature.DARK_RED);
-		chart.addSeries("Maximum SMOnes", ColorFeature.BLACK);
-		chart.addSeries("Maximum RMOnes", ColorFeature.RED);
-		chart.addSeries("Maximum GMOnes", ColorFeature.BLUE);
-		chart.addSeries("Maximum MMOnes", ColorFeature.MAGENTA);
+        ChartView chart = new ChartView();
+        agents.addView(chart);
+        chart.addSeries("Maximum RAOnes", ColorFeature.YELLOW);
+        chart.addSeries("Maximum GAOnes", ColorFeature.GREEN);
+        chart.addSeries("Maximum MAOnes", ColorFeature.DARK_RED);
+        chart.addSeries("Maximum SMOnes", ColorFeature.BLACK);
+        chart.addSeries("Maximum RMOnes", ColorFeature.RED);
+        chart.addSeries("Maximum GMOnes", ColorFeature.BLUE);
+        chart.addSeries("Maximum MMOnes", ColorFeature.MAGENTA);
 
-		// //chart.setDisplayPoints(100);
-	}
+        // //chart.setDisplayPoints(100);
+    }
 
-	// -------------------------------------------------------------------
-	public void scapeSetup(ScapeEvent e) {
-		agents.setSize(nAgents);
-	}
+    // -------------------------------------------------------------------
+    public void scapeSetup(ScapeEvent e) {
+        agents.setSize(nAgents);
+    }
 
-	// -------------------------------------------------------------------
-	public int getNumberOfAgents() {
-		return nAgents;
-	}
+    // -------------------------------------------------------------------
+    public int getNumberOfAgents() {
+        return nAgents;
+    }
 }

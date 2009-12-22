@@ -11,46 +11,47 @@ import org.ascape.view.vis.SimplexView;
 
 public class BargainingModelTwo extends BargainingModelBase {
 
-	/**
+    /**
      * 
      */
-	private static final long serialVersionUID = -4439696528099816913L;
+    private static final long serialVersionUID = -4439696528099816913L;
 
-	public void createScape() {
-		super.createScape();
-		agents.setPrototypeAgent(new BargainerTagged());
-	}
+    public void createScape() {
+        super.createScape();
+        agents.setPrototypeAgent(new BargainerTagged());
+    }
 
-	private SimplexView interMemoryView;
+    private SimplexView interMemoryView;
 
-	public void createGraphicViews() {
-		super.createGraphicViews();
-		interMemoryView = new SimplexView();
-		agents.addView(interMemoryView);
-	interMemoryView.setCentroidTradeoff(Strategy.LOW_STRATEGY.getDemand());
-		interMemoryView.setSimplexFeature(new InterSimplexFeature("Memory"));		}
+    public void createGraphicViews() {
+        super.createGraphicViews();
+        interMemoryView = new SimplexView();
+        agents.addView(interMemoryView);
+        interMemoryView.setCentroidTradeoff(Strategy.LOW_STRATEGY.getDemand());
+        interMemoryView.setSimplexFeature(new InterSimplexFeature("Memory"));
+    }
 
-	public float getRandomStrategyProbability() {
-		return randomStrategyProbability;
-	}
+    public float getRandomStrategyProbability() {
+        return randomStrategyProbability;
+    }
 
-	public void setRandomStrategyProbability(float randomStrategyProbability) {
-		this.randomStrategyProbability = randomStrategyProbability;
-	}
+    public void setRandomStrategyProbability(float randomStrategyProbability) {
+        this.randomStrategyProbability = randomStrategyProbability;
+    }
 
-	public int getMinimumMemorySize() {
-		return minMemorySize;
-	}
+    public int getMinimumMemorySize() {
+        return minMemorySize;
+    }
 
-	public void setMinimumMemorySize(int minMemorySize) {
-		this.minMemorySize = minMemorySize;
-	}
+    public void setMinimumMemorySize(int minMemorySize) {
+        this.minMemorySize = minMemorySize;
+    }
 
-	public int getMaximumMemorySize() {
-		return maxMemorySize;
-	}
+    public int getMaximumMemorySize() {
+        return maxMemorySize;
+    }
 
-	public void setMaximumMemorySize(int maxMemorySize) {
-		this.maxMemorySize = maxMemorySize;
-	}
+    public void setMaximumMemorySize(int maxMemorySize) {
+        this.maxMemorySize = maxMemorySize;
+    }
 }

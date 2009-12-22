@@ -12,35 +12,33 @@ import org.ascape.model.rule.Rule;
 
 public class FindMateRule extends Rule {
 
-	/**
+    /**
      * 
      */
-	private static final long serialVersionUID = 6567466917857780539L;
-	public Person candidate;
-	public Person lastMate;
+    private static final long serialVersionUID = 6567466917857780539L;
+    public Person candidate;
+    public Person lastMate;
 
-	public FindMateRule(Person candidate) {
-		super("Find Mate");
-		this.candidate = candidate;
-	}
+    public FindMateRule(Person candidate) {
+        super("Find Mate");
+        this.candidate = candidate;
+    }
 
-	public void clear() {
-		lastMate = null;
-	}
+    public void clear() {
+        lastMate = null;
+    }
 
-	public void execute(Agent a) {
-		if (lastMate == null) {
-			if ((((Person) a).getMate() == null)
-					&& (((Person) a).getSex() == Person.MALE)
-					&& (((Person) a).getAge() > ((LHV) a.getRoot())
-							.getMinFertilityAge())
-					&& (((Person) a).getHousehold() != candidate.getHousehold())) {
-				lastMate = ((Person) a);
-			}
-		}
-	}
+    public void execute(Agent a) {
+        if (lastMate == null) {
+            if ((((Person) a).getMate() == null) && (((Person) a).getSex() == Person.MALE)
+                && (((Person) a).getAge() > ((LHV) a.getRoot()).getMinFertilityAge())
+                && (((Person) a).getHousehold() != candidate.getHousehold())) {
+                lastMate = ((Person) a);
+            }
+        }
+    }
 
-	public Person getMate() {
-		return lastMate;
-	}
+    public Person getMate() {
+        return lastMate;
+    }
 }

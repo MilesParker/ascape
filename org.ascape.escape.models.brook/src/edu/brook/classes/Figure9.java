@@ -9,15 +9,14 @@ package edu.brook.classes;
 
 public class Figure9 extends Figure6 {
 
-	/**
+    /**
      * 
      */
-	private static final long serialVersionUID = -1841956397397459659L;
+    private static final long serialVersionUID = -1841956397397459659L;
 
-	public void createScape() {
-		super.createScape();
-		setRandomStrategyProbability(0.05f);
-		agents.getInitialRules().select(
-				"Light Inter Low, Intra High/Low; Dark Inter High");
-	}
+    public void createScape() {
+        super.createScape();
+        setRandomStrategyProbability(0.05f);
+        agents.getInitialRules().select("Light Inter Low, Intra High/Low; Dark Inter High");
+    }
 }

@@ -16,20 +16,20 @@ import org.ascape.view.nonvis.DataOutputView;
 
 public class MultipleGAS_IV_c extends GAS_IV_c {
 
-	/**
+    /**
      * 
      */
-	private static final long serialVersionUID = -3370656485202228991L;
+    private static final long serialVersionUID = -3370656485202228991L;
 
-	public void createViews() {
-		DataOutputView dataView = new DataOutputView();
-		sugarscape.addView(dataView);
-		try {
-			setStopPeriod(100);
-		} catch (org.ascape.model.space.SpatialTemporalException e) {
-			throw new RuntimeException("Internal Logic Error");
-		}
-		// dataView.getSweep().setRunsPer(2);
-		setViewSelf(true);
-	}
+    public void createViews() {
+        DataOutputView dataView = new DataOutputView();
+        sugarscape.addView(dataView);
+        try {
+            setStopPeriod(100);
+        } catch (org.ascape.model.space.SpatialTemporalException e) {
+            throw new RuntimeException("Internal Logic Error");
+        }
+        // dataView.getSweep().setRunsPer(2);
+        setViewSelf(true);
+    }
 }

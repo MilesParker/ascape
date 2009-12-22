@@ -15,10 +15,9 @@ import org.ascape.model.space.Coordinate2DDiscrete;
 import org.ascape.util.data.StatCollector;
 import org.ascape.util.data.StatCollectorCSAMM;
 import org.ascape.util.vis.ColorFeatureFixed;
-import org.ascape.view.vis.Overhead2DView;
+import org.escape.view.vis.Overhead2DView;
 
 public class GAS_Base extends Scape {
-
 
     /**
      * 

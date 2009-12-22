@@ -13,60 +13,57 @@ import org.ascape.util.vis.ColorFeatureConcrete;
 import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.swt.graphics.Color;
 
-
 public class Clan extends AscapeObject implements IColorProvider {
 
-	/**
+    /**
      * 
      */
-	private static final long serialVersionUID = 2760292253117658739L;
+    private static final long serialVersionUID = 2760292253117658739L;
 
-	public final static Clan DARK_RED_CLAN = new Clan("Orange Clan", ColorFeature.DARK_RED);
+    public final static Clan DARK_RED_CLAN = new Clan("Orange Clan", ColorFeature.DARK_RED);
 
-	public final static Clan RED_CLAN = new Clan("Red Clan", ColorFeature.RED);
+    public final static Clan RED_CLAN = new Clan("Red Clan", ColorFeature.RED);
 
-	public final static Clan GREEN_CLAN = new Clan("Green Clan", ColorFeature.GREEN);
+    public final static Clan GREEN_CLAN = new Clan("Green Clan", ColorFeature.GREEN);
 
-	public final static Clan DARK_BLUE_CLAN = new Clan("Pink Clan", ColorFeature.DARK_BLUE);
+    public final static Clan DARK_BLUE_CLAN = new Clan("Pink Clan", ColorFeature.DARK_BLUE);
 
-	public final static Clan YELLOW_CLAN = new Clan("Yellow Clan", ColorFeature.YELLOW);
+    public final static Clan YELLOW_CLAN = new Clan("Yellow Clan", ColorFeature.YELLOW);
 
-	public final static Clan WHITE_CLAN = new Clan("White Clan", ColorFeature.WHITE);
+    public final static Clan WHITE_CLAN = new Clan("White Clan", ColorFeature.WHITE);
 
-	public final static Clan CYAN_CLAN = new Clan("Cyan Clan", ColorFeature.CYAN);
+    public final static Clan CYAN_CLAN = new Clan("Cyan Clan", ColorFeature.CYAN);
 
-	public final static Clan BLACK_CLAN = new Clan("Black Clan", ColorFeature.BLACK);
+    public final static Clan BLACK_CLAN = new Clan("Black Clan", ColorFeature.BLACK);
 
-	public static final Clan[] clans = { DARK_RED_CLAN, RED_CLAN, GREEN_CLAN,
-			DARK_BLUE_CLAN, YELLOW_CLAN, CYAN_CLAN };
+    public static final Clan[] clans = { DARK_RED_CLAN, RED_CLAN, GREEN_CLAN, DARK_BLUE_CLAN, YELLOW_CLAN, CYAN_CLAN };
 
-	private Color color = ColorFeatureConcrete.create(
-			(int) (Math.random() * 256), (int) (Math.random() * 256),
-			(int) (Math.random() * 256));
+    private Color color = ColorFeatureConcrete.create((int) (Math.random() * 256), (int) (Math.random() * 256),
+                                                      (int) (Math.random() * 256));
 
-	public Clan() {
-		super();
-	}
+    public Clan() {
+        super();
+    }
 
-	public Clan(String name, Color color) {
-		super();
-		this.name = name;
-		this.color = color;
-	}
+    public Clan(String name, Color color) {
+        super();
+        this.name = name;
+        this.color = color;
+    }
 
-	public Color getBackground(Object object) {
-		return color;
-	}
+    public Color getBackground(Object object) {
+        return color;
+    }
 
-	public Color getForeground(Object object) {
-		return color;
-	}
+    public Color getForeground(Object object) {
+        return color;
+    }
 
-	public static Clan randomClan(HouseholdBase household) {
-		return clans[household.randomToLimit(clans.length)];
-	}
+    public static Clan randomClan(HouseholdBase household) {
+        return clans[household.randomToLimit(clans.length)];
+    }
 
-	public String toString() {
-		return getName();
-	}
+    public String toString() {
+        return getName();
+    }
 }

@@ -9,14 +9,14 @@ package name.milesparker.spatialipd;
 
 public class PD2DGA_CLOSEST extends PD2DGA {
 
-	/**
+    /**
      * 
      */
-	private static final long serialVersionUID = 5082904971311823486L;
+    private static final long serialVersionUID = 5082904971311823486L;
 
-	public void createScape() {
-		super.createScape();
-		getAgents().getRules().setSelected(PLAY_RANDOM_NEIGHBOR_RULE, false);
-		getAgents().getRules().setSelected("Play Closest", true);
-	}
+    public void createScape() {
+        super.createScape();
+        getAgents().getRules().setSelected(PLAY_RANDOM_NEIGHBOR_RULE, false);
+        getAgents().getRules().setSelected("Play Closest", true);
+    }
 }

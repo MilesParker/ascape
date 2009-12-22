@@ -12,72 +12,70 @@ import org.ascape.util.data.StatCollectorCond;
 import org.ascape.util.vis.ColorFeature;
 import org.ascape.view.vis.ChartView;
 
-
 public class GAS_II_4 extends GAS_III_2 {
 
-	/**
+    /**
      * 
      */
-	private static final long serialVersionUID = 8164788204620699378L;
+    private static final long serialVersionUID = 8164788204620699378L;
 
-	public void createViews() {
-		super.createViews();
+    public void createViews() {
+        super.createViews();
 
-		final StatCollectorCSAMM wealth = new StatCollectorCSAMM() {
-			/**
+        final StatCollectorCSAMM wealth = new StatCollectorCSAMM() {
+            /**
              * 
              */
-			private static final long serialVersionUID = 4322388161358953355L;
+            private static final long serialVersionUID = 4322388161358953355L;
 
-			public double getValue(Object o) {
-				return ((SugarAgent) o).getSugar().getStock();
-			}
+            public double getValue(Object o) {
+                return ((SugarAgent) o).getSugar().getStock();
+            }
 
-			public String getName() {
-				return "Wealth";
-			}
-		};
-		agents.addStatCollector(wealth);
+            public String getName() {
+                return "Wealth";
+            }
+        };
+        agents.addStatCollector(wealth);
 
-		class DecileCollector extends StatCollectorCond {
+        class DecileCollector extends StatCollectorCond {
 
-			/**
+            /**
              * 
              */
-			private static final long serialVersionUID = -8146962501703395280L;
-			int decile;
+            private static final long serialVersionUID = -8146962501703395280L;
+            int decile;
 
-			public DecileCollector(int decile) {
-				this.decile = decile;
-			}
+            public DecileCollector(int decile) {
+                this.decile = decile;
+            }
 
-			public boolean meetsCondition(Object o) {
-				return ((((SugarAgent) o).getSugar().getStock() > ((decile - 1) * 0.1 * wealth
-						.getMax())) && (((SugarAgent) o).getSugar().getStock() < (decile * 0.1 * wealth
-						.getMax())));
-			}
+            public boolean meetsCondition(Object o) {
+                return ((((SugarAgent) o).getSugar().getStock() > ((decile - 1) * 0.1 * wealth.getMax())) && (((SugarAgent) o)
+                        .getSugar().getStock() < (decile * 0.1 * wealth.getMax())));
+            }
 
-			public final boolean isPhase2() {
-				return true;
-			}
+            public final boolean isPhase2() {
+                return true;
+            }
 
-			public String getName() {
-				return "Decile " + Integer.toString(decile);
-			}
-		}
+            public String getName() {
+                return "Decile " + Integer.toString(decile);
+            }
+        }
 
-		StatCollectorCond[] decileStats = new StatCollectorCond[10];
-		for (int n = 1; n <= 10; n++) {
-			decileStats[n - 1] = new DecileCollector(n);
-		}
-		agents.addStatCollectors(decileStats);
+        StatCollectorCond[] decileStats = new StatCollectorCond[10];
+        for (int n = 1; n <= 10; n++) {
+            decileStats[n - 1] = new DecileCollector(n);
+        }
+        agents.addStatCollectors(decileStats);
 
-		// Create pie chart
-		ChartView chart = new ChartView();
-		//chart.setChartType(ChartView.HISTOGRAM);
-		agents.addView(chart);
-		for (int i = 1; i <= 10; i++) {
-			chart.addSeries("Count Decile " + i, ColorFeature.RED);
-		}
-	}
+        // Create pie chart
+        ChartView chart = new ChartView();
+        // chart.setChartType(ChartView.HISTOGRAM);
+        agents.addView(chart);
+        for (int i = 1; i <= 10; i++) {
+            chart.addSeries("Count Decile " + i, ColorFeature.RED);
+        }
+    }
 }

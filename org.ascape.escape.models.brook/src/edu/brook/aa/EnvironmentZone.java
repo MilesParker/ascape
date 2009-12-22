@@ -13,89 +13,89 @@ import org.eclipse.swt.graphics.Color;
 
 public class EnvironmentZone extends Scape {
 
-	/**
+    /**
      * 
      */
-	private static final long serialVersionUID = -2493621424309157834L;
+    private static final long serialVersionUID = -2493621424309157834L;
 
-	private double pdsi;
+    private double pdsi;
 
-	private double hydro;
+    private double hydro;
 
-	private double ag;
+    private double ag;
 
-	private double apdsi;
+    private double apdsi;
 
-	protected Color color;
+    protected Color color;
 
-	private boolean isWaterSource = false;
+    private boolean isWaterSource = false;
 
-	public EnvironmentZone(String name, Color color) {
-		setSpace(new Singleton());
-		setName(name);
-		this.color = color;
-	}
+    public EnvironmentZone(String name, Color color) {
+        setSpace(new Singleton());
+        setName(name);
+        this.color = color;
+    }
 
-	public Object getBackground(Object object) {
-		return color;
-	}
+    public Object getBackground(Object object) {
+        return color;
+    }
 
-	public double getPDSI() {
-		return pdsi;
-	}
+    public double getPDSI() {
+        return pdsi;
+    }
 
-	public void setPDSI(double pdsi) {
-		this.pdsi = pdsi;
-	}
+    public void setPDSI(double pdsi) {
+        this.pdsi = pdsi;
+    }
 
-	public double getHydrology() {
-		return hydro;
-	}
+    public double getHydrology() {
+        return hydro;
+    }
 
-	public void setHydrology(double hydro) {
-		if (this.hydro != hydro) {
-			requestUpdate();
-		}
-		this.hydro = hydro;
-	}
+    public void setHydrology(double hydro) {
+        if (this.hydro != hydro) {
+            requestUpdate();
+        }
+        this.hydro = hydro;
+    }
 
-	public double getAggredation() {
-		return ag;
-	}
+    public double getAggredation() {
+        return ag;
+    }
 
-	public void setAggredation(double ag) {
-		if (this.ag != ag) {
-			// requestUpdate();
-		}
-		this.ag = ag;
-	}
+    public void setAggredation(double ag) {
+        if (this.ag != ag) {
+            // requestUpdate();
+        }
+        this.ag = ag;
+    }
 
-	public double getAPDSI() {
-		return apdsi;
-	}
+    public double getAPDSI() {
+        return apdsi;
+    }
 
-	public void setAPDSI(double apdsi) {
-		if (this.apdsi != apdsi) {
-			requestUpdate();
-		}
-		this.apdsi = apdsi;
-	}
+    public void setAPDSI(double apdsi) {
+        if (this.apdsi != apdsi) {
+            requestUpdate();
+        }
+        this.apdsi = apdsi;
+    }
 
-	public boolean isUpdateNeeded(int within) {
-		if (super.isUpdateNeeded(within)) {
-			return true;
-		}
-		return false;
-	}
+    public boolean isUpdateNeeded(int within) {
+        if (super.isUpdateNeeded(within)) {
+            return true;
+        }
+        return false;
+    }
 
-	public boolean isWaterSource() {
-		return isWaterSource;
-	}
+    public boolean isWaterSource() {
+        return isWaterSource;
+    }
 
-	public void setIsWaterSource(boolean isWaterSource) {
-		if (this.isWaterSource != isWaterSource) {
-			requestUpdate();
-		}
-		this.isWaterSource = isWaterSource;
-	}
+    public void setIsWaterSource(boolean isWaterSource) {
+        if (this.isWaterSource != isWaterSource) {
+            requestUpdate();
+        }
+        this.isWaterSource = isWaterSource;
+    }
 }

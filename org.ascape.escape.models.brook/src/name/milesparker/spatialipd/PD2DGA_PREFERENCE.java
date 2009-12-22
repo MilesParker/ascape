@@ -10,7 +10,6 @@ package name.milesparker.spatialipd;
 import org.ascape.util.vis.ColorFeature;
 import org.ascape.view.vis.ChartView;
 
-
 public class PD2DGA_PREFERENCE extends PD2DGA {
 
     /**

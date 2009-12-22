@@ -44,71 +44,68 @@ import org.ascape.view.nonvis.DataScape;
 
 public class PD2DGAMulti extends PD2DGA implements DataScape {
 
-	/**
+    /**
      * 
      */
-	private static final long serialVersionUID = 2714970231178689621L;
-	int rankSize = 8;
+    private static final long serialVersionUID = 2714970231178689621L;
+    int rankSize = 8;
 
-	public void writePeriodHeader(DataOutputStream os) throws IOException {
-	}
+    public void writePeriodHeader(DataOutputStream os) throws IOException {
+    }
 
-	public void writePeriodData(DataOutputStream os) throws IOException {
-	}
+    public void writePeriodData(DataOutputStream os) throws IOException {
+    }
 
-	class WealthCollector extends StatCollectorCSAMM {
-		/**
+    class WealthCollector extends StatCollectorCSAMM {
+        /**
          * 
          */
-		private static final long serialVersionUID = -6751951496344134801L;
+        private static final long serialVersionUID = -6751951496344134801L;
 
-		public double getValue(Object object) {
-			return ((PlayerGA) object).getWealth();
-		}
-	}
+        public double getValue(Object object) {
+            return ((PlayerGA) object).getWealth();
+        }
+    }
 
-	public void writeRunHeader(DataOutputStream os) throws IOException {
-		for (int i = 0; i < rankSize; i++) {
-			os.writeBytes("\t" + "Genome " + i);
-			os.writeBytes("\t" + "Count " + i);
-			// os.writeBytes("\t" + "Wealth " + i);
-		}
-	}
+    public void writeRunHeader(DataOutputStream os) throws IOException {
+        for (int i = 0; i < rankSize; i++) {
+            os.writeBytes("\t" + "Genome " + i);
+            os.writeBytes("\t" + "Count " + i);
+            // os.writeBytes("\t" + "Wealth " + i);
+        }
+    }
 
-	public void writeRunData(DataOutputStream os) throws IOException {
-		final Map genomeForStats = new HashMap();
-		getAgents().executeOnMembers(new Rule("Genome Stats") {
-			/**
+    public void writeRunData(DataOutputStream os) throws IOException {
+        final Map genomeForStats = new HashMap();
+        getAgents().executeOnMembers(new Rule("Genome Stats") {
+            /**
              * 
              */
-			private static final long serialVersionUID = -8053932730990368821L;
+            private static final long serialVersionUID = -8053932730990368821L;
 
-			public void execute(Agent agent) {
-				PlayerGA player = (PlayerGA) agent;
-				StatCollectorCSAMM stat = (StatCollectorCSAMM) genomeForStats
-						.get(player.getChromosomeStrategyAsString());
-				if (stat == null) {
-					stat = new StatCollectorCSAMM(player
-							.getChromosomeStrategyAsString());
-					genomeForStats.put(player.getChromosomeStrategyAsString(),
-							stat);
-				}
-				stat.addValueFor(agent);
-			}
-		});
-		List rankedGenomes = new ArrayList(genomeForStats.values());
-		Collections.sort(rankedGenomes, new Comparator() {
-			public int compare(Object o1, Object o2) {
-				return ((StatCollectorCSAMM) o2).getCount()
-						- ((StatCollectorCSAMM) o1).getCount();
-			}
-		});
-		for (int i = 0; (i < rankSize) && (i < rankedGenomes.size()); i++) {
-			StatCollectorCSAMM stat = (StatCollectorCSAMM) rankedGenomes.get(i);
-			os.writeBytes("\t" + stat.getName());
-			os.writeBytes("\t" + stat.getCount());
-			// os.writeBytes("\t" + stat.getTotal());
-		}
-		os.writeBytes("\t" + "Test run data");
-	}
+            public void execute(Agent agent) {
+                PlayerGA player = (PlayerGA) agent;
+                StatCollectorCSAMM stat = (StatCollectorCSAMM) genomeForStats.get(player
+                        .getChromosomeStrategyAsString());
+                if (stat == null) {
+                    stat = new StatCollectorCSAMM(player.getChromosomeStrategyAsString());
+                    genomeForStats.put(player.getChromosomeStrategyAsString(), stat);
+                }
+                stat.addValueFor(agent);
+            }
+        });
+        List rankedGenomes = new ArrayList(genomeForStats.values());
+        Collections.sort(rankedGenomes, new Comparator() {
+            public int compare(Object o1, Object o2) {
+                return ((StatCollectorCSAMM) o2).getCount() - ((StatCollectorCSAMM) o1).getCount();
+            }
+        });
+        for (int i = 0; (i < rankSize) && (i < rankedGenomes.size()); i++) {
+            StatCollectorCSAMM stat = (StatCollectorCSAMM) rankedGenomes.get(i);
+            os.writeBytes("\t" + stat.getName());
+            os.writeBytes("\t" + stat.getCount());
+            // os.writeBytes("\t" + stat.getTotal());
+        }
+        os.writeBytes("\t" + "Test run data");
+    }
 }

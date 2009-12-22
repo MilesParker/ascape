@@ -9,16 +9,16 @@ package edu.brook.classes;
 
 public class BargainingModelPeyton extends BargainingModelTwo {
 
-	/**
+    /**
      * 
      */
-	private static final long serialVersionUID = -5838881897720774326L;
+    private static final long serialVersionUID = -5838881897720774326L;
 
-	public void createScape() {
-		super.createScape();
-		agents.setPrototypeAgent(new PeytonBargainer());
-		setLowPayoff(0.10f);
-		setMediumPayoff(0.30f);
-		setHighPayoff(0.50f);
-	}
+    public void createScape() {
+        super.createScape();
+        agents.setPrototypeAgent(new PeytonBargainer());
+        setLowPayoff(0.10f);
+        setMediumPayoff(0.30f);
+        setHighPayoff(0.50f);
+    }
 }

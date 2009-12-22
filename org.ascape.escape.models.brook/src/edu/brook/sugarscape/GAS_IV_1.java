@@ -9,17 +9,17 @@ package edu.brook.sugarscape;
 
 public class GAS_IV_1 extends GAS_SpiceBase {
 
-	/**
+    /**
      * 
      */
-	private static final long serialVersionUID = 8665556682631210554L;
+    private static final long serialVersionUID = 8665556682631210554L;
 
-	public void createScape() {
-		super.createScape();
-		sugarscape.addRule(SpiceCell.SUGAR_SPICE_GROW_BACK_1_RULE);
-		agents.addRule(MOVEMENT_RULE);
-		agents.addRule(SugarAgent.HARVEST_RULE);
-		agents.addRule(METABOLISM_RULE);
-		agents.addRule(SpiceAgent.DEATH_STARVATION_SPICE_RULE);
-	}
+    public void createScape() {
+        super.createScape();
+        sugarscape.addRule(SpiceCell.SUGAR_SPICE_GROW_BACK_1_RULE);
+        agents.addRule(MOVEMENT_RULE);
+        agents.addRule(SugarAgent.HARVEST_RULE);
+        agents.addRule(METABOLISM_RULE);
+        agents.addRule(SpiceAgent.DEATH_STARVATION_SPICE_RULE);
+    }
 }

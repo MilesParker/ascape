@@ -14,91 +14,91 @@ import org.ascape.model.Cell;
  */
 public class CommoditySource {
 
-	// public static float moundness = .004f; // was .004
+    // public static float moundness = .004f; // was .004
 
-	private Cell owner; // Who (what cell) owns this commodity source
+    private Cell owner; // Who (what cell) owns this commodity source
 
-	private float capacity;
+    private float capacity;
 
-	private String name = "Generic commodity";
+    private String name = "Generic commodity";
 
-	private float quantity; // was sugar
+    private float quantity; // was sugar
 
-	// public double getValue(Object object) {
-	// return (1.0 - (double) ((SugarCell) object).getSugar() / (double)
-	// SugarCell.MAX_SUGAR);
-	// }
+    // public double getValue(Object object) {
+    // return (1.0 - (double) ((SugarCell) object).getSugar() / (double)
+    // SugarCell.MAX_SUGAR);
+    // }
 
-	public void growBackEpsilon(float epsilon) {
-		// We test (instead of just incrementing) so we know if a view update
-		// is required or not
-		if (quantity < capacity) {
-			quantity += epsilon;
-			if (quantity > capacity) {
-				quantity = capacity;
-			}
-			owner.requestUpdate();
-		}
-	}
+    public void growBackEpsilon(float epsilon) {
+        // We test (instead of just incrementing) so we know if a view update
+        // is required or not
+        if (quantity < capacity) {
+            quantity += epsilon;
+            if (quantity > capacity) {
+                quantity = capacity;
+            }
+            owner.requestUpdate();
+        }
+    }
 
-	public void growBack1() {
-		// We test (instead of just incrementing) so we know if a view update
-		// is required or not
-		if (quantity < capacity) {
-			quantity++;
-			if (quantity > capacity) {
-				quantity = capacity;
-			}
-			owner.requestUpdate();
-		}
-	}
+    public void growBack1() {
+        // We test (instead of just incrementing) so we know if a view update
+        // is required or not
+        if (quantity < capacity) {
+            quantity++;
+            if (quantity > capacity) {
+                quantity = capacity;
+            }
+            owner.requestUpdate();
+        }
+    }
 
-	public void growBackInf() {
-		if (quantity < capacity) {
-			quantity = capacity;
-			owner.requestUpdate();
-		}
-	}
+    public void growBackInf() {
+        if (quantity < capacity) {
+            quantity = capacity;
+            owner.requestUpdate();
+        }
+    }
 
-	public float takeQuantity() {
-		float tempQuantity = quantity;
-		quantity = 0;
-		return tempQuantity;
-	}
+    public float takeQuantity() {
+        float tempQuantity = quantity;
+        quantity = 0;
+        return tempQuantity;
+    }
 
-	public float getQuantity() {
-		return quantity;
-	}
+    public float getQuantity() {
+        return quantity;
+    }
 
-	public void setQuantity(float quantity) {
-		this.quantity = quantity;
-	}
+    public void setQuantity(float quantity) {
+        this.quantity = quantity;
+    }
 
-	public float getCapacity() {
-		return capacity;
-	}
+    public float getCapacity() {
+        return capacity;
+    }
 
-	public void setCapacity(float capacity) {
-		this.capacity = capacity;
-	}
+    public void setCapacity(float capacity) {
+        this.capacity = capacity;
+    }
 
-	public int getDefaultValue() {
-		return (int) quantity;
-	}
+    public int getDefaultValue() {
+        return (int) quantity;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setOwner(Cell _cell) {
-		owner = _cell;
-	}
+    public void setOwner(Cell _cell) {
+        owner = _cell;
+    }
 
-	public Cell getOwner() {
-		return owner;
-	}
+    public Cell getOwner() {
+        return owner;
+    }
 }

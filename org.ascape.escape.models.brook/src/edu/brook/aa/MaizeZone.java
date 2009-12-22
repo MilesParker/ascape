@@ -14,23 +14,23 @@ import org.eclipse.swt.graphics.Color;
 
 public class MaizeZone extends Scape implements IColorProvider {
 
-	/**
+    /**
      * 
      */
-	private static final long serialVersionUID = 7378302753497194685L;
-	private Color color;
+    private static final long serialVersionUID = 7378302753497194685L;
+    private Color color;
 
-	public MaizeZone(String name, Color color) {
-		setSpace(new Singleton());
-		this.name = name;
-		this.color = color;
-	}
+    public MaizeZone(String name, Color color) {
+        setSpace(new Singleton());
+        this.name = name;
+        this.color = color;
+    }
 
-	public Color getBackground(Object object) {
-		return color;
-	}
+    public Color getBackground(Object object) {
+        return color;
+    }
 
-	public Color getForeground(Object object) {
-		return getBackground(object);
-	}
+    public Color getForeground(Object object) {
+        return getBackground(object);
+    }
 }

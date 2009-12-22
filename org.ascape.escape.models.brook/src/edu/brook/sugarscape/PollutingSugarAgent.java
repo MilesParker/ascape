@@ -9,15 +9,14 @@ package edu.brook.sugarscape;
 
 public class PollutingSugarAgent extends SugarAgent {
 
-	/**
+    /**
      * 
      */
-	private static final long serialVersionUID = -7071352015160701048L;
-	private int beta = 50;
+    private static final long serialVersionUID = -7071352015160701048L;
+    private int beta = 50;
 
-	public void metabolism() {
-		((PollutableSugarCell) getHostCell()).addPollution(sugarMetabolism
-				* beta);
-		super.metabolism();
-	}
+    public void metabolism() {
+        ((PollutableSugarCell) getHostCell()).addPollution(sugarMetabolism * beta);
+        super.metabolism();
+    }
 }

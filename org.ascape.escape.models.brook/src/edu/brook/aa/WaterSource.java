@@ -16,7 +16,6 @@ import org.ascape.util.vis.DrawSymbol;
 import org.ascape.util.vis.Drawable;
 import org.eclipse.draw2d.Graphics;
 
-
 public class WaterSource extends Cell implements Drawable {
 
     /**
@@ -51,9 +50,8 @@ public class WaterSource extends Cell implements Drawable {
     }
 
     public boolean isExtant() {
-        return type == PERMANENT || type == RESERVOIR
-        && startDate <= getScape().getPeriod() && endDate >= getScape()
-        .getPeriod();
+        return type == PERMANENT || type == RESERVOIR && startDate <= getScape().getPeriod()
+            && endDate >= getScape().getPeriod();
     }
 
     public int getType() {

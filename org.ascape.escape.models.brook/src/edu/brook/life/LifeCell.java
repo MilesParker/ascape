@@ -10,7 +10,6 @@ import org.ascape.model.Cell;
 import org.ascape.util.Conditional;
 import org.ascape.util.vis.ColorFeature;
 
-
 /*
  * This software is confidential and proprietary to
  * NuTech Solutions, Inc.  No portion of this software may
@@ -38,70 +37,69 @@ import org.ascape.util.vis.ColorFeature;
  */
 public class LifeCell extends Cell {
 
-	/**
+    /**
      * 
      */
-	private static final long serialVersionUID = -5249250491439819467L;
+    private static final long serialVersionUID = -5249250491439819467L;
 
-	/**
-	 * A conditional is a class that is used to determine whether some object
-	 * passed to it meets a set condition. In this case, it simply determines
-	 * wheteher a life cell is alive or not. In Java, classes like this serve a
-	 * similar role as function pointers in C++; they allow us to use a common
-	 * method (in this case, countNeighbors) on any kind of object.
-	 */
-	public final static Conditional IS_ALIVE = new Conditional() {
-		/**
+    /**
+     * A conditional is a class that is used to determine whether some object passed to it meets a set condition. In
+     * this case, it simply determines wheteher a life cell is alive or not. In Java, classes like this serve a similar
+     * role as function pointers in C++; they allow us to use a common method (in this case, countNeighbors) on any kind
+     * of object.
+     */
+    public final static Conditional IS_ALIVE = new Conditional() {
+        /**
          * 
          */
-		private static final long serialVersionUID = 522038176098992877L;
+        private static final long serialVersionUID = 522038176098992877L;
 
-		public boolean meetsCondition(Object object) {
-			return ((LifeCell) object).alive;
-		}
-	};
+        public boolean meetsCondition(Object object) {
+            return ((LifeCell) object).alive;
+        }
+    };
 
-	// Is the cell currently alive?
-	public boolean alive;
-	// Stores the cells 'next' alive state; that is, the state that the cell
-	// should be in
-	// when all cells have finsihed calculating their next state.
-	public boolean nextAlive;
+    // Is the cell currently alive?
+    public boolean alive;
+    // Stores the cells 'next' alive state; that is, the state that the cell
+    // should be in
+    // when all cells have finsihed calculating their next state.
+    public boolean nextAlive;
 
-	public LifeCell() {
-	}
+    public LifeCell() {
+    }
 
-	public void initialize() {
-		super.initialize();
-		if (getRandom().nextFloat() < ConwayLife.getInitialAliveDensity()) {
-			alive = true;
-		} else {
-			alive = false;
-		}
-	}
+    public void initialize() {
+        super.initialize();
+        if (getRandom().nextFloat() < ConwayLife.getInitialAliveDensity()) {
+            alive = true;
+        } else {
+            alive = false;
+        }
+    }
 
-	public boolean calculateNextAlive() {
-		int neighborsAlive = countNeighbors(IS_ALIVE);
-		if (alive) {
-			if ((neighborsAlive < 2) || (neighborsAlive > 3)) {
-				return false;
-			}
-		}
-		// Dead
-		else {
-			if (neighborsAlive == 3) {
-				return true;
-			}
-		}
-		return alive;
-	}
+    public boolean calculateNextAlive() {
+        int neighborsAlive = countNeighbors(IS_ALIVE);
+        if (alive) {
+            if ((neighborsAlive < 2) || (neighborsAlive > 3)) {
+                return false;
+            }
+        }
+        // Dead
+        else {
+            if (neighborsAlive == 3) {
+                return true;
+            }
+        }
+        return alive;
+    }
 
-	@Override
-	public Object getPlatformColor() {
-		if (!alive) {
-			return ColorFeature.BLACK;
-		} else {
-			return ColorFeature.WHITE;
-		}
-	}
+    @Override
+    public Object getPlatformColor() {
+        if (!alive) {
+            return ColorFeature.BLACK;
+        } else {
+            return ColorFeature.WHITE;
+        }
+    }
 }

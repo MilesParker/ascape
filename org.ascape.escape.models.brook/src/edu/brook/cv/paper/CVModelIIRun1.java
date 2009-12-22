@@ -9,15 +9,15 @@ package edu.brook.cv.paper;
 
 public class CVModelIIRun1 extends CVModelII {
 
-	/**
+    /**
      * 
      */
-	private static final long serialVersionUID = 5593224423489834019L;
+    private static final long serialVersionUID = 5593224423489834019L;
 
-	public void createScape() {
-		super.createScape();
-		initialCopDensity = .0;
-		legitimacy = .90;
-		targetCopDensity = initialCopDensity;
-	}
+    public void createScape() {
+        super.createScape();
+        initialCopDensity = .0;
+        legitimacy = .90;
+        targetCopDensity = initialCopDensity;
+    }
 }
