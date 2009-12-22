@@ -5,8 +5,6 @@
  * Any referenced or included libraries carry licenses of their respective copyright holders. 
  */
 
-
-
 package org.ascape.examples.bions;
 
 import java.io.File;
@@ -17,7 +15,6 @@ import org.ascape.util.sweep.SweepDimension;
 import org.ascape.view.nonvis.ConsoleOutView;
 import org.ascape.view.nonvis.DataOutputView;
 import org.ascape.view.nonvis.SweepControlView;
-
 
 public class ModelData extends Model {
 
@@ -36,8 +33,7 @@ public class ModelData extends Model {
 
             public void scapeIterated(ScapeEvent scapeEvent) {
                 super.scapeIterated(scapeEvent);
-                if ((getPeriod() / 10) * 10 == getPeriod())
-                    System.out.println(getPeriod());
+                if ((getPeriod() / 10) * 10 == getPeriod()) System.out.println(getPeriod());
             }
         });
         DataOutputView data = new DataOutputView();

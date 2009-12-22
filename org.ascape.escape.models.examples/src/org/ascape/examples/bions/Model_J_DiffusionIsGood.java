@@ -5,11 +5,7 @@
  * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
-
-
 package org.ascape.examples.bions;
-
-
 
 import org.ascape.model.Agent;
 import org.ascape.model.CellOccupant;
@@ -28,7 +24,7 @@ import org.ascape.util.data.StatCollectorCSAMM;
 import org.ascape.util.vis.ColorFeature;
 import org.ascape.util.vis.ColorFeatureConcrete;
 import org.ascape.view.vis.ChartView;
-import org.ascape.view.vis.Overhead2DView;
+import org.escape.view.vis.Overhead2DView;
 
 public class Model_J_DiffusionIsGood extends Scape {
 
@@ -270,11 +266,10 @@ public class Model_J_DiffusionIsGood extends Scape {
             return ColorFeature.RED;
         }
 
-
-
         public void leaveEnergy() {
             super.leaveEnergy();
-            ((BionTile) getHostCell()).setRedEnergy(Math.min(((BionTile) getHostCell()).getRedEnergy() + bionEnergyLeakage, 1.0f));
+            ((BionTile) getHostCell()).setRedEnergy(Math.min(((BionTile) getHostCell()).getRedEnergy()
+                + bionEnergyLeakage, 1.0f));
         }
     }
 
@@ -289,11 +284,10 @@ public class Model_J_DiffusionIsGood extends Scape {
             return ColorFeature.ORANGE;
         }
 
-
-
         public void leaveEnergy() {
             super.leaveEnergy();
-            ((BionTile) getHostCell()).setOrangeEnergy(Math.min(((BionTile) getHostCell()).getOrangeEnergy() + bionEnergyLeakage, 1.0f));
+            ((BionTile) getHostCell()).setOrangeEnergy(Math.min(((BionTile) getHostCell()).getOrangeEnergy()
+                + bionEnergyLeakage, 1.0f));
         }
     }
 
@@ -308,11 +302,10 @@ public class Model_J_DiffusionIsGood extends Scape {
             return ColorFeature.BLUE;
         }
 
-
-
         public void leaveEnergy() {
             super.leaveEnergy();
-            ((BionTile) getHostCell()).setBlueEnergy(Math.min(((BionTile) getHostCell()).getBlueEnergy() + bionEnergyLeakage, 1.0f));
+            ((BionTile) getHostCell()).setBlueEnergy(Math.min(((BionTile) getHostCell()).getBlueEnergy()
+                + bionEnergyLeakage, 1.0f));
         }
     }
 
@@ -365,7 +358,8 @@ public class Model_J_DiffusionIsGood extends Scape {
         }
 
         public void execute(Agent a) {
-            HostCell target = (HostCell) ((CellOccupant) a).getHostCell().findNearest(condition, false, ((Bion) a).getVision());
+            HostCell target = (HostCell) ((CellOccupant) a).getHostCell().findNearest(condition, false,
+                                                                                      ((Bion) a).getVision());
             if (target != null) {
                 ((Bion) a).moveToward(target);
             }
@@ -384,7 +378,8 @@ public class Model_J_DiffusionIsGood extends Scape {
         }
 
         public void execute(Agent a) {
-            HostCell target = (HostCell) ((CellOccupant) a).getHostCell().findNearest(condition, false, ((Bion) a).getVision());
+            HostCell target = (HostCell) ((CellOccupant) a).getHostCell().findNearest(condition, false,
+                                                                                      ((Bion) a).getVision());
             if (target != null) {
                 ((Bion) a).moveAway(target);
             }
@@ -419,7 +414,8 @@ public class Model_J_DiffusionIsGood extends Scape {
         }
 
         public void execute(Agent a) {
-            HostCell target = (HostCell) ((CellOccupant) a).getHostCell().findMaximumWithin(point, true, ((Bion) a).getVision());
+            HostCell target = (HostCell) ((CellOccupant) a).getHostCell().findMaximumWithin(point, true,
+                                                                                            ((Bion) a).getVision());
             if (target != null) {
                 ((Bion) a).moveToward(target);
             }
@@ -438,7 +434,8 @@ public class Model_J_DiffusionIsGood extends Scape {
         }
 
         public void execute(Agent a) {
-            HostCell target = (HostCell) ((CellOccupant) a).getHostCell().findMaximumWithin(point, true, ((Bion) a).getVision());
+            HostCell target = (HostCell) ((CellOccupant) a).getHostCell().findMaximumWithin(point, true,
+                                                                                            ((Bion) a).getVision());
             if (target != null) {
                 ((Bion) a).moveAway(target);
             }
@@ -447,7 +444,8 @@ public class Model_J_DiffusionIsGood extends Scape {
 
     public final Rule MOVE_TOWARD_RED_ENERGY_RULE = new MoveTowardMaximumRule("Move Toward Red Energy", REDNESS);
 
-    public final Rule MOVE_TOWARD_ORANGE_ENERGY_RULE = new MoveTowardMaximumRule("Move Toward Orange Energy", ORANGENESS);
+    public final Rule MOVE_TOWARD_ORANGE_ENERGY_RULE = new MoveTowardMaximumRule("Move Toward Orange Energy",
+        ORANGENESS);
 
     public final Rule MOVE_TOWARD_BLUE_ENERGY_RULE = new MoveTowardMaximumRule("Move Toward Blue Energy", BLUENESS);
 
@@ -578,12 +576,13 @@ public class Model_J_DiffusionIsGood extends Scape {
 
     public void createViews() {
         super.createViews();
-        Overhead2DView mapView = new Overhead2DView("Map");
+        Overhead2DView mapView = new Overhead2DView();
+        mapView.setName("Map");
         mapView.setCellSize(15);
         territory.addView(mapView);
 
-
-        ChartView chart = new ChartView(); chart.setName("Population");
+        ChartView chart = new ChartView();
+        chart.setName("Population");
         addView(chart);
         chart.addSeries("Average Red Stored Energy", ColorFeature.RED);
         chart.addSeries("Average Orange Stored Energy", ColorFeature.ORANGE);

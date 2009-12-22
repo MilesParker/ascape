@@ -5,7 +5,6 @@
  * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
-
 package org.ascape.examples.bions;
 
 import org.ascape.model.Agent;
@@ -88,8 +87,6 @@ public class Model_Q_ContinuousSpace extends Scape {
             return ColorFeature.RED;
         }
 
-
-
         public String getName() {
             return "Red Bion at " + RedBion.this.getCoordinate();
         }
@@ -106,8 +103,6 @@ public class Model_Q_ContinuousSpace extends Scape {
             return ColorFeature.ORANGE;
         }
 
-
-
         public String getName() {
             return "Orange Bion at " + OrangeBion.this.getCoordinate();
         }
@@ -123,8 +118,6 @@ public class Model_Q_ContinuousSpace extends Scape {
         public Object getPlatformColor() {
             return ColorFeature.BLUE;
         }
-
-
 
         public String getName() {
             return "Blue Bion at " + BlueBion.this.getCoordinate();
@@ -147,7 +140,8 @@ public class Model_Q_ContinuousSpace extends Scape {
         }
 
         public void execute(Agent a) {
-            LocatedAgent target = territory.findNearest(((LocatedAgent) a).getCoordinate(), condition, false, ((Bion) a).getVision());
+            LocatedAgent target = territory.findNearest(((LocatedAgent) a).getCoordinate(), condition, false,
+                                                        ((Bion) a).getVision());
             if (target != null) {
                 ((Bion) a).moveToward(target.getCoordinate(), ((Bion) a).getVelocity());
             }
@@ -166,7 +160,8 @@ public class Model_Q_ContinuousSpace extends Scape {
         }
 
         public void execute(Agent a) {
-            LocatedAgent target = territory.findNearest(((LocatedAgent) a).getCoordinate(), condition, false, ((Bion) a).getVision());
+            LocatedAgent target = territory.findNearest(((LocatedAgent) a).getCoordinate(), condition, false,
+                                                        ((Bion) a).getVision());
             if (target != null) {
                 ((Bion) a).moveAway(target.getCoordinate(), ((Bion) a).getVelocity());
             }
@@ -257,7 +252,7 @@ public class Model_Q_ContinuousSpace extends Scape {
         bions.setName(name);
         bions.setPrototypeAgent(protoAgent);
         bions.addInitialRule(MOVE_RANDOM_LOCATION_RULE);
-        //bions.addRule(RANDOM_WALK_RULE);
+        // bions.addRule(RANDOM_WALK_RULE);
         bions.addRule(MOVE_TOWARD_RED_RULE, false);
         bions.addRule(MOVE_TOWARD_ORANGE_RULE, false);
         bions.addRule(MOVE_TOWARD_BLUE_RULE, false);

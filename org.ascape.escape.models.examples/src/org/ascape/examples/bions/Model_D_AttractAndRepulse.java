@@ -5,11 +5,7 @@
  * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
-
-
 package org.ascape.examples.bions;
-
-
 
 import org.ascape.model.Agent;
 import org.ascape.model.CellOccupant;
@@ -21,7 +17,7 @@ import org.ascape.model.space.Array2D;
 import org.ascape.model.space.Array2DMoore;
 import org.ascape.util.Conditional;
 import org.ascape.util.vis.ColorFeature;
-import org.ascape.view.vis.Overhead2DView;
+import org.escape.view.vis.Overhead2DView;
 
 /**
  * Bion model.
@@ -169,7 +165,8 @@ public class Model_D_AttractAndRepulse extends Scape {
         }
 
         public void execute(Agent a) {
-            HostCell target = (HostCell) ((CellOccupant) a).getHostCell().findNearest(condition, false, ((Bion) a).getVision());
+            HostCell target = (HostCell) ((CellOccupant) a).getHostCell().findNearest(condition, false,
+                                                                                      ((Bion) a).getVision());
             if (target != null) {
                 ((Bion) a).moveToward(target);
             }
@@ -188,7 +185,8 @@ public class Model_D_AttractAndRepulse extends Scape {
         }
 
         public void execute(Agent a) {
-            HostCell target = (HostCell) ((CellOccupant) a).getHostCell().findNearest(condition, false, ((Bion) a).getVision());
+            HostCell target = (HostCell) ((CellOccupant) a).getHostCell().findNearest(condition, false,
+                                                                                      ((Bion) a).getVision());
             if (target != null) {
                 ((Bion) a).moveAway(target);
             }
@@ -249,7 +247,8 @@ public class Model_D_AttractAndRepulse extends Scape {
 
     public void createViews() {
         super.createViews();
-        Overhead2DView mapView = new Overhead2DView("Map");
+        Overhead2DView mapView = new Overhead2DView();
+        mapView.setName("Map");
         territory.addView(mapView);
     }
 

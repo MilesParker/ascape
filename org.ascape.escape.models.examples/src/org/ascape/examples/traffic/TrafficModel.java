@@ -5,8 +5,6 @@
  * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
-
-
 package org.ascape.examples.traffic;
 
 import org.ascape.model.Agent;
@@ -16,7 +14,7 @@ import org.ascape.model.space.Array2DMoore;
 import org.ascape.util.data.StatCollectorCSAMM;
 import org.ascape.util.vis.ColorFeature;
 import org.ascape.view.vis.ChartView;
-import org.ascape.view.vis.Overhead2DView;
+import org.escape.view.vis.Overhead2DView;
 
 public class TrafficModel extends Scape {
 
@@ -86,33 +84,33 @@ public class TrafficModel extends Scape {
                 return ((Car) a).getActualSpeed();
             }
         });
-        //        cars.addStatCollector(new StatCollectorCondCSAMM("Speed Left Lane") {
-        //            public boolean meetsCondition(Object a) {
-        //                return (((Coordinate2DDiscrete) ((Car) a).getCoordinate()).getYValue() == 0);
-        //            }
+        // cars.addStatCollector(new StatCollectorCondCSAMM("Speed Left Lane") {
+        // public boolean meetsCondition(Object a) {
+        // return (((Coordinate2DDiscrete) ((Car) a).getCoordinate()).getYValue() == 0);
+        // }
         //
-        //            public double getValue(Object a) {
-        //                return ((Car) a).getActualSpeed();
-        //            }
-        //        });
-        //        cars.addStatCollector(new StatCollectorCondCSAMM("Speed Middle Lanes") {
-        //            public boolean meetsCondition(Object a) {
-        //                return (((Coordinate2DDiscrete) ((Car) a).getCoordinate()).getYValue() == 1);
-        //            }
+        // public double getValue(Object a) {
+        // return ((Car) a).getActualSpeed();
+        // }
+        // });
+        // cars.addStatCollector(new StatCollectorCondCSAMM("Speed Middle Lanes") {
+        // public boolean meetsCondition(Object a) {
+        // return (((Coordinate2DDiscrete) ((Car) a).getCoordinate()).getYValue() == 1);
+        // }
         //
-        //            public double getValue(Object a) {
-        //                return ((Car) a).getActualSpeed();
-        //            }
-        //        });
-        //        cars.addStatCollector(new StatCollectorCondCSAMM("Speed Right Lane") {
-        //            public boolean meetsCondition(Object a) {
-        //                return (((Coordinate2DDiscrete) ((Car) a).getCoordinate()).getYValue() == 2);
-        //            }
+        // public double getValue(Object a) {
+        // return ((Car) a).getActualSpeed();
+        // }
+        // });
+        // cars.addStatCollector(new StatCollectorCondCSAMM("Speed Right Lane") {
+        // public boolean meetsCondition(Object a) {
+        // return (((Coordinate2DDiscrete) ((Car) a).getCoordinate()).getYValue() == 2);
+        // }
         //
-        //            public double getValue(Object a) {
-        //                return ((Car) a).getActualSpeed();
-        //            }
-        //        });
+        // public double getValue(Object a) {
+        // return ((Car) a).getActualSpeed();
+        // }
+        // });
         cars.addStatCollector(new StatCollectorCSAMM("Frustration") {
             /**
              * 
@@ -133,7 +131,8 @@ public class TrafficModel extends Scape {
     public void createGraphicViews() {
         super.createGraphicViews();
 
-        Overhead2DView helicopterView = new Overhead2DView("Helicopter View");
+        Overhead2DView helicopterView = new Overhead2DView();
+        helicopterView.setName("Helicopter View");
         highway.addView(helicopterView);
         helicopterView.setDrawByFeature(true);
         highway.addDrawFeature(RoadTile.DRAW_LANE_MARKINGS);
@@ -150,19 +149,18 @@ public class TrafficModel extends Scape {
         chart.addSeries("Average Speed", ColorFeature.GREEN);
         chart.addSeries("Average Frustration", ColorFeature.RED);
 
-        //        ChartView chart2 = new ChartView("Lane Speed");
-        //        addView(chart2);
-        //        chart2.addSeries("Average Speed Left Lane", Color.green);
-        //        chart2.addSeries("Average Speed Middle Lanes", Color.yellow);
-        //        chart2.addSeries("Average Speed Right Lane", Color.red);
+        // ChartView chart2 = new ChartView("Lane Speed");
+        // addView(chart2);
+        // chart2.addSeries("Average Speed Left Lane", Color.green);
+        // chart2.addSeries("Average Speed Middle Lanes", Color.yellow);
+        // chart2.addSeries("Average Speed Right Lane", Color.red);
 
-        //        ChartView chart3 = new ChartView("Lane Density");
-        //        addView(chart3);
-        //        chart3.addSeries("Count Speed Left Lane", Color.green);
-        //        chart3.addSeries("Count Speed Middle Lanes", Color.yellow);
-        //        chart3.addSeries("Count Speed Right Lane", Color.red);
+        // ChartView chart3 = new ChartView("Lane Density");
+        // addView(chart3);
+        // chart3.addSeries("Count Speed Left Lane", Color.green);
+        // chart3.addSeries("Count Speed Middle Lanes", Color.yellow);
+        // chart3.addSeries("Count Speed Right Lane", Color.red);
     }
-
 
     public Scape getCars() {
         return cars;
@@ -253,5 +251,3 @@ public class TrafficModel extends Scape {
     }
 
 }
-
-

@@ -14,8 +14,7 @@ import org.ascape.model.event.ScapeEvent;
 import org.ascape.model.space.Array2D;
 import org.ascape.model.space.Array2DMoore;
 import org.ascape.util.vis.ColorFeature;
-import org.ascape.view.vis.Overhead2DView;
-
+import org.escape.view.vis.Overhead2DView;
 
 /**
  * Bion model.
@@ -130,7 +129,8 @@ public class Model_C_AddColorTypes extends Scape {
 
     public void createViews() {
         super.createViews();
-        Overhead2DView mapView = new Overhead2DView("Map");
+        Overhead2DView mapView = new Overhead2DView();
+        mapView.setName("Map");
         territory.addView(mapView);
     }
 

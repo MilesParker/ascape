@@ -5,8 +5,6 @@
  * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
-
-
 package org.ascape.examples.traffic;
 
 import org.ascape.model.CellOccupant;
@@ -16,7 +14,6 @@ import org.ascape.util.vis.ColorFeatureGradiatedIndex;
 import org.ascape.util.vis.DrawFeature;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.swt.graphics.Color;
-
 
 public class Car extends CellOccupant {
 
@@ -76,11 +73,14 @@ public class Car extends CellOccupant {
 
     public void initialize() {
         desiredSpeed = randomInRange(((TrafficModel) getRoot()).getMinSpeed(), ((TrafficModel) getRoot()).getMaxSpeed());
-        safeDistance = randomInRange(((TrafficModel) getRoot()).getMinSafeDistance(), ((TrafficModel) getRoot()).getMaxSafeDistance());
+        safeDistance = randomInRange(((TrafficModel) getRoot()).getMinSafeDistance(), ((TrafficModel) getRoot())
+                .getMaxSafeDistance());
         ;
-        acceleration = randomInRange(((TrafficModel) getRoot()).getMinAcceleration(), ((TrafficModel) getRoot()).getMaxAcceleration());
+        acceleration = randomInRange(((TrafficModel) getRoot()).getMinAcceleration(), ((TrafficModel) getRoot())
+                .getMaxAcceleration());
         ;
-        deceleration = randomInRange(((TrafficModel) getRoot()).getMinDeceleration(), ((TrafficModel) getRoot()).getMaxDeceleration());
+        deceleration = randomInRange(((TrafficModel) getRoot()).getMinDeceleration(), ((TrafficModel) getRoot())
+                .getMaxDeceleration());
         ;
         actualSpeed = desiredSpeed;
         location = 0.0;
@@ -135,7 +135,8 @@ public class Car extends CellOccupant {
     }
 
     public boolean isOpen(RoadTile roadTile) {
-        if (roadTile.isAvailable() && carBehind(roadTile, safeDistance) == null && carAhead(roadTile, safeDistance) == null) {
+        if (roadTile.isAvailable() && carBehind(roadTile, safeDistance) == null
+            && carAhead(roadTile, safeDistance) == null) {
             return true;
         } else {
             return false;
@@ -176,20 +177,21 @@ public class Car extends CellOccupant {
 
     public void changeLanes() {
         if (behavior == COOPERATOR) {
-            if (carAhead(safeDistance) != null) { //can't go as fast as I want, so I'll try to move left
+            if (carAhead(safeDistance) != null) { // can't go as fast as I want, so I'll try to move left
                 RoadTile leftCell = ((RoadTile) getHostCell()).cellLeft();
                 if (leftCell != null && isOpen(leftCell) && carAhead(leftCell, safeDistance) == null) {
                     moveTo(leftCell);
                 }
-            } else if (carBehind(safeDistance * 2.0) != null) { //Oh someone is coming up behind me, better move over to let them pass
+            } else if (carBehind(safeDistance * 2.0) != null) { // Oh someone is coming up behind me, better move over
+                                                                // to let them pass
                 RoadTile rightCell = ((RoadTile) getHostCell()).cellRight();
                 if (rightCell != null && isOpen(rightCell) && carAhead(rightCell, safeDistance) == null) {
                     moveTo(rightCell);
                 }
             }
         } else if (behavior == DEFECTOR) {
-            if (carAhead(safeDistance) != null) { //can't go as fast as I want, so I'll try to move left
-                //So I'm going to hop to a random other lane that has an opening
+            if (carAhead(safeDistance) != null) { // can't go as fast as I want, so I'll try to move left
+                // So I'm going to hop to a random other lane that has an opening
                 if (randomIs()) {
                     RoadTile leftCell = ((RoadTile) getHostCell()).cellLeft();
                     if (leftCell != null && isOpen(leftCell) && carAhead(leftCell, safeDistance) == null) {
@@ -211,7 +213,7 @@ public class Car extends CellOccupant {
                         }
                     }
                 }
-            } else { //Do nothing, because I'm fine, screw everyone else
+            } else { // Do nothing, because I'm fine, screw everyone else
             }
         } else {
             throw new RuntimeException("Unspecified behvior in car.");
@@ -227,7 +229,7 @@ public class Car extends CellOccupant {
             } else {
                 mode = COASTING;
             }
-        } else { //someone is there
+        } else { // someone is there
             mode = DECELERATING;
             actualSpeed -= deceleration;
             if (actualSpeed < 0.0) {

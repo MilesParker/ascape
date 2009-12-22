@@ -5,8 +5,6 @@
  * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
-
-
 package org.ascape.examples.traffic;
 
 import org.ascape.model.HostCell;
@@ -15,7 +13,6 @@ import org.ascape.model.space.Coordinate2DDiscrete;
 import org.ascape.util.vis.ColorFeature;
 import org.ascape.util.vis.DrawFeature;
 import org.eclipse.draw2d.Graphics;
-
 
 public class RoadTile extends HostCell {
 
@@ -49,7 +46,8 @@ public class RoadTile extends HostCell {
         int y = ((Coordinate2DDiscrete) getCoordinate()).getYValue();
         y--;
         if (y >= 0) {
-            RoadTile leftCell = (RoadTile) ((Array2D) getScape().getSpace()).get(((Coordinate2DDiscrete) getCoordinate()).getXValue(), y);
+            RoadTile leftCell = (RoadTile) ((Array2D) getScape().getSpace())
+                    .get(((Coordinate2DDiscrete) getCoordinate()).getXValue(), y);
             return leftCell;
         }
         return null;
@@ -59,7 +57,8 @@ public class RoadTile extends HostCell {
         int y = ((Coordinate2DDiscrete) getCoordinate()).getYValue();
         y++;
         if (y < ((Coordinate2DDiscrete) getScape().getExtent()).getYValue()) {
-            RoadTile rightCell = (RoadTile) ((Array2D) getScape().getSpace()).get(((Coordinate2DDiscrete) getCoordinate()).getXValue(), y);
+            RoadTile rightCell = (RoadTile) ((Array2D) getScape().getSpace())
+                    .get(((Coordinate2DDiscrete) getCoordinate()).getXValue(), y);
             return rightCell;
         }
         return null;
@@ -71,7 +70,8 @@ public class RoadTile extends HostCell {
         if (x >= ((Coordinate2DDiscrete) getScape().getExtent()).getXValue()) {
             x = 0;
         }
-        return (RoadTile) ((Array2D) getScape().getSpace()).get(x, ((Coordinate2DDiscrete) getCoordinate()).getYValue());
+        return (RoadTile) ((Array2D) getScape().getSpace())
+                .get(x, ((Coordinate2DDiscrete) getCoordinate()).getYValue());
     }
 
     public RoadTile cellAhead(int distance) {
@@ -81,7 +81,8 @@ public class RoadTile extends HostCell {
         if (x >= xSize) {
             x -= xSize;
         }
-        return (RoadTile) ((Array2D) getScape().getSpace()).get(x, ((Coordinate2DDiscrete) getCoordinate()).getYValue());
+        return (RoadTile) ((Array2D) getScape().getSpace())
+                .get(x, ((Coordinate2DDiscrete) getCoordinate()).getYValue());
     }
 
     public RoadTile cellBehind(int distance) {
@@ -91,6 +92,7 @@ public class RoadTile extends HostCell {
             int xSize = ((Coordinate2DDiscrete) getScape().getExtent()).getXValue();
             x += xSize;
         }
-        return (RoadTile) ((Array2D) getScape().getSpace()).get(x, ((Coordinate2DDiscrete) getCoordinate()).getYValue());
+        return (RoadTile) ((Array2D) getScape().getSpace())
+                .get(x, ((Coordinate2DDiscrete) getCoordinate()).getYValue());
     }
 }

@@ -5,8 +5,6 @@
  * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
-
-
 package org.ascape.examples.bions;
 
 import org.ascape.model.CellOccupant;
@@ -15,7 +13,7 @@ import org.ascape.model.Scape;
 import org.ascape.model.space.Array2D;
 import org.ascape.model.space.Array2DMoore;
 import org.ascape.util.vis.ColorFeature;
-import org.ascape.view.vis.Overhead2DView;
+import org.escape.view.vis.Overhead2DView;
 
 /**
  * Bion model.
@@ -75,7 +73,8 @@ public class Model_B_AddMovement extends Scape {
 
     public void createViews() {
         super.createViews();
-        Overhead2DView mapView = new Overhead2DView("Map");
+        Overhead2DView mapView = new Overhead2DView();
+        mapView.setName("Map");
         territory.addView(mapView);
     }
 }

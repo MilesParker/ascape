@@ -5,8 +5,6 @@
  * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
-
-
 package org.ascape.examples.bions;
 
 import java.util.Iterator;
@@ -158,8 +156,7 @@ public class Model_R extends Scape {
             Graph graph = (Graph) ((Model_R) a.getRoot()).getGraph().getSpace();
             for (Iterator agentsIt = graph.iterator(); agentsIt.hasNext();) {
                 Cell neighbor = (Cell) agentsIt.next();
-                if (a.getRandom().nextDouble() < ((Model_R) a.getRoot()).getProbBuildLink()
-                        && neighbor != node) {
+                if (a.getRandom().nextDouble() < ((Model_R) a.getRoot()).getProbBuildLink() && neighbor != node) {
                     if (((Model_R) a.getRoot()).isDirectedGraph()) {
                         graph.addNeighbor(node, neighbor);
                     } else {
@@ -184,8 +181,7 @@ public class Model_R extends Scape {
                 graph.getNeighborsFor(node).clear();
                 for (Iterator agentsIt = graph.iterator(); agentsIt.hasNext();) {
                     Cell neighbor = (Cell) agentsIt.next();
-                    if (a.getRandom().nextDouble() <= model.getProbBuildLink()
-                            && neighbor != node) {
+                    if (a.getRandom().nextDouble() <= model.getProbBuildLink() && neighbor != node) {
                         if (model.isDirectedGraph()) {
                             graph.addNeighbor(node, neighbor);
                         } else {
@@ -346,8 +342,6 @@ public class Model_R extends Scape {
             return ColorFeature.RED;
         }
 
-
-
         public String getName() {
             return "Red Bion at " + getCoordinate();
         }
@@ -364,8 +358,6 @@ public class Model_R extends Scape {
             return ColorFeature.ORANGE;
         }
 
-
-
         public String getName() {
             return "Orange Bion at " + getCoordinate();
         }
@@ -381,8 +373,6 @@ public class Model_R extends Scape {
         public Object getPlatformColor() {
             return ColorFeature.BLUE;
         }
-
-
 
         public String getName() {
             return "Blue Bion at " + getCoordinate();

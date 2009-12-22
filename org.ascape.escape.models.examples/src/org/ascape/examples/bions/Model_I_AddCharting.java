@@ -7,8 +7,6 @@
 
 package org.ascape.examples.bions;
 
-
-
 import org.ascape.model.Agent;
 import org.ascape.model.CellOccupant;
 import org.ascape.model.HostCell;
@@ -24,7 +22,7 @@ import org.ascape.util.data.StatCollectorCSAMM;
 import org.ascape.util.vis.ColorFeature;
 import org.ascape.util.vis.ColorFeatureConcrete;
 import org.ascape.view.vis.ChartView;
-import org.ascape.view.vis.Overhead2DView;
+import org.escape.view.vis.Overhead2DView;
 
 public class Model_I_AddCharting extends Scape {
 
@@ -214,7 +212,7 @@ public class Model_I_AddCharting extends Scape {
         public void leaveEnergy() {
             super.leaveEnergy();
             ((BionTile) getHostCell()).setRedEnergy(Math.min(((BionTile) getHostCell()).getRedEnergy()
-                                                             + bionEnergyLeakage, 1.0f));
+                + bionEnergyLeakage, 1.0f));
         }
     }
 
@@ -232,7 +230,7 @@ public class Model_I_AddCharting extends Scape {
         public void leaveEnergy() {
             super.leaveEnergy();
             ((BionTile) getHostCell()).setOrangeEnergy(Math.min(((BionTile) getHostCell()).getOrangeEnergy()
-                                                                + bionEnergyLeakage, 1.0f));
+                + bionEnergyLeakage, 1.0f));
         }
     }
 
@@ -250,7 +248,7 @@ public class Model_I_AddCharting extends Scape {
         public void leaveEnergy() {
             super.leaveEnergy();
             ((BionTile) getHostCell()).setBlueEnergy(Math.min(((BionTile) getHostCell()).getBlueEnergy()
-                                                              + bionEnergyLeakage, 1.0f));
+                + bionEnergyLeakage, 1.0f));
         }
     }
 
@@ -390,7 +388,7 @@ public class Model_I_AddCharting extends Scape {
     public final Rule MOVE_TOWARD_RED_ENERGY_RULE = new MoveTowardMaximumRule("Move Toward Red Energy", REDNESS);
 
     public final Rule MOVE_TOWARD_ORANGE_ENERGY_RULE = new MoveTowardMaximumRule("Move Toward Orange Energy",
-                                                                                 ORANGENESS);
+        ORANGENESS);
 
     public final Rule MOVE_TOWARD_BLUE_ENERGY_RULE = new MoveTowardMaximumRule("Move Toward Blue Energy", BLUENESS);
 
@@ -517,10 +515,10 @@ public class Model_I_AddCharting extends Scape {
 
     public void createViews() {
         super.createViews();
-        Overhead2DView mapView = new Overhead2DView("Map");
+        Overhead2DView mapView = new Overhead2DView();
+        mapView.setName("Map");
         mapView.setCellSize(15);
         territory.addView(mapView);
-
 
         ChartView chart = new ChartView();
         chart.setName("Population");
