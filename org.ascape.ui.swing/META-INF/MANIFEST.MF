@@ -7,8 +7,7 @@ Bundle-Vendor: %providerName
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.ascape.core;visibility:=reexport,
  org.ascape.common.lib;bundle-version="5.3.0";visibility:=reexport,
- org.apache.ant,
- org.ascape.ant;bundle-version="1.0.0"
+ org.ascape.ant;bundle-version="5.3.0";resolution:=optional;visibility:=reexport
 Export-Package: org.ascape.ant.swing,
  org.ascape.gis.model,
  org.ascape.gis.view,
@@ -24,5 +23,5 @@ Export-Package: org.ascape.ant.swing,
  org.ascape.view.vis.control,
  org.ascape.view.vis.erv
 Bundle-ClassPath: .
-Import-Package: org.apache.tools.ant
 Bundle-Localization: plugin
+Import-Package: org.apache.tools.ant
