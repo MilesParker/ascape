@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Compile org.ascape.swing" default="main">
+	<target name="main">
+		<ant antfile="build.xml" dir="../../org.ascape.common.lib" target="build.jars"/>
+		<ant antfile="build.xml" dir="../../../eclipse/dependencies/plugins/org.jdom_1.0.0" target="build.jars"/>
+		<ant antfile="build.xml" dir="../../org.ascape.ant" target="build.jars"/>
+		<ant antfile="build.xml" dir="../../org.ascape.ui.swing" target="build.jars"/>
+	</target>
+</project>

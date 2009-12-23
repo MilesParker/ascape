@@ -60,12 +60,6 @@ THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
    </license>
 
-   <requires>
-      <import plugin="org.ascape.core" version="5.3.0" match="greaterOrEqual"/>
-      <import plugin="org.ascape.common.lib" version="5.3.0" match="greaterOrEqual"/>
-      <import plugin="org.apache.ant"/>
-   </requires>
-
    <plugin
          id="org.ascape.ant"
          download-size="0"
@@ -88,7 +82,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
          unpack="false"/>
 
    <plugin
-         id="org.ascape.core"
+         id="org.jdom"
          download-size="0"
          install-size="0"
          version="0.0.0"
