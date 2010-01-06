@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toc label="Ascape User&apos;s Guide and Manual" topic="Content/index.html">
+   <topic href="Content/index.html" label="User&apos;s Guide">
+      <topic label="Topic">
+      </topic>
+   </topic>
+   <topic href="Content/manual/convert/Overview.html" label="The Ascape Manual">
+      <topic href="Content/manual/convert/Overview.html#preface" label="Preface">
+      </topic>
+      <topic href="Content/manual/convert/Overview.html#specialnote" label="Special Note">
+      </topic>
+      <topic href="Content/manual/convert/Overview.html#introduction" label="Introduction">
+      </topic>
+   <topic href="Content/manual/convert/Section1.html" label="Section 1. Agent-based Modeling">
+<topic href="Content/manual/convert/Section1.html#1.1" label="1.1 Introduction"></topic>
+<topic href="Content/manual/convert/Section1.html#1.2" label="1.2 Social Science Modeling">
+<topic href="Content/manual/convert/Section1.html#1.2.1" label="1.2.1 Game theory"></topic>
+<topic href="Content/manual/convert/Section1.html#1.2.2" label="1.2.2 Evolutionary game theory"></topic>
+<topic href="Content/manual/convert/Section1.html#1.2.3" label="1.2.3 Organizational theory"></topic>
+<topic href="Content/manual/convert/Section1.html#1.2.4" label="1.2.4 Economics /Markets"></topic>
+<topic href="Content/manual/convert/Section1.html#1.2.5" label="1.2.5 Anthropology"></topic>
+<topic href="Content/manual/convert/Section1.html#1.2.6" label="1.2.6 Sociology"></topic>
+<topic href="Content/manual/convert/Section1.html#1.2.7" label="1.2.7 Political science"></topic>
+</topic></topic>
+<topic href="Content/manual/convert/Section2.html" label="Section 2. The Ascape Modeling Framework">
+<topic href="Content/manual/convert/Section2.html#2.1" label="2.1 The Basic Structure of an Ascape Model"></topic>
+<topic href="Content/manual/convert/Section2.html#2.2" label="2.2 Constructing the Agent Scapes">
+<topic href="Content/manual/convert/Section2.html#2.2.1" label="2.2.1 Specifying agents in the model"></topic>
+<topic href="Content/manual/convert/Section2.html#2.2.2" label="2.2.2 Specifying the execution order"></topic>
+<topic href="Content/manual/convert/Section2.html#2.2.3" label="2.2.3 Specifying statistical operations"></topic>
+<topic href="Content/manual/convert/Section2.html#2.2.4" label="2.2.4 Additional scape graph properties"></topic>
+</topic>
+<topic href="Content/manual/convert/Section2.html#2.3" label="2.3 A First Introduction to Ascape Code">
+<topic href="Content/manual/convert/Section2.html#2.3.1" label="2.3.1 The basic framework for a coordination game model"></topic>
+</topic></topic>
+<topic href="Content/manual/convert/Section3.html" label="Section 3. The Ascape Tutorial">
+<topic href="Content/manual/convert/Section3.html#3.1" label="3.1 The Coordination Game Model">
+<topic href="Content/manual/convert/Section3.html#3.1.1" label="3.1.1 Finishing the CoordinationGame Class">
+<topic href="Content/manual/convert/Section3.html#3.1.1.1" label="3.1.1.1 The view object"></topic>
+<topic href="Content/manual/convert/Section3.html#3.1.1.2" label="3.1.1.2 Creating all of the agents"></topic></topic>
+<topic href="Content/manual/convert/Section3.html#3.1.2" label="3.1.2 Making the CoordinationGamePlayer Class">
+<topic href="Content/manual/convert/Section3.html#3.1.2.1" label="3.1.2.1 Rules in Ascape"></topic>
+<topic href="Content/manual/convert/Section3.html#3.1.2.2" label="3.1.2.2 The CoordinationGamePlayer Class"></topic></topic>
+<topic href="Content/manual/convert/Section3.html#3.1.3" label="3.1.3 Cleaning up the Model"></topic>
+<topic href="Content/manual/convert/Section3.html#3.1.4" label="3.1.4 Adding Statistical Operations"></topic>
+</topic>
+<topic href="Content/manual/convert/Section3.html#3.2" label="3.2 Experimenting with the Model">
+<topic href="Content/manual/convert/Section3.html#3.2.1" label="3.2.1 Editing Model Properties at Runtime">
+<topic href="Content/manual/convert/Section3.html#3.2.1.1" label="3.2.1.1 The Rules Tab"></topic>
+</topic>
+<topic href="Content/manual/convert/Section3.html#3.2.2" label="3.2.2 Adding Stochasticity to Model">
+<topic href="Content/manual/convert/Section3.html#3.2.2.1" label="3.2.2.1 Stochastic stability"></topic>
+</topic>
+<topic href="Content/manual/convert/Section3.html#3.2.3" label="3.2.3 Adding Averaging Statistics to the Model"></topic>
+<topic href="Content/manual/convert/Section3.html#3.2.4" label="3.2.4 Best Reply Dynamics"></topic>
+<topic href="Content/manual/convert/Section3.html#3.2.5" label="3.2.5 A Biological Coordination Game"></topic>
+<topic href="Content/manual/convert/Section3.html#3.2.6" label="3.2.6 Dynamic Neighborhoods and Social Networks">
+<topic href="Content/manual/convert/Section3.html#3.2.6.1" label="3.2.6.1 Friends network model"></topic>
+</topic>
+</topic>
+<topic href="Content/manual/convert/Section3.html#3.3" label="3.3 Summary and Conclusion"></topic>
+</topic>
+<topic href="Content/manual/convert/Appendix.html" label="Appendix. Code Samples">
+<topic href="Content/manual/convert/Appendix.html#1" label="Model 1: Coordination Game">
+<topic href="Content/manual/convert/Appendix.html#1.1" label="CoordinationGame.java"></topic>
+<topic href="Content/manual/convert/Appendix.html#1.2" label="CoordinationGamePlayer.java"></topic></topic>
+<topic href="Content/manual/convert/Appendix.html#2" label="Model 2:Stochasticity and Averaging Statistics">
+<topic href="Content/manual/convert/Appendix.html#2.1" label="CoordinationGame.java"></topic>
+<topic href="Content/manual/convert/Appendix.html#2.2" label="CoordinationGamePlayer.java"></topic></topic>
+<topic href="Content/manual/convert/Appendix.html#3" label="Model 3:Best Reply Dynamics">
+<topic href="Content/manual/convert/Appendix.html#3.1" label="CoordinationGame.java"></topic>
+<topic href="Content/manual/convert/Appendix.html#3.2" label="CoordinationGamePlayer.java"></topic></topic>
+<topic href="Content/manual/convert/Appendix.html#4" label="Model 4: Biological Coordination Game">
+<topic href="Content/manual/convert/Appendix.html#4.1" label="CoordinationGame.java"></topic>
+<topic href="Content/manual/convert/Appendix.html#4.1" label="CoordinationGamePlayer.java"></topic></topic>
+<topic href="Content/manual/convert/Appendix.html#5" label="Model 5: Friends Network Model">
+<topic href="Content/manual/convert/Appendix.html#5.1" label="CoordinationGame.java"></topic>
+<topic href="Content/manual/convert/Appendix.html#5.2" label="CoordinationGamePlayer.java"></topic></topic>
+</topic>
+<topic href="Content/manual/convert/Content/manual/convert/Overview.html#license" label="License">
+</topic></topic>
+</toc>

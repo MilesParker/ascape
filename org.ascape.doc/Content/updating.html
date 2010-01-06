@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<STYLE TYPE="text/css">
+body,html {
+	margin: 0;
+	padding: 0;
+	color: #000;
+}
+
+body {
+	min-width: 750px;
+}
+
+#wrap {
+	margin: 0 auto;
+	width: 1024px;
+}
+
+#header {
+	margin: 20;
+	left: 220px;
+}
+
+#nav {
+	
+}
+
+#nav ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#nav li {
+	display: inline;
+	margin: 0;
+	padding: 0;
+}
+
+#main {
+	float: left;
+	padding-left: 190px;
+	width: 800px;
+}
+
+#sidebarfake {
+	float: left;
+	width: 190px;
+}
+
+#sidebar {
+	position: fixed;
+	float: left;
+	width: 170px;
+}
+
+#footer {
+	border-top: solid 1px #BEBFAA;
+	clear: both;
+}
+
+#section {
+	background: #FFFFDC;
+	margin: 2em 1em 1em 2em;
+	padding: 0.5em 2em 2em 2em;
+	text-align: justify;
+	padding: 0.5em 2em 2em 2em;
+}
+
+#section h1 {
+	text-align: left;
+	font-family: sans-serif;
+}
+
+#section p {
+	text-indent: 2em;
+}
+
+#section p.noindent {
+	text-indent: 0;
+}
+
+#agent {
+	margin: 0em 0em 0em 0em;
+	padding: 0em 0em 0em 0em;
+	text-align: justify;
+}
+}
+</STYLE>
+<title>Updating from earlier (pre 4.0) versions of Ascape</title>
+</head>
+<body>
+<h1>Updating from earlier (pre 4.0) versions of Ascape</h1>
+
+We have tried to preserve as much backward compatibility as possible. Still, this is a the first release in over eight
+years, and there have been many many changes to Ascape, so it is quite possible that some changes will be needed,
+especially is you have heavily customized Ascape views and scapes. To convert an existing model, try the follwingattempt
+to compile it with the new version of Ascape. .
+<ul>
+				<li>The package hierarchy has changed to org.ascape from one of edu.brook, com.bios, or com.nutech. :) The
+				easiest way to deal with this in a mdoern IDE is probably to delete all of you import statements and then use your
+				IDE's auto-import feature (in Eclipse that is Source:Organize Imports) to attempt to find the re-packaged classes.
+				You may have to do some of this manually.</li>
+				<li>In 3.0 a new more flexible Scape space mechanism was introduced. You will need to replace all patterns
+				like:<pre>new ScapeArray2DMooore()</pre>with:<pre>new Scape(new Array2DMoore())</pre>Simple, eh?</li>
+				<li>Many methods have been deprecated -- for greater flexibility you should migrate to the replacement methods
+				as soon as is practical. Hopefully these will imprOve the code. For example: <pre>
+        CellOccupant[] neighbors; 
+        neighbors = getHostCell().getNeighboringOccupants(); 
+		for (int i = 0; i &lt; neighbors.length; i++) { 
+			currScore = ((CoordinationGamePlayer)neighbors[i]).totalSc ore; 
+			 if (currScore &gt; bestScore)  { 
+				  bestScore = currScore; 
+				myColor = ((CoordinationGamePlayer)neighbors[i]).getColor(); 
+ 		 	} 
+		} 
+</pre> <pre>
+        List neighbors = findNeighborsOnHost();
+        for (Object neighbor : neighbors) {
+            currScore = ((CoordinationGamePlayer) neighbor).totalScore;
+            if (currScore &gt; bestScore) {
+                bestScore = currScore;
+                myColor = ((CoordinationGamePlayer) neighbor).getColor();
+            }
+        }
+</pre> And actually there is a much better way to do even that now, but we won't get into that...</li>
+				<li>The <code>onSetup()</code> and similar methods are no longer used. Use the <code>scapeSetup(ScapeEvent
+				event)</code> pattern instead.</li>
+				<li>Replace <code>Scape.addAgent()</code> with <code>Scape.add()</code>.</li>
+				<li>All of the Event and Listener classes have been moved to ..ascape.model.event. You may need to update your
+				imports to reflect this if you work with listeners directly. A new class, UserEnvironment, takes over many of the
+				functions of ViewFrameBridge. Typically you will just need to replace getViewFrameBridge() with
+				getScape().getUserEnvironment(), or in some cases, simply UserEnvironment.</li>
+				<li>If you run into any insurmountable difficulties, post a message to the Ascape forums so that we can sort
+				them out.</li>
+</ul>
+</body>
+</html>

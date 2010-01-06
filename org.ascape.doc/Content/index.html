@@ -90,221 +90,177 @@ body {
 </STYLE>
 </HEAD>
 <title>Ascape 5.3.0</title>
-<LINK REL="stylesheet" TYPE="text/css" HREF="ascapestyle.css"
-	TITLE="Style">
+<LINK REL="stylesheet" TYPE="text/css" HREF="ascapestyle.css" TITLE="Style">
 <IMG align="RIGHT" SRC="AscapeLogo.gif" WIDTH='181' HEIGHT='84'></IMG>
 <body>
 <div id="wrap">
 <div id="header">
 <h1>Ascape Guide</h1>
-<i>5.3.0</i> -- <i>Last updated: September 8, 2009</i>
+<i>5.3.0</i> -- <i>Last updated: January 5, 2010</i>
 <P></P>
 </div>
 <div id="sidebarfake"></div>
 <div id="sidebar">
 <ul>
-	<li><a href="index.html#Introduction">Introduction</a></li>
-	<li><a href="index.html#Acknowledgements">Acknowledgments</a></li>
-	<li><a href="index.html#Getting Started">Getting Started</a>
-	<ul>
-		<li><a href="index.html#Exploring">Exploring</a></li>
-		<li><a href="index.html#Analyzing">Analyzing</a></li>
-		<li><a href="index.html#Building">Building</a>
-		<ul>
-			<li><a href="index.html#BuildEclipseModels"><i>Eclipse Models</i></a></li>
-			<li><a href="index.html#BuildEclipseAscape"><i>Eclipse Ascape</i></a></li>
-			<li><a href="index.html#BuildEclipseAMP"><i>AMP</i></a></li>
-			<li><a href="index.html#BuildGeneric"><i>Others</i></a></li>
-		</ul>
-		</li>
-		<li><a href="index.html#Developing">Developing</a></li>
-	</ul>
-	</li>
-	<li><a href="index.html#Resources">Resources</a>
-	<ul>
-		<li><a
-			href="http://sourceforge.net/project/showfiles.php?group_id=203744"><font
-			color="BLUE">Download</font></a></li>
-		<li><a href="index.html#Documentation">Documentation</a></li>
-		<li><a href="api/index.html">API</a></li>
-		<li><a href="index.html#Papers">Papers</a></li>
-		<li><a href="index.html#Subversion">Subversion</a></li>
-		<li><a href="http://sourceforge.net/projects/ascape"><font
-			color="BLUE">SourceForge Project</font></a></li>
-	</ul>
-	</li>
-	<li><a href="index.html#Contact">Support and Contacts</a>
-	<ul>
-		<li><a
-			href="http://sourceforge.net/forum/forum.php?forum_id=731620"><font
-			color="BLUE">Forum</font></a></li>
-		<li><a href="index.html#Sponsors">Sponsors</a></li>
-	</ul>
-	</li>
-	<li><a href="index.html#Known Issues">Known Issues</a></li>
-	<li><a href="index.html#Updating">Updating</a><BR>
-	<small>What to do if your old model won't build.</small></li>
-	<li><a href="index.html#Version">Version History</a></li>
+				<li><a href="index.html#Introduction">Introduction</a></li>
+				<li><a href="index.html#Acknowledgements">Acknowledgments</a></li>
+				<li><a href="index.html#Getting Started">Getting Started</a>
+				<ul>
+								<li><a href="index.html#Exploring">Exploring</a></li>
+								<li><a href="index.html#Analyzing">Analyzing</a></li>
+								<li><a href="index.html#Building">Building</a>
+								<ul>
+												<li><a href="index.html#BuildEclipseModels"><i>Eclipse Models</i></a></li>
+												<li><a href="index.html#BuildEclipseAscape"><i>Eclipse Ascape</i></a></li>
+												<li><a href="index.html#BuildEclipseAMP"><i>AMP</i></a></li>
+												<li><a href="index.html#BuildGeneric"><i>Others</i></a></li>
+								</ul>
+								</li>
+								<li><a href="index.html#Developing">Developing</a></li>
+				</ul>
+				</li>
+				<li><a href="index.html#Resources">Resources</a>
+				<ul>
+								<li><a href="http://sourceforge.net/project/showfiles.php?group_id=203744"><font color="BLUE">Download</font></a></li>
+								<li><a href="index.html#Documentation">Documentation</a></li>
+								<li><a href="api/index.html">API</a></li>
+								<li><a href="index.html#Papers">Papers</a></li>
+								<li><a href="index.html#Subversion">Subversion</a></li>
+								<li><a href="http://sourceforge.net/projects/ascape"><font color="BLUE">SourceForge Project</font></a></li>
+				</ul>
+				</li>
+				<li><a href="index.html#Contact">Support and Contacts</a>
+				<ul>
+								<li><a href="http://sourceforge.net/forum/forum.php?forum_id=731620"><font color="BLUE">Forum</font></a></li>
+								<li><a href="index.html#Sponsors">Sponsors</a></li>
+								<li><a href="index.html#Known Issues">Known Issues</a></li>
+				</ul>
+				</li>
+				<li><a href="index.html#Updating">Updating from older versions</a></li>
+				<li><a href="index.html#Version">Version History</a></li>
 </ul>
 </div>
 <div id="main">
 <h3><a name="Introduction">Introduction</a></h3>
-Ascape is an innovative tool for developing and exploring
-general-purpose agent-based models. It is designed to be flexible and
-powerful, but also approachable, easy to use and expressive. Models can
-be developed in Ascape using far less code than in other tools. Ascape
-models are easier to explore, and profound changes to the models can be
-made with minimal code changes. Ascape offers a broad array of modeling
-and visualization tools.
-<p>A high-level framework supports complex model design, while
-end-user tools make it possible for non-programmers to explore many
-aspects of model dynamics. Ascape is written entirely in Java, and
-should run on any Java-enabled platform. Whether you are involved in
-academia, industry, or government, we hope that you will find that
-Ascape enables your efforts to exploit the profound insights agent-based
-models make possible.</p>
-<p>Ascape is released under a <A HREF="licenses/ascape-license.txt">BSD
-standard open source</A> license and thus is free to use and redistribute.
-The Ascape distribution includes a number of other Open Source
-libraries; please see the licenses directory and individual jars for
-more information.</p>
-<p>Ascape is research oriented software; while it is quite mature,
-apis, distribution, may continue may change over time. Direct support is
-not provided; forums provide a much better venue for sharing information
-and make the most efficient use of limited resources. For support,
-comments, or discussion of technical and general modeling issues, please
-use the Ascape forum at ascape.sourceforge.org. We welcome and encourage
-your feedback, positive and negative. User contributions, ideas, and
-feature requests are also most welcome. <a href="index.html#Contact">(See
-below.)</a><BR>
-<BR>
+<p>Ascape is an innovative tool for developing and exploring general-purpose agent-based models. It is designed to
+be flexible and powerful, but also approachable, easy to use and expressive. Models can be developed in Ascape using far
+less code than in other tools. Ascape models are easier to explore, and profound changes to the models can be made with
+minimal code changes. Ascape offers a broad array of modeling and visualization tools.</p>
+<p>A high-level framework supports complex model design, while end-user tools make it possible for non-programmers
+to explore many aspects of model dynamics. Ascape is written entirely in Java, and should run on any Java-enabled
+platform. Whether you are involved in academia, industry, or government, we hope that you will find that Ascape enables
+your efforts to exploit the profound insights agent-based models make possible.</p>
+<p>Ascape is released under a <a href="licenses/ascape-license.txt">BSD standard open source</a> license and thus is
+free to use and redistribute. The Ascape distribution includes a number of other Open Source libraries; please see the
+licenses directory and individual jars for more information.</p>
+<p>Ascape is research oriented software; while it is quite mature, apis, distribution, may continue may change over
+time. Direct support is not provided; forums provide a much better venue for sharing information and make the most
+efficient use of limited resources. For support, comments, or discussion of technical and general modeling issues,
+please use the Ascape forum at ascape.sourceforge.org. We welcome and encourage your feedback, positive and negative.
+User contributions, ideas, and feature requests are also most welcome. <a href="index.html#Contact">(See below.)</a></p>
 <h3><a name="Acknowledgements">Acknowledgments</a></h3>
-First, thanks to all the users of Ascape who have provided so much
-valuable feedback over the years. Your enthusiasm is the primary
-motivation for the continuing improvement of Ascape. <BR></BR>
+First, thanks to all the users of Ascape who have provided so much valuable feedback over the years. Your enthusiasm is
+the primary motivation for the continuing improvement of Ascape. <BR></BR>
 
 <i>Design and Development</i>: Miles Parker <BR>
-<i>Development</i>: Mario Inchiosa, Josh Miller <BR>
-<i>Models, Extensions and QA</i>: Alan Lockard, Jason Harburger, Jim
-Girard, Roger Critchlow, Carl Tollander, Lisa Stuart, and many others...
-<p>Profound thanks to Joshua Epstein and Robert Axtell for the
-science that inspired this work and the initial support that made it
-possible, to Ross Hammond, David Hines, Shubha Chakravarty, Jon Parker
-and many others who have supported Ascape at Brookings, and to everyone
-else at the Center on Social and Economic Dynamics.
-<p>Ascape was supported at Bios and later NuTech by the kind of
-people who are both very smart and great fun to work with, especially
-Mario Inchiosa, Josh Miller, Mike Neely, and Mike McClain.
-<p>This work benefits greatly from the work of many software
-developers in the agent based modeling world. The Swarm community,
-especially Roger Burkhardt, Marcus Daniels and Glen Ropella provided an
-inspiring and helpful environment in which to explore and discuss
-modeling issues, and <a href="http://www.swarm.org">Swarm</a> itself has
-inspired some Ascape features. While Ascape and Repast were developed
-separately, related continuing work has benefited greatly from work with
-Nick Collier, Tom Howe and everyone else at the Repast team.
-<p>Damon Centola wrote the excellent Model Developer's manual.
-<p>David Hines designed the Ascape logo.
-<p>Toolbar icons are are (c)1998 Dean S. Jones (dean@gallant.com
-www.gallant.com/icons.htm)</p>
-Special thanks to the early testers and supporters of Ascape, including
-Ginger Booth, Ross Hammond, Alan Lockard, Eric Verhoogen and Tim Gulden,
-who provided many useful comments, ideas and feedback.
+<i>Development</i>: Mario Inchiosa, Josh Miller and Oliver Mannion (Swing Navigator)<BR>
+<i>Models, Extensions and QA</i>: Alan Lockard, Jason Harburger, Jim Girard, Roger Critchlow, Carl Tollander, Lisa
+Stuart, and many others...
+<p>Profound thanks to Joshua Epstein and Robert Axtell for the science that inspired this work and the initial
+support that made it possible, to Ross Hammond, David Hines, Shubha Chakravarty, Jon Parker and many others who have
+supported Ascape at Brookings, and to everyone else at the Center on Social and Economic Dynamics.</p>
+<p>Ascape was supported at Bios and later NuTech by the kind of people who are both very smart and great fun to work
+with, especially Mario Inchiosa, Josh Miller, Mike Neely, and Mike McClain.</p>
+<p>This work benefits greatly from the work of many software developers in the agent based modeling world. The Swarm
+community, especially Roger Burkhardt, Marcus Daniels and Glen Ropella provided an inspiring and helpful environment in
+which to explore and discuss modeling issues, and <a href="http://www.swarm.org">Swarm</a> itself has inspired some
+Ascape features. While Ascape and Repast were developed separately, related continuing work has benefited greatly from
+work with Nick Collier, Tom Howe and everyone else at the Repast team.</p>
+<p>Damon Centola wrote the excellent Model Developer's manual.</p>
+<p>David Hines designed the Ascape logo.</p>
+<p>Toolbar icons are are (c)1998 Dean S. Jones (dean@gallant.com www.gallant.com/icons.htm)</p>
+Special thanks to the early testers and supporters of Ascape, including Ginger Booth, Ross Hammond, Alan Lockard, Eric
+Verhoogen and Tim Gulden, who provided many useful comments, ideas and feedback.
 
 <h3><a name="Getting Started">Getting Started</a></h3>
-Ascape can be downloaded at <a href="ascape.sourceforge.net">ascape.sourceforge.org</a>
-and is available as a:
+Ascape can be downloaded at <a href="ascape.sourceforge.net">ascape.sourceforge.org</a> and is available as a:
 <ul class="ul.star">
-	<li>SDK (Projects)</li>
-	<li>Stand-alone Jar</li>
-	<li>Applet Jar</li>
+				<li>SDK (Projects)</li>
+				<li>Stand-alone Jar</li>
+				<li>Applet Jar</li>
 </ul>
-The sections below explain each usage.
-Please note that the Ascape version numbers listed below are generic. So for example if you have downloaded version 5.9.9 (it doesn't exist yet!) then substitute <code>Ascape_5.m.n</code> with <code>Ascape_5.9.9</code>
+The sections below explain each usage. Please note that the Ascape version numbers listed below are generic. So for
+example if you have downloaded version 5.9.9 (it doesn't exist yet!) then substitute <code>Ascape_5.m.n</code> with <code>Ascape_5.9.9</code>
 
 <h4><a name="Exploring">Exploring Models</a></h4>
-<span class="note">
-<b>Mac Users:</b>
-Currently the OS X version of Java uses a default graphics implementation that is s__l__o__w. Unfortunatly, there
-is no way to change this from the runnable jar. If you are a Mac user, we suggest you use the Command-Line method with
-to set the graphics implementation to run quickly.<br/>
+<span class="note"> <b>Mac Users:</b> Currently the OS X version of Java uses a default graphics implementation
+that is s__l__o__w. Unfortunatly, there is no way to change this from the runnable jar. If you are a Mac user, we
+suggest you use the Command-Line method with to set the graphics implementation to run quickly.<br />
 <code>java -Dapple.awt.graphics.UseQuartz=true -jar Ascape_5.m.n.jar</code></span>
 
 <h5><a name="Jars">Executable Jar</a></h5>
 <ol>
-	<li>Ensure that you have Java Runtime Environment [JRE] or Java Deveopment Kit [JDK] 1.5 or
-	newer installed on your machine.</li>
-	<li>Download and double-click "Ascape_5.m.n.jar"!</li>
+				<li>Ensure that you have Java Runtime Environment [JRE] or Java Deveopment Kit [JDK] 1.5 or newer installed on
+				your machine.</li>
+				<li>Download and double-click "Ascape_5.m.n.jar"!</li>
 </ol>
 <h5><a name="Jars">Command-Line</a></h5>
-If you can't or don't wish to use the JRE you can also start Ascape from
-the command-line by typing:
+If you can't or don't wish to use the JRE you can also start Ascape from the command-line by typing:
 <ol>
-	<li><pre>cd [path to Ascape directory]</pre></li>
-	<li><pre>java -cp "Ascape_5.m.n.jar" org.ascape.runtime.swing.SwingRunner</pre></li>
+				<li><pre>cd [path to Ascape directory]</pre></li>
+				<li><pre>java -cp "Ascape_5.m.n.jar" org.ascape.runtime.swing.SwingRunner</pre></li>
 </ol>
-<span class="info">If you want to add the jar to your class-path,
-note that the Ascape jar includes all library dependencies, so you will
-probably want to use the Runtime download as described <a
-	href="index.html#Analyzing">below</a>.<BR>
+<span class="info">If you want to add the jar to your class-path, note that the Ascape jar includes all library
+dependencies, so you will probably want to use the Runtime download as described <a href="index.html#Analyzing">below</a>.<BR>
 <BR>
 Models and parameters can be specified as command-line arguments. Try: <BR>
-<code>java -cp "Ascape_5.m.n.jar" org.ascape.runtime.swing.SwingRunner
-edu.brook.pd.PD2D</code><BR>
-<code>java -cp "Ascape_5.m.n.jar" org.ascape.runtime.swing.SwingRunner
-edu.brook.pd.PD2D mutationRate="0.2"</code><BR>
-<code>java -cp "Ascape_5.m.n.jar" org.ascape.runtime.swing.SwingRunner
-edu.brook.pd.PD2D stopPeriod=100 displaygraphics=false autorestart=false</code></span>
-After launching Ascape the first-time, a click-through license appears
-and then a model selection menu. <BR>
+<code>java -cp "Ascape_5.m.n.jar" org.ascape.runtime.swing.SwingRunner edu.brook.pd.PD2D</code><BR>
+<code>java -cp "Ascape_5.m.n.jar" org.ascape.runtime.swing.SwingRunner edu.brook.pd.PD2D mutationRate="0.2"</code><BR>
+<code>java -cp "Ascape_5.m.n.jar" org.ascape.runtime.swing.SwingRunner edu.brook.pd.PD2D stopPeriod=100
+displaygraphics=false autorestart=false</code></span> After launching Ascape the first-time, a click-through license appears and then
+a model selection menu. <BR>
 <BR>
 <img align="middle" src="screens/OpenDialog.png" /> <BR>
 <BR>
-Select a model from the drop-down list and press 'open'. The selected
-model will begin automatically with its default parameters. <BR>
+Select a model from the drop-down list and press 'open'. The selected model will begin automatically with its default
+parameters. <BR>
 <BR>
 <img align="middle" src="screens/PDRunning.png" /> <BR>
 
 <h4>Controlling Ascape</h4>
 <h5>Menu Bar</h5>
-The menu bar contains the following features, shared with the control
-bar below: <BR>
+The menu bar contains the following features, shared with the control bar below: <BR>
 <BR>
 <B>File</B>
 <ol>
-	<li>OPEN MODEL: Open a new model as specified in a Java class
-	file.</li>
-	<li>OPEN MODEL RUN: Open a saved (serialized) model run.</li>
-	<li>SAVE RUN: Save the current model run for later
-	deserialization.</li>
-	<li>CLOSE MODEL: Quit the model, but not the environment.</li>
-	<li>QUIT: End the Ascape session.</li>
+				<li>OPEN MODEL: Open a new model as specified in a Java class file.</li>
+				<li>OPEN MODEL RUN: Open a saved (serialized) model run.</li>
+				<li>SAVE RUN: Save the current model run for later deserialization.</li>
+				<li>CLOSE MODEL: Quit the model, but not the environment.</li>
+				<li>QUIT: End the Ascape session.</li>
 </ol>
 <B>Views</B>
 <ol>
-	<li>NEW TIMESERIES: Create a new time series.</li>
-	<li>NEW HISTOGRAM: Create a new histogram.</li>
-	<li>NEW PIECHART: Create a new pie chart.</li>
+				<li>NEW TIMESERIES: Create a new time series.</li>
+				<li>NEW HISTOGRAM: Create a new histogram.</li>
+				<li>NEW PIECHART: Create a new pie chart.</li>
 </ol>
 <B>Control</B>
 <ol>
-	<li>START: Begin a model run.</li>
-	<li>RESTART: Start a model run back at the begining.</li>
-	<li>STOP: End the current run.</li>
-	<li>PAUSE: Pause the current run.</li>
-	<li>RESUME: Resume a paused model run where it left off.</li>
-	<li>STEP: Perform one iteration of the current run while the model
-	is in a paused state.</li>
+				<li>START: Begin a model run.</li>
+				<li>RESTART: Start a model run back at the begining.</li>
+				<li>STOP: End the current run.</li>
+				<li>PAUSE: Pause the current run.</li>
+				<li>RESUME: Resume a paused model run where it left off.</li>
+				<li>STEP: Perform one iteration of the current run while the model is in a paused state.</li>
 </ol>
 <B>OPTIONS</B>
 <ol>
-	<li>SETTINGS: Control the model settings ('globe' button). Display
-	the initialization and run-time parameters. There are two tabs:
-	Parameters and Rules.</li>
-	<li>START RECORDING: Start recording movie of running model</li>
-	<li>STOP RECORDING: Start recording movie of running model</li>
-	<li>ABOUT: Display the program information ('i' button) including
-	attributions.</li>
+				<li>SETTINGS: Control the model settings ('globe' button). Display the initialization and run-time parameters.
+				There are two tabs: Parameters and Rules.</li>
+				<li>START RECORDING: Start recording movie of running model</li>
+				<li>STOP RECORDING: Start recording movie of running model</li>
+				<li>ABOUT: Display the program information ('i' button) including attributions.</li>
 </ol>
 <h5>Control Bar</h5>
 The control bar provides an easy way to manage model execution: <BR>
@@ -313,144 +269,115 @@ The control bar provides an easy way to manage model execution: <BR>
 <BR>
 From right to left, the components allow one to:
 <ol>
-	<li>Navigate between the various chart windows.
-	<li>Display the current model iteration.</li>
-	<li>Display the current state (Running/paused/stopped)</li>
-	<li>Open a new model.</li>
-	<li>Open a saved model run.</li>
-	<li>Save the current model run.</li>
-	<li>Quit the model.</li>
-	<li>Restart the model.</li>
-	<li>Pause the current run ('flag' button).</li>
-	<li>Step through the current run when the model is in a paused
-	state.</li>
-	<li>Stop the current run.</li>
-	<li>Control the model speed ('flag' slider).</li>
-	<li>Control the model settings ('globe' button). Display the
-	initialization and run-time parameters. There are two tabs: Parameters
-	and Rules.</li>
-	<li>Create movies of running model ('camera' button).</li>
-	<li>Display the program information ('i' button)</li>
-	<li>Create a new time series.</li>
-	<li>Create a new histogram.</li>
-	<li>Create a new pie chart.</li>
+				<li>Navigate between the various chart windows.</li>
+				<li>Display the current model iteration.</li>
+				<li>Display the current state (Running/paused/stopped)</li>
+				<li>Open a new model.</li>
+				<li>Open a saved model run.</li>
+				<li>Save the current model run.</li>
+				<li>Quit the model.</li>
+				<li>Restart the model.</li>
+				<li>Pause the current run ('flag' button).</li>
+				<li>Step through the current run when the model is in a paused state.</li>
+				<li>Stop the current run.</li>
+				<li>Control the model speed ('flag' slider).</li>
+				<li>Control the model settings ('globe' button). Display the initialization and run-time parameters. There are
+				two tabs: Parameters and Rules.</li>
+				<li>Create movies of running model ('camera' button).</li>
+				<li>Display the program information ('i' button)</li>
+				<li>Create a new time series.</li>
+				<li>Create a new histogram.</li>
+				<li>Create a new pie chart.</li>
 </ol>
 <h4>Setting Parameters and Rules</h4>
 <h5>Parameters</h5>
-Select the 'Globe' button.
-<p><img align="middle" src="screens/Parameters.png" />
+<p>Select the Parameters tab.</p>
+<img align="middle" src="screens/Parameters.png" />
 <ul>
-	<li>To edit a parameter, left-click on its text field, type a
-	value and press 'Enter'. All edits to the model are live except for
-	those parameters that are set at initialization and so require that the
-	model restart.</li>
+				<li>To edit a parameter, left-click on its text field, type a value and press 'Enter'. All edits to the model
+				are live except for those parameters that are set at initialization and so require that the model restart.</li>
 </ul>
 <h5>Rules</h5>
-Select the Rules tab. <BR>
-<BR>
+<p>Select the Rules tab.</p>
 <img align="middle" src="screens/Rules.png" /> <BR>
-<BR>
-A rule is a behavior that can be iterated across any agent or group of
-agents. Rules can be selected, de-selected and ordered on the model
-dynamically.
+A rule is a behavior that can be iterated across any agent or group of agents. Rules can be selected, de-selected and
+ordered on the model dynamically.
 <ul>
-	<li>To change the rules, select from the drop down list the agent
-	or group of agents for which the rules apply.</li>
-	<li>Checking and un-checking the 'Active' box turns a rule on and
-	off.</li>
-	<li>Selecting a rule from the list and clicking the 'Up' and
-	'Down' arrow buttons can change the order of execution. This will
-	change the order in which rules are executed upon that Scape.</li>
-	<li>The execution order of a rule can be set to either Agent Order
-	or Rule Order. Agent order specifies that each agent in turn has every
-	rule executed upon it. Rule order specifies that each rule in turn be
-	executed across all agents.</li>
-	<li>The execution style of a rule can be set for either a complete
-	tour or a repeated draw. A complete tour ensures that the rule is run
-	against each agent once and only once. A repeated draw runs the rule
-	against n randomly drawn agents, where n is set in the Agent per
-	Iteration section. When the repeated draw is selected, there is no
-	guarantee that each agents will be affected, or that agents will
-	affected only once per iteration.</li>
+				<li>To change the rules, select from the drop down list the agent or group of agents for which the rules apply.</li>
+				<li>Checking and un-checking the 'Active' box turns a rule on and off.</li>
+				<li>Selecting a rule from the list and clicking the 'Up' and 'Down' arrow buttons can change the order of
+				execution. This will change the order in which rules are executed upon that Scape.</li>
+				<li>The execution order of a rule can be set to either Agent Order or Rule Order. Agent order specifies that
+				each agent in turn has every rule executed upon it. Rule order specifies that each rule in turn be executed across
+				all agents.</li>
+				<li>The execution style of a rule can be set for either a complete tour or a repeated draw. A complete tour
+				ensures that the rule is run against each agent once and only once. A repeated draw runs the rule against n randomly
+				drawn agents, where n is set in the Agent per Iteration section. When the repeated draw is selected, there is no
+				guarantee that each agents will be affected, or that agents will affected only once per iteration.</li>
 </ul>
 <h4>Inspecting Agent State</h4>
-Open an Agent Inspector by alt [option] + left-clicking on a cell.
-Shift-alt [option] + click sets a tracking inspector that follows a
-particular agent around a space. <BR>
+Open an Agent Inspector by alt [option] + left-clicking on a cell. Shift-alt [option] + click sets a tracking inspector
+that follows a particular agent around a space. <BR>
 <BR>
 <img align="middle" src="screens/AgentInspector.png" /> <BR>
 <BR>
-Inspectors allow the user to delve into an agent, examining and changing
-its values, letting the user model on-the-fly what-if scenarios, and
-follow a particular agent throughout the course of the run. Those fields
-that are gray represent those that are read-only, and cannot be changed
-during runtime.
+Inspectors allow the user to delve into an agent, examining and changing its values, letting the user model on-the-fly
+what-if scenarios, and follow a particular agent throughout the course of the run. Those fields that are gray represent
+those that are read-only, and cannot be changed during runtime.
 <h4>Charts</h4>
 Model statistics can be easily charted. <BR>
 <BR>
 <img align="middle" src="screens/Chart.png" /> <BR>
 <BR>
-The chart above shows a time-series of the number of cooperating (Blue)
-and defecting (Red) agents. <BR>
+The chart above shows a time-series of the number of cooperating (Blue) and defecting (Red) agents. <BR>
 <BR>
 <h5>Chart Settings</h5>
-To create a new chart of model results using a time series, histogram,
-or pie chart, click on one of the three 'Chart' icons on the control
-bar. The following dialog appears along with a blank chart area. This
-dialog can be opened at any point by double-clicking on a chart. <BR>
+To create a new chart of model results using a time series, histogram, or pie chart, click on one of the three 'Chart'
+icons on the control bar. The following dialog appears along with a blank chart area. This dialog can be opened at any
+point by double-clicking on a chart. <BR>
 <BR>
 <img align="middle" src="screens/ChartSettings.png" /> <BR>
 <BR>
-The chart settings dialog lists the model's statistics. Most of the
-statistics have a number of ways of being graphed. 'Count' lists the
-number of agents a statistics is being calculated over (i.e. a statistic
-run across a set of agents has a count equal to the number of agents in
-that set). 'Sum' returns the summation of the statistic across all of
-its agents. 'Min' and 'Max' are the minimum and maximum values of the
-statistic across its agents, respectively, and 'Var' and 'StD' are its
-variance and standard deviation. Select a statistic by checking the
-appropriate box. <BR>
+The chart settings dialog lists the model's statistics. Most of the statistics have a number of ways of being graphed.
+'Count' lists the number of agents a statistics is being calculated over (i.e. a statistic run across a set of agents
+has a count equal to the number of agents in that set). 'Sum' returns the summation of the statistic across all of its
+agents. 'Min' and 'Max' are the minimum and maximum values of the statistic across its agents, respectively, and 'Var'
+and 'StD' are its variance and standard deviation. Select a statistic by checking the appropriate box. <BR>
 <BR>
 <h5>Chart Properties</h5>
-Right-clicking on a chart opens a pop-up menu (figure 6) that gives the
-option of printing and saving the chart, or adjusting its properties. <BR>
+Right-clicking on a chart opens a pop-up menu (figure 6) that gives the option of printing and saving the chart, or
+adjusting its properties. <BR>
 <BR>
 <img align="middle" src="screens/ChartProperties.png" /> <BR>
 <BR>
-The three tabs of the Chart Properties window (figure 8) let the user
-make changes to background color, axis labels, and similar chart
-properties. <i>Note that many chart properties are managed by
-Ascape, so these properties are typically best used for creating static
-charts of important results.</i>
+The three tabs of the Chart Properties window (figure 8) let the user make changes to background color, axis labels, and
+similar chart properties. <i>Note that many chart properties are managed by Ascape, so these properties are
+typically best used for creating static charts of important results.</i>
 <h4>Capture Image</h4>
-Clicking on the first camera icon produces a quick desktop snapshot in
-the launch directory.
+Clicking on the first camera icon produces a quick desktop snapshot in the launch directory.
 <h4>Quicktime Movies</h4>
-Click on the second camera icon to begin taking a movie and follow the
-dialog instructions. (Due to a change in the Apple QT runtime, movies
-are ironically currently broken under OS X.)
+Click on the second camera icon to begin taking a movie and follow the dialog instructions. (Due to a change in the
+Apple QT runtime, movies are ironically currently broken under OS X.)
 
-<h4><a name="Analyzing"> Analyzing Models and running Ascape
-with Ant </a></h4>
-<p>At this point, one could add the
-	contents of the lib directory to the classpath and execute Ascape using
-	command-line arguments as described above. But it is generally much
-	less painful to use the included Apache ant build scripts. Ascape uses
-	ant to support complex build <i>and</i> run execution support without
-	requiring complex configuration steps.</p>
+<h4><a name="Analyzing"> Analyzing Models and running Ascape with Ant </a></h4>
+<p>At this point, one could add the contents of the lib directory to the classpath and execute Ascape using
+command-line arguments as described above. But it is generally much less painful to use the included Apache ant build
+scripts. Ascape uses ant to support complex build <i>and</i> run execution support without requiring complex
+configuration steps.</p>
 <ol>
-	<li>Download and unzip Ascape_SDK_5.m.n.zip from the downlaods site.</li>
-	<li>Download and install <a href="http://ant.apache.org">ant</a>.</li>
-	<li>Ensure that ant is available in your executable path. See the
-	ant documentation for more details on ant configuration.</li>
-	<li>Open a command line environment. On Macs and Linux this is the "Terminal", on Windows "Console".</li>
-	<li>Change to the org.ascape.all directory that you installed into. For example<BR><code>cd /MyMachine/Ascape_SDK_5.m.n/org.ascape.all</code><BR><code>dir C:/MyAscapeDir/toolsAscape_SDK_5.m.n/org.ascape.all</code></li>
-	<li>Invoke ant run.xml by typing: <code>ant -f run.xml runPD</code></li>
+				<li>Download and unzip Ascape_SDK_5.m.n.zip from the downlaods site.</li>
+				<li>Download and install <a href="http://ant.apache.org">ant</a>.</li>
+				<li>Ensure that ant is available in your executable path. See the ant documentation for more details on ant
+				configuration.</li>
+				<li>Open a command line environment. On Macs and Linux this is the "Terminal", on Windows "Console".</li>
+				<li>Change to the org.ascape.all directory that you installed into. For example<BR>
+				<code>cd /MyMachine/Ascape_SDK_5.m.n/org.ascape.all</code><BR>
+				<code>dir C:/MyAscapeDir/toolsAscape_SDK_5.m.n/org.ascape.all</code></li>
+				<li>Invoke ant run.xml by typing: <code>ant -f run.xml runPD</code></li>
 </ol>
 
-If we take a look at the run.xml file we can see that it is relatively
-simple. You can add or modify targets, or use run.xml as a template for
-your own run targets. <BR>
+If we take a look at the run.xml file we can see that it is relatively simple. You can add or modify targets, or use
+run.xml as a template for your own run targets. <BR>
 <pre>
     &lt;target name=&quot;runPD&quot; depends=&quot;run prep&quot;&gt;
         &lt;ascape&gt; 
@@ -462,12 +389,10 @@ your own run targets. <BR>
             &lt;/scape&gt; 
         &lt;/ascape&gt;
     &lt;/target&gt;</pre> <BR>
-We specify model class and then a set of model properties, which can
-include model parameters as well as run control variables. For example,
-if we set display graphics to false, the model will run in headless
-mode. But we can do much more using Ant configuration. We can turn on
-and off scape rules, specify agent state, and even define views, which
-can include graphic views: <BR>
+We specify model class and then a set of model properties, which can include model parameters as well as run control
+variables. For example, if we set display graphics to false, the model will run in headless mode. But we can do much
+more using Ant configuration. We can turn on and off scape rules, specify agent state, and even define views, which can
+include graphic views: <BR>
 <pre>
     &lt;target name=&quot;runPDConfigExample&quot; depends=&quot;run prep&quot;&gt;
         &lt;ascape&gt;
@@ -494,10 +419,8 @@ can include graphic views: <BR>
             &lt;/scape&gt;
         &lt;/ascape&gt;
     &lt;/target&gt;
-<BR></pre> The above specifies that player's perform a random walk only,
-and adds a chart view with a specific position and an environment
-overhead view. We can also use specialized views for run control and
-data output. For example: <pre>
+<BR></pre> The above specifies that player's perform a random walk only, and adds a chart view with a specific position
+and an environment overhead view. We can also use specialized views for run control and data output. For example: <pre>
     &lt;target name=&quot;runPDDataOut&quot; depends=&quot;run prep&quot;&gt;
         &lt;ascape&gt;
             &lt;scape modelClass=&quot;edu.brook.pd.PD2D&quot;&gt;
@@ -515,61 +438,56 @@ data output. For example: <pre>
         &lt;/ascape&gt;
     &lt;/target&gt;
 </pre> <BR>
-<p>Here we specify data output that writes a line for each run's parameters
-to "testPDRun.txt" and a line for each model run's state to
-"runPDPeriod.txt". We also easily specify a parameter exploration by
-sweeping across death age and fission wealth.</p>
-<p>The included ant.xml file can also be used with the Ascape jar. Just place the jar in the same directory with the ant file.</p>
+<p>Here we specify data output that writes a line for each run's parameters to "testPDRun.txt" and a line for each
+model run's state to "runPDPeriod.txt". We also easily specify a parameter exploration by sweeping across death age and
+fission wealth.</p>
+<p>The included ant.xml file can also be used with the Ascape jar. Just place the jar in the same directory with the
+ant file.</p>
 
 <h4><a name="Building">Building Ascape Models</a></h4>
 
 <h4>Basics</h4>
-It is not necessary to have an IDE (Integrated Development Environment)
-such as IntelliJ or Eclipse, but they are be an indispensable aid to the
-development process. 
-<span class="info">While I hesitate to
-coerce anyone into using a specific software tool, I recommend Eclipse,
-as complete Eclipse projects are provided and future related work will
-rely heavily on the Eclipse platform. <i>-Miles</i></span>
+It is not necessary to have an IDE (Integrated Development Environment) such as IntelliJ or Eclipse, but they are be an
+indispensable aid to the development process. <span class="info">While I hesitate to coerce anyone into using a
+specific software tool, I recommend Eclipse, as complete Eclipse projects are provided and future related work will rely
+heavily on the Eclipse platform. <i>-Miles</i></span>
 
 <h4><i><a name="BuildEclipse">Building with Eclipse</a></i></h4>
 
 <h5><a name="BuildEclipseModels">Building models with Eclipse</a></h5>
-<p>If you are not planning to change Ascape, the simplest way to develop models is to use the Eclipse plugins. 
-If you have any problems with this approach just use the <a href="#BuildEclipseAscape">"building Ascape itself"</a> instructions below instead.</p>
+<p>If you are not planning to change Ascape, the simplest way to develop models is to use the Eclipse plugins. If
+you have any problems with this approach just use the <a href="#BuildEclipseAscape">"building Ascape itself"</a>
+instructions below instead.</p>
 <ol>
-	<li>Install <a href="http://www.eclipse.org/downloads">Eclipse</a>. The "Eclipse Classic" release is a good one to use.</li>
-	<li>Install Ascape. We now have an Eclipse Update Manager site which should make this process quite easy. The update site is <code>http://ascape.sourceforge.net/eclipse</code>. Please see the Eclipse <a href="http://help.eclipse.org/galileo/topic/org.eclipse.platform.doc.user/tasks/tasks-124.htm">user documentation</a> for more details and post a support message if you have any difficulties.
-	If this isn't working well for you for whatever reason then you can always <a href="#BuildEclipseAscape">build Ascape</a> directly in your workspace.</li>
-	<li>Right-click in Package Explorer and select New:Project..</li>
-	<p><img align="middle" src="screens/EclipseModelNewMenu.png" />
-	<li>In the dialog that follows, pick "Plugin Project".</li>
-	<p><img align="middle" src="screens/EclipseModelPickProject.png" />
-	<li>Enter a name and click Next.</li>
-	<p><img align="middle" src="screens/EclipseModelProjectP1.png" />
-	<li>You can deselect the plugin options on the next page and click "finish".</li>
-	<p><img align="middle" src="screens/EclipseModelProjectP2.png" />
-	<li>In the new project, open up the MANIFEST.MF file.</li>
-	<p><img align="middle" src="screens/EclipseModelManifest.png" />
-	<li>Click the Dependency tab, then the "Add.." button and select "org.ascape.ui.swing" from the long list of plugins provided.
-	You should end up with this:</li>
-	<p><img align="middle" src="screens/EclipseModelDependent.png" />
-	<li>Click Finish. Now we can build a simple Ascape model by
-	creating a new Scape class.<BR>
-	<p><img align="middle" src="screens/EclipseNewClassMenu.png" />
-	<p>
-	</li>
-	<li>Enter a package, a class name and <code>org.ascape.model.Scape</code>
-	as the super class.<BR>
-	<p><img align="middle" src="screens/EclipseNewJavaClassDialog.png" />
-	<p>
-	</li>
-	<li>The source file is created.<BR>
-	<p><img align="middle" src="screens/EclipseHelloScapeSource.png" />
-	<p>
-	</li>
-	<li>Paste the following code into the class body.<BR>
-	<pre>
+				<li>Install <a href="http://www.eclipse.org/downloads">Eclipse</a>. The "Eclipse Classic" release is a good one
+				to use.</li>
+				<li>Install Ascape. We now have an Eclipse Update Manager site which should make this process quite easy. The
+				update site is <code>http://ascape.sourceforge.net/eclipse</code>. Please see the Eclipse <a
+								href="http://help.eclipse.org/galileo/topic/org.eclipse.platform.doc.user/tasks/tasks-124.htm">user
+				documentation</a> for more details and post a support message if you have any difficulties. If this isn't working well
+				for you for whatever reason then you can always <a href="#BuildEclipseAscape">build Ascape</a> directly in your
+				workspace.</li>
+				<li>Right-click in Package Explorer and select New:Project..<BR />
+				<img align="middle" src="screens/EclipseModelNewMenu.png" /></li>
+				<li>In the dialog that follows, pick "Plugin Project".<BR />
+				<img align="middle" src="screens/EclipseModelPickProject.png" /></li>
+				<li>Enter a name and click Next.<BR />
+				<img align="middle" src="screens/EclipseModelProjectP1.png" /></li>
+				<li>You can deselect the plugin options on the next page and click "finish".<BR />
+				<img align="middle" src="screens/EclipseModelProjectP2.png" /></li>
+				<li>In the new project, open up the MANIFEST.MF file.<BR />
+				<img align="middle" src="screens/EclipseModelManifest.png" /></li>
+				<li>Click the Dependency tab, then the "Add.." button and select "org.ascape.ui.swing" from the long list of
+				plugins provided. You should end up with this:<BR />
+				<img align="middle" src="screens/EclipseModelDependent.png" /></li>
+				<li>Click Finish. Now we can build a simple Ascape model by creating a new Scape class.<BR />
+				<img align="middle" src="screens/EclipseNewClassMenu.png" /></li>
+				<li>Enter a package, a class name and <code>org.ascape.model.Scape</code> as the super class.<BR />
+				<img align="middle" src="screens/EclipseNewJavaClassDialog.png" /></li>
+				<li>The source file is created.<BR />
+				<img align="middle" src="screens/EclipseHelloScapeSource.png" /></li>
+				<li>Paste the following code into the class body.<BR />
+				<pre>
 	Scape helloAgents;
 	Scape helloGrid;
 	
@@ -599,184 +517,133 @@ If you have any problems with this approach just use the <a href="#BuildEclipseA
 		helloGrid.addView(new Overhead2DView());
 	}
 </pre></li>
-	<li>Select Source:Organize Imports menu item to import referenced
-	classes.<BR>
-	<p><img align="middle" src="screens/EclipseHelloScapePaste.png" />
-	<p>
-	</li>
-	<li>Now that we have created our model, we can launch it by
-	selecting Run:Open Run Dialog. Create a new Java Application
-	configuration using the "add document" button at the upper-left. Ensure
-	that the project name is correct and set <code>org.ascape.runtime.swing.SwingRunner</code>
-	as the main class.<BR>
-	<span class="alert">The screenshot below is out-of-date. Use SwingRunner, not org.ascape.model.Scape as the main class.</span>
-	<p><img align="middle" src="screens/EclipseHelloRunSettings.png" />
-	<p>
-	</li>
-	<li>Under the Arguments tab enter your model class name (fully
-	qualified!). It is also a good idea to make more memory available by
-	adding the obscure vm argument <code>-Xmx512M</code>.<BR>
-	<p><img align="middle" src="screens/EclipseHelloRunSettingsP2.png" />
-	<p>
-	</li>
-	<li>Click Run and launch your first Ascape model!<BR>
-	<p><img align="middle" src="screens/AscapeRunHello.png" />
-	<p>
-	</li>
+				<li>Select Source:Organize Imports menu item to import referenced classes.<BR>
+				<img align="middle" src="screens/EclipseHelloScapePaste.png" /></li>
+				<li>Now that we have created our model, we can launch it by selecting Run:Open Run Dialog. Create a new Java
+				Application configuration using the "add document" button at the upper-left. Ensure that the project name is correct
+				and set <code>org.ascape.runtime.swing.SwingRunner</code> as the main class.<BR>
+				<span class="alert">The screenshot below is out-of-date. Use SwingRunner, not org.ascape.model.Scape as the
+				main class.</span> <img align="middle" src="screens/EclipseHelloRunSettings.png" /></li>
+				<li>Under the Arguments tab enter your model class name (fully qualified!). It is also a good idea to make more
+				memory available by adding the obscure vm argument <code>-Xmx512M</code>.<BR />
+				<img align="middle" src="screens/EclipseHelloRunSettingsP2.png" /></li>
+				<li>Click Run and launch your first Ascape model!<BR />
+				<img align="middle" src="screens/AscapeRunHello.png" /></li>
 </ol>
 <h5><a name="BuildEclipseAscape">Building Ascape itself in Eclipse</a></h5>
 <ol>
-	<li>Install <a href="http://www.eclipse.org/downloads">Eclipse</a>.</li>
-	<li>Download and unzip Ascape_SDK_5.m.n.zip to a convenient
-	location.</li>
-	<li>Launch Eclipse</li>
-	<li>Right-click in package explorer space and select "Import".<BR>
-	<p><img align="middle" src="screens/EclipseImportMenu.png" />
-	<p>
-	</li>
-	<li>Browse to the directory you installed and pick the following projects (at least) from the list: org.acsape.core, org.acape.common.lib, org.ascape.ui.swing. You will probably want the model projects as well.<BR>
-	<p><img align="middle" src="screens/EclipseImportProjects.png" />
-	<p>
-	</li>
-	<li>Ascape will build automatically.<BR>
-	<span class="info">By default, Eclipse displays an imposing list
-	of java source warning messages, almost all of which have to do with
-	narrow Java 1.5 generics issues, and all of which can be safely
-	ignored. These warning can be made less aggressive by selecting
-	Eclipse:Preferences and modifying Java:Compiler:Errors/Warnings.</span></li>
-	<li>If you want to build a new model project, create a new Java project by right-clicking in the Package Explorer, and selecting "New:Java Project".<BR>
-	<p><img align="middle" src="screens/EclipseNewJavaProject.png" />
-	<p>
-	</li>
-	<li>Give the project a name and leave all of the other settings as
-	is.<BR>
-	<p><img align="middle" src="screens/EclipseCreateJavaProject.png" />
-	<p>
-	</li>
-	<li>Click Next and select the Projects tab, and click the Add
-	button to add the "org.ascape.ui.swing" project to the build path.<BR>
-	<p><img align="middle" src="screens/EclipseSelectProject.png" />
-	</li>
-	<li>You chould be able to continue with the instructions under building models above.
+				<li>Install <a href="http://www.eclipse.org/downloads">Eclipse</a>.</li>
+				<li>Download and unzip Ascape_SDK_5.m.n.zip to a convenient location.</li>
+				<li>Launch Eclipse</li>
+				<li>Right-click in package explorer space and select "Import".<BR />
+				<img align="middle" src="screens/EclipseImportMenu.png" /></li>
+				<li>Browse to the directory you installed and pick the following projects (at least) from the list:
+				org.acsape.core, org.acape.common.lib, org.ascape.ui.swing. You will probably want the model projects as well.<BR />
+				<img align="middle" src="screens/EclipseImportProjects.png" /></li>
+				<li>Ascape will build automatically.<BR>
+				<span class="info">By default, Eclipse displays an imposing list of java source warning messages, almost all
+				of which have to do with narrow Java 1.5 generics issues, and all of which can be safely ignored. These warning can
+				be made less aggressive by selecting Eclipse:Preferences and modifying Java:Compiler:Errors/Warnings.</span></li>
+				<li>If you want to build a new model project, create a new Java project by right-clicking in the Package
+				Explorer, and selecting "New:Java Project".<BR />
+				<img align="middle" src="screens/EclipseNewJavaProject.png" /></li>
+				<li>Give the project a name and leave all of the other settings as is.<BR />
+				<img align="middle" src="screens/EclipseCreateJavaProject.png" /></li>
+				<li>Click Next and select the Projects tab, and click the Add button to add the "org.ascape.ui.swing" project
+				to the build path.<BR />
+				<img align="middle" src="screens/EclipseSelectProject.png" /></li>
+				<li>You chould be able to continue with the instructions under building models above.
 </ol>
 <h5><a name="BuildEclipseAMP">Building using the Eclipse AMP tools.</a></h5>
-<p>A new option is to use the <a href="http://eclipse.org/amp">Eclipse AMP</a> AMF tools to create Ascape projects. AMP is a new project but it has great built-in support for Ascape, and you can even try the new Escape environment which allows you to run Ascape models within a self-hosted Eclipe environment!</a>.
+<p>A new option is to use the <a href="http://eclipse.org/amp">Eclipse AMP</a> AMF tools to create Ascape projects.
+AMP is a new project but it has great built-in support for Ascape, and you can even try the new Escape environment which
+allows you to run Ascape models within a self-hosted Eclipe environment!</p>
 <h4><i><a name="BuildGeneric">Building models with another IDE</a></i></h4>
 
-If you want to use an IDE <i>other than</i> Eclipse, set up should still
-be pretty simple. If you wish to set things up to use your IDEs build
-features, these are the basic steps; see you IDE documentation for more
-details.
+If you want to use an IDE <i>other than</i> Eclipse, set up should still be pretty simple. If you wish to set things up
+to use your IDEs build features, these are the basic steps; see you IDE documentation for more details.
 
 <h5>To build your own models:</h5>
 <ol>
-	<li>Create a new project.</li>
-	<li>Add the Ascape_5.m.n.jar to your project (usually this is placed in a 'lib' directory).</li>
-	<li>Create a source (src) directory(s) or a dependent project to
-	manage your own model files.</li>
-	<li>Follow the directions above to create your first model, or place that org.acape.models.brook and org.ascape.models.examples into a source directory.</li>
-	<li>Select the IDE 'build' menu item. (In Eclipse, builds happen automatically.)</li>
+				<li>Create a new project.</li>
+				<li>Add the Ascape_5.m.n.jar to your project (usually this is placed in a 'lib' directory).</li>
+				<li>Create a source (src) directory(s) or a dependent project to manage your own model files.</li>
+				<li>Follow the directions above to create your first model, or place that org.acape.models.brook and
+				org.ascape.models.examples into a source directory.</li>
+				<li>Select the IDE 'build' menu item. (In Eclipse, builds happen automatically.)</li>
 </ol>
 
 <h5>To build <i>Ascape</i> itself:</h5>
 <ol>
-	<li>Download and unzip AscapeSDK[Date].zip.</li>
-	<li>Create a new project.<BR>
-	<span class="note">Depending on your IDE, you may want top set
-	up separate projects for each of the included Ascape projects, or you
-	may simply want to add all of the src and org.ascape.common.lib directories to your
-	main project.</span></li>
-	<li>org.ascape.common.lib includes all dependent classes (jars) in unpacked form.</li>
-	<li>Project dependencies are org.ascape.ui.swing -> org.ascape.core -> org.ascape.common.lib</li>
-	<li>Add the 'src' directory(s) to your source files.</li>
-	<li>Select the IDE 'build' menu item. <BR>
-	<span class="info">If you were using Eclipse, this would happen
-	automatically.</span>
+				<li>Download and unzip AscapeSDK[Date].zip.</li>
+				<li>Create a new project.<BR>
+				<span class="note">Depending on your IDE, you may want top set up separate projects for each of the included
+				Ascape projects, or you may simply want to add all of the src and org.ascape.common.lib directories to your main
+				project.</span></li>
+				<li>org.ascape.common.lib includes all dependent classes (jars) in unpacked form.</li>
+				<li>Project dependencies are org.ascape.ui.swing -&gt; org.ascape.core -&gt; org.ascape.common.lib</li>
+				<li>Add the 'src' directory(s) to your source files.</li>
+				<li>Select the IDE 'build' menu item. <BR>
+				<span class="info">If you were using Eclipse, this would happen automatically.</span>
 </ol>
 
-<span class="note"><h5>Building with Ant</h5>
-Prior Ascape releases supported automated building with ant. As there is now good consistent build support
-in Eclipse and other IDEs we are no longer using or supporting ant builds. The old scripts are available in
-org.ascape.all in the SDK and could be made to work with minimal modifications.</span>
+<span class="note"> <b>Building with Ant</b> Prior Ascape releases supported automated building with ant. As
+there is now good consistent build support in Eclipse and other IDEs we are no longer using or supporting ant builds.
+The old scripts are available in org.ascape.all in the SDK and could be made to work with minimal modifications.</span>
 
+<h4><a name="Developing">Developing Models -- Where to Go from Here</a></h4>
+<p>One of the best ways to learn about Ascape is to simply explore and modify the wealth of existing models.
+Experimentation with exisiting models is one of the best ways to learn about the framework. Take a look at <code>edu.brook.pd.PD2D</code>
+for a well documented implementation of a model in Ascape. The bionland models, while not documented, provide a nice
+progression for use in a self-study tutorial.</p>
 
-
-<h4><a name="Developing">Developing Models -- Where to Go from
-Here</a></h4>
-One of the best ways to learn about Ascape is to simply explore and
-modify the wealth of existing models. Experimentation with exisiting
-models is one of the best ways to learn about the framework. Take a look
-at <code>edu.brook.pd.PD2D</code> for a well documented implementation
-of a model in Ascape. The bionland models, while not documented, provide
-a nice progression for use in a self-study tutorial. <BR></BR>
-
-For the experienced programmer, Ascape is reasonably well documented
-internally. Ascape also includes extensive <a href="api/index.html">javadoc
-documentation </a> and the source code is of course open and reasonably
-straightforward.
-<p>
-<p><a href="docs/TheAscapeManual5.pdf">The Ascape Model
-Developers Manual</a>, written by Damon Centola, and included in the
-documents download, provides an excellent introduction to Agent-Based
-Modeling in general including an introduction to many of the models
-featured here, and an extensive tutorial on developing Ascape models in
-particular. <span class="info">As with Ascape, the manual was
-never released when the authors had hoped. While I have tried to update
-code samples, the manual may be slightly out of date with respect to new
-features. <i>-Miles</i></span>
-<p>
-<p>Many people will have found there way here from reading Joshua
-Epstein's <a href="http://press.princeton.edu/titles/8277.html"><i>Generative
-Social Science</i></a>, which collects ground-breaking work over many years into
-a single volume. For those who wish to understand these models at the
-deepest level this book will be indispensable and very enjoyable.<BR>
-<BR>
+<p>For the experienced programmer, Ascape is reasonably well documented internally. Ascape also includes extensive <a
+				href="api/index.html">javadoc documentation </a> and the source code is of course open and reasonably
+straightforward.</p>
+<p><a href="docs/TheAscapeManual5.pdf">The Ascape Model Developers Manual</a>, written by Damon Centola, and
+included in the documents download, provides an excellent introduction to Agent-Based Modeling in general including an
+introduction to many of the models featured here, and an extensive tutorial on developing Ascape models in particular. <span
+				class="info">As with Ascape, the manual was never released when the authors had hoped. While I have tried to
+update code samples, the manual may be slightly out of date with respect to new features. <i>-Miles</i></span></p>
+<p>Many people will have found there way here from reading Joshua Epstein's <a
+				href="http://press.princeton.edu/titles/8277.html"><i>Generative Social Science</i></a>, which collects
+ground-breaking work over many years into a single volume. For those who wish to understand these models at the deepest
+level this book will be indispensable and very enjoyable.</p>
 <h3><a name="Resources">Resources</a></h3>
 <h4><a name="Documentation">Documentation</a></h4>
 <ol>
-	<li>This guide!<BR>
-	</li>
-	<li><a href="docs/TheAscapeManual5.pdf">The Ascape Model
-	Developers Manual</a></li>
+				<li>This guide!<BR>
+				</li>
+				<li><a href="docs/TheAscapeManual5.pdf">The Ascape Model Developers Manual</a></li>
 </ol>
 <h4><a name="Papers">Selected Papers</a></h4>
-Here are a few select papers. Academic work employing Ascape should
-reference the PNAS or JASSS papers as appropriate.
-<li><a href="http://www.pnas.org/cgi/reprint/99/suppl_3/7304">Overcoming
-design and development challenges in agent-based modeling using ASCAPE
-(PNAS)</a></li>
-</ol>
-<li><a
-	href="http://www.brookings.edu/es/dynamics/models/ascape/20000301_ascape.htm">Abstracting
-Complexity (Brookings Institution)</a></li>
-</ol>
-<li><a href="http://jasss.soc.surrey.ac.uk/4/1/5.html">What is
-Ascape and Why Should You Care? (JASSS)</a></li>
-</ol>
+Here are a few select papers. Academic work employing Ascape should reference the PNAS or JASSS papers as appropriate.
+<ul>
+				<li><a href="http://www.pnas.org/cgi/reprint/99/suppl_3/7304">Overcoming design and development challenges
+				in agent-based modeling using ASCAPE (PNAS)</a></li>
+				<li><a href="http://www.brookings.edu/es/dynamics/models/ascape/20000301_ascape.htm">Abstracting Complexity
+				(Brookings Institution)</a></li>
+				<li><a href="http://jasss.soc.surrey.ac.uk/4/1/5.html">What is Ascape and Why Should You Care? (JASSS)</a></li>
+</ul>
 <h4><a name="Subversion">Subversion Version Control System</a></h4>
 Access to the source code repository is available at: <code>https://ascape.svn.sourceforge.net/svnroot/ascape</code><BR>
-If you would like to discuss contributing to Ascape, please contact <A
-	HREF="mailto:miles@metascapeabm.com">Miles</A>.
+If you would like to discuss contributing to Ascape, please contact <A HREF="mailto:miles@metascapeabm.com">Miles</A>.
 <h3><a name="Known Issues"> Known Issues </a></h3>
-Because of changes in Apple QuickTime, movies may not work correctly under recent editions of Mac OS X and have
-not been tested under other platforms. Please let us know of
-your experiences with Linux and Windows.
+Because of changes in Apple QuickTime, movies may not work correctly under recent editions of Mac OS X and have not been
+tested under other platforms. Please let us know of your experiences with Linux and Windows.
 
 <h3><a name="Contact">Support and Contacts</a></h3>
 
 <h4><a name="HomePage">Home Page</a></h4>
 
 <A HREF="http://ascape.sourceforge.net">Ascape on Sourceforge</A><br></br>
-<a href="http://sourceforge.net"><img
-	src="http://sflogo.sourceforge.net/sflogo.php?group_id=203744&amp;type=1"
-	width="88" height="31" border="0" alt="SourceForge.net Logo" /></a>
-
+<a href="http://sourceforge.net/projects/ascape"><img
+				src="http://sflogo.sourceforge.net/sflogo.php?group_id=203744&amp;type=12" width="120" height="30"
+				alt="Get Ascape at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a>
 <h4><a name="Forum">Online Forum</a></h4>
 
-Ascape requests for support and discussion should be submitted to the
-Ascape forums. Because of issues with spam on sourceforge, registration
-is required. <A HREF="http://ascape.sourceforge.net/forum">Sourceforge
-Forum</A><br></br>
+Ascape requests for support and discussion should be submitted to the Ascape forums. Because of issues with spam on
+sourceforge, registration is required. <A HREF="http://ascape.sourceforge.net/forum">Sourceforge Forum</A><br></br>
 
 <h4><a name="Download">Downloads</a></h4>
 
@@ -784,430 +651,42 @@ Forum</A><br></br>
 
 <h4><a name="Sponsors">Sponsors</a></h4>
 
-The following organizations have provided generous in-kind support and
-donated IP to the Open Source community. No endorsement by any of these
-organizations of any other organization, product or document is intended
-or implied.<BR>
+The following organizations have provided generous in-kind support and donated IP to the Open Source community. No
+endorsement by any of these organizations of any other organization, product or document is intended or implied.<BR>
 
-<span class="alert"><b>Under no circumstances will any of the
-following people provide unsolicited support via direct email or phone.
-:)</b> <font color='black'><br>
-Paid consulting and support options are available from the corporate
-sponsors. Otherwise please send technical questions, bug reports, etc..
-to the Ascape forums.</font></span>
+<span class="alert"><b>Under no circumstances will any of the following people provide unsolicited support
+via direct email or phone. :)</b> <font color='black'><br>
+Paid consulting and support options are available from the corporate sponsors. Otherwise please send technical
+questions, bug reports, etc.. to the Ascape forums.</font></span>
 
 <h4>Metascape, LLC</h4>
 Metascape develops and supports innovative ABM software tools.
 <p>Website: <A HREF="http://www.metascapeabm.com">Metascape</A><BR>
-Contact: <A HREF="mailto:miles@metascapeabm.com">Miles T. Parker</A><br></br>
-<h4>NuTech Solutions, Inc.</h4>
-NuTech is a leader in applying ABMs to real-world industry and
-government problems.
+Contact: <A HREF="mailto:miles@metascapeabm.com">Miles T. Parker</A></p>
+<h4>NuTech Solutions, Inc. (Now Neteeza, the following information may be out of date.)</h4>
+NuTech is a leader in applying ABMs to real-world industry and government problems.
 <p>Website: <A HREF="http://www.nutechsolutions.com">NuTech</A><BR>
-Contact: <A HREF="http://nutechsolutions.com/contact_question.asp">Contacts Page</A><br></br>
-<h4>Brookings</h4>
-The Brookings Institution is a leading national policy think tank and
-home to the Center on Social and Economic Dynamics, where pioneering
-work on Agent-Based Models continues.
-<p>Website: <A HREF="http://www.brook.edu">Brookings</A><BR>
-Contact: <A HREF="mailto:csed@brookings.edu">CSED</A><br></br>
+Contact: <A HREF="http://nutechsolutions.com/contact_question.asp">Contacts Page</A></p>
+<h4>The Brookings Institution</h4>
+The Brookings Institution is a leading national policy think tank and home to the Center on Social and Economic
+Dynamics, where pioneering work on Agent-Based Models continues.
+<p>Website: <A HREF="http://www.brookings.edu/dynamics.aspx">Brookings</A><BR>
+Contact: <A HREF="mailto:csed@brookings.edu">CSED</A></p>
 
-YourKit is kindly supporting open source projects with its full-featured Java Profiler.
-YourKit, LLC is creator of innovative and intelligent tools for profiling
-Java and .NET applications. Take a look at YourKit's leading software products:
-<a href="http://www.yourkit.com/java/profiler/index.jsp">YourKit Java Profiler</a> and
-<a href="http://www.yourkit.com/.net/profiler/index.jsp">YourKit .NET Profiler</a>.</small><BR>
-
+<h4>In Kind Support</h4>
+<h5>YourKit</h5>
+<p>YourKit is kindly supporting open source projects with its full-featured Java Profiler. YourKit, LLC is creator
+of innovative and intelligent tools for profiling Java and .NET applications. Take a look at YourKit's leading software
+products: <a href="http://www.yourkit.com/java/profiler/index.jsp">YourKit Java Profiler</a> and <a
+				href="http://www.yourkit.com/.net/profiler/index.jsp">YourKit .NET Profiler</a>.</p>
+<h5>Sourceforge</h5>
+<a href="http://sourceforge.net/projects/ascape"><img
+				src="http://sflogo.sourceforge.net/sflogo.php?group_id=203744&amp;type=12" width="120" height="30"
+				alt="Get Ascape at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a>
 <h3><a name="Updating"> Updating from Previous Versions </a></h3>
-We have tried to preserve as much backward compatibility as possible.
-Still, this is a the first release in over eight years, and there have
-been many many changes to Ascape, so it is quite possible that some
-changes will be needed, especially is you have heavily customized Ascape
-views and scapes. To convert an existing model, try the follwingattempt
-to compile it with the new version of Ascape. .
-<ul>
-	<li>The package hierarchy has changed to org.ascape from one of
-	edu.brook, com.bios, or com.nutech. :) The easiest way to deal with
-	this in a mdoern IDE is probably to delete all of you import statements
-	and then use your IDE's auto-import feature (in Eclipse that is
-	Source:Organize Imports) to attempt to find the re-packaged classes.
-	You may have to do some of this manually.</li>
-	<li>In 3.0 a new more flexible Scape space mechanism was
-	introduced. You will need to replace all patterns like:<pre>new ScapeArray2DMooore()</pre>with:<pre>new Scape(new Array2DMoore())</pre>Simple,
-	eh?</li>
-	<li>Many methods have been deprecated -- for greater flexibility
-	you should migrate to the replacement methods as soon as is practical.
-	Hopefully these will imprOve the code. For example: <pre>
-        CellOccupant[] neighbors; 
-        neighbors = getHostCell().getNeighboringOccupants(); 
-		for (int i = 0; i &lt; neighbors.length; i++) { 
-			currScore = ((CoordinationGamePlayer)neighbors[i]).totalSc ore; 
-			 if (currScore &gt; bestScore)  { 
-				  bestScore = currScore; 
-				myColor = ((CoordinationGamePlayer)neighbors[i]).getColor(); 
- 		 	} 
-		} 
-</pre> <pre>
-        List neighbors = findNeighborsOnHost();
-        for (Object neighbor : neighbors) {
-            currScore = ((CoordinationGamePlayer) neighbor).totalScore;
-            if (currScore &gt; bestScore) {
-                bestScore = currScore;
-                myColor = ((CoordinationGamePlayer) neighbor).getColor();
-            }
-        }
-</pre> And actually there is a much better way to do even that now, but we
-	won't get into that...</li>
-	<li>The <code>onSetup()</code> and similar methods are no longer
-	used. Use the <code>scapeSetup(ScapeEvent event)</code> pattern
-	instead.</li>
-	<li>Replace <code>Scape.addAgent()</code> with <code>Scape.add()</code>.</li>
-	<li>All of the Event and Listener classes have been moved to
-	..ascape.model.event. You may need to update your imports to reflect
-	this if you work with listeners directly. A new class, UserEnvironment,
-	takes over many of the functions of ViewFrameBridge. Typically you will
-	just need to replace getViewFrameBridge() with
-	getScape().getUserEnvironment(), or in some cases, simply
-	UserEnvironment.</li>
-	<li>If you run into any insurmountable difficulties, post a
-	message to the Ascape forums so that we can sort them out.</li>
-</ul>
-
+<p>If you have a much older model (pre 4.0) you can get information about updating it <a href="updating.html">here</a>.</p>
 <h3><a name="Version"> Version History</a></h3>
-
-<ul>
-    <li>[5.3.0]
-    <ul>
-        <li>Bug fixes. Factored out uneccesary lib dependencies from core. Please see <a href="http://sourceforge.net/tracker/?group_id=203744&atid=986824">Ascape bug tracker</a>.</li>
-    </ul>
-    <li>[5.1.2]
-    <ul>
-        <li>Bug fixes. Please see <a href="http://sourceforge.net/tracker/?group_id=203744&atid=986824">Ascape bug tracker</a>.</li>
-    </ul>
-    <li>[5.1.1]
-    <ul>
-        <li>Bug fixes. Please see <a href="http://sourceforge.net/tracker/?group_id=203744&atid=986824">Ascape bug tracker</a>.</li>
-    </ul>
-	<li>[5.1]
-	<ul>
-		<li>Factored out swing ui into seperate project</li>
-		<li>Other refactorings to clean up runner functionality and user environment</li>
-		<li>Small functional improments and bug fixes</li>
-	</ul>
-	<li>[5.0]
-	<ul>
-		<li>Open Source release</li>
-		<li>Refactorings to org.ascape hierarchy</li>
-		<li>Eclipse projects and Integration</li>
-		<li>Testing and additional QA</li>
-	</ul>
-	<li>[4.0]
-	<ul>
-
-		<li>Model Navigator</li>
-		<li>New Model Composition Features</li>
-		<li>New UI Features</li>
-		<li>Ant Builds</li>
-		<li>Ant/XML Based Model and View Configuration</li>
-		<li>2D Performance Optimizations</li>
-	</ul>
-	<li>[3.0]<BR>
-	100s of changes; too many to mention individually. Here are some
-	highlights:
-
-	<ul>
-		<li>Persistence -- Save any Model in any State</li>
-		<li>Full MDI Interface</li>
-		<li>Extensible Scaling Views</li>
-		<li>Built-in Console</li>
-		<li>Model “Acceleration”</li>
-		<li>Scalable Time-Steps</li>
-		<li>Deeply Polymorphic throughout all spaces</li>
-		<li>Model Composition</li>
-		<li>New Agent Types</li>
-		<li>Sub and Super Scapes (Containment)</li>
-		<li>Strong Collections Based Space Model</li>
-		<li>Continuous 2-D Spaces</li>
-		<li>GIS Integration</li>
-		<li>Arbitrary Graphs</li>
-		<li>Improved View System</li>
-		<li>OpenMap Vis.</li>
-		<li>Graph/Entity-Relation Views</li>
-		<li>Inspectors in all Spaces</li>
-		<li>Dozens of new Primary and Supporting Classes</li>
-		<li>Massive Refactorings</li>
-		<li>Very Strong Unit-Testing Coverage</li>
-		<li>Many new model implementations and examples</li>
-		<li>100 pg Manual</li>
-	</ul>
-	<li>[2.0 - 2.9] <BR>
-	No public release.</li>
-	<li>[1.9.2]<BR>
-	Maintenance release:
-	<ul>
-		<li>Changed signature of getCellsNear to match findMaximum...</li>
-		<li>Moved DrawFeature to .model to temporarily fix package
-		dependency issue.</li>
-	</ul>
-	<li>[1.9.1]<BR>
-	Maintenance release:
-	<ul>
-
-		<li>Began work on clarifying role of euclidian space within
-		Scape2D structure.</li>
-
-		<li>Distance code finished.</li>
-
-		<li>Get info now reflects correct version.</li>
-
-		<li>Minor agent/cell inspector bug fixes.</li>
-	</ul>
-	<li>[1.9]<BR>
-	Extensive user-interface and functionality enhancements, including:
-	<ul>
-		<li>Added ability to dynamically view individual cell properties
-		through a runtime cell and agent customizer. [This facility is very
-		similar to Swarm and RePast agent 'probes'.] To try this feature out,
-		simply meta [option on mac, alt on PC]click on an cell in a view. You
-		can also drag around a view to scan the properties of different cells.
-		If the view supports agents, agents hosted on a praticular cell will
-		also have their characteristics displayed. To cause the customizer to
-		'track' agents, shift-meta/opt/alt-click in a view.</li>
-
-		<li>Added sophisticated paramater sweeping support. See aa.LHVRMS
-		for an example.<br></br>
-		</li>
-
-		<li>Added support for direct capture of views to quicktime
-		movies.<br></br>
-		</li>
-
-		<li>Support for debug and release runtime modes, providing
-		support for debugging or a more 'graceful' user experience on error.<br></br>
-		</li>
-
-		<li>Created multiple view functionality.<br></br>
-		</li>
-
-		<li>Improved support for data output, e.g. writing data from
-		runnning models out to a file stream. This was allready supported, but
-		the implementation was confusing and spread across multiple classes.<br></br>
-		</li>
-
-		<li>Seperated out the run control functionality from the
-		previously mentioned data output view, creating a new
-		"SweepControlView" that is responsible for managaing runs and setting
-		paramaters. Other paramater exploration controls could easily be
-		created using the same technique.<br></br>
-		</li>
-
-		<li>Added new tabbed multi-view mode. This allows you to add
-		multiple views and have them automatically displayed within a tabbed
-		panel.<br></br>
-		</li>
-
-		<li>Added 'Speed' control to control bar. This allows you to slow
-		a model down by delaying the contol bar's reporting of its view
-		update. Drag the slider to the left to slow the model.<br></br>
-		</li>
-
-		<li>Added support for easy use of two-phase and calculated
-		statistics.<br></br>
-		</li>
-
-		<li>Added navigation popup to control bar. This allows you to
-		easily select a particualr view frame by selecting it from the popup.<br></br>
-		</li>
-
-		<li>Enhanced and cleaned up view functionality in Scapes, and
-		improved general scape updating and response code.<br></br>
-		</li>
-
-		<li>Improvements to scape run control code.<br></br>
-		</li>
-
-		<li>Suport for debug and release modes, providing clean user
-		level handling of bugs, while allowing bugs to remain unfiltered in
-		DEBUG_RUNTIME_MODE.<br></br>
-		</li>
-
-		<li>All scape control events, except for the TICK event, intended
-		for views must now be responded to, beofre the Scape is unblocked.
-		This is a change in the implicit Scape/View contract, and ensures that
-		all views have a chance to respond properly to setup and close events.<br></br>
-		</li>
-
-		<li>Some minor performance related changes.</li>
-
-		<li>Fixed a bug in ScapeVector that occured when rules execute
-		nested multiple iterations.<br></br>
-		</li>
-	</ul>
-	<li>[1.6]<BR>
-	Interim version. (No official release).
-	<li>[1.5.1]<BR>
-	Mostly small fixes and refactoring.
-	<ul>
-
-
-		<li>Added ability to easily create calculated statistics. These
-		statisitics can be used for summary or derivitive stat calculations.</li>
-
-		<li>Fixed problem with inital stat calculation.</li>
-
-		<li>Cleaned up stat calculation, initialization and running code
-		and rules.</li>
-
-		<li>Many changes to ViewFrameBridge and related code to clarify
-		and better support creation of web deployment package.</li>
-	</ul>
-	<li>[1.5]<BR>
-	Many important and minor changes, including, but not limited to:
-	<ul>
-		<li>Ascape is no longer a 'technical release' and can be
-		considered a full release. While there are many important features to
-		add, it is now essentially feature complete.</li>
-
-		<li>Created standard 'open' dialog functionality with easily
-		accessible standard models..can now invoke Scape directly from
-		command-line.</li>
-
-		<li>Many important model behaviors, including rules selection and
-		execution order and style, are now accessible at run time and can be
-		modified through the model 'settings' customizer. Click on the globe
-		button in the toolbar to check this feature out.</li>
-
-		<li>Implemented rule execution through an iterator pattern, so
-		that new scape topologies can be created simply by providing an
-		iterator, and the execution order can be safely and consistently
-		maintained in one place (ScapeGraph).</li>
-
-		<li>Changed the names for execution order from the confusing
-		(because of association with parallel processing) "Parallel/Serial" to
-		"Rule Order/Agent Order". Added repeated draw functionality, and moved
-		it from execution order to a new property, 'execution style.</li>
-		<li>Now deploying though InstallAnywhere installer.</li>
-
-		<li>Added an 'about' dialog feature that makes it possbile to
-		easily create custom about dialogs for your models. You can now
-		provide about information for your model by simply creating a
-		MyModel.html file and placing it in the appropriate place in your
-		model hierarchy. You can include html tags and references in this
-		file.</li>
-
-		<li>Added modest user exception alerting.</li>
-
-		<li>Went back to original contruction naming scheme; populate is
-		know called createScape. Note that I did not go back to using a
-		seperate createRules method..seems unneccesary, esp. since rule
-		'availibility' and selection are now seperate issues.</li>
-	</ul>
-	<li>[1.3]<BR>
-	No public release..all changes became part of 1.5.
-	<li>[1.2.5a]<BR>
-	Just a couple of deployment related fixes, and a minor fix for a
-	problem that was causing models to stop when swtiching between chart
-	types in the chart customizer.
-	<li>[1.2.5]<BR>
-	A number of relatively minor changes, bug fixes, and enhancements, as
-	well as new models. The most significant change is the addition of
-	support for using images (GIFs) to represent cells in views. This
-	feature will be used more in future release. This release also includes
-	an implementation of heatbugs that should be familiar to Swarm users.</li>
-	<li>[1.2]
-	<ul>
-
-		<li>I've finally made a change that I wanted to make at almost
-		the moment I designed the initial framework. I've changed the names of
-		engine and observe to model and view to more explicitly reflect the
-		overall design pattern behind them, and also because I think they are
-		more appropriate names.</li>
-
-		<li>Many rules classes have become anonymous inner class instance
-		members of Agent or Scape.</li>
-
-		<li>Changed the implementation of a number of "feature" type
-		classes so that they can be implemented as inner and anonymous classes
-		more easily. These include DrawFeature@, ColorFeature@,
-		UnitIntervaldataSource@, and StatCollector@.
-		<li>Changed stat collection mechanism to allow for non-automatic
-		collection of stats. (Partially implmented earlier.) Made
-		StatCollector.getValue non-abstract, neccessitated by non auto
-		collection. Again, added support for name and auto collect member
-		variables so that it it no longer neccesary to override these methods.</li>
-
-		<li>Added support for custom sliders and live model changes.
-		<li>Copied many random functions to Ascape objects, using random
-		seed, so that common random functions are accessible to all objects
-		without having to go through Utility.</li>
-
-		<li>Provided access to the random seed used for the running
-		model, even if the seed was set arbitraily (using system time).</li>
-
-		<li>Added an abstraction for data series that provides a way of
-		customizing any aspect of a data series view. In the initial case, it
-		allows one to set wheteher data should be represeneted as continuous
-		(a curve) or discrete (points).</li>
-
-		<li>Implemented all the 'settings' style frames as customizer
-		panels.</li>
-
-		<li>I'm considering removing the nested drawing feature from
-		DrawFeature, since I haven't really found a use for it. Let me know if
-		you find it useful.</li>
-
-		<li>Created jar files and changed the distribution's directory
-		structure to better conform to standard practice.
-		<li>Added a standard out view which manages printing model
-		information to the console. (You can disable this by calling
-		getRoot().removeScapeListener(getStandardOutView());.</li>
-
-		<li>Fixed many bugs, and added may minor features.</li>
-	</ul>
-	<li>[1.1.2]
-	<ul>
-
-		<li>Abstracted frames and created view manager, providing simpler
-		support for different viewing environments, and for deploying simple
-		applets. (See appletsupport folder).</li>
-
-		<li>Fixed a bug in ScapeArray2D causing incorrect execution of
-		random rules in parallel.</li>
-	</ul>
-	<li>[1.1.1]
-	<ul>
-
-		<li>Truly random rule execution for 2D lattices (previously only
-		supported for occupants).</li>
-
-		<li>Expanded api for finding cells, etc..
-		<li>Standard methods for view updates.</li>
-
-		<li>Many fixes to find cells etc..</li>
-
-		<li>Limited support for internal frames. (Broken in Win95).</li>
-
-		<li>Many other minor improvements.</li>
-	</ul>
-	<li>[1.1]
-	<ul>
-
-		<li>There are significant enhancements this time, including:
-		<li>The ability to assign set period values (from a historical
-		record, for example) to agents.</li>
-
-		<li>Data collection methods and views.</li>
-
-		<li>"Pluggable" drawing features, including the ability to change
-		them at runtime from a user dialog.</li>
-
-		<li>Automatic discovery of model paramaters at runtime, allowing
-		their modifcation in a running model through user customizers, or
-		using command line paramaters.</li>
-
-		<li>New models.</li>
-	</ul>
-</ul>
+<p>You can find a full history of Ascape changes (going back gten years!) <a href="history.html">here</a>.</p>
 </div>
 </div>
 </body>

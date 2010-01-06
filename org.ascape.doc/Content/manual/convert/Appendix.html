@@ -1,0 +1,1748 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title></title>
+<meta name="Generator" content="Cocoa HTML Writer">
+<meta name="CocoaVersion" content="1038.25">
+<LINK REL="stylesheet" TYPE="text/css" HREF="AppleConversion.css" TITLE="Style">
+</head>
+<body>
+<p class="p3"><img src="images/AscapeLogo.pdf" alt="AscapeLogo.pdf"></p>
+<p class="p4"><b>The Ascape Model Developer’s Manual</b></p>
+<p class="p20"><br></p>
+<p class="p77"><b>Appendix. Code Samples</b></p>
+<p class="p2"><br>
+</p>
+<p class="p27">In order for these code samples to compile, the developer must have ascape and related libraries
+available on the classpath. Additionally, the files ‘CoordinationGame.java’ and ‘CoordinationGamePlayer.java’ should be
+in a src code directory that matches the package structure, i.e. [src]/edu.brook.manual.model[n]/.</p>
+<p class="p2"><br>
+</p>
+<p class="p10"><a name="1"><b>Model 1: Coordination Game</b></a></p>
+<p class="p2"><br>
+</p>
+<p class="p27"><a name="1.1"><b>CoordinationGame.java</b></a></p>
+<p class="p17"><br>
+</p>
+<p class="p23"><br>
+</p>
+<p class="p47">package edu.brook.manual.model1;</p>
+<p class="p23"><br>
+</p>
+<p class="p47">import java.awt.Color;</p>
+<p class="p23"><br>
+</p>
+<p class="p47">import org.ascape.model.HostCell;</p>
+<p class="p47">import org.ascape.model.Scape;</p>
+<p class="p47">import org.ascape.model.event.ScapeEvent;</p>
+<p class="p47">import org.ascape.model.space.Array2DVonNeumann;</p>
+<p class="p47">import org.ascape.util.data.StatCollector;</p>
+<p class="p47">import org.ascape.util.data.StatCollectorCond;</p>
+<p class="p47">import org.ascape.view.vis.ChartView;</p>
+<p class="p47">import org.ascape.view.vis.Overhead2DView;</p>
+<p class="p23"><br>
+</p>
+<p class="p47">public class CoordinationGame extends Scape {</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// model-scope variables</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int nPlayers = 100;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int latticeWidth = 30;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int latticeHeight = 30;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int coordinateOnBlue = 1;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int coordinateOnRed = 1;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int error = 0;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>Scape lattice;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>Scape players;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>Overhead2DView overheadView;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// creates scapes and agents</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void createScape() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>super.createScape();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>lattice = new Scape(new Array2DVonNeumann());</p>
+<p class="p47"><span class="Apple-converted-space">        </span>lattice.setPrototypeAgent(new HostCell());</p>
+<p class="p47"><span class="Apple-converted-space">        </span>lattice.setExtent(latticeWidth, latticeHeight);</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">        </span>CoordinationGamePlayer cgplayer = new
+CoordinationGamePlayer();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>cgplayer.setHostScape(lattice);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>players = new Scape();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>players.setName("Players");</p>
+<p class="p47"><span class="Apple-converted-space">        </span>players.setPrototypeAgent(cgplayer);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>players.setExecutionOrder(Scape.RULE_ORDER);</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">        </span>add(lattice);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>add(players);</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">        </span>StatCollector CountReds = new
+StatCollectorCond("Reds") {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>public boolean meetsCondition(Object object) {</p>
+<p class="p47"><span class="Apple-converted-space">                </span>return (((CoordinationGamePlayer)
+object).myColor == Color.red);</p>
+<p class="p47"><span class="Apple-converted-space">            </span>}</p>
+<p class="p47"><span class="Apple-converted-space">        </span>};</p>
+<p class="p47"><span class="Apple-converted-space">        </span>StatCollector CountBlues = new
+StatCollectorCond("Blues") {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>public boolean meetsCondition(Object object) {</p>
+<p class="p47"><span class="Apple-converted-space">                </span>return (((CoordinationGamePlayer)
+object).myColor == Color.blue);</p>
+<p class="p47"><span class="Apple-converted-space">            </span>}</p>
+<p class="p47"><span class="Apple-converted-space">        </span>};</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">        </span>players.addStatCollector(CountReds);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>players.addStatCollector(CountBlues);</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void scapeSetup(ScapeEvent scapeEvent) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>((Scape) players).setExtent(nPlayers);</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47">// create views and charts</p>
+<p class="p47"><span class="Apple-converted-space">     </span>public void createGraphicViews() {</p>
+<p class="p47"><span class="Apple-converted-space">         </span>super.createGraphicViews();</p>
+<p class="p47"><span class="Apple-converted-space">         </span>ChartView chart = new ChartView();</p>
+<p class="p47"><span class="Apple-converted-space">         </span>players.addView(chart);</p>
+<p class="p47"><span class="Apple-converted-space">         </span>chart.addSeries("Count Reds", Color.red);</p>
+<p class="p47"><span class="Apple-converted-space">         </span>chart.addSeries("Count Blues", Color.blue);</p>
+<p class="p47"><span class="Apple-converted-space">         </span>chart.setDisplayPoints(100);</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">         </span>overheadView = new Overhead2DView();</p>
+<p class="p47"><span class="Apple-converted-space">         </span>overheadView.setCellSize(15);</p>
+<p class="p47"><span class="Apple-converted-space">         </span>lattice.addView(overheadView);</p>
+<p class="p47"><span class="Apple-converted-space">     </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// get() and set() methods for the model variables</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int getRedScore() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>return coordinateOnRed;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void setRedScore(int NewcoordinateOnRed) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>coordinateOnRed = NewcoordinateOnRed;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int getBlueScore() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>return coordinateOnBlue;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void setBlueScore(int NewcoordinateOnBlue) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>coordinateOnBlue = NewcoordinateOnBlue;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int getnPlayers() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>return nPlayers;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void setnPlayers(int NewnPlayers) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>nPlayers = NewnPlayers;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p78"><span class="s5">} </span> <span class="Apple-converted-space">     </span></p>
+<p class="p47">}</p>
+<p class="p71"><br>
+</p>
+<p class="p27"><a name="1.2"><b>CoordinationGamePlayer.java</b></a></p>
+<p class="p17"><br>
+</p>
+<p class="p17"><br>
+</p>
+<p class="p47">package edu.brook.manual.model1;</p>
+<p class="p23"><br>
+</p>
+<p class="p47">import java.awt.Color;</p>
+<p class="p47">import java.util.List;</p>
+<p class="p23"><br>
+</p>
+<p class="p47">import org.ascape.model.Agent;</p>
+<p class="p47">import org.ascape.model.CellOccupant;</p>
+<p class="p23"><br>
+</p>
+<p class="p47">public class CoordinationGamePlayer extends CellOccupant {</p>
+<p class="p23"><br>
+</p>
+<p class="p47">// cgplayer variables</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected Color myColor;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int totalScore;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int[] recentPlays;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int count = 0;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int totalreds;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int totalblues;</p>
+<p class="p23"><br>
+</p>
+<p class="p47">// agent initialization method</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void initialize() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>if (randomInRange(0, 1) &gt; 0) {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>myColor = Color.red;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>} else {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>myColor = Color.blue;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>}</p>
+<p class="p47"><span class="Apple-converted-space">        </span>recentPlays = new int[5];</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47">// add rules to the scape</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void scapeCreated() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>getScape().addInitialRule(MOVE_RANDOM_LOCATION_RULE);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>getScape().addRule(RANDOM_WALK_RULE);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>getScape().addRule(UPDATE_RULE);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>getScape().addRule(PLAY_RANDOM_NEIGHBOR_RULE);</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47">// imitation rule</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void update() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>count++;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>if (count &gt; recentPlays.length) {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>int currScore = 0;</p>
+<p class="p47"><span class="Apple-converted-space">            </span>int bestScore = this.totalScore;</p>
+<p class="p47"><span class="Apple-converted-space">            </span>List neighbors = findNeighborsOnHost();</p>
+<p class="p47"><span class="Apple-converted-space">            </span>for (Object neighbor : neighbors) {</p>
+<p class="p47"><span class="Apple-converted-space">                </span>currScore = ((CoordinationGamePlayer)
+neighbor).totalScore;</p>
+<p class="p47"><span class="Apple-converted-space">                </span>if (currScore &gt; bestScore) {</p>
+<p class="p47"><span class="Apple-converted-space">                    </span>bestScore = currScore;</p>
+<p class="p47"><span class="Apple-converted-space">                    </span>myColor = ((CoordinationGamePlayer)
+neighbor).getColor();</p>
+<p class="p47"><span class="Apple-converted-space">                </span>}</p>
+<p class="p47"><span class="Apple-converted-space">            </span>}</p>
+<p class="p47"><span class="Apple-converted-space">        </span>}</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// play rule</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void play(Agent partner) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>int score;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>if ((((CoordinationGamePlayer) partner).getColor()
+== myColor) &amp;&amp; (myColor == Color.blue)) {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>score = ((CoordinationGame)
+getRoot()).getBlueScore();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>} else if ((((CoordinationGamePlayer)
+partner).getColor() == myColor) &amp;&amp; (myColor == Color.red)) {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>score = ((CoordinationGame)
+getRoot()).getRedScore();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>} else {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>score = 0;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>}</p>
+<p class="p47"><span class="Apple-converted-space">        </span>count = count + 1;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>updateRecentPlays(score);</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// keep track of the recent scores</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void updateRecentPlays(int score) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>totalScore = 0;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>for (int i = 0; i &lt; (recentPlays.length - 1);
+i++) {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>recentPlays[i] = recentPlays[i + 1];</p>
+<p class="p47"><span class="Apple-converted-space">            </span>totalScore = totalScore + recentPlays[i];</p>
+<p class="p47"><span class="Apple-converted-space">        </span>}</p>
+<p class="p47"><span class="Apple-converted-space">        </span>recentPlays[recentPlays.length - 1] = score;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>totalScore = totalScore +
+recentPlays[recentPlays.length - 1];</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// cgplayer get() and set() methods</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public Color getColor() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>return myColor;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void setColor(Color ncolor) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>myColor = ncolor;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p47">}</p>
+<p class="p71"><br>
+</p>
+<p class="p15"><br>
+</p>
+<p class="p10"><a name="2"><b>Model 2: Stochasticity and Averaging Statistics</b></a></p>
+<p class="p71"><br>
+</p>
+<p class="p27"><a name="2.1"><b>CoordinationGame.java</b></a></p>
+<p class="p23"><br>
+</p>
+<p class="p47">package edu.brook.manual.model2;</p>
+<p class="p23"><br>
+</p>
+<p class="p47">import java.awt.Color;</p>
+<p class="p23"><br>
+</p>
+<p class="p47">import org.ascape.model.HostCell;</p>
+<p class="p47">import org.ascape.model.Scape;</p>
+<p class="p47">import org.ascape.model.event.ScapeEvent;</p>
+<p class="p47">import org.ascape.model.space.Array2DVonNeumann;</p>
+<p class="p47">import org.ascape.util.data.StatCollector;</p>
+<p class="p47">import org.ascape.util.data.StatCollectorCSAMM;</p>
+<p class="p47">import org.ascape.util.data.StatCollectorCond;</p>
+<p class="p47">import org.ascape.view.vis.ChartView;</p>
+<p class="p47">import org.ascape.view.vis.Overhead2DView;</p>
+<p class="p23"><br>
+</p>
+<p class="p47">public class CoordinationGame extends Scape {</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// model-scope variables</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int nPlayers = 100;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int latticeWidth = 30;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int latticeHeight = 30;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int coordinateOnBlue = 1;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int coordinateOnRed = 1;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int error = 0;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>Scape lattice;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>Scape players;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>Overhead2DView overheadView;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// creates scapes and agents</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void createScape() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>super.createScape();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>lattice = new Scape(new Array2DVonNeumann());</p>
+<p class="p47"><span class="Apple-converted-space">        </span>lattice.setPrototypeAgent(new HostCell());</p>
+<p class="p47"><span class="Apple-converted-space">        </span>lattice.setExtent(latticeWidth, latticeHeight);</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">        </span>CoordinationGamePlayer cgplayer = new
+CoordinationGamePlayer();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>cgplayer.setHostScape(lattice);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>players = new Scape();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>players.setName("Players");</p>
+<p class="p47"><span class="Apple-converted-space">        </span>players.setPrototypeAgent(cgplayer);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>players.setExecutionOrder(Scape.RULE_ORDER);</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">        </span>add(lattice);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>add(players);</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">        </span>StatCollector CountReds = new
+StatCollectorCond("Reds") {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>public boolean meetsCondition(Object object) {</p>
+<p class="p47"><span class="Apple-converted-space">                </span>return (((CoordinationGamePlayer)
+object).getColor() == Color.red);</p>
+<p class="p47"><span class="Apple-converted-space">            </span>}</p>
+<p class="p47"><span class="Apple-converted-space">        </span>};</p>
+<p class="p47"><span class="Apple-converted-space">        </span>StatCollector CountBlues = new
+StatCollectorCond("Blues") {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>public boolean meetsCondition(Object object) {</p>
+<p class="p47"><span class="Apple-converted-space">                </span>return (((CoordinationGamePlayer)
+object).getColor()== Color.blue);</p>
+<p class="p47"><span class="Apple-converted-space">            </span>}</p>
+<p class="p47"><span class="Apple-converted-space">        </span>};</p>
+<p class="p47"><span class="Apple-converted-space">        </span>StatCollector AvgPayoff = new
+StatCollectorCSAMM("Payoff") {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>public double getValue(Object object) {</p>
+<p class="p47"><span class="Apple-converted-space">                </span>return ((CoordinationGamePlayer)
+object).getRunningTotal();</p>
+<p class="p47"><span class="Apple-converted-space">            </span>}</p>
+<p class="p47"><span class="Apple-converted-space">        </span>};</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">        </span>players.addStatCollector(CountReds);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>players.addStatCollector(CountBlues);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>players.addStatCollector(AvgPayoff);</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void scapeSetup(ScapeEvent scapeEvent) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>((Scape) players).setExtent(nPlayers);</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// create views and charts</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void createGraphicViews() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>super.createGraphicViews();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>ChartView chart = new ChartView();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>players.addView(chart);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>chart.addSeries("Count Reds", Color.red);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>chart.addSeries("Count Blues", Color.blue);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>chart.addSeries("Average Payoff", Color.black);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>chart.setDisplayPoints(100);</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">        </span>overheadView = new Overhead2DView();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>overheadView.setCellSize(15);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>lattice.addView(overheadView);</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// get() and set() methods for the model variables</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int getRedScore() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>return coordinateOnRed;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void setRedScore(int NewcoordinateOnRed) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>coordinateOnRed = NewcoordinateOnRed;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int getBlueScore() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>return coordinateOnBlue;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void setBlueScore(int NewcoordinateOnBlue) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>coordinateOnBlue = NewcoordinateOnBlue;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int getError() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>return error;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void setError(int NewError) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>error = NewError;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int getnPlayers() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>return nPlayers;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void setnPlayers(int NewnPlayers) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>nPlayers = NewnPlayers;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p47">}</p>
+<p class="p71"><br>
+</p>
+<p class="p27"><a name="2.2"><b>CoordinationGamePlayer.java</b></a></p>
+<p class="p23"><br>
+</p>
+<p class="p47">package edu.brook.manual.model2;</p>
+<p class="p23"><br>
+</p>
+<p class="p47">import java.awt.Color;</p>
+<p class="p47">import java.util.List;</p>
+<p class="p23"><br>
+</p>
+<p class="p47">import org.ascape.model.Agent;</p>
+<p class="p47">import org.ascape.model.CellOccupant;</p>
+<p class="p23"><br>
+</p>
+<p class="p47">public class CoordinationGamePlayer extends CellOccupant {</p>
+<p class="p23"><br>
+</p>
+<p class="p47">// cgplayer variables</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected Color myColor;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int totalScore;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int[] recentPlays;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int count = 0;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int totalreds;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int totalblues;</p>
+<p class="p23"><br>
+</p>
+<p class="p47">// agent initialization method</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void initialize() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>if (randomInRange(0, 1) &gt; 0) {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>myColor = Color.red;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>} else {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>myColor = Color.blue;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>}</p>
+<p class="p47"><span class="Apple-converted-space">        </span>recentPlays = new int[5];</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47">// add rules to the scape</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void scapeCreated() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>getScape().addInitialRule(MOVE_RANDOM_LOCATION_RULE);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>getScape().addRule(RANDOM_WALK_RULE);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>getScape().addRule(UPDATE_RULE);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>getScape().addRule(PLAY_RANDOM_NEIGHBOR_RULE);</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47">// imitation rule</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void update() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>count++;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>if (count &gt; recentPlays.length) {</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">            </span>if (randomInRange(0, 100) &gt;=
+((CoordinationGame) getRoot()).error) {</p>
+<p class="p47"><span class="Apple-converted-space">                </span>int currScore = 0;</p>
+<p class="p47"><span class="Apple-converted-space">                </span>int bestScore = this.totalScore;</p>
+<p class="p47"><span class="Apple-converted-space">                </span>List neighbors = findNeighborsOnHost();</p>
+<p class="p47"><span class="Apple-converted-space">                </span>for (Object neighbor : neighbors) {</p>
+<p class="p47"><span class="Apple-converted-space">                    </span>currScore = ((CoordinationGamePlayer)
+neighbor).totalScore;</p>
+<p class="p47"><span class="Apple-converted-space">                    </span>if (currScore &gt; bestScore) {</p>
+<p class="p47"><span class="Apple-converted-space">                        </span>bestScore = currScore;</p>
+<p class="p47"><span class="Apple-converted-space">                        </span>myColor =
+((CoordinationGamePlayer) neighbor).getColor();</p>
+<p class="p47"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p47"><span class="Apple-converted-space">                </span>}</p>
+<p class="p47"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p47"><span class="Apple-converted-space">                </span>if (randomInRange(0, 1) &gt; 0) {</p>
+<p class="p47"><span class="Apple-converted-space">                    </span>myColor = Color.red;</p>
+<p class="p47"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p47"><span class="Apple-converted-space">                    </span>myColor = Color.blue;</p>
+<p class="p47"><span class="Apple-converted-space">                </span>}</p>
+<p class="p47"><span class="Apple-converted-space">            </span>}</p>
+<p class="p47"><span class="Apple-converted-space">        </span>}</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// play rule</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void play(Agent partner) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>int score;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>if ((((CoordinationGamePlayer) partner).getColor()
+== myColor) &amp;&amp; (myColor == Color.blue)) {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>score = ((CoordinationGame)
+getRoot()).getBlueScore();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>} else if ((((CoordinationGamePlayer)
+partner).getColor() == myColor) &amp;&amp; (myColor == Color.red)) {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>score = ((CoordinationGame)
+getRoot()).getRedScore();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>} else {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>score = 0;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>}</p>
+<p class="p47"><span class="Apple-converted-space">        </span>count = count + 1;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>updateRecentPlays(score);</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// keep track of the recent scores</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void updateRecentPlays(int score) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>totalScore = 0;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>for (int i = 0; i &lt; (recentPlays.length - 1);
+i++) {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>recentPlays[i] = recentPlays[i + 1];</p>
+<p class="p47"><span class="Apple-converted-space">            </span>totalScore = totalScore + recentPlays[i];</p>
+<p class="p47"><span class="Apple-converted-space">        </span>}</p>
+<p class="p47"><span class="Apple-converted-space">        </span>recentPlays[recentPlays.length - 1] = score;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>totalScore = totalScore +
+recentPlays[recentPlays.length - 1];</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// cgplayer get() and set() methods</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public Color getColor() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>return myColor;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void setColor(Color ncolor) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>myColor = ncolor;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int getRunningTotal() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>return (totalScore * 10);</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47">}</p>
+<p class="p71"><br>
+</p>
+<p class="p15"><br>
+</p>
+<p class="p10"><a name="3"><b>Model 3: Best Reply Dynamics</b></a></p>
+<p class="p9"><br>
+</p>
+<p class="p10"><a name="3.1"><b>CoordinationGame.java</b></a></p>
+<p class="p23"><br>
+</p>
+<p class="p47">package edu.brook.manual.model3;</p>
+<p class="p23"><br>
+</p>
+<p class="p47">import java.awt.Color;</p>
+<p class="p23"><br>
+</p>
+<p class="p47">import org.ascape.model.HostCell;</p>
+<p class="p47">import org.ascape.model.Scape;</p>
+<p class="p47">import org.ascape.model.event.ScapeEvent;</p>
+<p class="p47">import org.ascape.model.space.Array2DVonNeumann;</p>
+<p class="p47">import org.ascape.util.data.StatCollector;</p>
+<p class="p47">import org.ascape.util.data.StatCollectorCSAMM;</p>
+<p class="p47">import org.ascape.util.data.StatCollectorCond;</p>
+<p class="p47">import org.ascape.view.vis.ChartView;</p>
+<p class="p47">import org.ascape.view.vis.Overhead2DView;</p>
+<p class="p23"><br>
+</p>
+<p class="p47">public class CoordinationGame extends Scape {</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// model-scope variables</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// model-scope variables</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int nPlayers = 100;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int latticeWidth = 30;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int latticeHeight = 30;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int coordinateOnBlue = 1;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int coordinateOnRed = 1;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int error = 0;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>Scape lattice;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>Scape players;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>Overhead2DView overheadView;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// creates scapes and agents</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void createScape() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>super.createScape();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>lattice = new Scape(new Array2DVonNeumann());</p>
+<p class="p47"><span class="Apple-converted-space">        </span>lattice.setPrototypeAgent(new HostCell());</p>
+<p class="p47"><span class="Apple-converted-space">        </span>lattice.setExtent(latticeWidth, latticeHeight);</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">        </span>CoordinationGamePlayer cgplayer = new
+CoordinationGamePlayer();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>cgplayer.setHostScape(lattice);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>players = new Scape();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>players.setName("Players");</p>
+<p class="p47"><span class="Apple-converted-space">        </span>players.setPrototypeAgent(cgplayer);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>players.setExecutionOrder(Scape.RULE_ORDER);</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">        </span>add(lattice);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>add(players);</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">        </span>StatCollector CountReds = new
+StatCollectorCond("Reds") {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>public boolean meetsCondition(Object object) {</p>
+<p class="p47"><span class="Apple-converted-space">                </span>return (((CoordinationGamePlayer)
+object).getColor() == Color.red);</p>
+<p class="p47"><span class="Apple-converted-space">            </span>}</p>
+<p class="p47"><span class="Apple-converted-space">        </span>};</p>
+<p class="p47"><span class="Apple-converted-space">        </span>StatCollector CountBlues = new
+StatCollectorCond("Blues") {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>public boolean meetsCondition(Object object) {</p>
+<p class="p47"><span class="Apple-converted-space">                </span>return (((CoordinationGamePlayer)
+object).getColor() == Color.blue);</p>
+<p class="p47"><span class="Apple-converted-space">            </span>}</p>
+<p class="p47"><span class="Apple-converted-space">        </span>};</p>
+<p class="p47"><span class="Apple-converted-space">        </span>StatCollector AvgPayoff = new
+StatCollectorCSAMM("Payoff") {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>public double getValue(Object object) {</p>
+<p class="p47"><span class="Apple-converted-space">                </span>return ((CoordinationGamePlayer)
+object).getRunningTotal();</p>
+<p class="p47"><span class="Apple-converted-space">            </span>}</p>
+<p class="p47"><span class="Apple-converted-space">        </span>};</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">        </span>players.addStatCollector(CountReds);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>players.addStatCollector(CountBlues);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>players.addStatCollector(AvgPayoff);</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void scapeSetup(ScapeEvent scapeEvent) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>((Scape) players).setExtent(nPlayers);</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// create views and charts</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void createGraphicViews() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>super.createGraphicViews();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>ChartView chart = new ChartView();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>players.addView(chart);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>chart.addSeries("Count Reds", Color.red);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>chart.addSeries("Count Blues", Color.blue);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>chart.addSeries("Average Payoff", Color.black);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>chart.setDisplayPoints(100);</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">        </span>overheadView = new Overhead2DView();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>overheadView.setCellSize(15);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>lattice.addView(overheadView);</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// get() and set() methods for the model variables</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int getRedScore() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>return coordinateOnRed;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void setRedScore(int NewcoordinateOnRed) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>coordinateOnRed = NewcoordinateOnRed;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int getBlueScore() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>return coordinateOnBlue;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void setBlueScore(int NewcoordinateOnBlue) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>coordinateOnBlue = NewcoordinateOnBlue;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int getError() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>return error;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void setError(int NewError) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>error = NewError;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int getnPlayers() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>return nPlayers;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void setnPlayers(int NewnPlayers) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>nPlayers = NewnPlayers;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p47">}</p>
+<p class="p71"><br>
+</p>
+<p class="p27"><a name="3.2"><b>CoordinationGamePlayer.java</b></a></p>
+<p class="p23"><br>
+</p>
+<p class="p47">package edu.brook.manual.model3;</p>
+<p class="p23"><br>
+</p>
+<p class="p47">import java.awt.Color;</p>
+<p class="p23"><br>
+</p>
+<p class="p47">import org.ascape.model.Agent;</p>
+<p class="p47">import org.ascape.model.CellOccupant;</p>
+<p class="p23"><br>
+</p>
+<p class="p47">public class CoordinationGamePlayer extends CellOccupant {</p>
+<p class="p23"><br>
+</p>
+<p class="p47">// cgplayer variables</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected Color myColor;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int totalScore;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int[] recentPlays;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected Color[] recentPartners;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int count = 0;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int totalreds;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int totalblues;</p>
+<p class="p23"><br>
+</p>
+<p class="p47">// agent initialization method</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void initialize() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>doRandom();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>recentPlays = new int[5];</p>
+<p class="p47"><span class="Apple-converted-space">        </span>recentPartners = new Color [5];</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47">// add rules to the scape</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void scapeCreated() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>getScape().addInitialRule(MOVE_RANDOM_LOCATION_RULE);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>getScape().addRule(RANDOM_WALK_RULE);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>getScape().addRule(UPDATE_RULE);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>getScape().addRule(PLAY_RANDOM_NEIGHBOR_RULE);</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// best reply rule</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void update() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>count++;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>if (count &gt; recentPlays.length) {</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">            </span>if (randomInRange(0, 100) &gt;=
+((CoordinationGame) getRoot()).error) {</p>
+<p class="p47"><span class="Apple-converted-space">                </span>int redScore;</p>
+<p class="p47"><span class="Apple-converted-space">                </span>int blueScore;</p>
+<p class="p47"><span class="Apple-converted-space">                </span>blueScore = totalblues *
+((CoordinationGame) getRoot()).getBlueScore();</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">                </span>redScore = totalreds * ((CoordinationGame)
+getRoot()).getRedScore();</p>
+<p class="p47"><span class="Apple-converted-space">                </span>if (redScore &gt; blueScore) {</p>
+<p class="p47"><span class="Apple-converted-space">                    </span>myColor = Color.red;</p>
+<p class="p47"><span class="Apple-converted-space">                </span>} else if (blueScore &gt; redScore) {</p>
+<p class="p47"><span class="Apple-converted-space">                    </span>myColor = Color.blue;</p>
+<p class="p47"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p47"><span class="Apple-converted-space">                    </span>doRandom();</p>
+<p class="p47"><span class="Apple-converted-space">                </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p47"><span class="Apple-converted-space">                </span>doRandom();</p>
+<p class="p47"><span class="Apple-converted-space">            </span>}</p>
+<p class="p47"><span class="Apple-converted-space">        </span>}</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void doRandom() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>if (randomInRange(0, 1) &gt; 0) {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>myColor = Color.red;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>} else {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>myColor = Color.blue;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>}</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// play rule</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void play(Agent partner) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>int score;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>if ((((CoordinationGamePlayer) partner).getColor()
+== myColor) &amp;&amp; (myColor == Color.blue)) {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>score = ((CoordinationGame)
+getRoot()).getBlueScore();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>} else if ((((CoordinationGamePlayer)
+partner).getColor() == myColor) &amp;&amp; (myColor == Color.red)) {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>score = ((CoordinationGame)
+getRoot()).getRedScore();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>} else {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>score = 0;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>}</p>
+<p class="p47"><span class="Apple-converted-space">        </span>count = count + 1;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>updateRecentPlays(score);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>updateRecentPartners(((CoordinationGamePlayer)
+partner).getColor());</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// keep track of recent partners</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void updateRecentPartners(Color ncolor) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>totalreds = 0;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>totalblues = 0;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>for (int i = 0; i &lt; (recentPartners.length -
+1); i++) {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>recentPartners[i] = recentPartners[i + 1];</p>
+<p class="p47"><span class="Apple-converted-space">            </span>if (recentPartners[i] == Color.red) {</p>
+<p class="p47"><span class="Apple-converted-space">                </span>totalreds = totalreds + 1;</p>
+<p class="p47"><span class="Apple-converted-space">            </span>} else if (recentPartners[i] == Color.blue) {</p>
+<p class="p47"><span class="Apple-converted-space">                </span>totalblues = totalblues + 1;</p>
+<p class="p47"><span class="Apple-converted-space">            </span>}</p>
+<p class="p47"><span class="Apple-converted-space">        </span>}</p>
+<p class="p47"><span class="Apple-converted-space">        </span>recentPartners[recentPartners.length - 1] =
+ncolor;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>if (ncolor == Color.red) {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>totalreds = totalreds + 1;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>}</p>
+<p class="p47"><span class="Apple-converted-space">        </span>if (ncolor == Color.blue) {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>totalblues = totalblues + 1;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>}</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// keep track of the recent scores</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void updateRecentPlays(int score) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>totalScore = 0;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>for (int i = 0; i &lt; (recentPlays.length - 1);
+i++) {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>recentPlays[i] = recentPlays[i + 1];</p>
+<p class="p47"><span class="Apple-converted-space">            </span>totalScore = totalScore + recentPlays[i];</p>
+<p class="p47"><span class="Apple-converted-space">        </span>}</p>
+<p class="p47"><span class="Apple-converted-space">        </span>recentPlays[recentPlays.length - 1] = score;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>totalScore = totalScore +
+recentPlays[recentPlays.length - 1];</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// cgplayer get() and set() methods</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public Color getColor() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>return myColor;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void setColor(Color ncolor) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>myColor = ncolor;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int getRunningTotal() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>return (totalScore * 10);</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p47">}</p>
+<p class="p23"><br>
+</p>
+<p class="p15"><br>
+</p>
+<p class="p10"><a name="4"><b>Model 4: Biological Coordination Game</b></a></p>
+<p class="p2"><br>
+</p>
+<p class="p27"><a name="4.1"><b>CoordinationGame.java</b></a></p>
+<p class="p23"><br>
+</p>
+<p class="p47">package edu.brook.manual.model4;</p>
+<p class="p23"><br>
+</p>
+<p class="p47">import java.awt.Color;</p>
+<p class="p23"><br>
+</p>
+<p class="p47">import org.ascape.model.HostCell;</p>
+<p class="p47">import org.ascape.model.Scape;</p>
+<p class="p47">import org.ascape.model.event.ScapeEvent;</p>
+<p class="p47">import org.ascape.model.space.Array2DVonNeumann;</p>
+<p class="p47">import org.ascape.util.data.StatCollector;</p>
+<p class="p47">import org.ascape.util.data.StatCollectorCSAMM;</p>
+<p class="p47">import org.ascape.util.data.StatCollectorCond;</p>
+<p class="p47">import org.ascape.view.vis.ChartView;</p>
+<p class="p47">import org.ascape.view.vis.Overhead2DView;</p>
+<p class="p23"><br>
+</p>
+<p class="p47">public class CoordinationGame extends Scape {</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// model-scope variables</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// model-scope variables</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int nPlayers = 100;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int latticeWidth = 30;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int latticeHeight = 30;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int coordinateOnBlue = 1;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int coordinateOnRed = 1;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int error = 0;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int turns = 5;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int repScore = 5;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int minScore = 3;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>Scape lattice;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>Scape players;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>Overhead2DView overheadView;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// creates scapes and agents</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void createScape() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>super.createScape();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>lattice = new Scape(new Array2DVonNeumann());</p>
+<p class="p47"><span class="Apple-converted-space">        </span>lattice.setPrototypeAgent(new HostCell());</p>
+<p class="p47"><span class="Apple-converted-space">        </span>lattice.setExtent(latticeWidth, latticeHeight);</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">        </span>CoordinationGamePlayer cgplayer = new
+CoordinationGamePlayer();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>cgplayer.setHostScape(lattice);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>players = new Scape();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>players.setName("Players");</p>
+<p class="p47"><span class="Apple-converted-space">        </span>players.setPrototypeAgent(cgplayer);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>players.setExecutionOrder(Scape.RULE_ORDER);</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">        </span>add(lattice);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>add(players);</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">        </span>StatCollector CountReds = new
+StatCollectorCond("Reds") {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>public boolean meetsCondition(Object object) {</p>
+<p class="p47"><span class="Apple-converted-space">                </span>return (((CoordinationGamePlayer)
+object).getColor() == Color.red);</p>
+<p class="p47"><span class="Apple-converted-space">            </span>}</p>
+<p class="p47"><span class="Apple-converted-space">        </span>};</p>
+<p class="p47"><span class="Apple-converted-space">        </span>StatCollector CountBlues = new
+StatCollectorCond("Blues") {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>public boolean meetsCondition(Object object) {</p>
+<p class="p47"><span class="Apple-converted-space">                </span>return (((CoordinationGamePlayer)
+object).getColor() == Color.blue);</p>
+<p class="p47"><span class="Apple-converted-space">            </span>}</p>
+<p class="p47"><span class="Apple-converted-space">        </span>};</p>
+<p class="p47"><span class="Apple-converted-space">        </span>StatCollector AvgPayoff = new
+StatCollectorCSAMM("Payoff") {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>public double getValue(Object object) {</p>
+<p class="p47"><span class="Apple-converted-space">                </span>return ((CoordinationGamePlayer)
+object).getRunningTotal();</p>
+<p class="p47"><span class="Apple-converted-space">            </span>}</p>
+<p class="p47"><span class="Apple-converted-space">        </span>};</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">        </span>players.addStatCollector(CountReds);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>players.addStatCollector(CountBlues);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>players.addStatCollector(AvgPayoff);</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void scapeSetup(ScapeEvent scapeEvent) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>((Scape) players).setExtent(nPlayers);</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// create views and charts</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void createGraphicViews() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>super.createGraphicViews();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>ChartView chart = new ChartView();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>players.addView(chart);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>chart.addSeries("Count Reds", Color.red);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>chart.addSeries("Count Blues", Color.blue);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>chart.addSeries("Average Payoff", Color.black);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>chart.setDisplayPoints(100);</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">        </span>overheadView = new Overhead2DView();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>overheadView.setCellSize(15);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>lattice.addView(overheadView);</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// get() and set() methods for the model variables</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int getRedScore() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>return coordinateOnRed;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void setRedScore(int NewcoordinateOnRed) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>coordinateOnRed = NewcoordinateOnRed;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int getBlueScore() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>return coordinateOnBlue;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void setBlueScore(int NewcoordinateOnBlue) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>coordinateOnBlue = NewcoordinateOnBlue;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int getError() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>return error;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void setError(int NewError) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>error = NewError;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int getnPlayers() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>return nPlayers;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void setnPlayers(int NewnPlayers) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>nPlayers = NewnPlayers;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int getTurnstoDie() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>return turns;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void setTurnstoDie(int Newnum) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>turns = Newnum;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int getrepScore() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>return repScore;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void setrepScore(int Newscore) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>repScore = Newscore;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int getMinDieScore() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>return minScore;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void setMinDieScore(int Newscore) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>minScore = Newscore;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47">}</p>
+<p class="p71"><br>
+</p>
+<p class="p27"><a name="4.2"><b>CoordinationGamePlayer.java</b></a></p>
+<p class="p23"><br>
+</p>
+<p class="p47">package edu.brook.manual.model4;</p>
+<p class="p23"><br>
+</p>
+<p class="p47">import java.awt.Color;</p>
+<p class="p23"><br>
+</p>
+<p class="p47">import org.ascape.model.Agent;</p>
+<p class="p47">import org.ascape.model.CellOccupant;</p>
+<p class="p23"><br>
+</p>
+<p class="p47">public class CoordinationGamePlayer extends CellOccupant {</p>
+<p class="p23"><br>
+</p>
+<p class="p47">// cgplayer variables</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected Color myColor;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int totalScore;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int[] recentPlays;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int count = 0;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int totalreds;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int totalblues;</p>
+<p class="p23"><br>
+</p>
+<p class="p47">// agent initialization method</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void initialize() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>doRandom();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>recentPlays = new int[5];</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47">// add rules to the scape</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void scapeCreated() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>getScape().addInitialRule(MOVE_RANDOM_LOCATION_RULE);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>getScape().addRule(RANDOM_WALK_RULE);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>getScape().addRule(PLAY_RANDOM_NEIGHBOR_RULE);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>getScape().addRule(METABOLISM_RULE);</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void doRandom() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>if (randomInRange(0, 1) &gt; 0) {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>myColor = Color.red;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>} else {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>myColor = Color.blue;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>}</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// play rule</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void play(Agent partner) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>int score;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>if ((((CoordinationGamePlayer) partner).getColor()
+== myColor) &amp;&amp; (myColor == Color.blue)) {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>score = ((CoordinationGame)
+getRoot()).getBlueScore();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>} else if ((((CoordinationGamePlayer)
+partner).getColor() == myColor) &amp;&amp; (myColor == Color.red)) {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>score = ((CoordinationGame)
+getRoot()).getRedScore();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>} else {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>score = 0;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>}</p>
+<p class="p47"><span class="Apple-converted-space">        </span>count = count + 1;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>updateRecentPlays(score);</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// keep track of the recent scores</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void updateRecentPlays(int score) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>totalScore = 0;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>for (int i = 0; i &lt; (recentPlays.length - 1);
+i++) {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>recentPlays[i] = recentPlays[i + 1];</p>
+<p class="p47"><span class="Apple-converted-space">            </span>totalScore = totalScore + recentPlays[i];</p>
+<p class="p47"><span class="Apple-converted-space">        </span>}</p>
+<p class="p47"><span class="Apple-converted-space">        </span>recentPlays[recentPlays.length - 1] = score;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>totalScore = totalScore +
+recentPlays[recentPlays.length - 1];</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// either die or reproduce</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void metabolism() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>if (totalScore == ((CoordinationGame)
+getRoot()).getrepScore()) {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>count = 0;</p>
+<p class="p47"><span class="Apple-converted-space">            </span>reproduce();</p>
+<p class="p47"><span class="Apple-converted-space">            </span>for (int i = 0; i &lt; (recentPlays.length -
+1); i++) {</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">                </span>recentPlays[i] = 0;</p>
+<p class="p47"><span class="Apple-converted-space">            </span>}</p>
+<p class="p47"><span class="Apple-converted-space">        </span>} else if (totalScore &lt;= ((CoordinationGame)
+getRoot()).getMinDieScore() &amp;&amp; count &gt;= ((CoordinationGame) getRoot()).getTurnstoDie()) {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>this.die();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>}</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void reproduce() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>if (this.getHostCell().isNeighborAvailable()) {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>CoordinationGamePlayer baby =
+(CoordinationGamePlayer) this.clone();</p>
+<p class="p47"><span class="Apple-converted-space">            </span>getScape().add(baby);</p>
+<p class="p47"><span class="Apple-converted-space">            </span>baby.initialize();</p>
+<p class="p47"><span class="Apple-converted-space">            </span>baby.setColor(myColor);</p>
+<p class="p47"><span class="Apple-converted-space">            </span>baby.moveTo(this.getHostCell().findRandomAvailableNeighbor());</p>
+<p class="p47"><span class="Apple-converted-space">        </span>}</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// cgplayer get() and set() methods</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public Color getColor() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>return myColor;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void setColor(Color ncolor) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>myColor = ncolor;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int getRunningTotal() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>return (totalScore * 10);</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47">}</p>
+<p class="p71"><br>
+</p>
+<p class="p71"><br>
+</p>
+<p class="p15"><br>
+</p>
+<p class="p10"><a name="5"><b>Model 5: Friends Network Model</b></a></p>
+<p class="p2"><br>
+</p>
+<p class="p27"><a name="5.1"><b>CoordinationGame.java</b></a></p>
+<p class="p9"><br>
+</p>
+<p class="p47">package edu.brook.manual.model5;</p>
+<p class="p23"><br>
+</p>
+<p class="p47">import java.awt.Color;</p>
+<p class="p23"><br>
+</p>
+<p class="p47">import org.ascape.model.HostCell;</p>
+<p class="p47">import org.ascape.model.Scape;</p>
+<p class="p47">import org.ascape.model.event.ScapeEvent;</p>
+<p class="p47">import org.ascape.model.space.Array2DVonNeumann;</p>
+<p class="p47">import org.ascape.util.data.StatCollector;</p>
+<p class="p47">import org.ascape.util.data.StatCollectorCSAMM;</p>
+<p class="p47">import org.ascape.util.data.StatCollectorCond;</p>
+<p class="p47">import org.ascape.view.vis.ChartView;</p>
+<p class="p47">import org.ascape.view.vis.Overhead2DView;</p>
+<p class="p23"><br>
+</p>
+<p class="p47">public class CoordinationGame extends Scape {</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// model-scope variables</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// model-scope variables</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int nPlayers = 100;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int latticeWidth = 30;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int latticeHeight = 30;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int coordinateOnBlue = 1;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int coordinateOnRed = 1;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int error = 0;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int turns = 5;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int repScore = 5;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int minScore = 3;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int friends_size = 4;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>Scape lattice;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>Scape players;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>Overhead2DView overheadView;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// creates scapes and agents</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void createScape() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>super.createScape();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>lattice = new Scape(new Array2DVonNeumann());</p>
+<p class="p47"><span class="Apple-converted-space">        </span>lattice.setPrototypeAgent(new HostCell());</p>
+<p class="p47"><span class="Apple-converted-space">        </span>lattice.setExtent(latticeWidth, latticeHeight);</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">        </span>CoordinationGamePlayer cgplayer = new
+CoordinationGamePlayer();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>cgplayer.setHostScape(lattice);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>players = new Scape();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>players.setName("Players");</p>
+<p class="p47"><span class="Apple-converted-space">        </span>players.setPrototypeAgent(cgplayer);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>players.setExecutionOrder(Scape.RULE_ORDER);</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">        </span>add(lattice);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>add(players);</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">        </span>StatCollector CountReds = new
+StatCollectorCond("Reds") {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>public boolean meetsCondition(Object object) {</p>
+<p class="p47"><span class="Apple-converted-space">                </span>return (((CoordinationGamePlayer)
+object).getColor() == Color.red);</p>
+<p class="p47"><span class="Apple-converted-space">            </span>}</p>
+<p class="p47"><span class="Apple-converted-space">        </span>};</p>
+<p class="p47"><span class="Apple-converted-space">        </span>StatCollector CountBlues = new
+StatCollectorCond("Blues") {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>public boolean meetsCondition(Object object) {</p>
+<p class="p47"><span class="Apple-converted-space">                </span>return (((CoordinationGamePlayer)
+object).getColor() == Color.blue);</p>
+<p class="p47"><span class="Apple-converted-space">            </span>}</p>
+<p class="p47"><span class="Apple-converted-space">        </span>};</p>
+<p class="p47"><span class="Apple-converted-space">        </span>StatCollector AvgPayoff = new
+StatCollectorCSAMM("Payoff") {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>public double getValue(Object object) {</p>
+<p class="p47"><span class="Apple-converted-space">                </span>return ((CoordinationGamePlayer)
+object).getRunningTotal();</p>
+<p class="p47"><span class="Apple-converted-space">            </span>}</p>
+<p class="p47"><span class="Apple-converted-space">        </span>};</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">        </span>players.addStatCollector(CountReds);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>players.addStatCollector(CountBlues);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>players.addStatCollector(AvgPayoff);</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void scapeSetup(ScapeEvent scapeEvent) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>((Scape) players).setExtent(nPlayers);</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// create views and charts</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void createGraphicViews() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>super.createGraphicViews();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>ChartView chart = new ChartView();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>players.addView(chart);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>chart.addSeries("Count Reds", Color.red);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>chart.addSeries("Count Blues", Color.blue);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>chart.addSeries("Average Payoff", Color.black);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>chart.setDisplayPoints(100);</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">        </span>overheadView = new Overhead2DView();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>overheadView.setCellSize(15);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>overheadView.setDrawNetwork(true);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>lattice.addView(overheadView);</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// get() and set() methods for the model variables</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int getRedScore() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>return coordinateOnRed;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void setRedScore(int NewcoordinateOnRed) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>coordinateOnRed = NewcoordinateOnRed;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int getBlueScore() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>return coordinateOnBlue;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void setBlueScore(int NewcoordinateOnBlue) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>coordinateOnBlue = NewcoordinateOnBlue;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int getError() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>return error;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void setError(int NewError) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>error = NewError;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int getnPlayers() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>return nPlayers;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void setnPlayers(int NewnPlayers) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>nPlayers = NewnPlayers;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int getTurnstoDie() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>return turns;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void setTurnstoDie(int Newnum) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>turns = Newnum;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int getrepScore() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>return repScore;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void setrepScore(int Newscore) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>repScore = Newscore;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int getMinDieScore() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>return minScore;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void setMinDieScore(int Newscore) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>minScore = Newscore;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public Scape getPlayers() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>return players;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p47">}</p>
+<p class="p79"><br>
+</p>
+<p class="p79"><br>
+</p>
+<p class="p27"><a name="5.2"><b>CoordinationGamePlayer.java</b></a></p>
+<p class="p23"><br>
+</p>
+<p class="p47">package edu.brook.manual.model5;</p>
+<p class="p23"><br>
+</p>
+<p class="p47">import java.awt.Color;</p>
+<p class="p47">import java.util.ArrayList;</p>
+<p class="p47">import java.util.List;</p>
+<p class="p23"><br>
+</p>
+<p class="p47">import org.ascape.model.Agent;</p>
+<p class="p47">import org.ascape.model.CellOccupant;</p>
+<p class="p47">import org.ascape.model.rule.Rule;</p>
+<p class="p23"><br>
+</p>
+<p class="p47">public class CoordinationGamePlayer extends CellOccupant {</p>
+<p class="p23"><br>
+</p>
+<p class="p47">// cgplayer variables</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected Color myColor;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int totalScore;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int[] recentPlays;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int count = 0;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int totalreds;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected int totalblues;</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>protected List&lt;CoordinationGamePlayer&gt; friends;</p>
+<p class="p23"><br>
+</p>
+<p class="p47">// agent initialization method</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void initialize() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>doRandom();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>recentPlays = new int[5];</p>
+<p class="p47"><span class="Apple-converted-space">        </span>friends = new
+ArrayList&lt;CoordinationGamePlayer&gt;();</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47">// add rules to the scape</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void scapeCreated() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>getScape().addInitialRule(MOVE_RANDOM_LOCATION_RULE);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>getScape().addInitialRule(new
+Rule("SetNewNetwork") {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>public void execute(Agent agent) {</p>
+<p class="p47"><span class="Apple-converted-space">                </span>((CoordinationGamePlayer)
+agent).setNewNetwork();</p>
+<p class="p47"><span class="Apple-converted-space">            </span>}</p>
+<p class="p47"><span class="Apple-converted-space">        </span>});</p>
+<p class="p47"><span class="Apple-converted-space">        </span>getScape().addRule(RANDOM_WALK_RULE);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>getScape().addRule(UPDATE_RULE);</p>
+<p class="p47"><span class="Apple-converted-space">        </span>getScape().addRule(PLAY_RANDOM_NEIGHBOR_RULE);</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void doRandom() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>if (randomInRange(0, 1) &gt; 0) {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>myColor = Color.red;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>} else {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>myColor = Color.blue;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>}</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// imitation rule</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void update() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>count++;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>if (count &gt; recentPlays.length) {</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">            </span>if (randomInRange(0, 100) &gt;=
+((CoordinationGame) getRoot()).error) {</p>
+<p class="p47"><span class="Apple-converted-space">                </span>int currScore = 0;</p>
+<p class="p47"><span class="Apple-converted-space">                </span>int bestScore = this.totalScore;</p>
+<p class="p47"><span class="Apple-converted-space">                </span>// CellOccupant[] neighbors;</p>
+<p class="p47"><span class="Apple-converted-space">                </span>// neighbors =
+getHostCell().getNeighboringOccupants();</p>
+<p class="p47"><span class="Apple-converted-space">                </span>// New Social Network Code</p>
+<p class="p47"><span class="Apple-converted-space">                </span>List neighbors = getNetwork();</p>
+<p class="p47"><span class="Apple-converted-space">                </span>for (Object agent : neighbors) {</p>
+<p class="p47"><span class="Apple-converted-space">                    </span>currScore = ((CoordinationGamePlayer)
+agent).totalScore;</p>
+<p class="p47"><span class="Apple-converted-space">                    </span>if (currScore &gt; bestScore) {</p>
+<p class="p47"><span class="Apple-converted-space">                        </span>bestScore = currScore;</p>
+<p class="p47"><span class="Apple-converted-space">                        </span>myColor =
+((CoordinationGamePlayer) agent).getColor();</p>
+<p class="p47"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p47"><span class="Apple-converted-space">                </span>}</p>
+<p class="p47"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p47"><span class="Apple-converted-space">                </span>doRandom();</p>
+<p class="p47"><span class="Apple-converted-space">            </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">        </span>}</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// play rule</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void play(Agent partner) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>int score;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>if ((((CoordinationGamePlayer) partner).getColor()
+== myColor) &amp;&amp; (myColor == Color.blue)) {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>score = ((CoordinationGame)
+getRoot()).getBlueScore();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>} else if ((((CoordinationGamePlayer)
+partner).getColor() == myColor) &amp;&amp; (myColor == Color.red)) {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>score = ((CoordinationGame)
+getRoot()).getRedScore();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>} else {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>score = 0;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>}</p>
+<p class="p47"><span class="Apple-converted-space">        </span>count = count + 1;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>updateRecentPlays(score);</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// keep track of the recent scores</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void updateRecentPlays(int score) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>totalScore = 0;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>for (int i = 0; i &lt; (recentPlays.length - 1);
+i++) {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>recentPlays[i] = recentPlays[i + 1];</p>
+<p class="p47"><span class="Apple-converted-space">            </span>totalScore = totalScore + recentPlays[i];</p>
+<p class="p47"><span class="Apple-converted-space">        </span>}</p>
+<p class="p47"><span class="Apple-converted-space">        </span>recentPlays[recentPlays.length - 1] = score;</p>
+<p class="p47"><span class="Apple-converted-space">        </span>totalScore = totalScore +
+recentPlays[recentPlays.length - 1];</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// create friends networks at model setup</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void setNewNetwork() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>friends.clear();</p>
+<p class="p47"><span class="Apple-converted-space">        </span>for (int i = 0; i &lt; ((CoordinationGame)
+getRoot()).friends_size; i++) {</p>
+<p class="p47"><span class="Apple-converted-space">            </span>friends.add((CoordinationGamePlayer)
+((CoordinationGame) getRoot()).getPlayers().findRandom());</p>
+<p class="p47"><span class="Apple-converted-space">        </span>}</p>
+<p class="p47"><span class="Apple-converted-space">        </span>this.setNetwork(friends);</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>// cgplayer get() and set() methods</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public Color getColor() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>return myColor;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public void setColor(Color ncolor) {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>myColor = ncolor;</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47"><span class="Apple-converted-space">    </span>public int getRunningTotal() {</p>
+<p class="p47"><span class="Apple-converted-space">        </span>return (totalScore * 10);</p>
+<p class="p47"><span class="Apple-converted-space">    </span>}</p>
+<p class="p23"><br>
+</p>
+<p class="p47">}</p>
+<p class="p80"><br>
+</p>
+<p class="p17"><br>
+</p>
+</body>
+</html>

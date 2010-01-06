@@ -4,3 +4,4 @@ Bundle-Name: Doc Plug-in
 Bundle-SymbolicName: org.ascape.doc;singleton:=true
 Bundle-Version: 5.1.0.qualifier
 Bundle-Vendor: Ascape.org
+Require-Bundle: org.eclipse.help

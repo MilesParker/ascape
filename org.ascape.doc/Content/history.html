@@ -1,0 +1,388 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<STYLE TYPE="text/css">
+body,html {
+	margin: 0;
+	padding: 0;
+	color: #000;
+}
+
+body {
+	min-width: 750px;
+}
+
+#wrap {
+	margin: 0 auto;
+	width: 1024px;
+}
+
+#header {
+	margin: 20;
+	left: 220px;
+}
+
+#nav {
+	
+}
+
+#nav ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#nav li {
+	display: inline;
+	margin: 0;
+	padding: 0;
+}
+
+#main {
+	float: left;
+	padding-left: 190px;
+	width: 800px;
+}
+
+#sidebarfake {
+	float: left;
+	width: 190px;
+}
+
+#sidebar {
+	position: fixed;
+	float: left;
+	width: 170px;
+}
+
+#footer {
+	border-top: solid 1px #BEBFAA;
+	clear: both;
+}
+
+#section {
+	background: #FFFFDC;
+	margin: 2em 1em 1em 2em;
+	padding: 0.5em 2em 2em 2em;
+	text-align: justify;
+	padding: 0.5em 2em 2em 2em;
+}
+
+#section h1 {
+	text-align: left;
+	font-family: sans-serif;
+}
+
+#section p {
+	text-indent: 2em;
+}
+
+#section p.noindent {
+	text-indent: 0;
+}
+
+#agent {
+	margin: 0em 0em 0em 0em;
+	padding: 0em 0em 0em 0em;
+	text-align: justify;
+}
+}
+</STYLE>
+<title>Ascape Version History</title>
+</head>
+<body>
+
+<ul>
+				<li>[5.3.0]
+				<ul>
+								<li>Added new Navigator funcitonality and Bug fixes tabbed console support. Factored out uneccesary lib
+								dependencies from core. Please see <a href="http://sourceforge.net/tracker/?group_id=203744&atid=986824">Ascape
+								bug tracker</a>.</li>
+				</ul>
+				<li>[5.1.2]
+				<ul>
+								<li>Bug fixes. Please see <a href="http://sourceforge.net/tracker/?group_id=203744&atid=986824">Ascape
+								bug tracker</a>.</li>
+				</ul>
+				<li>[5.1.1]
+				<ul>
+								<li>Bug fixes. Please see <a href="http://sourceforge.net/tracker/?group_id=203744&atid=986824">Ascape
+								bug tracker</a>.</li>
+				</ul>
+				<li>[5.1]
+				<ul>
+								<li>Factored out swing ui into seperate project</li>
+								<li>Other refactorings to clean up runner functionality and user environment</li>
+								<li>Small functional improments and bug fixes</li>
+				</ul>
+				<li>[5.0]
+				<ul>
+								<li>Open Source release</li>
+								<li>Refactorings to org.ascape hierarchy</li>
+								<li>Eclipse projects and Integration</li>
+								<li>Testing and additional QA</li>
+				</ul>
+				<li>[4.0]
+				<ul>
+
+								<li>Model Navigator</li>
+								<li>New Model Composition Features</li>
+								<li>New UI Features</li>
+								<li>Ant Builds</li>
+								<li>Ant/XML Based Model and View Configuration</li>
+								<li>2D Performance Optimizations</li>
+				</ul>
+				<li>[3.0]<BR>
+				100s of changes; too many to mention individually. Here are some highlights:
+
+				<ul>
+								<li>Persistence -- Save any Model in any State</li>
+								<li>Full MDI Interface</li>
+								<li>Extensible Scaling Views</li>
+								<li>Built-in Console</li>
+								<li>Model Acceleration</li>
+								<li>Scalable Time-Steps</li>
+								<li>Deeply Polymorphic throughout all spaces</li>
+								<li>Model Composition</li>
+								<li>New Agent Types</li>
+								<li>Sub and Super Scapes (Containment)</li>
+								<li>Strong Collections Based Space Model</li>
+								<li>Continuous 2-D Spaces</li>
+								<li>GIS Integration</li>
+								<li>Arbitrary Graphs</li>
+								<li>Improved View System</li>
+								<li>OpenMap Vis.</li>
+								<li>Graph/Entity-Relation Views</li>
+								<li>Inspectors in all Spaces</li>
+								<li>Dozens of new Primary and Supporting Classes</li>
+								<li>Massive Refactorings</li>
+								<li>Very Strong Unit-Testing Coverage</li>
+								<li>Many new model implementations and examples</li>
+								<li>100 pg Manual</li>
+				</ul>
+				<li>[2.0 - 2.9] <BR>
+				No public release.</li>
+				<li>[1.9.2]<BR>
+				Maintenance release:
+				<ul>
+								<li>Changed signature of getCellsNear to match findMaximum...</li>
+								<li>Moved DrawFeature to .model to temporarily fix package dependency issue.</li>
+				</ul>
+				<li>[1.9.1]<BR>
+				Maintenance release:
+				<ul>
+
+								<li>Began work on clarifying role of euclidian space within Scape2D structure.</li>
+
+								<li>Distance code finished.</li>
+
+								<li>Get info now reflects correct version.</li>
+
+								<li>Minor agent/cell inspector bug fixes.</li>
+				</ul>
+				<li>[1.9]<BR>
+				Extensive user-interface and functionality enhancements, including:
+				<ul>
+								<li>Added ability to dynamically view individual cell properties through a runtime cell and agent
+								customizer. [This facility is very similar to Swarm and RePast agent 'probes'.] To try this feature out, simply
+								meta [option on mac, alt on PC]click on an cell in a view. You can also drag around a view to scan the
+								properties of different cells. If the view supports agents, agents hosted on a praticular cell will also have
+								their characteristics displayed. To cause the customizer to 'track' agents, shift-meta/opt/alt-click in a view.</li>
+
+								<li>Added sophisticated paramater sweeping support. See aa.LHVRMS for an example.<br></br>
+								</li>
+
+								<li>Added support for direct capture of views to quicktime movies.<br></br>
+								</li>
+
+								<li>Support for debug and release runtime modes, providing support for debugging or a more 'graceful' user
+								experience on error.<br></br>
+								</li>
+
+								<li>Created multiple view functionality.<br></br>
+								</li>
+
+								<li>Improved support for data output, e.g. writing data from runnning models out to a file stream. This was
+								allready supported, but the implementation was confusing and spread across multiple classes.<br></br>
+								</li>
+
+								<li>Seperated out the run control functionality from the previously mentioned data output view, creating a
+								new "SweepControlView" that is responsible for managaing runs and setting paramaters. Other paramater
+								exploration controls could easily be created using the same technique.<br></br>
+								</li>
+
+								<li>Added new tabbed multi-view mode. This allows you to add multiple views and have them automatically
+								displayed within a tabbed panel.<br></br>
+								</li>
+
+								<li>Added 'Speed' control to control bar. This allows you to slow a model down by delaying the contol bar's
+								reporting of its view update. Drag the slider to the left to slow the model.<br></br>
+								</li>
+
+								<li>Added support for easy use of two-phase and calculated statistics.<br></br>
+								</li>
+
+								<li>Added navigation popup to control bar. This allows you to easily select a particualr view frame by
+								selecting it from the popup.<br></br>
+								</li>
+
+								<li>Enhanced and cleaned up view functionality in Scapes, and improved general scape updating and response
+								code.<br></br>
+								</li>
+
+								<li>Improvements to scape run control code.<br></br>
+								</li>
+
+								<li>Suport for debug and release modes, providing clean user level handling of bugs, while allowing bugs to
+								remain unfiltered in DEBUG_RUNTIME_MODE.<br></br>
+								</li>
+
+								<li>All scape control events, except for the TICK event, intended for views must now be responded to,
+								beofre the Scape is unblocked. This is a change in the implicit Scape/View contract, and ensures that all views
+								have a chance to respond properly to setup and close events.<br></br>
+								</li>
+
+								<li>Some minor performance related changes.</li>
+
+								<li>Fixed a bug in ScapeVector that occured when rules execute nested multiple iterations.<br></br>
+								</li>
+				</ul>
+				<li>[1.6]<BR>
+				Interim version. (No official release).
+				<li>[1.5.1]<BR>
+				Mostly small fixes and refactoring.
+				<ul>
+
+
+								<li>Added ability to easily create calculated statistics. These statisitics can be used for summary or
+								derivitive stat calculations.</li>
+
+								<li>Fixed problem with inital stat calculation.</li>
+
+								<li>Cleaned up stat calculation, initialization and running code and rules.</li>
+
+								<li>Many changes to ViewFrameBridge and related code to clarify and better support creation of web
+								deployment package.</li>
+				</ul>
+				<li>[1.5]<BR>
+				Many important and minor changes, including, but not limited to:
+				<ul>
+								<li>Ascape is no longer a 'technical release' and can be considered a full release. While there are many
+								important features to add, it is now essentially feature complete.</li>
+
+								<li>Created standard 'open' dialog functionality with easily accessible standard models..can now invoke
+								Scape directly from command-line.</li>
+
+								<li>Many important model behaviors, including rules selection and execution order and style, are now
+								accessible at run time and can be modified through the model 'settings' customizer. Click on the globe button in
+								the toolbar to check this feature out.</li>
+
+								<li>Implemented rule execution through an iterator pattern, so that new scape topologies can be created
+								simply by providing an iterator, and the execution order can be safely and consistently maintained in one place
+								(ScapeGraph).</li>
+
+								<li>Changed the names for execution order from the confusing (because of association with parallel
+								processing) "Parallel/Serial" to "Rule Order/Agent Order". Added repeated draw functionality, and moved it from
+								execution order to a new property, 'execution style.</li>
+								<li>Now deploying though InstallAnywhere installer.</li>
+
+								<li>Added an 'about' dialog feature that makes it possbile to easily create custom about dialogs for your
+								models. You can now provide about information for your model by simply creating a MyModel.html file and placing
+								it in the appropriate place in your model hierarchy. You can include html tags and references in this file.</li>
+
+								<li>Added modest user exception alerting.</li>
+
+								<li>Went back to original contruction naming scheme; populate is know called createScape. Note that I did
+								not go back to using a seperate createRules method..seems unneccesary, esp. since rule 'availibility' and
+								selection are now seperate issues.</li>
+				</ul>
+				<li>[1.3]<BR>
+				No public release..all changes became part of 1.5.
+				<li>[1.2.5a]<BR>
+				Just a couple of deployment related fixes, and a minor fix for a problem that was causing models to stop when
+				swtiching between chart types in the chart customizer.
+				<li>[1.2.5]<BR>
+				A number of relatively minor changes, bug fixes, and enhancements, as well as new models. The most significant
+				change is the addition of support for using images (GIFs) to represent cells in views. This feature will be used
+				more in future release. This release also includes an implementation of heatbugs that should be familiar to Swarm
+				users.</li>
+				<li>[1.2]
+				<ul>
+
+								<li>I've finally made a change that I wanted to make at almost the moment I designed the initial framework.
+								I've changed the names of engine and observe to model and view to more explicitly reflect the overall design
+								pattern behind them, and also because I think they are more appropriate names.</li>
+
+								<li>Many rules classes have become anonymous inner class instance members of Agent or Scape.</li>
+
+								<li>Changed the implementation of a number of "feature" type classes so that they can be implemented as
+								inner and anonymous classes more easily. These include DrawFeature@, ColorFeature@, UnitIntervaldataSource@, and
+								StatCollector@.
+								<li>Changed stat collection mechanism to allow for non-automatic collection of stats. (Partially implmented
+								earlier.) Made StatCollector.getValue non-abstract, neccessitated by non auto collection. Again, added support
+								for name and auto collect member variables so that it it no longer neccesary to override these methods.</li>
+
+								<li>Added support for custom sliders and live model changes.
+								<li>Copied many random functions to Ascape objects, using random seed, so that common random functions are
+								accessible to all objects without having to go through Utility.</li>
+
+								<li>Provided access to the random seed used for the running model, even if the seed was set arbitraily
+								(using system time).</li>
+
+								<li>Added an abstraction for data series that provides a way of customizing any aspect of a data series
+								view. In the initial case, it allows one to set wheteher data should be represeneted as continuous (a curve) or
+								discrete (points).</li>
+
+								<li>Implemented all the 'settings' style frames as customizer panels.</li>
+
+								<li>I'm considering removing the nested drawing feature from DrawFeature, since I haven't really found a
+								use for it. Let me know if you find it useful.</li>
+
+								<li>Created jar files and changed the distribution's directory structure to better conform to standard
+								practice.
+								<li>Added a standard out view which manages printing model information to the console. (You can disable
+								this by calling getRoot().removeScapeListener(getStandardOutView());.</li>
+
+								<li>Fixed many bugs, and added may minor features.</li>
+				</ul>
+				<li>[1.1.2]
+				<ul>
+
+								<li>Abstracted frames and created view manager, providing simpler support for different viewing
+								environments, and for deploying simple applets. (See appletsupport folder).</li>
+
+								<li>Fixed a bug in ScapeArray2D causing incorrect execution of random rules in parallel.</li>
+				</ul>
+				<li>[1.1.1]
+				<ul>
+
+								<li>Truly random rule execution for 2D lattices (previously only supported for occupants).</li>
+
+								<li>Expanded api for finding cells, etc..
+								<li>Standard methods for view updates.</li>
+
+								<li>Many fixes to find cells etc..</li>
+
+								<li>Limited support for internal frames. (Broken in Win95).</li>
+
+								<li>Many other minor improvements.</li>
+				</ul>
+				<li>[1.1]
+				<ul>
+
+								<li>There are significant enhancements this time, including:
+								<li>The ability to assign set period values (from a historical record, for example) to agents.</li>
+
+								<li>Data collection methods and views.</li>
+
+								<li>"Pluggable" drawing features, including the ability to change them at runtime from a user dialog.</li>
+
+								<li>Automatic discovery of model paramaters at runtime, allowing their modifcation in a running model
+								through user customizers, or using command line paramaters.</li>
+
+								<li>New models.</li>
+				</ul>
+</ul>
+</body>
+</html>

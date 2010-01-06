@@ -1,0 +1,526 @@
+@CHARSET "UTF-8";
+p.p1 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	text-align: center;
+	font: 11.0px 'Lucida Grande';
+	min-height: 13.0px
+}
+
+p.p2 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	font: 11.0px 'Lucida Grande';
+	min-height: 13.0px
+}
+
+p.p3 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	text-align: center;
+	font: 12.0px Helvetica
+}
+
+p.p4 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	text-align: left;
+	font: 24.0px 'Lucida Grande'
+}
+
+p.p5 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	text-align: center;
+	font: 16.0px 'Lucida Grande';
+	min-height: 18.0px
+}
+
+p.p6 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	text-align: left;
+	font: 16.0px 'Lucida Grande'
+}
+
+p.p7 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	font: 22.0px 'Lucida Grande'
+}
+
+p.p8 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	font: 14.0px 'Lucida Grande';
+	min-height: 17.0px
+}
+
+p.p9 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	font: 12.0px 'Lucida Grande';
+	min-height: 15.0px
+}
+
+p.p10 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	font: 12.0px 'Lucida Grande'
+}
+
+p.p11 {
+	margin: 0.0px 0.0px 0.0px 72.0px;
+	font: 12.0px 'Lucida Grande'
+}
+
+p.p12 {
+	margin: 0.0px 0.0px 0.0px 36.0px;
+	font: 12.0px 'Lucida Grande'
+}
+
+p.p13 {
+	margin: 0.0px 0.0px 0.0px 108.0px;
+	text-indent: 36.0px;
+	font: 12.0px 'Lucida Grande'
+}
+
+p.p14 {
+	margin: 0.0px 0.0px 0.0px 72.0px;
+	text-indent: 36.0px;
+	font: 12.0px 'Lucida Grande'
+}
+
+p.p15 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	font: 10.0px 'Times New Roman';
+	min-height: 11.0px
+}
+
+p.p16 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	text-align: justify;
+	font: 24.0px 'Lucida Grande'
+}
+
+p.p17 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	font: 12.0px Times;
+	min-height: 14.0px
+}
+
+p.p18 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	text-align: justify;
+	font: 12.0px 'Lucida Grande';
+	min-height: 15.0px
+}
+
+p.p19 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	text-align: justify;
+	font: 11.0px 'Lucida Grande'
+}
+
+p.p20 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	text-align: justify;
+	font: 11.0px 'Lucida Grande';
+	min-height: 13.0px
+}
+
+p.p21 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	text-align: justify;
+	font: 14.0px 'Lucida Grande';
+	min-height: 17.0px
+}
+
+p.p22 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	text-align: justify;
+	font: 12.0px 'Lucida Grande'
+}
+
+p.p23 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	font: 9.0px Monaco;
+	min-height: 12.0px
+}
+
+p.p24 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	text-align: center;
+	font: 10.0px 'Lucida Grande'
+}
+
+p.p25 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	font: 20.0px 'Lucida Grande';
+	min-height: 23.0px
+}
+
+p.p26 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	font: 20.0px 'Lucida Grande'
+}
+
+p.p27 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	font: 11.0px 'Lucida Grande'
+}
+
+p.p28 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	text-align: justify;
+	font: 7.0px Monaco
+}
+
+p.p29 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	text-align: justify;
+	font: 7.0px Monaco;
+	min-height: 10.0px
+}
+
+p.p30 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	text-align: justify;
+	font: 12.0px Times;
+	min-height: 14.0px
+}
+
+p.p31 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	font: 22.0px Times;
+	min-height: 28.0px
+}
+
+p.p32 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	font: 22.0px 'Lucida Grande';
+	min-height: 26.0px
+}
+
+p.p33 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	text-align: justify;
+	font: 22.0px 'Lucida Grande';
+	min-height: 26.0px
+}
+
+p.p34 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	text-align: justify;
+	font: 22.0px 'Lucida Grande'
+}
+
+p.p35 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	text-align: justify;
+	font: 20.0px 'Lucida Grande'
+}
+
+p.p36 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	text-align: center;
+	font: 11.0px 'Lucida Grande'
+}
+
+p.p37 {
+	margin: 0.0px 0.0px 0.0px 36.0px;
+	text-indent: 36.0px;
+	font: 11.0px 'Lucida Grande'
+}
+
+p.p38 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	font: 10.0px 'Lucida Grande';
+	min-height: 12.0px
+}
+
+p.p39 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	font: 9.0px 'Lucida Grande';
+	min-height: 11.0px
+}
+
+p.p40 {
+	margin: 0.0px 0.0px 0.0px 36.0px;
+	font: 11.0px 'Lucida Grande';
+	min-height: 13.0px
+}
+
+p.p41 {
+	margin: 0.0px 0.0px 0.0px 18.0px;
+	font: 11.0px 'Lucida Grande';
+	min-height: 13.0px
+}
+
+p.p42 {
+	margin: 0.0px 0.0px 0.0px 108.0px;
+	text-indent: 36.0px;
+	font: 11.0px 'Lucida Grande'
+}
+
+p.p43 {
+	margin: 0.0px 0.0px 0.0px 144.0px;
+	text-indent: 36.0px;
+	font: 11.0px 'Lucida Grande'
+}
+
+p.p44 {
+	margin: 0.0px 0.0px 0.0px 36.0px;
+	font: 9.0px Monaco
+}
+
+p.p45 {
+	margin: 0.0px 0.0px 0.0px 36.0px;
+	font: 9.0px 'Courier New';
+	min-height: 10.0px
+}
+
+p.p46 {
+	margin: 0.0px 0.0px 0.0px 36.0px;
+	font: 9.0px 'Courier New'
+}
+
+p.p47 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	font: 9.0px Monaco
+}
+
+p.p48 {
+	margin: 0.0px 0.0px 0.0px 36.0px;
+	text-indent: 36.0px;
+	font: 9.0px Monaco
+}
+
+p.p49 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	font: 9.0px 'Courier New';
+	min-height: 10.0px
+}
+
+p.p50 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	text-indent: 36.0px;
+	font: 9.0px Monaco
+}
+
+p.p51 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	text-indent: 36.0px;
+	font: 9.0px Monaco;
+	min-height: 12.0px
+}
+
+p.p52 {
+	margin: 0.0px 0.0px 0.0px 72.0px;
+	text-indent: 36.0px;
+	font: 9.0px Monaco
+}
+
+p.p53 {
+	margin: 0.0px 0.0px 0.0px 72.0px;
+	font: 9.0px Monaco
+}
+
+p.p54 {
+	margin: 0.0px 0.0px 0.0px 72.0px;
+	font: 9.0px Monaco;
+	min-height: 12.0px
+}
+
+p.p55 {
+	margin: 0.0px 0.0px 0.0px 36.0px;
+	font: 9.0px Monaco;
+	min-height: 12.0px
+}
+
+p.p56 {
+	margin: 0.0px 0.0px 0.0px 36.0px;
+	font: 9.0px 'Courier New';
+	color: #4b67fc
+}
+
+p.p57 {
+	margin: 0.0px 0.0px 0.0px 72.0px;
+	font: 9.0px 'Courier New';
+	color: #4b67fc
+}
+
+p.p58 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	font: 12.0px Helvetica
+}
+
+p.p59 {
+	margin: 0.0px 0.0px 0.0px 36.0px;
+	text-indent: 36.0px;
+	font: 9.0px 'Courier New';
+	color: #4b67fc
+}
+
+p.p60 {
+	margin: 0.0px 0.0px 0.0px 72.0px;
+	font: 9.0px 'Courier New';
+	min-height: 10.0px
+}
+
+p.p61 {
+	margin: 0.0px 0.0px 0.0px 36.0px;
+	text-indent: 36.0px;
+	font: 9.0px Monaco;
+	min-height: 12.0px
+}
+
+p.p62 {
+	margin: 0.0px 0.0px 0.0px 108.0px;
+	font: 9.0px Monaco
+}
+
+p.p63 {
+	margin: 0.0px 0.0px 0.0px 108.0px;
+	font: 9.0px Monaco;
+	min-height: 12.0px
+}
+
+p.p64 {
+	margin: 0.0px 0.0px 0.0px 72.0px;
+	text-indent: 36.0px;
+	font: 9.0px Monaco;
+	min-height: 12.0px
+}
+
+p.p65 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	font: 9.0px 'Courier New'
+}
+
+p.p66 {
+	margin: 0.0px 0.0px 0.0px 36.0px;
+	text-indent: 36.0px;
+	font: 9.0px 'Courier New'
+}
+
+p.p67 {
+	margin: 0.0px 0.0px 0.0px 108.0px;
+	font: 9.0px 'Courier New';
+	color: #4b67fc
+}
+
+p.p68 {
+	margin: 0.0px 0.0px 0.0px 180.0px;
+	font: 9.0px Monaco
+}
+
+p.p69 {
+	margin: 0.0px 0.0px 0.0px 204.0px;
+	font: 9.0px Monaco
+}
+
+p.p70 {
+	margin: 0.0px 0.0px 0.0px 36.0px;
+	font: 9.0px 'Lucida Grande';
+	color: #4b67fc;
+	min-height: 11.0px
+}
+
+p.p71 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	font: 11.0px 'Courier New';
+	min-height: 12.0px
+}
+
+p.p72 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	text-indent: 36.0px;
+	font: 11.0px 'Lucida Grande';
+	min-height: 13.0px
+}
+
+p.p73 {
+	margin: 0.0px 0.0px 0.0px 108.0px;
+	text-indent: 36.0px;
+	font: 9.0px 'Courier New';
+	color: #4b67fc
+}
+
+p.p74 {
+	margin: 0.0px 0.0px 0.0px 36.0px;
+	font: 9.0px 'Courier New';
+	color: #4b67fc;
+	min-height: 10.0px
+}
+
+p.p75 {
+	margin: 0.0px 0.0px 0.0px 144.0px;
+	font: 9.0px Monaco
+}
+
+p.p76 {
+	margin: 0.0px 0.0px 0.0px 216.0px;
+	font: 9.0px Monaco
+}
+
+p.p77 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	font: 14.0px 'Lucida Grande'
+}
+
+p.p78 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	font: 10.0px 'Times New Roman'
+}
+
+p.p79 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	font: 11.0px Monaco;
+	min-height: 15.0px
+}
+
+p.p80 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	font: 12.0px Helvetica;
+	min-height: 14.0px
+}
+
+p.p81 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	font: 12.0px Times
+}
+
+p.p82 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	text-align: center;
+	font: 12.0px 'Comic Sans MS'
+}
+
+li.li27 {
+	margin: 0.0px 0.0px 0.0px 0.0px;
+	font: 11.0px 'Lucida Grande'
+}
+
+span.s1 {
+	text-decoration: underline
+}
+
+span.s2 {
+	text-decoration: underline;
+	color: #0000ee
+}
+
+span.s3 {
+	font: 12.0px Helvetica
+}
+
+span.s4 {
+	font: 9.0px 'Lucida Grande'
+}
+
+span.s5 {
+	font: 9.0px 'Times New Roman'
+}
+
+span.s6 {
+	font: 12.0px 'Comic Sans MS'
+}
+
+span.Apple-tab-span {
+	white-space: pre
+}
+
+ol.ol1 {
+	list-style-type: decimal
+}

@@ -1,0 +1,341 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title></title>
+<meta name="Generator" content="Cocoa HTML Writer">
+<meta name="CocoaVersion" content="1038.25">
+<LINK REL="stylesheet" TYPE="text/css" HREF="AppleConversion.css" TITLE="Style">
+</head>
+<body>
+<p class="p1"><br>
+</p>
+<p class="p3"><img src="images/AscapeLogo.pdf" alt="AscapeLogo.pdf"></p>
+<p class="p4"><b>The Ascape Model Developer’s Manual</b></p>
+<p class="p6">Author: <i>Damon Centola</i></p>
+<p class="p1"><br>
+</p>
+<div style="color: blue">
+<p class="p4"><b>Ascape</b></p>
+<p class="p6">Design and Development: <i>Miles Parker</i></p>
+<p class="p6">Development: <i>Mario Inchiosa, Josh Miller and Oliver Mannion (Swing Navigator)</i></p>
+<p class="p6">Models, Extensions and QA: <i>Alan Lockard, Jason Harburger, Jim Girard, Roger Critchlow, Carl
+Tollander, Lisa Stuart, and many others...</i></p>
+</div>
+<p class="p20"><br>
+</p>
+<p class="p1"><br>
+</p>
+<p class="p30"><br>
+</p>
+<p class="p2"><br>
+</p>
+<p class="p2"><br>
+</p>
+<p class="p7"><b>Table of Contents</b></p>
+<p class="p8"><br>
+</p>
+<p class="p9"><br>
+</p>
+<p class="p9"><br>
+</p>
+<p class="p10"><a href="#preface"><b>Preface</b></a>.</p>
+<p class="p9"><br>
+</p>
+<p class="p10"><a href="#introduction"><b>Introduction</b>. An Overview of the Ascape Model Developer’s Manual </a></p>
+<p class="p9"><br>
+</p>
+<p class="p10"><a href="Section1.html"><b>Section 1. </b>Agent-based Modeling</a></p>
+<p class="p12"><a href="Section1.html#1.1">1.1 Introduction</a></p>
+<p class="p12"><a href="Section1.html#1.2">1.2 Social Science Modeling</a></p>
+<p class="p11"><a href="Section1.html#1.2.1">1.2.1 Game theory</a></p>
+<p class="p11"><a href="Section1.html#1.2.2">1.2.2 Evolutionary game theory</a></p>
+<p class="p11"><a href="Section1.html#1.2.3">1.2.3 Organizational theory</a></p>
+<p class="p11"><a href="Section1.html#1.2.4">1.2.4 Economics /Markets</a></p>
+<p class="p11"><a href="Section1.html#1.2.5">1.2.5 Anthropology</a></p>
+<p class="p11"><a href="Section1.html#1.2.6">1.2.6 Sociology</a></p>
+<p class="p11"><a href="Section1.html#1.2.7">1.2.7 Political science</a></p>
+<p class="p10"><a href="Section1.html#license"><b>License</b></a>.</p>
+<p class="p9"><br>
+</p>
+<p class="p10"><a href="Section2.html"><b>Section 2.<span class="Apple-converted-space"> </span></b> The Ascape
+Modeling Framework</a></p>
+<p class="p12"><a href="Section2.html#2.1">2.1 The Basic Structure of an Ascape Model</a></p>
+<p class="p12"><a href="Section2.html#2.2">2.2 Constructing the Agent Scapes</a></p>
+<p class="p11"><a href="Section2.html#2.2.1">2.2.1 Specifying agents in the model</a></p>
+<p class="p11"><a href="Section2.html#2.2.2">2.2.2 Specifying the execution order</a></p>
+<p class="p11"><a href="Section2.html#2.2.3">2.2.3 Specifying statistical operations</a></p>
+<p class="p11"><a href="Section2.html#2.2.4">2.2.4 Additional scape graph properties</a></p>
+<p class="p12"><a href="Section2.html#2.3">2.3 A First Introduction to Ascape Code</a></p>
+<p class="p11"><a href="Section2.html#2.3.1">2.3.1 The basic framework for a coordination game model</a></p>
+<p class="p9"><br>
+</p>
+<p class="p10"><a href="Section3.html"><b>Section 3.<span class="Apple-converted-space"> </span></b> The Ascape
+Tutorial</a></p>
+<p class="p12"><a href="Section3.html#3.1">3.1 The Coordination Game Model</a></p>
+<p class="p11"><a href="Section3.html#3.1.1">3.1.1 Finishing the CoordinationGame Class</a></p>
+<p class="p14"><a href="Section3.html#3.1.1.1">3.1.1.1 The view object</a></p>
+<p class="p14"><a href="Section3.html#3.1.1.2">3.1.1.2 Creating all of the agents</a></p>
+<p class="p11"><a href="Section3.html#3.1.2">3.1.2 Making the CoordinationGamePlayer Class</a></p>
+<p class="p14"><a href="Section3.html#3.1.2.1">3.1.2.1 Rules in Ascape</a></p>
+<p class="p14"><a href="Section3.html#3.1.2.2">3.1.2.2 The CoordinationGamePlayer Class</a></p>
+<p class="p11"><a href="Section3.html#3.1.3">3.1.3 Cleaning up the Model</a></p>
+<p class="p11"><a href="Section3.html#3.1.4">3.1.4 Adding Statistical Operations</a></p>
+<p class="p12"><a href="Section3.html#3.2">3.2 Experimenting with the Model</a></p>
+<p class="p11"><a href="Section3.html#3.2.1">3.2.1 Editing Model Properties at Runtime</a></p>
+<p class="p14"><a href="Section3.html#3.2.1.1">3.2.1.1 The Rules Tab</a></p>
+<p class="p11"><a href="Section3.html#3.2.2">3.2.2 Adding Stochasticity to Model</a></p>
+<p class="p14"><a href="Section3.html#3.2.2.1">3.2.2.1 Stochastic stability</a></p>
+<p class="p11"><a href="Section3.html#3.2.3">3.2.3 Adding Averaging Statistics to the Model</a></p>
+<p class="p11"><a href="Section3.html#3.2.4">3.2.4 Best Reply Dynamics</a></p>
+<p class="p11"><a href="Section3.html#3.2.5">3.2.5 A Biological Coordination Game</a></p>
+<p class="p11"><a href="Section3.html#3.2.6">3.2.6 Dynamic Neighborhoods and Social Networks</a></p>
+<p class="p14"><a href="Section3.html#3.2.6.1">3.2.6.1 Friends network model</a></p>
+<p class="p12"><a href="Section3.html#3.3">3.3 Summary and Conclusion</a></p>
+<p class="p9"><br>
+</p>
+<p class="p10"><a href="Appendix.html"><b>Appendix</b>. Code Samples</a></p>
+<p class="p12"><a href="Appendix.html#1">Model 1: Coordination Game</a></p>
+<p class="p11"><a href="Appendix.html#1.1">CoordinationGame.java</a></p>
+<p class="p11"><a href="Appendix.html#1.2">CoordinationGamePlayer.java</a></p>
+<p class="p12"><a href="Appendix.html#2">Model 2:Stochasticity and Averaging Statistics</a></p>
+<p class="p11"><a href="Appendix.html#2.1">CoordinationGame.java</a></p>
+<p class="p11"><a href="Appendix.html#2.2">CoordinationGamePlayer.java</a></p>
+<p class="p12"><a href="Appendix.html#3">Model 3:Best Reply Dynamics</a></p>
+<p class="p11"><a href="Appendix.html#3.1">CoordinationGame.java</a></p>
+<p class="p11"><a href="Appendix.html#3.2">CoordinationGamePlayer.java</a></p>
+<p class="p12"><a href="Appendix.html#4">Model 4: Biological Coordination Game</a></p>
+<p class="p11"><a href="Appendix.html#4.1">CoordinationGame.java</a></p>
+<p class="p11"><a href="Appendix.html#4.1">CoordinationGamePlayer.java</a></p>
+<p class="p12"><a href="Appendix.html#5">Model 5: Friends Network Model</a></p>
+<p class="p11"><a href="Appendix.html#5.1">CoordinationGame.java</a></p>
+<p class="p11"><a href="Appendix.html#5.2">CoordinationGamePlayer.java</a></p>
+<p class="p15"><br>
+</p>
+
+
+<p class="p16"><a name="preface"><b>Preface.</b></a></p>
+<p class="p17"><br>
+</p>
+<p class="p17"><br>
+</p>
+<p class="p17"><br>
+</p>
+<p class="p18"><br>
+</p>
+<p class="p19">This manual was developed during the summer of 2002 at the Center for Social and Economic Dynamics at
+the Brookings Institution. The manual reflects the need for an introduction to agent-based modeling that serves the
+general social science community, and that also highlights the usefulness of Ascape for scientific research. Although
+agent-based models (ABMs) are equally useful in the biological and physical sciences as they are in the social sciences,
+methodological difficulties in the social sciences have motivated the widespread appeal of agent-based modeling.<span
+				class="Apple-converted-space">  </span>In recent years, agent-based modeling has become an increasingly important
+tool for modeling human social behavior.  The consensus among its proponents is that, in comparison to traditional
+analytic techniques, agent models can better represent human social life because of their facility for modeling
+heterogeneous agents, bounded rationality, out of equilibrium dynamics, and agent-agent interactions within social
+networks.</p>
+<p class="p20"><br>
+</p>
+<p class="p19">I developed this manual while I was a doctoral student in Philosophy at Johns Hopkins University. My
+introduction to agent-based modeling came from evolutionary biology, and my long-standing interest in the evolution of
+altruism and problems in group selection. My research has since broadened, understandably, to include many problems in
+social science. Recently, I have been working on the role of group selection dynamics in the formation of social
+institutions.</p>
+<p class="p20"><br>
+</p>
+<p class="p19">This manual has benefited from extensive discussion with the inventor and developer of Ascape, Miles
+Parker, as well as from helpful comments from Josh Epstein and Peyton Young, and from the continued guidance of Rob
+Axtell. The manual has also benefited from earlier articles outlining the structure and use of Ascape. These articles
+include:</p>
+<p class="p20"><br>
+</p>
+<p class="p19">Parker, M. 1999. "Ascape: an Agent-based Modeling Environment in Java", Proceedings of Agent
+Simulation: Applications, Models, and Tools" University of Chicago.</p>
+<p class="p20"><br>
+</p>
+<p class="p19">Parker, M. 2000. "Ascape: Abstracting Complexity" Swarmfest 2000 Proceedings, forthcoming (Brookings
+Website)</p>
+<p class="p21"><br>
+</p>
+<p class="p19">Parker, M. 2001. “What is Ascape and Why Should You Care?”,<span class="Apple-converted-space"> 
+</span>Journal of Artificial Societies and Social Simulation vol. 4, no. 1. <a
+				href="http://www.soc.surrey.ac.uk/JASSS/4/1/5.html"><span class="s2">http://www.soc.surrey.ac.uk/JASSS/4/1/5.html</span></a></p>
+<p class="p20"><br>
+</p>
+<p class="p20"><br>
+</p>
+<p class="p22">-Damon Centola</p>
+<p class="p23"><br>
+</p>
+<p class="p24">© The Brookings Institution 2002</p>
+<p class="p24">Ascape ©1998-2000 The Brookings Institution, ©2000-2007 NuTech Solutions, Inc., ©2007 Metascape, LLC.</p>
+<p class="p24">Original software engineer and architect of the framework: Miles Parker</p>
+<p class="p24">Project manager: Robert Axtell</p>
+<p class="p24">Directors, Ctr. on Social and Economic Dynamics: Carol Graham and Peyton Young</p>
+<p class="p24">Vice President of Economic Studies: Robert Litan</p>
+<p class="p15"><br>
+</p>
+<p class="p16"><a name="specialnote"><b>Special Note.</b></a></p>
+<p class="p17"><br>
+</p>
+<p class="p19">I’m extremely grateful to Damon Centola for writing a manual that is both thoughtful and practical,
+and that captures the essence of the Ascape approach. Damon wrote this manual five years ago, and since that time Ascape
+has changed in subtle but significant ways. In preparation for the open source release of Ascape, I’ve attempted to
+update the code examples so that they will work with the released version. In a few places I have updated the text to
+reflect changes and improvements, and I hope Damon will excuse any inconsistencies that my slight revisions may
+introduce.</p>
+<p class="p17"><br>
+</p>
+<p class="p22">-Miles T. Parker</p>
+<p class="p19">September, 2007</p>
+<p class="p17"><br>
+</p>
+<p class="p19">I’ve spent some time converting the manual to HTML and for Eclipse built-in help system. This should
+make Damon's manual more accesible and directly usable for a wider audience. Unfortuntaly, I haven't had the time to
+fully test all of the models for the latest version of Ascape. There are also lot's of opportunitied to improve the
+manual further and now that it is in a standard text format that process will be much easier. This is an excellent
+opportunity for you the reader to contribute to the Ascape project; please let us know if you find any mistakes or would
+like to contribute to this document.</p>
+<p class="p17"><br>
+</p>
+<p class="p22">-Miles T. Parker</p>
+<p class="p19">January, 2010</p>
+<p class="p20"><br>
+</p>
+<p class="p15"><br>
+</p>
+<p class="p25"><br>
+</p>
+<p class="p25"><br>
+</p>
+
+<p class="p7"><a name="introduction"><b>Introduction.<span class="Apple-converted-space"> </span></b></a></p>
+<p class="p32"><br>
+</p>
+<p class="p26"><b>An Overview of the Ascape Model Developer’s Manual</b></p>
+<p class="p20"><br>
+</p>
+<p class="p20"><br>
+</p>
+<p class="p20"><br>
+</p>
+<p class="p20"><br>
+</p>
+<p class="p20"><br>
+</p>
+<p class="p20"><br>
+</p>
+<p class="p20"><br>
+</p>
+<p class="p19">This manual is an introduction to agent-based modeling using the Ascape Modeling Framework. This
+framework is a set of Java classes that allow a developer to easily create collections of agents and assign these agents
+rules for interacting on a spatial lattice or in a network. The framework is also designed to allow the developer to
+easily monitor the behavior of the agents with a variety of statistical operations.</p>
+<p class="p20"><br>
+</p>
+<p class="p19">Students of social science should be particularly interested in Ascape since it is designed to
+provide an easy way of abstracting human social interactions into a computational setting. This manual highlights a
+variety of social science models developed by researchers at the Brookings Institution, including the now well-known
+Sugarscape models. These examples should be taken as touchstones for developing new model ideas. The best way to learn
+Ascape is to use Ascape. All of the models discussed in this manual are part of the Ascape download package. New
+developers are encouraged to look at how these models work and to experiment with, and extend them.</p>
+<p class="p20"><br>
+</p>
+<p class="p19"><span class="s1"><a href="Section1.html">Section 1</a></span> of this manual provides a basic
+introduction to agent-based modeling for those who have no previous experience with it. Even for those with rudimentary
+exposure to agent-based modeling, <a href="Section1.html">Section 1</a> may still be useful since it sets up many of the
+examples drawn upon later in the manual.</p>
+<p class="p20"><br>
+</p>
+<p class="p19"><span class="s1"><a href="Section2.html">Section 2</a></span> of this manual is a basic introduction
+to the Ascape modeling framework. This section is required for anyone who has never developed in Ascape before. This
+section may also be useful for those who have some Ascape experience since it presents a clear exposition of the Ascape
+architecture.<span class="Apple-converted-space">  </span>The final part of <a href="Section2.html">Section 2</a> walks
+the reader through the creation of a rudimentary Ascape model, and so functions as an introduction to the Tutorial in <a
+				href="Section3.html">Section 3</a>.</p>
+<p class="p20"><br>
+</p>
+<p class="p19"><span class="s1"><a href="Section3.html">Section 3</a></span> develops a basic Coordination Game
+Model, and then explores various ways in which this model can be experimented with and extended. The tutorial covers
+various dynamics in agent interaction (imitation, best reply), agent reproduction, experimentation with
+synchronous/asynchronous updating, agents with memory, and agents interacting in social networks. There are many other
+topics that can be explored, and we hope the tutorial will function as a way of getting new developers comfortable
+enough with the code to start experimenting with Ascape’s other functionalities. The API documentation is a useful
+resource and should be consulted throughout for detailed information on the Ascape classes.</p>
+<p class="p20"><br>
+</p>
+<p class="p19">For information about installing and running Ascape, please see the separate Ascape QuickStart Guide.
+Part I covers the preliminary details of acquiring Ascape. It explains system requirements, and installation. It also
+explains how to run an Ascape model and how to use Ascape’s Control Bar. Part II is a developer-oriented guide that
+explains the directory hierarchy in the Ascape package, and how to set up a development environment for programming in
+Ascape. This section also explains what Java and Ascape ‘import’ files are needed in order to compile Ascape code, and
+what libraries should be included in the build directory.</p>
+<p class="p20"><br>
+</p>
+<p class="p19"><span class="s1"><a href="Appendix.html">Appendix 1</a></span> has the complete code samples from the
+tutorial in <a href="Section3.html">Section 3</a> with the import files and package information in the header. These
+files are ready-to-compile, and can simply be pasted into properly named files and compiled as Ascape models.</p>
+<p class="p20"><br>
+</p>
+<p class="p19"><b>Prerequisites for using this manual: </b></p>
+<p class="p19">For <a href="Section1.html">Section 1</a> and the majority of <a href="Section2.html">Section 2</a>,
+the reader should have a basic familiarity with the social sciences as well as working knowledge of one or more modern,
+object-oriented programming languages. The basic prerequisite is a certain amount of comfort with computing. For the end
+of <a href="Section2.html">Section 2</a> and for <a href="Section3.html">Section 3</a> the reader should have a basic
+fluency in Java.</p>
+<p class="p20"><br>
+</p>
+<p class="p20"><br>
+</p>
+<p class="p20"><br>
+</p>
+<p class="p20"><br>
+<p class="p16"><a name="license"><b>License.</b></a></p>
+<p class="p19">This manual is included as a part of the Ascape model development package. Ascape was originally
+developed at the Brookings Insititution, subsequently improved and extended at Bios Group and NuTech Solutions, Inc. and
+has now been released under a BSD Open Source license. Ongoing development and maintenance is provided by Metascape,
+LLC, Brookings, NuTech Solutions, Inc., and others. No endorsements of any organizations or products by any other
+organization is implied or intended.</p>
+<p class="p20"><br>
+</p>
+<p class="p27">Ascape was developed for the Java platform and can run on any contemporary computer system. For a
+copy of the latest release of Ascape, please visit <a href="http://www.biosgroup.com/"><span class="s2">ascape.sourceforge.net</span></a>.</p>
+<p class="p2"><br>
+</p>
+<p class="p27">This is the complete text of the Ascape license:</p>
+<p class="p2"><br>
+</p>
+<p class="p28">Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and
+contributors.</p>
+<p class="p29"><br>
+</p>
+<p class="p28">All rights reserved.</p>
+<p class="p29"><br>
+</p>
+<p class="p28">Redistribution and use in source and binary forms, with or without modification, are permitted
+provided that the following conditions are met:</p>
+<p class="p29"><br>
+</p>
+<p class="p28">Redistributions of source code must retain the above copyright notice, this list of conditions and
+the following disclaimer.</p>
+<p class="p29"><br>
+</p>
+<p class="p28">Redistributions in binary form must reproduce the above copyright notice,</p>
+<p class="p28">this list of conditions and the following disclaimer in the documentation</p>
+<p class="p28">and/or other materials provided with the distribution.</p>
+<p class="p29"><br>
+</p>
+<p class="p28">Neither the names of The Brookings Institution, NuTech Solutions,Inc. or Metascape LLC</p>
+<p class="p28">nor the names of its contributors may be used to endorse or promote products</p>
+<p class="p28">derived from this software without specific prior written permission.</p>
+<p class="p29"><br>
+</p>
+<p class="p28">THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
+IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL,EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,</p>
+<p class="p28">PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+</body>
+</html>
