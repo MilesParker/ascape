@@ -20,7 +20,7 @@ import org.ascape.util.vis.ImageFeatureFixed;
 public class CitizenBlueGreen extends Citizen {
 
     /**
-     * 
+     *  
      */
     private static final long serialVersionUID = -7603826765719581905L;
 
