@@ -11,9 +11,11 @@
 <body>
 <p class="p3"><img src="images/AscapeLogo.pdf" alt="AscapeLogo.pdf"></p>
 <p class="p4"><b>The Ascape Model Developer’s Manual</b></p>
-<p class="p20"><br></p>
+<p class="p20"><br>
+</p>
 <p class="p7"><b>Section 3. </b></p>
-<p class="p20"><br></p>
+<p class="p20"><br>
+</p>
 <p class="p35"><b>The Ascape Tutorial</b></p>
 <p class="p21"><br>
 </p>
@@ -44,22 +46,10 @@ Tutorial</a></p>
 <p class="p12"><a href="Section3.html#3.3">3.3 Summary and Conclusion</a></p>
 <p class="p10"><a href="Appendix.html"><b>Appendix</b>. Code Samples</a></p>
 <p class="p15"><br>
-<p class="p17"><br>
 </p>
-<p class="p17"><br>
-</p>
-<p class="p17"><br>
-</p>
-<p class="p17"><br>
-</p>
-<p class="p10"><b>Introduction</b></p>
-<p class="p8"><br>
-</p>
-<p class="p2"><br>
-</p>
-<p class="p27">In the last part of <a href="Section2.html">Section 2</a>, we built the basic framework for a Coordination Game model. In what
-follows, we will flesh out that framework to make a working model, and then we will expand on that model to illustrate
-some of Ascape’s more interesting functionalities.</p>
+<p class="p27">In the last part of <a href="Section2.html">Section 2</a>, we built the basic framework for a
+Coordination Game model. In what follows, we will flesh out that framework to make a working model, and then we will
+expand on that model to illustrate some of Ascape’s more interesting functionalities.</p>
 <p class="p2"><br>
 </p>
 <p class="p10"><a name="3.1"><b>The Coordination Game Model</b></a></p>
@@ -69,69 +59,67 @@ some of Ascape’s more interesting functionalities.</p>
 will be used throughout the code samples to add annotations.</p>
 <p class="p2"><br>
 </p>
-<p class="p44">public class CoordinationGame extends Scape {</p>
-<p class="p55"><br>
+<p class="code1">public class CoordinationGame extends Scape {</p>
+<p class="code1"><br />
 </p>
-<p class="p56">//These three integer variables define the dimensions of the</p>
-<p class="p56">//lattice and the number of agents in the model<span class="Apple-tab-span"> </span></p>
-<p class="p50">public int nPlayers = 200;</p>
-<p class="p47"><span class="Apple-tab-span"> </span>public int latticeWidth = 30; <span
-				class="Apple-converted-space">   </span></p>
-<p class="p47"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>public int
-latticeHeight = 30;</p>
+<p class="code2">//These three integer variables define the dimensions of the</p>
+<p class="code2">//lattice and the number of agents in the model<span class="Apple-tab-span"> </span></p>
+<p class="code2">public int nPlayers = 200;</p>
+<p class="code2">public int latticeWidth = 30;</p>
+<p class="code2">public int latticeHeight = 30;</p>
 <p class="p51"><br>
 </p>
-<p class="p56">//These two instance variables will be this model’s scape graph</p>
-<p class="p56">//and it’s players scape.</p>
-<p class="p50">Scape lattice;</p>
-<p class="p50">Scape players;</p>
+<p class="code2">//These two instance variables will be this model’s scape graph</p>
+<p class="code2">//and it’s players scape.</p>
+<p class="code2">Scape lattice;</p>
+<p class="code2">Scape players;</p>
 <p class="p51"><br>
 </p>
-<p class="p56">//The ‘createScape’ method constructs the scapes for the model, specifies the //agents and execution
-order, and adds the scapes to the model.</p>
-<p class="p44">public void createScape() {</p>
-<p class="p55"><br>
+<p class="code2">//The ‘createScape’ method constructs the scapes for the model, specifies the //agents and
+execution order, and adds the scapes to the model.</p>
+<p class="code2">public void createScape() {</p>
+<p class="code1"><br />
 </p>
-<p class="p56"><span class="Apple-tab-span"> </span>//first we call the constructor for the Scape class</p>
-<p class="p50"><span class="Apple-converted-space">     <span class="Apple-tab-span"> </span></span>super.createScape();</p>
+<p class="code3">//first we call the constructor for the Scape class</p>
+<p class="code3">super.createScape();</p>
 <p class="p54"><br>
 </p>
-<p class="p57">//next we create the 2Dlattice with a von Neumann neighborhood //structure, set its prototypical
+<p class="code3">//next we create the 2Dlattice with a von Neumann neighborhood //structure, set its prototypical
 agents, and set its dimensions</p>
-<p class="p53">lattice = new Scape(new Array2DVonNeumann());</p>
-<p class="p53">lattice.setPrototypeAgent(new HostCell());</p>
-<p class="p53">lattice.setExtent(latticeWidth, latticeHeight);</p>
+<p class="code3">lattice = new Scape(new Array2DVonNeumann());</p>
+<p class="code3">lattice.setPrototypeAgent(new HostCell());</p>
+<p class="code3">lattice.setExtent(latticeWidth, latticeHeight);</p>
 <p class="p54"><br>
 </p>
 <p class="p54"><br>
 </p>
-<p class="p57">//then we create an instance of the CoordinationGamePlayer class so //that we can assign it to the
+<p class="code3">//then we create an instance of the CoordinationGamePlayer class so //that we can assign it to the
 lattice and make it</p>
-<p class="p57">//the prototype agent for the players scape.</p>
-<p class="p53">CoordinationGamePlayer cgplayer = new CoordinationGamePlayer();</p>
-<p class="p44"><span class="Apple-converted-space">      </span>cgplayer.setHostScape(lattice);</p>
+<p class="code3">//the prototype agent for the players scape.</p>
+<p class="code3">CoordinationGamePlayer cgplayer = new CoordinationGamePlayer();</p>
+<p class="code3">cgplayer.setHostScape(lattice);</p>
 <p class="p55"><br>
 </p>
-<p class="p57">//then we create the players scape, set the prototype agent, and set //the execution order.</p>
-<p class="p44"><span class="Apple-tab-span"> </span>players = new Scape();</p>
-<p class="p44"><span class="Apple-converted-space"> <span class="Apple-tab-span"> </span></span>players.setPrototypeAgent(cgplayer);</p>
-<p class="p44"><span class="Apple-converted-space">      </span>players.setExecutionOrder(Scape.RULE_ORDER);</p>
+<p class="code3">//then we create the players scape, set the prototype agent, and set //the execution order.</p>
+<p class="code3">players = new Scape();</p>
+<p class="code3">players.setPrototypeAgent(cgplayer);</p>
+<p class="code3">players.setExecutionOrder(Scape.RULE_ORDER);</p>
 <p class="p55"><br>
 </p>
-<p class="p57">//finally, we add the specified scape graph and the</p>
-<p class="p57">//specified players scape to the model.</p>
-<p class="p47"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>add(lattice);</p>
-<p class="p47"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>add(players);</p>
+<p class="code3">//finally, we add the specified scape graph and the</p>
+<p class="code3">//specified players scape to the model.</p>
+<p class="code3">add(lattice);</p>
+<p class="code3">add(players);</p>
 <p class="p55"><br>
 </p>
-<p class="p48">}</p>
+<p class="code2">}</p>
 <p class="p46">}</p>
 <p class="p2"><br>
 </p>
 <p class="p27">In order to build a working Ascape model, we need to expand this basic framework to include some key
-functionalities that have not been discussed. <a href="Section2.html">Section 2</a> outlined the basic conceptual structure of a model. This part of
-section 3 covers some technical aspects to constructing an Ascape model that have less to do with conceptual
-architecture and more to do with details of implementation.</p>
+functionalities that have not been discussed. <a href="Section2.html">Section 2</a> outlined the basic conceptual
+structure of a model. This part of section 3 covers some technical aspects to constructing an Ascape model that have
+less to do with conceptual architecture and more to do with details of implementation.</p>
 <p class="p2"><br>
 </p>
 <p class="p27"><a name="3.1.1"><b>Finishing the CoordinationGame Class</b></a></p>
@@ -205,22 +193,20 @@ Class that can hold the new view object. This variable will be of type <span cla
 will hold an instance of the <span class="s4">Overhead2DView</span> class.</p>
 <p class="p1"><br>
 </p>
-<p class="p44">public class CoordinationGame extends Scape {</p>
+<p class="code1">public class CoordinationGame extends Scape {</p>
 <p class="p55"><br>
 </p>
-<p class="p48">public int nPlayers = 200;</p>
-<p class="p47"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>public int latticeWidth =
-30; <span class="Apple-converted-space">   </span></p>
-<p class="p47"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span></span>public int latticeHeight = 30;</p>
-<p class="p48">Scape lattice;</p>
-<p class="p48">Scape players;</p>
+<p class="code2">public int nPlayers = 200;</p>
+<p class="code2">public int latticeWidth = 30; <span class="Apple-converted-space">   </span></p>
+<p class="code2">public int latticeHeight = 30;</p>
+<p class="code2">Scape lattice;</p>
+<p class="code2">Scape players;</p>
 <p class="p59">//This is the view object variable that will hold our instance of the //Overhead2DView class</p>
-<p class="p48">Overhead2DView view;</p>
-<p class="p48">.</p>
-<p class="p48">.</p>
-<p class="p48">.</p>
-<p class="p50">}</p>
+<p class="code2">Overhead2DView view;</p>
+<p class="code2">.</p>
+<p class="code2">.</p>
+<p class="code2">.</p>
+<p class="code1">}</p>
 <p class="p2"><br>
 </p>
 <p class="p27">The vertical ellipses in the code examples:</p>
@@ -236,17 +222,16 @@ method. Like <span class="s4">createScape()</span>, <span class="s4">createGraph
 on startup.</p>
 <p class="p2"><br>
 </p>
-<p class="p47"><span class="Apple-tab-span"> </span>public void createGraphicViews() {</p>
-<p class="p56"><span class="Apple-tab-span"> </span>//call the basic view setup for a Scape List</p>
-<p class="p47"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>super.createGraphicViews();</p>
-<p class="p56"><span class="Apple-tab-span"> </span>//Create the new view</p>
-<p class="p47"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>view = new
-Overhead2DView();</p>
-<p class="p56"><span class="Apple-converted-space">      </span>//Set its cell size to, say, 15</p>
-<p class="p47"><span class="Apple-converted-space">        <span class="Apple-tab-span"> </span></span>overheadView.setCellSize(15);</p>
-<p class="p56"><span class="Apple-tab-span"> </span>//add the view to the scape graph.</p>
-<p class="p47"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>lattice.addView(overheadView);</p>
-<p class="p47"><span class="Apple-tab-span"> </span>}</p>
+<p class="code2">public void createGraphicViews() {</p>
+<p class="code3">//call the basic view setup for a Scape List</p>
+<p class="code3">super.createGraphicViews();</p>
+<p class="code3">//Create the new view</p>
+<p class="code3">overheadView = new Overhead2DView();</p>
+<p class="code3">//Set its cell size to, say, 15</p>
+<p class="code3">overheadView.setCellSize(15);</p>
+<p class="code3">//add the view to the scape graph.</p>
+<p class="code3">lattice.addView(overheadView);</p>
+<p class="code2">}</p>
 <p class="p2"><br>
 </p>
 <p class="p27">In the <span class="s4">createGraphicViews()</span> method, we first call the <span class="s4">Scape</span>
@@ -270,13 +255,13 @@ and <span class="s4">Creategraphicviews()</span>, <span class="s4">public void s
 is called automatically when the model launches.</p>
 <p class="p2"><br>
 </p>
-<p class="p50">public void scapeSetup(ScapeEvent scapeEvent) {</p>
-<p class="p50">((Scape) agents).setExtent(new Coordinate1DDiscrete(nAgents));</p>
-<p class="p47"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>}</p>
+<p class="code2">public void scapeSetup(ScapeEvent scapeEvent) {</p>
+<p class="code3">((Scape) players).setExtent(new Coordinate1DDiscrete(nPlayers));</p>
+<p class="code2">}</p>
 <p class="p23"><br>
 </p>
 <p class="p27">The <span class="s4">onSetup()</span> method tells the ‘players’ scape to set its size to fit an
-array of nAgents, which, in this case, is 200. Since cgplayer was assigned as the prototypical agent for the ‘players’
+array of nPlayers, which, in this case, is 200. Since cgplayer was assigned as the prototypical agent for the ‘players’
 scape, this scape now has 200 agents of type cgplayer.</p>
 <p class="p2"><br>
 </p>
@@ -284,57 +269,53 @@ scape, this scape now has 200 agents of type cgplayer.</p>
 </span>It looks as follows:</p>
 <p class="p2"><br>
 </p>
-<p class="p44">public class CoordinationGame extends Scape {</p>
+<p class="code1">public class CoordinationGame extends Scape {</p>
 <p class="p60"><br>
 </p>
-<p class="p57">//create variables</p>
-<p class="p48">public int nPlayers = 200;</p>
-<p class="p44"><span class="Apple-tab-span"> </span>public int latticeWidth = 30; <span
-				class="Apple-converted-space">   </span></p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>public int
-latticeHeight = 30;</p>
-<p class="p48">Scape lattice;</p>
-<p class="p48">Scape players;</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>Overhead2DView
-overheadView;</p>
+<p class="code2">//create variables</p>
+<p class="code2">public int nPlayers = 200;</p>
+<p class="code2">public int latticeWidth = 30; <span class="Apple-converted-space">   </span></p>
+<p class="code2">public int latticeHeight = 30;</p>
+<p class="code2">Scape lattice;</p>
+<p class="code2">Scape players;</p>
+<p class="code2">Overhead2DView overheadView;</p>
 <p class="p61"><br>
 </p>
-<p class="p57">//create scapes and create agents</p>
-<p class="p53">public void createScape() {</p>
-<p class="p48"><span class="Apple-converted-space">     <span class="Apple-tab-span"> </span></span>super.createScape();</p>
-<p class="p62">lattice = new Scape(new Array2DVonNeumann());<span class="Apple-tab-span"> </span> <span
+<p class="code2">//create scapes and create agents</p>
+<p class="code2">public void createScape() {</p>
+<p class="code3">super.createScape();</p>
+<p class="code3">lattice = new Scape(new Array2DVonNeumann());<span class="Apple-tab-span"> </span> <span
 				class="Apple-tab-span"> </span><span class="Apple-converted-space">      </span>lattice.setPrototypeAgent(new
 HostCell());</p>
-<p class="p62">lattice.setExtent(new Coordinate2DDiscrete(latticeWidth,<span class="Apple-converted-space"> 
+<p class="code3">lattice.setExtent(new Coordinate2DDiscrete(latticeWidth,<span class="Apple-converted-space"> 
         </span>latticeHeight));</p>
 <p class="p63"><br>
 </p>
-<p class="p62">CoordinationGamePlayer cgplayer = new CoordinationGamePlayer();</p>
-<p class="p53"><span class="Apple-converted-space">      </span>cgplayer.setHostScape(lattice);</p>
-<p class="p53"><span class="Apple-tab-span"> </span>players = new Scape();</p>
-<p class="p53"><span class="Apple-converted-space"> <span class="Apple-tab-span"> </span></span>players.setPrototypeAgent(cgplayer);</p>
-<p class="p53"><span class="Apple-converted-space">      </span>players.setExecutionOrder(Scape.RULE_ORDER);</p>
+<p class="code3">CoordinationGamePlayer cgplayer = new CoordinationGamePlayer();</p>
+<p class="code3"><span class="Apple-converted-space">      </span>cgplayer.setHostScape(lattice);</p>
+<p class="code4">players = new Scape();</p>
+<p class="code3"><span class="Apple-tab-span"></span>players.setPrototypeAgent(cgplayer);</p>
+<p class="code3"><span class="Apple-converted-space">      </span>players.setExecutionOrder(Scape.RULE_ORDER);</p>
 <p class="p54"><br>
 </p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>add(lattice);</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>add(players);</p>
+<p class="code4">add(lattice);</p>
+<p class="code4">add(players);</p>
 <p class="p54"><br>
 </p>
-<p class="p53">}</p>
+<p class="code3">}</p>
 <p class="p55"><span class="Apple-tab-span"> </span></p>
-<p class="p57">//create views</p>
-<p class="p44"><span class="Apple-tab-span"> </span>public void createGraphicViews() {</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>super.createGraphicViews();</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>view = new
-Overhead2DView();</p>
-<p class="p48"><span class="Apple-tab-span"> </span>overheadView.setCellSize(15);</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>lattice.addView(overheadView);</p>
-<p class="p44"><span class="Apple-tab-span"> </span>}</p>
+<p class="code2">//create views</p>
+<p class="code2">public void createGraphicViews() {</p>
+<p class="code4">super.createGraphicViews();</p>
+<p class="code4">view = new Overhead2DView();</p>
+<p class="code4">overheadView.setCellSize(15);</p>
+<p class="code4">lattice.addView(overheadView);</p>
+<p class="code2">}</p>
 <p class="p55"><span class="Apple-tab-span"> </span></p>
-<p class="p57">//populate the model with agents</p>
-<p class="p48">public void onSetup() {</p>
-<p class="p52">((Scape) agents).setExtent(new Coordinate1DDiscrete(nAgents));</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>}</p>
+<p class="code2">//populate the model with agents</p>
+<p class="code2">public void onSetup() {</p>
+<p class="code3">((Scape) players).setExtent(new Coordinate1DDiscrete(nPlayers));</p>
+<p class="code2">}</p>
 <p class="p64"><br>
 </p>
 <p class="p46">}</p>
@@ -363,7 +344,7 @@ looks as follows.</p>
 <p class="p2"><br>
 </p>
 <p class="p43">Red<span class="Apple-converted-space">    </span>Blue</p>
-<p class="p42">Red<span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>1, 1 <span
+<p class="p42">Red<span class="Apple-tab-span"></span>1, 1 <span
 				class="Apple-converted-space">    </span>0, 0</p>
 <p class="p43">--------------</p>
 <p class="p42">Blue <span class="Apple-converted-space">    </span>0, 0 <span class="Apple-converted-space"> 
@@ -404,39 +385,38 @@ recent plays, and they imitate the color of that agent.</p>
 initialize the class.</p>
 <p class="p2"><br>
 </p>
-<p class="p44">public class CoordinationGamePlayer extends Cell Occupant{</p>
+<p class="code1">public class CoordinationGamePlayer extends Cell Occupant{</p>
 <p class="p55"><span class="Apple-tab-span"> </span></p>
-<p class="p57">//create our variables</p>
-<p class="p44"><span class="Apple-tab-span"> </span>protected Color myColor;</p>
-<p class="p44"><span class="Apple-tab-span"> </span>protected int totalScore;</p>
-<p class="p44"><span class="Apple-tab-span"> </span>protected int[] recentPlays;</p>
+<p class="code2">//create our variables</p>
+<p class="code2">protected Color myColor;</p>
+<p class="code2">protected int totalScore;</p>
+<p class="code2">protected int[] recentPlays;</p>
 <p class="p55"><br>
 </p>
-<p class="p57">//we also add a variable so we can keep track of the first five plays.</p>
-<p class="p44"><span class="Apple-tab-span"> </span>protected int count = 0;</p>
+<p class="code2">//we also add a variable so we can keep track of the first five plays.</p>
+<p class="code2">protected int count = 0;</p>
 <p class="p55"><span class="Apple-tab-span"> </span></p>
-<p class="p44"><span class="Apple-tab-span"> </span>public void initialize() {</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>if (randomInRange (0,1)
-&gt; 0)</p>
-<p class="p44"><span class="Apple-converted-space">            </span>{</p>
-<p class="p44"><span class="Apple-converted-space">                  </span>myColor = Color.red;</p>
-<p class="p44"><span class="Apple-converted-space">            </span>}</p>
-<p class="p44"><span class="Apple-converted-space">            </span>else</p>
-<p class="p44"><span class="Apple-converted-space">            </span>{</p>
-<p class="p44"><span class="Apple-converted-space">                  </span>myColor = Color.blue;</p>
-<p class="p44"><span class="Apple-converted-space">            </span>}</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>recentPlays = new int [5];</p>
-<p class="p44"><span class="Apple-tab-span"> </span>}</p>
+<p class="code2">public void initialize() {</p>
+<p class="code4">if (randomInRange (0,1) &gt; 0)</p>
+<p class="code2"><span class="Apple-converted-space">            </span>{</p>
+<p class="code2"><span class="Apple-converted-space">                  </span>myColor = Color.red;</p>
+<p class="code2"><span class="Apple-converted-space">            </span>}</p>
+<p class="code2"><span class="Apple-converted-space">            </span>else</p>
+<p class="code2"><span class="Apple-converted-space">            </span>{</p>
+<p class="code2"><span class="Apple-converted-space">                  </span>myColor = Color.blue;</p>
+<p class="code2"><span class="Apple-converted-space">            </span>}</p>
+<p class="code4">recentPlays = new int [5];</p>
+<p class="code3">}</p>
 <p class="p55"><br>
 </p>
-<p class="p44">}</p>
+<p class="code2">}</p>
 <p class="p2"><br>
 </p>
-<p class="p27">As discussed in <a href="Section2.html">Section 2</a>, the <span class="s4">CoordinationGamePlayer</span> agent is a cell
-occupant agent, so it must extend the class <span class="s4">CellOccupant</span>.<span class="Apple-converted-space"> 
-</span>The <span class="s4">initialize() </span>method is called automatically when each new agent is created. This method
-assigns either red or blue to the agent, with a probability of .5. It also creates the ‘recentPlays’ array with a length
-of 5.</p>
+<p class="p27">As discussed in <a href="Section2.html">Section 2</a>, the <span class="s4">CoordinationGamePlayer</span>
+agent is a cell occupant agent, so it must extend the class <span class="s4">CellOccupant</span>.<span
+				class="Apple-converted-space">  </span>The <span class="s4">initialize() </span>method is called automatically when
+each new agent is created. This method assigns either red or blue to the agent, with a probability of .5. It also
+creates the ‘recentPlays’ array with a length of 5.</p>
 <p class="p2"><br>
 </p>
 <p class="p27">In order for the variable ‘myColor’ to effect the color of the agent when it is rendered on the
@@ -444,9 +424,9 @@ screen, we must have a method <span class="s4">getColor()</span> that can be cal
 useful so that other agents can find out what color an agent is.</p>
 <p class="p2"><br>
 </p>
-<p class="p47"><span class="Apple-tab-span"> </span>Public Color getColor(){</p>
-<p class="p47"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>Return myColor;</p>
-<p class="p47"><span class="Apple-tab-span"> </span>}</p>
+<p class="code2">Public Color getColor(){</p>
+<p class="code3">Return myColor;</p>
+<p class="code2">}</p>
 <p class="p2"><br>
 </p>
 <p class="p27">Now that we have created and initialized our variables, we need to make some rules for the agents.</p>
@@ -485,13 +465,12 @@ is first created, the model will call the class’s <span class="s4">ScapeCreate
 add rules directly to the agent’s parent scape (in this case, the ‘players’ scape).</p>
 <p class="p23"><br>
 </p>
-<p class="p46"><span class="Apple-converted-space">    </span>public void scapeCreated() {</p>
-<p class="p46"><span class="Apple-tab-span"> </span><span class="Apple-converted-space">    <span
-				class="Apple-tab-span"> </span></span>getScape().addInitialRule(MOVE_RANDOM_LOCATION_RULE);</p>
-<p class="p46"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>getScape().addRule(RANDOM_WALK_RULE);</p>
-<p class="p46"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>getScape().addRule(UPDATE_RULE);</p>
-<p class="p46"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>getScape().addRule(PLAY_RANDOM_NEIGHBOR_RULE);</p>
-<p class="p46"><span class="Apple-converted-space">    </span>}</p>
+<p class="code2">public void scapeCreated() {</p>
+<p class="code3">getScape().addInitialRule(MOVE_RANDOM_LOCATION_RULE);</p>
+<p class="code3">getScape().addRule(RANDOM_WALK_RULE);</p>
+<p class="code3">getScape().addRule(UPDATE_RULE);</p>
+<p class="code3">getScape().addRule(PLAY_RANDOM_NEIGHBOR_RULE);</p>
+<p class="code2">}</p>
 <p class="p39"><span class="Apple-converted-space">    </span></p>
 <p class="p27">First, we are going to add an initial rule, which is executed only on setup. This rule tells the
 scape to place the agents on random locations on the lattice. Then we will add three behavioral rules, which will be
@@ -516,41 +495,35 @@ method that finds the best-scoring agent in the neighborhood, and imitates that 
 				class="Apple-converted-space"> </span></p>
 <p class="p39"><br>
 </p>
-<p class="p46"><span class="Apple-converted-space">    </span>public void update() {</p>
-<p class="p46"><span class="Apple-tab-span"> </span>count++;</p>
-<p class="p46"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>if (count &gt;
-recentPlays.length)</p>
-<p class="p46"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>{</p>
-<p class="p46"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>int currScore =
-0;</p>
-<p class="p46"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>int bestScore =
-this.totalScore;</p>
-<p class="p46"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>CellOccupant[] neighbors;</p>
-<p class="p46"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>neighbors =
-getHostCell().getNeighboringOccupants();</p>
-<p class="p46"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>for (int i = 0; i &lt;
-neighbors.length; i++)</p>
-<p class="p46"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
+<p class="code2">public void update() {</p>
+<p class="code3">count++;</p>
+<p class="code2">if (count &gt; recentPlays.length)</p>
+<p class="code2">{</p>
+<p class="code2">int currScore = 0;</p>
+<p class="code2">int bestScore = this.totalScore;</p>
+<p class="code2">List neighbors = findNeighborsOnHost();</p>
+<p class="code3">for (Object neighbor : neighbors) {</p>
+<p class="code3"><span
 				class="Apple-tab-span"> </span>{</p>
-<p class="p46"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
+<p class="code3"><span
 				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>currScore =
 ((CoordinationGamePlayer)neighbors[i]).totalScore;</p>
-<p class="p46"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
+<p class="code3"><span
 				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>if (currScore &gt; bestScore)</p>
-<p class="p46"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
+<p class="code3"><span
 				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>{</p>
-<p class="p46"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
+<p class="code3"><span
 				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>bestScore =
 currScore;</p>
-<p class="p46"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
+<p class="code3"><span
 				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>myColor =
 ((CoordinationGamePlayer)neighbors[i]).getColor();</p>
-<p class="p46"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
+<p class="code3"><span
 				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>}</p>
-<p class="p46"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
+<p class="code3"><span
 				class="Apple-tab-span"> </span>}</p>
-<p class="p46"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>}</p>
-<p class="p46"><span class="Apple-converted-space">    </span>}</p>
+<p class="code3">}</p>
+<p class="code2">}</p>
 <p class="p39"><span class="Apple-converted-space">    </span></p>
 <p class="p27">First notice that this method only runs its evaluation of the neighborhood if the agent has played
 more than five times. This is to ensure that the value of ‘totalScore’ accurately reflects a full ‘recentPlays’ array.
@@ -564,11 +537,11 @@ will be activated on each iteration, which means that if this agent’s totalSco
 does the totalScore of his neighbors.</p>
 <p class="p2"><br>
 </p>
-<p class="p27">The agent looks around his neighborhood using the <span class="s4">getNeighboringOccupants()</span>
-method. This method cannot be called by a cell occupant, but must be called by a host cell. So, the full command first
+<p class="p27">The agent looks around his neighborhood using the <span class="s4">findNeighborsOnHost();</span>
+method. So, the full command first
 gets the host cell directly below the agent (<span class="s4">getHostCell()</span>), and then tells that host cell to
 get the neighboring occupants. The neighborhood that is surveyed is, of course, defined by the scape graph. In this
-case, it is a von Neumann neighborhood. The <span class="s4">getNeighboringOccupants()</span> call returns an array of
+case, it is a von Neumann neighborhood. The <span class="s4">findNeighborsOnHost()</span> call returns a list of
 cell occupants. We put them into an array called ‘neighbors’, and then iterate through the array looking for the highest
 value of the ‘totalScore’ variable. Note that the array is a <span class="s4">CellOccupant</span> array by default. In
 order to reference the ‘totalScore’ variable, we have to cast the contents of the array to be <span class="s4">CoordinationGamePlayer</span>.
@@ -577,36 +550,28 @@ agent in the neighborhood. Of course, the agent only changes its color if the be
 higher than its own.</p>
 <p class="p2"><br>
 </p>
-<p class="p46"><span class="Apple-converted-space">    </span>public void play(Agent partner) {</p>
-<p class="p46"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>int score;</p>
-<p class="p46"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>if
-(((CoordinationGamePlayer)partner).getColor() == myColor)</p>
-<p class="p46"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>{</p>
-<p class="p46"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span></span>score = 1;</p>
-<p class="p46"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>}</p>
-<p class="p46"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>else</p>
-<p class="p46"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>{</p>
-<p class="p46"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span></span>score = 0;</p>
-<p class="p46"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>}</p>
-<p class="p46"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>updateRecentPlays(score);</p>
-<p class="p46"><span class="Apple-converted-space">    </span>}</p>
+<p class="code2">public void play(Agent partner) {</p>
+<p class="code3">int score;</p>
+<p class="code3">if (((CoordinationGamePlayer)partner).getColor() == myColor)</p>
+<p class="code3">{</p>
+<p class="code4">score = 1;</p>
+<p class="code3">}</p>
+<p class="code3">else</p>
+<p class="code3">{</p>
+<p class="code4">score = 0;</p>
+<p class="code3">}</p>
+<p class="code3">updateRecentPlays(score);</p>
+<p class="code3">}</p>
 <p class="p45"><span class="Apple-converted-space">    </span></p>
-<p class="p46"><span class="Apple-converted-space">    </span>public void updateRecentPlays(int score){</p>
-<p class="p46"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>totalScore = 0;</p>
-<p class="p46"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>for (int i = 0; i
-&lt; (recentPlays.length - 1); i++){</p>
-<p class="p46"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span></span>recentPlays[i] = recentPlays [i + 1];</p>
-<p class="p46"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span></span>totalScore = totalScore + recentPlays[i];</p>
-<p class="p46"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>}</p>
-<p class="p46"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>recentPlays[recentPlays.length
-- 1] = score;</p>
-<p class="p46"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>totalScore =
-totalScore + recentPlays[recentPlays.length - 1];</p>
-<p class="p46"><span class="Apple-converted-space">    </span>}</p>
+<p class="code2">public void updateRecentPlays(int score){</p>
+<p class="code3">totalScore = 0;</p>
+<p class="code3">for (int i = 0; i &lt; (recentPlays.length - 1); i++){</p>
+<p class="code4">recentPlays[i] = recentPlays [i + 1];</p>
+<p class="code4">totalScore = totalScore + recentPlays[i];</p>
+<p class="code3">}</p>
+<p class="code3">recentPlays[recentPlays.length - 1] = score;</p>
+<p class="code3">totalScore = totalScore + recentPlays[recentPlays.length - 1];</p>
+<p class="code2">}</p>
 <p class="p2"><br>
 </p>
 <p class="p27">The <span class="s4">play()</span> method is called by the PLAY_RANDOM_NEIGHBOR_RULE, and it takes an
@@ -621,117 +586,99 @@ the new score to the ‘recentPlays’ array and to update the value of the ‘t
 <p class="p27">All told, the CoordinationGamePlayer class looks as follows:</p>
 <p class="p23"><br>
 </p>
-<p class="p44">public class CoordinationGamePlayer extends CellOccupant <span class="Apple-converted-space"> 
+<p class="code1">public class CoordinationGamePlayer extends CellOccupant <span class="Apple-converted-space"> 
 </span>{</p>
 <p class="p55"><span class="Apple-tab-span"> </span></p>
-<p class="p57">//create variables</p>
-<p class="p44"><span class="Apple-tab-span"> </span>protected Color myColor;</p>
-<p class="p44"><span class="Apple-tab-span"> </span>protected int totalScore;</p>
-<p class="p44"><span class="Apple-tab-span"> </span>protected int[] recentPlays;</p>
-<p class="p44"><span class="Apple-tab-span"> </span>protected int count = 0;</p>
+<p class="code2">//create variables</p>
+<p class="code2">protected Color myColor;</p>
+<p class="code2">protected int totalScore;</p>
+<p class="code2">protected int[] recentPlays;</p>
+<p class="code2">protected int count = 0;</p>
 <p class="p55"><br>
 </p>
-<p class="p57">//initialize the variables for each new agent</p>
-<p class="p48">public void initialize() {</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>if (randomInRange (0,1)
-&gt; 0)</p>
-<p class="p44"><span class="Apple-converted-space">     <span class="Apple-tab-span"> </span>  </span>{</p>
-<p class="p44"><span class="Apple-converted-space">             </span>myColor = Color.red;</p>
-<p class="p44"><span class="Apple-converted-space">          </span>}</p>
-<p class="p44"><span class="Apple-converted-space">        </span>else</p>
-<p class="p44"><span class="Apple-converted-space">          </span>{</p>
-<p class="p44"><span class="Apple-converted-space">             </span>myColor = Color.blue;</p>
-<p class="p44"><span class="Apple-converted-space">          </span>}</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>recentPlays = new int [5];</p>
-<p class="p44"><span class="Apple-tab-span"> </span>}</p>
+<p class="code2">//initialize the variables for each new agent</p>
+<p class="code2">public void initialize() {</p>
+<p class="code4">if (randomInRange (0,1) &gt; 0)</p>
+<p class="code2"><span class="Apple-converted-space">     <span class="Apple-tab-span"> </span>  </span>{</p>
+<p class="code2"><span class="Apple-converted-space">             </span>myColor = Color.red;</p>
+<p class="code2"><span class="Apple-converted-space">          </span>}</p>
+<p class="code2"><span class="Apple-converted-space">        </span>else</p>
+<p class="code2"><span class="Apple-converted-space">          </span>{</p>
+<p class="code2"><span class="Apple-converted-space">             </span>myColor = Color.blue;</p>
+<p class="code2"><span class="Apple-converted-space">          </span>}</p>
+<p class="code4">recentPlays = new int [5];</p>
+<p class="code3">}</p>
 <p class="p55"><span class="Apple-converted-space">    </span></p>
-<p class="p57">//create the list of rules for scape<span class="Apple-tab-span"> </span></p>
-<p class="p44"><span class="Apple-tab-span"> </span>public void scapeCreated() {</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-converted-space">      </span>getScape().addInitialRule(MOVE_RANDOM_LOCATION_RULE);</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>getScape().addRule(RANDOM_WALK_RULE);</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>getScape().addRule(UPDATE_RULE);</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>getScape().addRule(PLAY_RANDOM_NEIGHBOR_RULE);</p>
-<p class="p44"><span class="Apple-tab-span"> </span>}</p>
+<p class="code3">//create the list of rules for scape<span class="Apple-tab-span"> </span></p>
+<p class="code2">public void scapeCreated() {</p>
+<p class="code3"><span class="Apple-converted-space">      </span>getScape().addInitialRule(MOVE_RANDOM_LOCATION_RULE);</p>
+<p class="code4">getScape().addRule(RANDOM_WALK_RULE);</p>
+<p class="code4">getScape().addRule(UPDATE_RULE);</p>
+<p class="code4">getScape().addRule(PLAY_RANDOM_NEIGHBOR_RULE);</p>
+<p class="code2">}</p>
 <p class="p55"><span class="Apple-converted-space">    </span></p>
 <p class="p55"><br>
 </p>
-<p class="p57">//specify the UPDATE_RULE: imitate the most successful neighbor</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>public void
-update() {</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>count++;</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>if (count &gt;
-recentPlays.length)</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>{</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>int currScore =
-0;</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>int bestScore =
-this.totalScore;</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>CellOccupant[] neighbors;</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>neighbors =
-getHostCell().getNeighboringOccupants();</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>for (int i = 0; i &lt;
-neighbors.length; i++)</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
+<p class="code2">//specify the UPDATE_RULE: imitate the most successful neighbor</p>
+<p class="code2">public void update() {</p>
+<p class="code3">count++;</p>
+<p class="code3">if (count &gt; recentPlays.length)</p>
+<p class="code3">{</p>
+<p class="code3">int currScore = 0;</p>
+<p class="code3">int bestScore = this.totalScore;</p>
+<p class="code3">List neighbors = findNeighborsOnHost();</p>
+<p class="code3">for (Object neighbor : neighbors) {</p>
+<p class="code4">currScore =
+((CoordinationGamePlayer)neighbors[i]).totalScore;</p>
+<p class="code4">if (currScore &gt;
+bestScore)</p>
+<p class="code4"><span
 				class="Apple-tab-span"> </span>{</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span>currScore = ((CoordinationGamePlayer)neighbors[i]).totalScore;</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span>if (currScore &gt; bestScore)</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>{</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>bestScore = currScore;</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>myColor =
-((CoordinationGamePlayer)neighbors[i]).getColor();</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>}</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
+<p class="code4"><span
+				class="Apple-tab-span"> </span>bestScore = currScore;</p>
+<p class="code4"><span
+				class="Apple-tab-span"> </span>myColor = ((CoordinationGamePlayer)neighbors[i]).getColor();</p>
+<p class="code4"><span
 				class="Apple-tab-span"> </span>}</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>}</p>
-<p class="p44"><span class="Apple-converted-space">    </span>}</p>
+<p class="code4">}</p>
+<p class="code4">}</p>
+<p class="code2">}</p>
 <p class="p55"><span class="Apple-converted-space">    </span></p>
-<p class="p56"><span class="Apple-converted-space">    </span>//specify PLAY_RANDOM_NEIGHBORS_RULE: 1 for
+<p class="code2">//specify PLAY_RANDOM_NEIGHBORS_RULE: 1 for
 coordinating, 0 for not</p>
-<p class="p56"><span class="Apple-converted-space">    </span>coordinating. Then update the records.</p>
-<p class="p44"><span class="Apple-converted-space">    </span>public void play(Agent partner) {</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>int score;</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>if
-(((CoordinationGamePlayer)partner).getColor() == myColor)</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>{</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span></span>score = 1;</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>}</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>else</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>{</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span></span>score = 0;</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>}</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>updateRecentPlays(score);</p>
-<p class="p44"><span class="Apple-converted-space">    </span>}</p>
+<p class="code2">coordinating. Then update the records.</p>
+<p class="code2">public void play(Agent partner) {</p>
+<p class="code3">int score;</p>
+<p class="code3">if (((CoordinationGamePlayer)partner).getColor() == myColor)</p>
+<p class="code3">{</p>
+<p class="code3">score = 1;</p>
+<p class="code3">}</p>
+<p class="code3">else</p>
+<p class="code3">{</p>
+<p class="code3">score = 0;</p>
+<p class="code3">}</p>
+<p class="code3">updateRecentPlays(score);</p>
+<p class="code2">}</p>
 <p class="p55"><br>
 </p>
-<p class="p56"><span class="Apple-converted-space">    </span>// Update the record of wins, and the totalScore</p>
-<p class="p44"><span class="Apple-converted-space">    </span>public void updateRecentPlays(int score){</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>totalScore = 0;</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>for (int i = 0; i
-&lt; (recentPlays.length - 1); i++){</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span></span>recentPlays[i] = recentPlays [i + 1];</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span></span>totalScore = totalScore + recentPlays[i];</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>}</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>recentPlays[recentPlays.length
-- 1] = score;</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>totalScore =
-totalScore + recentPlays[recentPlays.length - 1];</p>
-<p class="p44"><span class="Apple-converted-space">    </span>}</p>
-<p class="p57">//Standard getColor method</p>
-<p class="p48">public Color getColor() {</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>return myColor;</p>
-<p class="p44"><span class="Apple-converted-space">    </span>}</p>
+<p class="code2">// Update the record of wins, and the totalScore</p>
+<p class="code2">public void updateRecentPlays(int score){</p>
+<p class="code3">totalScore = 0;</p>
+<p class="code3">for (int i = 0; i &lt; (recentPlays.length - 1); i++){</p>
+<p class="code3">recentPlays[i] = recentPlays [i + 1];</p>
+<p class="code3">totalScore = totalScore + recentPlays[i];</p>
+<p class="code3">}</p>
+<p class="code3">recentPlays[recentPlays.length - 1] = score;</p>
+<p class="code3">totalScore = totalScore + recentPlays[recentPlays.length - 1];</p>
+<p class="code2">}</p>
+<p class="p55"><br>
+</p>
+<p class="code2">//Standard getColor method</p>
+<p class="code2">public Color getColor() {</p>
+<p class="code3">return myColor;</p>
+<p class="code2">}</p>
 <p class="p55"><span class="Apple-converted-space">    </span></p>
-<p class="p44">}</p>
+<p class="code2">}</p>
 <p class="p23"><br>
 </p>
 <p class="p27">The <span class="s4">CoordinationGame</span> class combined with the <span class="s4">CoordinationGamePlayer</span>
@@ -788,50 +735,37 @@ while it runs. So, to add user control over the payoff matrix, we will first add
 we will add the get() and set() methods.</p>
 <p class="p2"><br>
 </p>
-<p class="p44">public class CoordinationGame extends Scape {</p>
+<p class="code1">public class CoordinationGame extends Scape {</p>
 <p class="p55"><br>
 </p>
-<p class="p48">public int nPlayers = 200;</p>
-<p class="p47"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>public int latticeWidth =
-30; <span class="Apple-converted-space">   </span></p>
-<p class="p47"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span></span>public int latticeHeight = 30;</p>
+<p class="code2">public int nPlayers = 200;</p>
+<p class="code2">public int latticeWidth = 30; <span class="Apple-converted-space">   </span></p>
+<p class="code2">public int latticeHeight = 30;</p>
 <p class="p23"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span></p>
-<p class="p56"><span class="Apple-tab-span"> </span>//new variables for coordination on Red and Blue</p>
-<p class="p47"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>public int coordinateOnBlue
-= 1;</p>
-<p class="p47"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>public int coordinateOnRed
-= 1;</p>
-<p class="p65"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>.</p>
-<p class="p65"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>.</p>
-<p class="p47"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>.</p>
+<p class="code2">//new variables for coordination on Red and Blue</p>
+<p class="code2">public int coordinateOnBlue = 1;</p>
+<p class="code2">public int coordinateOnRed = 1;</p>
+<p class="code3">.</p>
+<p class="code3">.</p>
+<p class="code3">.</p>
 <p class="p23"><span class="Apple-tab-span"> </span></p>
-<p class="p48">public int getRedScore(){</p>
-<p class="p47"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span>return coordinateOnRed;</p>
-<p class="p47"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>}</p>
+<p class="code2">public int getRedScore(){</p>
+<p class="code4">return coordinateOnRed;</p>
+<p class="code2">}</p>
 <p class="p23"><span class="Apple-tab-span"> </span></p>
-<p class="p47"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>public void setRedScore(int
-NewcoordinateOnRed){</p>
-<p class="p47"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span>coordinateOnRed = NewcoordinateOnRed;</p>
+<p class="code2">public void setRedScore(int NewcoordinateOnRed){</p>
+<p class="code4">coordinateOnRed = NewcoordinateOnRed;</p>
+<p class="code2">}</p>
 <p class="p23"><br>
 </p>
-<p class="p47"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span></span>}</p>
-<p class="p23"><br>
-</p>
-<p class="p47"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span></span>public int getBlueScore(){</p>
-<p class="p47"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span>return coordinateOnBlue;</p>
-<p class="p47"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>}</p>
+<p class="code2">public int getBlueScore(){</p>
+<p class="code4">return coordinateOnBlue;</p>
+<p class="code2">}</p>
 <p class="p23"><span class="Apple-tab-span"> </span></p>
-<p class="p47"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>public void
-setBlueScore(int NewcoordinateOnBlue){</p>
-<p class="p47"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span>coordinateOnBlue = NewcoordinateOnBlue;</p>
-<p class="p65"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>}</p>
+<p class="code2">public void setBlueScore(int NewcoordinateOnBlue){</p>
+<p class="code4">coordinateOnBlue = NewcoordinateOnBlue;</p>
+<p class="code2">}</p>
+<p class="code1">}</p>
 <p class="p2"><br>
 </p>
 <p class="p27">The method <span class="s4">getRedScore()</span> reports the value of the variable ‘coordinateOnRed’,
@@ -850,31 +784,26 @@ for any variable that the developer wants the user to be able to edit from the p
 <p class="p27">Now that the user can access these variables, the agents need to be able to access them, too.</p>
 <p class="p2"><br>
 </p>
-<p class="p65">public void play(Agent partner) {</p>
-<p class="p65"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>int score;</p>
-<p class="p65"><span class="Apple-tab-span"> </span>if ((((CoordinationGamePlayer)partner).getColor() == myColor)
-&amp;&amp; (myColor == Color.blue))</p>
-<p class="p65"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>{</p>
-<p class="p65"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span></span>score = ((CoordinationGame)getModel()).getBlueScore();</p>
-<p class="p65"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>}</p>
-<p class="p65"><span class="Apple-converted-space">   </span>else if ((((CoordinationGamePlayer)partner).getColor()
-== myColor) &amp;&amp; (myColor == Color.red))</p>
-<p class="p65"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>{</p>
-<p class="p65"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span></span>score = ((CoordinationGame)getModel()).getRedScore();</p>
-<p class="p65"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>}</p>
-<p class="p65"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>else</p>
-<p class="p65"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>{</p>
-<p class="p65"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span></span>score = 0;</p>
-<p class="p65"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>}</p>
-<p class="p65"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>updateRecentPlays(score);</p>
-<p class="p65"><span class="Apple-converted-space">    </span>}</p>
+<p class="code2">public void play(Agent partner) {</p>
+<p class="code3">int score;</p>
+<p class="code3">if ((((CoordinationGamePlayer)partner).getColor() == myColor) &amp;&amp; (myColor == Color.blue))</p>
+<p class="code3">{</p>
+<p class="code4">score = ((CoordinationGame)getRoot()).getBlueScore();</p>
+<p class="code3">}</p>
+<p class="code3">else if ((((CoordinationGamePlayer)partner).getColor() == myColor) &amp;&amp; (myColor ==
+Color.red)) {</p>
+<p class="code4">score = ((CoordinationGame)getRoot()).getRedScore();</p>
+<p class="code3">}</p>
+<p class="code3">else</p>
+<p class="code3">{</p>
+<p class="code4">score = 0;</p>
+<p class="code3">}</p>
+<p class="code3">updateRecentPlays(score);</p>
+<p class="code2">}</p>
 <p class="p2"><br>
 </p>
 <p class="p27">Notice that in order to reference the <span class="s4">getRedScore()</span> method, we need to call
-the <span class="s4">getModel()</span> method, and then cast it to the <span class="s4">CoordinationGame</span> model.
+the <span class="s4">getRoot()</span> method, and then cast it to the <span class="s4">CoordinationGame</span> model.
 This call returns the Root Scape for the model, but it returns it as a <span class="s4">Scape</span> object, which must
 be cast to a <span class="s4">CoordinationGame</span> object in order to reference the desired get() method. This kind
 of casting procedure is fairly common in Ascape since the Ascape calls return basic data structures (such as Scapes)
@@ -903,29 +832,31 @@ the number of agents that are red and blue at any given time. This statistical o
 scape. All of the code for the statistical operations is within the createScape() method.</p>
 <p class="p2"><br>
 </p>
-<p class="p44"><span class="Apple-converted-space">    </span>public void createScape() {</p>
-<p class="p44">...</p>
+<p class="code2">public void createScape() {</p>
+<p class="code2">...</p>
 <p class="p55"><br>
 </p>
-<p class="p44"><span class="Apple-converted-space">        </span>StatCollector CountReds = new
+<p class="code2"><span class="Apple-converted-space">        </span>StatCollector CountReds = new
 StatCollectorCond("Reds") {</p>
-<p class="p44"><span class="Apple-converted-space">            </span>public boolean meetsCondition(Object object) {</p>
-<p class="p44"><span class="Apple-converted-space">                </span>return (((CoordinationGamePlayer)
+<p class="code2"><span class="Apple-converted-space">            </span>public boolean meetsCondition(Object object)
+{</p>
+<p class="code2"><span class="Apple-converted-space">                </span>return (((CoordinationGamePlayer)
 object).myColor == Color.red);</p>
-<p class="p44"><span class="Apple-converted-space">            </span>}</p>
-<p class="p44"><span class="Apple-converted-space">        </span>};</p>
-<p class="p44"><span class="Apple-converted-space">        </span>StatCollector CountBlues = new
+<p class="code2"><span class="Apple-converted-space">            </span>}</p>
+<p class="code2"><span class="Apple-converted-space">        </span>};</p>
+<p class="code2"><span class="Apple-converted-space">        </span>StatCollector CountBlues = new
 StatCollectorCond("Blues") {</p>
-<p class="p44"><span class="Apple-converted-space">            </span>public boolean meetsCondition(Object object) {</p>
-<p class="p44"><span class="Apple-converted-space">                </span>return (((CoordinationGamePlayer)
+<p class="code2"><span class="Apple-converted-space">            </span>public boolean meetsCondition(Object object)
+{</p>
+<p class="code2"><span class="Apple-converted-space">                </span>return (((CoordinationGamePlayer)
 object).myColor == Color.blue);</p>
-<p class="p44"><span class="Apple-converted-space">            </span>}</p>
-<p class="p44"><span class="Apple-converted-space">        </span>};</p>
+<p class="code2"><span class="Apple-converted-space">            </span>}</p>
+<p class="code2"><span class="Apple-converted-space">        </span>};</p>
 <p class="p55"><br>
 </p>
-<p class="p44"><span class="Apple-converted-space">        </span>players.addStatCollector(CountReds);</p>
-<p class="p44"><span class="Apple-converted-space">        </span>players.addStatCollector(CountBlues);</p>
-<p class="p44"><span class="Apple-converted-space">    </span>}</p>
+<p class="code2"><span class="Apple-converted-space">        </span>players.addStatCollector(CountReds);</p>
+<p class="code2"><span class="Apple-converted-space">        </span>players.addStatCollector(CountBlues);</p>
+<p class="code2">}</p>
 <p class="p55"><br>
 </p>
 <p class="p27">First, we create the objects that will hold the statistics.<span class="Apple-converted-space"> 
@@ -962,15 +893,15 @@ window can also be edited at runtime from the chart dialog box.</p>
 plotting dimensions.</p>
 <p class="p2"><br>
 </p>
-<p class="p44">public void createGraphicViews() {</p>
-<p class="p46"><span class="Apple-tab-span"> </span>.</p>
+<p class="code2">public void createGraphicViews() {</p>
+<p class="code3">.</p>
 <p class="p66">.</p>
 <p class="p66">.</p>
-<p class="p48">ChartView chart = new ChartView();</p>
-<p class="p48">players.addView(chart);</p>
-<p class="p48">chart.addSeries("Count Reds", Color.red);</p>
-<p class="p44"><span class="Apple-tab-span"> </span>chart.addSeries("Count Blues", Color.blue);</p>
-<p class="p48">((TimeSeriesViewModel)chart.getViewModel()).setDisplayPoints(100);</p>
+<p class="code2">ChartView chart = new ChartView();</p>
+<p class="code2">players.addView(chart);</p>
+<p class="code2">chart.addSeries("Count Reds", Color.red);</p>
+<p class="code3">chart.addSeries("Count Blues", Color.blue);</p>
+<p class="code2">chart.setDisplayPoints(100);</p>
 <p class="p46">}</p>
 <p class="p2"><br>
 </p>
@@ -979,7 +910,7 @@ plotting dimensions.</p>
 them as a time series. So, we use the <span class="s4">chart.addSeries()</span> method. The first argument to this
 method gives both the operation being performed (Count) and the name of the stat (Reds) in a single string. We use a
 string, instead of two arguments, so that this parameter can be used as the label for this series on the chart. So, the
-“Count Reds” label, will be attached to a time series that graphs the count (number of agents) that satisfy the “Reds”
+“Count Reds” label, will be attached to a time series that graphs the count (number of players) that satisfy the “Reds”
 statistical operation. The second argument tells the chart to use the color red to chart this series. Similarly, we do
 the same for the “Blues” stat. Finally, we set the dimensions of the chart to show 100 iterations, or time steps, along
 the horizontal axis.</p>
@@ -993,8 +924,8 @@ the horizontal axis.</p>
 </p>
 <p class="p27">We are now finished writing the Coordination Game Model.<span class="Apple-converted-space"> 
 </span>In the next part of the tutorial, we will see how Ascape allows us to experiment with the model by changing / adding
-parameters, adding statistics, and changing the agent dynamics. See the <a href="Appendix.html">Appendix 1</a> for the complete source code of the
-model.</p>
+parameters, adding statistics, and changing the agent dynamics. See the <a href="Appendix.html">Appendix 1</a> for the
+complete source code of the model.</p>
 <p class="p23"><br>
 </p>
 <p class="p23"><br>
@@ -1096,43 +1027,43 @@ error rates.</p>
 and set() methods so we can access it from the Settings window.</p>
 <p class="p55"><br>
 </p>
-<p class="p44">public class CoordinationGame extends Scape {</p>
+<p class="code1">public class CoordinationGame extends Scape {</p>
 <p class="p55"><span class="Apple-converted-space">    </span></p>
-<p class="p44"><span class="Apple-converted-space">    </span>protected int nAgents = 100;</p>
+<p class="code2">protected int nPlayers = 100;</p>
 <p class="p55"><span class="Apple-converted-space">    </span></p>
-<p class="p44"><span class="Apple-converted-space">    </span>protected int latticeWidth = 30;</p>
+<p class="code2">protected int latticeWidth = 30;</p>
 <p class="p55"><span class="Apple-converted-space">    </span></p>
-<p class="p44"><span class="Apple-converted-space">    </span>protected int latticeHeight = 30;</p>
+<p class="code2">protected int latticeHeight = 30;</p>
 <p class="p55"><br>
 </p>
-<p class="p44"><span class="Apple-converted-space">    </span>public int coordinateOnBlue = 1;</p>
+<p class="code2">public int coordinateOnBlue = 1;</p>
 <p class="p55"><span class="Apple-tab-span"> </span></p>
-<p class="p44"><span class="Apple-converted-space">    </span>public int coordinateOnRed = 1;</p>
+<p class="code2">public int coordinateOnRed = 1;</p>
 <p class="p55"><span class="Apple-tab-span"> </span></p>
-<p class="p56"><span class="Apple-converted-space">    </span>//new variable</p>
-<p class="p44"><span class="Apple-converted-space">    </span>public int error = 0;</p>
+<p class="code2">//new variable</p>
+<p class="code2">public int error = 0;</p>
 <p class="p55"><span class="Apple-converted-space">    </span></p>
-<p class="p44"><span class="Apple-converted-space">    </span>Scape lattice;</p>
+<p class="code2">Scape lattice;</p>
 <p class="p55"><span class="Apple-converted-space">    </span></p>
-<p class="p44"><span class="Apple-converted-space">    </span>Scape agents;</p>
+<p class="code2">Scape agents;</p>
 <p class="p55"><span class="Apple-converted-space">    </span></p>
-<p class="p44"><span class="Apple-converted-space">    </span>Overhead2DView overheadView;</p>
-<p class="p44"><span class="Apple-converted-space">    </span>.</p>
-<p class="p44"><span class="Apple-converted-space">    </span>.</p>
-<p class="p44"><span class="Apple-converted-space">    </span>.</p>
+<p class="code2">Overhead2DView overheadView;</p>
+<p class="code2">.</p>
+<p class="code2">.</p>
+<p class="code2">.</p>
 <p class="p55"><br>
 </p>
-<p class="p56"><span class="Apple-converted-space">    </span>//get and set methods</p>
-<p class="p44"><span class="Apple-converted-space">    </span>public int getError(){</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>return error;</p>
-<p class="p44"><span class="Apple-converted-space">    </span>}</p>
+<p class="code2">//get and set methods</p>
+<p class="code2">public int getError(){</p>
+<p class="code4">return error;</p>
+<p class="code2">}</p>
 <p class="p55"><span class="Apple-tab-span"> </span></p>
-<p class="p44"><span class="Apple-converted-space">    </span>public void setError(int NewError){</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>error = NewError;</p>
-<p class="p44"><span class="Apple-converted-space">    </span>}</p>
+<p class="code2">public void setError(int NewError){</p>
+<p class="code4">error = NewError;</p>
+<p class="code2">}</p>
 <p class="p55"><br>
 </p>
-<p class="p44">}</p>
+<p class="code2">}</p>
 <p class="p45"><br>
 </p>
 <p class="p46">Next, we change the update() rule in the CoordinationGamePlayer class to include the possibility of
@@ -1140,68 +1071,50 @@ error. The error variable determines the percentage of the time that the agent w
 the best in the neighborhood.</p>
 <p class="p45"><br>
 </p>
-<p class="p44">public void update() {</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>count++;</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>if (count &gt;
-recentPlays.length)</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>{</p>
-<p class="p55"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span></p>
+<p class="code2">public void update() {</p>
+<p class="code3">count++;</p>
+<p class="code3">if (count &gt; recentPlays.length)</p>
+<p class="code3">{</p>
+<p class="p55"><span class="Apple-tab-span"></span></p>
 <p class="p67">//if the random number between 1 and 100 is greater than, or</p>
 <p class="p67">//equal to ‘error’, proceed as normal</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-converted-space">    <span
-				class="Apple-tab-span"> </span></span>if (randomInRange(0,100) &gt;= ((CoordinationGame)getModel()).error)</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span></span>{</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-converted-space">    <span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span></span>int currScore = 0;</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span></span>int bestScore = this.totalScore;</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span>CellOccupant[] neighbors;</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span></span>neighbors =
-getHostCell().getNeighboringOccupants();</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>for (int i = 0; i &lt; neighbors.length; i++)</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>{</p>
-<p class="p68">currScore = ((CoordinationGamePlayer)neighbors[i]).totalScore;</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span> if (currScore &gt;
-bestScore)</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span> {</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span class="Apple-converted-space">    </span>bestScore
-= currScore;</p>
+<p class="code3"><span class="Apple-tab-span"></span>if
+(randomInRange(0,100) &gt;= ((CoordinationGame)getRoot()).error)</p>
+<p class="code3">{</p>
+<p class="code4"><span class="Apple-tab-span"></span>int currScore = 0;</p>
+<p class="code4"><span class="Apple-tab-span"></span>int bestScore = this.totalScore;</p>
+<p class="code4">List neighbors = findNeighborsOnHost();</p>
+<p class="code4">for (Object neighbor : neighbors) {</p>
+<p class="p68">currScore = neighbor.totalScore;</p>
+<p class="code4"> if (currScore &gt; bestScore)</p>
+<p class="code4"> {</p>
+<p class="code4"><span
+				class="Apple-tab-span"> </span><span class="Apple-converted-space">    </span>bestScore = currScore;</p>
 <p class="p69">myColor = ((CoordinationGamePlayer)neighbors[i]).getColor();</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span class="Apple-converted-space">    </span>}</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>}</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>}</p>
-<p class="p57"><span class="Apple-tab-span"> </span>//otherwise, choose randomly</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>else</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>{</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span>if (randomInRange (0,1) &gt; 0)</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-converted-space">      </span>{</p>
-<p class="p44"><span class="Apple-converted-space">         <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span></span>myColor = Color.red;</p>
-<p class="p44"><span class="Apple-converted-space">            <span class="Apple-tab-span"> </span></span>}</p>
-<p class="p44"><span class="Apple-tab-span"> </span></p>
-<p class="p44"><span class="Apple-converted-space">          <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span></span>{</p>
-<p class="p44"><span class="Apple-converted-space">             <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span></span>myColor = Color.blue;</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span></span>}</p>
+<p class="code4"><span
+				class="Apple-tab-span"> </span><span class="Apple-converted-space">    </span>}</p>
+<p class="code4"><span
+				class="Apple-tab-span"> </span>}</p>
+<p class="code4">}</p>
+<p class="code4">//otherwise, choose randomly</p>
+<p class="code4">else</p>
+<p class="code4">{</p>
+<p class="code4">if (randomInRange (0,1)
+&gt; 0)</p>
+<p class="code4"><span class="Apple-converted-space">      </span>{</p>
+<p class="code2"><span class="Apple-tab-span"></span>myColor = Color.red;</p>
+<p class="code3">}</p>
+<p class="code3"></p>
+<p class="code3">{</p>
+<p class="code3">myColor = Color.blue;</p>
+<p class="code2"><span class="Apple-tab-span"></span>}</p>
 <p class="p55"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
 				class="Apple-tab-span"> </span></p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>}</p>
+<p class="code4">}</p>
 <p class="p55"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
 				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span></p>
-<p class="p44"><span class="Apple-tab-span"> </span>}</p>
-<p class="p44">}</p>
+<p class="code3">}</p>
+<p class="code2">}</p>
 <p class="p23"><br>
 </p>
 <p class="p2"><br>
@@ -1276,29 +1189,29 @@ class, which allows us to perform averaging operations on the data it collects. 
 method in the <span class="s4">CoordinationGame</span> class.</p>
 <p class="p70"><br>
 </p>
-<p class="p44"><span class="Apple-converted-space">    </span>public void createGraphicViews(){</p>
-<p class="p48">.</p>
-<p class="p48">.</p>
-<p class="p48">.</p>
-<p class="p57">//create stat collector that will get payoff information</p>
-<p class="p48">StatCollector AvgPayoff = new StatCollectorCSAMM("Payoff") {</p>
-<p class="p44"><span class="Apple-converted-space">             </span>public double getValue(Object object) {</p>
-<p class="p44"><span class="Apple-converted-space">                </span>return ((CoordinationGamePlayer)
+<p class="code2">public void createGraphicViews(){</p>
+<p class="code2">.</p>
+<p class="code2">.</p>
+<p class="code2">.</p>
+<p class="code3">//create stat collector that will get payoff information</p>
+<p class="code2">StatCollector AvgPayoff = new StatCollectorCSAMM("Payoff") {</p>
+<p class="code2"><span class="Apple-converted-space">             </span>public double getValue(Object object) {</p>
+<p class="code2"><span class="Apple-converted-space">                </span>return ((CoordinationGamePlayer)
 object).getRunningTotal();</p>
-<p class="p44"><span class="Apple-converted-space">             </span>}</p>
-<p class="p44"><span class="Apple-converted-space">      </span>};</p>
-<p class="p48">.</p>
-<p class="p48">.</p>
-<p class="p48">.</p>
-<p class="p57">//add stat collector to the players scape</p>
-<p class="p44"><span class="Apple-tab-span"> </span>players.addStatCollector(AvgPayoff);</p>
+<p class="code2"><span class="Apple-converted-space">             </span>}</p>
+<p class="code3">};</p>
+<p class="code2">.</p>
+<p class="code2">.</p>
+<p class="code2">.</p>
+<p class="code3">//add stat collector to the players scape</p>
+<p class="code3">players.addStatCollector(AvgPayoff);</p>
 <p class="p55"><br>
 </p>
-<p class="p57">//add average payoff series to the chart</p>
-<p class="p44"><span class="Apple-tab-span"> </span>chart.addSeries("Average Payoff", Color.black);</p>
+<p class="code3">//add average payoff series to the chart</p>
+<p class="code3">chart.addSeries("Average Payoff", Color.black);</p>
 <p class="p45"><br>
 </p>
-<p class="p46"><span class="Apple-converted-space">       </span>}</p>
+<p class="code2">}</p>
 <p class="p2"><br>
 </p>
 <p class="p27">First, we create the stat collector ‘AvgPayoff’, using the class <span class="s4">StatCollectorCSAMM</span>.
@@ -1314,15 +1227,14 @@ performs an averaging operation (i.e., we call it “Average Payoff”). Once we
 method to the CoordinationGamePlayer class, we can watch this stat run.</p>
 <p class="p2"><br>
 </p>
-<p class="p44">public class CoordinationGamePlayer extends Cell Occupant{</p>
-<p class="p48">.</p>
-<p class="p48">.</p>
-<p class="p48">.</p>
-<p class="p48">public int getRunningTotal(){</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span></span>return (totalScore * 10);</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>}</p>
-<p class="p44">}</p>
+<p class="code2">public class CoordinationGamePlayer extends Cell Occupant{</p>
+<p class="code2">.</p>
+<p class="code2">.</p>
+<p class="code2">.</p>
+<p class="code2">public int getRunningTotal(){</p>
+<p class="code3">return (totalScore * 10);</p>
+<p class="code3">}</p>
+<p class="code2">}</p>
 <p class="p2"><br>
 </p>
 <p class="p27">The <span class="s4">getRunningTotal()</span> method returns the ‘totalScore’ variable multiplied by
@@ -1385,163 +1297,129 @@ once we start experimenting with payoff parameters, the agents will be equipped 
 class.</p>
 <p class="p2"><br>
 </p>
-<p class="p44">public class CoordinationGamePlayer extends CellOccupant <span class="Apple-converted-space"> 
+<p class="code2">public class CoordinationGamePlayer extends CellOccupant <span class="Apple-converted-space"> 
 </span>{</p>
-<p class="p44"><span class="Apple-tab-span"> </span>protected Color myColor;</p>
-<p class="p44"><span class="Apple-tab-span"> </span>protected int totalScore;</p>
-<p class="p44"><span class="Apple-tab-span"> </span>protected int[] recentPlays;</p>
-<p class="p44"><span class="Apple-tab-span"> </span>protected int count = 0;</p>
+<p class="code3">protected Color myColor;</p>
+<p class="code3">protected int totalScore;</p>
+<p class="code3">protected int[] recentPlays;</p>
+<p class="code3">protected int count = 0;</p>
 <p class="p55"><br>
 </p>
-<p class="p57">//add the partners array</p>
-<p class="p44"><span class="Apple-tab-span"> </span>protected Color[] recentPartners;</p>
-<p class="p57">//add variables to hold the running totals of reds and blues in the //partners array</p>
-<p class="p44"><span class="Apple-tab-span"> </span>protected int totalreds;</p>
-<p class="p44"><span class="Apple-tab-span"> </span>protected int totalblues;</p>
+<p class="code3">//add the partners array</p>
+<p class="code3">protected Color[] recentPartners;</p>
+<p class="code3">//add variables to hold the running totals of reds and blues in the //partners array</p>
+<p class="code3">protected int totalreds;</p>
+<p class="code3">protected int totalblues;</p>
 <p class="p55"><span class="Apple-tab-span"> </span></p>
 <p class="p55"><br>
 </p>
-<p class="p56">//we use the random choice algorithm three times in this class, so to keep</p>
-<p class="p56">//things tidy, I have made it a separate method, called ‘doRandom()’</p>
-<p class="p44">public void doRandom(){</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span></span>if (randomInRange (0,1) &gt; 0)</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-converted-space">    </span>{</p>
-<p class="p44"><span class="Apple-converted-space">         <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span></span>myColor = Color.red;</p>
-<p class="p44"><span class="Apple-converted-space">           <span class="Apple-tab-span"> </span></span>}</p>
-<p class="p44"><span class="Apple-converted-space">        <span class="Apple-tab-span"> </span></span>else</p>
-<p class="p44"><span class="Apple-converted-space">          <span class="Apple-tab-span"> </span></span>{</p>
-<p class="p44"><span class="Apple-converted-space">             <span class="Apple-tab-span"> </span></span>myColor
-= Color.blue;</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span></span>}</p>
-<p class="p44"><span class="Apple-converted-space">    </span>}</p>
+<p class="code2">//we use the random choice algorithm three times in this class, so to keep</p>
+<p class="code2">//things tidy, I have made it a separate method, called ‘doRandom()’</p>
+<p class="code2">public void doRandom(){</p>
+<p class="code3">if (randomInRange (0,1) &gt; 0)</p>
+<p class="code4"><span class="Apple-converted-space">    </span>{</p>
+<p class="code3">myColor = Color.red;</p>
+<p class="code3">}</p>
+<p class="code3">else</p>
+<p class="code3">{</p>
+<p class="code3">myColor = Color.blue;</p>
+<p class="code3">}</p>
+<p class="code2">}</p>
 <p class="p55"><br>
 </p>
-<p class="p56">//each time the agent plays, it updates the score array (recentPlays), and</p>
-<p class="p56">//also updates the recentPlayers array.</p>
-<p class="p44">public void play(Agent partner) {</p>
-<p class="p48">.</p>
-<p class="p48">.</p>
-<p class="p48">.</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>updateRecentPlays(score);</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>updateRecentPartners(((CoordinationGamePlayer)partner).getColor());</p>
-<p class="p44"><span class="Apple-converted-space">    </span>}</p>
+<p class="code2">//each time the agent plays, it updates the score array (recentPlays), and</p>
+<p class="code2">//also updates the recentPlayers array.</p>
+<p class="code2">public void play(Agent partner) {</p>
+<p class="code2">.</p>
+<p class="code2">.</p>
+<p class="code2">.</p>
+<p class="code3">updateRecentPlays(score);</p>
+<p class="code3">updateRecentPartners(((CoordinationGamePlayer)partner).getColor());</p>
+<p class="code2">}</p>
 <p class="p55"><br>
 </p>
-<p class="p56">//the agents update the recentPartners array with the color of the most</p>
-<p class="p56">//recent player, and also keep a running total of red and blue partners</p>
-<p class="p44">public void updateRecentPartners(Color ncolor){</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>totalreds = 0;</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>totalblues = 0;</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>for (int i = 0; i
-&lt; (recentPartners.length - 1); i++){</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span></span>recentPartners[i] = recentPartners [i + 1];</p>
-<p class="p44"><span class="Apple-converted-space"> <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span></span>if (recentPartners[i] == Color.red)</p>
-<p class="p44"><span class="Apple-converted-space"> <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span></span>{</p>
-<p class="p44"><span class="Apple-converted-space"> <span class="Apple-tab-span"> </span><span
+<p class="code2">//the agents update the recentPartners array with the color of the most</p>
+<p class="code2">//recent player, and also keep a running total of red and blue partners</p>
+<p class="code2">public void updateRecentPartners(Color ncolor){</p>
+<p class="code3">totalreds = 0;</p>
+<p class="code3">totalblues = 0;</p>
+<p class="code3">for (int i = 0; i &lt; (recentPartners.length - 1); i++){</p>
+<p class="code3">recentPartners[i] = recentPartners [i + 1];</p>
+<p class="code2"><span class="Apple-tab-span"></span>if (recentPartners[i] == Color.red)</p>
+<p class="code2"><span class="Apple-tab-span"></span>{</p>
+<p class="code2"><span class="Apple-converted-space"> <span class="Apple-tab-span"> </span><span
 				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
 				class="Apple-tab-span"> </span></span>totalreds = totalreds + 1;</p>
-<p class="p44"><span class="Apple-converted-space"> <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span></span>}</p>
-<p class="p44"><span class="Apple-converted-space"> <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span></span>else if (recentPartners[i] == Color.blue)</p>
-<p class="p44"><span class="Apple-converted-space"> <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span></span>{</p>
-<p class="p44"><span class="Apple-converted-space"> <span class="Apple-tab-span"> </span><span
+<p class="code2"><span class="Apple-tab-span"></span>}</p>
+<p class="code2"><span class="Apple-tab-span"></span>else if (recentPartners[i] == Color.blue)</p>
+<p class="code2"><span class="Apple-tab-span"></span>{</p>
+<p class="code2"><span class="Apple-converted-space"> <span class="Apple-tab-span"> </span><span
 				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
 				class="Apple-tab-span"> </span></span>totalblues = totalblues + 1;</p>
-<p class="p44"><span class="Apple-converted-space"> <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span></span>}<span
+<p class="code2"><span class="Apple-tab-span"></span>}<span
 				class="Apple-converted-space"> <span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
 				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span></span></p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>}</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>recentPartners[recentPartners.length
-- 1] = ncolor;</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>if (ncolor ==
-Color.red)</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span></span>{</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span></span>totalreds = totalreds + 1;</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span></span>}</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>if (ncolor ==
-Color.blue)</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span></span>{</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span></span>totalblues = totalblues + 1;</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span></span>}</p>
-<p class="p44"><span class="Apple-converted-space">    </span>}</p>
+<p class="code3">}</p>
+<p class="code3">recentPartners[recentPartners.length - 1] = ncolor;</p>
+<p class="code3">if (ncolor == Color.red)</p>
+<p class="code3">{</p>
+<p class="code2"><span class="Apple-tab-span"></span>totalreds = totalreds + 1;</p>
+<p class="code3">}</p>
+<p class="code3">if (ncolor == Color.blue)</p>
+<p class="code3">{</p>
+<p class="code2"><span class="Apple-tab-span"></span>totalblues = totalblues + 1;</p>
+<p class="code3">}</p>
+<p class="code2">}</p>
 <p class="p55"><br>
 </p>
-<p class="p56">//The update method is where the agent decides what to play.<span class="Apple-converted-space"> 
+<p class="code2">//The update method is where the agent decides what to play.<span class="Apple-converted-space"> 
 </span>The agent //multiplies the number of reds in its recent history by the payoff for red //coordination, and the number of
 blues by the payoff for blue coordination. //Whichever number is largest determines the agent’s next play. If the<span
 				class="Apple-converted-space"> </span></p>
-<p class="p56">//values are tied, the agent chooses randomly. Also, I have left the error<span
+<p class="code2">//values are tied, the agent chooses randomly. Also, I have left the error<span
 				class="Apple-converted-space"> </span></p>
-<p class="p56">//code in the update method, so that we have the option of experimenting with //errors in the best
+<p class="code2">//code in the update method, so that we have the option of experimenting with //errors in the best
 reply model.</p>
-<p class="p44">public void update() {</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>count++;</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>if (count &gt;
-recentPlays.length)</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>{</p>
-<p class="p55"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span></p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-converted-space">    <span
-				class="Apple-tab-span"> </span></span>if (randomInRange(0,100) &gt;= ((CoordinationGame)getModel()).error)</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span></span>{</p>
-<p class="p44"><span class="Apple-converted-space">   <span class="Apple-tab-span"> </span><span
+<p class="code2">public void update() {</p>
+<p class="code3">count++;</p>
+<p class="code3">if (count &gt; recentPlays.length)</p>
+<p class="code3">{</p>
+<p class="p55"><span class="Apple-tab-span"></span></p>
+<p class="code3"><span class="Apple-tab-span"></span>if
+(randomInRange(0,100) &gt;= ((CoordinationGame)getRoot()).error)</p>
+<p class="code3">{</p>
+<p class="code2"><span class="Apple-converted-space">   <span class="Apple-tab-span"> </span><span
 				class="Apple-tab-span"> </span>  </span>int redScore;</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span> int blueScore;</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span> blueScore = totalblues *
-((CoordinationGame)getModel()).getBlueScore();</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span> redScore = totalreds *
-((CoordinationGame)getModel()).getRedScore();</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span> if (redScore &gt;
-blueScore)</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span>{</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>myColor = Color.red;</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span>}</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span> else if (blueScore &gt;
-redScore)</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span>{</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>myColor = Color.blue;</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span>}</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span> else</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span>{</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>doRandom();</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span>}</p>
+<p class="code4"> int blueScore;</p>
+<p class="code4"> blueScore = totalblues *
+((CoordinationGame)getRoot()).getBlueScore();</p>
+<p class="code4"> redScore = totalreds *
+((CoordinationGame)getRoot()).getRedScore();</p>
+<p class="code4"> if (redScore &gt; blueScore)</p>
+<p class="code4">{</p>
+<p class="code4"><span
+				class="Apple-tab-span"> </span>myColor = Color.red;</p>
+<p class="code4">}</p>
+<p class="code4"> else if (blueScore &gt; redScore)</p>
+<p class="code4">{</p>
+<p class="code4"><span
+				class="Apple-tab-span"> </span>myColor = Color.blue;</p>
+<p class="code4">}</p>
+<p class="code4"> else</p>
+<p class="code4">{</p>
+<p class="code4"><span
+				class="Apple-tab-span"> </span>doRandom();</p>
+<p class="code4">}</p>
 <p class="p55"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
 				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span></p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>}</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>else</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>{</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span>doRandom();</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>}<span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span></p>
-<p class="p44"><span class="Apple-tab-span"> </span>}</p>
-<p class="p44">}</p>
+<p class="code4">}</p>
+<p class="code4">else</p>
+<p class="code4">{</p>
+<p class="code4">doRandom();</p>
+<p class="code4">}<span class="Apple-tab-span"> </span><span
+				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span></p>
+<p class="code3">}</p>
+<p class="code2">}</p>
 <p class="p23"><br>
 </p>
 <p class="p27">Since our agents will be ‘boundedly rational’ agents, the ‘recentPartners’ array should be relatively
@@ -1576,79 +1454,70 @@ except for the addition of new model-scope variables, which are added to the <sp
 class.</p>
 <p class="p2"><br>
 </p>
-<p class="p44">public class CoordinationGamePlayer extends CellOccupant <span class="Apple-converted-space"> 
+<p class="code2">public class CoordinationGamePlayer extends CellOccupant <span class="Apple-converted-space"> 
 </span>{</p>
-<p class="p44"><span class="Apple-tab-span"> </span>.</p>
-<p class="p48">.</p>
-<p class="p48">.</p>
-<p class="p57">//we remove the UPDATE rule, and add a METABOLISM rule, which calls the</p>
-<p class="p57">//metabolism method, added below.</p>
-<p class="p48">public void scapeCreated() {</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-converted-space">      </span>getScape().addInitialRule(MOVE_RANDOM_LOCATION_RULE);</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>getScape().addRule(RANDOM_WALK_RULE);</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>getScape().addRule(PLAY_RANDOM_NEIGHBOR_RULE);</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>getScape().addRule(METABOLISM_RULE);<span
+<p class="code3">.</p>
+<p class="code2">.</p>
+<p class="code2">.</p>
+<p class="code3">//we remove the UPDATE rule, and add a METABOLISM rule, which calls the</p>
+<p class="code3">//metabolism method, added below.</p>
+<p class="code2">public void scapeCreated() {</p>
+<p class="code3"><span class="Apple-converted-space">      </span>getScape().addInitialRule(MOVE_RANDOM_LOCATION_RULE);</p>
+<p class="code4">getScape().addRule(RANDOM_WALK_RULE);</p>
+<p class="code4">getScape().addRule(PLAY_RANDOM_NEIGHBOR_RULE);</p>
+<p class="code4">getScape().addRule(METABOLISM_RULE);<span
 				class="Apple-converted-space"> <span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span></span></p>
-<p class="p44"><span class="Apple-tab-span"> </span>}</p>
+<p class="code3">}</p>
 <p class="p55"><br>
 </p>
-<p class="p57">//The metabolism() method (called by the METABOLISM rule) evaluates on</p>
-<p class="p57">//the totalScore variable. If totalScore equals ‘repScore’, then the<span
+<p class="code3">//The metabolism() method (called by the METABOLISM rule) evaluates on</p>
+<p class="code3">//the totalScore variable. If totalScore equals ‘repScore’, then the<span
 				class="Apple-converted-space"> </span></p>
-<p class="p57">//agent reproduces. Initially, ‘repScore’ will be set to 5, but it can<span
+<p class="code3">//agent reproduces. Initially, ‘repScore’ will be set to 5, but it can<span
 				class="Apple-converted-space"> </span></p>
-<p class="p57">//be changed in the Settings window.</p>
-<p class="p48">public void metabolism(){</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>if (totalScore ==
-((CoordinationGame)getModel()).getrepScore())</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>{</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span></span>count = 0;</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span>reproduce(); <span class="Apple-converted-space">   <span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span></span></p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span></span>for (int i = 0; i &lt; (recentPlays.length - 1); i++){</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span></span>recentPlays[i] = 0;</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span></span>}<span class="Apple-tab-span"> </span></p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>}</p>
-<p class="p57">//If the totalScore variable is less than the repScore, then the agent //evaluates whether it should
-die. If the agent’s total score is less than //the MinDieScore, and the agent has been through ‘TurnstoDie’ number of
-//turns, then the agent dies. Initially, the ‘MinDieScore’ is 3, and the //‘TurnstoDie’ is 5. So, if the agent is not
-successful in coordinating more //than 3/5 of the time, then it will die.</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>else if
-(totalScore &lt;= ((CoordinationGame)getModel()).getMinDieScore() &amp;&amp; count &gt;=
-((CoordinationGame)getModel()).getTurnstoDie())</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>{</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span></span>this.die();</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>}</p>
-<p class="p44"><span class="Apple-converted-space">    </span>}</p>
+<p class="code3">//be changed in the Settings window.</p>
+<p class="code2">public void metabolism(){</p>
+<p class="code3">if (totalScore == ((CoordinationGame)getRoot()).getrepScore())</p>
+<p class="code3">{</p>
+<p class="code3">count = 0;</p>
+<p class="code4">reproduce(); <span
+				class="Apple-converted-space">   <span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span></span></p>
+<p class="code3">for (int i = 0; i &lt; (recentPlays.length - 1); i++){</p>
+<p class="code2"><span class="Apple-tab-span"></span>recentPlays[i] = 0;</p>
+<p class="code3">}<span class="Apple-tab-span"> </span></p>
+<p class="code3">}</p>
+<p class="code3">//If the totalScore variable is less than the repScore, then the agent //evaluates whether it
+should die. If the agent’s total score is less than //the MinDieScore, and the agent has been through ‘TurnstoDie’
+number of //turns, then the agent dies. Initially, the ‘MinDieScore’ is 3, and the //‘TurnstoDie’ is 5. So, if the agent
+is not successful in coordinating more //than 3/5 of the time, then it will die.</p>
+<p class="code3">else if (totalScore &lt;= ((CoordinationGame)getRoot()).getMinDieScore() &amp;&amp; count &gt;=
+((CoordinationGame)getRoot()).getTurnstoDie())</p>
+<p class="code3">{</p>
+<p class="code3">this.die();</p>
+<p class="code3">}</p>
+<p class="code2">}</p>
 <p class="p55"><br>
 </p>
-<p class="p56">//To reproduce, the agent first makes sure that there is a neighboring spot</p>
-<p class="p56">//where the baby can be placed. So, agent reproduction is constrained by the //density of the
+<p class="code2">//To reproduce, the agent first makes sure that there is a neighboring spot</p>
+<p class="code2">//where the baby can be placed. So, agent reproduction is constrained by the //density of the
 neighborhood. If there is a space, we create a new agent, //called ‘baby’, of type CoordinationGamePlayer. We add this
 agent to the //‘players’ scape, so that it will have all of the rules that are owned by</p>
-<p class="p56">//the scape, and it will live on the ‘lattice’ scape graph.<span class="Apple-converted-space"> 
+<p class="code2">//the scape, and it will live on the ‘lattice’ scape graph.<span class="Apple-converted-space"> 
 </span>We initialize</p>
-<p class="p56">//the new agent to set its basic properties, but then we explicitly set its</p>
-<p class="p56">//color to match the parent’s color (because the initialize() method sets the //color randomly).
+<p class="code2">//the new agent to set its basic properties, but then we explicitly set its</p>
+<p class="code2">//color to match the parent’s color (because the initialize() method sets the //color randomly).
 Finally, we place the new, initialized agent onto the //lattice. <span class="Apple-converted-space">     </span></p>
-<p class="p44">public void reproduce(){</p>
-<p class="p44"><span class="Apple-converted-space">        </span>if(this.getHostCell().isNeighborAvailable())</p>
-<p class="p44"><span class="Apple-converted-space">        </span>{</p>
-<p class="p44"><span class="Apple-converted-space">          <span class="Apple-tab-span"> </span></span>CoordinationGamePlayer
-baby = (CoordinationGamePlayer) this.clone();</p>
-<p class="p44"><span class="Apple-converted-space">             </span>((Scape) this.getScape()).add(baby);</p>
-<p class="p44"><span class="Apple-converted-space">              </span>baby.initialize();</p>
-<p class="p44"><span class="Apple-converted-space">              </span>baby.setColor(myColor);</p>
-<p class="p44"><span class="Apple-converted-space">              </span>baby.moveTo(this.getHostCell().findRandomAvailableNeighbor());<span
+<p class="code2">public void reproduce(){</p>
+<p class="code2"><span class="Apple-converted-space">        </span>if(this.getHostCell().isNeighborAvailable())</p>
+<p class="code2"><span class="Apple-converted-space">        </span>{</p>
+<p class="code3">CoordinationGamePlayer baby = (CoordinationGamePlayer) this.clone();</p>
+<p class="code2"><span class="Apple-converted-space">             </span>((Scape) this.getScape()).add(baby);</p>
+<p class="code2"><span class="Apple-converted-space">              </span>baby.initialize();</p>
+<p class="code2"><span class="Apple-converted-space">              </span>baby.setColor(myColor);</p>
+<p class="code2"><span class="Apple-converted-space">              </span>baby.moveTo(this.getHostCell().findRandomAvailableNeighbor());<span
 				class="Apple-converted-space">     </span></p>
-<p class="p44"><span class="Apple-converted-space">        </span>}</p>
-<p class="p44"><span class="Apple-converted-space">    </span>}</p>
+<p class="code2"><span class="Apple-converted-space">        </span>}</p>
+<p class="code2">}</p>
 <p class="p2"><br>
 </p>
 <p class="p27">There are two final changes to <span class="s4">CoordinationGamePlayer</span> class. First, the <span
@@ -1656,9 +1525,9 @@ baby = (CoordinationGamePlayer) this.clone();</p>
 parent. We need to create this method.</p>
 <p class="p2"><br>
 </p>
-<p class="p44">public void setColor (Color NewColor){</p>
-<p class="p44"><span class="Apple-tab-span"> </span>MyColor = NewColor;</p>
-<p class="p44">}</p>
+<p class="code2">public void setColor (Color NewColor){</p>
+<p class="code3">MyColor = NewColor;</p>
+<p class="code2">}</p>
 <p class="p71"><br>
 </p>
 <p class="p27">Second, since we are using the count variable to determine how many plays an agent has been through,
@@ -1666,66 +1535,60 @@ we need to add a line of code to the <span class="s4">play()</span> method that 
 plays an opponent.</p>
 <p class="p2"><br>
 </p>
-<p class="p44">public void play (Agent partner){</p>
-<p class="p44"><span class="Apple-tab-span"> </span>.</p>
-<p class="p44"><span class="Apple-tab-span"> </span>.</p>
-<p class="p44"><span class="Apple-tab-span"> </span>.</p>
-<p class="p48">count = count + 1;</p>
-<p class="p44">}</p>
+<p class="code2">public void play (Agent partner){</p>
+<p class="code3">.</p>
+<p class="code3">.</p>
+<p class="code3">.</p>
+<p class="code2">count = count + 1;</p>
+<p class="code2">}</p>
 <p class="p2"><br>
 </p>
 <p class="p27">Finally, we need to add our new model-scope variables to the <span class="s4">CoordinationGame</span>
 class, with get() and set() methods.</p>
 <p class="p2"><br>
 </p>
-<p class="p44">public class CoordinationGame extends Scape {</p>
-<p class="p44"><span class="Apple-converted-space">    </span>.</p>
-<p class="p44"><span class="Apple-converted-space">    </span>.</p>
-<p class="p44"><span class="Apple-converted-space">    </span>.</p>
-<p class="p44"><span class="Apple-converted-space">    </span>public int turns = 5;</p>
+<p class="code1">public class CoordinationGame extends Scape {</p>
+<p class="code2">.</p>
+<p class="code2">.</p>
+<p class="code2">.</p>
+<p class="code2">public int turns = 5;</p>
 <p class="p55"><span class="Apple-converted-space">    </span></p>
-<p class="p44"><span class="Apple-converted-space">    </span>public int repScore = 5;</p>
+<p class="code2">public int repScore = 5;</p>
 <p class="p55"><span class="Apple-converted-space">    </span></p>
-<p class="p44"><span class="Apple-converted-space">    </span>public int minScore = 3;</p>
+<p class="code2">public int minScore = 3;</p>
 <p class="p55"><span class="Apple-tab-span"> </span></p>
-<p class="p44"><span class="Apple-converted-space">    </span>.</p>
-<p class="p44"><span class="Apple-converted-space">    </span>.</p>
-<p class="p44"><span class="Apple-converted-space">    </span>.</p>
-<p class="p44"><span class="Apple-tab-span"> </span>public int getTurnstoDie(){</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span>return turns;</p>
-<p class="p44"><span class="Apple-tab-span"> </span>}</p>
+<p class="code2">.</p>
+<p class="code2">.</p>
+<p class="code2">.</p>
+<p class="code3">public int getTurnstoDie(){</p>
+<p class="code4">return turns;</p>
+<p class="code3">}</p>
 <p class="p55"><span class="Apple-tab-span"> </span></p>
-<p class="p44"><span class="Apple-tab-span"> </span>public void setTurnstoDie(int Newnum){</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span>turns = Newnum;</p>
+<p class="code2">public void setTurnstoDie(int Newnum){</p>
+<p class="code4">turns = Newnum;</p>
 <p class="p55"><br>
 </p>
-<p class="p48">}</p>
+<p class="code2">}</p>
 <p class="p55"><br>
 </p>
-<p class="p44"><span class="Apple-tab-span"> </span>public int getrepScore(){</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span>return repScore;</p>
-<p class="p44"><span class="Apple-tab-span"> </span>}</p>
+<p class="code3">public int getrepScore(){</p>
+<p class="code4">return repScore;</p>
+<p class="code3">}</p>
 <p class="p55"><span class="Apple-tab-span"> </span></p>
-<p class="p44"><span class="Apple-tab-span"> </span>public void setrepScore(int Newscore){</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span>repScore = Newscore;</p>
+<p class="code2">public void setrepScore(int Newscore){</p>
+<p class="code4">repScore = Newscore;</p>
 <p class="p55"><br>
 </p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>}</p>
-<p class="p44"><span class="Apple-tab-span"> </span>public int getMinDieScore(){</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span>return minScore;</p>
-<p class="p44"><span class="Apple-tab-span"> </span>}</p>
+<p class="code3">}</p>
+<p class="code3">public int getMinDieScore(){</p>
+<p class="code4">return minScore;</p>
+<p class="code3">}</p>
 <p class="p55"><span class="Apple-tab-span"> </span></p>
-<p class="p44"><span class="Apple-tab-span"> </span>public void setMinDieScore(int Newscore){</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span>minScore = Newscore;</p>
+<p class="code2">public void setMinDieScore(int Newscore){</p>
+<p class="code4">minScore = Newscore;</p>
 <p class="p55"><br>
 </p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>}</p>
+<p class="code3">}</p>
 <p class="p2"><span class="Apple-converted-space">        </span></p>
 <p class="p27">The biological version of the Coordination Game Model exhibits interesting spatial behavior. As
 agents successfully reproduce, they build dense neighborhoods of same-color neighbors. These neighborhoods rapidly
@@ -1828,22 +1691,19 @@ to the scape using the addInitialRule() method. However, there is no existing ru
 will have to create a new rule.</p>
 <p class="p2"><br>
 </p>
-<p class="p44"><span class="Apple-tab-span"> </span>public void scapeCreated() {</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-converted-space">    </span>getScape().addInitialRule(MOVE_RANDOM_LOCATION_RULE);</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-converted-space">    </span>getScape().addInitialRule(new
-Rule("SetNewNetwork")</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-converted-space">    </span>{</p>
-<p class="p44"><span class="Apple-converted-space"> <span class="Apple-tab-span"> </span>    <span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span></span>public void execute(Agent agent) {</p>
-<p class="p44">((CoordinationGamePlayer) agent).setNewNetwork();</p>
-<p class="p44"><span class="Apple-converted-space"> <span class="Apple-tab-span"> </span>    <span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span></span>}</p>
-<p class="p44"><span class="Apple-converted-space"> <span class="Apple-tab-span"> </span>    </span>});</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-converted-space">    </span>getScape().addRule(RANDOM_WALK_RULE);</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-converted-space">    </span>getScape().addRule(UPDATE_RULE);</p>
-<p class="p44"><span class="Apple-converted-space">          </span>getScape().addRule(PLAY_RANDOM_NEIGHBOR_RULE);<span
+<p class="code2">public void scapeCreated() {</p>
+<p class="code3"><span class="Apple-converted-space">    </span>getScape().addInitialRule(MOVE_RANDOM_LOCATION_RULE);</p>
+<p class="code3"><span class="Apple-converted-space">    </span>getScape().addInitialRule(new Rule("SetNewNetwork")</p>
+<p class="code3"><span class="Apple-converted-space">    </span>{</p>
+<p class="code2"><span class="Apple-tab-span"></span>public void execute(Agent agent) {</p>
+<p class="code2">((CoordinationGamePlayer) agent).setNewNetwork();</p>
+<p class="code2"><span class="Apple-tab-span"></span>}</p>
+<p class="code2"><span class="Apple-converted-space"> <span class="Apple-tab-span"> </span>    </span>});</p>
+<p class="code3"><span class="Apple-converted-space">    </span>getScape().addRule(RANDOM_WALK_RULE);</p>
+<p class="code3"><span class="Apple-converted-space">    </span>getScape().addRule(UPDATE_RULE);</p>
+<p class="code2"><span class="Apple-converted-space">          </span>getScape().addRule(PLAY_RANDOM_NEIGHBOR_RULE);<span
 				class="Apple-tab-span"> </span></p>
-<p class="p44"><span class="Apple-tab-span"> </span>}</p>
+<p class="code3">}</p>
 <p class="p2"><br>
 </p>
 <p class="p27">I have called the new rule “SetNewNetwork”. Creating a new rule simply involves creating an instance
@@ -1856,14 +1716,14 @@ network, all we need to do is to create the <span class="s4">setNewNetwork()</sp
 <p class="p27">First, we add a few arrays to the <span class="s4">CoordinationGamePlayer</span> class.</p>
 <p class="p2"><br>
 </p>
-<p class="p44">public class CoordinationGamePlayer extends CellOccupant <span class="Apple-converted-space"> 
+<p class="code2">public class CoordinationGamePlayer extends CellOccupant <span class="Apple-converted-space"> 
 </span>{</p>
-<p class="p44"><span class="Apple-tab-span"> </span>protected Agent[] scapearray;</p>
-<p class="p44">protected CoordinationGamePlayer[] friends;</p>
-<p class="p44"><span class="Apple-tab-span"> </span>.</p>
-<p class="p44"><span class="Apple-tab-span"> </span>.</p>
-<p class="p44"><span class="Apple-tab-span"> </span>.</p>
-<p class="p44">}</p>
+<p class="code3">protected Agent[] scapearray;</p>
+<p class="code2">protected CoordinationGamePlayer[] friends;</p>
+<p class="code3">.</p>
+<p class="code3">.</p>
+<p class="code3">.</p>
+<p class="code2">}</p>
 <p class="p23"><br>
 </p>
 <p class="p27">The first array will hold a list of all of the agents in the scape (so that we can pick our set of
@@ -1873,78 +1733,62 @@ size, and that will determine the size of network. So that we can have runtime c
 a model variable ‘friends_size’, and will use that to initialize the ‘friends’ array.</p>
 <p class="p2"><br>
 </p>
-<p class="p44">public class CoordinationGame extends Scape {</p>
-<p class="p44"><span class="Apple-converted-space">            </span>public int friends_size = 4;</p>
-<p class="p44"><span class="Apple-tab-span"> </span>.</p>
-<p class="p44"><span class="Apple-tab-span"> </span>.</p>
-<p class="p44"><span class="Apple-tab-span"> </span>.</p>
-<p class="p44">}</p>
+<p class="code1">public class CoordinationGame extends Scape {</p>
+<p class="code2"><span class="Apple-converted-space">            </span>public int friends_size = 4;</p>
+<p class="code3">.</p>
+<p class="code3">.</p>
+<p class="code3">.</p>
+<p class="code2">}</p>
 <p class="p55"><br>
 </p>
-<p class="p44">public class CoordinationGamePlayer extends CellOccupant <span class="Apple-converted-space"> 
+<p class="code2">public class CoordinationGamePlayer extends CellOccupant <span class="Apple-converted-space"> 
 </span>{</p>
-<p class="p44"><span class="Apple-tab-span"> </span>.<span class="Apple-tab-span"> </span></p>
-<p class="p44"><span class="Apple-tab-span"> </span>.</p>
-<p class="p44"><span class="Apple-tab-span"> </span>.</p>
-<p class="p44"><span class="Apple-tab-span"> </span>public void initialize() {</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>doRandom();</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>recentPlays = new int [5];</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>recentPartners = new Color
-[5];</p>
-<p class="p44">friends = new CoordinationGamePlayer [((Coord)getModel()).friends_size];</p>
-<p class="p44"><span class="Apple-tab-span"> </span>}</p>
-<p class="p44"><span class="Apple-tab-span"> </span>.<span class="Apple-tab-span"> </span></p>
-<p class="p44"><span class="Apple-tab-span"> </span>.</p>
-<p class="p44"><span class="Apple-tab-span"> </span>.</p>
-<p class="p44">}</p>
+<p class="code3">.<span class="Apple-tab-span"> </span></p>
+<p class="code3">.</p>
+<p class="code3">.</p>
+<p class="code2">public void initialize() {</p>
+<p class="code4">doRandom();</p>
+<p class="code4">recentPlays = new int [5];</p>
+<p class="code4">recentPartners = new Color [5];</p>
+<p class="code2">friends = new CoordinationGamePlayer [((Coord)getRoot()).friends_size];</p>
+<p class="code3">}</p>
+<p class="code3">.<span class="Apple-tab-span"> </span></p>
+<p class="code3">.</p>
+<p class="code3">.</p>
+<p class="code2">}</p>
 <p class="p2"><br>
 </p>
 <p class="p27">Now, to actually create the friends network, we go back to the <span class="s4">CoordinationGamePlayer</span>
 class and add the <span class="s4">setNewNetwork()</span> method.</p>
 <p class="p2"><br>
 </p>
-<p class="p47"><span class="Apple-tab-span"> </span>public void setNewNetwork(){</p>
-<p class="p56"><span class="Apple-tab-span"> </span>//populate the scapearray array</p>
-<p class="p47"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>scapearray =
-((CoordinationGame)getModel()).players.getAgents();<span class="Apple-tab-span"> </span><span class="Apple-tab-span">
-</span></p>
-<p class="p47"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>for (int i = 0; i &lt;
-network.length; i++){</p>
-<p class="p47"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span>findFriend(i);</p>
-<p class="p47"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>}</p>
-<p class="p56"><span class="Apple-tab-span"> </span>//use the setNetwork call</p>
-<p class="p47"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>this.setNetwork(friends);</p>
-<p class="p47"><span class="Apple-tab-span"> </span>}</p>
+<p class="code2">public void setNewNetwork(){</p>
+<p class="code3">friends.clear();<span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span></p>
+<p class="code3">for (int i = 0; i < ((CoordinationGame) getRoot()).friends_size; i++) {</p>
+<p class="code4">friends.add((CoordinationGamePlayer) ((CoordinationGame)
+getRoot()).getPlayers().findRandom());</p>
+<p class="code3">}</p>
+<p class="code3">//use the setNetwork call</p>
+<p class="code3">this.setNetwork(friends);</p>
+<p class="code1">}</p>
 <p class="p23"><span class="Apple-tab-span"> </span></p>
-<p class="p56">//find random friends, avoiding redundancy<span class="Apple-tab-span"> </span></p>
-<p class="p47"><span class="Apple-tab-span"> </span>public void findFriend(int i){</p>
-<p class="p47"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span>int spot;</p>
-<p class="p47"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span>spot = randomInRange(0,(scapearray.length - 1));</p>
-<p class="p47"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span>if (scapearray[spot] == null)</p>
-<p class="p47"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>{</p>
-<p class="p47"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>findFriend(i);</p>
-<p class="p47"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>}</p>
-<p class="p47"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span>else</p>
-<p class="p47"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>{</p>
-<p class="p47"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>friends[i] = (CoordinationGamePlayer)
-scapearray[spot];</p>
-<p class="p47"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-converted-space">    <span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span></span>scapearray[spot]
-= null;<span class="Apple-tab-span"> </span></p>
-<p class="p47"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>}<span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span></p>
-<p class="p47"><span class="Apple-tab-span"> </span>}</p>
+<p class="code2">//find random friends, avoiding redundancy<span class="Apple-tab-span"> </span></p>
+<p class="code2">public void findFriend(int i){</p>
+<p class="code4">int spot;</p>
+<p class="code4">spot = randomInRange(0,(scapearray.length - 1));</p>
+<p class="code4">if (scapearray[spot] == null)</p>
+<p class="code4">{</p>
+<p class="code4"><span
+				class="Apple-tab-span"> </span>findFriend(i);</p>
+<p class="code4">}</p>
+<p class="code4">else</p>
+<p class="code4">{</p>
+<p class="code4">friends[i] =
+(CoordinationGamePlayer) scapearray[spot];</p>
+<p class="code3"><span class="Apple-tab-span"></span>scapearray[spot] = null;<span class="Apple-tab-span"> </span></p>
+<p class="code4">}<span
+				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span></p>
+<p class="code1">}</p>
 <p class="p23"><span class="Apple-tab-span"> </span></p>
 <p class="p27">We first populate the scapearray with all of the agents in the ‘players’ scape. Then, we simply
 select random agents from the scapearray, and add them to the ‘friends’ array. We remove the agents from the scapearray
@@ -1967,58 +1811,44 @@ method to return the list of friends in our network (which we will cast to <span
 agents when we iterate through the list).</p>
 <p class="p2"><br>
 </p>
-<p class="p44">public void update() {</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>count++;</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>if (count &gt;
-recentPlays.length)</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>{</p>
-<p class="p55"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span></p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-converted-space">    <span
-				class="Apple-tab-span"> </span></span>if (randomInRange(0,100) &gt;= ((CoordinationGame)getModel()).error)</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span></span>{</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-converted-space">    <span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span></span>int currScore = 0;</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span></span>int bestScore = this.totalScore;</p>
-<p class="p57"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>//CellOccupant[] neighbors;</p>
-<p class="p73">//neighbors = getHostCell().getNeighboringOccupants();</p>
-<p class="p74"><br>
-</p>
+<p class="code2">public void update() {</p>
+<p class="code3">count++;</p>
+<p class="code3">if (count &gt; recentPlays.length)</p>
+<p class="code3">{</p>
+<p class="p55"><span class="Apple-tab-span"></span></p>
+<p class="code3"><span class="Apple-tab-span"></span>if
+(randomInRange(0,100) &gt;= ((CoordinationGame)getRoot()).error)</p>
+<p class="code3">{</p>
+<p class="code3"><span class="Apple-tab-span"></span>int currScore = 0;</p>
+<p class="code2"><span class="Apple-tab-span"></span>int bestScore = this.totalScore;</p>
 <p class="p73">//New Social Network Code</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-converted-space">    <span class="Apple-tab-span"> </span></span>Cell[] neighbors;</p>
-<p class="p44"><span class="Apple-converted-space">    <span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span></span>neighbors = getNetwork();</p>
-<p class="p57"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>//End New Social Network
+<p class="code4">Cell[] neighbors;</p>
+<p class="code2"><span class="Apple-tab-span"></span>neighbors = getNetwork();</p>
+<p class="code4">//End New Social Network
 Code</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span> for (int i = 0; i &lt;
-neighbors.length; i++)</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span> {</p>
+<p class="code4"> for (int i = 0; i &lt; neighbors.length; i++)</p>
+<p class="code4"> {</p>
 <p class="p75"><span class="Apple-converted-space">   </span>currScore =
 ((CoordinationGamePlayer)neighbors[i]).totalScore;</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>if (currScore &gt; bestScore)</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>{</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>bestScore =
-currScore;</p>
+<p class="code4"><span
+				class="Apple-tab-span"> </span>if (currScore &gt; bestScore)</p>
+<p class="code4"><span
+				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>{</p>
+<p class="code4"><span
+				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>bestScore = currScore;</p>
 <p class="p76">myColor = ((CoordinationGamePlayer)neighbors[i]).getColor();</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>}</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
+<p class="code4"><span
 				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>}</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>}</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>else</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>{<span
-				class="Apple-tab-span"> </span></p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span>doRandom();</p>
-<p class="p44"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span>}</p>
+<p class="code4"><span
+				class="Apple-tab-span"> </span>}</p>
+<p class="code4">}</p>
+<p class="code4">else</p>
+<p class="code4">{<span class="Apple-tab-span"> </span></p>
+<p class="code4">doRandom();</p>
+<p class="code4">}</p>
 <p class="p55"><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span
 				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span></p>
-<p class="p48">}</p>
+<p class="code2">}</p>
 <p class="p61"><br>
 </p>
 <p class="p46">}</p>
@@ -2029,8 +1859,8 @@ currScore;</p>
 <p class="p1"><br>
 </p>
 <p class="p36"><span class="s3"><img src="images/original-32.png" alt="images/original-32.png"
-				alt="32__#$!@%!#__pastedGraphic.pdf"></span> <span class="s3"><img src="images/original-33.png" alt="images/original-33.png"
-				alt="33__#$!@%!#__pastedGraphic.pdf"></span></p>
+				alt="32__#$!@%!#__pastedGraphic.pdf"></span> <span class="s3"><img src="images/original-33.png"
+				alt="images/original-33.png" alt="33__#$!@%!#__pastedGraphic.pdf"></span></p>
 <p class="p1"><br>
 </p>
 <p class="p36">Fig.42: Social Networks Model at t = 14 and t = 30.</p>
@@ -2040,9 +1870,9 @@ currScore;</p>
 the <span class="s4">createGraphicViews()</span> method in the <span class="s4">CoordinationGame</span> class.</p>
 <p class="p2"><br>
 </p>
-<p class="p47"><span class="Apple-tab-span"> </span>public void createGraphicViews() {</p>
-<p class="p52">overheadView.setDrawNetwork(true);</p>
-<p class="p47"><span class="Apple-tab-span"> </span>}</p>
+<p class="code2">public void createGraphicViews() {</p>
+<p class="code3">overheadView.setDrawNetwork(true);</p>
+<p class="code2">}</p>
 <p class="p23"><br>
 </p>
 <p class="p1"><br>

@@ -1,4 +1,26 @@
 @CHARSET "UTF-8";
+
+
+p.code1 {
+	margin: 0.0px 0.0px 0.0px 36.0px;
+	font: 9.0px Monaco
+}
+
+p.code2 {
+	margin: 0.0px 0.0px 0.0px 72.0px;
+	font: 9.0px Monaco
+}
+
+p.code3 {
+	margin: 0.0px 0.0px 0.0px 108.0px;
+	font: 9.0px Monaco
+}
+
+p.code4 {
+	margin: 0.0px 0.0px 0.0px 144.0px;
+	font: 9.0px Monaco
+}
+
 p.p1 {
 	margin: 0.0px 0.0px 0.0px 0.0px;
 	text-align: center;
