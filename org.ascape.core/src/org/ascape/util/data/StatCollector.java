@@ -317,7 +317,7 @@ public class StatCollector implements Comparable, DataPoint, Serializable {
             System.out.print("Usage is deprecated, use \"Sum " + this + "\" instead.");
         }
         for (int i = 0; i < dataSeries.length; i++) {
-            if (dataSeries[i].getMeasureName().equals(measureName)) {
+            if (dataSeries[i] != null && dataSeries[i].getMeasureName().equals(measureName)) {
                 return dataSeries[i];
             }
         }
