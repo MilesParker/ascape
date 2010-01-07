@@ -1,8 +1,8 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, with revisions by Metascape LLC, and others. 
+ * Copyright 1998-2007 The Brookings Institution, with revisions by Metascape LLC, and others.
  * All rights reserved.
  * This program and the accompanying materials are made available solely under of the BSD license "brookings-models-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 package edu.brook.manual.model2;
 
@@ -47,7 +47,17 @@ public class CoordinationGame extends Scape {
     public void createScape() {
         super.createScape();
         lattice = new Scape(new Array2DVonNeumann());
-        lattice.setPrototypeAgent(new HostCell());
+        lattice.setPrototypeAgent(new HostCell() {
+            private static final long serialVersionUID = 1L;
+
+            /**
+             * @return
+             * @see org.ascape.model.Agent#getPlatformColor()
+             */
+            public Object getPlatformColor() {
+                return ColorFeature.GREEN;
+            }
+        });
         lattice.setExtent(latticeWidth, latticeHeight);
 
         CoordinationGamePlayer cgplayer = new CoordinationGamePlayer();
@@ -67,7 +77,7 @@ public class CoordinationGame extends Scape {
             private static final long serialVersionUID = 571633944178373880L;
 
             public boolean meetsCondition(Object object) {
-                return (((CoordinationGamePlayer) object).getBackground(object) == ColorFeature.RED);
+                return ((CoordinationGamePlayer) object).getBackground(object) == ColorFeature.RED;
             }
         };
         StatCollector CountBlues = new StatCollectorCond("Blues") {
@@ -77,7 +87,7 @@ public class CoordinationGame extends Scape {
             private static final long serialVersionUID = 2511602733201765655L;
 
             public boolean meetsCondition(Object object) {
-                return (((CoordinationGamePlayer) object).getBackground(object) == ColorFeature.BLUE);
+                return ((CoordinationGamePlayer) object).getBackground(object) == ColorFeature.BLUE;
             }
         };
         StatCollector AvgPayoff = new StatCollectorCSAMM("Payoff") {
@@ -97,7 +107,7 @@ public class CoordinationGame extends Scape {
     }
 
     public void scapeSetup(ScapeEvent scapeEvent) {
-        (players).setExtent(nPlayers);
+        players.setExtent(nPlayers);
     }
 
     // create views and charts

@@ -1,8 +1,8 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, with revisions by Metascape LLC, and others. 
+ * Copyright 1998-2007 The Brookings Institution, with revisions by Metascape LLC, and others.
  * All rights reserved.
  * This program and the accompanying materials are made available solely under of the BSD license "brookings-models-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 package edu.brook.manual.model2;
 
@@ -82,10 +82,10 @@ public class CoordinationGamePlayer extends CellOccupant implements IColorProvid
     // play rule
     public void play(Agent partner) {
         int score;
-        if ((((CoordinationGamePlayer) partner).getBackground(partner) == myColor) && (myColor == ColorFeature.BLUE)) {
+        if (((CoordinationGamePlayer) partner).getBackground(partner) == myColor && myColor == ColorFeature.BLUE) {
             score = ((CoordinationGame) getRoot()).getBlueScore();
-        } else if ((((CoordinationGamePlayer) partner).getBackground(partner) == myColor)
-            && (myColor == ColorFeature.RED)) {
+        } else if (((CoordinationGamePlayer) partner).getBackground(partner) == myColor
+                && myColor == ColorFeature.RED) {
             score = ((CoordinationGame) getRoot()).getRedScore();
         } else {
             score = 0;
@@ -97,7 +97,7 @@ public class CoordinationGamePlayer extends CellOccupant implements IColorProvid
     // keep track of the recent scores
     public void updateRecentPlays(int score) {
         totalScore = 0;
-        for (int i = 0; i < (recentPlays.length - 1); i++) {
+        for (int i = 0; i < recentPlays.length - 1; i++) {
             recentPlays[i] = recentPlays[i + 1];
             totalScore = totalScore + recentPlays[i];
         }
@@ -114,12 +114,20 @@ public class CoordinationGamePlayer extends CellOccupant implements IColorProvid
         return getBackground(object);
     }
 
+    /**
+     * @return
+     * @see org.ascape.model.Agent#getPlatformColor()
+     */
+    public Object getPlatformColor() {
+        return myColor;
+    }
+
     public void setColor(Color ncolor) {
         myColor = ncolor;
     }
 
     public int getRunningTotal() {
-        return (totalScore * 10);
+        return totalScore * 10;
     }
 
 }

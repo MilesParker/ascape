@@ -78,8 +78,6 @@ public class CoordinationGamePlayer extends CellOccupant {
             if (randomInRange(0, 100) >= ((CoordinationGame) getRoot()).error) {
                 int currScore = 0;
                 int bestScore = this.totalScore;
-                // CellOccupant[] neighbors;
-                // neighbors = getHostCell().getNeighboringOccupants();
                 // New Social Network Code
                 List neighbors = getNetwork();
                 for (Object agent : neighbors) {
@@ -99,9 +97,9 @@ public class CoordinationGamePlayer extends CellOccupant {
     // play rule
     public void play(Agent partner) {
         int score;
-        if ((((CoordinationGamePlayer) partner).getColor() == myColor) && (myColor == Color.blue)) {
+        if (((CoordinationGamePlayer) partner).getColor() == myColor && myColor == Color.blue) {
             score = ((CoordinationGame) getRoot()).getBlueScore();
-        } else if ((((CoordinationGamePlayer) partner).getColor() == myColor) && (myColor == Color.red)) {
+        } else if (((CoordinationGamePlayer) partner).getColor() == myColor && myColor == Color.red) {
             score = ((CoordinationGame) getRoot()).getRedScore();
         } else {
             score = 0;
@@ -113,7 +111,7 @@ public class CoordinationGamePlayer extends CellOccupant {
     // keep track of the recent scores
     public void updateRecentPlays(int score) {
         totalScore = 0;
-        for (int i = 0; i < (recentPlays.length - 1); i++) {
+        for (int i = 0; i < recentPlays.length - 1; i++) {
             recentPlays[i] = recentPlays[i + 1];
             totalScore = totalScore + recentPlays[i];
         }
@@ -140,7 +138,7 @@ public class CoordinationGamePlayer extends CellOccupant {
     }
 
     public int getRunningTotal() {
-        return (totalScore * 10);
+        return totalScore * 10;
     }
 
 }

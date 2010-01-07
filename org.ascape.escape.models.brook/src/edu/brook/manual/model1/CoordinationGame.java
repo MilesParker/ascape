@@ -1,8 +1,8 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, with revisions by Metascape LLC, and others. 
+ * Copyright 1998-2007 The Brookings Institution, with revisions by Metascape LLC, and others.
  * All rights reserved.
  * This program and the accompanying materials are made available solely under of the BSD license "brookings-models-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 package edu.brook.manual.model1;
 
@@ -46,7 +46,17 @@ public class CoordinationGame extends Scape {
     public void createScape() {
         super.createScape();
         lattice = new Scape(new Array2DVonNeumann());
-        lattice.setPrototypeAgent(new HostCell());
+        lattice.setPrototypeAgent(new HostCell() {
+            private static final long serialVersionUID = 1L;
+
+            /**
+             * @return
+             * @see org.ascape.model.Agent#getPlatformColor()
+             */
+            public Object getPlatformColor() {
+                return ColorFeature.GREEN;
+            }
+        });
         lattice.setExtent(latticeWidth, latticeHeight);
 
         CoordinationGamePlayer cgplayer = new CoordinationGamePlayer();
@@ -66,7 +76,7 @@ public class CoordinationGame extends Scape {
             private static final long serialVersionUID = 6600504153131744863L;
 
             public boolean meetsCondition(Object object) {
-                return (((CoordinationGamePlayer) object).myColor == ColorFeature.RED);
+                return ((CoordinationGamePlayer) object).myColor == ColorFeature.RED;
             }
         };
         StatCollector CountBlues = new StatCollectorCond("Blues") {
@@ -76,7 +86,7 @@ public class CoordinationGame extends Scape {
             private static final long serialVersionUID = 1692219686197143821L;
 
             public boolean meetsCondition(Object object) {
-                return (((CoordinationGamePlayer) object).myColor == ColorFeature.BLUE);
+                return ((CoordinationGamePlayer) object).myColor == ColorFeature.BLUE;
             }
         };
 
@@ -85,7 +95,7 @@ public class CoordinationGame extends Scape {
     }
 
     public void scapeSetup(ScapeEvent scapeEvent) {
-        (players).setExtent(nPlayers);
+        players.setExtent(nPlayers);
     }
 
     // create views and charts
