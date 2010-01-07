@@ -37,6 +37,7 @@ body {
 }
 
 #main {
+	
 }
 
 #sidebarfake {
@@ -88,8 +89,7 @@ body {
 <LINK REL="stylesheet" TYPE="text/css" HREF="ascapestyle.css" TITLE="Style">
 <body>
 <div id="wrap">
-<div id="header">
-<IMG SRC="AscapeLogo.gif" WIDTH='181' HEIGHT='84'></IMG>
+<div id="header"><IMG SRC="AscapeLogo.gif" WIDTH='181' HEIGHT='84'></IMG>
 <h1>Ascape Guide</h1>
 <i>5.3.0</i> -- <i>Last updated: January 5, 2010</i>
 <P></P>
@@ -477,10 +477,8 @@ instructions below instead.</p>
 				<li>Now that we have created our model, we can launch it by selecting Run:Open Run Dialog. Create a new Java
 				Application configuration using the "add document" button at the upper-left. Ensure that the project name is correct
 				and set <code>org.ascape.runtime.swing.SwingRunner</code> as the main class.<BR>
-				<span class="alert">The screenshot below is out-of-date. Use SwingRunner, not org.ascape.model.Scape as the
-				main class.</span> <img align="middle" src="screens/EclipseHelloRunSettings.png" /></li>
-				<li>Under the Arguments tab enter your model class name (fully qualified!). It is also a good idea to make more
-				memory available by adding the obscure vm argument <code>-Xmx512M</code>.<BR />
+				<img align="middle" src="screens/EclipseHelloRunSettings.png" /></li>
+				<li>Under the Arguments tab enter your model class name (fully qualified!).<BR />
 				<img align="middle" src="screens/EclipseHelloRunSettingsP2.png" /></li>
 				<li>Click Run and launch your first Ascape model!<BR />
 				<img align="middle" src="screens/AscapeRunHello.png" /></li>
@@ -555,9 +553,9 @@ progression for use in a self-study tutorial.</p>
 <p>For the experienced programmer, Ascape is reasonably well documented internally. Ascape also includes extensive <a
 				href="api/index.html">javadoc documentation </a> and the source code is of course open and reasonably
 straightforward.</p>
-<p><a href="manual/Overview.html">The Ascape Model Developers Manual</a>, written by Damon Centola, and
-included in the documents download, provides an excellent introduction to Agent-Based Modeling in general including an
-introduction to many of the models featured here, and an extensive tutorial on developing Ascape models in particular. <span
+<p><a href="manual/Overview.html">The Ascape Model Developers Manual</a>, written by Damon Centola, and included in
+the documents download, provides an excellent introduction to Agent-Based Modeling in general including an introduction
+to many of the models featured here, and an extensive tutorial on developing Ascape models in particular. <span
 				class="info">As with Ascape, the manual was never released when the authors had hoped. While I have tried to
 update code samples, the manual may be slightly out of date with respect to new features. <i>-Miles</i></span></p>
 <p>Many people will have found there way here from reading Joshua Epstein's <a

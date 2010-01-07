@@ -40,6 +40,9 @@ Tollander, Lisa Stuart, and many others...</i></p>
 </p>
 <p class="p9"><br>
 </p>
+<p class="p10"><a href="#forward"><b>Forward</b></a>.</p>
+<p class="p9"><br>
+</p>
 <p class="p10"><a href="#preface"><b>Preface</b></a>.</p>
 <p class="p9"><br>
 </p>
@@ -113,8 +116,72 @@ Tutorial</a></p>
 <p class="p11"><a href="Appendix.html#5.2">CoordinationGamePlayer.java</a></p>
 <p class="p15"><br>
 </p>
-
-
+<p class="p17"><br>
+</p>
+<p class="p17"><br>
+</p>
+<p class="p17"><br>
+</p>
+<p class="p17"><br>
+</p>
+<p class="p17"><br>
+</p>
+<p class="p17"><br>
+</p>
+<p class="p16"><a name="forward"><b>Forward.</b></a></p>
+<p class="p17"><br>
+</p>
+<p class="p19">I’m extremely grateful to Damon Centola for writing a manual that is both thoughtful and practical,
+and that captures the essence of the Ascape approach. Damon wrote this manual in 2002 -- eight years ago as I write
+this!</p>
+<p class="p20"><br>
+</p>
+<p class="p19">It's hard to believe that it has been a dozen years or so since I first started writing the code for
+Ascape while working at Brookings. I felt at the time that Ascape -- and especially the ideas behind Ascape -- had a lot
+to offer to the Agent-Based Modeling community, and I still feel that way. In fact, if I can be bold, there are ideas
+within Ascape that still have not been widely adopted or appreciated. I take some of the blame for not doing a better
+job of communicating these ideas and approaches, but I think a major factor was the failure of the various institutions
+involved to release Ascape into Open Source until other tools became much more widely used. The period spent trying to
+Ascape out to a broader audience was frustrating, and ironically that has made me a little hesitant in encouraging
+people to use it. There are a number of good ABM platforms available now. But while I've been heavily involved in
+developing other toolsets, I find that I keep coming back to Ascape -- I've simply found that it stands up very well
+against newer toolsets. It has a simple but very expressive design that allows deep exploration of modeling issues
+across many dimensions, the UI works well, and models are fast. And of course, many of the cannonical Agent-Based Models
+were written in Ascape and are available as part of the Ascape distribution. But then, I'm biased. I simply hope you'll
+give it a try and let us know what you think.</p>
+<p class="p20"><br>
+</p>
+<p class="p19">And there is a twist to the Ascape story. The Ascape API is a key component of a very modern set of
+tools that have been developed as part of the Eclipse Agent Modeling Platform project. Escape is a version of Ascape
+that is hosted within the Eclipse IDE. In fact, you can write your modeling code and execute it within the same
+environment. The really nice thing about Escape is that you can run Ascape models in it with very minor changes. AMP
+also provides high-level modeling tools that allow you to define ABMs at a very high-level with no programming involved,
+and then generate Java code from those models for Ascape, Escape and other platforms. Many of the Ascape design features
+will find their way into the next version of the Agent Modeling Framework meta-model, called Acore.</p>
+<p class="p20"><br>
+</p>
+<p class="p19">Since the time when Damon wrote this manual, Ascape has had a relativly stable API, but it has still
+changed in significant if subtle ways. In preparation for the open source release of Ascape in 2007, I attempted to
+update the code examples so that they will work with the released version. Over the last few days I've converted the
+manual to HTML and for the Eclipse built-in help system. (Please forgive any remaining formatting issues as there is
+only so much hand editing of HTML code that any one person should have to endure at a sitting!) This should make Damon's
+manual more accesible and directly usable for a wider audience. In a few places I have updated the text to reflect
+changes and improvements, and I hope Damon will excuse any inconsistencies that my slight revisions may introduce.</p>
+<p class="p20"><br>
+</p>
+<p class="p19">There are many potential improvements to the manual and now that it is in a standard text format that
+process will be much easier. This is an excellent opportunity for you, the reader, to become a contributor to the Ascape
+project; please let us know if you find any mistakes or would like to contribute to this document. And no matter what
+tool you end up using, I hope you enjoy diving deeper into the art of Agent-Based Modeling.</p>
+<p class="p17"><br>
+</p>
+<p class="p17"><br>
+</p>
+<p class="p22">-Miles T. Parker</p>
+<p class="p19">January 6, 2010</p>
+<p class="p20"><br>
+</p>
+<p class="p15"><br>
 <p class="p16"><a name="preface"><b>Preface.</b></a></p>
 <p class="p17"><br>
 </p>
@@ -167,41 +234,8 @@ Website)</p>
 <p class="p22">-Damon Centola</p>
 <p class="p23"><br>
 </p>
-<p class="p24">© The Brookings Institution 2002</p>
+<p class="p24">© The Brookings Institution 2002, Portions © Miles Parker 2010</p>
 <p class="p24">Ascape ©1998-2000 The Brookings Institution, ©2000-2007 NuTech Solutions, Inc., ©2007 Metascape, LLC.</p>
-<p class="p24">Original software engineer and architect of the framework: Miles Parker</p>
-<p class="p24">Project manager: Robert Axtell</p>
-<p class="p24">Directors, Ctr. on Social and Economic Dynamics: Carol Graham and Peyton Young</p>
-<p class="p24">Vice President of Economic Studies: Robert Litan</p>
-<p class="p15"><br>
-</p>
-<p class="p16"><a name="specialnote"><b>Special Note.</b></a></p>
-<p class="p17"><br>
-</p>
-<p class="p19">I’m extremely grateful to Damon Centola for writing a manual that is both thoughtful and practical,
-and that captures the essence of the Ascape approach. Damon wrote this manual five years ago, and since that time Ascape
-has changed in subtle but significant ways. In preparation for the open source release of Ascape, I’ve attempted to
-update the code examples so that they will work with the released version. In a few places I have updated the text to
-reflect changes and improvements, and I hope Damon will excuse any inconsistencies that my slight revisions may
-introduce.</p>
-<p class="p17"><br>
-</p>
-<p class="p22">-Miles T. Parker</p>
-<p class="p19">September, 2007</p>
-<p class="p17"><br>
-</p>
-<p class="p19">I’ve spent some time converting the manual to HTML and for Eclipse built-in help system. This should
-make Damon's manual more accesible and directly usable for a wider audience. Unfortuntaly, I haven't had the time to
-fully test all of the models for the latest version of Ascape. There are also lot's of opportunitied to improve the
-manual further and now that it is in a standard text format that process will be much easier. This is an excellent
-opportunity for you the reader to contribute to the Ascape project; please let us know if you find any mistakes or would
-like to contribute to this document.</p>
-<p class="p17"><br>
-</p>
-<p class="p22">-Miles T. Parker</p>
-<p class="p19">January, 2010</p>
-<p class="p20"><br>
-</p>
 <p class="p15"><br>
 </p>
 <p class="p25"><br>
@@ -290,52 +324,12 @@ fluency in Java.</p>
 <p class="p20"><br>
 </p>
 <p class="p20"><br>
+</p>
 <p class="p16"><a name="license"><b>License.</b></a></p>
 <p class="p19">This manual is included as a part of the Ascape model development package. Ascape was originally
 developed at the Brookings Insititution, subsequently improved and extended at Bios Group and NuTech Solutions, Inc. and
 has now been released under a BSD Open Source license. Ongoing development and maintenance is provided by Metascape,
 LLC, Brookings, NuTech Solutions, Inc., and others. No endorsements of any organizations or products by any other
 organization is implied or intended.</p>
-<p class="p20"><br>
-</p>
-<p class="p27">Ascape was developed for the Java platform and can run on any contemporary computer system. For a
-copy of the latest release of Ascape, please visit <a href="http://www.biosgroup.com/"><span class="s2">ascape.sourceforge.net</span></a>.</p>
-<p class="p2"><br>
-</p>
-<p class="p27">This is the complete text of the Ascape license:</p>
-<p class="p2"><br>
-</p>
-<p class="p28">Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and
-contributors.</p>
-<p class="p29"><br>
-</p>
-<p class="p28">All rights reserved.</p>
-<p class="p29"><br>
-</p>
-<p class="p28">Redistribution and use in source and binary forms, with or without modification, are permitted
-provided that the following conditions are met:</p>
-<p class="p29"><br>
-</p>
-<p class="p28">Redistributions of source code must retain the above copyright notice, this list of conditions and
-the following disclaimer.</p>
-<p class="p29"><br>
-</p>
-<p class="p28">Redistributions in binary form must reproduce the above copyright notice,</p>
-<p class="p28">this list of conditions and the following disclaimer in the documentation</p>
-<p class="p28">and/or other materials provided with the distribution.</p>
-<p class="p29"><br>
-</p>
-<p class="p28">Neither the names of The Brookings Institution, NuTech Solutions,Inc. or Metascape LLC</p>
-<p class="p28">nor the names of its contributors may be used to endorse or promote products</p>
-<p class="p28">derived from this software without specific prior written permission.</p>
-<p class="p29"><br>
-</p>
-<p class="p28">THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
-PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
-INDIRECT, INCIDENTAL, SPECIAL,EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,</p>
-<p class="p28">PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
-HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
 </body>
 </html>
