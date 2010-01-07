@@ -1,7 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Doc Plug-in
+Bundle-Name: %pluginName
 Bundle-SymbolicName: org.ascape.doc;singleton:=true
-Bundle-Version: 5.1.0.qualifier
-Bundle-Vendor: Ascape.org
+Bundle-Version: 5.5.0.qualifier
+Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.help
+Bundle-Localization: plugin

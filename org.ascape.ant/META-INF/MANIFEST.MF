@@ -5,7 +5,7 @@ Bundle-SymbolicName: org.ascape.ant
 Bundle-Version: 5.5.0.qualifier
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.ascape.ant
-Require-Bundle: org.ascape.core;bundle-version="[5.2.0,6.0.0)",
- org.apache.ant;bundle-version="[1.6.5,1.8.0]",
+Require-Bundle: org.ascape.core,
+ org.apache.ant;bundle-version="[1.6.5,2.0.0)",
  org.jdom;bundle-version="1.0.0"
 Bundle-Vendor: Ascape.org
