@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+
+<plugin>
+<extension point="org.eclipse.ui.newWizards">
+   <wizard
+         category="org.eclipse.amp.amf.ide.wizards"
+         class="org.ascape.ide.AscapeJavaPluginProjectWizard"
+         descriptionImage="icons/AscapeLogo.png"
+         icon="icons/Ascape16.png"
+         id="org.eclipse.amp.escape.wizards.newProject"
+         name="Ascape for Java Swing"
+         project="true">
+      <description>
+         Creates a new &quot;plain old java&quot; project for Escape models.
+      </description>
+   </wizard>
+	</extension>
+</plugin>
