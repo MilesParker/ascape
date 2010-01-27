@@ -290,7 +290,7 @@ public class ControlBarView extends ControlActionView /* implements Externalizab
         }
     }
 
-    boolean addSlider;
+    boolean addSlider = true;
 
     public boolean isAddSlider() {
         return addSlider;
