@@ -13,15 +13,15 @@
 </p>
 <p class="p3"><img src="images/AscapeLogo.pdf" alt="AscapeLogo.pdf"></p>
 <p class="p4"><b>The Ascape Model Developer’s Manual</b></p>
-<p class="p6">Author: <i>Damon Centola</i></p>
+<p class="p6"><i>Damon Centola</i></p>
+<p class="p6">Revised by <i>Miles Parker</i></p>
 <p class="p1"><br>
 </p>
 <div style="color: blue">
 <p class="p4"><b>Ascape</b></p>
 <p class="p6">Design and Development: <i>Miles Parker</i></p>
 <p class="p6">Development: <i>Mario Inchiosa, Josh Miller and Oliver Mannion (Swing Navigator)</i></p>
-<p class="p6">Models, Extensions and QA: <i>Alan Lockard, Jason Harburger, Jim Girard, Roger Critchlow, Carl
-Tollander, Lisa Stuart, and many others...</i></p>
+<p class="p6">Models, Extensions and QA: <i>Alan Lockard, Jason Harburger, Jim Girard, Roger Critchlow, Carl Tollander, Lisa Stuart, and many others...</i></p>
 </div>
 <p class="p20"><br>
 </p>
@@ -46,6 +46,9 @@ Tollander, Lisa Stuart, and many others...</i></p>
 <p class="p10"><a href="#preface"><b>Preface</b></a>.</p>
 <p class="p9"><br>
 </p>
+<p class="p10"><a href="#escape-users"><b>Using with Escape</b></a>.</p>
+<p class="p9"><br>
+</p>
 <p class="p10"><a href="#introduction"><b>Introduction</b>. An Overview of the Ascape Model Developer’s Manual </a></p>
 <p class="p9"><br>
 </p>
@@ -62,8 +65,7 @@ Tollander, Lisa Stuart, and many others...</i></p>
 <p class="p10"><a href="Section1.html#license"><b>License</b></a>.</p>
 <p class="p9"><br>
 </p>
-<p class="p10"><a href="Section2.html"><b>Section 2.<span class="Apple-converted-space"> </span></b> The Ascape
-Modeling Framework</a></p>
+<p class="p10"><a href="Section2.html"><b>Section 2.<span class="Apple-converted-space"> </span></b> The Ascape Modeling Framework</a></p>
 <p class="p12"><a href="Section2.html#2.1">2.1 The Basic Structure of an Ascape Model</a></p>
 <p class="p12"><a href="Section2.html#2.2">2.2 Constructing the Agent Scapes</a></p>
 <p class="p11"><a href="Section2.html#2.2.1">2.2.1 Specifying agents in the model</a></p>
@@ -74,8 +76,7 @@ Modeling Framework</a></p>
 <p class="p11"><a href="Section2.html#2.3.1">2.3.1 The basic framework for a coordination game model</a></p>
 <p class="p9"><br>
 </p>
-<p class="p10"><a href="Section3.html"><b>Section 3.<span class="Apple-converted-space"> </span></b> The Ascape
-Tutorial</a></p>
+<p class="p10"><a href="Section3.html"><b>Section 3.<span class="Apple-converted-space"> </span></b> The Ascape Tutorial</a></p>
 <p class="p12"><a href="Section3.html#3.1">3.1 The Coordination Game Model</a></p>
 <p class="p11"><a href="Section3.html#3.1.1">3.1.1 Finishing the CoordinationGame Class</a></p>
 <p class="p14"><a href="Section3.html#3.1.1.1">3.1.1.1 The view object</a></p>
@@ -131,48 +132,20 @@ Tutorial</a></p>
 <p class="p16"><a name="forward"><b>Forward.</b></a></p>
 <p class="p17"><br>
 </p>
-<p class="p19">I’m extremely grateful to Damon Centola for writing a manual that is both thoughtful and practical,
-and that captures the essence of the Ascape approach. Damon wrote this manual in 2002 -- eight years ago as I write
-this!</p>
+<p class="p19">I’m extremely grateful to Damon Centola for writing a manual that is both thoughtful and practical, and that captures the essence of the Ascape approach. Damon wrote this manual in 2002 -- eight years ago as I write this!</p>
 <p class="p20"><br>
 </p>
-<p class="p19">It's hard to believe that it has been a dozen years or so since I first started writing the code for
-Ascape while working at Brookings. I felt at the time that Ascape -- and especially the ideas behind Ascape -- had a lot
-to offer to the Agent-Based Modeling community, and I still feel that way. In fact, if I can be bold, there are ideas
-within Ascape that still have not been widely adopted or appreciated. I take some of the blame for not doing a better
-job of communicating these ideas and approaches, but I think a major factor was the failure of the various institutions
-involved to release Ascape into Open Source until other tools became much more widely used. The period spent trying to
-Ascape out to a broader audience was frustrating, and ironically that has made me a little hesitant in encouraging
-people to use it. There are a number of good ABM platforms available now. But while I've been heavily involved in
-developing other toolsets, I find that I keep coming back to Ascape -- I've simply found that it stands up very well
-against newer toolsets. It has a simple but very expressive design that allows deep exploration of modeling issues
-across many dimensions, the UI works well, and models are fast. And of course, many of the cannonical Agent-Based Models
-were written in Ascape and are available as part of the Ascape distribution. But then, I'm biased. I simply hope you'll
-give it a try and let us know what you think.</p>
+<p class="p19">It's hard to believe that it has been a dozen years or so since I first started writing the code for Ascape while working at Brookings. I felt at the time that Ascape -- and especially the ideas behind Ascape -- had a lot to offer to the Agent-Based Modeling community, and I still feel that way. In fact, if I can be bold, there are ideas within Ascape that still have not been widely adopted or appreciated. I take some of the blame for not doing a better job of communicating these ideas and approaches, but I think a major factor was the failure of the various institutions involved to release Ascape into Open Source until other tools became much more widely used. The period spent trying to Ascape out to a broader audience was frustrating, and ironically that has made me a little hesitant in encouraging people to use it. There are a number of good ABM platforms available now. But while I've been heavily involved in developing other toolsets, I find that I keep coming
+back to Ascape -- I've simply found that it stands up very well against newer toolsets. It has a simple but very expressive design that allows deep exploration of modeling issues across many dimensions, the UI works well, and models are fast. And of course, many of the cannonical Agent-Based Models were written in Ascape and are available as part of the Ascape distribution. But then, I'm biased. I simply hope you'll give it a try and let us know what you think.</p>
 <p class="p20"><br>
 </p>
-<p class="p19">And there is a twist to the Ascape story. The Ascape API is a key component of a very modern set of
-tools that have been developed as part of the Eclipse Agent Modeling Platform project. Escape is a version of Ascape
-that is hosted within the Eclipse IDE. In fact, you can write your modeling code and execute it within the same
-environment. The really nice thing about Escape is that you can run Ascape models in it with very minor changes. AMP
-also provides high-level modeling tools that allow you to define ABMs at a very high-level with no programming involved,
-and then generate Java code from those models for Ascape, Escape and other platforms. Many of the Ascape design features
-will find their way into the next version of the Agent Modeling Framework meta-model, called Acore.</p>
+<p class="p19">And there is a twist to the Ascape story. The Ascape API is a key component of a very modern set of tools that have been developed as part of the Eclipse Agent Modeling Platform project. Escape is a version of Ascape that is hosted within the Eclipse IDE. In fact, you can write your modeling code and execute it within the same environment. The really nice thing about Escape is that you can run Ascape models in it with very minor changes. AMP also provides high-level modeling tools that allow you to define ABMs at a very high-level with no programming involved, and then generate Java code from those models for Ascape, Escape and other platforms. Many of the Ascape design features will find their way into the next version of the Agent Modeling Framework meta-model, called Acore.</p>
 <p class="p20"><br>
 </p>
-<p class="p19">Since the time when Damon wrote this manual, Ascape has had a relativly stable API, but it has still
-changed in significant if subtle ways. In preparation for the open source release of Ascape in 2007, I attempted to
-update the code examples so that they will work with the released version. Over the last few days I've converted the
-manual to HTML and for the Eclipse built-in help system. (Please forgive any remaining formatting issues as there is
-only so much hand editing of HTML code that any one person should have to endure at a sitting!) This should make Damon's
-manual more accesible and directly usable for a wider audience. In a few places I have updated the text to reflect
-changes and improvements, and I hope Damon will excuse any inconsistencies that my slight revisions may introduce.</p>
+<p class="p19">Since the time when Damon wrote this manual, Ascape has had a relativly stable API, but it has still changed in significant if subtle ways. In preparation for the open source release of Ascape in 2007, I attempted to update the code examples so that they will work with the released version. Over the last few days I've converted the manual to HTML and for the Eclipse built-in help system. (Please forgive any remaining formatting issues as there is only so much hand editing of HTML code that any one person should have to endure at a sitting!) This should make Damon's manual more accesible and directly usable for a wider audience. In a few places I have updated the text to reflect changes and improvements, and I hope Damon will excuse any inconsistencies that my slight revisions may introduce.</p>
 <p class="p20"><br>
 </p>
-<p class="p19">There are many potential improvements to the manual and now that it is in a standard text format that
-process will be much easier. This is an excellent opportunity for you, the reader, to become a contributor to the Ascape
-project; please let us know if you find any mistakes or would like to contribute to this document. And no matter what
-tool you end up using, I hope you enjoy diving deeper into the art of Agent-Based Modeling.</p>
+<p class="p19">There are many potential improvements to the manual and now that it is in a standard text format that process will be much easier. This is an excellent opportunity for you, the reader, to become a contributor to the Ascape project; please let us know if you find any mistakes or would like to contribute to this document. And no matter what tool you end up using, I hope you enjoy diving deeper into the art of Agent-Based Modeling.</p>
 <p class="p17"><br>
 </p>
 <p class="p17"><br>
@@ -191,42 +164,23 @@ tool you end up using, I hope you enjoy diving deeper into the art of Agent-Base
 </p>
 <p class="p18"><br>
 </p>
-<p class="p19">This manual was developed during the summer of 2002 at the Center for Social and Economic Dynamics at
-the Brookings Institution. The manual reflects the need for an introduction to agent-based modeling that serves the
-general social science community, and that also highlights the usefulness of Ascape for scientific research. Although
-agent-based models (ABMs) are equally useful in the biological and physical sciences as they are in the social sciences,
-methodological difficulties in the social sciences have motivated the widespread appeal of agent-based modeling.<span
-				class="Apple-converted-space">  </span>In recent years, agent-based modeling has become an increasingly important
-tool for modeling human social behavior.  The consensus among its proponents is that, in comparison to traditional
-analytic techniques, agent models can better represent human social life because of their facility for modeling
-heterogeneous agents, bounded rationality, out of equilibrium dynamics, and agent-agent interactions within social
-networks.</p>
+<p class="p19">This manual was developed during the summer of 2002 at the Center for Social and Economic Dynamics at the Brookings Institution. The manual reflects the need for an introduction to agent-based modeling that serves the general social science community, and that also highlights the usefulness of Ascape for scientific research. Although agent-based models (ABMs) are equally useful in the biological and physical sciences as they are in the social sciences, methodological difficulties in the social sciences have motivated the widespread appeal of agent-based modeling.<span class="Apple-converted-space">  </span>In recent years, agent-based modeling has become an increasingly important tool for modeling human social behavior.  The consensus among its proponents is that, in comparison to traditional analytic techniques, agent models can better represent human social life because of their facility for modeling heterogeneous agents, bounded rationality, out of equilibrium
+dynamics, and agent-agent interactions within social networks.</p>
 <p class="p20"><br>
 </p>
-<p class="p19">I developed this manual while I was a doctoral student in Philosophy at Johns Hopkins University. My
-introduction to agent-based modeling came from evolutionary biology, and my long-standing interest in the evolution of
-altruism and problems in group selection. My research has since broadened, understandably, to include many problems in
-social science. Recently, I have been working on the role of group selection dynamics in the formation of social
-institutions.</p>
+<p class="p19">I developed this manual while I was a doctoral student in Philosophy at Johns Hopkins University. My introduction to agent-based modeling came from evolutionary biology, and my long-standing interest in the evolution of altruism and problems in group selection. My research has since broadened, understandably, to include many problems in social science. Recently, I have been working on the role of group selection dynamics in the formation of social institutions.</p>
 <p class="p20"><br>
 </p>
-<p class="p19">This manual has benefited from extensive discussion with the inventor and developer of Ascape, Miles
-Parker, as well as from helpful comments from Josh Epstein and Peyton Young, and from the continued guidance of Rob
-Axtell. The manual has also benefited from earlier articles outlining the structure and use of Ascape. These articles
-include:</p>
+<p class="p19">This manual has benefited from extensive discussion with the inventor and developer of Ascape, Miles Parker, as well as from helpful comments from Josh Epstein and Peyton Young, and from the continued guidance of Rob Axtell. The manual has also benefited from earlier articles outlining the structure and use of Ascape. These articles include:</p>
 <p class="p20"><br>
 </p>
-<p class="p19">Parker, M. 1999. "Ascape: an Agent-based Modeling Environment in Java", Proceedings of Agent
-Simulation: Applications, Models, and Tools" University of Chicago.</p>
+<p class="p19">Parker, M. 1999. "Ascape: an Agent-based Modeling Environment in Java", Proceedings of Agent Simulation: Applications, Models, and Tools" University of Chicago.</p>
 <p class="p20"><br>
 </p>
-<p class="p19">Parker, M. 2000. "Ascape: Abstracting Complexity" Swarmfest 2000 Proceedings, forthcoming (Brookings
-Website)</p>
+<p class="p19">Parker, M. 2000. "Ascape: Abstracting Complexity" Swarmfest 2000 Proceedings, forthcoming (Brookings Website)</p>
 <p class="p21"><br>
 </p>
-<p class="p19">Parker, M. 2001. “What is Ascape and Why Should You Care?”,<span class="Apple-converted-space"> 
-</span>Journal of Artificial Societies and Social Simulation vol. 4, no. 1. <a
-				href="http://www.soc.surrey.ac.uk/JASSS/4/1/5.html"><span class="s2">http://www.soc.surrey.ac.uk/JASSS/4/1/5.html</span></a></p>
+<p class="p19">Parker, M. 2001. “What is Ascape and Why Should You Care?”,<span class="Apple-converted-space">  </span>Journal of Artificial Societies and Social Simulation vol. 4, no. 1. <a href="http://www.soc.surrey.ac.uk/JASSS/4/1/5.html"><span class="s2">http://www.soc.surrey.ac.uk/JASSS/4/1/5.html</span></a></p>
 <p class="p20"><br>
 </p>
 <p class="p20"><br>
@@ -242,7 +196,9 @@ Website)</p>
 </p>
 <p class="p25"><br>
 </p>
-
+<p class="p16"><a name="escape-users"><b>Using this manual with Escape.</b></a></p>
+<p class="p17"><br>
+<p>Escape is a next-generation tool thaat provides a complete integrated development environment and other substantial improvements over Ascape, while retainng the same easy to use and expressive API. There are a few minor changes that need to be made to the enlosed models in order to run them wihtin Escape. If you have Escape installed, please see the notes on converting Esape models there. Or load the example models already converted for Escape by following the tutorial in the Escape distribution.</p>
 <p class="p7"><a name="introduction"><b>Introduction.<span class="Apple-converted-space"> </span></b></a></p>
 <p class="p32"><br>
 </p>
@@ -261,62 +217,29 @@ Website)</p>
 </p>
 <p class="p20"><br>
 </p>
-<p class="p19">This manual is an introduction to agent-based modeling using the Ascape Modeling Framework. This
-framework is a set of Java classes that allow a developer to easily create collections of agents and assign these agents
-rules for interacting on a spatial lattice or in a network. The framework is also designed to allow the developer to
-easily monitor the behavior of the agents with a variety of statistical operations.</p>
+<p class="p19">This manual is an introduction to agent-based modeling using the Ascape Modeling Framework. This framework is a set of Java classes that allow a developer to easily create collections of agents and assign these agents rules for interacting on a spatial lattice or in a network. The framework is also designed to allow the developer to easily monitor the behavior of the agents with a variety of statistical operations.</p>
 <p class="p20"><br>
 </p>
-<p class="p19">Students of social science should be particularly interested in Ascape since it is designed to
-provide an easy way of abstracting human social interactions into a computational setting. This manual highlights a
-variety of social science models developed by researchers at the Brookings Institution, including the now well-known
-Sugarscape models. These examples should be taken as touchstones for developing new model ideas. The best way to learn
-Ascape is to use Ascape. All of the models discussed in this manual are part of the Ascape download package. New
-developers are encouraged to look at how these models work and to experiment with, and extend them.</p>
+<p class="p19">Students of social science should be particularly interested in Ascape since it is designed to provide an easy way of abstracting human social interactions into a computational setting. This manual highlights a variety of social science models developed by researchers at the Brookings Institution, including the now well-known Sugarscape models. These examples should be taken as touchstones for developing new model ideas. The best way to learn Ascape is to use Ascape. All of the models discussed in this manual are part of the Ascape download package. New developers are encouraged to look at how these models work and to experiment with, and extend them.</p>
 <p class="p20"><br>
 </p>
-<p class="p19"><span class="s1"><a href="Section1.html">Section 1</a></span> of this manual provides a basic
-introduction to agent-based modeling for those who have no previous experience with it. Even for those with rudimentary
-exposure to agent-based modeling, <a href="Section1.html">Section 1</a> may still be useful since it sets up many of the
-examples drawn upon later in the manual.</p>
+<p class="p19"><span class="s1"><a href="Section1.html">Section 1</a></span> of this manual provides a basic introduction to agent-based modeling for those who have no previous experience with it. Even for those with rudimentary exposure to agent-based modeling, <a href="Section1.html">Section 1</a> may still be useful since it sets up many of the examples drawn upon later in the manual.</p>
 <p class="p20"><br>
 </p>
-<p class="p19"><span class="s1"><a href="Section2.html">Section 2</a></span> of this manual is a basic introduction
-to the Ascape modeling framework. This section is required for anyone who has never developed in Ascape before. This
-section may also be useful for those who have some Ascape experience since it presents a clear exposition of the Ascape
-architecture.<span class="Apple-converted-space">  </span>The final part of <a href="Section2.html">Section 2</a> walks
-the reader through the creation of a rudimentary Ascape model, and so functions as an introduction to the Tutorial in <a
-				href="Section3.html">Section 3</a>.</p>
+<p class="p19"><span class="s1"><a href="Section2.html">Section 2</a></span> of this manual is a basic introduction to the Ascape modeling framework. This section is required for anyone who has never developed in Ascape before. This section may also be useful for those who have some Ascape experience since it presents a clear exposition of the Ascape architecture.<span class="Apple-converted-space">  </span>The final part of <a href="Section2.html">Section 2</a> walks the reader through the creation of a rudimentary Ascape model, and so functions as an introduction to the Tutorial in <a href="Section3.html">Section 3</a>.</p>
 <p class="p20"><br>
 </p>
-<p class="p19"><span class="s1"><a href="Section3.html">Section 3</a></span> develops a basic Coordination Game
-Model, and then explores various ways in which this model can be experimented with and extended. The tutorial covers
-various dynamics in agent interaction (imitation, best reply), agent reproduction, experimentation with
-synchronous/asynchronous updating, agents with memory, and agents interacting in social networks. There are many other
-topics that can be explored, and we hope the tutorial will function as a way of getting new developers comfortable
-enough with the code to start experimenting with Ascape’s other functionalities. The API documentation is a useful
-resource and should be consulted throughout for detailed information on the Ascape classes.</p>
+<p class="p19"><span class="s1"><a href="Section3.html">Section 3</a></span> develops a basic Coordination Game Model, and then explores various ways in which this model can be experimented with and extended. The tutorial covers various dynamics in agent interaction (imitation, best reply), agent reproduction, experimentation with synchronous/asynchronous updating, agents with memory, and agents interacting in social networks. There are many other topics that can be explored, and we hope the tutorial will function as a way of getting new developers comfortable enough with the code to start experimenting with Ascape’s other functionalities. The API documentation is a useful resource and should be consulted throughout for detailed information on the Ascape classes.</p>
 <p class="p20"><br>
 </p>
-<p class="p19">For information about installing and running Ascape, please see the separate Ascape QuickStart Guide.
-Part I covers the preliminary details of acquiring Ascape. It explains system requirements, and installation. It also
-explains how to run an Ascape model and how to use Ascape’s Control Bar. Part II is a developer-oriented guide that
-explains the directory hierarchy in the Ascape package, and how to set up a development environment for programming in
-Ascape. This section also explains what Java and Ascape ‘import’ files are needed in order to compile Ascape code, and
-what libraries should be included in the build directory.</p>
+<p class="p19">For information about installing and running Ascape, please see the separate Ascape QuickStart Guide. Part I covers the preliminary details of acquiring Ascape. It explains system requirements, and installation. It also explains how to run an Ascape model and how to use Ascape’s Control Bar. Part II is a developer-oriented guide that explains the directory hierarchy in the Ascape package, and how to set up a development environment for programming in Ascape. This section also explains what Java and Ascape ‘import’ files are needed in order to compile Ascape code, and what libraries should be included in the build directory.</p>
 <p class="p20"><br>
 </p>
-<p class="p19"><span class="s1"><a href="Appendix.html">Appendix 1</a></span> has the complete code samples from the
-tutorial in <a href="Section3.html">Section 3</a> with the import files and package information in the header. These
-files are ready-to-compile, and can simply be pasted into properly named files and compiled as Ascape models.</p>
+<p class="p19"><span class="s1"><a href="Appendix.html">Appendix 1</a></span> has the complete code samples from the tutorial in <a href="Section3.html">Section 3</a> with the import files and package information in the header. These files are ready-to-compile, and can simply be pasted into properly named files and compiled as Ascape models.</p>
 <p class="p20"><br>
 </p>
 <p class="p19"><b>Prerequisites for using this manual: </b></p>
-<p class="p19">For <a href="Section1.html">Section 1</a> and the majority of <a href="Section2.html">Section 2</a>,
-the reader should have a basic familiarity with the social sciences as well as working knowledge of one or more modern,
-object-oriented programming languages. The basic prerequisite is a certain amount of comfort with computing. For the end
-of <a href="Section2.html">Section 2</a> and for <a href="Section3.html">Section 3</a> the reader should have a basic
-fluency in Java.</p>
+<p class="p19">For <a href="Section1.html">Section 1</a> and the majority of <a href="Section2.html">Section 2</a>, the reader should have a basic familiarity with the social sciences as well as working knowledge of one or more modern, object-oriented programming languages. The basic prerequisite is a certain amount of comfort with computing. For the end of <a href="Section2.html">Section 2</a> and for <a href="Section3.html">Section 3</a> the reader should have a basic fluency in Java.</p>
 <p class="p20"><br>
 </p>
 <p class="p20"><br>
@@ -326,10 +249,6 @@ fluency in Java.</p>
 <p class="p20"><br>
 </p>
 <p class="p16"><a name="license"><b>License.</b></a></p>
-<p class="p19">This manual is included as a part of the Ascape model development package. Ascape was originally
-developed at the Brookings Insititution, subsequently improved and extended at Bios Group and NuTech Solutions, Inc. and
-has now been released under a BSD Open Source license. Ongoing development and maintenance is provided by Metascape,
-LLC, Brookings, NuTech Solutions, Inc., and others. No endorsements of any organizations or products by any other
-organization is implied or intended.</p>
+<p class="p19">This manual is included as a part of the Ascape model development package. Ascape was originally developed at the Brookings Insititution, subsequently improved and extended at Bios Group and NuTech Solutions, Inc. and has now been released under a BSD Open Source license. Ongoing development and maintenance is provided by Metascape, LLC, Brookings, NuTech Solutions, Inc., and others. No endorsements of any organizations or products by any other organization is implied or intended.</p>
 </body>
 </html>
