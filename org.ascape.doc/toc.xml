@@ -82,24 +82,40 @@
 </topic>
 <topic href="Content/manual/Section3.html#3.3" label="3.3 Summary and Conclusion"></topic>
 </topic>
-<topic href="Content/manual/Appendix.html" label="Appendix. Code Samples">
-<topic href="Content/manual/Appendix.html#1" label="Model 1: Coordination Game">
-<topic href="Content/manual/Appendix.html#1.1" label="CoordinationGame.java"></topic>
-<topic href="Content/manual/Appendix.html#1.2" label="CoordinationGamePlayer.java"></topic></topic>
-<topic href="Content/manual/Appendix.html#2" label="Model 2:Stochasticity and Averaging Statistics">
-<topic href="Content/manual/Appendix.html#2.1" label="CoordinationGame.java"></topic>
-<topic href="Content/manual/Appendix.html#2.2" label="CoordinationGamePlayer.java"></topic></topic>
-<topic href="Content/manual/Appendix.html#3" label="Model 3:Best Reply Dynamics">
-<topic href="Content/manual/Appendix.html#3.1" label="CoordinationGame.java"></topic>
-<topic href="Content/manual/Appendix.html#3.2" label="CoordinationGamePlayer.java"></topic></topic>
-<topic href="Content/manual/Appendix.html#4" label="Model 4: Biological Coordination Game">
-<topic href="Content/manual/Appendix.html#4.1" label="CoordinationGame.java"></topic>
-<topic href="Content/manual/Appendix.html#4.1" label="CoordinationGamePlayer.java"></topic></topic>
-<topic href="Content/manual/Appendix.html#5" label="Model 5: Friends Network Model">
-<topic href="Content/manual/Appendix.html#5.1" label="CoordinationGame.java"></topic>
-<topic href="Content/manual/Appendix.html#5.2" label="CoordinationGamePlayer.java"></topic></topic>
+<topic href="Content/manual/AppendixI.html" label="Appendix I. Ascape Code Samples">
+<topic href="Content/manual/AppendixI.html#1" label="Model 1: Coordination Game">
+<topic href="Content/manual/AppendixI.html#1.1" label="CoordinationGame.java"></topic>
+<topic href="Content/manual/AppendixI.html#1.2" label="CoordinationGamePlayer.java"></topic></topic>
+<topic href="Content/manual/AppendixI.html#2" label="Model 2:Stochasticity and Averaging Statistics">
+<topic href="Content/manual/AppendixI.html#2.1" label="CoordinationGame.java"></topic>
+<topic href="Content/manual/AppendixI.html#2.2" label="CoordinationGamePlayer.java"></topic></topic>
+<topic href="Content/manual/AppendixI.html#3" label="Model 3:Best Reply Dynamics">
+<topic href="Content/manual/AppendixI.html#3.1" label="CoordinationGame.java"></topic>
+<topic href="Content/manual/AppendixI.html#3.2" label="CoordinationGamePlayer.java"></topic></topic>
+<topic href="Content/manual/AppendixI.html#4" label="Model 4: Biological Coordination Game">
+<topic href="Content/manual/AppendixI.html#4.1" label="CoordinationGame.java"></topic>
+<topic href="Content/manual/AppendixI.html#4.1" label="CoordinationGamePlayer.java"></topic></topic>
+<topic href="Content/manual/AppendixI.html#5" label="Model 5: Friends Network Model">
+<topic href="Content/manual/AppendixI.html#5.1" label="CoordinationGame.java"></topic>
+<topic href="Content/manual/AppendixI.html#5.2" label="CoordinationGamePlayer.java"></topic></topic>
 </topic>
-</topic>
+<topic href="Content/manual/AppendixII.html" label="Appendix II. Escape Code Samples">
+<topic href="Content/manual/AppendixII.html#1" label="Model 1: Coordination Game">
+<topic href="Content/manual/AppendixII.html#1.1" label="CoordinationGame.java"></topic>
+<topic href="Content/manual/AppendixII.html#1.2" label="CoordinationGamePlayer.java"></topic></topic>
+<topic href="Content/manual/AppendixII.html#2" label="Model 2:Stochasticity and Averaging Statistics">
+<topic href="Content/manual/AppendixII.html#2.1" label="CoordinationGame.java"></topic>
+<topic href="Content/manual/AppendixII.html#2.2" label="CoordinationGamePlayer.java"></topic></topic>
+<topic href="Content/manual/AppendixII.html#3" label="Model 3:Best Reply Dynamics">
+<topic href="Content/manual/AppendixII.html#3.1" label="CoordinationGame.java"></topic>
+<topic href="Content/manual/AppendixII.html#3.2" label="CoordinationGamePlayer.java"></topic></topic>
+<topic href="Content/manual/AppendixII.html#4" label="Model 4: Biological Coordination Game">
+<topic href="Content/manual/AppendixII.html#4.1" label="CoordinationGame.java"></topic>
+<topic href="Content/manual/AppendixII.html#4.1" label="CoordinationGamePlayer.java"></topic></topic>
+<topic href="Content/manual/AppendixII.html#5" label="Model 5: Friends Network Model">
+<topic href="Content/manual/AppendixII.html#5.1" label="CoordinationGame.java"></topic>
+<topic href="Content/manual/AppendixII.html#5.2" label="CoordinationGamePlayer.java"></topic></topic>
+</topic></topic>
    <topic label="Reference">
       <topic href="Content/api/index.html" label="API">
       </topic>
