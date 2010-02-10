@@ -28,6 +28,7 @@ import java.util.Vector;
 import javax.swing.Action;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -108,7 +109,7 @@ public abstract class SwingEnvironment extends AbstractUIEnvironment {
 	/**
 	 * The list of open frames.
 	 */
-	transient Vector frames;
+	transient Vector<ViewFrameBridge> frames;
 
 	/**
 	 * A sparse map for objects currently being edited by one or more editors.
@@ -728,8 +729,44 @@ public abstract class SwingEnvironment extends AbstractUIEnvironment {
 	 * 
 	 * @return the all frames
 	 */
-	public Vector getAllFrames() {
+	public Vector<ViewFrameBridge> getAllFrames() {
 		return frames;
+	}
+
+	/**
+	 * Get the currently selected frame in the environment.
+	 * 
+	 * @return currently selected {@link ViewFrameBridge}.
+	 */
+	public ViewFrameBridge getSelectedFrame() {
+		ViewFrameBridge selectedVFB = null;
+
+		for (ViewFrameBridge vfb : frames) {
+			if (vfb.isSelected()) {
+				selectedVFB = vfb;
+			}
+		}
+
+		return selectedVFB;
+
+	}
+
+	/**
+	 * Get the first component from the currently selected frame in the
+	 * environment.
+	 * 
+	 * @return currently selected frame's first component
+	 */
+	public Component getSelectedComponent() {
+		ViewFrameBridge selectedVFB = getSelectedFrame();
+
+		if (selectedVFB == null) {
+			return null;
+		}
+
+		JPanel panel = selectedVFB.getViewPanel();
+
+		return panel.getComponent(0);
 	}
 }
 

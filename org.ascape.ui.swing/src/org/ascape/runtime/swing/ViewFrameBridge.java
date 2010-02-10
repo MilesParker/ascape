@@ -1342,7 +1342,7 @@ public class ViewFrameBridge implements Serializable {
      * 
      * @return the view panel
      */
-    public Component getViewPanel() {
+    public JPanel getViewPanel() {
         return viewPanel;
     }
 
@@ -1411,6 +1411,27 @@ public class ViewFrameBridge implements Serializable {
         }
         return "None";
     }
+
+
+	/**
+	 * Is this the currently selected internal frame, or the frame with the
+	 * focus?
+	 * 
+	 * @return true if this a {@link JInternalFrame} that is selected,
+	 * or a {@link Frame} or {@link JFrame} that has the focus.
+	 */
+	public boolean isSelected() {
+		if (frameImp != null) {
+			if (frameImp instanceof ViewFrame) {
+				return ((ViewFrame) frameImp).isFocusOwner();
+			} else if (frameImp instanceof ViewJFrame) {
+				return ((ViewJFrame) frameImp).isFocusOwner();
+			} else if (frameImp instanceof ViewJInternalFrame) {
+				return ((ViewJInternalFrame) frameImp).isSelected();
+			}
+		}
+		return false;
+	}
 
     /**
      * Sets the title for this frame to the specified string.
