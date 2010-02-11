@@ -131,6 +131,17 @@ public abstract class DefaultScapeListener implements ScapeListener, Serializabl
         ((Scape) scapeEvent.getSource()).removeScapeListener(this);
     }
 
+	/**
+	 * Called before quitting to determine whether we can quit or not. Allows
+	 * the quit processed to be cancelled by returning {@code false}
+	 * 
+	 * @return {@code false}, if quit process is to be interrupted, otherwise
+	 *         {@code true}.
+	 */
+	public boolean scapeCanQuit() {
+		return true;
+	}
+    
     /**
      * Method called as the scape is about to be closed. Allows any final view
      * cleanup.

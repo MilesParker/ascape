@@ -2670,6 +2670,25 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
     public void scapeClosing(ScapeEvent scapeEvent) {
     }
 
+	/**
+	 * Check with all the {@link #scapeListeners} whether we can quit.
+	 * 
+	 * @return {@code false}, if quit process is to be interrupted, otherwise
+	 *         {@code true}.
+	 */
+	public boolean scapeCanQuit() {
+		
+		if (scapeListeners.size() > 0) {
+			ArrayList currentListeners = (ArrayList) scapeListeners.clone();
+			for (Object listener : currentListeners) {
+				if ( ! ((ScapeListener) listener).scapeCanQuit() ) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+    
     /**
      * Method called as the entire envornmnet is about to be exited.
      * 

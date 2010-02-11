@@ -82,6 +82,15 @@ public interface ScapeListener extends EventListener, HasName, Cloneable {
      */
     public void scapeClosing(ScapeEvent scapeEvent);
 
+	/**
+	 * Called before quitting to determine whether we can quit or not. Allows
+	 * the quit processed to be cancelled by returning {@code false}
+	 * 
+	 * @return {@code false}, if quit process is to be interrupted, otherwise
+	 *         {@code true}.
+	 */
+	public boolean scapeCanQuit();
+    
     /**
      * Method called as the environment is about to quit. Note that this method
      * may not actually be called by a scape at all. Allows any final view
@@ -89,6 +98,8 @@ public interface ScapeListener extends EventListener, HasName, Cloneable {
      * 
      * @param scapeEvent
      *            the scape event
+     * @deprecated use {@link #scapeCanQuit()} instead, which can return a value
+     * 			that cancels the quit process
      */
     public void environmentQuiting(ScapeEvent scapeEvent);
 
