@@ -14,9 +14,9 @@ import org.ascape.util.swing.PanelViewUtil;
 import org.ascape.view.vis.PanelView;
 
 /**
- * Tree node that displays a panel view when clicked on. For clicking to work,
- * the {@link PeformActionOnSelectedNode} listener must be installed on the
- * JTree.
+ * Tree node that displays a panel view with a table when clicked on. For
+ * clicking to work, the {@link PeformActionOnSelectedNode} listener must be
+ * installed on the JTree.
  * 
  * @author Oliver Mannion
  * @version $Revision$

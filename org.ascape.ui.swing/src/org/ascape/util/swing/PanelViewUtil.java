@@ -3,10 +3,12 @@ package org.ascape.util.swing;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.LayoutManager;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.table.TableColumn;
 
 import org.ascape.view.vis.PanelView;
@@ -19,10 +21,23 @@ import org.ascape.view.vis.PanelView;
  */
 public final class PanelViewUtil {
 
+	/**
+	 * The border around the max size of a {@link PanelView} displaying a table.
+	 * See {@link #createPanelView(JTable, Dimension)}.
+	 */
+	public static final Dimension TABLE_BORDER_EDGES = new Dimension(20, 20);
+
+	/**
+	 * The border around the max size of a {@link PanelView} displaying a
+	 * textarea. See {@link #createPanelView(String, String, Dimension).
+	 */
+	public static final Dimension TEXTAREA_BORDER_EDGES =
+			new Dimension(40, 40);
+
 	private PanelViewUtil() {
 		// no instantiation
 	}
-	
+
 	/**
 	 * Create Panel View that resizes its components when it is resized. This is
 	 * a convenience method that calls
@@ -37,7 +52,7 @@ public final class PanelViewUtil {
 	}
 
 	/**
-	 * Create a new Panel View with the specified name and LayoutManager.
+	 * Create a new empty Panel View with the specified name and LayoutManager.
 	 * 
 	 * @param name
 	 *            name of the panel view, can be {@code null}.
@@ -108,10 +123,60 @@ public final class PanelViewUtil {
 	}
 
 	/**
-	 * The border around the max size of a Panel View. See
-	 * {@link #createPanelView(JTable, Dimension)}.
+	 * Create a {@link PanelView} that displays a section of text in a
+	 * {@link JTextArea}.
+	 * 
+	 * @param name
+	 *            name of the {@link PanelView}
+	 * @param text
+	 *            text to display in text area
+	 * @param maxSize
+	 *            max display dimensions of the text area, less
+	 *            {@link #TEXTAREA_BORDER_EDGES}.
+	 * @param font
+	 *            font for the text area
+	 * @return panel view
 	 */
-	public static final Dimension BORDER_EDGES = new Dimension(20, 20);
+	public static PanelView createPanelView(String name, String text,
+			Dimension maxSize, Font font) {
+		// create a new empty PanelView
+		PanelView pv = createPanelView(name, new BorderLayout());
+
+		// create text area
+		JTextArea textArea = new JTextArea(text);
+		textArea.setFont(font);
+
+		// create scroll pane around text area
+		JScrollPane scrollPane = new JScrollPane(textArea);
+
+		// tell the scroll pane enclosing the table to size its viewport
+		// to the smaller of the textarea's preferred size or maxSize
+		if (maxSize != null) {
+			Dimension prefSize = scrollPane.getPreferredSize();
+
+			// weird adjustment factor needed otherwise we end up with
+			// scroll bars on the opposite side from the one we adjust
+			prefSize.width += 20;
+			prefSize.height += 20;
+
+			/*
+			 * Dimension displayArea = subtract(maxSize, TEXTAREA_BORDER_EDGES);
+			 * 
+			 * int newWidth = prefSize.width < displayArea.width ?
+			 * prefSize.width : displayArea.width; int newHeight =
+			 * prefSize.height < displayArea.height ? prefSize.height :
+			 * displayArea.height;
+			 */
+			scrollPane.setPreferredSize(min(prefSize, subtract(maxSize,
+					TEXTAREA_BORDER_EDGES)));
+		}
+
+		// add scroll pane to PanelView
+		pv.add(scrollPane, BorderLayout.CENTER);
+
+		return pv;
+
+	}
 
 	/**
 	 * Create a PanelView that displays a table.
@@ -120,17 +185,15 @@ public final class PanelViewUtil {
 	 *            table to display.
 	 * @param maxSize
 	 *            max display dimensions of the table, less
-	 *            {@link #BORDER_EDGES}. If {@code null} will display the table
-	 *            at it's preferred size.
+	 *            {@link #TABLE_BORDER_EDGES}. If {@code null} will display the
+	 *            table at it's preferred size.
 	 * @return PanelView containing the table.
 	 */
 	public static PanelView createPanelView(JTable table, Dimension maxSize) {
 		// sizeAllColumnsToHeaderWidths(table);
 
 		// tell the scroll pane enclosing the table to size its viewport
-		// to the table's preferred size.
-		// table.setPreferredScrollableViewportSize(table.getPreferredSize());
-
+		// to the smaller of the table's preferred size or maxSize
 		if (maxSize == null) {
 			table
 					.setPreferredScrollableViewportSize(table
@@ -140,7 +203,7 @@ public final class PanelViewUtil {
 			Dimension prefSize = table.getPreferredSize();
 
 			table.setPreferredScrollableViewportSize(min(prefSize, subtract(
-					maxSize, BORDER_EDGES)));
+					maxSize, TABLE_BORDER_EDGES)));
 		}
 
 		// allow sorting using the column headers
@@ -203,6 +266,5 @@ public final class PanelViewUtil {
 			delegate.viewPainted();
 		}
 	}
-
 
 }

@@ -18,7 +18,7 @@ import org.ascape.view.vis.PanelView;
  * @version $Revision$
  * 
  */
-public class PanelViewNodes extends DefaultMutableTreeNode {
+public class PanelViewNodeFolder extends DefaultMutableTreeNode {
 
 	/**
 	 * 
@@ -28,7 +28,7 @@ public class PanelViewNodes extends DefaultMutableTreeNode {
 	private final Scape scape;
 
 	/**
-	 * Construct a {@link PanelViewNodes}.
+	 * Construct a {@link PanelViewNodeFolder}.
 	 * 
 	 * @param name
 	 *            name of node in the tree
@@ -37,7 +37,8 @@ public class PanelViewNodes extends DefaultMutableTreeNode {
 	 * @param treeModel
 	 *            tree model to add children nodes
 	 */
-	public PanelViewNodes(String name, Scape scape, DefaultTreeModel treeModel) {
+	public PanelViewNodeFolder(String name, Scape scape,
+			DefaultTreeModel treeModel) {
 		super(name);
 		this.scape = scape;
 		this.treeModel = treeModel;
