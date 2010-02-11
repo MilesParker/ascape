@@ -121,7 +121,7 @@ public class PanelView extends JPanel implements ComponentView, Externalizable {
      */
     public void scapeRemoved(ScapeEvent scapeEvent) {
         delegate.scapeRemoved(scapeEvent);
-        //We actaully need the scape value around so that we can still send control events back from control bar view
+        //We actually need the scape value around so that we can still send control events back from control bar view
         //Arguably this vale (as "former" scape should persist anyway.
         //this.scape = null;
     }
@@ -200,6 +200,13 @@ public class PanelView extends JPanel implements ComponentView, Externalizable {
      */
     public void scapeClosing(ScapeEvent scapeEvent) {
     }
+
+    /**
+     * Method called to test whether we can quit.
+     */
+	public boolean scapeCanQuit() {
+		return true;
+	}
 
     /**
      * Method called when the environment quits.
@@ -483,4 +490,5 @@ public class PanelView extends JPanel implements ComponentView, Externalizable {
     public String toString() {
         return name;
     }
+
 }

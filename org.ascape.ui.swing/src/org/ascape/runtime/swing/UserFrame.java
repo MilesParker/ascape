@@ -45,6 +45,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.RepaintManager;
 import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.plaf.basic.BasicSplitPaneUI;
@@ -230,6 +231,11 @@ public class UserFrame extends JFrame {
 			}
 
 			public void windowClosing(WindowEvent e) {
+				// tell window not to close
+				// (environment.quit() will do this for us if we can quit)
+				setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+				
+				// execute quit on new thread instead of AWT
 				new Thread("Quit") {
 					public void run() {
 						environment.quit();

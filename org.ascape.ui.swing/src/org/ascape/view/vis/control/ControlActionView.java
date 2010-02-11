@@ -31,6 +31,7 @@ import org.ascape.movie.RecorderListener;
 import org.ascape.movie.qt.QuickTimeRecorder;
 import org.ascape.runtime.swing.DesktopEnvironment;
 import org.ascape.runtime.swing.SearchView;
+import org.ascape.util.swing.AscapeGUIUtil;
 import org.ascape.view.custom.BaseCustomizer;
 import org.ascape.view.vis.ChartView;
 import org.ascape.view.vis.ComponentView;
@@ -355,8 +356,17 @@ public class ControlActionView extends ScapeTransitionPanelView implements Recor
             private static final long serialVersionUID = -3147220495521509564L;
 
             public void actionPerformed(ActionEvent e) {
-                getScape().respondControl(new ControlEvent(this, ControlEvent.REQUEST_QUIT));
-                getScape().getRunner().getEnvironment().quit();
+            	//NB: after the simulation has ended, this will have been
+            	//removed from the scape so we can't use getScape()
+                //getScape().respondControl(new ControlEvent(this, ControlEvent.REQUEST_QUIT));
+                //getScape().getRunner().getEnvironment().quit();
+                
+				// execute quit on new thread instead of AWT
+				new Thread("Quit") {
+					public void run() {
+						AscapeGUIUtil.getDesktopEnvironment().quit();
+					}
+				}.start();
             }
         };
         quitAction.putValue(Action.NAME, "Quit");
