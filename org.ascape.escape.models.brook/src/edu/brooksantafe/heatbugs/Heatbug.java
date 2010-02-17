@@ -1,8 +1,8 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, with revisions by Metascape LLC, and others. 
+ * Copyright 1998-2007 The Brookings Institution, with revisions by Metascape LLC, and others.
  * All rights reserved.
  * This program and the accompanying materials are made available solely under of the BSD license "brookings-models-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
 package edu.brooksantafe.heatbugs;
@@ -47,9 +47,9 @@ public class Heatbug extends CellOccupant implements IColorProvider {
     public void initialize() {
         super.initialize();
         idealTemperature = randomInRange(((HeatbugModel) getRoot()).getMinIdealTemp(), ((HeatbugModel) getRoot())
-                .getMaxIdealTemp());
+                                         .getMaxIdealTemp());
         outputHeat = randomInRange(((HeatbugModel) getRoot()).getMinOutputHeat(), ((HeatbugModel) getRoot())
-                .getMaxOutputHeat());
+                                   .getMaxOutputHeat());
     }
 
     /**
@@ -77,8 +77,8 @@ public class Heatbug extends CellOccupant implements IColorProvider {
         HeatCell oldHost = (HeatCell) getHostCell();
         if (unhappiness != 0.0) {
             Cell bestLocation;
-            DataPoint maximizeFor = (((HeatCell) getHostCell()).getHeat() < idealTemperature)
-                ? HeatCell.MAXIMUM_HEAT_POINT : HeatCell.MINIMUM_HEAT_POINT;
+            DataPoint maximizeFor = ((HeatCell) getHostCell()).getHeat() < idealTemperature
+            ? HeatCell.MAXIMUM_HEAT_POINT : HeatCell.MINIMUM_HEAT_POINT;
             bestLocation = (Cell) getHostCell().findMaximumWithin(maximizeFor, true, 1);
             if (!bestLocation.isAvailable() && bestLocation != oldHost) {
                 randomWalkAvailable();
@@ -106,8 +106,8 @@ public class Heatbug extends CellOccupant implements IColorProvider {
         HeatCell oldHost = (HeatCell) getHostCell();
         if (unhappiness != 0.0) {
             Cell bestLocation;
-            DataPoint maximizeFor = (((HeatCell) getHostCell()).getHeat() < idealTemperature)
-                ? HeatCell.MAXIMUM_HEAT_POINT : HeatCell.MINIMUM_HEAT_POINT;
+            DataPoint maximizeFor = ((HeatCell) getHostCell()).getHeat() < idealTemperature
+            ? HeatCell.MAXIMUM_HEAT_POINT : HeatCell.MINIMUM_HEAT_POINT;
             bestLocation = (Cell) getHostCell().findMaximumWithin(maximizeFor, true, 1);
             if (!bestLocation.isAvailable() && bestLocation != oldHost) {
                 randomWalkAvailable();
@@ -183,6 +183,6 @@ public class Heatbug extends CellOccupant implements IColorProvider {
     }
 
     public String getName() {
-        return "Heat Cell " + coordinate;
+        return "Heat Bug " + coordinate;
     }
 }

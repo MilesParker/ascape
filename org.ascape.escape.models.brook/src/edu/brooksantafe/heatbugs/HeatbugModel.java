@@ -1,8 +1,8 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, with revisions by Metascape LLC, and others. 
+ * Copyright 1998-2007 The Brookings Institution, with revisions by Metascape LLC, and others.
  * All rights reserved.
  * This program and the accompanying materials are made available solely under of the BSD license "brookings-models-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
 package edu.brooksantafe.heatbugs;
@@ -90,6 +90,8 @@ public class HeatbugModel extends Scape {
      */
     private Scape world;
 
+    private static ColorFeatureGradiated cellColorFeature;
+
     /**
      * Create the heatbug collection and the heatbug world. Add rules to the heatbugs and world. (These rules could also
      * have been added within the Heatbug and HeatCell code.)
@@ -112,7 +114,6 @@ public class HeatbugModel extends Scape {
         Heatbug protoBug = new Heatbug();
         protoBug.setHostScape(world);
         heatbugs = new Scape(new Array1D(), "Heatbugs", protoBug);
-        heatbugs.setExtent(new Coordinate1DDiscrete(numBugs));
         add(heatbugs);
         // Add rules to the scapes
         Rule happinessRule = new Rule("Calculate Happiness") {
@@ -154,6 +155,19 @@ public class HeatbugModel extends Scape {
         heatbugs.addRule(classicRule);
         heatbugs.addRule(heatRule, false);
         heatbugs.addRule(MOVEMENT_RULE, false);
+
+        final StatCollector[] stats = { new StatCollectorCSAMM("Unhappiness") {
+            /**
+             * 
+             */
+            private static final long serialVersionUID = 1128002607217575644L;
+
+            public double getValue(Object object) {
+                return ((Heatbug) object).getUnhappiness();
+            }
+        } };
+        // Add the new values stats to agents
+        heatbugs.addStatCollectors(stats);
     }
 
     /**
@@ -172,41 +186,36 @@ public class HeatbugModel extends Scape {
      * Create the user interface for the model.
      */
     public void createGraphicViews() {
-        super.createGraphicViews();
         // Now, add a simple overhead view so that we can view the lattice:
         Overhead2DView heatView = new Overhead2DView();
-        final ColorFeatureGradiated colorCellForHeat = new ColorFeatureGradiated("Heat");
-        colorCellForHeat.setDataPoint(new UnitIntervalDataPoint() {
-            /**
-             * 
-             */
-            private static final long serialVersionUID = -2531885404699139679L;
-
-            public double getValue(Object object) {
-                return ((double) ((HeatCell) object).getHeat() / HeatCell.MAX_HEAT);
-            }
-        });
-        colorCellForHeat.setMinimumColor(ColorFeature.BLACK);
-        colorCellForHeat.setMaximumColor(ColorFeature.RED);
+        final ColorFeatureGradiated colorCellForHeat = getCellColorFeature();
         world.addView(heatView);
         heatView.setPrimaryAgentColorFeature(colorCellForHeat);
         heatView.setHostedAgentColorFeature(ColorFeatureFixed.green);
-        // ((Overhead2DViewPart) heatView.getView()).setCellSize(4);
         heatView.getDrawSelection().clearSelection();
         heatView.getDrawSelection().setSelected(heatView.agents_fill_cells_draw_feature, true);
+    }
 
-        final StatCollector[] stats = { new StatCollectorCSAMM("Unhappiness") {
-            /**
+    /**
+     * @return
+     */
+    public static ColorFeatureGradiated getCellColorFeature() {
+        if (cellColorFeature == null) {
+            cellColorFeature = new ColorFeatureGradiated("Heat");
+            cellColorFeature.setDataPoint(new UnitIntervalDataPoint() {
+                /**
                  * 
                  */
-            private static final long serialVersionUID = 1128002607217575644L;
+                private static final long serialVersionUID = -2531885404699139679L;
 
-            public double getValue(Object object) {
-                return ((Heatbug) object).getUnhappiness();
-            }
-        } };
-        // Add the new values stats to agents
-        heatbugs.addStatCollectors(stats);
+                public double getValue(Object object) {
+                    return (double) ((HeatCell) object).getHeat() / HeatCell.MAX_HEAT;
+                }
+            });
+            cellColorFeature.setMinimumColor(ColorFeature.BLACK);
+            cellColorFeature.setMaximumColor(ColorFeature.RED);
+        }
+        return cellColorFeature;
     }
 
     /*
