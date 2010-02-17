@@ -186,7 +186,7 @@ public class Model_J extends Scape {
         }
     };
 
-    private class Bion extends CellOccupant {
+    public class Bion extends CellOccupant {
 
         /**
          * 
@@ -258,7 +258,7 @@ public class Model_J extends Scape {
         }
     }
 
-    class RedBion extends Bion {
+    public class RedBion extends Bion {
 
         /**
          * 
@@ -269,9 +269,9 @@ public class Model_J extends Scape {
             return Color.red;
         }
 
-        public Image getImage() {
-            return ImageFeatureFixed.redBall;
-        }
+//        public Image getImage() {
+//            return ImageFeatureFixed.redBall;
+//        }
 
         public void leaveEnergy() {
             super.leaveEnergy();
@@ -279,7 +279,7 @@ public class Model_J extends Scape {
         }
     }
 
-    class OrangeBion extends Bion {
+    public class OrangeBion extends Bion {
 
         /**
          * 
@@ -290,9 +290,9 @@ public class Model_J extends Scape {
             return Color.orange;
         }
 
-        public Image getImage() {
-            return ImageFeatureFixed.orangeBall;
-        }
+//        public Image getImage() {
+//            return ImageFeatureFixed.orangeBall;
+//        }
 
         public void leaveEnergy() {
             super.leaveEnergy();
@@ -300,7 +300,7 @@ public class Model_J extends Scape {
         }
     }
 
-    class BlueBion extends Bion {
+    public class BlueBion extends Bion {
 
         /**
          * 
@@ -311,9 +311,9 @@ public class Model_J extends Scape {
             return Color.blue;
         }
 
-        public Image getImage() {
-            return ImageFeatureFixed.blueBall;
-        }
+//        public Image getImage() {
+//            return ImageFeatureFixed.blueBall;
+//        }
 
         public void leaveEnergy() {
             super.leaveEnergy();
