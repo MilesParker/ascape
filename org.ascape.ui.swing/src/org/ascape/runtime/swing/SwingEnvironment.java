@@ -225,9 +225,9 @@ public abstract class SwingEnvironment extends AbstractUIEnvironment {
 	 * @param scape
 	 *            the scape
 	 * @param e
-	 *            the e
+	 *            the exception
 	 */
-	public void showErrorDialog(Scape scape, RuntimeException e) {
+	public void showErrorDialog(Scape scape, Exception e) {
 		if (runtimeMode == RELEASE_RUNTIME_MODE) {
 			String msg = "Sorry, an exception occured: " + e.toString();
 			String title = "Runtime Exception";
@@ -246,7 +246,11 @@ public abstract class SwingEnvironment extends AbstractUIEnvironment {
 								"Quit");
 				switch (choice) {
 				case 0:
-					throw e;
+					if (e instanceof RuntimeException) {
+						throw (RuntimeException)e;
+					} else {
+						throw new RuntimeException(e);
+					}
 				case 1:
 					String modelName = scape.getClass().getName();
 					scape.getRunner().close();
@@ -270,7 +274,11 @@ public abstract class SwingEnvironment extends AbstractUIEnvironment {
 								"Quit");
 				switch (choice) {
 				case 0:
-					throw e;
+					if (e instanceof RuntimeException) {
+						throw (RuntimeException)e;
+					} else {
+						throw new RuntimeException(e);
+					}
 				case 1:
 					System.exit(0);
 					break;
@@ -281,7 +289,11 @@ public abstract class SwingEnvironment extends AbstractUIEnvironment {
 			}
 			// End comment out for web
 		} else {
-			throw e;
+			if (e instanceof RuntimeException) {
+				throw (RuntimeException)e;
+			} else {
+				throw new RuntimeException(e);
+			}
 		}
 	}
 

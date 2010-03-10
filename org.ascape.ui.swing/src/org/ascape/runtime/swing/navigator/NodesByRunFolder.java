@@ -130,7 +130,8 @@ public class NodesByRunFolder extends DefaultMutableTreeNode {
 	 *            table to display when the child is clicked on
 	 */
 	public void addChildTableNode(int runNumber, JTable table) {
-		PanelViewNode newNode = new PanelViewNode(scape, table);
+		PanelViewNodeProvider provider = new PanelViewTable(table);
+		PanelViewNode newNode = new PanelViewNode(scape, provider);
 		addChildNode(runNumber, newNode);
 	}
 
@@ -144,7 +145,7 @@ public class NodesByRunFolder extends DefaultMutableTreeNode {
 	 * @param newNode
 	 *            panel view node
 	 */
-	public void addChildNode(int runNumber, PanelViewNode newNode) {
+	public void addChildNode(int runNumber, DefaultMutableTreeNode newNode) {
 		PanelViewNodeFolder runParent = getRunSubFolderNode(runNumber);
 		treeModel.insertNodeInto(newNode, runParent, runParent
 				.getChildCount());

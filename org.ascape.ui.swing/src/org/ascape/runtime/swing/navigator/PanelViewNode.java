@@ -1,16 +1,12 @@
 package org.ascape.runtime.swing.navigator;
 
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JTable;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 import org.ascape.model.Scape;
-import org.ascape.util.swing.AscapeGUIUtil;
-import org.ascape.util.swing.PanelViewUtil;
 import org.ascape.view.vis.PanelView;
 
 /**
@@ -26,24 +22,24 @@ public class PanelViewNode extends DefaultMutableTreeNode implements
 
 	private static final long serialVersionUID = 6327681491877012320L;
 	private PanelView panelView;
-	private final JTable table;
+	private final PanelViewNodeProvider provider;
 	private final Scape scape;
 	private final String name;
 
 	/**
-	 * Create a PanelViewNode that when clicked will display the passed in
-	 * JTable. The node's title is the name of the table.
+	 * Create a {@link PanelViewNode} that when clicked will display the
+	 * {@link PanelView} supplied by a {@link PanelViewNodeProvider}.
 	 * 
 	 * @param scape
 	 *            scape to associate this instance with.
-	 * @param table
-	 *            JTable to display in a PanelView when this node is clicked.
+	 * @param provider
+	 *            {@link PanelViewNodeProvider} to execute when this node is clicked.
 	 */
-	public PanelViewNode(Scape scape, JTable table) {
-		super(table);
+	public PanelViewNode(Scape scape, PanelViewNodeProvider provider) {
+		super(provider);
 		this.scape = scape;
-		this.name = table.getName();
-		this.table = table;
+		this.name = provider.getName();
+		this.provider = provider;
 	}
 
 	/**
@@ -68,9 +64,7 @@ public class PanelViewNode extends DefaultMutableTreeNode implements
 		if (panelView == null
 				|| scape.getScapeListeners().indexOf(panelView) == -1) {
 
-			// Create a PanelView from the Table
-			Dimension desktopSize = AscapeGUIUtil.getDesktopSize(scape);
-			panelView = PanelViewUtil.createPanelView(table, desktopSize);
+			panelView = provider.getPanelView();
 
 			// add the panelView to the scape,
 			// which will display it in the GUI

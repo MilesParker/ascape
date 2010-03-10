@@ -67,7 +67,8 @@ public class PanelViewNodeFolder extends DefaultMutableTreeNode {
 	 *            table to display when the child is clicked on
 	 */
 	public void addChildTableNode(JTable table) {
-		PanelViewNode newNode = new PanelViewNode(scape, table);
+		PanelViewNodeProvider provider = new PanelViewTable(table);
+		PanelViewNode newNode = new PanelViewNode(scape, provider);
 		addChildNode(newNode);
 	}
 
