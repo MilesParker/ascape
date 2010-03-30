@@ -1,16 +1,16 @@
 /*
- * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors. 
+ * Copyright 1998-2007 The Brookings Institution, NuTech Solutions,Inc., Metascape LLC, and contributors.
  * All rights reserved.
  * This program and the accompanying materials are made available solely under of the BSD license "ascape-license.txt".
- * Any referenced or included libraries carry licenses of their respective copyright holders. 
+ * Any referenced or included libraries carry licenses of their respective copyright holders.
  */
 
 package org.ascape.test.model;
 
+import org.ascape.test.model.strategy.AllStrategy;
+
 import junit.framework.Test;
 import junit.framework.TestSuite;
-
-import org.ascape.test.model.strategy.AllStrategy;
 
 
 /**
@@ -44,11 +44,10 @@ public class AllModel extends TestSuite {
         suite.addTest(new TestSuite(org.ascape.test.model.space.SubListTest.class));
         suite.addTest(new TestSuite(org.ascape.test.model.space.Continuous2DTest.class));
         suite.addTest(new TestSuite(org.ascape.test.model.space.SubContinuous2DTest.class));
-        //suite.addTest(new TestSuite(org.ascape.test.model.GlobeTest.class));
+        suite.addTest(new TestSuite(org.ascape.test.model.space.GlobeTest.class));
 
         suite.addTest(new TestSuite(org.ascape.test.model.space.Array2DSmallWorldTest.class));
-//Temporary removal of serialization test to see if it fixes CMA problem...s
-        //suite.addTest(new TestSuite(org.ascape.test.model.SerializationTest.class));
+        suite.addTest(new TestSuite(org.ascape.test.model.SerializationTest.class));
 
         suite.addTest(AllStrategy.suite());
 

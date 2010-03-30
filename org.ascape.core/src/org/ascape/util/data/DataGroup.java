@@ -15,13 +15,12 @@ import org.ascape.model.Scape;
 
 
 /**
- * A group of data points and their corresponding series (pl) of measurements.
+ * A group of data points and their cooresponding series (pl) of measurements.
  *
  * @author Miles Parker
- * @version 1.0.3
+ * @version 1.0.2
  * @history 1.0.1 11/6/98 documentation, minor changes
  * @history 1.0.2 3/9/99 renamed from SeriesGroup
- * @history 1.0.3 10/02/10 fixed ArrayIndexOutOfBoundsException threading issue
  * @since 1.0
  */
 public class DataGroup extends Observable implements Serializable {
@@ -58,10 +57,6 @@ public class DataGroup extends Observable implements Serializable {
      * should be collecting data over time.
      */
     private boolean collectingLongitudinalData = true;
-    
-	/** Used to lock {@link #dataSeries} while it is being updated and read. */
-	private Object lock = new Object();
-
 
     /**
      * Adds the supplied stats to this group, creating all appropriate
@@ -94,12 +89,8 @@ public class DataGroup extends Observable implements Serializable {
         for (; j < newStatCollectorsSeries.length; j++) {
             newStatCollectorsSeries[j] = (DataSeries) vectorStatCollectorsSeries.elementAt(j - dataSeries.length);
         }
-        
-		// synchronize access when updating dataSeries
-		synchronized (lock) {
-			dataSeries = newStatCollectorsSeries;
-		}
-        
+        dataSeries = newStatCollectorsSeries;
+
         if (periods == null) {
             periods = new Vector();
         }
@@ -258,21 +249,11 @@ public class DataGroup extends Observable implements Serializable {
      * Returns the names of every data series in this group.
      */
     public String[] getSeriesNames() {
-		String[] names;
-
-		/**
-		 * Called by the AWT thread. We need to synchronise access in case its
-		 * being updated at the same time by another thread, otherwise the
-		 * dataSeries array will change under us and we'll get an
-		 * ArrayIndexOutOfBoundsException.
-		 */
-		synchronized (lock) {
-			names = new String[dataSeries.length];
-			for (int i = 0; i < dataSeries.length; i++) {
-				names[i] = dataSeries[i].getName();
-			}
-		}
-		return names;
+        String[] names = new String[dataSeries.length];
+        for (int i = 0; i < dataSeries.length; i++) {
+            names[i] = dataSeries[i].getName();
+        }
+        return names;
     }
 
     /**

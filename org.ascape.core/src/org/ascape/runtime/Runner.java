@@ -28,7 +28,6 @@ import org.ascape.model.event.DefaultScapeListener;
 import org.ascape.model.event.ScapeEvent;
 import org.ascape.model.event.ScapeListener;
 import org.ascape.model.rule.NotifyViews;
-import org.ascape.model.rule.ListenerQuitCheck;
 import org.ascape.model.space.SpatialTemporalException;
 import org.ascape.util.PropertyAccessor;
 import org.ascape.util.data.DataGroup;
@@ -51,7 +50,7 @@ public abstract class Runner implements Serializable, Runnable {
     private Scape scape;
 
     /**
-     * Data group for all scapes. At some point this may be made non-static.
+     * Data group for all scapes.
      */
     private DataGroup dataGroup;
 
@@ -206,9 +205,9 @@ public abstract class Runner implements Serializable, Runnable {
      * Indicates that we are in a multiwin environment and want simple winsow
      * strucutures.
      */
-    private static boolean muiltWinEnvironment;
+    private transient static boolean muiltWinEnvironment;
 
-    private Thread modelThread;
+    private transient Thread modelThread;
 
     public Runner() {
         this(new RuntimeEnvironment());
@@ -424,7 +423,7 @@ public abstract class Runner implements Serializable, Runnable {
     public void closeAndOpenSaved() {
         if (isRunning()) {
             // Running, so we have to allow current iteration to finish
-            setCloseAndOpenNewRequested(true);
+            setCloseAndOpenSavedRequested(true);
         } else {
             // have to start a new thread or else the GUI locks up
             new Thread(this) {
@@ -1082,38 +1081,18 @@ public abstract class Runner implements Serializable, Runnable {
      * @see #quitFinally
      */
     public void quit() {
-    	
-    	// check whether we can quit  
-    	if (canQuit()) {
-    		
-	        if (inMainLoop) {
-	            quitRequested = true;
-	            // Running, so we have to allow current iteration to finish
-	            stop();
-	        }
-	        // Only one chance a quit request, otherwise we assume that the scape is
-	        // allready fulfilling it.
-	        else if (!quitRequested) {
-	            quitFinally();
-	        }
-    	}
+        if (inMainLoop) {
+            quitRequested = true;
+            // Running, so we have to allow current iteration to finish
+            stop();
+        }
+        // Only one chance a quit request, otherwise we assume that the scape is
+        // allready fulfilling it.
+        else if (!quitRequested) {
+            quitFinally();
+        }
     }
 
-    /**
-     * Check with the root scape whether we can quit.
-     * 
-     * @return
-     */
-    public boolean canQuit() {
-    	Scape rootScape = getRootScape();
-    	
-    	ListenerQuitCheck vqc = new ListenerQuitCheck();
-    	
-    	rootScape.executeOnRoot(vqc);
-    	
-    	return vqc.canQuit();
-    }
-    
     /**
      * Exits the application; allowing views to close themseleves gracefully. Do
      * not call this method directly unless you want to force quit; call

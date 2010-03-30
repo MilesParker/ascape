@@ -54,7 +54,7 @@ public class ConsoleOutView extends DataView {
      */
     public static String EOL = System.getProperty("line.separator");
 
-    private IMessageStream msg;
+    private transient IMessageStream msg;
 
     public ConsoleOutView() {
         setSystemStream();

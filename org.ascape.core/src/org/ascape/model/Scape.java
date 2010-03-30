@@ -2670,25 +2670,6 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
     public void scapeClosing(ScapeEvent scapeEvent) {
     }
 
-	/**
-	 * Check with all the {@link #scapeListeners} whether we can quit.
-	 * 
-	 * @return {@code false}, if quit process is to be interrupted, otherwise
-	 *         {@code true}.
-	 */
-	public boolean scapeCanQuit() {
-		
-		if (scapeListeners.size() > 0) {
-			ArrayList currentListeners = (ArrayList) scapeListeners.clone();
-			for (Object listener : currentListeners) {
-				if ( ! ((ScapeListener) listener).scapeCanQuit() ) {
-					return false;
-				}
-			}
-		}
-		return true;
-	}
-    
     /**
      * Method called as the entire envornmnet is about to be exited.
      * 
@@ -2773,10 +2754,13 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
 
         // remove the customizer and any environment (non-scape specific) views
         boolean needToAddCustomizer = false;
+        AbstractUIEnvironment uiEnvironment = null;
         if (getUIEnvironment() != null && getUIEnvironment().getCustomizer() != null
                 && isScapeListener(getUIEnvironment().getCustomizer())) {
             removeScapeListener(getUIEnvironment().getCustomizer());
             needToAddCustomizer = true;
+            uiEnvironment = getUIEnvironment();
+            uiEnvironment.getScape().removeScapeListener(uiEnvironment);
         }
         for (int i = 0; i < getEnvironment().getEnvironmentViews().size(); i++) {
             ScapeListener l = (ScapeListener) getEnvironment().getEnvironmentViews().get(i);
@@ -2796,6 +2780,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
         // reconnect the customizer and any environment (non-scape specific)
         // views
         if (needToAddCustomizer) {
+            addScapeListener(getUIEnvironment());
             addScapeListener(getUIEnvironment().getCustomizer());
         }
         for (int i = 0; i < getEnvironment().getEnvironmentViews().size(); i++) {
