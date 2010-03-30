@@ -121,7 +121,7 @@ public abstract class SwingEnvironment extends AbstractUIEnvironment {
 	/**
 	 * {@link TreeBuilder} used to build the navigator tree.
 	 */
-	private TreeBuilder navigatorTreeBuilder = new DefaultTreeBuilder();
+	private transient TreeBuilder navigatorTreeBuilder = new DefaultTreeBuilder();
 
 	/**
 	 * Expose the navigator tree builder so the navigator can access it.
