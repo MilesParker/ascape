@@ -246,6 +246,8 @@ public abstract class Runner implements Serializable, Runnable {
             initialize();
             scape.executeOnRoot(new NotifyViews(ScapeEvent.REPORT_DESERIALIZED));
             waitForViewsUpdate();
+            scape.executeOnRoot(new NotifyViews(ScapeEvent.REPORT_START));
+            waitForViewsUpdate();
             scape.reseed();
             getEnvironment().getConsole().println("\nNew Random Seed: " + scape.getRandomSeed() + "\n");
         } else { // !beginningDeserializedRun

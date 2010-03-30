@@ -193,6 +193,9 @@ public class ConsoleOutView extends DataView {
      */
     public void scapeStarted(ScapeEvent scapeEvent) {
         startTime = System.currentTimeMillis();
+        if (msg == null) {
+            setSystemStream();
+        }
         println();
         print(settingsDescription());
     }

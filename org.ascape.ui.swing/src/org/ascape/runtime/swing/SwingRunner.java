@@ -12,14 +12,14 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
-
 import org.ascape.model.Scape;
 import org.ascape.model.event.DefaultScapeListener;
 import org.ascape.model.event.ScapeEvent;
 import org.ascape.runtime.Runner;
+
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 /**
  * Manages model runs in a Swing UI environment.
@@ -158,6 +158,7 @@ public class SwingRunner extends BasicSwingRunner {
                                 private static final long serialVersionUID = 3300275064817945877L;
 
                                 public void scapeClosing(ScapeEvent scapeEvent) {
+                                    newScape.getRunner().setEnvironment(environment);
                                     newScape.getRunner().start();
                                     // open(modelName);
                                 }
