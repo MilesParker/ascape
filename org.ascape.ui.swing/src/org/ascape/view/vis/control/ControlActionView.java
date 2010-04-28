@@ -293,7 +293,7 @@ public class ControlActionView extends ScapeTransitionPanelView implements Recor
                 if (getScape() != null) {
                     getScape().respondControl(new ControlEvent(this, ControlEvent.REQUEST_OPEN));
                 } else {
-                    getScape().getRunner().openChoose();
+                	AscapeGUIUtil.getDesktopEnvironment().getScape().getRunner().openChoose();
                 }
             }
         };
@@ -311,7 +311,7 @@ public class ControlActionView extends ScapeTransitionPanelView implements Recor
                 if (getScape() != null) {
                     getScape().respondControl(new ControlEvent(this, ControlEvent.REQUEST_OPEN_SAVED));
                 } else {
-                    getScape().getRunner().openSavedChoose();
+                	AscapeGUIUtil.getDesktopEnvironment().getScape().getRunner().openSavedChoose();
                 }
             }
         };
