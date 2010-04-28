@@ -612,6 +612,21 @@ public class ChartView extends PanelView implements Observer, Externalizable {
     // MEI - we don't want this here--it shadows PanelView's frame field
     //protected ViewFrameBridge frame;
 
+	/**
+	 * If true, the chartview will remain open after the scape closes.
+	 */
+	private boolean persistAfterScapeCloses = false;
+
+	/**
+	 * Set whether this {@link ChartView} persists when the scape is
+	 * closed. Default is {@code false}.
+	 * 
+	 * @param persistAfterScapeCloses set 
+	 */
+	public void setPersistAfterScapeCloses(boolean persistAfterScapeCloses) {
+		this.persistAfterScapeCloses = persistAfterScapeCloses;
+	}
+    
     /**
      * Construct a chart view of default time series type.
      */
@@ -921,11 +936,14 @@ public class ChartView extends PanelView implements Observer, Externalizable {
      *            the scape removed notification event
      */
     public synchronized void scapeRemoved(ScapeEvent scapeEvent) {
-        dataSelection.deleteObserver(this);
-        dataSelection.setData(null);
-        dataSelection = null;
-        removeCustomizer();
-        scape = null;
+		if (!persistAfterScapeCloses) {
+			// cleanup only if we are not persisting the chart view
+	    	dataSelection.deleteObserver(this);
+	        dataSelection.setData(null);
+	        dataSelection = null;
+	        removeCustomizer();
+	        scape = null;
+		}
         super.scapeRemoved(scapeEvent);
     }
 
@@ -942,9 +960,10 @@ public class ChartView extends PanelView implements Observer, Externalizable {
         if (observed == dataSelection) {
             SwingUtilities.invokeLater(new Runnable() {
                 public void run() {
-                    if (getScape().getRunner().getData() != null) {
-                        updateScapeGraphics();
-                    }
+					if (persistAfterScapeCloses
+							|| getScape().getRunner().getData() != null) {
+						updateScapeGraphics();
+					}
                 }
             });
         }
@@ -1154,7 +1173,8 @@ public class ChartView extends PanelView implements Observer, Externalizable {
      * @see javax.swing.JComponent#paintChildren(java.awt.Graphics)
      */
     public void paintChildren(Graphics g) {
-        if (getScape().getRunner().getData() != null) {
+		if (persistAfterScapeCloses
+				|| getScape().getRunner().getData() != null) {
             super.paintChildren(g);
         }
     }
@@ -1217,4 +1237,16 @@ public class ChartView extends PanelView implements Observer, Externalizable {
                 throw new RuntimeException("Unknown chart type.");
         }
     }
+    
+	/**
+	 * If the {@link ChartView} is to persist after the scape closes, this will
+	 * return {@code false} so that it is not disposed when the scape closes.
+	 * Otherwise, returns {@code true}.
+	 * 
+	 * @return {@code false} if this chart persists after the scape closes
+	 */
+	public boolean isLifeOfScape() {
+		return !persistAfterScapeCloses;
+	}
+
 }
