@@ -1,12 +1,16 @@
 package org.ascape.runtime.swing.navigator;
 
+import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JInternalFrame;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.tree.DefaultMutableTreeNode;
 
-import org.ascape.model.Scape;
+import org.ascape.runtime.swing.SwingEnvironment;
 import org.ascape.view.vis.PanelView;
 
 /**
@@ -21,23 +25,23 @@ public class PanelViewNode extends DefaultMutableTreeNode implements
 		ActionListener {
 
 	private static final long serialVersionUID = 6327681491877012320L;
+	private JInternalFrame pvFrame;
 	private PanelView panelView;
-	private final PanelViewNodeProvider provider;
-	private final Scape scape;
+	private final PanelViewProvider provider;
 	private final String name;
 
 	/**
 	 * Create a {@link PanelViewNode} that when clicked will display the
-	 * {@link PanelView} supplied by a {@link PanelViewNodeProvider}.
+	 * {@link PanelView} supplied by a {@link PanelViewProvider}.
 	 * 
 	 * @param scape
 	 *            scape to associate this instance with.
 	 * @param provider
-	 *            {@link PanelViewNodeProvider} to execute when this node is clicked.
+	 *            {@link PanelViewProvider} to execute when this node is
+	 *            clicked.
 	 */
-	public PanelViewNode(Scape scape, PanelViewNodeProvider provider) {
+	public PanelViewNode(PanelViewProvider provider) {
 		super(provider);
-		this.scape = scape;
 		this.name = provider.getName();
 		this.provider = provider;
 	}
@@ -60,17 +64,63 @@ public class PanelViewNode extends DefaultMutableTreeNode implements
 	public void displayPanelView() {
 
 		// check to see that panelView is not currently displayed
-		// (i.e: has been added to the scape)
-		if (panelView == null
-				|| scape.getScapeListeners().indexOf(panelView) == -1) {
+		if (pvFrame == null) {
 
-			panelView = provider.getPanelView();
+			if (panelView == null) {
+				panelView = provider.getPanelView();
+			} else {
+				// panelview already created,
+				// make sure it is visible
+				panelView.setVisible(true);
+			}
 
-			// add the panelView to the scape,
-			// which will display it in the GUI
-			scape.addView(panelView);
+			// create a frame for the PanelView
+			// this displays it in the Ascape MDI environment
+			// NB: normally you would add a PanelView as
+			// a ScapeListener to a scape, which would then
+			// create an MDI frame if the ScapeListener is a
+			// ComponentView. Here we bypass adding the PanelView
+			// as a ScapeListener and directly add the frame.
+			SwingEnvironment.DEFAULT_ENVIRONMENT.createFrame(panelView);
 
+			// install frame listener
+			Container pvFrameImp = panelView.getViewFrame().getFrameImp();
+			pvFrame = installFrameListener(pvFrameImp);
+
+			// call added event on provider
+			provider.panelViewAdded(pvFrameImp);
 		}
+	}
+
+	private JInternalFrame installFrameListener(Container pvFrameImp) {
+
+		// The pvFrameImp type will depend on what is selected by
+		// the ViewFrameBridge.selectFrameImp method.
+		// We are expecting the user to be using the Swing MDI
+		// which will return a JInternalFrame
+		if (pvFrameImp instanceof JInternalFrame) {
+
+			JInternalFrame pvFrame = (JInternalFrame) pvFrameImp;
+
+			// when the frame closes, call closed()
+			pvFrame.addInternalFrameListener(new InternalFrameAdapter() {
+				@Override
+				public void internalFrameClosed(InternalFrameEvent e) {
+					closed();
+				}
+			});
+
+			return pvFrame;
+		} else {
+			throw new RuntimeException("Unknown frame type "
+					+ pvFrameImp.getClass().getCanonicalName());
+		}
+	}
+
+	private void closed() {
+		pvFrame = null;
+		provider.frameClosed();
+		panelView = null;
 	}
 
 	@Override

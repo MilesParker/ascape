@@ -1,5 +1,7 @@
 package org.ascape.runtime.swing.navigator;
 
+import java.awt.Container;
+
 import org.ascape.view.vis.PanelView;
 
 /**
@@ -9,7 +11,7 @@ import org.ascape.view.vis.PanelView;
  * @author Oliver Mannion
  * @version $Revision$
  */
-public interface PanelViewNodeProvider {
+public interface PanelViewProvider {
 
 	/**
 	 * Name of the {@link PanelView}.
@@ -24,4 +26,16 @@ public interface PanelViewNodeProvider {
 	 * @return panel view
 	 */
 	PanelView getPanelView();
+	
+	/**
+	 * 
+	 * Called after the {@link PanelView} is added to a frame and displayed.
+	 * @param pvFrameImp frame container of panel view
+	 */
+	void panelViewAdded(Container pvFrameImp);
+
+	/**
+	 * After the {@link PanelView} frame is closed, this event is called.
+	 */
+	void frameClosed();
 }
