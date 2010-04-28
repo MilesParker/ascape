@@ -1017,7 +1017,7 @@ public abstract class Runner implements Serializable, Runnable {
      * Requests the scape to open a model, providing UI for this purpose.
      */
     public Scape openChoose() {
-        return openChoose(null);
+        return openChoose(new String[0]);
     }
 
     /**
