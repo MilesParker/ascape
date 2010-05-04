@@ -131,7 +131,7 @@ public class RuntimeEnvironment extends DefaultScapeListener {
     }
 
     /**
-     * Removes the view.
+     * Removes the view (if it is an environment view).
      * 
      * @param view
      *            the view
@@ -166,6 +166,16 @@ public class RuntimeEnvironment extends DefaultScapeListener {
         scape = null;
     }
 
+	/**
+	 * Returns {@code true} if the environment will allow us to quit in response
+	 * to user initiated quit.
+	 * 
+	 * @return {@code true} if we can quit.
+	 */
+	public boolean canQuit() {
+		return true;
+	}
+    
     /**
      * Exits the application; allowing views to close themseleves gracefully. Do
      * not call this method directly unless you want to force quit; call

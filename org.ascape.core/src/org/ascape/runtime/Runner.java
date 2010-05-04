@@ -1087,18 +1087,31 @@ public abstract class Runner implements Serializable, Runnable {
      * @see #quitFinally
      */
     public void quit() {
-        if (inMainLoop) {
-            quitRequested = true;
-            // Running, so we have to allow current iteration to finish
-            stop();
-        }
-        // Only one chance a quit request, otherwise we assume that the scape is
-        // allready fulfilling it.
-        else if (!quitRequested) {
-            quitFinally();
-        }
+
+    	// check whether we can quit  
+    	if (canQuit()) {
+	    	if (inMainLoop) {
+	            quitRequested = true;
+	            // Running, so we have to allow current iteration to finish
+	            stop();
+	        }
+	        // Only one chance a quit request, otherwise we assume that the scape is
+	        // allready fulfilling it.
+	        else if (!quitRequested) {
+	            quitFinally();
+	        }
+    	}
     }
 
+    /**
+     * Check with the environment whether we can quit.
+     * 
+     * @return {@code true} if we can quit.
+     */
+    private boolean canQuit() {
+    	return environment.canQuit();
+    }
+  
     /**
      * Exits the application; allowing views to close themseleves gracefully. Do
      * not call this method directly unless you want to force quit; call
