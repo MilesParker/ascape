@@ -202,13 +202,6 @@ public class PanelView extends JPanel implements ComponentView, Externalizable {
     }
 
     /**
-     * Method called to test whether we can quit.
-     */
-	public boolean scapeCanQuit() {
-		return true;
-	}
-
-    /**
      * Method called when the environment quits.
      * 
      * @param scapeEvent

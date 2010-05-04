@@ -28,7 +28,6 @@ import java.util.Vector;
 import javax.swing.Action;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -121,7 +120,8 @@ public abstract class SwingEnvironment extends AbstractUIEnvironment {
 	/**
 	 * {@link TreeBuilder} used to build the navigator tree.
 	 */
-	private transient TreeBuilder navigatorTreeBuilder = new DefaultTreeBuilder();
+	private transient TreeBuilder navigatorTreeBuilder =
+			new DefaultTreeBuilder();
 
 	/**
 	 * Expose the navigator tree builder so the navigator can access it.
@@ -247,7 +247,7 @@ public abstract class SwingEnvironment extends AbstractUIEnvironment {
 				switch (choice) {
 				case 0:
 					if (e instanceof RuntimeException) {
-						throw (RuntimeException)e;
+						throw (RuntimeException) e;
 					} else {
 						throw new RuntimeException(e);
 					}
@@ -275,7 +275,7 @@ public abstract class SwingEnvironment extends AbstractUIEnvironment {
 				switch (choice) {
 				case 0:
 					if (e instanceof RuntimeException) {
-						throw (RuntimeException)e;
+						throw (RuntimeException) e;
 					} else {
 						throw new RuntimeException(e);
 					}
@@ -290,7 +290,7 @@ public abstract class SwingEnvironment extends AbstractUIEnvironment {
 			// End comment out for web
 		} else {
 			if (e instanceof RuntimeException) {
-				throw (RuntimeException)e;
+				throw (RuntimeException) e;
 			} else {
 				throw new RuntimeException(e);
 			}
@@ -524,15 +524,16 @@ public abstract class SwingEnvironment extends AbstractUIEnvironment {
 	 */
 	public void removeView(ScapeListener view) {
 		super.removeView(view);
-		if (view.isLifeOfScape()) {
-			if (view instanceof ComponentView) {
-				if (frames.contains(((ComponentView) view).getViewFrame())) {
-					frames.removeElement(((ComponentView) view)
-							.getViewFrame());
-					controlBarView.buildFrameList();
-				}
+
+		// Remove it from the frames list
+		if (view instanceof ComponentView) {
+			if (frames.contains(((ComponentView) view).getViewFrame())) {
+				frames.removeElement(((ComponentView) view).getViewFrame());
+				controlBarView.buildFrameList();
 			}
 		}
+
+		// Dispose the view's frame if it is visible
 		if (view instanceof ComponentView
 				&& ((ComponentView) view).getViewFrame() != null
 				&& ((ComponentView) view).getViewFrame().isVisible()) {
@@ -651,6 +652,27 @@ public abstract class SwingEnvironment extends AbstractUIEnvironment {
 		label.setOpaque(true);
 		label.setBorder(BorderFactory.createCompoundBorder(BorderFactory
 				.createEmptyBorder(2, 2, 2, 2), getInfoAreaBorder()));
+	}
+
+	@Override
+	public boolean canQuit() {
+
+		// check the vector of frames
+		// to see if the frames' views
+		// will let us quit
+		for (ViewFrameBridge vfb : frames) {
+			ComponentView[] views = vfb.getViews();
+
+			for (ComponentView view : views) {
+				if (view instanceof QuitVetoer) {
+					if (!((QuitVetoer) view).canQuit()) {
+						return false;
+					}
+				}
+			}
+		}
+
+		return true;
 	}
 
 	/**
