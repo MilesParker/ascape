@@ -795,11 +795,15 @@ public abstract class Runner implements Serializable, Runnable {
     }
 
     /**
-     * Method neccessary because of amibiguous null values in simpler signature
+     * Method necessary because of ambiguous null values in simpler signature
      * methods.
      */
     public void openImplementation(String[] args, boolean block) {
         try {
+        	// reset closeRequested (which may be true from the
+        	// closing of the previously open model)
+        	closeRequested = false;
+        	
             if (args != null) {
                 // first pass of parseSettingArgs,
                 // don't report any parameters not found
