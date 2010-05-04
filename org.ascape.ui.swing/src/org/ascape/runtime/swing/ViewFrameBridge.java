@@ -60,9 +60,9 @@ import org.ascape.view.vis.ComponentView;
 
 
 /**
- * A class allowing Frame, JFrame, and JInternalFrame to be used interchangebly,
+ * A class allowing Frame, JFrame, and JInternalFrame to be used interchangeably,
  * and providing general support for frame management. This class also ends up
- * mediating and centralizing all swing/non-swong deployment issues. All Swing
+ * mediating and centralizing all swing/non-swing deployment issues. All Swing
  * related userEnvironment calls are sent to this class so that all swing
  * functionality can be removed in one place. This will change once the majority
  * of browsers support Swing.
@@ -604,7 +604,7 @@ public class ViewFrameBridge implements Serializable {
     private JLabel statusText;
 
     /**
-     * The views that this frame is rexponsible for.
+     * The views that this frame is responsible for.
      */
     private ComponentView[] views;
 
@@ -678,7 +678,7 @@ public class ViewFrameBridge implements Serializable {
     }
 
     /**
-     * An internal method that picks the approriate frame for the view mode.
+     * An internal method that picks the appropriate frame for the view mode.
      */
     private void selectFrameImp() {
         if (!SwingRunner.isMultiWinEnvironment()) {

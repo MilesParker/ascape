@@ -360,7 +360,10 @@ public class ControlActionView extends ScapeTransitionPanelView implements Recor
             	//removed from the scape so we can't use getScape()
                 //getScape().respondControl(new ControlEvent(this, ControlEvent.REQUEST_QUIT));
                 //getScape().getRunner().getEnvironment().quit();
-                
+              
+/*            	Scape scape = AscapeGUIUtil.getDesktopEnvironment().getScape(); 
+                scape.respondControl(new ControlEvent(this, ControlEvent.REQUEST_QUIT));
+*/                
 				// execute quit on new thread instead of AWT
 				new Thread("Quit") {
 					public void run() {

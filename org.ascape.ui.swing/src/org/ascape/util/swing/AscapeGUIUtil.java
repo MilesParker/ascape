@@ -8,6 +8,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JSplitPane;
 import javax.swing.SwingUtilities;
 
 import org.ascape.model.Scape;
@@ -272,5 +273,32 @@ public final class AscapeGUIUtil {
 		item.setIcon(MenuBarView.EMPTY_7_ICON);
 		menu.add(item);
 	}
+
+	/**
+	 * Set the location of the console pane.
+	 * 
+	 * @param location location
+	 */
+	public static void setConsoleDividerLocation(final int location) {
+		DesktopEnvironment desktop = AscapeGUIUtil.getDesktopEnvironment();
+		if (desktop == null) {
+			throw new IllegalStateException(
+					"Not running in desktop environment, "
+							+ "or desktop environment not yet loaded.");
+		}
+		
+		final JSplitPane consoleSplit = desktop.getUserFrame().getConsoleSplit();
+		
+		Runnable doWorkRunnable = new Runnable() {
+			public void run() {
+				// move the console pane at the bottom 
+				// by changing the split divider location
+				consoleSplit.setDividerLocation(location);
+			}
+		};
+		SwingUtilities.invokeLater(doWorkRunnable);
+
+	}
+	
 
 }
