@@ -188,6 +188,7 @@ public class MenuBarView extends ControlActionView {
         menuBar.setFont(new Font(menuBar.getFont().getFontName(), menuBar.getFont().getStyle(), 12));
 
         fileMenu = new JMenu("File");
+        addMenuBarAction(fileMenu, getReopenAction());
         addMenuBarAction(fileMenu, getOpenAction());
         addMenuBarAction(fileMenu, getOpenSavedAction());
         addMenuBarAction(fileMenu, getSaveAction());

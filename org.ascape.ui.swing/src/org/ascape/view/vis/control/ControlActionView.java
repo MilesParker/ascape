@@ -24,6 +24,7 @@ import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JOptionPane;
 
+import org.ascape.model.Scape;
 import org.ascape.model.event.ControlEvent;
 import org.ascape.model.event.ScapeEvent;
 import org.ascape.movie.MovieRecorder;
@@ -55,6 +56,11 @@ import org.ascape.view.vis.ScapeTransitionPanelView;
  */
 public class ControlActionView extends ScapeTransitionPanelView implements RecorderListener {
 
+    /**
+     * Scape control for re-opening the current scape.
+     */
+    private Action reopenAction;
+	
     /**
      * Scape control for opening a new scape.
      */
@@ -301,6 +307,34 @@ public class ControlActionView extends ScapeTransitionPanelView implements Recor
         openAction.putValue(Action.SHORT_DESCRIPTION, "Open New Model");
         openAction.putValue(Action.SMALL_ICON, DesktopEnvironment.getIcon("OpenArrow"));
 
+        reopenAction = new AbstractAction() {
+
+            /**
+			 * 
+			 */
+			private static final long serialVersionUID = -79740733780101978L;
+
+			public void actionPerformed(ActionEvent e) {
+				// reload the current model
+                final Scape scape = AscapeGUIUtil.getDesktopEnvironment().getScape();
+                
+				// stop current
+                final String modelName = scape.getClass().getName();
+                
+                
+                // Need to do this in a new thread otherwise we'll get an exception
+                new Thread(new Runnable() {
+                    public void run() {
+        				scape.getRunner().close();
+        				scape.getRunner().openInstance(modelName);
+                    }
+                }).start();
+            }
+        };
+        reopenAction.putValue(Action.NAME, "Reload Model");
+        reopenAction.putValue(Action.SHORT_DESCRIPTION, "Reload Model");
+
+        
         openSavedAction = new AbstractAction() {
             /**
              * 
@@ -833,6 +867,16 @@ public class ControlActionView extends ScapeTransitionPanelView implements Recor
         return openAction;
     }
 
+    /**
+     * Gets the reopen action.
+     * 
+     * @return the reopen action
+     */
+    public Action getReopenAction() {
+        return reopenAction;
+    }
+
+    
     /**
      * Gets the open saved action.
      * 

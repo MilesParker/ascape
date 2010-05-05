@@ -63,6 +63,7 @@ import org.ascape.util.vis.ImageRegistry;
 import org.ascape.view.custom.AutoCustomizer;
 import org.ascape.view.custom.AutoCustomizerSwing;
 import org.ascape.view.vis.ComponentView;
+import org.ascape.view.vis.PersistentComponentView;
 import org.ascape.view.vis.SimpleControlView;
 import org.ascape.view.vis.control.ControlActionView;
 import org.ascape.view.vis.control.ControlBarView;
@@ -221,20 +222,59 @@ public class DesktopEnvironment extends SwingEnvironment {
         getUserFrame().dispose();
     }
 
-    /**
-     * When a scape is added add any persiten views to it and set frame title.
-     * 
-     * @param scapeEvent
-     *            the scape event
-     * @throws TooManyListenersException
-     *             the too many listeners exception
-     */
-    public void scapeAdded(ScapeEvent scapeEvent) throws TooManyListenersException {
-        super.scapeAdded(scapeEvent);
-        frames = new Vector<ViewFrameBridge>();
-        getUserFrame().setTitle("Ascape - " + getScape().getName());
-    }
+	/**
+	 * When a scape is added add any persistent views to it and set frame title.
+	 * Close any already open frames that aren't persistent.
+	 * 
+	 * @param scapeEvent
+	 *            the scape event
+	 * @throws TooManyListenersException
+	 *             the too many listeners exception
+	 */
+	public void scapeAdded(ScapeEvent scapeEvent)
+			throws TooManyListenersException {
+		super.scapeAdded(scapeEvent);
+		closeOpenFrames();
+		frames = new Vector<ViewFrameBridge>();
+		getUserFrame().setTitle("Ascape - " + getScape().getName());
+	}
 
+	/**
+	 * Close any open frames that are left over from the previously open model
+	 * If a frame contains a {@link PersistentComponentView}, it will not be
+	 * closed.
+	 * 
+	 */
+	private void closeOpenFrames() {
+
+		// make a copy of frames because
+		// during dispose the frames vector
+		// will be concurrently modified
+		// producing an error
+		Vector<ViewFrameBridge> framesCopy = new Vector<ViewFrameBridge>();
+
+		for (ViewFrameBridge vfb : frames) {
+			framesCopy.add(vfb);
+		}
+
+		for (ViewFrameBridge vfb : framesCopy) {
+			boolean persistent = false;
+			for (ComponentView view : vfb.getViews()) {
+				if (view instanceof PersistentComponentView) {
+					persistent = true;
+					break;
+				}
+			}
+			
+			if (!persistent) {
+				// dispose the frame. this will remove it from 
+				// RuntimeEnvironment.environmentViews and from 
+				// SwingEnvironment.frames
+				vfb.dispose();
+			}
+		}
+	}
+	
     /**
      * When a scape is removed reset frame title.
      * 
