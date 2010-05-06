@@ -68,11 +68,16 @@ public class PanelViewNode extends DefaultMutableTreeNode implements
 
 			if (panelView == null) {
 				panelView = provider.getPanelView();
-			} else {
-				// panelview already created,
-				// make sure it is visible
-				panelView.setVisible(true);
 			}
+			
+			// make panel visible
+			panelView.setVisible(true);
+			
+			// tell panel to update it's graphics. if it has
+			// been closed during iterations then it will need
+			// to update itself now that we have opened it
+			panelView.updateScapeGraphics();
+			panelView.repaint();
 
 			// create a frame for the PanelView
 			// this displays it in the Ascape MDI environment
@@ -87,6 +92,11 @@ public class PanelViewNode extends DefaultMutableTreeNode implements
 			Container pvFrameImp = panelView.getViewFrame().getFrameImp();
 			pvFrame = installFrameListener(pvFrameImp);
 
+			// don't remove the scape listener when the ViewFrameBridge
+			// internal frame is closed. important so that closed 
+			// chart views can still function.
+			panelView.getViewFrame().setRemoveListenerOnDispose(false);
+			
 			// call added event on provider
 			provider.panelViewAdded(pvFrameImp);
 		}

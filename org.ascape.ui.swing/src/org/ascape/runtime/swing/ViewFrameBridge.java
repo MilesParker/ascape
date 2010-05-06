@@ -649,6 +649,16 @@ public class ViewFrameBridge implements Serializable {
     private Point startMouseDrag;
 
     /**
+     * Determines whether the ViewFrameBridge's views will be removed from
+     * the set of scape listeners. Default is true.
+     */
+    private boolean removeListenerOnDispose = true;
+    
+    public void setRemoveListenerOnDispose(boolean removeListenerOnDispose) {
+		this.removeListenerOnDispose = removeListenerOnDispose;
+	}
+    
+    /**
      * Construct a frame bridge.
      */
     public ViewFrameBridge() {
@@ -1196,7 +1206,8 @@ public class ViewFrameBridge implements Serializable {
         }
         frameImp = null;
         for (int i = 0; i < views.length; i++) {
-            if (views[i].getScape() != null && views[i].getScape().getScapeListeners().contains(views[i])) {
+            if (removeListenerOnDispose && views[i].getScape() != null && 
+            		views[i].getScape().getScapeListeners().contains(views[i])) {
                 views[i].getScape().removeScapeListener(views[i]);
             }
             if (DesktopEnvironment.getDefaultDesktop() != null) {
