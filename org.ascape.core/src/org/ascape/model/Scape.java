@@ -9,11 +9,11 @@
 package org.ascape.model;
 
 import java.beans.IntrospectionException;
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
@@ -973,7 +973,7 @@ public class Scape extends CellOccupant implements SpaceContext, Collection, Con
             if (aboutFile != null) {
                 getRunner().setDescription("");
                 try {
-                    BufferedInputStream is = (BufferedInputStream) aboutFile.getContent();
+                    InputStream is = (InputStream) aboutFile.getContent();
                     BufferedReader ir = new BufferedReader(new InputStreamReader(is));
                     String nextLine = ir.readLine();
                     // Clean out html tags
