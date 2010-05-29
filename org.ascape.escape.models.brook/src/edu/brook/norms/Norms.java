@@ -170,7 +170,7 @@ public class Norms extends Scape {
             if (averageRadiusPlusOne <= averageRadius - tolerance || averageRadiusPlusOne >= averageRadius + tolerance) {
                 setRadius(Math.min(getRadius() + 1, maxRadius));
             } else if (averageRadiusMinusOne >= averageRadius - tolerance
-                || averageRadiusMinusOne <= averageRadius + tolerance) {
+                    || averageRadiusMinusOne <= averageRadius + tolerance) {
                 setRadius(getRadius() - 1);
             }
         }
@@ -271,16 +271,16 @@ public class Norms extends Scape {
         Scrolling1DView radiusView = new Scrolling1DView();
         radiusView.setName("Radius");
         ColorFeatureGradiated radiusColor = new ColorFeatureGradiated("Radius", ColorFeature.WHITE, ColorFeature.BLACK,
-            new UnitIntervalDataPoint() {
-                /**
+                                                                      new UnitIntervalDataPoint() {
+            /**
              * 
              */
-                private static final long serialVersionUID = -9060315707944996127L;
+            private static final long serialVersionUID = -9060315707944996127L;
 
-                public double getValue(Object object) {
-                    return (((NormCell) object).getRadius() - 1.0) / whiteRadiusMinusOne;// 2.5
-                }
-            });
+            public double getValue(Object object) {
+                return (((NormCell) object).getRadius() - 1.0) / whiteRadiusMinusOne;// 2.5
+            }
+        });
         radiusView.setCellColorFeature(radiusColor);
         ScapeListener[] views = new ScapeListener[2];
         views[0] = strategyView;

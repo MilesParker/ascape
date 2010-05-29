@@ -8,14 +8,11 @@
 package edu.brook.sugarscape;
 
 import org.ascape.view.vis.GEFView;
-import org.eclipse.amp.agf3d.I3DModelFactoryProvider;
 import org.eclipse.amp.agf3d.IShape3DProvider;
 import org.eclipse.amp.agf3d.Shapes3D;
-import org.eclipse.amp.escape.ascape.adapt.Ascape3DPartFactory;
 import org.eclipse.amp.escape.ascape.agf3d.GEF3DView;
-import org.eclipse.gef.EditPartFactory;
 
-public class GAS_II_3_3D extends GAS_II_3 implements I3DModelFactoryProvider {
+public class GAS_II_3_3D extends GAS_II_3 {
 
     private static final long serialVersionUID = 1L;
 
@@ -25,20 +22,11 @@ public class GAS_II_3_3D extends GAS_II_3 implements I3DModelFactoryProvider {
         addView(new GEFView());
     }
 
-    public EditPartFactory getEditPart3DFactory() {
-        return new Ascape3DPartFactory() {
-            /**
-             * @param object
-             * @return
-             * @see org.eclipse.amp.escape.ascape.adapt.Ascape3DPartFactory#getShapeProvider(java.lang.Object)
-             */
-            public IShape3DProvider getShapeProvider(Object object) {
-                if (object instanceof SugarAgent) {
-                    return Shapes3D.DISC_SHAPE_PROVIDER;
-                }
-                return super.getShapeProvider(object);
-            }
-        };
+    public Object getAdapter(Class adapter) {
+        if (adapter == IShape3DProvider.class) {
+            return Shapes3D.HUMAN_SHAPE_PROVIDER;
+        }
+        return null;
     }
 
 }

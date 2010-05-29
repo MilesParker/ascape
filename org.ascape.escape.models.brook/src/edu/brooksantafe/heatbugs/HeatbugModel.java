@@ -12,9 +12,7 @@ import org.ascape.model.Scape;
 import org.ascape.model.event.ScapeEvent;
 import org.ascape.model.rule.ParameterizedDiffusion;
 import org.ascape.model.rule.Rule;
-import org.ascape.model.space.Array1D;
 import org.ascape.model.space.Array2DMoore;
-import org.ascape.model.space.Coordinate1DDiscrete;
 import org.ascape.model.space.Coordinate2DDiscrete;
 import org.ascape.util.data.StatCollector;
 import org.ascape.util.data.StatCollectorCSAMM;
@@ -113,7 +111,9 @@ public class HeatbugModel extends Scape {
         // add it to the model
         Heatbug protoBug = new Heatbug();
         protoBug.setHostScape(world);
-        heatbugs = new Scape(new Array1D(), "Heatbugs", protoBug);
+        heatbugs = new Scape();
+        heatbugs.setPrototypeAgent(protoBug);
+        heatbugs.setName("Heatbugs");
         add(heatbugs);
         // Add rules to the scapes
         Rule happinessRule = new Rule("Calculate Happiness") {
@@ -150,7 +150,7 @@ public class HeatbugModel extends Scape {
         // We add this initial rule only so that the heatbugs will have
         // consistent state
         // at the beginning of the run, looks better on the graph
-        heatbugs.addInitialRule(classicRule);
+        // heatbugs.addInitialRule(classicRule);
         heatbugs.addRule(happinessRule);
         heatbugs.addRule(classicRule);
         heatbugs.addRule(heatRule, false);
@@ -179,7 +179,7 @@ public class HeatbugModel extends Scape {
         // world.setExtent(new Coordinate2DDiscrete(worldXSize, worldYSize));
         // Set the extent of the scape, which is simply the number of agents we
         // want.
-        heatbugs.setExtent(new Coordinate1DDiscrete(numBugs));
+        heatbugs.setSize(numBugs);
     }
 
     /**

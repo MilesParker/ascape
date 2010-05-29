@@ -17,6 +17,7 @@ import org.ascape.util.vis.ColorFeature;
 import org.ascape.util.vis.ColorFeatureGradiated;
 import org.ascape.util.vis.ColorFeatureGradiatedIndex;
 import org.ascape.view.vis.FixedStretchyView;
+import org.eclipse.draw2d.Graphics;
 
 /**
  * The Class Model1.
@@ -133,7 +134,12 @@ public class Model1 extends Scape {
     }
 
     private FixedStretchyView createView(String name, final ColorFeatureGradiated colorFeature, boolean gaps) {
-        FixedStretchyView firmView = new FixedStretchyView(name, nAgents, nAgents / 2);
+        FixedStretchyView firmView = new FixedStretchyView(name, nAgents, nAgents / 2) {
+            public void updateScapeGraphics(Graphics graphics) {
+                graphics.setBackgroundColor(ColorFeature.WHITE);
+                super.updateScapeGraphics(graphics);
+            }
+        };
         firmView.setCellColorFeature(colorFeature);
         firmView.setRemoveGaps(gaps);
         firmView.setCellSize(4);

@@ -11,11 +11,13 @@ import org.ascape.model.HostCell;
 import org.ascape.model.rule.Diffusable;
 import org.ascape.util.data.DataPoint;
 import org.ascape.util.data.DataPointConcrete;
+import org.eclipse.jface.viewers.IColorProvider;
+import org.eclipse.swt.graphics.Color;
 
 /**
  * A heat cell, a cell capable of storing heat and diffusing it to other cells.
  **/
-public class HeatCell extends HostCell implements Diffusable {
+public class HeatCell extends HostCell implements Diffusable, IColorProvider {
 
     /**
      * 
@@ -105,5 +107,16 @@ public class HeatCell extends HostCell implements Diffusable {
 
     public String getName() {
         return "Heat Cell " + coordinate;
+    }
+
+    /**
+     * Returns green, the all-purpose bug color.
+     */
+    public Color getBackground(Object object) {
+        return HeatbugModel.getCellColorFeature().getColor(object);
+    }
+
+    public Color getForeground(Object object) {
+        return getBackground(object);
     }
 }

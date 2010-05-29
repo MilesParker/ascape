@@ -16,20 +16,14 @@
 
 package edu.brooksantafe.heatbugs;
 
-import org.ascape.util.vis.ColorFeature;
-import org.eclipse.amp.agf3d.I3DModelFactoryProvider;
-import org.eclipse.amp.escape.ascape.adapt.Ascape3DPartFactory;
 import org.eclipse.amp.escape.ascape.agf3d.GEF3DView;
-import org.eclipse.gef.EditPartFactory;
-import org.eclipse.jface.viewers.IColorProvider;
-import org.eclipse.swt.graphics.Color;
 
 /**
  * 
  * @author mparker
  *
  */
-public class HeatbugModel3D extends HeatbugModel implements I3DModelFactoryProvider {
+public class HeatbugModel3D extends HeatbugModel {
 
     private static final long serialVersionUID = 1L;
 
@@ -38,41 +32,8 @@ public class HeatbugModel3D extends HeatbugModel implements I3DModelFactoryProvi
      * @see edu.brooksantafe.heatbugs.HeatbugModel#createGraphicViews()
      */
     public void createGraphicViews() {
+        super.createGraphicViews();
         addView(new GEF3DView());
     }
 
-    IColorProvider cellColorProvider = new IColorProvider() {
-        public Color getForeground(Object object) {
-            System.err.println(object);
-            return ColorFeature.RED;// getCellColorFeature().getColor(object);
-        }
-
-        public Color getBackground(Object object) {
-            return ColorFeature.RED;// getCellColorFeature().getColor(object);
-        }
-    };
-
-    IColorProvider agentColorProvider = new IColorProvider() {
-        public Color getForeground(Object object) {
-            return ColorFeature.BLUE;
-        }
-
-        public Color getBackground(Object object) {
-            return ColorFeature.GREEN;
-        }
-    };
-
-    public EditPartFactory getEditPart3DFactory() {
-        return new Ascape3DPartFactory() {
-            public IColorProvider getColorProvider(Object object) {
-                if (object instanceof HeatCell) {
-                    return super.getColorProvider(object);
-                    // return cellColorProvider;
-                } else if (object instanceof Heatbug) {
-                    return agentColorProvider;
-                }
-                return super.getColorProvider(object);
-            }
-        };
-    }
 }

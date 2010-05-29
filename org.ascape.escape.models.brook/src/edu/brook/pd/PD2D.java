@@ -19,6 +19,7 @@ import org.ascape.util.data.StatCollectorCond;
 import org.ascape.util.data.StatCollectorCondCSAMM;
 import org.ascape.util.vis.ColorFeatureFixed;
 import org.ascape.view.vis.ChartView;
+import org.ascape.view.vis.GEFView;
 import org.escape.view.vis.Overhead2DView;
 
 public class PD2D extends Scape {
@@ -275,8 +276,8 @@ public class PD2D extends Scape {
         // overheadView = new Overhead2DView();
         // lattice.addView(overheadView);
         // overheadView.setName("Player's View");
-        Overhead2DView overheadView = new Overhead2DView();
-        lattice.addView(overheadView);
+        GEFView overheadView = new GEFView();
+        addView(overheadView);
     }
 
     public void scapeSetup(ScapeEvent scapeEvent) {
