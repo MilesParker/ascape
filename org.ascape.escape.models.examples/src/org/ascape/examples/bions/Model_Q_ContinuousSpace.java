@@ -33,17 +33,17 @@ public class Model_Q_ContinuousSpace extends Scape {
 
     private Scape blueBions;
 
-    private int initialSize = 40;
+    private int initialSize = 100;
 
-    private int minVision = 60;
+    private double minVision = 10;
 
-    private int maxVision = 100;
+    private double maxVision = 15;
 
-    private int minVelocity = 7;
+    private double minVelocity = 1.0;
 
-    private int maxVelocity = 13;
+    private double maxVelocity = 2.0;
 
-    private class Bion extends LocatedAgent {
+    public class Bion extends LocatedAgent {
 
         /**
          * 
@@ -56,7 +56,7 @@ public class Model_Q_ContinuousSpace extends Scape {
             super.initialize();
             vision = randomInRange(minVision, maxVision);
             velocity = randomInRange(minVelocity, maxVelocity);
-            setAgentSize(10);
+            setAgentSize(1);
         }
 
         public double getVision() {
@@ -217,7 +217,7 @@ public class Model_Q_ContinuousSpace extends Scape {
         super.createScape();
         territory = new Scape(new Continuous2D());
         territory.setName("Bionland");
-        territory.setExtent(new Coordinate2DContinuous(600.0, 600.0));
+        territory.setExtent(new Coordinate2DContinuous(100.0, 100.0));
         Bion protoBion = new Bion();
         protoBion.initialize();
         territory.setPrototypeAgent(protoBion);
@@ -264,10 +264,8 @@ public class Model_Q_ContinuousSpace extends Scape {
 
     public void createViews() {
         super.createViews();
-
         Overhead2DContinuousView mapView = new Overhead2DContinuousView();
         territory.addView(mapView);
-
     }
 
     public int getInitialPopulationSize() {
@@ -278,35 +276,35 @@ public class Model_Q_ContinuousSpace extends Scape {
         this.initialSize = initialSize;
     }
 
-    public int getMinimumVision() {
+    public double getMinimumVision() {
         return minVision;
     }
 
-    public void setMinimumVision(int minVision) {
+    public void setMinimumVision(double minVision) {
         this.minVision = minVision;
     }
 
-    public int getMaximumVision() {
+    public double getMaximumVision() {
         return maxVision;
     }
 
-    public void setMaximumVision(int maxVision) {
+    public void setMaximumVision(double maxVision) {
         this.maxVision = maxVision;
     }
 
-    public int getMinVelocity() {
+    public double getMinVelocity() {
         return minVelocity;
     }
 
-    public void setMinVelocity(int minVelocity) {
+    public void setMinVelocity(double minVelocity) {
         this.minVelocity = minVelocity;
     }
 
-    public int getMaxVelocity() {
+    public double getMaxVelocity() {
         return maxVelocity;
     }
 
-    public void setMaxVelocity(int maxVelocity) {
+    public void setMaxVelocity(double maxVelocity) {
         this.maxVelocity = maxVelocity;
     }
 
