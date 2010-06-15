@@ -12,9 +12,11 @@
 <body>
 <p class="p3"><img src="images/AscapeLogo.pdf" alt="AscapeLogo.pdf"></p>
 <p class="p4"><b>The Ascape Model Developer’s Manual</b></p>
-<p class="p20"><br></p>
+<p class="p20"><br>
+</p>
 <p class="p34"><b><a name="section1">Section 1.</a> Agent-based Modeling</b></p>
-<p class="p20"><br></p>
+<p class="p20"><br>
+</p>
 <p class="p12"><a href="Section1.html#1.1">1.1 Introduction</a></p>
 <p class="p12"><a href="Section1.html#1.2">1.2 Social Science Modeling</a></p>
 <p class="p11"><a href="Section1.html#1.2.1">1.2.1 Game theory</a></p>
@@ -47,8 +49,19 @@ various names across disciplines, including agent-based computational economics 
 individual-based modeling (IBM) in ecology. Agent systems are a generalization of an earlier approach to representing
 interacting objects (e.g., particles, molecules) known as the cellular automata (CA). A CA, shown below, is a grid, or
 lattice, in which each square, or cell, is considered to be an agent.</p>
-<p class="p2"><br>
-</p>
+<br />
+<div style="border: dashed thin; background-color: rgb(255, 180, 14);">
+<p class="p19"><b>This Manual is Interactive!</b> If you're using the Escape or AMP tools with this manual, whenever
+you see a "Run It!" link, just click the link to load and run a live version of the example model. Note that you will
+have to have the example models in org.ascape.escape.models.examples and org.ascape.escape.models.brook imported into
+your workspace. Please follow this <a
+				href='javascript:liveAction(
+"org.eclipse.ui.cheatsheets", 
+"org.eclipse.ui.cheatsheets.OpenCheatSheetFromHelpAction",
+"org.eclipse.amp.escape.loadProjects")'>cheatsheet</a>
+or see <a href="/help/topic/org.eclipse.amp.doc/help/Models.html">this document</a> for more details.</p>
+</div>
+<br />
 <p class="p3"><img src="images/original-1.png" alt="images/original-1.png"></p>
 <p class="p1"><br>
 </p>
@@ -134,21 +147,20 @@ indicate their sugar levels. Yellow indicates high sugar level, white indicates 
 randomly related to other agents as they search out areas of high sugar concentrations.</p>
 <p class="p2"><br>
 </p>
-	<p class="p27"><span class="s3"><img src="images/original-3.png" alt="images/original-3.png"
-				alt="3__#$!@%!#__pastedGraphic.pdf"></span> <span class="s3"><img src="images/original-4.png" alt="images/original-4.png"
-				alt="4__#$!@%!#__pastedGraphic.pdf"></span></p>
-<p class="p37"><span class="Apple-converted-space">   </span>Fig. 3<span class="Apple-tab-span"> </span><span
-				class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span><span class="Apple-tab-span"> </span> Fig.4</p>
-<p class="p1"><br>
-</p>
-<p class="p36">Fig. 3: Sugarscape Model at the start (agents randomly distributed over the lattice). <span
-				class="Apple-converted-space"> </span></p>
-<span style="background-color: #D4FFD4; font-family: arial; font-style: bold;font-size: 15px; border: 3px; border-style: groove;padding: 6px;"><a href='javascript:liveAction("org.eclipse.amp.escape.ide", "org.eclipse.amp.escape.help.ExecuteJavaModelAction",
-	"org.ascape.escape.models.brook/edu.brook.sugarscape.GAS_II_1")'>Run it!</a></span>
-<p class="p36">Fig. 4: Agents with randomly assigned social ties to other agents on the lattice.<span
-				class="Apple-converted-space"> </span></p>
+<p class="p3"><img src="images/original-3.png" alt="images/original-3.png"></p>
+<p class="p3">Fig. 3: Sugarscape Model at the start (agents randomly distributed over the lattice).</p>
+<span style="font: 11.0px 'Lucida Grande'; background-color: rgb(255, 180, 14); border: dashed thin; padding: 6px;"><a
+				href='javascript:liveAction("org.eclipse.amp.escape.ide", "org.eclipse.amp.escape.help.ExecuteJavaModelAction",
+	"org.ascape.escape.models.brook/edu.brook.sugarscape.GAS_II_1")'>Run
+it!</a></span>
 <p class="p2"><br>
 </p>
+<p class="p3"><img src="images/original-4.png" alt="images/original-4.png"></p>
+<p class="p36">Fig. 4: Agents with randomly assigned social ties to other agents on the lattice.</p>
+<p class="p2"><br>
+</p>
+<br />
+<br />
 <p class="p19">Once these human agents find a location with rich resources, they begin to build social ties with one
 another. These social ties are represented by the lines that identify individual agents as the members of a social
 group, or clique. As the landscape’s resources are depleted, agents are forced to migrate to new sugar-rich areas.
@@ -158,11 +170,13 @@ social groups.</p>
 <p class="p2"><br>
 </p>
 <p class="p3"><img src="images/original-5.png" alt="images/original-5.png"></p>
-<a href='javascript:liveAction("org.eclipse.amp.escape.ide", "org.eclipse.amp.escape.help.ExecuteJavaModelAction",
-	"org.ascape.escape.models.brook/edu.brook.sugarscape.GAS_II_5")'>Run it!</a>
 <p class="p1"><br>
 </p>
 <p class="p36">Fig. 5: Sugarscape agents developing localized, close-knit social ties.</p>
+<span style="font: 11.0px 'Lucida Grande'; background-color: rgb(255, 180, 14); border: dashed thin; padding: 6px;"><a
+				href='javascript:liveAction("org.eclipse.amp.escape.ide", "org.eclipse.amp.escape.help.ExecuteJavaModelAction",
+	"org.ascape.escape.models.brook/edu.brook.sugarscape.GAS_II_5")'>Run
+it!</a></span>
 <p class="p2"><br>
 </p>
 <p class="p19">The Sugarscape models thus illustrate how the cell / cell-occupant distinction can be exploited to
@@ -200,6 +214,10 @@ record. We can write this model as a CA in which every agent is initially random
 </p>
 <p class="p36">Fig. 6: Simplex view of the Bargaining Model after running a brief time. <span
 				class="Apple-converted-space"> </span></p>
+<span style="font: 11.0px 'Lucida Grande'; background-color: rgb(255, 180, 14); border: dashed thin; padding: 6px;"><a
+				href='javascript:liveAction("org.eclipse.amp.escape.ide", "org.eclipse.amp.escape.help.ExecuteJavaModelAction",
+	"org.ascape.escape.models.brook/edu.brook.classes.BargainingModelBase")'>Run
+it!</a></span>
 <p class="p2"><br>
 </p>
 <p class="p19">If low bidders play extortionists, they will keep playing low-bid.<span class="Apple-converted-space"> 
@@ -226,7 +244,7 @@ fairness.</p>
 <p class="p2"><br>
 </p>
 <p class="p19">So, this model shows how local interaction, best reply dynamics, and stochasticity (error) combine to
-drive a bargaining game system toward fairness. This model was developed by Peyton Young.</p>
+drive a bargaining game system toward fairness. This model was concieved by Peyton Young and Josh Epstein and developed by Miles Parker.</p>
 <p class="p9"><br>
 </p>
 <p class="p27"><b><a name="1.2.2">Evolutionary Game Theory</a></b></p>
@@ -264,6 +282,10 @@ neighborhood of same-kind agents with whom to play the Prisoner’s Dilemma.</p>
 <p class="p1"><br>
 </p>
 <p class="p36">Fig. 8: Demographic Prisoner’s Dilemma Model (Blue are Cooperators, Red are Defectors)</p>
+<span style="font: 11.0px 'Lucida Grande'; background-color: rgb(255, 180, 14); border: dashed thin; padding: 6px;"><a
+				href='javascript:liveAction("org.eclipse.amp.escape.ide", "org.eclipse.amp.escape.help.ExecuteJavaModelAction",
+	"org.ascape.escape.models.brook/edu.brook.pd.PD2D")'>Run
+it!</a></span>
 <p class="p1"><br>
 </p>
 <p class="p19">As the cooperators reproduce, they create clusters of cooperators, and the same with the defectors.
@@ -291,7 +313,7 @@ become too large, the overall productivity of the firm will drop because of the 
 many workers. Workers will then look to migrate to smaller firms where they will once again get higher payoffs, and be
 required to contribute cooperatively to secure those payoffs. The dynamics of these individual behaviors produce a Zipf
 distribution of firm sizes in the economy, and help to explain dynamics of firm emergence and exit from an economy. This
-model was developed by Rob Axtell.</p>
+model was concieved and designed by Rob Axtell and developed by Miles Parker.</p>
 <p class="p2"><br>
 </p>
 <p class="p3"><img src="images/original-9.png" alt="images/original-9.png"></p>
@@ -299,6 +321,10 @@ model was developed by Rob Axtell.</p>
 </p>
 <p class="p36">Fig. 8: Firms Model showing the distribution of firm sizes (bar height), and the output of the firms
 (from red = very productive, to green = non-productive).</p>
+<span style="font: 11.0px 'Lucida Grande'; background-color: rgb(255, 180, 14); border: dashed thin; padding: 6px;"><a
+				href='javascript:liveAction("org.eclipse.amp.escape.ide", "org.eclipse.amp.escape.help.ExecuteJavaModelAction",
+	"org.ascape.escape.models.brook/edu.brook.firms.Model1")'>Run
+it!</a></span>
 <p class="p2"><br>
 </p>
 <p class="p27"><a name="1.2.4"><b>Economics / Markets</b></a></p>
@@ -332,13 +358,18 @@ the migrations of the Anasazi, which has been surprisingly successful.</p>
 Valley region during the highpoint of the Anasazi nation. The agents are created to follow simple harvesting and
 reproduction rules. As resources are exploited, and climactic variables are introduced, the population of Anasazi
 migrate to follow the available resources. Ultimately, the model shows the path of the Anasazi out of the Long House
-Valley in a plausible and compelling series of migrations. The model was developed by Rob Axtell and Josh Epstein.</p>
+Valley in a plausible and compelling series of migrations. The model was concieved by Rob Axtell and Josh Epstein, and
+developed by Stephen McCarroll (original C++) and Miles Parker (Java).</p>
 <p class="p2"><br>
 </p>
 <p class="p3"><img src="images/original-10.png" alt="images/original-10.png"></p>
 <p class="p1"><br>
 </p>
 <p class="p36">Fig. 10: Long House Valley Anasazi Model</p>
+<span style="font: 11.0px 'Lucida Grande'; background-color: rgb(255, 180, 14); border: dashed thin; padding: 6px;"><a
+				href='javascript:liveAction("org.eclipse.amp.escape.ide", "org.eclipse.amp.escape.help.ExecuteJavaModelAction",
+	"org.ascape.escape.models.brook/edu.brook.aa.LHV")'>Run
+it!</a></span>
 <p class="p2"><br>
 </p>
 <p class="p27"><a name="1.2.6"><b>Sociology</b></a></p>
@@ -370,6 +401,10 @@ entrenched areas (such as the middle ‘all black’ area) in the left panel, th
 side of the right window is black). In the border areas in the left window between white and black, the corresponding
 areas in the right window are lighter to indicate greater sampling activity. This example shows the model when running
 under no noise. Adding noise produces migrating patterns of norms.</p>
+<span style="font: 11.0px 'Lucida Grande'; background-color: rgb(255, 180, 14); border: dashed thin; padding: 6px;"><a
+				href='javascript:liveAction("org.eclipse.amp.escape.ide", "org.eclipse.amp.escape.help.ExecuteJavaModelAction",
+	"org.ascape.escape.models.brook/edu.brook.norms.Norms")'>Run
+it!</a></span>
 <p class="p20"><br>
 </p>
 <p class="p19"><a name="1.2.7"><b>Political Science</b></a></p>
@@ -385,7 +420,7 @@ in the model either follow a centralized patrol routine, or they disperse throug
 neighborhoods. The model shows that a more disperse police force is much more effective in keeping civil unrest under
 wraps. It further shows that by experimenting with the values of the citizens’ legitimacy and unhappiness, that citizens
 can tolerate lots of hardship but small, but quick, changes in the legitimacy of a government can lead to widespread
-civil violence. This model was developed by Josh Epstein.</p>
+civil violence. This model was concieved by Josh Epstein with contributions from Miles Parker and developed by Miles Parker.</p>
 <p class="p20"><br>
 </p>
 <p class="p3"><img src="images/original-12.png" alt="images/original-12.png"></p>
@@ -394,13 +429,19 @@ civil violence. This model was developed by Josh Epstein.</p>
 <p class="p36">Fig. 12: Civil Violence Model in which red agents are activists, blue agents are quiescent citizens,
 and black agents are police. The left side of the screen shows the agents’ expressed views, and the right hand side
 shows (on a scale on white equals complete quiescence and light-pink equals complete contempt), the agents’ true views.</p>
+<BR/>
+<span style="font: 11.0px 'Lucida Grande'; background-color: rgb(255, 180, 14); border: dashed thin; padding: 6px;"><a
+				href='javascript:liveAction("org.eclipse.amp.escape.ide", "org.eclipse.amp.escape.help.ExecuteJavaModelAction",
+	"org.ascape.escape.models.brook/edu.brook.cv.CVModel")'>Run
+it!</a></span>
 <p class="p2"><br>
 </p>
 <p class="p19"><b>These examples are just a few of the social science models that we have developed in Ascape.
 There are many more models in the Ascape suite, and countless more that can be developed, spanning all of the social
-science disciplines. In the <a href="Section2.html">following section</a>, we will learn about the structure of Ascape and begin to build a
-coordination game model. Following that, in <a href="Section3.html">Section 3</a>, we will build an increasingly sophisticated series of Ascape
-models that should bring even a novice developer up to speed on agent-based modeling in Ascape. </b></p>
+science disciplines. In the <a href="Section2.html">following section</a>, we will learn about the structure of Ascape
+and begin to build a coordination game model. Following that, in <a href="Section3.html">Section 3</a>, we will build an
+increasingly sophisticated series of Ascape models that should bring even a novice developer up to speed on agent-based
+modeling in Ascape. </b></p>
 <p class="p15"><br>
 </p>
 <p class="p32"><br>
