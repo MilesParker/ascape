@@ -66,8 +66,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
    </url>
 
    <requires>
-      <import plugin="org.apache.ant"/>
-      <import plugin="org.junit"/>
+      <import plugin="org.ascape.common.lib" version="5.5.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
@@ -86,6 +85,20 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
    <plugin
          id="org.ascape.ui.swing"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.jdom"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.ascape.ide"
          download-size="0"
          install-size="0"
          version="0.0.0"
