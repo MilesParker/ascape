@@ -18,15 +18,17 @@ public class PeformActionOnSelectedNode implements TreeSelectionListener {
 	public void valueChanged(TreeSelectionEvent e) {
 
 		// Get the path to the selection.
-		TreePath path = e.getPath();
+		TreePath selPath = e.getNewLeadSelectionPath();
 
-		// Get the selected node.
-		Object node = path.getLastPathComponent();
+		if (selPath != null) {
+			// Get the selected node.
+			Object node = selPath.getLastPathComponent();
 
-		// if node exists and node is an ActionListener, execute the
-		// actionPerformed method
-		if (node instanceof ActionListener) {
-			((ActionListener) node).actionPerformed(null);
+			// if node exists and node is an ActionListener, execute the
+			// actionPerformed method
+			if (node instanceof ActionListener) {
+				((ActionListener) node).actionPerformed(null);
+			}
 		}
 	}
 }
