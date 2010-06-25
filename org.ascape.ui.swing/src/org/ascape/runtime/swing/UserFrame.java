@@ -51,11 +51,12 @@ import javax.swing.event.ChangeListener;
 import javax.swing.plaf.basic.BasicSplitPaneUI;
 
 import org.ascape.runtime.swing.navigator.Navigator;
+import org.ascape.runtime.swing.navigator.RightClickPopupDesktopMenu;
 import org.ascape.view.vis.Overhead2DView;
 import org.ascape.view.vis.control.MenuBarView;
 
 /**
- * A desktop (MDI) style environent for model exploration.
+ * A desktop (MDI) style environment for model exploration.
  */
 public class UserFrame extends JFrame {
 
@@ -276,6 +277,8 @@ public class UserFrame extends JFrame {
 			}
 		});
 		deskScroll.setViewportView(desk);
+		
+		deskScroll.addMouseListener(new RightClickPopupDesktopMenu(environment));
 	}
 
 	/**

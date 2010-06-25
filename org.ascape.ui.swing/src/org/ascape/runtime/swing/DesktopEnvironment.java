@@ -69,7 +69,7 @@ import org.ascape.view.vis.control.ControlActionView;
 import org.ascape.view.vis.control.ControlBarView;
 
 /**
- * Suppots all user environment ascapet of a running ascape app in a vm,
+ * Supports all user environment aspects of a running ascape app in a vm,
  * including user frame, etc.
  * 
  * @author Miles Parker
@@ -223,8 +223,7 @@ public class DesktopEnvironment extends SwingEnvironment {
     }
 
 	/**
-	 * When a scape is added add any persistent views to it and set frame title.
-	 * Close any already open frames that aren't persistent.
+	 * When a scape is added close any already open frames that aren't persistent and set frame title.
 	 * 
 	 * @param scapeEvent
 	 *            the scape event
@@ -234,18 +233,19 @@ public class DesktopEnvironment extends SwingEnvironment {
 	public void scapeAdded(ScapeEvent scapeEvent)
 			throws TooManyListenersException {
 		super.scapeAdded(scapeEvent);
-		closeOpenFrames();
-		frames = new Vector<ViewFrameBridge>();
+		closeOpenFrames(false);
 		getUserFrame().setTitle("Ascape - " + getScape().getName());
 	}
 
+		
 	/**
-	 * Close any open frames that are left over from the previously open model
-	 * If a frame contains a {@link PersistentComponentView}, it will not be
-	 * closed.
+	 * Close any open frames.
 	 * 
+	 * @param closePersistent
+	 *            close persistent frames? If {@code false} and a frame contains
+	 *            a {@link PersistentComponentView}, it will not be closed.
 	 */
-	private void closeOpenFrames() {
+	public void closeOpenFrames(boolean closePersistent) {
 
 		// make a copy of frames because
 		// during dispose the frames vector
@@ -260,15 +260,16 @@ public class DesktopEnvironment extends SwingEnvironment {
 		for (ViewFrameBridge vfb : framesCopy) {
 			boolean persistent = false;
 			for (ComponentView view : vfb.getViews()) {
-				if (view instanceof PersistentComponentView) {
+				if (!closePersistent
+						&& view instanceof PersistentComponentView) {
 					persistent = true;
 					break;
 				}
 			}
-			
+
 			if (!persistent) {
-				// dispose the frame. this will remove it from 
-				// RuntimeEnvironment.environmentViews and from 
+				// dispose the frame. this will remove it from
+				// RuntimeEnvironment.environmentViews and from
 				// SwingEnvironment.frames
 				vfb.dispose();
 			}
