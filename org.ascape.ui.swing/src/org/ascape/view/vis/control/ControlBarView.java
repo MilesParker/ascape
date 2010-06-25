@@ -150,6 +150,11 @@ public class ControlBarView extends ControlActionView /* implements Externalizab
     protected JToolBar optionsBar;
 
     /**
+     * The additional tool bar.
+     */
+    protected JToolBar additionalBar;
+    
+    /**
      * The file bar.
      */
     protected JToolBar fileBar;
@@ -271,7 +276,14 @@ public class ControlBarView extends ControlActionView /* implements Externalizab
                 fullNormalWindowButton = DesktopEnvironment.addToolBarButton(optionsBar, getFullWindowAction());
                 changeInFullScreen();
             }
-        }
+            
+            additionalBar = DesktopEnvironment.createToolbar();
+            
+            gbc.gridx++;
+            gbc.weightx = 1.0;
+            gbc.weighty = 1.0;
+            add(additionalBar, gbc);
+       }
 
         //disallow resizing
         if (getViewFrame() != null) {
@@ -592,6 +604,15 @@ public class ControlBarView extends ControlActionView /* implements Externalizab
         return optionsBar;
     }
 
+    /**
+     * Gets the additional bar.
+     * 
+     * @return the additional bar
+     */
+    public JToolBar getAdditionalBar() {
+        return additionalBar;
+    }
+    
     /**
      * Gets the file bar.
      * 

@@ -9,6 +9,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JSplitPane;
+import javax.swing.JToolBar;
 import javax.swing.SwingUtilities;
 
 import org.ascape.model.Scape;
@@ -298,6 +299,10 @@ public final class AscapeGUIUtil {
 		};
 		SwingUtilities.invokeLater(doWorkRunnable);
 
+	}
+	
+	public static JToolBar getAdditionalBar() {
+		return getSwingEnvironment().getControlBarView().getAdditionalBar();
 	}
 	
 
