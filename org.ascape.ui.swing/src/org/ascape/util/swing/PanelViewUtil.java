@@ -25,7 +25,7 @@ public final class PanelViewUtil {
 	 * The border around the max size of a {@link PanelView} displaying a table.
 	 * See {@link #createPanelView(JTable, Dimension)}.
 	 */
-	public static final Dimension TABLE_BORDER_EDGES = new Dimension(20, 20);
+	public static final Dimension TABLE_BORDER_EDGES = new Dimension(35, 72);
 
 	/**
 	 * The border around the max size of a {@link PanelView} displaying a
@@ -202,8 +202,10 @@ public final class PanelViewUtil {
 
 			Dimension prefSize = table.getPreferredSize();
 
-			table.setPreferredScrollableViewportSize(min(prefSize, subtract(
-					maxSize, TABLE_BORDER_EDGES)));
+			Dimension setSize = min(prefSize, subtract(
+					maxSize, TABLE_BORDER_EDGES));
+			
+			table.setPreferredScrollableViewportSize(setSize);
 		}
 
 		// allow sorting using the column headers
