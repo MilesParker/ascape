@@ -14,9 +14,9 @@ import org.ascape.runtime.swing.SwingEnvironment;
 import org.ascape.view.vis.PanelView;
 
 /**
- * Tree node that displays a panel view with a table when clicked on. For
- * clicking to work, the {@link PeformActionOnSelectedNode} listener must be
- * installed on the JTree.
+ * Tree node that displays a {@link PanelView} when clicked on. For clicking to
+ * work, the {@link PeformActionOnSelectedNode} listener must be installed on
+ * the JTree.
  * 
  * @author Oliver Mannion
  * @version $Revision$
@@ -37,8 +37,8 @@ public class PanelViewNode extends DefaultMutableTreeNode implements
 	 * @param scape
 	 *            scape to associate this instance with.
 	 * @param provider
-	 *            {@link PanelViewProvider} to execute when this node is
-	 *            clicked.
+	 *            {@link PanelViewProvider} that provides the {@link PanelView}
+	 *            to be displayed when this node is clicked.
 	 */
 	public PanelViewNode(PanelViewProvider provider) {
 		super(provider);
@@ -69,10 +69,10 @@ public class PanelViewNode extends DefaultMutableTreeNode implements
 			if (panelView == null) {
 				panelView = provider.getPanelView();
 			}
-			
+
 			// make panel visible
 			panelView.setVisible(true);
-			
+
 			// tell panel to update it's graphics. if it has
 			// been closed during iterations then it will need
 			// to update itself now that we have opened it
@@ -93,10 +93,10 @@ public class PanelViewNode extends DefaultMutableTreeNode implements
 			pvFrame = installFrameListener(pvFrameImp);
 
 			// don't remove the scape listener when the ViewFrameBridge
-			// internal frame is closed. important so that closed 
+			// internal frame is closed. important so that closed
 			// chart views can still function.
 			panelView.getViewFrame().setRemoveListenerOnDispose(false);
-			
+
 			// call added event on provider
 			provider.panelViewAdded(pvFrameImp);
 		}

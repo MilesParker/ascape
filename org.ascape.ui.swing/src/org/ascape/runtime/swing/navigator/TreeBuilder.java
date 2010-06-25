@@ -1,5 +1,6 @@
 package org.ascape.runtime.swing.navigator;
 
+import java.awt.event.MouseListener;
 import java.util.Set;
 
 import javax.swing.event.TreeSelectionListener;
@@ -48,5 +49,12 @@ public interface TreeBuilder {
 	 * @return tree selections listeners
 	 */
 	Set<TreeSelectionListener> getTreeSelectionListeners();
+	
+	/**
+	 * Set of {@link MouseListener}s to add to the Navigator JTree.
+	 * 
+	 * @return tree selections listeners
+	 */
+	Set<MouseListener> getMouseListeners();
 
 }

@@ -1,5 +1,6 @@
 package org.ascape.runtime.swing.navigator;
 
+import java.awt.event.MouseListener;
 import java.util.Collections;
 import java.util.Set;
 
@@ -60,6 +61,15 @@ public class DefaultTreeBuilder implements TreeBuilder {
 	 * @return empty set.
 	 */
 	public Set<TreeSelectionListener> getTreeSelectionListeners() {
+		return Collections.emptySet();
+	}
+
+	/**
+	 * Returns an empty set.
+	 * 
+	 * @return empty set.
+	 */
+	public Set<MouseListener> getMouseListeners() {
 		return Collections.emptySet();
 	}
 

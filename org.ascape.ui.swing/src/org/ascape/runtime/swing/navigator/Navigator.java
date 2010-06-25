@@ -12,6 +12,7 @@ import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.MouseListener;
 import java.util.TooManyListenersException;
 
 import javax.swing.Icon;
@@ -254,6 +255,11 @@ public class Navigator extends PanelView {
 			tree.addTreeSelectionListener(tsl);
 		}
 
+		for (MouseListener ml : treeBuilder
+				.getMouseListeners()) {
+			tree.addMouseListener(ml);
+		}
+		
 		// tree.putClientProperty("JTree.lineStyle", "Angled");
 		DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer() {
 			/**
