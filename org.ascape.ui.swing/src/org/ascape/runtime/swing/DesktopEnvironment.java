@@ -210,16 +210,16 @@ public class DesktopEnvironment extends SwingEnvironment {
         }
     }
 
-    /**
-     * Setup up a basic interactive controlBar time userEnvironment for a model
-     * application.
-     * 
-     * @param scapeEvent
-     *            the scape event
-     */
     public void environmentQuiting(ScapeEvent scapeEvent) {
         super.environmentQuiting(scapeEvent);
-        getUserFrame().dispose();
+        
+        
+        UserFrame frame = getUserFrame();
+        
+        // save frame positions
+        frame.savePrefs();
+        
+        frame.dispose();
     }
 
 	/**
@@ -673,7 +673,7 @@ public class DesktopEnvironment extends SwingEnvironment {
         } else if (!fullScreen && (isFullScreen() || !getUserFrame().isShowing())) {
             Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
             getUserFrame().setLocation(0, 0);
-            getUserFrame().setSize(screenSize.width, screenSize.height - 20);
+            getUserFrame().setSizeFromPrefs(screenSize.width, screenSize.height - 30);
             GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().setFullScreenWindow(null);
             SwingUtilities.invokeLater(new Runnable() {
                 public void run() {

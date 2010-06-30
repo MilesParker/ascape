@@ -30,6 +30,7 @@ import java.io.PrintStream;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.prefs.Preferences;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultDesktopManager;
@@ -60,11 +61,19 @@ import org.ascape.view.vis.control.MenuBarView;
  */
 public class UserFrame extends JFrame {
 
+	private static final int CONSOLE_DIVIDER_LOCATION_DEFAULT = 800;
+
 	/**
      * 
      */
 	private static final long serialVersionUID = 5621172820611162226L;
 
+	/**
+	 * Preferences that save GUI components positions.
+	 */
+	private Preferences prefs =
+		Preferences.userNodeForPackage(this.getClass());
+	
 	/**
 	 * The desk.
 	 */
@@ -79,11 +88,11 @@ public class UserFrame extends JFrame {
 	 * The tabbed console pane at the bottom of the screen.
 	 */
 	private JTabbedPane consolePane;
-	
+
 	/**
 	 * The text area the is the console log.
 	 */
-	private ConsoleOutput console; 
+	private ConsoleOutput console;
 
 	/**
 	 * The split pane between the console section and the rest of the screen.
@@ -195,11 +204,13 @@ public class UserFrame extends JFrame {
 		super(title);
 		this.environment = environment;
 		if (oldFrame != null) {
-			// essentailly a shallow clone based on old frame
+			// essentially a shallow clone based on old frame
 			this.rootPanel = oldFrame.rootPanel;
 			this.menuView = oldFrame.menuView;
 			this.desk = oldFrame.desk;
 			this.deskScroll = oldFrame.deskScroll;
+			this.deskTreeConsole = oldFrame.deskTreeConsole;
+			this.consolePane = oldFrame.consolePane;
 			this.showToolBar = oldFrame.showToolBar;
 			this.toolbarPanel = oldFrame.toolbarPanel;
 			this.innerPanel = oldFrame.innerPanel;
@@ -235,7 +246,7 @@ public class UserFrame extends JFrame {
 				// tell window not to close
 				// (environment.quit() will do this for us if we can quit)
 				setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-				
+
 				// execute quit on new thread instead of AWT
 				new Thread("Quit") {
 					public void run() {
@@ -244,8 +255,51 @@ public class UserFrame extends JFrame {
 				}.start();
 			}
 		});
+		
+		loadPrefs();
 	}
 
+	private static final String CONSOLE_DIVIDER_LOCATION = "console divider location"; 
+	private static final String CONSOLE_LAST_DIVIDER_LOCATION = "console last divider location"; 
+	private static final String USERFRAME_WIDTH = "application width"; 
+	private static final String USERFRAME_HEIGHT = "application height"; 
+
+	/**
+	 * Set the size of the {@link UserFrame} to the smaller of the screen dimensions
+	 * and the dimensions saved in the preferences between runs. 
+	 * 
+	 * @param screenWidth screen width
+	 * @param screenHeight screen height
+	 */
+	public void setSizeFromPrefs(int screenWidth, int screenHeight) {
+		int width = Integer.parseInt(prefs.get(USERFRAME_WIDTH, String.valueOf(screenWidth)));
+		int height = Integer.parseInt(prefs.get(USERFRAME_HEIGHT, String.valueOf(screenHeight)));
+
+		setSize(Math.min(width, screenWidth) , Math.min(height, screenHeight));
+	}
+
+	/**
+	 * Load preferences including: console divider location.
+	 */
+	public void loadPrefs() {
+		int dividerLocation = Integer.parseInt(prefs.get(CONSOLE_DIVIDER_LOCATION, String.valueOf(CONSOLE_DIVIDER_LOCATION_DEFAULT)));
+		int dividerLastLocation = Integer.parseInt(prefs.get(CONSOLE_LAST_DIVIDER_LOCATION, "-1"));
+		
+		deskTreeConsole.setDividerLocation(dividerLocation);
+		deskTreeConsole.setLastDividerLocation(dividerLastLocation);
+	}
+
+	/**
+	 * Save preferences including: console divider location, userframe width and height.
+	 */
+	public void savePrefs() {
+		prefs.put(CONSOLE_DIVIDER_LOCATION, String.valueOf(deskTreeConsole.getDividerLocation()));
+		prefs.put(CONSOLE_LAST_DIVIDER_LOCATION, "" + String.valueOf(deskTreeConsole.getLastDividerLocation()));
+		
+		prefs.put(USERFRAME_WIDTH, String.valueOf(getWidth()));
+		prefs.put(USERFRAME_HEIGHT, String.valueOf(getHeight()));
+	}
+	
 	/**
 	 * Instantiates a new user frame.
 	 * 
@@ -277,8 +331,9 @@ public class UserFrame extends JFrame {
 			}
 		});
 		deskScroll.setViewportView(desk);
-		
-		deskScroll.addMouseListener(new RightClickPopupDesktopMenu(environment));
+
+		deskScroll.addMouseListener(new RightClickPopupDesktopMenu(
+				environment));
 	}
 
 	/**
@@ -362,7 +417,7 @@ public class UserFrame extends JFrame {
 					return new Dimension(super.getPreferredSize().width, 120);
 				}
 			};
-			
+
 			console = new ConsoleOutput() {
 				/**
                  * 
@@ -376,14 +431,14 @@ public class UserFrame extends JFrame {
 					b.setValue(b.getMaximum());
 				}
 			};
-			
+
 			logScroll.setViewportView(console);
 			console.setMinimumSize(new Dimension(0, 0));
 			JPanel logPanel = new JPanel(new BorderLayout());
 			logPanel.add(logScroll, BorderLayout.CENTER);
 
 			// Create a tabbed pane to hold the logPanel (which holds the
-			// logScroll which holds the consol) on a tab called "Log".
+			// logScroll which holds the console) on a tab called "Log".
 			consolePane = new JTabbedPane();
 			consolePane.addTab("Log", logPanel);
 
@@ -395,8 +450,9 @@ public class UserFrame extends JFrame {
 			deskTreeConsole.setUI(new BasicSplitPaneUI());
 			deskTreeConsole.setOneTouchExpandable(true);
 			deskTreeConsole.setResizeWeight(1.0);
-			deskTreeConsole.setDividerLocation(800);
+			deskTreeConsole.setDividerLocation(CONSOLE_DIVIDER_LOCATION_DEFAULT);
 			innerPanel.add(deskTreeConsole, BorderLayout.CENTER);
+			
 		} else {
 			innerPanel.add(mainDesk, BorderLayout.CENTER);
 		}
@@ -405,7 +461,7 @@ public class UserFrame extends JFrame {
 	public void flushConsoleLog() {
 		console.flush();
 	}
-	
+
 	/**
 	 * Handle control bar show.
 	 */
@@ -1157,12 +1213,12 @@ public class UserFrame extends JFrame {
 	public MenuBarView getMenuView() {
 		return menuView;
 	}
+
 }
 
 /**
- * The console log text area.
- * Reassigns System.out to itself.
- * Creates a new thread called "Ascape Consoler Updater". 
+ * The console log text area. Reassigns System.out to itself. Creates a new
+ * thread called "Ascape Consoler Updater".
  */
 class ConsoleOutput extends JTextArea {
 
@@ -1207,13 +1263,13 @@ class ConsoleOutput extends JTextArea {
 		readOut.interrupt();
 		Thread.yield();
 	}
-	
+
 	public ConsoleOutput() {
 		setFont(new Font("Monospaced", Font.PLAIN, 12));
 		final PipedOutputStream pout = new PipedOutputStream();
 		final PrintStream sout = new PrintStream(pout, true);
 		System.setOut(sout);
-		
+
 		readOut = new Thread("Ascape Console Updater StdOut") {
 			public void start() {
 				super.start();
@@ -1251,7 +1307,7 @@ class ConsoleOutput extends JTextArea {
 				}
 			}
 		};
-		
+
 		// Terminate automatically when all other threead finish
 		readOut.setDaemon(true);
 		readOut.start();
@@ -1260,7 +1316,7 @@ class ConsoleOutput extends JTextArea {
 			final PipedOutputStream perr = new PipedOutputStream();
 			final PrintStream serr = new PrintStream(perr, true);
 			System.setErr(serr);
-			
+
 			readErr = new Thread("Ascape Console Updater StdErr") {
 				public void start() {
 					super.start();

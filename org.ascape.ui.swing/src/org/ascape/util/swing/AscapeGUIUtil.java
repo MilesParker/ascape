@@ -241,8 +241,7 @@ public final class AscapeGUIUtil {
 	 *            menu to add
 	 */
 	public static void addMenu(final JMenu menu) {
-		final JMenuBar menuBar =
-				AscapeGUIUtil.getUserFrame().getJMenuBar();
+		final JMenuBar menuBar = AscapeGUIUtil.getUserFrame().getJMenuBar();
 
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
@@ -278,7 +277,8 @@ public final class AscapeGUIUtil {
 	/**
 	 * Set the location of the console pane.
 	 * 
-	 * @param location location
+	 * @param location
+	 *            location
 	 */
 	public static void setConsoleDividerLocation(final int location) {
 		DesktopEnvironment desktop = AscapeGUIUtil.getDesktopEnvironment();
@@ -287,12 +287,13 @@ public final class AscapeGUIUtil {
 					"Not running in desktop environment, "
 							+ "or desktop environment not yet loaded.");
 		}
-		
-		final JSplitPane consoleSplit = desktop.getUserFrame().getConsoleSplit();
-		
+
+		final JSplitPane consoleSplit =
+				desktop.getUserFrame().getConsoleSplit();
+
 		Runnable doWorkRunnable = new Runnable() {
 			public void run() {
-				// move the console pane at the bottom 
+				// move the console pane at the bottom
 				// by changing the split divider location
 				consoleSplit.setDividerLocation(location);
 			}
@@ -300,10 +301,9 @@ public final class AscapeGUIUtil {
 		SwingUtilities.invokeLater(doWorkRunnable);
 
 	}
-	
+
 	public static JToolBar getAdditionalBar() {
 		return getSwingEnvironment().getControlBarView().getAdditionalBar();
 	}
-	
 
 }
