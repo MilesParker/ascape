@@ -61,6 +61,8 @@ import org.ascape.view.vis.control.MenuBarView;
  */
 public class UserFrame extends JFrame {
 
+	private static final int TREE_DIVIDER_LOCATION_DEFAULT = 180;
+
 	private static final int CONSOLE_DIVIDER_LOCATION_DEFAULT = 800;
 
 	/**
@@ -94,6 +96,11 @@ public class UserFrame extends JFrame {
 	 */
 	private ConsoleOutput console;
 
+	/**
+	 * The split pane between the Navigator tree and the desktop.
+	 */
+	private JSplitPane deskAndTree;
+	
 	/**
 	 * The split pane between the console section and the rest of the screen.
 	 */
@@ -259,6 +266,8 @@ public class UserFrame extends JFrame {
 		loadPrefs();
 	}
 
+	private static final String TREE_DIVIDER_LOCATION = "tree divider location"; 
+	private static final String TREE_LAST_DIVIDER_LOCATION = "tre last divider location"; 
 	private static final String CONSOLE_DIVIDER_LOCATION = "console divider location"; 
 	private static final String CONSOLE_LAST_DIVIDER_LOCATION = "console last divider location"; 
 	private static final String USERFRAME_WIDTH = "application width"; 
@@ -282,11 +291,18 @@ public class UserFrame extends JFrame {
 	 * Load preferences including: console divider location.
 	 */
 	public void loadPrefs() {
-		int dividerLocation = Integer.parseInt(prefs.get(CONSOLE_DIVIDER_LOCATION, String.valueOf(CONSOLE_DIVIDER_LOCATION_DEFAULT)));
-		int dividerLastLocation = Integer.parseInt(prefs.get(CONSOLE_LAST_DIVIDER_LOCATION, "-1"));
+		int consoleDividerLocation = Integer.parseInt(prefs.get(CONSOLE_DIVIDER_LOCATION, String.valueOf(CONSOLE_DIVIDER_LOCATION_DEFAULT)));
+		int consoleDividerLastLocation = Integer.parseInt(prefs.get(CONSOLE_LAST_DIVIDER_LOCATION, "-1"));
 		
-		deskTreeConsole.setDividerLocation(dividerLocation);
-		deskTreeConsole.setLastDividerLocation(dividerLastLocation);
+		deskTreeConsole.setDividerLocation(consoleDividerLocation);
+		deskTreeConsole.setLastDividerLocation(consoleDividerLastLocation);
+		
+		int treeDividerLocation = Integer.parseInt(prefs.get(TREE_DIVIDER_LOCATION, String.valueOf(TREE_DIVIDER_LOCATION_DEFAULT)));
+		int treeDividerLastLocation = Integer.parseInt(prefs.get(TREE_LAST_DIVIDER_LOCATION, "-1"));
+
+		deskAndTree.setDividerLocation(treeDividerLocation);
+		deskAndTree.setLastDividerLocation(treeDividerLastLocation);
+		
 	}
 
 	/**
@@ -295,6 +311,9 @@ public class UserFrame extends JFrame {
 	public void savePrefs() {
 		prefs.put(CONSOLE_DIVIDER_LOCATION, String.valueOf(deskTreeConsole.getDividerLocation()));
 		prefs.put(CONSOLE_LAST_DIVIDER_LOCATION, "" + String.valueOf(deskTreeConsole.getLastDividerLocation()));
+
+		prefs.put(TREE_DIVIDER_LOCATION, String.valueOf(deskAndTree.getDividerLocation()));
+		prefs.put(TREE_LAST_DIVIDER_LOCATION, "" + String.valueOf(deskAndTree.getLastDividerLocation()));
 		
 		prefs.put(USERFRAME_WIDTH, String.valueOf(getWidth()));
 		prefs.put(USERFRAME_HEIGHT, String.valueOf(getHeight()));
@@ -391,14 +410,14 @@ public class UserFrame extends JFrame {
 			navPanel.add(navScroll, BorderLayout.CENTER);
 			navPanel.add(navTitle, BorderLayout.NORTH);
 
-			JSplitPane deskAndTree =
+			deskAndTree =
 					new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, true,
 							navPanel, deskScroll);
 			deskAndTree.setDividerSize(8);
 			deskAndTree.setUI(new BasicSplitPaneUI());
 			deskAndTree.setOneTouchExpandable(true);
 			deskAndTree.setResizeWeight(1.0);
-			deskAndTree.setDividerLocation(180);
+			deskAndTree.setDividerLocation(TREE_DIVIDER_LOCATION_DEFAULT);
 
 			mainDesk = deskAndTree;
 		} else {
