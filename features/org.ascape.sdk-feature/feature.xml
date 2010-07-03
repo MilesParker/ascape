@@ -69,4 +69,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
          id="org.ascape.doc"
          version="0.0.0"/>
 
+   <plugin
+         id="org.ascape.ide"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
 </feature>
