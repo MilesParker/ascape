@@ -2,7 +2,7 @@
 <project default="deploy" name="Create Runnable Jar for Project org.ascape.all">
 	<!--this file was created by Eclipse Runnable JAR Export Wizard-->
 	<!--ANT 1.7 is required                                        -->
-	<property name="ascape.version" value="5.5.0" />
+	<property name="ascape.version" value="5.5.1" />
 	<property name="dir.build" value="/Volumes/Resources/Developer/builds/ascape/${ascape.version}" />
 	<property name="dir.projects" value=".." />
 	<property name="dir.eclipse" value="/Developer/eclipse" />
@@ -15,7 +15,7 @@
 				<attribute name="Class-Path" value="." />
 			</manifest>
 			<fileset dir="${dir.projects}/org.ascape.all/bin" />
-			<fileset dir="${dir.projects}/../eclipse/org.ascape/plugins/org.ascape.core/bin" />
+			<fileset dir="${dir.projects}/org.ascape.core/bin" />
 			<fileset dir="${dir.projects}/org.ascape.core.lib" />
 			<fileset dir="${dir.projects}/org.ascape.common.lib" />
 			<zipfileset excludes="META-INF/*.SF" src="${dir.eclipse}/plugins/org.junit_3.8.2.v20090203-1005/junit.jar" />

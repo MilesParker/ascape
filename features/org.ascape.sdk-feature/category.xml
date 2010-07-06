@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.ascape.core_5.5.0.qualifier.jar" id="org.ascape.core" version="5.5.0.qualifier">
+      <category name="Ascape"/>
+   </feature>
+   <feature url="features/org.ascape.doc_5.5.0.qualifier.jar" id="org.ascape.doc" version="5.5.0.qualifier">
+      <category name="Ascape"/>
+   </feature>
+   <feature url="features/org.ascape.sdk_5.5.0.qualifier.jar" id="org.ascape.sdk" version="5.5.0.qualifier">
+      <category name="Ascape"/>
+   </feature>
+   <feature url="features/org.ascape.swing_5.5.0.qualifier.jar" id="org.ascape.swing" version="5.5.0.qualifier">
+      <category name="Ascape"/>
+   </feature>
+   <category-def name="Ascape" label="Ascape"/>
+</site>

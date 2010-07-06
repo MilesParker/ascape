@@ -2,8 +2,9 @@
 <feature
       id="org.ascape.core"
       label="Ascape Core Framework (No UI)"
-      version="5.2.0.qualifier"
-      provider-name="Ascape.org">
+      version="5.5.0.qualifier"
+      provider-name="Ascape.org"
+      plugin="org.ascape.core">
 
    <description url="http://ascape.sourceforge.net">
       Ascape is an innovative tool for developing and exploring general-purpose
@@ -72,6 +73,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-
 
 </feature>

@@ -4,7 +4,6 @@
 <plugin>
 <extension point="org.eclipse.ui.newWizards">
    <wizard
-         category="org.eclipse.escape.wizards"
          class="org.ascape.ide.AscapeJavaPluginProjectWizard"
          descriptionImage="icons/AscapeLogo.png"
          icon="icons/Ascape16.png"
@@ -16,4 +15,22 @@
       </description>
    </wizard>
 	</extension>
+<extension
+      point="org.eclipse.ui.perspectiveExtensions">
+   <perspectiveExtension
+         targetID="org.eclipse.jdt.ui.JavaPerspective">
+      <newWizardShortcut
+            id="org.ascape.wizards.newProject">
+      </newWizardShortcut>
+   </perspectiveExtension>
+</extension>
+<extension
+      point="org.eclipse.ui.perspectiveExtensions">
+   <perspectiveExtension
+         targetID="org.eclipse.amp.amf.AgentModelingPerspective">
+      <newWizardShortcut
+            id="org.ascape.wizards.newProject">
+      </newWizardShortcut>
+   </perspectiveExtension>
+</extension>
 </plugin>

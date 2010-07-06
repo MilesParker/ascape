@@ -1,4 +1,4 @@
-Copyright (c) Copyright 1998-2009 Metascape LLC, The Brookings Institution, NuTech Solutions,Inc., and
+Copyright (c) Copyright 1998-2010 Metascape LLC, The Brookings Institution, NuTech Solutions,Inc., and
 contributors.
 All rights reserved.
 
