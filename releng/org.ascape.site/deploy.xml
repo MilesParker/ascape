@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="deploy" name="Create Runnable Jar for Project org.ascape.all">
+	<!--this file was created by Eclipse Runnable JAR Export Wizard-->
+	<!--ANT 1.7 is required                                        -->
+	<property name="ascape.version" value="5.6.0" />
+	<property name="dir.build" value="/Volumes/Resources/Developer/builds/ascape/${ascape.version}" />
+	<property name="dir.projects" value=".." />
+	<property name="dir.eclipse" value="/Developer/eclipse" />
+
+	<target name="create_run_jar">
+		<jar destfile="${dir.build}/Ascape_${ascape.version}.jar" filesetmanifest="mergewithoutmain">
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+				<attribute name="Main-Class" value="org.ascape.runtime.swing.SwingRunner" />
+				<attribute name="Class-Path" value="." />
+			</manifest>
+			<fileset dir="${dir.projects}/org.ascape.all/bin" />
+			<fileset dir="${dir.projects}/org.ascape.core/bin" />
+			<fileset dir="${dir.projects}/org.ascape.core.lib" />
+			<fileset dir="${dir.projects}/org.ascape.common.lib" />
+			<zipfileset excludes="META-INF/*.SF" src="${dir.eclipse}/plugins/org.junit_3.8.2.v20090203-1005/junit.jar" />
+			<fileset dir="${dir.projects}/org.ascape.ui.swing/bin" />
+			<fileset dir="${dir.projects}/examples/org.ascape.models.brook/bin" />
+			<fileset dir="${dir.projects}/examples/org.ascape.models.examples/bin" />
+		</jar>
+	</target>
+
+	<target name="create_applet_jar">
+		<jar duplicate="preserve" destfile="${dir.build}/Ascape_Applet${ascape.version}.jar" filesetmanifest="mergewithoutmain">
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+				<attribute name="Main-Class" value="org.ascape.runtime.applet.SwingApplet" />
+				<attribute name="Class-Path" value="." />
+			</manifest>
+			<fileset excludes="META-INF/*,*.*" dir="${dir.projects}/org.ascape.core/bin" />
+			<fileset excludes="META-INF/*,*.*" dir="${dir.projects}/org.ascape.common.lib" />
+			<fileset excludes="META-INF/*,*.*" dir="${dir.projects}/org.ascape.ui.swing/bin" />
+		</jar>
+	</target>
+	
+	<target name="create_sdk">
+		<copy todir="${dir.build}/Ascape_SDK_${ascape.version}">
+			<fileset dir="${dir.projects}" defaultexcludes="no">
+				<include name="../eclipse/org.ascape/plugins/org.ascape.core/**" />
+				<include name="org.ascape.common.lib/**" />
+				<include name="org.ascape.core.test/**" />
+                <include name="org.ascape.ant/**" />
+                <include name="org.ascape.ui.swing/**" />
+				<include name="examples/org.ascape.models.brook/**" />
+				<include name="examples/org.ascape.models.examples/**" />
+			</fileset>
+		</copy>
+		<copy todir="${dir.build}/Ascape_SDK_${ascape.version}">
+			<fileset dir="${dir.projects}/../eclipse/org.ascape/plugins/" defaultexcludes="no">
+				<include name="org.ascape.core/**" />
+			</fileset>
+		</copy>
+		<zip destfile="${dir.build}/Ascape_SDK_${ascape.version}.zip">
+			<fileset dir="${dir.build}/Ascape_SDK_${ascape.version}" includes="**/**" />
+		</zip>
+	</target>
+
+    <target name="create_docs">
+        <copy todir="${dir.build}/Ascape_Docs_${ascape.version}">
+            <fileset dir="${dir.projects}" defaultexcludes="no">
+                <include name="org.ascape.doc/**" />
+            </fileset>
+        </copy>
+        <zip destfile="${dir.build}/Ascape_Docs_${ascape.version}.zip">
+            <fileset dir="${dir.build}/Ascape_Docs_${ascape.version}" includes="**/**" />
+        </zip>
+    </target>
+
+    <target name="create_eclipse">
+        <zip destfile="${dir.build}/Ascape_Eclipse_${ascape.version}.zip">
+            <fileset dir="${dir.build}/Ascape_Eclipse_${ascape.version}" includes="**/**" />
+        </zip>
+    </target>
+	
+	<target name="deploy" depends="create_sdk,create_applet_jar,create_docs,create_eclipse,create_run_jar,create_sdk" />
+</project>

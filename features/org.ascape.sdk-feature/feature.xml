@@ -2,7 +2,7 @@
 <feature
       id="org.ascape.sdk"
       label="Complete Ascape SDK"
-      version="5.5.0.qualifier"
+      version="5.6.0.qualifier"
       provider-name="Ascape">
 
    <description>
