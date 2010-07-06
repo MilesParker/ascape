@@ -62,11 +62,6 @@ THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
    </license>
 
-   <requires>
-      <import plugin="org.apache.ant"/>
-      <import plugin="org.junit"/>
-   </requires>
-
    <plugin
          id="org.ascape.core"
          download-size="0"

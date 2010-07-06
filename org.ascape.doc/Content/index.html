@@ -115,30 +115,28 @@ body {
 												<li><a href="index.html#BuildGeneric"><i>Others</i></a></li>
 								</ul>
 								<li><a href="index.html#Analyzing">Analysis (Ant)</a></li>
-				</li>
+				</ul>
 				<li><a href="index.html#Developing">Developing</a></li>
-</ul>
-</li>
-<li><a href="index.html#EclipseHelp">Built-in Help</a>
-<li><a href="manual/Overview.html"><font color="BLUE">The Ascape Manual</font></a></li>
-<li><a href="index.html#Resources">Resources</a>
-<ul>
-				<li><a href="http://sourceforge.net/project/showfiles.php?group_id=203744"><font color="BLUE">Download</font></a></li>
-				<li><a href="api/index.html">API</a></li>
-				<li><a href="index.html#Papers">Papers</a></li>
-				<li><a href="index.html#Subversion">Subversion</a></li>
-				<li><a href="http://sourceforge.net/projects/ascape"><font color="BLUE">SourceForge Project</font></a></li>
-</ul>
-</li>
-<li><a href="index.html#Contact">Support and Contacts</a>
-<ul>
-				<li><a href="http://sourceforge.net/forum/forum.php?forum_id=731620"><font color="BLUE">Forum</font></a></li>
-				<li><a href="index.html#Sponsors">Sponsors</a></li>
-				<li><a href="index.html#Known Issues">Known Issues</a></li>
-</ul>
-</li>
-<li><a href="index.html#Updating">Updating from older versions</a></li>
-<li><a href="index.html#Version">Version History</a></li>
+				<li><a href="index.html#EclipseHelp">Built-in Help</a></li>
+				<li><a href="manual/Overview.html"><font color="BLUE">The Ascape Manual</font></a></li>
+				<li><a href="index.html#Resources">Resources</a>
+				<ul>
+								<li><a href="http://sourceforge.net/project/showfiles.php?group_id=203744"><font color="BLUE">Download</font></a></li>
+								<li><a href="api/index.html">API</a></li>
+								<li><a href="index.html#Papers">Papers</a></li>
+								<li><a href="index.html#Subversion">Subversion</a></li>
+								<li><a href="http://sourceforge.net/projects/ascape"><font color="BLUE">SourceForge Project</font></a></li>
+				</ul>
+				</li>
+				<li><a href="index.html#Contact">Support and Contacts</a>
+				<ul>
+								<li><a href="http://sourceforge.net/forum/forum.php?forum_id=731620"><font color="BLUE">Forum</font></a></li>
+								<li><a href="index.html#Sponsors">Sponsors</a></li>
+								<li><a href="index.html#Known Issues">Known Issues</a></li>
+				</ul>
+				</li>
+				<li><a href="index.html#Updating">Updating from older versions</a></li>
+				<li><a href="index.html#Version">Version History</a></li>
 </ul>
 </div>
 <div id="main">
@@ -376,25 +374,43 @@ heavily on the Eclipse platform. <i>-Miles</i></span>
 now have a custom wizard for creating Ascape projects! If you have any problems with this approach just use the <a
 				href="#BuildEclipseAscape">"Building Ascape itself"</a> instructions below instead.</p>
 <ol>
-				<li><p>Install <a href="http://www.eclipse.org/downloads">Eclipse</a>.</p></li>
-				<li><p>Install Ascape using the Eclipse Update Manager. Update site is <code>http://ascape.sourceforge.net/eclipse</code>.
+				<li>
+				<p>Install <a href="http://www.eclipse.org/downloads">Eclipse</a>.</p>
+				</li>
+				<li>
+				<p>Install Ascape using the Eclipse Update Manager. Update site is <code>http://ascape.sourceforge.net/eclipse</code>.
 				Please see the Eclipse <a
 								href="http://help.eclipse.org/helios/topic/org.eclipse.platform.doc.user/tasks/tasks-124.htm">user
 				documentation</a> for more details and post a support message if you have any difficulties. If this isn't working well
 				for you for whatever reason then you can always <a href="#BuildEclipseAscape">Build Ascape</a> directly in your
-				workspace.</p></li>
-				<li><p>Restart Eclipse and Select <b>Window -> Reset Perspective.</b> (Or choose "Project.." in the next menu and locate the Ascape project in the dialog.)</p></li>
-				<li><p>Right click in the Package Explorer and select "Ascape (Swing AWT) Project"<BR />
-				<img align="middle" src="screens/EclipseCreateProjectMenu.png" /></p></li>
-				<li><p>In the dialog that follows, just enter a project name. (It says "Escape" but it really is an Ascape project!)<BR />
-				<img align="middle" src="screens/EclipseCreateAscapeProject.png" /></p></li>
-				<li><p>Click Finish. Now we can build a simple Ascape model by creating a new Scape class.<BR />
-				<img align="middle" src="screens/EclipseNewClassMenu.png" /></p></li>
-				<li><p>Enter a package, a class name and <code>org.ascape.model.Scape</code> as the super class.<BR />
-				<img align="middle" src="screens/EclipseNewJavaClassDialog.png" /></p></li>
-				<li><p>The source file is created.<BR />
-				<img align="middle" src="screens/EclipseHelloScapeSource.png" /></p></li>
-				<li><p>Paste the following code into the class body.<BR />
+				workspace.</p>
+				</li>
+				<li>
+				<p>Restart Eclipse and Select <b>Window -> Reset Perspective.</b> (Or choose "Project.." in the next menu and
+				locate the Ascape project in the dialog.)</p>
+				</li>
+				<li>
+				<p>Right click in the Package Explorer and select "Ascape (Swing AWT) Project"<BR />
+				<img align="middle" src="screens/EclipseCreateProjectMenu.png" /></p>
+				</li>
+				<li>
+				<p>In the dialog that follows, just enter a project name. (It says "Escape" but it really is an Ascape project!)<BR />
+				<img align="middle" src="screens/EclipseCreateAscapeProject.png" /></p>
+				</li>
+				<li>
+				<p>Click Finish. Now we can build a simple Ascape model by creating a new Scape class.<BR />
+				<img align="middle" src="screens/EclipseNewClassMenu.png" /></p>
+				</li>
+				<li>
+				<p>Enter a package, a class name and <code>org.ascape.model.Scape</code> as the super class.<BR />
+				<img align="middle" src="screens/EclipseNewJavaClassDialog.png" /></p>
+				</li>
+				<li>
+				<p>The source file is created.<BR />
+				<img align="middle" src="screens/EclipseHelloScapeSource.png" /></p>
+				</li>
+				<li>
+				<p>Paste the following code into the class body.<BR />
 				<pre>
 	Scape helloAgents;
 	Scape helloGrid;
@@ -424,17 +440,27 @@ now have a custom wizard for creating Ascape projects! If you have any problems 
 		super.createGraphicViews();
 		helloGrid.addView(new Overhead2DView());
 	}
-</pre></p></li>
-				<li><p>Select Source:Organize Imports menu item to import referenced classes.<BR>
-				<img align="middle" src="screens/EclipseHelloScapePaste.png" /></p></li>
-				<li><p>Now that we have created our model, we can launch it by selecting Run:Open Run Dialog. Create a new Java
+</pre>
+				</p>
+				</li>
+				<li>
+				<p>Select Source:Organize Imports menu item to import referenced classes.<BR>
+				<img align="middle" src="screens/EclipseHelloScapePaste.png" /></p>
+				</li>
+				<li>
+				<p>Now that we have created our model, we can launch it by selecting Run:Open Run Dialog. Create a new Java
 				Application configuration using the "add document" button at the upper-left. Ensure that the project name is correct
 				and set <code>org.ascape.runtime.swing.SwingRunner</code> as the main class.<BR>
-				<img align="middle" src="screens/EclipseHelloRunSettings.png" /></p></li>
-				<li><p>Under the Arguments tab enter your model class name (fully qualified!).<BR />
-				<img align="middle" src="screens/EclipseHelloRunSettingsP2.png" /></p></li>
-				<li><p>Click Run and launch your first Ascape model!<BR />
-				<img align="middle" src="screens/AscapeRunHello.png" /></p></li>
+				<img align="middle" src="screens/EclipseHelloRunSettings.png" /></p>
+				</li>
+				<li>
+				<p>Under the Arguments tab enter your model class name (fully qualified!).<BR />
+				<img align="middle" src="screens/EclipseHelloRunSettingsP2.png" /></p>
+				</li>
+				<li>
+				<p>Click Run and launch your first Ascape model!<BR />
+				<img align="middle" src="screens/AscapeRunHello.png" /></p>
+				</li>
 </ol>
 <h5><a name="BuildEclipseAscape">Building Ascape itself in Eclipse</a></h5>
 <ol>
@@ -461,7 +487,7 @@ now have a custom wizard for creating Ascape projects! If you have any problems 
 				<li>You chould be able to continue with the instructions under building models above.
 </ol>
 <h5><a name="BuildEclipseAMP">Building using the Eclipse AMP tools.</a></h5>
-<p>A new option is to use the <a href="http://eclipse.org/amp">Eclipse AMP</a> tools to create Ascape projects. AMP
+<p>The <a href="http://eclipse.org/amp">Eclipse AMP</a> tools provide powerful support for Ascape and much more including advanced tools that don't require programming'. AMP
 is a new project but it has great built-in support for Ascape, and you can even try the new Escape environment which
 allows you to run Ascape models within a self-hosted Eclipe environment! If you want to run <b>models directly from
 within Eclipse</b>, then install the AMP tools from <code>http://download.eclipse.org/amp/updates/releases</code></p>
