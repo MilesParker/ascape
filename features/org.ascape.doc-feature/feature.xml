@@ -2,7 +2,7 @@
 <feature
       id="org.ascape.doc"
       label="Ascape Documentation and Source Code"
-      version="5.5.0.qualifier"
+      version="5.5.1.qualifier"
       provider-name="Ascape.org">
 
    <description url="http://ascape.sourceforge.net">
