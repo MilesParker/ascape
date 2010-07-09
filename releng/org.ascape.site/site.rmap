@@ -10,14 +10,6 @@
 			</uri>
 		</provider>
 	</searchPath>
-
-	<searchPath name="ascape.doc">
-		<provider readerType="svn" componentTypes="osgi.bundle" mutable="true" source="true">
-			<uri format="https://ascape.svn.sourceforge.net/svnroot/ascape/doc/{0}">
-				<bc:propertyRef key="buckminster.component" />
-			</uri>
-		</provider>
-	</searchPath>
 	
 	<searchPath name="ascape.feature">
 		<provider readerType="svn" componentTypes="eclipse.feature" mutable="true" source="true">
@@ -36,8 +28,7 @@
 	</searchPath>
 
 	<locator searchPathRef="ascape.releng" pattern="^org\.ascape\.site"/>
-	<locator searchPathRef="ascape.feature" pattern="^org\.ascape([\.\-].+)?" failOnError="false"/>
-	<locator searchPathRef="ascape.doc" pattern="^org\.ascape\.doc"/>
+	<locator searchPathRef="ascape.feature" pattern="^org\.ascape(\..+)?-feature"/>
 	<locator searchPathRef="ascape" pattern="^org\.ascape([\.].+)?"/>
 	<locator searchPathRef="ascape" pattern="^org\.jdom"/>
 </rmap>
