@@ -39,5 +39,5 @@
 	<locator searchPathRef="ascape" pattern="^org\.ascape([\.].+)?"/>
 	<locator searchPathRef="ascape" pattern="^org\.jdom"/>
 	
-	<locator searchPathRef="default" pattern="^.$" />
+	<locator searchPathRef="default" pattern="^.*$" />
 </rmap>
