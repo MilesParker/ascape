@@ -29,5 +29,5 @@
 
 	<locator searchPathRef="ascape.feature" pattern="^org\.ascape.*-feature"/>
 	<locator searchPathRef="ascape.releng" pattern="^org\.ascape\.site""/>
-	<locator searchPathRef="ascape" pattern="^org\.ascape*" />
+	<locator searchPathRef="ascape" pattern="^org\.ascape.*"/>
 </rmap>
