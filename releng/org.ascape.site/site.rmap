@@ -28,6 +28,6 @@
 	</searchPath>
 
 	<locator searchPathRef="ascape.releng" pattern="^org\.ascape\.site"/>
-	<locator searchPathRef="ascape.feature" pattern="^org\.ascape([\.\-].+)?"/>
+	<locator searchPathRef="ascape.feature" pattern="^org\.ascape([\.\-].+)?" failOnError="false"/>
 	<locator searchPathRef="ascape" pattern="^org\.ascape([\.].+)?"/>
 </rmap>
