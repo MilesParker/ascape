@@ -19,6 +19,15 @@
 		</provider>
 	</searchPath>
 
+	<searchPath name="ascape.releng">
+		<provider readerType="svn" componentTypes="eclipse.feature" mutable="true" source="true">
+			<uri format="https://ascape.svn.sourceforge.net/svnroot/ascape/releng/{0}">
+				<bc:propertyRef key="buckminster.component" />
+			</uri>
+		</provider>
+	</searchPath>
+
 	<locator searchPathRef="ascape.feature" pattern="^org\.ascape.*-feature"/>
+	<locator searchPathRef="ascape.releng" pattern="^org\.ascape\.site/>
 	<locator searchPathRef="ascape" pattern="^org\.ascape*" />
 </rmap>
