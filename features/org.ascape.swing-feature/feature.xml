@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.ascape.swing"
-      label="Ascape Swing Runtime"
+      label="%featureName"
       version="5.6.0.qualifier"
-      provider-name="Ascape.org">
+      provider-name="%featureProvider"
+      plugin="org.ascape.ui.swing">
 
    <description url="http://ascape.sourceforge.net">
       Ascape support for Swing and Ant. Designed for use in conjunction with the Eclipse AMP project Ascape target.
