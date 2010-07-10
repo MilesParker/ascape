@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.ascape.sdk"
-      label="Complete Ascape SDK"
+      label="%featureName"
       version="5.6.0.qualifier"
-      provider-name="Ascape">
+      provider-name="%providerName"
+      plugin="org.ascape.ide">
 
    <description>
       Complete Ascape SDK including swing support and examples.
