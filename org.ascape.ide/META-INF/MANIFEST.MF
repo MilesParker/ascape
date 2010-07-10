@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Ascape Project Support for Eclipse
+Bundle-Name: %pluginName
 Bundle-SymbolicName: org.ascape.ide;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.ascape.ide.AscapeIDEPlugin
@@ -13,3 +13,5 @@ Require-Bundle: org.eclipse.ui,
  org.apache.commons.lang
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin

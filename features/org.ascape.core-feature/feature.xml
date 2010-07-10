@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.ascape.core"
-      label="Ascape Core Framework (No UI)"
+      label="%featureName"
       version="5.6.0.qualifier"
-      provider-name="Ascape.org"
+      provider-name="%providerName"
       plugin="org.ascape.core">
 
    <description url="http://ascape.sourceforge.net">
