@@ -21,4 +21,8 @@
          id="org.ascape.sdk"
          version="0.0.0"/>
 
+   <includes
+         id="org.ascape.examples.feature"
+         version="0.0.0"/>
+
 </feature>
