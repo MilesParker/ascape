@@ -1113,7 +1113,7 @@ public abstract class Runner implements Serializable, Runnable {
     }
   
     /**
-     * Exits the application; allowing views to close themseleves gracefully. Do
+     * Exits the application; allowing views to close themselves gracefully. Do
      * not call this method directly unless you want to force quit; call
      * <code>quit()</code> instead, allowing a running scape to stop
      * gracefully. Override this method if you want to provide any scape related
@@ -1125,11 +1125,12 @@ public abstract class Runner implements Serializable, Runnable {
         closeFinally();
         scape.executeOnRoot(new NotifyViews(ScapeEvent.REQUEST_QUIT));
         waitForViewsUpdate();
+        environment.environmentQuiting(new ScapeEvent(this, ScapeEvent.REQUEST_QUIT));
         exit();
     }
 
     /**
-     * Final kill. Calls System exit, which appears neccessary for vm even when
+     * Final kill. Calls System exit, which appears necessary for vm even when
      * code has finished.
      */
     public static void exit() {
