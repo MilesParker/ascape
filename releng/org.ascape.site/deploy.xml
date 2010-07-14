@@ -3,11 +3,18 @@
 	<!--this file was created by Eclipse Runnable JAR Export Wizard-->
 	<!--ANT 1.7 is required                                        -->
 	<property name="ascape.version" value="5.6.0" />
+	<property name="buckminster" value="${basedir}/buckminster.output" />
 	<property name="dir.build" value="${basedir}/jars/${ascape.version}" />
-	<property name="dir.projects" value=".." />
+	<property name="dir.projects" value="plugins" />
 	<property name="dir.eclipse" value="/Developer/eclipse" />
 
 	<target name="create_run_jar">
+		<echo>${dir.build}</echo>
+		<unjar dest="${dir.build}/applet_bin">
+			<fileset excludes="META-INF/*,*.*" dir="${buckminster}/org.ascape.core*.bundle/jar/*.jar"/>
+			<fileset excludes="META-INF/*,*.*" dir="${buckminster}/org.ascape.common.lib*.bundle/jar/*.jar"/>
+			<fileset excludes="META-INF/*,*.*" dir="${buckminster}/org.ascape.ui.swing*.bundle/jar/*.jar"/>
+		</unjar>
 		<jar destfile="${dir.build}/Ascape_${ascape.version}.jar" filesetmanifest="mergewithoutmain">
 			<manifest>
 				<attribute name="Built-By" value="${user.name}" />
@@ -18,9 +25,8 @@
 			<fileset dir="${dir.projects}/org.ascape.core/bin" />
 			<fileset dir="${dir.projects}/org.ascape.core.lib" />
 			<fileset dir="${dir.projects}/org.ascape.common.lib" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.eclipse}/plugins/org.junit_3.8.2.v20090203-1005/junit.jar" />
 			<fileset dir="${dir.projects}/org.ascape.ui.swing/bin" />
-			<fileset dir="${dir.projects}/examples/org.ascape.models.brook/bin" />
+			<fileset dir="${dir.projects}/org.ascape.models.brook/bin" />
 			<fileset dir="${dir.projects}/examples/org.ascape.models.examples/bin" />
 		</jar>
 	</target>
@@ -77,5 +83,6 @@
         </zip>
     </target>
 	
-	<target name="deploy" depends="create_sdk,create_applet_jar,create_docs,create_eclipse,create_run_jar,create_sdk" />
+	<target name="deploy" depends="create_run_jar" />
+<!--	<target name="deploy" depends="create_sdk,create_applet_jar,create_docs,create_eclipse,create_run_jar,create_sdk" />-->
 </project>
