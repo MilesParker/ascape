@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.util.Vector;
 
 import javax.swing.Action;
+import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -66,6 +67,26 @@ public final class AscapeGUIUtil {
 		UserFrame frame = getUserFrame();
 		if (frame != null) {
 			frame.flushConsoleLog();
+		}
+	}
+
+	/**
+	 * Show the error dialog. If we throw an exception from code on the AWT
+	 * event thread when need to explicitly call
+	 * {@link DesktopEnvironment#showErrorDialog(Scape, Exception)}.
+	 * 
+	 * @param scape
+	 *            scape. If specified the error dialog will contain a "Restart"
+	 *            option which will close and restart the model/scape. If
+	 *            {@code null} no "Restart" option will be provided.
+	 * @param e
+	 *            exception thrown
+	 */
+	public static void showErrorDialog(Scape scape, Exception e) {
+		if (SwingUtilities.isEventDispatchThread()) {
+			AscapeGUIUtil.getDesktopEnvironment().showErrorDialog(scape, e);
+		} else {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -302,8 +323,34 @@ public final class AscapeGUIUtil {
 
 	}
 
+	/**
+	 * Get the additional tool bar.
+	 * 
+	 * @return additional tool bar.
+	 */
 	public static JToolBar getAdditionalBar() {
 		return getSwingEnvironment().getControlBarView().getAdditionalBar();
 	}
 
+	/**
+	 * Add a button to the additional tool bar.
+	 * 
+	 * @param action
+	 *            action to add as a button
+	 * @return newly created and added button
+	 */
+	public static JButton addAdditionalBarButton(Action action) {
+		
+		JToolBar addBar = AscapeGUIUtil.getAdditionalBar();
+		
+		// add button to toolbar
+		JButton button =
+				DesktopEnvironment.addToolBarButton(addBar, action);
+
+		// this is needed to get the button to display
+		getUserFrame().validate();
+
+		return button;
+
+	}
 }

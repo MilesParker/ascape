@@ -219,11 +219,13 @@ public abstract class SwingEnvironment extends AbstractUIEnvironment {
 	}
 
 	/**
-	 * Displays a standard splash screen message asserting copyright and other
-	 * information. See warnings above.
+	 * Displays an error dialog message box with debug/restart/quit options.
+	 * See warnings above.
 	 * 
 	 * @param scape
-	 *            the scape
+	 *            scape. If specified the error dialog will contain a "Restart"
+	 *            option which will close and restart the model/scape. If
+	 *            {@code null} no "Restart" option will be provided.
 	 * @param e
 	 *            the exception
 	 */

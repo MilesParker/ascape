@@ -29,7 +29,16 @@ public class PanelViewTable implements PanelViewProvider {
 	}
 
 	public PanelView getPanelView() {
-		// Create a PanelView from the Table
+		return createPanelView(table);
+	}
+
+	/**
+	 * Create a PanelView from the table.
+	 * 
+	 * @param table table
+	 * @return panel view displaying the table
+	 */
+	public static PanelView createPanelView(JTable table) {
 		Dimension desktopSize = AscapeGUIUtil.getDesktopSize();
 		return PanelViewUtil.createPanelView(table, desktopSize);
 	}
