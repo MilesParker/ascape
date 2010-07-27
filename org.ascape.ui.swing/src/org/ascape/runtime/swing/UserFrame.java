@@ -217,6 +217,7 @@ public class UserFrame extends JFrame {
 			this.desk = oldFrame.desk;
 			this.deskScroll = oldFrame.deskScroll;
 			this.deskTreeConsole = oldFrame.deskTreeConsole;
+			this.deskAndTree = oldFrame.deskAndTree;
 			this.consolePane = oldFrame.consolePane;
 			this.showToolBar = oldFrame.showToolBar;
 			this.toolbarPanel = oldFrame.toolbarPanel;
