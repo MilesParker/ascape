@@ -3,7 +3,7 @@
 	<!--this file was created by Eclipse Runnable JAR Export Wizard-->
 	<!--ANT 1.7 is required                                        -->
 	<property name="ascape.version" value="5.6.0" />
-	<property name="dir.build" value="builds/${ascape.version}" />
+	<property name="dir.build" value="../../ant.output/jars_${ascape.version}" />
 	<property name="dir.projects" value="../../plugins" />
 
 	<target name="create_run_jar">
@@ -45,11 +45,6 @@
 				<include name="org.ascape.ui.swing/**" />
 				<include name="org.ascape.models.brook/**" />
 				<include name="org.ascape.models.examples/**" />
-			</fileset>
-		</copy>
-		<copy todir="${dir.build}/Ascape_SDK_${ascape.version}">
-			<fileset dir="${dir.projects}/../eclipse/org.ascape/plugins/" defaultexcludes="no">
-				<include name="org.ascape.core/**" />
 			</fileset>
 		</copy>
 		<zip destfile="${dir.build}/Ascape_SDK_${ascape.version}.zip">
