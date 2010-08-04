@@ -68,6 +68,15 @@
 			<fileset dir="${dir.build}/Ascape_Eclipse_${ascape.version}" includes="**/**" />
 		</zip>
 	</target>
-	
+
+	<target name="upload">
+		<scp todir="${sourceforge.user}:${sourceforge.pw}@frs.sourceforge.net:home/frs/project/a/as/ascape/${ascape.version}">
+			<fileset dir="${dir.build}">
+				<include name="*.jar" />
+				<include name="*.zip" />
+			</fileset>
+		</scp>
+	</target>
+
 	<target name="deploy" depends="create_sdk,create_applet_jar,create_docs,create_run_jar,create_sdk" />
 </project>
