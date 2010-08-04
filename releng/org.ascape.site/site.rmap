@@ -41,9 +41,8 @@
 	</searchPath>
 
 	<locator searchPathRef="ascape.releng" pattern="^org\.ascape\.site" />
-	<locator searchPathRef="ascape.feature" pattern="^org\.ascape([\.\-].+)?" failOnError="false" />
+	<locator searchPathRef="ascape.feature" pattern="^org\.ascape(\..+)-feature?" />
 	<locator searchPathRef="ascape" pattern="^org\.ascape([\.].+)?" />
-	<locator searchPathRef="ascape" pattern="^org\.jdom" />
 	<locator searchPathRef="eclipse" pattern="^org\.eclipse([\.].+)?" />
 
 	<locator searchPathRef="default" pattern="^.*$" />
