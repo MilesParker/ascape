@@ -22,7 +22,7 @@
          version="0.0.0"/>
 
    <includes
-         id="org.ascape.examples.feature"
+         id="org.ascape.examples"
          version="0.0.0"/>
 
 </feature>
