@@ -3,8 +3,8 @@
 	<!--this file was created by Eclipse Runnable JAR Export Wizard-->
 	<!--ANT 1.7 is required                                        -->
 	<property name="ascape.version" value="5.6.0" />
-	<property name="dir.build" value="../../../../builds/ascape/${ascape.version}" />
-	<property name="dir.projects" value="../../" />
+	<property name="dir.build" value="builds/${ascape.version}" />
+	<property name="dir.projects" value="plugins" />
 
 	<target name="create_run_jar">
 		<echo>${dir.build}</echo>
@@ -17,8 +17,8 @@
 			<fileset dir="${dir.projects}/org.ascape.core/bin" />
 			<fileset dir="${dir.projects}/org.ascape.common.lib" />
 			<fileset dir="${dir.projects}/org.ascape.ui.swing/bin" />
-			<fileset dir="${dir.projects}/examples/org.ascape.models.brook/bin" />
-			<fileset dir="${dir.projects}/examples/org.ascape.models.examples/bin" />
+			<fileset dir="${dir.projects}/org.ascape.models.brook/bin" />
+			<fileset dir="${dir.projects}/org.ascape.models.examples/bin" />
 		</jar>
 	</target>
 
@@ -43,8 +43,8 @@
 				<include name="org.ascape.core.test/**" />
 				<include name="org.ascape.ant/**" />
 				<include name="org.ascape.ui.swing/**" />
-				<include name="examples/org.ascape.models.brook/**" />
-				<include name="examples/org.ascape.models.examples/**" />
+				<include name="org.ascape.models.brook/**" />
+				<include name="org.ascape.models.examples/**" />
 			</fileset>
 		</copy>
 		<copy todir="${dir.build}/Ascape_SDK_${ascape.version}">
