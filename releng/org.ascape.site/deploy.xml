@@ -4,7 +4,7 @@
 	<!--ANT 1.7 is required                                        -->
 	<property name="ascape.version" value="5.6.0" />
 	<property name="dir.build.base" value="../../ant.output/" />
-	<property name="dir.build" value="${dir.build.base}/${ascape.version}{$build.qualifier}" />
+	<property name="dir.build" value="${dir.build.base}/${ascape.version}${build.qualifier}" />
 	<property name="dir.projects" value="../../plugins" />
 
 	<target name="create_run_jar">
