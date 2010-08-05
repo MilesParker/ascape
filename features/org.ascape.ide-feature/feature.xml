@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.ascape.sdk"
+      id="org.ascape.ide"
       label="%featureName"
       version="5.6.0.qualifier"
       provider-name="%providerName"
@@ -17,13 +17,13 @@
    <license>
       %license
    </license>
-   
+
    <url>
       <update label="Ascape Update Site" url="http://ascape.sourceforge.net"/>
    </url>
 
    <includes
-         id="org.ascape.swing"
+         id="org.ascape.ui.swing"
          version="0.0.0"/>
 
    <includes
