@@ -18,11 +18,11 @@
    </license>
 
    <includes
-         id="org.ascape.sdk"
+         id="org.ascape.examples"
          version="0.0.0"/>
 
    <includes
-         id="org.ascape.examples"
+         id="org.ascape.ide"
          version="0.0.0"/>
 
 </feature>
