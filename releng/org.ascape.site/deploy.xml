@@ -55,6 +55,19 @@
 		<delete dir="${dir.build}/Ascape_SDK_${ascape.version}"/>
 	</target>
 
+	<target name="create_examples">
+		<copy todir="${dir.build}/Ascape_Examples_${ascape.version}">
+			<fileset dir="${dir.projects}" defaultexcludes="no">
+				<include name="org.ascape.models.brook/**" />
+				<include name="org.ascape.models.examples/**" />
+			</fileset>
+		</copy>
+		<zip destfile="${dir.build}/Ascape_Examples_${ascape.version}.zip">
+			<fileset dir="${dir.build}/Ascape_Examples_${ascape.version}" includes="**/**" />
+		</zip>
+		<delete dir="${dir.build}/Ascape_Examples_${ascape.version}"/>
+	</target>
+	
 	<target name="create_docs">
 		<copy todir="${dir.build}/Ascape_Docs_${ascape.version}">
 			<fileset dir="${dir.projects}" defaultexcludes="no">
@@ -81,5 +94,5 @@
 		</scp>
 	</target>
 
-	<target name="deploy" depends="create_sdk,create_applet_jar,create_docs,create_run_jar,create_sdk" />
+	<target name="deploy" depends="create_sdk,create_applet_jar,create_docs,create_run_jar,create_sdk,create_examples" />
 </project>
