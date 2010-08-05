@@ -3,6 +3,7 @@
 	<!--this file was created by Eclipse Runnable JAR Export Wizard-->
 	<!--ANT 1.7 is required                                        -->
 	<property name="ascape.version" value="5.6.0" />
+	<property name="dir.build.last" value="../../../lastSuccessfulBuild/artifact/" />
 	<property name="dir.build.base" value="../../ant.output/" />
 	<property name="dir.build" value="${dir.build.base}/${ascape.version}${build.qualifier}" />
 	<property name="dir.projects" value="../../plugins" />
@@ -67,10 +68,15 @@
 	</target>
 
 	<target name="upload">
-		<scp password="${sourceforge.pw}" todir="${sourceforge.user},ascape@frs.sourceforge.net:/home/frs/project/a/as/ascape">
-			<fileset dir="${dir.build.base}">
+		<scp password="${sourceforge.pw}" todir="${sourceforge.user},ascape@frs.sourceforge.net:/home/frs/project/a/as/ascape/Ascape/${ascape.version}${build.qualifier}">
+			<fileset dir="${dir.build.last}/${ascape.version}${build.qualifier}">
 				<include name="**/*.jar" />
-				<include name="**/*.jar" />
+				<include name="**/*.zip" />
+			</fileset>
+		</scp>
+		<scp password="${sourceforge.pw}" todir="${sourceforge.user},ascape@frs.sourceforge.net:/home/frs/project/a/as/ascape/Updates/${build.qualifier.name}">
+			<fileset dir="${dir.build.last}/site.p2">
+				<include name="**" />
 			</fileset>
 		</scp>
 	</target>
