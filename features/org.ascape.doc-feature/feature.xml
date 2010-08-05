@@ -25,7 +25,7 @@
          version="0.0.0"/>
 
    <includes
-         id="org.ascape.swing.source"
+         id="org.ascape.ui.swing.source"
          version="0.0.0"/>
 
    <plugin
