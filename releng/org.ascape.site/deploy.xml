@@ -74,7 +74,7 @@
 				<include name="**/*.zip" />
 			</fileset>
 		</scp>
-		<scp password="${sourceforge.pw}" todir="${sourceforge.user},ascape@frs.sourceforge.net:/home/frs/project/a/as/ascape/Updates/${build.qualifier.name}">
+		<scp password="${sourceforge.pw}" todir="${sourceforge.user},ascape@frs.sourceforge.net:/home/frs/project/a/as/ascape/updates/${build.qualifier.name}">
 			<fileset dir="${dir.build.last}/buckminster.output/org.ascape.site_${ascape.version}-eclipse.feature/site.p2">
 				<include name="**" />
 			</fileset>
