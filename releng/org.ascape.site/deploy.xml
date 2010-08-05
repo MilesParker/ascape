@@ -67,7 +67,7 @@
 	</target>
 
 	<target name="upload">
-		<scp password="${sourceforge.pw}" todir="${sourceforge.user},ascape@frs.sourceforge.net:home/frs/project/a/as/ascape">
+		<scp password="${sourceforge.pw}" todir="${sourceforge.user},ascape@frs.sourceforge.net:/home/frs/project/a/as/ascape">
 			<fileset dir="${dir.build.base}">
 				<include name="**/*.jar" />
 				<include name="**/*.jar" />
