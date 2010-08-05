@@ -51,6 +51,7 @@
 		<zip destfile="${dir.build}/Ascape_SDK_${ascape.version}.zip">
 			<fileset dir="${dir.build}/Ascape_SDK_${ascape.version}" includes="**/**" />
 		</zip>
+		<delete dir="${dir.build}/Ascape_SDK_${ascape.version}"/>
 	</target>
 
 	<target name="create_docs">
@@ -62,12 +63,7 @@
 		<zip destfile="${dir.build}/Ascape_Docs_${ascape.version}.zip">
 			<fileset dir="${dir.build}/Ascape_Docs_${ascape.version}" includes="**/**" />
 		</zip>
-	</target>
-
-	<target name="create_eclipse">
-		<zip destfile="${dir.build}/Ascape_Eclipse_${ascape.version}.zip">
-			<fileset dir="${dir.build}/Ascape_Eclipse_${ascape.version}" includes="**/**" />
-		</zip>
+		<delete dir="${dir.build}/Ascape_Docs_${ascape.version}"/>
 	</target>
 
 	<target name="upload">
