@@ -6,10 +6,10 @@
    <feature url="features/org.ascape.doc_5.6.0.qualifier.jar" id="org.ascape.doc" version="5.6.0.qualifier">
       <category name="Ascape"/>
    </feature>
-   <feature url="features/org.ascape.sdk_5.6.0.qualifier.jar" id="org.ascape.sdk" version="5.6.0.qualifier">
+   <feature url="features/org.ascape.ide_5.6.0.qualifier.jar" id="org.ascape.ide" version="5.6.0.qualifier">
       <category name="Ascape"/>
    </feature>
-   <feature url="features/org.ascape.swing_5.6.0.qualifier.jar" id="org.ascape.swing" version="5.6.0.qualifier">
+   <feature url="features/org.ascape.ui.swing_5.6.0.qualifier.jar" id="org.ascape.ui.swing" version="5.6.0.qualifier">
       <category name="Ascape"/>
    </feature>
    <category-def name="Ascape" label="Ascape"/>
