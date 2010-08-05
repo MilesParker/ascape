@@ -71,7 +71,7 @@
 	</target>
 
 	<target name="upload">
-		<scp todir="${sourceforge.user}:${sourceforge.pw}@frs.sourceforge.net:home/frs/project/a/as/ascape/">
+		<scp todir="${sourceforge.user}:${sourceforge.pw},ascape@frs.sourceforge.net:home/frs/project/a/as/ascape">
 			<fileset dir="${dir.build.base}">
 				<include name="**/*.jar" />
 				<include name="**/*.jar" />
