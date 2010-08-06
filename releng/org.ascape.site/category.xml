@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
+   <feature url="features/org.ascape.ide_5.6.0.qualifier.jar" id="org.ascape.ide" version="5.6.0.qualifier">
+      <category name="Agent Modeling"/>
+   </feature>
    <feature url="features/org.ascape.core_5.6.0.qualifier.jar" id="org.ascape.core" version="5.6.0.qualifier">
-      <category name="Ascape"/>
+      <category name="Agent Modeling"/>
    </feature>
    <feature url="features/org.ascape.doc_5.6.0.qualifier.jar" id="org.ascape.doc" version="5.6.0.qualifier">
-      <category name="Ascape"/>
+      <category name="Agent Modeling"/>
    </feature>
    <feature url="features/org.ascape.ide_5.6.0.qualifier.jar" id="org.ascape.ide" version="5.6.0.qualifier">
-      <category name="Ascape"/>
+      <category name="Agent Modeling"/>
    </feature>
    <feature url="features/org.ascape.ui.swing_5.6.0.qualifier.jar" id="org.ascape.ui.swing" version="5.6.0.qualifier">
-      <category name="Ascape"/>
+      <category name="Agent Modeling"/>
    </feature>
    <feature url="features/org.ascape.examples_5.6.0.qualifier.jar" id="org.ascape.examples" version="5.6.0.qualifier">
-      <category name="Ascape Modeling Extensions"/>
+      <category name="Agent Modeling Extensions"/>
    </feature>
    <category-def name="Agent Modeling" label="Agent Modeling"/>
    <category-def name="Agent Modeling Extensions" label="Agent Modeling Extensions"/>
