@@ -19,6 +19,14 @@
 		</provider>
 	</searchPath>
 	
+	<searchPath name="releng.local">
+		<provider componentTypes="eclipse.feature" readerType="local" source="true">
+			<uri format="releng/{0}">
+				<bc:propertyRef key="buckminster.component" />
+			</uri>
+		</provider>
+	</searchPath>
+	
 	<searchPath name="ascape">
 		<provider readerType="svn" componentTypes="osgi.bundle" mutable="true" source="true">
 			<uri format="https://ascape.svn.sourceforge.net/svnroot/ascape/{0}">
@@ -58,6 +66,8 @@
 
 	<locator searchPathRef="plugins.local" pattern="^org\.(\..*)?" failOnError="false"/>
 	<locator searchPathRef="features.local" pattern="^org([\.].+)?" failOnError="false"/>
+	<locator searchPathRef="releng.local" pattern="^org([\.].+)\.releng?" failOnError="false"/>
+	<locator searchPathRef="releng.local" pattern="^org([\.].+)\.site?" failOnError="false"/>
 	<locator searchPathRef="ascape.releng" pattern="^org\.ascape\.site" />
 	<locator searchPathRef="ascape.feature" pattern="^org\.ascape([\.].+)?" failOnError="false"/>
 	<locator searchPathRef="ascape" pattern="^org\.ascape([\.].+)?" />
