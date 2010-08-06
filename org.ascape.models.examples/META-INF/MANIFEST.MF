@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Ascape Examples
 Bundle-SymbolicName: org.ascape.models.examples
 Bundle-Version: 5.3.0
-Require-Bundle: org.ascape.ui.swing;bundle-version="5.2.0"
+Require-Bundle: org.ascape.ui.swing
 Bundle-Vendor: Ascape.org
 Export-Package: org.ascape.examples.bionland,
  org.ascape.examples.boids.view,

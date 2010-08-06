@@ -23,7 +23,7 @@
 	
 	<searchPath name="releng.local">
 		<provider componentTypes="eclipse.feature" readerType="local" source="true">
-			<uri format="file://{0}/scm/releng/{1}">
+			<uri format="/Volumes/Resources/Developer/repos/eclipse/releng/org.eclipse.amp.releng">
 				<bc:propertyRef key="workspace.root" />
 				<bc:propertyRef key="buckminster.component" />
 			</uri>
