@@ -3,6 +3,22 @@
 	xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0" xmlns:mp="http://www.eclipse.org/buckminster/MavenProvider-1.0"
 	xmlns:pmp="http://www.eclipse.org/buckminster/PDEMapProvider-1.0">
 
+	<searchPath name="plugins.local">
+		<provider componentTypes="osgi.bundle" readerType="local" source="true">
+			<uri format="plugins/{0}">
+				<bc:propertyRef key="buckminster.component" />
+			</uri>
+		</provider>
+	</searchPath>
+
+	<searchPath name="features.local">
+		<provider componentTypes="eclipse.feature" readerType="local" source="true">
+			<uri format="features/{0}">
+				<bc:propertyRef key="buckminster.component" />
+			</uri>
+		</provider>
+	</searchPath>
+	
 	<searchPath name="ascape">
 		<provider readerType="svn" componentTypes="osgi.bundle" mutable="true" source="true">
 			<uri format="https://ascape.svn.sourceforge.net/svnroot/ascape/{0}">
@@ -40,6 +56,8 @@
 		</provider>
 	</searchPath>
 
+	<locator searchPathRef="plugins.local" pattern="^org\.(\..*)?" failOnError="false"/>
+	<locator searchPathRef="features.local" pattern="^org([\.].+)?" failOnError="false"/>
 	<locator searchPathRef="ascape.releng" pattern="^org\.ascape\.site" />
 	<locator searchPathRef="ascape.feature" pattern="^org\.ascape([\.].+)?" failOnError="false"/>
 	<locator searchPathRef="ascape" pattern="^org\.ascape([\.].+)?" />
