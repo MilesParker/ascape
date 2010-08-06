@@ -6,7 +6,7 @@
 	<property name="dir.build.last" value="../../../lastSuccessful/archive/" />
 	<property name="dir.build.base" value="../../ant.output/" />
 	<property name="dir.build" value="${dir.build.base}/${ascape.version}${build.qualifier}" />
-	<property name="dir.projects" value="../../plugins" />
+	<property name="dir.projects" value="../.." />
 
 	<target name="create_run_jar">
 		<echo>${dir.build}</echo>
