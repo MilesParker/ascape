@@ -5,7 +5,8 @@
 
 	<searchPath name="plugins.local">
 		<provider componentTypes="osgi.bundle" readerType="local" source="true">
-			<uri format="scm/{0}">
+			<uri format="file:///{0}/scm/{1}">
+				<bc:propertyRef key="workspace.root" />
 				<bc:propertyRef key="buckminster.component" />
 			</uri>
 		</provider>
@@ -13,7 +14,8 @@
 
 	<searchPath name="features.local">
 		<provider componentTypes="eclipse.feature" readerType="local" source="true">
-			<uri format="scm/features/{0}">
+			<uri format="file:///{0}/scm/features/{1}">
+				<bc:propertyRef key="workspace.root" />
 				<bc:propertyRef key="buckminster.component" />
 			</uri>
 		</provider>
@@ -21,7 +23,8 @@
 	
 	<searchPath name="releng.local">
 		<provider componentTypes="eclipse.feature" readerType="local" source="true">
-			<uri format="scm/releng/{0}">
+			<uri format="file:///{0}/scm/releng/{1}">
+				<bc:propertyRef key="workspace.root" />
 				<bc:propertyRef key="buckminster.component" />
 			</uri>
 		</provider>
