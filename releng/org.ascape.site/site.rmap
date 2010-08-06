@@ -5,7 +5,7 @@
 
 	<searchPath name="plugins.local">
 		<provider componentTypes="osgi.bundle" readerType="local" source="true">
-			<uri format="plugins/{0}">
+			<uri format="{0}">
 				<bc:propertyRef key="buckminster.component" />
 			</uri>
 		</provider>
