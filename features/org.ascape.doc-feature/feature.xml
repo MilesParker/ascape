@@ -22,10 +22,6 @@
       <update label="Ascape Update Site" url="http://ascape.sourceforge.net"/>
    </url>
 
-   <includes
-         id="org.ascape.ui.swing.source"
-         version="0.0.0"/>
-
    <plugin
          id="org.ascape.doc"
          download-size="0"
