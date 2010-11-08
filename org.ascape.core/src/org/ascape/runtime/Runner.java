@@ -912,23 +912,29 @@ public abstract class Runner implements Serializable, Runnable {
 
     public abstract void closeAndOpenSavedFinally(Scape oldScape);
 
-
-    public Object instanceFromName(String modelName) {
+    /**
+     * Create an object instance using loadclass on the current thread's context class loader.
+     * If that fails, use Class.forName.
+     * 
+     * @param className class name of object to create
+     * @return new instance of className
+     */
+    public Object instanceFromName(String className) {
         Object newObject;
         try {
-            newObject = Thread.currentThread().getContextClassLoader().loadClass(modelName).newInstance();
+            newObject = Thread.currentThread().getContextClassLoader().loadClass(className).newInstance();
         } catch (NullPointerException e) {
-            throw new RuntimeException("An error ocurred while attempting to read " + modelName + ": " + e.getMessage(), e);
+            throw new RuntimeException("An error ocurred while attempting to read " + className + ": " + e.getMessage(), e);
         } catch (InstantiationException e) {
-            throw new RuntimeException("An error ocurred while attempting to read " + modelName + ": " + e.getMessage(), e);
+            throw new RuntimeException("An error ocurred while attempting to read " + className + ": " + e.getMessage(), e);
         } catch (IllegalAccessException e) {
-            throw new RuntimeException("An error ocurred while attempting to read " + modelName + ": " + e.getMessage(), e);
+            throw new RuntimeException("An error ocurred while attempting to read " + className + ": " + e.getMessage(), e);
         } catch (ClassNotFoundException e) {
             try {
-                Class c = Class.forName(modelName);
+                Class c = Class.forName(className);
                 newObject = c.newInstance();
             } catch (Exception e2) {
-                throw new RuntimeException("Couldn't find class: " + modelName);
+                throw new RuntimeException("Couldn't find class: " + className);
             }
         }
         return newObject;
