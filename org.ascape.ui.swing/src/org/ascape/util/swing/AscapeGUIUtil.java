@@ -10,8 +10,11 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JSplitPane;
+import javax.swing.JTable;
 import javax.swing.JToolBar;
 import javax.swing.SwingUtilities;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreePath;
 
 import org.ascape.model.Scape;
 import org.ascape.runtime.RuntimeEnvironment;
@@ -19,7 +22,9 @@ import org.ascape.runtime.swing.DesktopEnvironment;
 import org.ascape.runtime.swing.SwingEnvironment;
 import org.ascape.runtime.swing.UserFrame;
 import org.ascape.runtime.swing.ViewFrameBridge;
+import org.ascape.runtime.swing.navigator.Navigator;
 import org.ascape.runtime.swing.navigator.TreeBuilder;
+import org.ascape.view.vis.PanelView;
 import org.ascape.view.vis.control.MenuBarView;
 
 /**
@@ -30,6 +35,12 @@ import org.ascape.view.vis.control.MenuBarView;
  */
 public final class AscapeGUIUtil {
 
+	/**
+	 * The border around the max size of a {@link PanelView} displaying a table.
+	 * See {@link #createPanelView(JTable, Dimension)}.
+	 */
+	public static final Dimension TABLE_BORDER_EDGES = new Dimension(35, 72);
+	
 	/**
 	 * Private constructor to prevent instantiation.
 	 */
@@ -71,9 +82,7 @@ public final class AscapeGUIUtil {
 	}
 
 	/**
-	 * Show the error dialog. If we throw an exception from code on the AWT
-	 * event thread when need to explicitly call
-	 * {@link DesktopEnvironment#showErrorDialog(Scape, Exception)}.
+	 * Show the error dialog. 
 	 * 
 	 * @param scape
 	 *            scape. If specified the error dialog will contain a "Restart"
@@ -84,8 +93,13 @@ public final class AscapeGUIUtil {
 	 */
 	public static void showErrorDialog(Scape scape, Exception e) {
 		if (SwingUtilities.isEventDispatchThread()) {
+			/* If we throw an exception from code on the AWT
+			 * event thread when need to explicitly call
+			 * {@link DesktopEnvironment#showErrorDialog(Scape, Exception)}.
+			 */
 			AscapeGUIUtil.getDesktopEnvironment().showErrorDialog(scape, e);
 		} else {
+			// just throw higher and it'll be caught
 			throw new RuntimeException(e);
 		}
 	}
@@ -122,6 +136,30 @@ public final class AscapeGUIUtil {
 	}
 
 	/**
+	 * Get the {@link Navigator}.
+	 * 
+	 * @return {@link Navigator} or {@code null} if not running in desktop
+	 *         environment
+	 */
+	public static Navigator getNavigator() {
+		UserFrame userFrame = getUserFrame();
+		if (userFrame == null) {
+			return null;
+		}
+		return userFrame.getNavigator();
+	}
+	
+	/**
+	 * Programatically select the supplied navigator tree node
+	 * 
+	 * @param node tree node to select
+	 */
+	public static void selectNavigatorNode(DefaultMutableTreeNode node) {
+		getNavigator().setSelectionPath(
+				new TreePath(node.getPath()));
+	}
+	
+	/**
 	 * Get the {@link DesktopEnvironment}.
 	 * 
 	 * @param scape
@@ -154,7 +192,12 @@ public final class AscapeGUIUtil {
 		}
 	}
 
-	public static JInternalFrame getCurrentlySelected() {
+	/**
+	 * Get the currently selected frame inside the desktop.
+	 * 
+	 * @return {@link JInternalFrame}
+	 */
+	public static JInternalFrame getSelectedInternalFrame() {
 		Vector allFrames =
 				SwingEnvironment.DEFAULT_ENVIRONMENT.getAllFrames();
 		JInternalFrame selectedInternalFrame = null;
@@ -353,4 +396,66 @@ public final class AscapeGUIUtil {
 		return button;
 
 	}
+	
+
+	/**
+	 * Size a table to the smaller of its preferred size or maxSize.
+	 * 
+	 * @param table
+	 *            table to display.
+	 * @param maxSize
+	 *            max display dimensions of the table, less
+	 *            {@link #TABLE_BORDER_EDGES}. If {@code null} will display the
+	 *            table at it's preferred size.
+	 * @return PanelView containing the table.
+	 */
+	public static void sizeTable(JTable table, Dimension maxSize) {
+		// sizeAllColumnsToHeaderWidths(table);
+
+		// tell the scroll pane enclosing the table to size its viewport
+		// to the smaller of the table's preferred size or maxSize
+		if (maxSize == null) {
+			table
+					.setPreferredScrollableViewportSize(table
+							.getPreferredSize());
+		} else {
+
+			Dimension prefSize = table.getPreferredSize();
+
+			Dimension setSize =
+					min(prefSize, subtract(maxSize, TABLE_BORDER_EDGES));
+
+			table.setPreferredScrollableViewportSize(setSize);
+		}
+
+	}
+
+	/**
+	 * Subtract one dimension from another.
+	 * 
+	 * @param d1
+	 *            dimension 1
+	 * @param d2
+	 *            dimension 2
+	 * @return {@code d1 - d2}
+	 */
+	public static Dimension subtract(Dimension d1, Dimension d2) {
+		return new Dimension(d1.width - d2.width, d1.height - d2.height);
+	}
+
+	/**
+	 * Return the smallest width and height of two dimensions.
+	 * 
+	 * @param d1
+	 *            dimension 1
+	 * @param d2
+	 *            dimension 2
+	 * @return new dimensions with {@code width = min(d1.width,d2.width} and
+	 *         {@code height = min(d1.height,d2.height} .
+	 */
+	public static Dimension min(Dimension d1, Dimension d2) {
+		return new Dimension(Math.min(d1.width, d2.width), Math.min(
+				d1.height, d2.height));
+	}
+
 }

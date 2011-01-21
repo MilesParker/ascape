@@ -105,6 +105,11 @@ public class UserFrame extends JFrame {
 	 * The split pane between the console section and the rest of the screen.
 	 */
 	private JSplitPane deskTreeConsole;
+	
+	/**
+	 * The navigator.
+	 */
+	private Navigator navigator;
 
 	/**
 	 * The environment.
@@ -387,7 +392,7 @@ public class UserFrame extends JFrame {
 		JComponent mainDesk;
 
 		if (DesktopEnvironment.isShowNavigator()) {
-			Navigator navigator = new Navigator();
+			navigator = new Navigator();
 			JPanel navTitle = new JPanel() {
 				/**
                  * 
@@ -889,6 +894,15 @@ public class UserFrame extends JFrame {
 	 */
 	public JSplitPane getConsoleSplit() {
 		return deskTreeConsole;
+	}
+
+	/**
+	 * Get the navigator.
+	 * 
+	 * @return navigator
+	 */
+	public Navigator getNavigator() {
+		return navigator;
 	}
 
 	/**

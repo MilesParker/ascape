@@ -21,6 +21,7 @@ import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
+import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
 import org.ascape.model.Agent;
@@ -255,11 +256,10 @@ public class Navigator extends PanelView {
 			tree.addTreeSelectionListener(tsl);
 		}
 
-		for (MouseListener ml : treeBuilder
-				.getMouseListeners()) {
+		for (MouseListener ml : treeBuilder.getMouseListeners()) {
 			tree.addMouseListener(ml);
 		}
-		
+
 		// tree.putClientProperty("JTree.lineStyle", "Angled");
 		DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer() {
 			/**
@@ -338,5 +338,17 @@ public class Navigator extends PanelView {
 				((LazyIterableNode) node).iterate();
 			}
 		}
+	}
+
+	/**
+	 * Selects the node identified by the specified path. If any component of
+	 * the path is hidden (under a collapsed node), it is exposed (made
+	 * viewable) and the path is expanded
+	 * 
+	 * @param path
+	 *            the <code>TreePath</code> specifying the node to select
+	 */
+	public void setSelectionPath(TreePath path) {
+		tree.setSelectionPath(path);
 	}
 }

@@ -21,11 +21,6 @@ import org.ascape.view.vis.PanelView;
  */
 public final class PanelViewUtil {
 
-	/**
-	 * The border around the max size of a {@link PanelView} displaying a table.
-	 * See {@link #createPanelView(JTable, Dimension)}.
-	 */
-	public static final Dimension TABLE_BORDER_EDGES = new Dimension(35, 72);
 
 	/**
 	 * The border around the max size of a {@link PanelView} displaying a
@@ -82,19 +77,6 @@ public final class PanelViewUtil {
 	}
 
 	/**
-	 * Subtract one dimension from another.
-	 * 
-	 * @param d1
-	 *            dimension 1
-	 * @param d2
-	 *            dimension 2
-	 * @return {@code d1 - d2}
-	 */
-	public static Dimension subtract(Dimension d1, Dimension d2) {
-		return new Dimension(d1.width - d2.width, d1.height - d2.height);
-	}
-
-	/**
 	 * Add two dimensions together.
 	 * 
 	 * @param d1
@@ -105,21 +87,6 @@ public final class PanelViewUtil {
 	 */
 	public static Dimension add(Dimension d1, Dimension d2) {
 		return new Dimension(d1.width + d2.width, d1.height + d2.height);
-	}
-
-	/**
-	 * Return the smallest width and height of two dimensions.
-	 * 
-	 * @param d1
-	 *            dimension 1
-	 * @param d2
-	 *            dimension 2
-	 * @return new dimensions with {@code width = min(d1.width,d2.width} and
-	 *         {@code height = min(d1.height,d2.height} .
-	 */
-	public static Dimension min(Dimension d1, Dimension d2) {
-		return new Dimension(Math.min(d1.width, d2.width), Math.min(
-				d1.height, d2.height));
 	}
 
 	/**
@@ -167,7 +134,7 @@ public final class PanelViewUtil {
 			 * prefSize.height < displayArea.height ? prefSize.height :
 			 * displayArea.height;
 			 */
-			scrollPane.setPreferredSize(min(prefSize, subtract(maxSize,
+			scrollPane.setPreferredSize(AscapeGUIUtil.min(prefSize, AscapeGUIUtil.subtract(maxSize,
 					TEXTAREA_BORDER_EDGES)));
 		}
 
@@ -190,39 +157,18 @@ public final class PanelViewUtil {
 	 * @return PanelView containing the table.
 	 */
 	public static PanelView createPanelView(JTable table, Dimension maxSize) {
-		// sizeAllColumnsToHeaderWidths(table);
-
-		// tell the scroll pane enclosing the table to size its viewport
-		// to the smaller of the table's preferred size or maxSize
-		if (maxSize == null) {
-			table
-					.setPreferredScrollableViewportSize(table
-							.getPreferredSize());
-		} else {
-
-			Dimension prefSize = table.getPreferredSize();
-
-			Dimension setSize = min(prefSize, subtract(
-					maxSize, TABLE_BORDER_EDGES));
-			
-			table.setPreferredScrollableViewportSize(setSize);
-		}
-
-		// allow sorting using the column headers
-		table.setAutoCreateRowSorter(true);
-
-		// do not resize the table column widths when the frame is resized;
-		// instead show the scroll bars
-		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
 		// create a new PanelView with the BorderLayout so that when
 		// the panel view is resized so are the components on it
 		// use the name of the table for the name of the Panel
 		PanelView pv = createPanelView(table.getName(), new BorderLayout());
 
+		AscapeGUIUtil.sizeTable(table, maxSize);
+		
 		// In order for the table column headings to be visible,
 		// it must be on a scroll pane
 		JScrollPane scrollPane = new JScrollPane(table);
+
 		pv.add(scrollPane, BorderLayout.CENTER);
 
 		return pv;
