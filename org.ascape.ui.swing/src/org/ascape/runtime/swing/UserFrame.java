@@ -63,7 +63,7 @@ public class UserFrame extends JFrame {
 
 	private static final int TREE_DIVIDER_LOCATION_DEFAULT = 180;
 
-	private static final int CONSOLE_DIVIDER_LOCATION_DEFAULT = 800;
+	private static final int CONSOLE_DIVIDER_LOCATION_DEFAULT = 740;
 
 	/**
      * 
@@ -273,7 +273,7 @@ public class UserFrame extends JFrame {
 	}
 
 	private static final String TREE_DIVIDER_LOCATION = "tree divider location"; 
-	private static final String TREE_LAST_DIVIDER_LOCATION = "tre last divider location"; 
+	private static final String TREE_LAST_DIVIDER_LOCATION = "tree last divider location"; 
 	private static final String CONSOLE_DIVIDER_LOCATION = "console divider location"; 
 	private static final String CONSOLE_LAST_DIVIDER_LOCATION = "console last divider location"; 
 	private static final String USERFRAME_WIDTH = "application width"; 
@@ -294,7 +294,7 @@ public class UserFrame extends JFrame {
 	}
 
 	/**
-	 * Load preferences including: console divider location.
+	 * Load preferences including: console divider location, tree divider location.
 	 */
 	public void loadPrefs() {
 		int consoleDividerLocation = Integer.parseInt(prefs.get(CONSOLE_DIVIDER_LOCATION, String.valueOf(CONSOLE_DIVIDER_LOCATION_DEFAULT)));
@@ -312,7 +312,7 @@ public class UserFrame extends JFrame {
 	}
 
 	/**
-	 * Save preferences including: console divider location, userframe width and height.
+	 * Save preferences including: console divider location, tree divider location, userframe width and height.
 	 */
 	public void savePrefs() {
 		prefs.put(CONSOLE_DIVIDER_LOCATION, String.valueOf(deskTreeConsole.getDividerLocation()));
