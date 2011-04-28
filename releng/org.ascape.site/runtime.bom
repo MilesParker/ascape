@@ -15,7 +15,7 @@
         </md:provider>
     </md:idwrapper>
     <md:idwrapper id="5c3ac902-7bb3-3606-a732-378101584caf">
-        <md:cspec name="org.ascape.site" componentType="eclipse.feature" version="5.6.0.qualifier">
+        <md:cspec name="org.ascape.site" componentType="eclipse.feature" version="5.6.1.qualifier">
             <cs:dependencies xmlns:cs="http://www.eclipse.org/buckminster/CSpec-1.0">
                 <cs:dependency name="org.ascape.examples.feature" componentType="eclipse.feature"/>
                 <cs:dependency name="org.ascape.sdk" componentType="eclipse.feature"/>
@@ -220,7 +220,7 @@
     <md:idwrapper id="22c1453d-5f57-3268-994f-de4db1c97168">
         <md:resolution cspecId="5c3ac902-7bb3-3606-a732-378101584caf" materializable="false" providerId="fb982a77-59e0-38f4-97a1-ba144af2a4c5" repository="file:/Volumes/Resources/Developer/repos/ascape/releng/org.ascape.site/" componentType="eclipse.feature" lastModified="0">
             <md:request name="org.ascape.site" componentType="eclipse.feature"/>
-            <md:versionMatch version="5.6.0.qualifier"/>
+            <md:versionMatch version="5.6.1.qualifier"/>
         </md:resolution>
     </md:idwrapper>
     <md:idwrapper id="795cc1f4-b7dc-3c7b-bfc9-59b55c87c747">
@@ -229,7 +229,7 @@
         </md:provider>
     </md:idwrapper>
     <md:idwrapper id="5452182a-40c7-3944-bf06-998fa6148f92">
-        <md:cspec name="org.ascape.examples.feature" componentType="eclipse.feature" version="5.6.0.qualifier">
+        <md:cspec name="org.ascape.examples.feature" componentType="eclipse.feature" version="5.6.1.qualifier">
             <cs:dependencies xmlns:cs="http://www.eclipse.org/buckminster/CSpec-1.0">
                 <cs:dependency name="org.ascape.models.brook" componentType="osgi.bundle"/>
                 <cs:dependency name="org.ascape.models.examples" componentType="osgi.bundle"/>
@@ -428,7 +428,7 @@
     <md:idwrapper id="83095b99-44bb-3031-97f6-2a8d16c822ab">
         <md:resolution cspecId="5452182a-40c7-3944-bf06-998fa6148f92" materializable="false" providerId="795cc1f4-b7dc-3c7b-bfc9-59b55c87c747" repository="file:/Volumes/Resources/Developer/workspaces/amp/org.ascape.examples-feature/" componentType="eclipse.feature" lastModified="0">
             <md:request name="org.ascape.examples.feature" componentType="eclipse.feature"/>
-            <md:versionMatch version="5.6.0.qualifier"/>
+            <md:versionMatch version="5.6.1.qualifier"/>
         </md:resolution>
     </md:idwrapper>
     <md:idwrapper id="e2b1a09a-8133-3f8b-9203-69d125dd9d45">
@@ -588,11 +588,11 @@
         </md:provider>
     </md:idwrapper>
     <md:idwrapper id="177b7b8e-7604-3cfc-be76-52bfb9f0da89">
-        <md:cspec name="org.ascape.ui.swing" componentType="osgi.bundle" version="5.6.0.qualifier" shortDesc="Ascape Swing Support">
+        <md:cspec name="org.ascape.ui.swing" componentType="osgi.bundle" version="5.6.1.qualifier" shortDesc="Ascape Swing Support">
             <cs:dependencies xmlns:cs="http://www.eclipse.org/buckminster/CSpec-1.0">
                 <cs:dependency name="org.apache.ant" componentType="osgi.bundle" filter="(!(eclipse.p2.optional=false))"/>
-                <cs:dependency name="org.ascape.ant" componentType="osgi.bundle" versionDesignator="5.6.0" filter="(!(eclipse.p2.optional=false))"/>
-                <cs:dependency name="org.ascape.common.lib" componentType="osgi.bundle" versionDesignator="5.6.0"/>
+                <cs:dependency name="org.ascape.ant" componentType="osgi.bundle" versionDesignator="5.6.1" filter="(!(eclipse.p2.optional=false))"/>
+                <cs:dependency name="org.ascape.common.lib" componentType="osgi.bundle" versionDesignator="5.6.1"/>
                 <cs:dependency name="org.ascape.core" componentType="osgi.bundle"/>
             </cs:dependencies>
             <cs:generators xmlns:cs="http://www.eclipse.org/buckminster/CSpec-1.0">
@@ -758,12 +758,12 @@
     <md:idwrapper id="02b37494-93c2-35cf-b45b-05891dddd6eb">
         <md:resolution cspecId="177b7b8e-7604-3cfc-be76-52bfb9f0da89" materializable="false" providerId="acf91dc7-3502-302b-8cf3-bc8beeebafb9" repository="file:/Volumes/Resources/Developer/repos/ascape/org.ascape.ui.swing/" componentType="osgi.bundle" lastModified="0">
             <md:request name="org.ascape.ui.swing" componentType="osgi.bundle"/>
-            <md:versionMatch version="5.6.0.qualifier"/>
+            <md:versionMatch version="5.6.1.qualifier"/>
         </md:resolution>
     </md:idwrapper>
     <md:idwrapper id="d3204f9a-14a1-3af9-b32e-807fee4556f3">
         <md:unresolvedNode>
-            <md:component name="org.ascape.ant" componentType="osgi.bundle" versionDesignator="5.6.0" filter="(!(eclipse.p2.optional=false))"/>
+            <md:component name="org.ascape.ant" componentType="osgi.bundle" versionDesignator="5.6.1" filter="(!(eclipse.p2.optional=false))"/>
             <md:attribute name="buckminster.clean"/>
             <md:attribute name="bundle.jars"/>
             <md:attribute name="java.binaries"/>
@@ -780,7 +780,7 @@
         </md:unresolvedNode>
     </md:idwrapper>
     <md:idwrapper id="6d785497-07f2-3d37-8948-bf9586c75e78">
-        <md:cspec name="org.ascape.common.lib" componentType="osgi.bundle" version="5.6.0.qualifier" shortDesc="Ascape and Swing Runtime Jar Lib Dependencies">
+        <md:cspec name="org.ascape.common.lib" componentType="osgi.bundle" version="5.6.1.qualifier" shortDesc="Ascape and Swing Runtime Jar Lib Dependencies">
             <cs:generators xmlns:cs="http://www.eclipse.org/buckminster/CSpec-1.0">
                 <cs:generator generates="org.ascape.common.lib.source" attribute="source.bundle.jar" generatesType="osgi.bundle"/>
             </cs:generators>
@@ -905,14 +905,14 @@
     <md:idwrapper id="5dd9f6ac-1783-39e4-9df0-7f4c90dd0f59">
         <md:resolution cspecId="6d785497-07f2-3d37-8948-bf9586c75e78" materializable="false" providerId="acf91dc7-3502-302b-8cf3-bc8beeebafb9" repository="file:/Volumes/Resources/Developer/repos/ascape/org.ascape.common.lib/" componentType="osgi.bundle" lastModified="0">
             <md:request name="org.ascape.common.lib" componentType="osgi.bundle"/>
-            <md:versionMatch version="5.6.0.qualifier"/>
+            <md:versionMatch version="5.6.1.qualifier"/>
         </md:resolution>
     </md:idwrapper>
     <md:idwrapper id="1b3beb26-9bcc-319c-9ff2-c736195f3f1b">
         <md:resolvedNode resolutionId="5dd9f6ac-1783-39e4-9df0-7f4c90dd0f59"/>
     </md:idwrapper>
     <md:idwrapper id="961bcbc4-04ae-39dc-864b-578c14f38c42">
-        <md:cspec name="org.ascape.core" componentType="osgi.bundle" version="5.6.0.qualifier" shortDesc="Ascape Core">
+        <md:cspec name="org.ascape.core" componentType="osgi.bundle" version="5.6.1.qualifier" shortDesc="Ascape Core">
             <cs:generators xmlns:cs="http://www.eclipse.org/buckminster/CSpec-1.0">
                 <cs:generator generates="org.ascape.core.source" attribute="source.bundle.jar" generatesType="osgi.bundle"/>
             </cs:generators>
@@ -1047,7 +1047,7 @@
     <md:idwrapper id="768d8d50-6fd9-30d3-a23e-88cf05f1a4da">
         <md:resolution cspecId="961bcbc4-04ae-39dc-864b-578c14f38c42" materializable="false" providerId="acf91dc7-3502-302b-8cf3-bc8beeebafb9" repository="file:/Volumes/Resources/Developer/repos/ascape/org.ascape.core/" componentType="osgi.bundle" lastModified="0">
             <md:request name="org.ascape.core" componentType="osgi.bundle"/>
-            <md:versionMatch version="5.6.0.qualifier"/>
+            <md:versionMatch version="5.6.1.qualifier"/>
         </md:resolution>
     </md:idwrapper>
     <md:idwrapper id="0dae3d27-5f15-3906-b4db-62c7190a393b">
@@ -1227,7 +1227,7 @@
         </md:provider>
     </md:idwrapper>
     <md:idwrapper id="da1db9e8-0326-3786-9a73-257fe2c54a9f">
-        <md:cspec name="org.ascape.sdk" componentType="eclipse.feature" version="5.6.0.qualifier">
+        <md:cspec name="org.ascape.sdk" componentType="eclipse.feature" version="5.6.1.qualifier">
             <cs:dependencies xmlns:cs="http://www.eclipse.org/buckminster/CSpec-1.0">
                 <cs:dependency name="org.apache.commons.lang" componentType="osgi.bundle"/>
                 <cs:dependency name="org.ascape.core" componentType="eclipse.feature"/>
@@ -1451,11 +1451,11 @@
     <md:idwrapper id="52dbbe29-5074-38e8-875e-c573e4a109a2">
         <md:resolution cspecId="da1db9e8-0326-3786-9a73-257fe2c54a9f" materializable="false" providerId="6a30bd6f-8b52-3ead-8ed4-e943705387ca" repository="file:/Volumes/Resources/Developer/repos/ascape/features/org.ascape.sdk-feature/" componentType="eclipse.feature" lastModified="0">
             <md:request name="org.ascape.sdk" componentType="eclipse.feature"/>
-            <md:versionMatch version="5.6.0.qualifier"/>
+            <md:versionMatch version="5.6.1.qualifier"/>
         </md:resolution>
     </md:idwrapper>
     <md:idwrapper id="2515b452-f93b-3cc5-91b0-985e9f28cc97">
-        <md:cspec name="org.ascape.core" componentType="eclipse.feature" version="5.6.0.qualifier">
+        <md:cspec name="org.ascape.core" componentType="eclipse.feature" version="5.6.1.qualifier">
             <cs:dependencies xmlns:cs="http://www.eclipse.org/buckminster/CSpec-1.0">
                 <cs:dependency name="org.ascape.core" componentType="osgi.bundle"/>
             </cs:dependencies>
@@ -1651,7 +1651,7 @@
     <md:idwrapper id="a746fee4-b9dd-3ca7-bf68-7ed622beb89b">
         <md:resolution cspecId="2515b452-f93b-3cc5-91b0-985e9f28cc97" materializable="false" providerId="6a30bd6f-8b52-3ead-8ed4-e943705387ca" repository="file:/Volumes/Resources/Developer/repos/ascape/features/org.ascape.core-feature/" componentType="eclipse.feature" lastModified="0">
             <md:request name="org.ascape.core" componentType="eclipse.feature"/>
-            <md:versionMatch version="5.6.0.qualifier"/>
+            <md:versionMatch version="5.6.1.qualifier"/>
         </md:resolution>
     </md:idwrapper>
     <md:idwrapper id="b92f1ea3-4b4f-3b4d-8353-151d5758433e">
@@ -1660,7 +1660,7 @@
         </md:resolvedNode>
     </md:idwrapper>
     <md:idwrapper id="f1c5ad59-bc8d-3b56-bb6c-ddec9195e845">
-        <md:cspec name="org.ascape.doc" componentType="eclipse.feature" version="5.6.0.qualifier">
+        <md:cspec name="org.ascape.doc" componentType="eclipse.feature" version="5.6.1.qualifier">
             <cs:dependencies xmlns:cs="http://www.eclipse.org/buckminster/CSpec-1.0">
                 <cs:dependency name="org.ascape.doc" componentType="osgi.bundle"/>
             </cs:dependencies>
@@ -1859,11 +1859,11 @@
     <md:idwrapper id="124e65c4-8240-32c0-8c51-32522ce9960c">
         <md:resolution cspecId="f1c5ad59-bc8d-3b56-bb6c-ddec9195e845" materializable="false" providerId="6a30bd6f-8b52-3ead-8ed4-e943705387ca" repository="file:/Volumes/Resources/Developer/repos/ascape/features/org.ascape.doc-feature/" componentType="eclipse.feature" lastModified="0">
             <md:request name="org.ascape.doc" componentType="eclipse.feature"/>
-            <md:versionMatch version="5.6.0.qualifier"/>
+            <md:versionMatch version="5.6.1.qualifier"/>
         </md:resolution>
     </md:idwrapper>
     <md:idwrapper id="ca96c04d-9336-3b4b-9056-31417f1f3379">
-        <md:cspec name="org.ascape.doc" componentType="osgi.bundle" version="5.6.0.qualifier" shortDesc="Ascape Documentation and Source Code">
+        <md:cspec name="org.ascape.doc" componentType="osgi.bundle" version="5.6.1.qualifier" shortDesc="Ascape Documentation and Source Code">
             <cs:dependencies xmlns:cs="http://www.eclipse.org/buckminster/CSpec-1.0">
                 <cs:dependency name="org.eclipse.help" componentType="osgi.bundle"/>
             </cs:dependencies>
@@ -2005,7 +2005,7 @@
     <md:idwrapper id="80363146-78c5-3653-95ac-558e367ef1ff">
         <md:resolution cspecId="ca96c04d-9336-3b4b-9056-31417f1f3379" materializable="false" providerId="acf91dc7-3502-302b-8cf3-bc8beeebafb9" repository="file:/Volumes/Resources/Developer/repos/ascape/org.ascape.doc/" componentType="osgi.bundle" lastModified="0">
             <md:request name="org.ascape.doc" componentType="osgi.bundle"/>
-            <md:versionMatch version="5.6.0.qualifier"/>
+            <md:versionMatch version="5.6.1.qualifier"/>
         </md:resolution>
     </md:idwrapper>
     <md:idwrapper id="a39bb1f4-29ef-3c76-b0fd-d629badf0b10">
@@ -2478,7 +2478,7 @@
         </md:resolvedNode>
     </md:idwrapper>
     <md:idwrapper id="248ef1ad-beee-3d24-aed4-9e01bd58180b">
-        <md:cspec name="org.ascape.swing" componentType="eclipse.feature" version="5.6.0.qualifier">
+        <md:cspec name="org.ascape.swing" componentType="eclipse.feature" version="5.6.1.qualifier">
             <cs:dependencies xmlns:cs="http://www.eclipse.org/buckminster/CSpec-1.0">
                 <cs:dependency name="org.ascape.ant" componentType="osgi.bundle"/>
                 <cs:dependency name="org.ascape.common.lib" componentType="osgi.bundle"/>
@@ -2684,11 +2684,11 @@
     <md:idwrapper id="0259d0f5-9ba5-350e-88a4-0a80e699e190">
         <md:resolution cspecId="248ef1ad-beee-3d24-aed4-9e01bd58180b" materializable="false" providerId="6a30bd6f-8b52-3ead-8ed4-e943705387ca" repository="file:/Volumes/Resources/Developer/repos/ascape/features/org.ascape.swing-feature/" componentType="eclipse.feature" lastModified="0">
             <md:request name="org.ascape.swing" componentType="eclipse.feature"/>
-            <md:versionMatch version="5.6.0.qualifier"/>
+            <md:versionMatch version="5.6.1.qualifier"/>
         </md:resolution>
     </md:idwrapper>
     <md:idwrapper id="40213d1b-a0dd-3e21-9997-97bec11824a7">
-        <md:cspec name="org.ascape.ant" componentType="osgi.bundle" version="5.6.0.qualifier" shortDesc="Ascape Core (no UI)">
+        <md:cspec name="org.ascape.ant" componentType="osgi.bundle" version="5.6.1.qualifier" shortDesc="Ascape Core (no UI)">
             <cs:dependencies xmlns:cs="http://www.eclipse.org/buckminster/CSpec-1.0">
                 <cs:dependency name="org.apache.ant" componentType="osgi.bundle" versionDesignator="[1.6.5,2.0.0)"/>
                 <cs:dependency name="org.ascape.core" componentType="osgi.bundle"/>
@@ -2841,7 +2841,7 @@
     <md:idwrapper id="bc61a331-bbea-3fff-9bac-f6bc54310783">
         <md:resolution cspecId="40213d1b-a0dd-3e21-9997-97bec11824a7" materializable="false" providerId="acf91dc7-3502-302b-8cf3-bc8beeebafb9" repository="file:/Volumes/Resources/Developer/repos/ascape/org.ascape.ant/" componentType="osgi.bundle" lastModified="0">
             <md:request name="org.ascape.ant" componentType="osgi.bundle"/>
-            <md:versionMatch version="5.6.0.qualifier"/>
+            <md:versionMatch version="5.6.1.qualifier"/>
         </md:resolution>
     </md:idwrapper>
     <md:idwrapper id="27d5fba9-6a95-3002-a94d-bfc8f3ec9525">

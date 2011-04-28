@@ -2,7 +2,7 @@
 <feature
       id="org.ascape.site"
       label="Ascape Update Site"
-      version="5.6.0.qualifier"
+      version="5.6.1.qualifier"
       provider-name="Ascape">
 
    <description url="http://www.example.com/description">

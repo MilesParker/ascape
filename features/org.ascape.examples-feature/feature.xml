@@ -2,7 +2,7 @@
 <feature
       id="org.ascape.examples"
       label="%featureName"
-      version="5.6.0.qualifier"
+      version="5.6.1.qualifier"
       provider-name="%featureProvider">
 
    <description url="http://ascape.sourceforge.net">
