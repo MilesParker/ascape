@@ -34,6 +34,15 @@
          id="org.ascape.doc"
          version="0.0.0"/>
 
+   <requires>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.jdt"/>
+      <import plugin="org.eclipse.jdt.core"/>
+      <import plugin="org.eclipse.ui.ide"/>
+      <import plugin="org.eclipse.core.resources"/>
+   </requires>
+
    <plugin
          id="org.ascape.ide"
          download-size="0"
