@@ -39,8 +39,10 @@
       <import plugin="org.eclipse.jdt"/>
       <import plugin="org.eclipse.jdt.core"/>
       <import plugin="org.eclipse.core.resources"/>
-      <import feature="org.eclipse.help"/>
-      <import feature="org.eclipse.sdk"/>
+      <import plugin="org.eclipse.jface"/>
+      <import plugin="org.eclipse.help.base"/>
+      <import plugin="org.eclipse.help.ui"/>
+      <import plugin="org.eclipse.help"/>
    </requires>
 
    <plugin
