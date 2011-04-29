@@ -54,6 +54,12 @@
 		</provider>
 	</searchPath>
 	
+	<searchPath name="helios">
+		<provider readerType="p2" componentTypes="osgi.bundle,eclipse.feature" mutable="false" source="false">
+			<uri format="http://download.eclipse.org/releases/helios?importType=binary" />
+		</provider>
+	</searchPath>
+	
 	<searchPath name="eclipse">
 		<provider readerType="p2" componentTypes="osgi.bundle,eclipse.feature" mutable="false" source="false">
 			<uri format="http://download.eclipse.org/eclipse/updates/3.6?importType=binary" />
@@ -74,6 +80,7 @@
 	<locator searchPathRef="ascape.releng" pattern="^org\.ascape\.site" />
 	<locator searchPathRef="ascape.feature" pattern="^org\.ascape([\.].+)?" failOnError="false"/>
 	<locator searchPathRef="ascape" pattern="^org\.ascape([\.].+)?" />
+	<locator searchPathRef="helios" pattern="^org\.eclipse([\.].+)?" failOnError="false"/>
 	<locator searchPathRef="eclipse" pattern="^org\.eclipse([\.].+)?" />
 
 	<locator searchPathRef="default" pattern="^.*$" />
