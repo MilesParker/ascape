@@ -28,6 +28,8 @@
    <requires>
       <import plugin="org.eclipse.jface"/>
       <import plugin="org.eclipse.help.base"/>
+      <import plugin="org.eclipse.help"/>
+      <import plugin="org.eclipse.help.ui"/>
    </requires>
 
 </feature>
