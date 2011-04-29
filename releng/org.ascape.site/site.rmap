@@ -4,7 +4,7 @@
 	xmlns:pmp="http://www.eclipse.org/buckminster/PDEMapProvider-1.0">
 
 	<searchPath name="plugins.local">
-		<provider componentTypes="osgi.bundle" readerType="local" source="true">
+		<provider componentTypes="osgi.bundle,buckminster" readerType="local" source="true">
 			<uri format="file://{0}/scm/{1}">
 				<bc:propertyRef key="workspace.root" />
 				<bc:propertyRef key="buckminster.component" />
