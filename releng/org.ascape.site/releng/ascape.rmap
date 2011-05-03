@@ -72,8 +72,8 @@
 		</provider>
 	</searchPath>
 
-	<locator searchPathRef="plugins.local" pattern="^org\.(\..*)?" failOnError="false"/>
-	<locator searchPathRef="features.local" pattern="^org([\.].+)?" failOnError="false"/>
+	<locator searchPathRef="plugins.local" pattern="^org\.ascape(\..*)?" failOnError="false"/>
+	<locator searchPathRef="features.local" pattern="^org\.ascape([\.].+)?" failOnError="false"/>
 	<locator searchPathRef="ascape.build" pattern="^org\.ascape\.build" />
 	<locator searchPathRef="ascape.releng" pattern="^org\.ascape\.site" />
 	<locator searchPathRef="ascape.feature" pattern="^org\.ascape([\.].+)?" failOnError="false"/>
