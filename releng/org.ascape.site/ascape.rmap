@@ -45,6 +45,14 @@
 		</provider>
 	</searchPath>
 	
+	<searchPath name="ascape.build">
+		<provider readerType="svn" componentTypes="eclipse.feature" mutable="true" source="true">
+			<uri format="https://ascape.svn.sourceforge.net/svnroot/ascape/releng/{0}-feature">
+				<bc:propertyRef key="buckminster.component" />
+			</uri>
+		</provider>
+	</searchPath>
+	
 	<searchPath name="helios">
 		<provider readerType="p2" componentTypes="osgi.bundle,eclipse.feature" mutable="false" source="false">
 			<uri format="http://download.eclipse.org/releases/helios?importType=binary" />
@@ -66,6 +74,7 @@
 
 	<locator searchPathRef="plugins.local" pattern="^org\.(\..*)?" failOnError="false"/>
 	<locator searchPathRef="features.local" pattern="^org([\.].+)?" failOnError="false"/>
+	<locator searchPathRef="ascape.build" pattern="^org\.ascape\.build" />
 	<locator searchPathRef="ascape.releng" pattern="^org\.ascape\.site" />
 	<locator searchPathRef="ascape.feature" pattern="^org\.ascape([\.].+)?" failOnError="false"/>
 	<locator searchPathRef="ascape" pattern="^org\.ascape([\.].+)?" />
