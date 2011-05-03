@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cq:componentQuery xmlns:cq="http://www.eclipse.org/buckminster/CQuery-1.0" resourceMap="site.rmap">
     <cq:rootRequest name="org.ascape.site" componentType="buckminster"/>
-    <cq:property key="target.arch" value="x86_64"/>
-    <cq:property key="target.os" value="macosx"/>
-    <cq:property key="target.ws" value="macosx"/>
+    <cq:property key="target.arch" value="*"/>
+    <cq:property key="target.os" value="*"/>
+    <cq:property key="target.ws" value="*"/>
     <cq:advisorNode namePattern="^org\.apache([\.].+)+\.source$" skipComponent="true"/>
     <cq:advisorNode namePattern="^org\.eclipse([\.].+)+\.source$" skipComponent="true"/>
 </cq:componentQuery>
